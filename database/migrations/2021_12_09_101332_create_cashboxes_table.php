@@ -17,9 +17,10 @@ class CreateCashboxesTable extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained('companies');
             $table->foreignId('shop_id')->constrained('shops');
-            $table->enum('resource', ['_in', '_out'])->default('_in');
-            $table->enum('type', ['_cash', '_card'])->default('_cash');
-            $table->foreignId('sell_product_id')->nullable()->constrained('sell_products');
+            $table->enum('resource', ['_product', '_group'])->default('_product');
+            $table->unsignedBigInteger('resource_id')->nullable();
+            $table->enum('transaction_type', ['_in', '_out'])->default('_in');
+            $table->enum('payment_type', ['_cash', '_card'])->default('_cash');
             $table->unsignedDecimal('amount');
             $table->text('description')->nullable();
             $table->foreignId('operator_id')->constrained('users');

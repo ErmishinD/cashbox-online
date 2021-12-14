@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\Shop;
+use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
+
+/**
+ * Class ShopRepository.
+ */
+class ShopRepository extends BaseRepository
+{
+    /**
+     * @return string
+     *  Return the model
+     */
+    public function model()
+    {
+        return Shop::class;
+    }
+}

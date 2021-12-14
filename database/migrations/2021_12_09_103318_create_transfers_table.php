@@ -19,7 +19,7 @@ class CreateTransfersTable extends Migration
             $table->foreignId('to_storage_id')->constrained('storages');
             $table->foreignId('product_type_id')->constrained('product_types');
             $table->unsignedBigInteger('quantity');
-            $table->boolean('is_confirmed')->default(false);
+            $table->foreignId('confirmed_by')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
