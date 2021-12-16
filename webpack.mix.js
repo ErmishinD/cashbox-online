@@ -10,7 +10,7 @@ mix
     .js(
         'resources/assets/js/main.js',
         'public/assets/js'
-    )
+    ).vue()
     // Используем полифиллы
     .polyfill({
         enabled: true,
