@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\Company\CreateRequest;
+use App\Http\Requests\Admin\Company\UpdateRequest;
 use App\Repositories\CompanyRepository;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,8 @@ class CompanyController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $companies = $this->company->all();
+        dd(__METHOD__, $companies);
     }
 
     /**
@@ -44,9 +47,10 @@ class CompanyController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +61,8 @@ class CompanyController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $company = $this->company->get($id);
+        dd(__METHOD__, $company);
     }
 
     /**
@@ -68,7 +73,8 @@ class CompanyController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $company = $this->company->get($id);
+        dd(__METHOD__, $company);
     }
 
     /**
@@ -78,9 +84,11 @@ class CompanyController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $company = $this->company->get($id);
+        dd(__METHOD__, $data, $company);
     }
 
     /**
@@ -91,6 +99,7 @@ class CompanyController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $company = $this->company->get($id);
+        dd(__METHOD__, $company);
     }
 }

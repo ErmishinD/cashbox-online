@@ -18,4 +18,9 @@ class SellProductRepository extends BaseRepository
     {
         return SellProduct::class;
     }
+
+    public function all(array $columns = ['*'])
+    {
+        return parent::all($columns);
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\Shop\CreateRequest;
+use App\Http\Requests\Admin\Shop\UpdateRequest;
 use App\Repositories\ShopRepository;
 use Illuminate\Http\Request;
 
@@ -25,6 +27,7 @@ class ShopController extends BaseController
      */
     public function index()
     {
+        $shops = $this->shop->all();
         dd(__METHOD__);
     }
 
@@ -44,9 +47,10 @@ class ShopController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +61,8 @@ class ShopController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $shop = $this->shop->get($id);
+        dd(__METHOD__, $shop);
     }
 
     /**
@@ -68,7 +73,8 @@ class ShopController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $shop = $this->shop->get($id);
+        dd(__METHOD__, $shop);
     }
 
     /**
@@ -78,9 +84,11 @@ class ShopController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $shop = $this->shop->get($id);
+        dd(__METHOD__, $data, $shop);
     }
 
     /**
@@ -91,6 +99,7 @@ class ShopController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $shop = $this->shop->get($id);
+        dd(__METHOD__, $shop);
     }
 }

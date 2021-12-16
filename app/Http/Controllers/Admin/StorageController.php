@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\Storage\CreateRequest;
+use App\Http\Requests\Admin\Storage\UpdateRequest;
+use App\Repositories\ShopRepository;
 use App\Repositories\StorageRepository;
 use Illuminate\Http\Request;
 
@@ -13,9 +16,12 @@ class StorageController extends BaseController
      */
     private $storage;
 
+    private $shop;
+
     public function __construct()
     {
         $this->storage = app(StorageRepository::class);
+        $this->shop = app(ShopRepository::class);
     }
 
     /**
@@ -25,7 +31,8 @@ class StorageController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $storages = $this->storage->all();
+        dd(__METHOD__, $storages);
     }
 
     /**
@@ -35,7 +42,8 @@ class StorageController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $shops = $this->shop->getForSelect();
+        dd(__METHOD__, $shops);
     }
 
     /**
@@ -44,9 +52,10 @@ class StorageController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +66,8 @@ class StorageController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $storage = $this->storage->get($id);
+        dd(__METHOD__, $storage);
     }
 
     /**
@@ -68,7 +78,8 @@ class StorageController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $storage = $this->storage->get($id);
+        dd(__METHOD__, $storage);
     }
 
     /**
@@ -78,9 +89,11 @@ class StorageController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $storage = $this->storage->get($id);
+        dd(__METHOD__, $data, $storage);
     }
 
     /**
@@ -91,6 +104,7 @@ class StorageController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $storage = $this->storage->get($id);
+        dd(__METHOD__, $storage);
     }
 }

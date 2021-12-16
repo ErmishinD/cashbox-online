@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\Cashbox\CreateRequest;
+use App\Http\Requests\Admin\Cashbox\UpdateRequest;
 use App\Repositories\CashboxRepository;
+use App\Repositories\ShopRepository;
 use Illuminate\Http\Request;
 
 class CashboxController extends BaseController
@@ -13,9 +16,15 @@ class CashboxController extends BaseController
      */
     private $cashbox;
 
+    /**
+     * @var ShopRepository
+     */
+    private $shop;
+
     public function __construct()
     {
         $this->cashbox = app(CashboxRepository::class);
+        $this->shop = app(ShopRepository::class);
     }
 
     /**
@@ -25,7 +34,8 @@ class CashboxController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $cashbox = $this->cashbox->all();
+        dd(__METHOD__, $cashbox);
     }
 
     /**
@@ -35,7 +45,11 @@ class CashboxController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $shops = $this->shop->getForSelect();
+        $resources = $this->cashbox->getResourcces();
+        $transaction_types = $this->cashbox->getTransactionTypes();
+        $payment_types = $this->cashbox->getPaymentTypes();
+        dd(__METHOD__, $shops, $resources, $transaction_types, $payment_types);
     }
 
     /**
@@ -44,9 +58,10 @@ class CashboxController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +72,8 @@ class CashboxController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $transaction = $this->cashbox->get($id);
+        dd(__METHOD__, $transaction);
     }
 
     /**
@@ -68,7 +84,8 @@ class CashboxController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $transaction = $this->cashbox->get($id);
+        dd(__METHOD__, $transaction);
     }
 
     /**
@@ -78,9 +95,11 @@ class CashboxController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $transaction = $this->cashbox->get($id);
+        dd(__METHOD__, $data, $transaction);
     }
 
     /**
@@ -91,6 +110,7 @@ class CashboxController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $transaction = $this->cashbox->get($id);
+        dd(__METHOD__, $transaction);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\SellProductGroup\CreateRequest;
+use App\Http\Requests\Admin\SellProductGroup\UpdateRequest;
 use App\Repositories\SellProductGroupRepository;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,8 @@ class SellProductGroupController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $product_groups = $this->sell_product_group->all();
+        dd(__METHOD__, $product_groups);
     }
 
     /**
@@ -44,9 +47,10 @@ class SellProductGroupController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +61,8 @@ class SellProductGroupController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $product_group = $this->sell_product_group->get($id);
+        dd(__METHOD__, $product_group);
     }
 
     /**
@@ -68,7 +73,8 @@ class SellProductGroupController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $product_group = $this->sell_product_group->get($id);
+        dd(__METHOD__, $id);
     }
 
     /**
@@ -78,9 +84,11 @@ class SellProductGroupController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $product_group = $this->sell_product_group->get($id);
+        dd(__METHOD__, $data, $product_group);
     }
 
     /**
@@ -91,6 +99,7 @@ class SellProductGroupController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $product_group = $this->sell_product_group->get($id);
+        dd(__METHOD__, $product_group);
     }
 }

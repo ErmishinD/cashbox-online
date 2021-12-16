@@ -18,4 +18,8 @@ class ShopRepository extends BaseRepository
     {
         return Shop::class;
     }
+
+    public function getForSelect() {
+        return $this->model->select('id', 'name')->get();
+    }
 }

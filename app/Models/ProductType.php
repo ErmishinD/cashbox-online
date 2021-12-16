@@ -9,6 +9,10 @@ class ProductType extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'barcode',
+    ];
+
     public function measure_types() {
         return $this->belongsToMany(MeasureType::class, 'product_type_measures',
             'product_type_id', 'measure_type_id');

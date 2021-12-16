@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\Transfer\CreateRequest;
+use App\Http\Requests\Admin\Transfer\UpdateRequest;
+use App\Repositories\ProductTypeRepository;
 use App\Repositories\TransferRepository;
 use Illuminate\Http\Request;
 
@@ -13,9 +16,15 @@ class TransferController extends BaseController
      */
     private $transfer;
 
+    /**
+     * @var ProductTypeRepository
+     */
+    private $product_type;
+
     public function __construct()
     {
         $this->transfer = app(TransferRepository::class);
+        $this->product_type = app(ProductTypeRepository::class);
     }
 
     /**
@@ -25,7 +34,8 @@ class TransferController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $transfers = $this->transfer->all();
+        dd(__METHOD__, $transfers);
     }
 
     /**
@@ -35,7 +45,8 @@ class TransferController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $product_types = $this->product_type->getForSelect();
+        dd(__METHOD__, $product_types);
     }
 
     /**
@@ -44,9 +55,10 @@ class TransferController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +69,8 @@ class TransferController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $transfer = $this->transfer->get($id);
+        dd(__METHOD__, $transfer);
     }
 
     /**
@@ -68,7 +81,8 @@ class TransferController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $transfer = $this->transfer->get($id);
+        dd(__METHOD__, $transfer);
     }
 
     /**
@@ -78,9 +92,11 @@ class TransferController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $transfer = $this->transfer->get($id);
+        dd(__METHOD__, $data, $transfer);
     }
 
     /**
@@ -91,6 +107,7 @@ class TransferController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $transfer = $this->transfer->get($id);
+        dd(__METHOD__, $transfer);
     }
 }

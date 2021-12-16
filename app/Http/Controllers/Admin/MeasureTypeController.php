@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\MeasureType\CreateRequest;
+use App\Http\Requests\Admin\MeasureType\UpdateRequest;
+use App\Repositories\BaseMeasureTypeRepository;
+use App\Repositories\CompanyRepository;
 use App\Repositories\MeasureTypeRepository;
 use Illuminate\Http\Request;
 
@@ -13,9 +17,15 @@ class MeasureTypeController extends BaseController
      */
     private $measure_type;
 
+    /**
+     * @var BaseMeasureTypeRepository
+     */
+    private $base_measure_type;
+
     public function __construct()
     {
         $this->measure_type = app(MeasureTypeRepository::class);
+        $this->base_measure_type = app(BaseMeasureTypeRepository::class);
     }
 
     /**
@@ -25,7 +35,8 @@ class MeasureTypeController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $measure_types = $this->measure_type->all();
+        dd(__METHOD__, $measure_types);
     }
 
     /**
@@ -35,7 +46,8 @@ class MeasureTypeController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $base_measure_types = $this->base_measure_type->getForSelect();
+        dd(__METHOD__, $base_measure_types);
     }
 
     /**
@@ -44,9 +56,10 @@ class MeasureTypeController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +70,8 @@ class MeasureTypeController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $measure_type = $this->measure_type->get($id);
+        dd(__METHOD__, $id);
     }
 
     /**
@@ -68,7 +82,8 @@ class MeasureTypeController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $measure_type = $this->measure_type->get($id);
+        dd(__METHOD__, $measure_type);
     }
 
     /**
@@ -78,9 +93,11 @@ class MeasureTypeController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $measure_type = $this->measure_type->get($id);
+        dd(__METHOD__, $data, $measure_type);
     }
 
     /**
@@ -91,6 +108,7 @@ class MeasureTypeController extends BaseController
      */
     public function destroy($id)
     {
+        $measure_type = $this->measure_type->get($id);
         dd(__METHOD__);
     }
 }

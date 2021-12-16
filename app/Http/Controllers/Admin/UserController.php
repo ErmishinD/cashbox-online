@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\User\CreateRequest;
+use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,8 @@ class UserController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $users = $this->user->all();
+        dd(__METHOD__, $users);
     }
 
     /**
@@ -41,12 +44,13 @@ class UserController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CreateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +61,8 @@ class UserController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $user = $this->user->get($id);
+        dd(__METHOD__, $user);
     }
 
     /**
@@ -68,19 +73,22 @@ class UserController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $user = $this->user->get($id);
+        dd(__METHOD__, $user);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $user = $this->user->get($id);
+        dd(__METHOD__, $data, $user);
     }
 
     /**
@@ -91,6 +99,7 @@ class UserController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $user = $this->user->get($id);
+        dd(__METHOD__, $user);
     }
 }

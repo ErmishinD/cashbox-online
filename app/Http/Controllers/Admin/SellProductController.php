@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\SellProduct\CreateRequest;
+use App\Http\Requests\Admin\SellProduct\UpdateRequest;
 use App\Repositories\SellProductRepository;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,8 @@ class SellProductController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $products = $this->sell_product->all();
+        dd(__METHOD__, $products);
     }
 
     /**
@@ -44,9 +47,10 @@ class SellProductController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +61,8 @@ class SellProductController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $product = $this->sell_product->get($id);
+        dd(__METHOD__, $product);
     }
 
     /**
@@ -68,7 +73,8 @@ class SellProductController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $product = $this->sell_product->get($id);
+        dd(__METHOD__, $product);
     }
 
     /**
@@ -78,9 +84,11 @@ class SellProductController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $product = $this->sell_product->get($id);
+        dd(__METHOD__, $data, $product);
     }
 
     /**
@@ -91,6 +99,7 @@ class SellProductController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $product = $this->sell_product->get($id);
+        dd(__METHOD__, $product);
     }
 }

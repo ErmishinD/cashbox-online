@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Admin\ProductPurchase\CreateRequest;
+use App\Http\Requests\Admin\ProductPurchase\UpdateRequest;
+use App\Repositories\MeasureTypeRepository;
 use App\Repositories\ProductPurchaseRepository;
+use App\Repositories\ProductTypeRepository;
+use App\Repositories\StorageRepository;
 use Illuminate\Http\Request;
 
 class ProductPurchaseController extends BaseController
@@ -13,9 +18,24 @@ class ProductPurchaseController extends BaseController
      */
     private $product_purchase;
 
+    /**
+     * @var ProductTypeRepository
+     */
+    private $product_type;
+
+    /**
+     * @var StorageRepository
+     */
+    private $storage;
+
+    private $measure_type;
+
     public function __construct()
     {
         $this->product_purchase = app(ProductPurchaseRepository::class);
+        $this->product_type = app(ProductTypeRepository::class);
+        $this->storage = app(StorageRepository::class);
+        $this->measure_type = app(MeasureTypeRepository::class);
     }
 
     /**
@@ -25,7 +45,8 @@ class ProductPurchaseController extends BaseController
      */
     public function index()
     {
-        dd(__METHOD__);
+        $purchases = $this->product_purchase->all();
+        dd(__METHOD__, $purchases);
     }
 
     /**
@@ -35,7 +56,10 @@ class ProductPurchaseController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $storages = $this->storage->all();
+        $product_types = $this->product_type->all();
+        $measure_types = $this->measure_type->all();
+        dd(__METHOD__, $storages, $product_types, $measure_types);
     }
 
     /**
@@ -44,9 +68,10 @@ class ProductPurchaseController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        dd(__METHOD__, $data);
     }
 
     /**
@@ -57,7 +82,8 @@ class ProductPurchaseController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        $purchase = $this->product_purchase->get($id);
+        dd(__METHOD__, $purchase);
     }
 
     /**
@@ -68,6 +94,7 @@ class ProductPurchaseController extends BaseController
      */
     public function edit($id)
     {
+        $purchase = $this->product_purchase->get($id);
         dd(__METHOD__);
     }
 
@@ -78,9 +105,11 @@ class ProductPurchaseController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $purchase = $this->product_purchase->get($id);
+        dd(__METHOD__, $data, $purchase);
     }
 
     /**
@@ -91,6 +120,7 @@ class ProductPurchaseController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $purchase = $this->product_purchase->get($id);
+        dd(__METHOD__, $purchase);
     }
 }
