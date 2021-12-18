@@ -12,4 +12,11 @@ class Shop extends Model
     protected $fillable = [
         'company_id', 'name', 'address',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function storages() {
+        return $this->hasMany(Storage::class);
+    }
 }

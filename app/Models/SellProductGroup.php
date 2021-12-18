@@ -13,7 +13,7 @@ class SellProductGroup extends Model
         'company_id', 'name', 'price', 'has_discount',
     ];
 
-    public function product_types() {
+    public function products() {
         return $this->belongsToMany(SellProduct::class, 'sell_product_product_group',
             'sell_product_group_id', 'sell_product_id')
             ->withPivot('quantity');

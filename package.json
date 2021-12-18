@@ -31,7 +31,9 @@
         "sass": "^1.44.0",
         "sass-loader": "^12.4.0",
         "svg-spritemap-webpack-plugin": "^4.4.0",
-        "tailwindcss": "^2.0.2"
+        "tailwindcss": "^2.0.2",
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
         "svg4everybody": "^2.1.9",

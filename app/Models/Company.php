@@ -12,4 +12,11 @@ class Company extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function shops() {
+        return $this->hasMany(Shop::class);
+    }
 }
