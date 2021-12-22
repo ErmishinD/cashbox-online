@@ -5,6 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int id
+ * @property int base_measure_type_id
+ * @property string name
+ * @property string description
+ * @property int quantity
+ * @property int company_id
+ * @property boolean is_common
+ */
 class MeasureType extends Model
 {
     use HasFactory;

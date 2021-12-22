@@ -5,6 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int id
+ * @property int company_id
+ * @property string name
+ * @property string type
+ * @property string photo
+ * @property int base_measure_type
+ * @property string barcode
+ */
 class ProductType extends Model
 {
     use HasFactory;
