@@ -41,6 +41,6 @@ Route::apiResources([
     'product_purchases' => ProductPurchaseController::class,
     'sell_products' => SellProductController::class,
     'sell_product_groups' => SellProductGroupController::class,
-    'cashboxes' => CashboxController::class,
+    'cashbox' => CashboxController::class,
     'transfers' => TransferController::class,
 ]);
