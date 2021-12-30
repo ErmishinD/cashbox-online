@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => ['required'],
+            'company_id' => ['nullable'],
             'name' => ['required'],
             'address' => ['nullable'],
         ];

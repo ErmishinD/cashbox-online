@@ -67,7 +67,7 @@ class CompanyController extends Controller
     {
         $data = $request->validated();
         $company = $this->company->getById($id);
-        $this->company->update($data);
+        $company->update($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($company)]);
     }
 
