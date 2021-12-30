@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\MeasureType\CreateRequest;
 use App\Http\Requests\Api\MeasureType\UpdateRequest;
-use App\Http\Resources\Api\BaseMeasureType\DefaultResource;
+use App\Http\Resources\Api\MeasureType\DefaultResource;
 use App\Repositories\MeasureTypeRepository;
 
 class MeasureTypeController extends Controller

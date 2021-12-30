@@ -13,6 +13,7 @@ class ShopControllerTest extends TestCase
     use RefreshDatabase;
 
     private $base_route = '/api/shops/';
+    private $table = 'shops';
 
     public function test_can_get_all_shops() {
         Company::factory()->create();
@@ -41,7 +42,7 @@ class ShopControllerTest extends TestCase
                 'success' => true,
                 'data' => ['name' => $shop_name, 'address' => null]
             ]);
-        $this->assertDatabaseHas('shops', [
+        $this->assertDatabaseHas($this->table, [
             'name' => $shop_name, 'company_id' => $company->id, 'address' => null
         ]);
     }
@@ -60,7 +61,7 @@ class ShopControllerTest extends TestCase
                 'success' => true,
                 'data' => ['name' => $shop_name, 'address' => 'some address']
             ]);
-        $this->assertDatabaseHas('shops', [
+        $this->assertDatabaseHas($this->table, [
             'name' => $shop_name, 'company_id' => $company->id, 'address' => 'some address'
         ]);
     }
@@ -88,7 +89,7 @@ class ShopControllerTest extends TestCase
                 'data' => ['name' => 'NEW Shop name', 'address' => 'some address']
             ]);
 
-        $this->assertDatabaseHas('shops', [
+        $this->assertDatabaseHas($this->table, [
             'company_id' => $company->id, 'name' => 'NEW Shop name', 'address' => 'some address'
         ]);
     }
@@ -105,7 +106,7 @@ class ShopControllerTest extends TestCase
                 'success' => true,
                 'data' => ['name' => 'NEW My Shop name', 'address' => 'my address']
             ]);
-        $this->assertDatabaseHas('shops', [
+        $this->assertDatabaseHas($this->table, [
             'company_id' => $company->id, 'name' => 'NEW My Shop name', 'address' => 'my address'
         ]);
     }
@@ -119,6 +120,6 @@ class ShopControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing('shops', ['name' => 'Shop name']);
+        $this->assertDatabaseMissing($this->table, ['name' => 'Shop name']);
     }
 }

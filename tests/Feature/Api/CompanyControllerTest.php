@@ -12,11 +12,11 @@ class CompanyControllerTest extends TestCase
     use RefreshDatabase;
 
     private $base_route = '/api/companies/';
+    private $table = 'companies';
 
 
     public function test_can_get_all_companies() {
-        Company::factory()->create();
-        Company::factory()->create();
+        Company::factory(2)->create();
 
         $response = $this->get($this->base_route);
         $response
@@ -38,7 +38,7 @@ class CompanyControllerTest extends TestCase
                 'success' => true,
                 'data' => ['name' => $company_name]
             ]);
-        $this->assertDatabaseHas('companies', ['name' => $company_name]);
+        $this->assertDatabaseHas($this->table, ['name' => $company_name]);
     }
 
     public function test_can_get_company() {
@@ -61,7 +61,7 @@ class CompanyControllerTest extends TestCase
                 'success' => true,
                 'data' => ['name' => 'NEW Company name']
             ]);
-        $this->assertDatabaseHas('companies', ['name' => 'NEW Company name']);
+        $this->assertDatabaseHas($this->table, ['name' => 'NEW Company name']);
     }
 
     public function test_can_delete_company() {
@@ -72,6 +72,6 @@ class CompanyControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing('companies', ['name' => 'My company']);
+        $this->assertDatabaseMissing($this->table, ['name' => 'My company']);
     }
 }
