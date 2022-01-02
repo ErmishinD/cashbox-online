@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Shop;
+use App\Models\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StorageFactory extends Factory
@@ -15,7 +16,7 @@ class StorageFactory extends Factory
     public function definition()
     {
         return [
-            'shop_id' => null,
+            'shop_id' => Storage::inRandomOrder()->first(),
             'name' => 'Storage ' . $this->faker->word,
         ];
     }

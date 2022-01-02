@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int id
  * @property string name
+ * @method static inRandomOrder()
  */
 class Company extends Model
 {

@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  * @property string type
  * @property string photo
- * @property int base_measure_type
+ * @property int base_measure_type_id
  * @property string barcode
+ * @method static inRandomOrder()
  */
 class ProductType extends Model
 {

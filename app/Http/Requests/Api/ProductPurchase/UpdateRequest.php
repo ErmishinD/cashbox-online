@@ -24,12 +24,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'storage_id' => ['required'],
-            'product_type_id' => ['required'],
-            'measure_type_id' => ['required'],
-            'quantity' => ['required'],
+            'storage_id' => ['nullable'],
+            'product_type_id' => ['nullable'],
+            'measure_type_id' => ['nullable'],
+            'quantity' => ['nullable'],
             'current_quantity' => ['nullable'],
-            'cost' => ['required'],
+            'cost' => ['nullable'],
             'expiration_date' => ['nullable'],
         ];
     }

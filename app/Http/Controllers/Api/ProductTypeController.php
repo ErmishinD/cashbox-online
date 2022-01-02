@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductType\CreateRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
-use App\Http\Resources\Api\BaseMeasureType\DefaultResource;
+use App\Http\Resources\Api\ProductType\DefaultResource;
 use App\Repositories\ProductTypeRepository;
 
 class ProductTypeController extends Controller

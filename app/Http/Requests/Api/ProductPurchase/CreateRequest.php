@@ -33,4 +33,11 @@ class CreateRequest extends FormRequest
             'expiration_date' => ['nullable'],
         ];
     }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'current_quantity' => $this->quantity
+        ]);
+    }
 }

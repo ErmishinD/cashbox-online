@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int quantity
  * @property int company_id
  * @property boolean is_common
+ * @method static inRandomOrder()
  */
 class MeasureType extends Model
 {

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int id
  * @property int shop_id
+ * @method static inRandomOrder()
  */
 class Storage extends Model
 {
