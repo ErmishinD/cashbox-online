@@ -24,13 +24,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => ['required'],
-            'shop_id' => ['required'],
-            'resource' => ['required'],
-            'resource_id' => ['required'],
-            'transaction_type' => ['required'],
-            'payment_type' => ['required'],
-            'amount' => ['required'],
+            'shop_id' => ['nullable'],
+            'resource' => ['nullable'],
+            'resource_id' => ['nullable'],
+            'transaction_type' => ['nullable'],
+            'payment_type' => ['nullable'],
+            'amount' => ['nullable'],
             'description' => ['nullable'],
             'operator_id' => ['nullable'],
             'collected_at' => ['nullable'],

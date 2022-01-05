@@ -24,10 +24,9 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => ['required'],
             'shop_id' => ['required'],
-            'resource' => ['required'],
-            'resource_id' => ['required'],
+            'resource' => ['nullable'],
+            'resource_id' => ['nullable'],
             'transaction_type' => ['required'],
             'payment_type' => ['required'],
             'amount' => ['required'],

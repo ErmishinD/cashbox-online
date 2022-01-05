@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  * @property float price
  * @property boolean has_discount
+ * @method static inRandomOrder()
  */
 class SellProductGroup extends Model
 {
