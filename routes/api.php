@@ -30,17 +30,63 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources([
-    'companies' => CompanyController::class,
-    'shops' => ShopController::class,
-    'storages' => StorageController::class,
-    'base_measure_types' => BaseMeasureTypeController::class,
-    'measure_types' => MeasureTypeController::class,
-    'users' => UserController::class,
-    'product_types' => ProductTypeController::class,
-    'product_purchases' => ProductPurchaseController::class,
-    'sell_products' => SellProductController::class,
-    'sell_product_groups' => SellProductGroupController::class,
-    'cashbox' => CashboxController::class,
-    'transfers' => TransferController::class,
-]);
+/*
+ * Company
+ */
+Route::apiResource('companies', CompanyController::class);
+
+/*
+ * Shop
+ */
+Route::apiResource('shops', ShopController::class);
+
+/*
+ * Storage
+ */
+Route::apiResource('storages', StorageController::class);
+
+/*
+ * BaseMeasureType
+ */
+Route::apiResource('base_measure_types', BaseMeasureTypeController::class);
+
+/*
+ * MeasureType
+ */
+Route::apiResource('measure_types', MeasureTypeController::class);
+
+/*
+ * User
+ */
+Route::apiResource('users', UserController::class);
+
+/*
+ * ProductType
+ */
+Route::apiResource('product_types', ProductTypeController::class);
+
+/*
+ * ProductPurchase
+ */
+Route::apiResource('product_purchases', ProductPurchaseController::class);
+
+/*
+ * SellProduct
+ */
+Route::apiResource('sell_products', SellProductController::class);
+
+/*
+ * SellProductGroup
+ */
+Route::apiResource('sell_product_groups', SellProductGroupController::class);
+
+/*
+ * Cashbox
+ */
+Route::apiResource('cashbox', CashboxController::class);
+
+/*
+ * Transfer
+ */
+Route::apiResource('transfers', TransferController::class);
+

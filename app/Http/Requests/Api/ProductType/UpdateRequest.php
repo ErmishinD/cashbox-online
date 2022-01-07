@@ -24,11 +24,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => ['required'],
-            'name' => ['required'],
-            'type' => ['required'],
+            'company_id' => ['nullable'],
+            'name' => ['nullable'],
+            'type' => ['nullable'],
             'photo' => ['nullable'],
-            'base_measure_type_id' => ['required'],
+            'base_measure_type_id' => ['nullable'],
             'barcode' => ['nullable'],
         ];
     }

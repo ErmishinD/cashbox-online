@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property string type
  * @property string name
+ * @method static inRandomOrder()
  */
 class BaseMeasureType extends Model
 {

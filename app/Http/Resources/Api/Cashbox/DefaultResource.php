@@ -20,7 +20,7 @@ class DefaultResource extends JsonResource
             'id' => $this->id,
             'company_id' => $this->company_id,
             'shop_id' => $this->shop_id,
-            'resource' => $this->resource,
+            'resource' => $this->resource->resource,
             'resource_id' => $this->resource_id,
             'amount' => $this->amount,
             'payment_type' => $this->payment_type,

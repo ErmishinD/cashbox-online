@@ -18,6 +18,7 @@ class CreateSellProductsTable extends Migration
             $table->foreignId('company_id')->constrained();
             $table->string('name');
             $table->unsignedDecimal('price')->default(0);
+            $table->string('photo')->nullable();
             $table->boolean('has_discount')->default(false);
             $table->timestamps();
         });
