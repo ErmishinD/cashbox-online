@@ -22,22 +22,20 @@
       
     </head>
 
-    <body class="">
-        <div class="wrapper">
+    <body>
+        <a class="dropdown-item" href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+        <div id="app">
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-
-                <section class="content">
-
-                    @yield('content')
-                </section>
-
-            </div>
-
-
+            <app></app>
+            
         </div>
-
 
         @section('scripts')
             @include('app.connect_scripts')
