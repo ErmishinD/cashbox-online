@@ -1,9 +1,10 @@
 require('./bootstrap');
 
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createApp } from 'vue';
+import { createWebHistory, createRouter } from "vue-router"
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
-Vue.use(VueRouter)
 
 /* import app */
 import App from './components/App'
@@ -66,8 +67,8 @@ import SettingsRoles from './components/settings/Roles'
 
 
 
-const router = new VueRouter({
-	mode: 'history',
+const router = createRouter({
+	history: createWebHistory(),
 	routes: [
 		{
 			path: '/dashboard',
@@ -232,10 +233,10 @@ const router = new VueRouter({
 	]
 })
 
-const app = new Vue({
-	el:'#app',
-	components: {
-		App
-	},
-	router
-})
+
+const app = createApp(App)
+
+app.use(VueSidebarMenu)
+app.use(router)
+
+app.mount("#app");
