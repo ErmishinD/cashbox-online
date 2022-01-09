@@ -32,12 +32,13 @@
         "sass-loader": "^12.4.0",
         "svg-spritemap-webpack-plugin": "^4.4.0",
         "tailwindcss": "^2.0.2",
-        "vue-loader": "^15.9.7",
+        "vue-loader": "^17.0.0",
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
         "svg4everybody": "^2.1.9",
-        "vue": "^2.6.14",
-        "vue-router": "^3.5.3"
+        "vue": "^3.2.26",
+        "vue-router": "^4.0.12",
+        "vue-sidebar-menu": "^5.1.2"
     }
 }
