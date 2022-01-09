@@ -6,6 +6,7 @@ import VueSidebarMenu from 'vue-sidebar-menu'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 
+
 /* import app */
 import App from './components/App'
 
@@ -229,6 +230,10 @@ const router = createRouter({
 			path: '/settings/measures/edit',
 			name: 'settings_measures_edit',
 			component: SettingsMeasuresEdit
+		},
+		{
+			path: '/logout',
+			name: 'logout'
 		},
 	]
 })

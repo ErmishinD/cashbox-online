@@ -1,13 +1,8 @@
 <template>
-	<div>
-		<p>
-			<sidebar-menu :menu="menu" />
-		</p>
-
-		<div>
+		<sidebar-menu :menu="menu" />
+		<div style="padding-left: 295px;">
 			<router-view></router-view>
 		</div>
-	</div>
 	
 </template>
 
@@ -101,8 +96,11 @@
               },
             ]
           },
-        ]
+        ],            
       }
+    },
+    methods:{
+    	
     }
   }
 </script>

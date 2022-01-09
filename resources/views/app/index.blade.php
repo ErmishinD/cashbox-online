@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <a class="dropdown-item" href="{{ route('logout') }}"
+        <a style="padding-left: 295px;" class="dropdown-item" href="{{ route('logout') }}"
            onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
