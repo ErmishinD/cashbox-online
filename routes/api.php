@@ -63,6 +63,9 @@ Route::apiResource('users', UserController::class);
 /*
  * ProductType
  */
+Route::prefix('product_types')->group(function() {
+    Route::post('remove_measure_types', [ProductTypeController::class, 'remove_measure_types']);
+});
 Route::apiResource('product_types', ProductTypeController::class);
 
 /*

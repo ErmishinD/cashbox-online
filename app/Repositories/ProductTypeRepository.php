@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\ProductType;
 use App\Services\EnumDbCol;
+use Illuminate\Support\Facades\DB;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -35,5 +36,51 @@ class ProductTypeRepository extends BaseRepository
 
     public function getForSelect() {
         return $this->model->select('id', 'name')->get();
+    }
+
+    public function getWithMeasureTypes($id) {
+        $product_type = $this->model->with('measure_types')->where('id', $id)->first();
+        return $product_type;
+    }
+
+    public function create(array $data)
+    {
+        $product_type = parent::create($data);
+        if (!empty($data['measure_types'])) {
+            foreach ($data['measure_types'] as $measure_type_id) {
+                DB::table('product_type_measures')->insert([
+                    'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type_id
+                ]);
+            }
+        }
+        return $product_type;
+    }
+
+    public function update($id, $data) {
+        $product_type = $this->getById($id);
+        $product_type->update($data);
+
+        // удалить все единицы измерения для данного продукта
+        DB::table('product_type_measures')->where('product_type_id', $id)->delete();
+
+        // добавить единицы измерения к продукту
+        if (!empty($data['measure_types'])) {
+            foreach ($data['measure_types'] as $measure_type_id) {
+                DB::table('product_type_measures')->insert([
+                    'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type_id
+                ]);
+            }
+        }
+        return $product_type;
+    }
+
+    public function remove_measure_types($data) {
+        $product_type_id = $data['product_type_id'];
+        foreach ($data['measure_types'] as $measure_type_id) {
+            DB::table('product_type_measures')
+                ->where('product_type_id', $product_type_id)
+                ->where('measure_type_id', $measure_type_id)
+                ->delete();
+        }
     }
 }

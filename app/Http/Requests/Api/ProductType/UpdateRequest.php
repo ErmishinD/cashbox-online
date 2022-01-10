@@ -30,6 +30,7 @@ class UpdateRequest extends FormRequest
             'photo' => ['nullable'],
             'base_measure_type_id' => ['nullable'],
             'barcode' => ['nullable'],
+            'measure_types' => ['nullable', 'array'],
         ];
     }
 }

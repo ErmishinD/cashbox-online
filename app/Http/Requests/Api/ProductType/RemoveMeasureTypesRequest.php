@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\ProductType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class RemoveMeasureTypesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,8 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => ['required'],
-            'name' => ['required'],
-            'type' => ['required'],
-            'photo' => ['nullable'],
-            'base_measure_type_id' => ['required'],
-            'barcode' => ['nullable'],
-            'measure_types' => ['nullable', 'array']
+            'product_type_id' => ['required', 'exists:product_type_measures,product_type_id'],
+            'measure_types' => ['required', 'array'],
         ];
     }
 }

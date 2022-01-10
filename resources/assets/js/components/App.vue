@@ -3,7 +3,6 @@
 		<div style="padding-left: 295px;">
 			<router-view></router-view>
 		</div>
-	
 </template>
 
 <script>
@@ -28,11 +27,6 @@
           {
           	href: '/products_for_sale',
             title: 'Products for sale',
-            icon: 'fa fa-chart-area',
-          },
-          {
-          	href: '/purchases',
-            title: 'Purchases',
             icon: 'fa fa-chart-area',
           },
           {
@@ -96,11 +90,11 @@
               },
             ]
           },
-        ],            
+        ],
       }
     },
     methods:{
-    	
+
     }
   }
 </script>

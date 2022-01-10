@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductType\CreateRequest;
+use App\Http\Requests\Api\ProductType\RemoveMeasureTypesRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
 use App\Http\Resources\Api\ProductType\DefaultResource;
+use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Repositories\ProductTypeRepository;
 
 class ProductTypeController extends Controller
@@ -41,7 +43,7 @@ class ProductTypeController extends Controller
     {
         $data = $request->validated();
         $product_type = $this->product_type->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($product_type)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
     /**
@@ -52,8 +54,8 @@ class ProductTypeController extends Controller
      */
     public function show($id)
     {
-        $product_type = $this->product_type->getById($id);
-        return response()->json(['success' => true, 'data' => new DefaultResource($product_type)]);
+        $product_type = $this->product_type->getWithMeasureTypes($id);
+        return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
     /**
@@ -66,9 +68,10 @@ class ProductTypeController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $data = $request->validated();
-        $product_type = $this->product_type->getById($id);
-        $product_type->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($product_type)]);
+        $product_type = $this->product_type->update($id, $data);
+//        $product_type = $this->product_type->getById($id);
+//        $product_type->update($data);
+        return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
     /**
@@ -83,6 +86,12 @@ class ProductTypeController extends Controller
         if ($product_type) {
             $product_type->delete();
         }
+        return response()->json(['success' => true]);
+    }
+
+    public function remove_measure_types(RemoveMeasureTypesRequest $request) {
+        $data = $request->validated();
+        $this->product_type->remove_measure_types($data);
         return response()->json(['success' => true]);
     }
 }
