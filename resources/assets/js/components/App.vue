@@ -9,7 +9,7 @@
 		</div>
 	</header>
 	<sidebar-menu  :menu="menu" @update:collapsed="onToggleCollapse">
-		<template  v-slot:toggle-icon><img v-bind:class="[isCollapsed ? '' : 'trans-180deg']" src="../../img/sidebar_arrow.svg" alt=""></template>
+		<template  v-slot:toggle-icon><img v-bind:class="[isCollapsed ? '' : 'trans-540deg']" src="../../img/sidebar_arrow.svg" alt=""></template>
 	</sidebar-menu>
 	<div id="main_content" v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
 		<router-view></router-view>

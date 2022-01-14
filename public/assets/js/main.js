@@ -24633,7 +24633,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "toggle-icon": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-        class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.isCollapsed ? '' : 'trans-180deg']),
+        class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.isCollapsed ? '' : 'trans-540deg']),
         src: _img_sidebar_arrow_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
         alt: ""
       }, null, 2

@@ -61,8 +61,8 @@ table {
   width: 65px !important;
 }
 
-.trans-180deg {
-  transform: rotate(-180deg);
+.trans-540deg {
+  transform: rotate(-540deg);
 }
 
 img {
