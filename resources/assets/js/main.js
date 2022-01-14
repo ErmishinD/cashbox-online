@@ -67,6 +67,9 @@ import SettingsRoles from './components/settings/Roles'
 	import SettingsMeasuresCreate from './components/settings/measures/Create'
 	import SettingsMeasuresEdit from './components/settings/measures/Edit'
 
+/* import 404 */
+import PageNotFound from './components/404'
+
 
 // Create a new store instance.
 const store = createStore({
@@ -242,6 +245,15 @@ const router = createRouter({
 		{
 			path: '/logout',
 			name: 'logout'
+		},
+		{ 
+			path: "/:catchAll(.*)", 
+			redirect: '/404',
+		  	
+		},
+		{
+			path: "/404",
+			component: PageNotFound 
 		},
 	]
 })
