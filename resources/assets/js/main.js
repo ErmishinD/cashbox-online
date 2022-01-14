@@ -1,11 +1,13 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
+import { createStore } from 'vuex'
 import { createWebHistory, createRouter } from "vue-router"
+import VueCookies from "vue3-cookies";
 import VueSidebarMenu from 'vue-sidebar-menu'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
-
+import i18n from './i18n'
 
 /* import app */
 import App from './components/App'
@@ -23,10 +25,6 @@ import ProductsForSaleIndex from './components/products_for_sale/Index'
 import ProductsForSaleCreate from './components/products_for_sale/Create'
 import ProductsForSaleEdit from './components/products_for_sale/Edit'
 
-/* import purchases */
-import PurchasesIndex from './components/purchases/Index'
-import PurchasesCreate from './components/purchases/Create'
-import PurchasesEdit from './components/purchases/Edit'
 
 /* import reports */
 	/* import cashbox */
@@ -36,6 +34,9 @@ import PurchasesEdit from './components/purchases/Edit'
 
 	/* import finance */
 	import ReportsFinanceIndex from './components/reports/finance/Index'
+
+	/* import purcsases */
+	import ReportsPurchasesIndex from './components/reports/purchases/Index'
 
 /* import transfers */
 import TransfersIndex from './components/transfers/Index'
@@ -67,7 +68,24 @@ import SettingsRoles from './components/settings/Roles'
 	import SettingsMeasuresEdit from './components/settings/measures/Edit'
 
 
+// Create a new store instance.
+const store = createStore({
+  state() {
+      appLanguage: localStorage.getItem("appLanguage") || process.env.VUE_APP_I18N_LOCALE || 'ru'
+    },
+    getters() {
+      getAppLanguage: (state) => state.appLanguage
+    },
+    mutations: {
+      setAppLanguage (state, language) {
+        state.appLanguage = language;
+        localStorage.setItem("language", language); // Whenever we change the appLanguage we save it to the localStorage
+      }
+    }
+})
 
+
+// Create a new router instance.
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -107,19 +125,9 @@ const router = createRouter({
 			component: ProductsForSaleEdit
 		},
 		{
-			path: '/purchases',
-			name: 'purchases_index',
-			component: PurchasesIndex
-		},
-		{
-			path: '/purchases/create',
-			name: 'purchases_create',
-			component: PurchasesCreate
-		},
-		{
-			path: '/purchases/edit',
-			name: 'purchases_edit',
-			component: PurchasesEdit
+			path: '/reports/purchases',
+			name: 'reports_purchases_index',
+			component: ReportsPurchasesIndex
 		},
 		{
 			path: '/reports/cashbox',
@@ -242,6 +250,18 @@ const router = createRouter({
 const app = createApp(App)
 
 app.use(VueSidebarMenu)
-app.use(router)
+app.use(router).use(i18n).use(store)
+
+app.use(VueCookies, {
+    expireTimes: "30d",
+    path: "/",
+    domain: "",
+    secure: true,
+    sameSite: "None"
+});
+
+
+
+
 
 app.mount("#app");

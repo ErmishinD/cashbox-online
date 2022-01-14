@@ -1,4 +1,27 @@
 @import "reset.css";
+@import "one-property";
 
-$deb: 100px;
+$dark: #2a2a2e;
+
+img{
+	transition: transform .3s;
+}
+
+header{
+	height: 70px;
+	background-color: $dark;
+}
+
+.vsm--scroll-wrapper{
+	padding-top: 70px;
+}
+
+#main_content, .header__content{
+	transition: padding-left .3s
+}
+
+.v-sidebar-menu .vsm--toggle-btn {
+	position: absolute;
+	height: 70px !important;
+}
 

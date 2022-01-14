@@ -19,8 +19,12 @@ Route::get('/', function () {
     return redirect(url('login'));
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/{vue_capture?}', function () {
+    return view('dashboard');
+})->where('vue_capture', '[\/\w\.-]*');

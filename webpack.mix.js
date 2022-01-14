@@ -2,6 +2,7 @@ const mix = require('laravel-mix');
 
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 require('laravel-mix-polyfill');
 
