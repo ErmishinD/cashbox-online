@@ -69,6 +69,17 @@ table {
   transform: rotate(-180deg);
 }
 
+.trans-135deg {
+  transform: rotate(-135deg);
+}
+
+body {
+  font-family: "Manrope";
+  font-variation-settings: "wght" 700;
+  height: 100vh;
+  background-color: #E5E5E5;
+}
+
 img {
   transition: transform 0.3s;
 }
@@ -76,6 +87,10 @@ img {
 header {
   height: 70px;
   background-color: #2a2a2e;
+}
+
+.v-sidebar-menu {
+  font-variation-settings: "wght" 500;
 }
 
 .vsm--scroll-wrapper {

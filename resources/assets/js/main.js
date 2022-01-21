@@ -1,11 +1,16 @@
 require('./bootstrap');
 
-import { createApp } from 'vue';
+import { createApp, h } from 'vue';
 import { createStore } from 'vuex'
 import { createWebHistory, createRouter } from "vue-router"
 import VueCookies from "vue3-cookies";
 import VueSidebarMenu from 'vue-sidebar-menu'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+import VueLoading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 
 import i18n from './i18n'
 
@@ -19,11 +24,13 @@ import DashboardIndex from './components/dashboard/Index'
 import ProductsTypeIndex from './components/products_type/Index'
 import ProductsTypeCreate from './components/products_type/Create'
 import ProductsTypeEdit from './components/products_type/Edit'
+import ProductsTypeShow from './components/products_type/Show'
 
 /* import products_for_sale */
 import ProductsForSaleIndex from './components/products_for_sale/Index'
 import ProductsForSaleCreate from './components/products_for_sale/Create'
 import ProductsForSaleEdit from './components/products_for_sale/Edit'
+import ProductsForSaleShow from './components/products_for_sale/Show'
 
 
 /* import reports */
@@ -42,21 +49,25 @@ import ProductsForSaleEdit from './components/products_for_sale/Edit'
 import TransfersIndex from './components/transfers/Index'
 import TransfersCreate from './components/transfers/Create'
 import TransfersConfirm from './components/transfers/Confirm'
+import TransfersShow from './components/transfers/Show'
 
 /* import shops */
 import ShopsIndex from './components/shops/Index'
 import ShopsCreate from './components/shops/Create'
 import ShopsEdit from './components/shops/Edit'
+import ShopsShow from './components/shops/Show'
 
 /* import storages */
 import StoragesIndex from './components/storages/Index'
 import StoragesCreate from './components/storages/Create'
 import StoragesEdit from './components/storages/Edit'
+import StoragesShow from './components/storages/Show'
 
 /* import users */
 import UsersIndex from './components/users/Index'
 import UsersCreate from './components/users/Create'
 import UsersEdit from './components/users/Edit'
+import UsersShow from './components/users/Show'
 
 /* import settings */
 import SettingsTranslates from './components/settings/Translates'
@@ -108,9 +119,16 @@ const router = createRouter({
 			component: ProductsTypeCreate
 		},
 		{
-			path: '/products_type/edit',
+			path: '/products_type/edit/:id',
 			name: 'products_type_edit',
-			component: ProductsTypeEdit
+			component: ProductsTypeEdit,
+			props: true
+		},
+		{
+			path: '/products_type/:id',
+			name: 'products_type_show',
+			component: ProductsTypeShow,
+			props: true
 		},
 		{
 			path: '/products_for_sale',
@@ -123,9 +141,16 @@ const router = createRouter({
 			component: ProductsForSaleCreate
 		},
 		{
-			path: '/products_for_sale/edit',
+			path: '/products_for_sale/edit/:id',
 			name: 'products_for_sale_edit',
-			component: ProductsForSaleEdit
+			component: ProductsForSaleEdit,
+			props: true
+		},
+		{
+			path: '/products_for_sale/:id',
+			name: 'products_for_sale_show',
+			component: ProductsForSaleShow,
+			props: true
 		},
 		{
 			path: '/reports/purchases',
@@ -143,9 +168,10 @@ const router = createRouter({
 			component: ReportsCashboxCreate
 		},
 		{
-			path: '/reports/cashbox/edit',
+			path: '/reports/cashbox/edit/:id',
 			name: 'reports_casbox_edit',
-			component: ReportsCashboxEdit
+			component: ReportsCashboxEdit,
+			props: true
 		},
 		{
 			path: '/reports/finance',
@@ -168,6 +194,12 @@ const router = createRouter({
 			component: TransfersConfirm
 		},
 		{
+			path: '/transfers/:id',
+			name: 'transfers_show',
+			component: TransfersShow,
+			props: true
+		},
+		{
 			path: '/shops',
 			name: 'shops_index',
 			component: ShopsIndex
@@ -178,9 +210,16 @@ const router = createRouter({
 			component: ShopsCreate
 		},
 		{
-			path: '/shops/edit',
+			path: '/shops/edit/:id',
 			name: 'shops_edit',
-			component: ShopsEdit
+			component: ShopsEdit,
+			props: true
+		},
+		{
+			path: '/shops/:id',
+			name: 'shops_show',
+			component: ShopsShow,
+			props: true
 		},
 		{
 			path: '/storages',
@@ -193,9 +232,16 @@ const router = createRouter({
 			component: StoragesCreate
 		},
 		{
-			path: '/storages/edit',
+			path: '/storages/edit/:id',
 			name: 'storages_edit',
-			component: StoragesEdit
+			component: StoragesEdit,
+			props: true
+		},
+		{
+			path: '/storages/:id',
+			name: 'storages_show',
+			component: StoragesShow,
+			props: true
 		},
 		{
 			path: '/users',
@@ -208,9 +254,16 @@ const router = createRouter({
 			component: UsersCreate
 		},
 		{
-			path: '/users/edit',
+			path: '/users/edit/:id',
 			name: 'users_edit',
-			component: UsersEdit
+			component: UsersEdit,
+			props: true
+		},
+		{
+			path: '/users/:id',
+			name: 'users_show',
+			component: UsersShow,
+			props: true
 		},
 		{
 			path: '/settings/translates',
@@ -238,9 +291,10 @@ const router = createRouter({
 			component: SettingsMeasuresCreate
 		},
 		{
-			path: '/settings/measures/edit',
+			path: '/settings/measures/edit/:id',
 			name: 'settings_measures_edit',
-			component: SettingsMeasuresEdit
+			component: SettingsMeasuresEdit,
+			props: true
 		},
 		{
 			path: '/logout',
@@ -259,7 +313,9 @@ const router = createRouter({
 })
 
 
-const app = createApp(App)
+const app = createApp({
+    render: ()=>h(App)
+})
 
 app.use(VueSidebarMenu)
 app.use(router).use(i18n).use(store)
@@ -271,8 +327,13 @@ app.use(VueCookies, {
     secure: true,
     sameSite: "None"
 });
+app.use(VueAxios, axios)
+app.use(VueLoading);
 
-
+app.mixin({
+  methods: {
+  },
+})
 
 
 

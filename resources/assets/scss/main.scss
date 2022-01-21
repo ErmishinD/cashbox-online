@@ -1,7 +1,15 @@
 @import "reset.css";
 @import "one-property";
 
-$dark: #2a2a2e;
+$main_color: #2a2a2e;
+$background: #E5E5E5;
+
+body{
+	font-family: 'Manrope';
+	font-variation-settings: "wght" 700;
+	height: 100vh;
+	background-color: $background;
+}
 
 img{
 	transition: transform .3s;
@@ -9,7 +17,11 @@ img{
 
 header{
 	height: 70px;
-	background-color: $dark;
+	background-color: $main_color;
+}
+
+.v-sidebar-menu{
+	font-variation-settings: "wght" 500;
 }
 
 .vsm--scroll-wrapper{

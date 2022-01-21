@@ -2,7 +2,7 @@
 	<header>
 		<div class="header__content" v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
 			<select @change="changeOption($event)" v-model="selected">
-				<option value="ru">Руский</option>
+				<option value="ru">Русcкий</option>
 				<option value="ua">Українська</option>
 				<option value="en">English</option>
 			</select>
@@ -28,7 +28,6 @@
   		this.menu = this.returnSidebarData()
   	},
   	methods:{
-  		
   		changeLanguage (locale) {
   		  this.$root.$i18n.locale = locale
   		  this.$cookies.set('lang', locale);
@@ -47,27 +46,23 @@
   		returnSidebarData(){
   			return [
           {
-            header:  this.$t('navigation'),
-            hiddenOnCollapse: true
-          },
-          {
             href: '/dashboard',
             title: 'Dashboard',
-            icon: 'fa fa-user'
+            icon: 'fas fa-home'
           },
           {
           	href: '/products_type',
             title: 'Products type',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-truck',
           },
           {
           	href: '/products_for_sale',
             title: 'Products for sale',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-hand-holding-usd',
           },
           {
             title: 'Reports',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-chart-pie',
             child: [
               {
                 href: '/reports/cashbox',
@@ -87,26 +82,26 @@
           {
           	href: '/transfers',
             title: 'Transfers',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-exchange-alt',
           },
           {
           	href: '/shops',
             title: 'Shops',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-store',
           },
           {
           	href: '/storages',
             title: 'Storages',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-boxes',
           },
           {
           	href: '/users',
             title: 'Users',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-users',
           },
           {
             title: 'Settings',
-            icon: 'fa fa-chart-area',
+            icon: 'fas fa-cogs',
             child: [
               {
                 href: '/settings/translates',
