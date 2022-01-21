@@ -14,7 +14,7 @@ class AddCompanyIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('company_id')->nullable()->constrained('companies');
+            $table->foreignId('company_id')->nullable()->constrained('companies')->onDelete('cascade');
         });
     }
 
@@ -26,7 +26,8 @@ class AddCompanyIdToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('company_id');
+            $table->dropForeign(['company_id']);
+            $table->dropColumn(['company_id']);
         });
     }
 }

@@ -14,8 +14,8 @@ class CreateProductTypeMeasures extends Migration
     public function up()
     {
         Schema::create('product_type_measures', function (Blueprint $table) {
-            $table->foreignId('product_type_id')->constrained('product_types');
-            $table->foreignId('measure_type_id')->constrained('measure_types');
+            $table->foreignId('product_type_id')->constrained('product_types')->onDelete('cascade');
+            $table->foreignId('measure_type_id')->constrained('measure_types')->onDelete('cascade');
         });
     }
 

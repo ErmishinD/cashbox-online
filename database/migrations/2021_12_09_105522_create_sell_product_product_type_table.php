@@ -14,8 +14,8 @@ class CreateSellProductProductTypeTable extends Migration
     public function up()
     {
         Schema::create('sell_product_product_type', function (Blueprint $table) {
-            $table->foreignId('product_type_id')->constrained('product_types');
-            $table->foreignId('sell_product_id')->constrained('sell_products');
+            $table->foreignId('product_type_id')->constrained('product_types')->onDelete('cascade');
+            $table->foreignId('sell_product_id')->constrained('sell_products')->onDelete('cascade');
             $table->unsignedBigInteger('quantity');
         });
     }

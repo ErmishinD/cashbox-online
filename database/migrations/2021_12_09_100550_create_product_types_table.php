@@ -15,11 +15,11 @@ class CreateProductTypesTable extends Migration
     {
         Schema::create('product_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->string('name');
             $table->enum('type', ['_perishable', '_imperishable'])->default('_imperishable');
             $table->string('photo')->nullable();
-            $table->foreignId('base_measure_type_id')->constrained('base_measure_types');
+            $table->foreignId('base_measure_type_id')->constrained('base_measure_types')->onDelete('cascade');
             $table->string('barcode')->nullable();
             $table->timestamps();
         });

@@ -15,9 +15,9 @@ class CreateProductPurchasesTable extends Migration
     {
         Schema::create('product_purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('storage_id')->constrained('storages');
-            $table->foreignId('product_type_id')->constrained('product_types');
-            $table->foreignId('measure_type_id')->constrained('measure_types');
+            $table->foreignId('storage_id')->constrained('storages')->onDelete('cascade');
+            $table->foreignId('product_type_id')->constrained('product_types')->onDelete('cascade');
+            $table->foreignId('measure_type_id')->constrained('measure_types')->onDelete('cascade');
             $table->unsignedBigInteger('quantity');
             $table->unsignedBigInteger('current_quantity');
             $table->unsignedDecimal('cost');

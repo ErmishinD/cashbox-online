@@ -15,7 +15,7 @@ class CreateSellProductGroupsTable extends Migration
     {
         Schema::create('sell_product_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->unsignedDecimal('price')->default(0);
             $table->string('photo')->nullable();

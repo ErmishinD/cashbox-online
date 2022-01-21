@@ -15,16 +15,16 @@ class CreateCashboxesTable extends Migration
     {
         Schema::create('cashboxes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shop_id')->constrained('shops');
+            $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->enum('resource', ['_product', '_group'])->nullable();
             $table->unsignedBigInteger('resource_id')->nullable();
             $table->enum('transaction_type', ['_in', '_out'])->default('_in');
             $table->enum('payment_type', ['_cash', '_card'])->default('_cash');
             $table->unsignedDecimal('amount');
             $table->text('description')->nullable();
-            $table->foreignId('operator_id')->constrained('users');
+            $table->foreignId('operator_id')->constrained('users')->onDelete('cascade');
             $table->dateTime('collected_at')->nullable();
-            $table->foreignId('collector_id')->nullable()->constrained('users');
+            $table->foreignId('collector_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
