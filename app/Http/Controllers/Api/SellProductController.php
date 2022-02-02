@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\SellProduct\CreateRequest;
 use App\Http\Requests\Api\SellProduct\UpdateRequest;
 use App\Http\Resources\Api\SellProduct\DefaultResource;
+use App\Http\Resources\Api\SellProduct\ShowResource;
 use App\Repositories\SellProductRepository;
 
 class SellProductController extends Controller
@@ -41,7 +42,7 @@ class SellProductController extends Controller
     {
         $data = $request->validated();
         $sell_product = $this->sell_product->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($sell_product)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
     /**
@@ -53,7 +54,7 @@ class SellProductController extends Controller
     public function show($id)
     {
         $sell_product = $this->sell_product->getById($id);
-        return response()->json(['success' => true, 'data' => new DefaultResource($sell_product)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
     /**

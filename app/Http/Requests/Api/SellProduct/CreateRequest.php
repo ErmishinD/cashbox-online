@@ -28,6 +28,7 @@ class CreateRequest extends FormRequest
             'name' => ['required'],
             'price' => ['required'],
             'has_discount' => ['required', 'boolean'],
+            'product_types' => ['nullable', 'array']
         ];
     }
 }
