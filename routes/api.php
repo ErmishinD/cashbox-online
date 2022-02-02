@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\StorageController;
 use App\Http\Controllers\Api\TransferController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\TestWebsocketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -92,4 +93,7 @@ Route::apiResource('cashbox', CashboxController::class);
  * Transfer
  */
 Route::apiResource('transfers', TransferController::class);
+
+
+Route::post('/test', [TestWebsocketController::class, 'test']);
 
