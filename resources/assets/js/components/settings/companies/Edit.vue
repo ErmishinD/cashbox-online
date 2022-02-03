@@ -1,12 +1,12 @@
 <template>
 	<notifications position="bottom right" />
 	<h1 v-if="formData.name" class="tac">{{formData.name}}</h1>
-	<h1 v-else class="tac">Name of company</h1>
+	<h1 v-else class="tac">{{ $t('Компания') }}</h1>
 	<form class="tac" @submit="update_company_info">
 		<div class="edit_info">
 			<label for="name">Name:</label>
 			<input type="text" required class="form-control" name="name" v-model="formData.name">
-			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">Submit</button>
+			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
 		
 	</form>
@@ -50,14 +50,14 @@ export default{
     		this.axios.put('/api/companies/'+this.id, this.formData).then((response) => {
     			console.log(response)
     			this.$notify({
-    				text: 'Complete!',
+    				text: this.$t('Успешно!'),
     				type: 'success',
     			});
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){
     				this.$notify({
-    				text: 'Name is already taken!',
+    				text: this.$t('Данное название компании уже существует!'),
     				type: 'error',
     			});
     			}

@@ -4,7 +4,7 @@
 		<input type="text" name="id" v-model="formData.id">
 		<input type="text" name="name" v-model="formData.name">
 		<input type="text" name="barcode" v-model="formData.barcode">
-		<button type="submit">Submit</button>
+		<button type="submit">{{ $t('Сохранить') }}</button>
 	</form>
 	
 </template>

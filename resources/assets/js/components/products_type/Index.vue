@@ -20,7 +20,7 @@
 			// console.log(this.product)
 		},
 		created () {
-            document.title = "Product types";
+            document.title = this.$t('Типы товаров');
         },
         methods:{
         	delete_item: function(id){

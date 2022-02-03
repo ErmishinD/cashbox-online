@@ -25054,76 +25054,100 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     onToggleCollapse: function onToggleCollapse(collapsed) {
       this.isCollapsed = !this.isCollapsed;
+      this.$cookies.set('isCollapsed', this.isCollapsed);
     },
     changeOption: function changeOption(event) {
       this.changeLanguage(event.target.value);
     },
+    updateWidth: function updateWidth() {
+      this.width = window.innerWidth;
+
+      if (this.width < 992) {
+        this.isCollapsed = true;
+      } else {
+        this.isCollapsed = false;
+      }
+    },
     returnSidebarData: function returnSidebarData() {
       return [{
         href: '/dashboard',
-        title: 'Dashboard',
+        title: this.$t('Главная'),
         icon: 'fas fa-home'
       }, {
         href: '/products_type',
-        title: 'Products type',
+        title: this.$t('Типы товаров'),
         icon: 'fas fa-truck'
       }, {
         href: '/products_for_sale',
-        title: 'Products for sale',
+        title: this.$t('Товары на продажу'),
         icon: 'fas fa-hand-holding-usd'
       }, {
-        title: 'Reports',
+        title: this.$t('Отчеты'),
         icon: 'fas fa-chart-pie',
         child: [{
           href: '/reports/cashbox',
-          title: 'Cashbox'
+          title: this.$t('Касса'),
+          icon: 'fas fa-cash-register'
         }, {
           href: '/reports/finance',
-          title: 'Finance'
+          title: this.$t('Финансы'),
+          icon: 'fas fa-chart-line'
         }, {
           href: '/reports/purchases',
-          title: 'Purchases'
+          title: this.$t('Закупки'),
+          icon: 'fas fa-shopping-cart'
         }]
       }, {
         href: '/transfers',
-        title: 'Transfers',
+        title: this.$t('Трансферы'),
         icon: 'fas fa-exchange-alt'
       }, {
         href: '/shops',
-        title: 'Shops',
+        title: this.$t('Магазины'),
         icon: 'fas fa-store'
       }, {
         href: '/storages',
-        title: 'Storages',
+        title: this.$t('Склады'),
         icon: 'fas fa-boxes'
       }, {
         href: '/users',
-        title: 'Users',
+        title: this.$t('Пользователи'),
         icon: 'fas fa-users'
       }, {
-        title: 'Settings',
+        title: this.$t('Настройки'),
         icon: 'fas fa-cogs',
         child: [{
           href: '/settings/translates',
-          title: 'Translates'
+          title: this.$t('Переводы'),
+          icon: 'fas fa-language'
         }, {
           href: '/settings/permissions',
-          title: 'Permissions'
+          title: this.$t('Разрешения'),
+          icon: 'fas fa-lock-open'
         }, {
           href: '/settings/roles',
-          title: 'Roles'
+          title: this.$t('Роли'),
+          icon: 'fas fa-unlock'
         }, {
           href: '/settings/measures',
-          title: 'Measures'
+          title: this.$t('Единицы измерения'),
+          icon: 'fas fa-weight-hanging'
         }, {
           href: '/settings/companies',
-          title: 'Companies'
+          title: this.$t('Компании'),
+          icon: 'fas fa-building'
         }]
       }];
     }
+  },
+  created: function created() {
+    window.addEventListener('resize', this.updateWidth);
+    this.updateWidth();
+    console.log(this.width);
   }
 }, "data", function data() {
   return {
+    width: 0,
     isCollapsed: false,
     selected: this.$cookies.get('lang'),
     menu: this.returnSidebarData()
@@ -25142,7 +25166,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
-    document.title = "Dashboard";
+    document.title = this.$t('Главная');
   }
 });
 
@@ -25189,7 +25213,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   created: function created() {
-    document.title = "Products for sale";
+    document.title = this.$t('Товары на продажу');
   }
 });
 
@@ -25277,7 +25301,7 @@ __webpack_require__.r(__webpack_exports__);
     this.render_list_items(); // console.log(this.product)
   },
   created: function created() {
-    document.title = "Product types";
+    document.title = this.$t('Типы товаров');
   },
   methods: {
     delete_item: function delete_item(id) {
@@ -25373,6 +25397,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    document.title = this.$t('Создание компании');
     var loader = this.$loading.show({
       canCancel: false,
       loader: 'dots'
@@ -25390,7 +25415,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data.data.id);
 
         _this.$notify({
-          text: 'Complete!',
+          text: _this.$t('Успешно!'),
           type: 'success'
         });
 
@@ -25400,7 +25425,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (err.response.data.errors.name) {
           _this.$notify({
-            text: 'Name is already taken!',
+            text: _this.$t('Данное название компании уже существует!'),
             type: 'error'
           });
         }
@@ -25457,7 +25482,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
 
         _this2.$notify({
-          text: 'Complete!',
+          text: _this2.$t('Успешно!'),
           type: 'success'
         });
       }).catch(function (err) {
@@ -25465,7 +25490,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (err.response.data.errors.name) {
           _this2.$notify({
-            text: 'Name is already taken!',
+            text: _this2.$t('Данное название компании уже существует!'),
             type: 'error'
           });
         }
@@ -25502,10 +25527,10 @@ __webpack_require__.r(__webpack_exports__);
       current_name: null,
       current_id: null,
       columns: [{
-        label: 'Name',
+        label: this.$t('Название'),
         field: 'name'
       }, {
-        label: 'Actions',
+        label: this.$t('Действия'),
         field: 'actions',
         sortable: false,
         width: '65px'
@@ -25515,7 +25540,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.render_list_items();
-    document.title = 'Companies';
+    document.title = this.$t('Компании');
   },
   methods: {
     onOpen: function onOpen(params) {
@@ -25828,6 +25853,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selected]])], 2
   /* CLASS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_sidebar_menu, {
+    collapsed: $data.isCollapsed,
     menu: $data.menu,
     "onUpdate:collapsed": $options.onToggleCollapse
   }, {
@@ -25845,7 +25871,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["menu", "onUpdate:collapsed"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , ["collapsed", "menu", "onUpdate:collapsed"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     id: "main_content",
     class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.isCollapsed ? 'pl-75' : 'pl-300'])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)], 2
@@ -25969,13 +25995,9 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   class: ""
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("button", {
+var _hoisted_2 = {
   type: "submit"
-}, "Submit", -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($data.formData.id) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($data.formData.name) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($data.formData.barcode), 1
   /* TEXT */
@@ -26007,7 +26029,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_1__.vModelText, $data.formData.barcode]]), _hoisted_2], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_1__.vModelText, $data.formData.barcode]]), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("button", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Сохранить')), 1
+  /* TEXT */
+  )], 32
   /* HYDRATE_EVENTS */
   )], 64
   /* STABLE_FRAGMENT */
@@ -26164,44 +26188,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("h1", {
+var _hoisted_1 = {
   class: "tac"
-}, "Create company", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_2 = {
   class: ""
 };
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("label", {
+var _hoisted_3 = {
   for: "name"
-}, "Name:", -1
-/* HOISTED */
-);
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("button", {
+};
+var _hoisted_4 = {
   style: {
     "margin-inline": "auto"
   },
   class: "btn btn-success mt-10",
   type: "submit"
-}, "Submit", -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_notifications = (0,vue__WEBPACK_IMPORTED_MODULE_1__.resolveComponent)("notifications");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createVNode)(_component_notifications, {
     position: "bottom right"
-  }), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("form", {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("h1", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Создание компании')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("form", {
     class: "tac",
     onSubmit: _cache[1] || (_cache[1] = function () {
       return $options.create_company && $options.create_company.apply($options, arguments);
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_1__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("label", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Название')) + ":", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("input", {
     type: "text",
     required: "",
     class: "form-control",
@@ -26211,7 +26228,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_1__.vModelText, $data.formData.name]]), _hoisted_4])], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_1__.vModelText, $data.formData.name]]), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("button", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Сохранить')), 1
+  /* TEXT */
+  )])], 32
   /* HYDRATE_EVENTS */
   )], 64
   /* STABLE_FRAGMENT */
@@ -26254,16 +26273,13 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("button", {
+var _hoisted_5 = {
   style: {
     "margin-inline": "auto"
   },
   class: "btn btn-success mt-10",
   type: "submit"
-}, "Submit", -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_notifications = (0,vue__WEBPACK_IMPORTED_MODULE_1__.resolveComponent)("notifications");
 
@@ -26271,7 +26287,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     position: "bottom right"
   }), $data.formData.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("h1", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($data.formData.name), 1
   /* TEXT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("h1", _hoisted_2, "Name of company")), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("form", {
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("h1", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Компания')), 1
+  /* TEXT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("form", {
     class: "tac",
     onSubmit: _cache[1] || (_cache[1] = function () {
       return $options.update_company_info && $options.update_company_info.apply($options, arguments);
@@ -26286,7 +26304,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_1__.vModelText, $data.formData.name]]), _hoisted_5])], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_1__.vModelText, $data.formData.name]]), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("button", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Сохранить')), 1
+  /* TEXT */
+  )])], 32
   /* HYDRATE_EVENTS */
   )], 64
   /* STABLE_FRAGMENT */
@@ -26314,23 +26334,15 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   class: "getting-started-example-styled__content"
 };
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_3 = {
   class: "getting-started-example-styled__title"
-}, " Attention! ", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_4 = {
   class: "getting-started-example-styled__actions"
 };
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_5 = {
   class: "btn btn-success pull-right mb-10"
-}, "Add company", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_6 = {
   key: 0,
   class: "table_actions"
@@ -26376,14 +26388,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "max-width": "500"
   }, {
     default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Are you sure for delete \"" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.current_name) + "\"?", 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Внимание')) + "! ", 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Вы уверены, что хотите удалить')) + " \"" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.current_name) + "\"?", 1
       /* TEXT */
       )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         onClick: _cache[0] || (_cache[0] = function () {
           return $options.delCompany && $options.delCompany.apply($options, arguments);
         }),
         class: "btn btn-danger"
-      }, " Submit ")])])];
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Удалить')), 1
+      /* TEXT */
+      )])])];
     }),
     _: 1
     /* STABLE */
@@ -26396,7 +26412,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_5];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Добавить компанию')), 1
+      /* TEXT */
+      )];
     }),
     _: 1
     /* STABLE */

@@ -25,7 +25,7 @@
 
 		},
 		created () {
-            document.title = "Products for sale";
+            document.title = this.$t('Товары на продажу');
             
 
         },

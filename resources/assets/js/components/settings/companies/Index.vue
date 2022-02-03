@@ -5,21 +5,21 @@
   	    <div class="getting-started-example-styled">
   	      <div class="getting-started-example-styled__content">
   	        <div class="getting-started-example-styled__title">
-  	          Attention!
+  	          {{ $t('Внимание') }}!
   	        </div>
 
-  	        <p>Are you sure for delete "{{current_name}}"?</p>
+  	        <p>{{ $t('Вы уверены, что хотите удалить') }} "{{current_name}}"?</p>
   	      </div>
 
   	      <div class="getting-started-example-styled__actions">
   	        <button @click="delCompany" class="btn btn-danger">
-  	          Submit
+  	          {{ $t('Удалить') }}
   	        </button>
   	      </div>
   	    </div>
   	  </GDialog>
   	  <router-link :to="{name: 'settings_companies_create'}">
-  	  	<button class="btn btn-success pull-right mb-10" >Add company</button>
+  	  	<button class="btn btn-success pull-right mb-10" >{{ $t('Добавить компанию') }}</button>
   	  </router-link>
   	
     <vue-good-table style="position: static;"
@@ -30,7 +30,7 @@
           <span class="table_actions" v-if="props.column.field == 'actions'">
             <router-link :to="{name: 'settings_companies_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
             <router-link :to="{name: 'settings_companies_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
-            <a @click="onOpen(props.row)" href="#"><i   class="fas fa-trash-alt"></i></a>
+            <a @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
           </span>
         </template>
     </vue-good-table>
@@ -55,11 +55,11 @@ export default {
       current_id: null,
       columns: [
         {
-          label: 'Name',
+          label: this.$t('Название'),
           field: 'name',
         },
         {
-          label: 'Actions',
+          label: this.$t('Действия'),
           field: 'actions',
           sortable: false,
           width: '65px',
@@ -70,7 +70,7 @@ export default {
   },
   mounted(){
   	this.render_list_items()
-  	document.title = 'Companies';
+  	document.title = this.$t('Компании');
   },
   methods:{
   	onOpen(params){
@@ -103,45 +103,4 @@ export default {
   },
 };
 </script>
-
-
-<!-- <template>
-	<div v-for="company in companies" class="" >
-		{{company['id']}} - {{company}}
-	</div>
-
-</template>
-
-
-<script>
-	export default{
-		data(){
-			return{
-				companies: null,
-				
-			} 
-		},
-		setup() {
-			
-		},
-		mounted(){
-			var loader = this.$loading.show({
-			        canCancel: false,
-			        loader: 'dots',});
-			
-			this.axios.get('/api/companies').then((response) => {
-			       this.companies = response.data['data']
-			       loader.hide()
-
-			     })
-
-		},
-		created () {
-            document.title = "Products for sale";
-            
-
-        },
-	}
-</script> -->
-
 

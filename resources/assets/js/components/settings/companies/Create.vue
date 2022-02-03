@@ -1,11 +1,11 @@
 <template>
 	<notifications position="bottom right" />
-	<h1 class="tac">Create company</h1>
+	<h1 class="tac">{{ $t('Создание компании') }}</h1>
 	<form class="tac" @submit="create_company">
 		<div class="">
-			<label for="name">Name:</label>
+			<label for="name">{{ $t('Название') }}:</label>
 			<input type="text" required class="form-control" name="name" v-model="formData.name">
-			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">Submit</button>
+			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
 		
 	</form>
@@ -23,6 +23,7 @@ export default{
 		} 
 	},
 	mounted(){
+		document.title = this.$t('Создание компании');
 		var loader = this.$loading.show({
 		        canCancel: false,
 		        loader: 'dots',});
@@ -38,7 +39,7 @@ export default{
     		this.axios.post('/api/companies', this.formData ).then((response) => {
     			console.log(response.data.data.id)
     			this.$notify({
-    				text: 'Complete!',
+    				text: this.$t('Успешно!'),
     				type: 'success',
     			});
     			window.location.href = `/settings/companies/show/${response.data.data.id}`
@@ -46,7 +47,7 @@ export default{
     			console.log()
     			if(err.response.data.errors.name){
     				this.$notify({
-    				text: 'Name is already taken!',
+    				text: this.$t('Данное название компании уже существует!'),
     				type: 'error',
     			});
     			}

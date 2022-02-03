@@ -6,7 +6,7 @@
 <script>
     export default {
         created () {
-            document.title = "Dashboard";
+            document.title = this.$t('Главная');
         },
     }
 </script>
