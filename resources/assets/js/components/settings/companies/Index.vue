@@ -30,7 +30,7 @@
           <span class="table_actions" v-if="props.column.field == 'actions'">
             <router-link :to="{name: 'settings_companies_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
             <router-link :to="{name: 'settings_companies_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
-            <a href="#"><i @click="onOpen(props.row)"  class="fas fa-trash-alt"></i></a>
+            <a @click="onOpen(props.row)" href="#"><i   class="fas fa-trash-alt"></i></a>
           </span>
         </template>
     </vue-good-table>

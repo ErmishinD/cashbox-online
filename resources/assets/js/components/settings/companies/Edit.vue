@@ -53,6 +53,14 @@ export default{
     				text: 'Complete!',
     				type: 'success',
     			});
+    		}).catch(err => {
+    			console.log()
+    			if(err.response.data.errors.name){
+    				this.$notify({
+    				text: 'Name is already taken!',
+    				type: 'error',
+    			});
+    			}
     		})
     	}
     },
