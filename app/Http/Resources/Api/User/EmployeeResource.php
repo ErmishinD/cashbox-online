@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Api\Shop;
+namespace App\Http\Resources\Api\User;
 
-use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DefaultResource extends JsonResource
+class EmployeeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,11 @@ class DefaultResource extends JsonResource
      */
     public function toArray($request)
     {
-        /** @var Shop $this */
+        /** @var User $this */
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'address' => $this->address,
+            'email' => $this->email,
         ];
     }
 }

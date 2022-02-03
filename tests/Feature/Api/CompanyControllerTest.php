@@ -3,6 +3,8 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Company;
+use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -43,12 +45,51 @@ class CompanyControllerTest extends TestCase
 
     public function test_can_get_company() {
         $company = Company::factory()->create(['name' => 'Company 1']);
+        $shop1 = Shop::factory()->create(['company_id' => $company->id]);
+        $shop2 = Shop::factory()->create(['company_id' => $company->id]);
+        $user1 = User::factory()->create(['company_id' => $company->id]);
+        $user2 = User::factory()->create(['company_id' => $company->id]);
+        $user3 = User::factory()->create(['company_id' => $company->id]);
+
         $response = $this->get($this->base_route.$company->id);
         $response
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => ['name' => 'Company 1']
+                'data' => [
+                    'id' => $company->id,
+                    'name' => 'Company 1',
+                    'shops' => [
+                        [
+                            'id' => $shop1->id,
+                            'name' => $shop1->name,
+                            'address' => $shop1->address,
+                        ],
+                        [
+                            'id' => $shop2->id,
+                            'name' => $shop2->name,
+                            'address' => $shop2->address,
+                        ]
+                    ],
+                    'employees' => [
+                        [
+                            'id' => $user1->id,
+                            'name' => $user1->name,
+                            'email' => $user1->email,
+                        ],
+                        [
+                            'id' => $user2->id,
+                            'name' => $user2->name,
+                            'email' => $user2->email,
+                        ],
+                        [
+                            'id' => $user3->id,
+                            'name' => $user3->name,
+                            'email' => $user3->email,
+                        ],
+
+                    ]
+                ]
             ]);
     }
 

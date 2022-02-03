@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Company\CreateRequest;
 use App\Http\Requests\Api\Company\UpdateRequest;
 use App\Http\Resources\Api\Company\DefaultResource;
+use App\Http\Resources\Api\Company\ShowResource;
 use App\Repositories\CompanyRepository;
 
 class CompanyController extends Controller
@@ -52,8 +53,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $company = $this->company->getById($id);
-        return response()->json(['success' => true, 'data' => new DefaultResource($company)]);
+        $company = $this->company->getForShow($id);
+        return response()->json(['success' => true, 'data' => new ShowResource($company)]);
     }
 
     /**

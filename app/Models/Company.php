@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int id
  * @property string name
+ * @property mixed shops
+ * @property mixed employees
  * @method static inRandomOrder()
  */
 class Company extends Model
@@ -23,5 +25,13 @@ class Company extends Model
      */
     public function shops() {
         return $this->hasMany(Shop::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function employees()
+    {
+        return $this->hasMany(User::class);
     }
 }

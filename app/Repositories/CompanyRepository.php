@@ -19,5 +19,10 @@ class CompanyRepository extends BaseRepository
         return Company::class;
     }
 
+    public function getForShow($id)
+    {
+        return $this->model->with(['shops', 'employees'])->find($id);
+    }
+
 
 }
