@@ -1,0 +1,6 @@
+https://www.npmjs.com/package/@kyvg/vue3-notification - Уведомления
+https://gitart-vue-dialog.netlify.app/ - Модальное окно
+https://www.npmjs.com/package/vue3-cookies - Куки
+https://www.npmjs.com/package/vue-loading-overlay - Лоадер
+https://borisflesch.github.io/vue-good-table-next/ - Таблицы
+https://yaminncco.github.io/vue-sidebar-menu/#/ - Сайдбар

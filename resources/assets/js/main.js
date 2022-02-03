@@ -10,7 +10,14 @@ import VueAxios from 'vue-axios'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import VueLoading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import Notifications from '@kyvg/vue3-notification'
+import VueGoodTablePlugin from 'vue-good-table-next';
 
+import "gitart-vue-dialog/dist/style.css";
+import { GDialog } from "gitart-vue-dialog";
+
+// import the styles
+import 'vue-good-table-next/dist/vue-good-table-next.css'
 
 import i18n from './i18n'
 
@@ -77,6 +84,12 @@ import SettingsRoles from './components/settings/Roles'
 	import SettingsMeasuresIndex from './components/settings/measures/Index'
 	import SettingsMeasuresCreate from './components/settings/measures/Create'
 	import SettingsMeasuresEdit from './components/settings/measures/Edit'
+
+	/* import companies */
+	import SettingsCompaniesIndex from './components/settings/companies/Index'
+	import SettingsCompaniesCreate from './components/settings/companies/Create'
+	import SettingsCompaniesEdit from './components/settings/companies/Edit'
+	import SettingsCompaniesShow from './components/settings/companies/Show'
 
 /* import 404 */
 import PageNotFound from './components/404'
@@ -297,6 +310,28 @@ const router = createRouter({
 			props: true
 		},
 		{
+			path: '/settings/companies',
+			name: 'settings_companies_index',
+			component: SettingsCompaniesIndex
+		},
+		{
+			path: '/settings/companies/create',
+			name: 'settings_companies_create',
+			component: SettingsCompaniesCreate
+		},
+		{
+			path: '/settings/companies/show/:id',
+			name: 'settings_companies_show',
+			component: SettingsCompaniesShow,
+			props: true
+		},
+		{
+			path: '/settings/companies/edit/:id',
+			name: 'settings_companies_edit',
+			component: SettingsCompaniesEdit,
+			props: true
+		},
+		{
 			path: '/logout',
 			name: 'logout'
 		},
@@ -327,8 +362,9 @@ app.use(VueCookies, {
     secure: true,
     sameSite: "None"
 });
-app.use(VueAxios, axios)
-app.use(VueLoading);
+app.use(VueAxios, axios).use(VueGoodTablePlugin);
+app.use(VueLoading)
+app.use(GDialog).use(Notifications)
 
 app.mixin({
   methods: {
