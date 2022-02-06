@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
             'company_id' => ['nullable'],
             'name' => ['required'],
             'address' => ['nullable'],
+            'storage_name' => ['nullable']
         ];
     }
 }

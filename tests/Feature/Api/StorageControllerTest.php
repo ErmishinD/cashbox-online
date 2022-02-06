@@ -79,7 +79,7 @@ class StorageControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_delete_shop() {
+    public function test_can_delete_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);

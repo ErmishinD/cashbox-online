@@ -93,6 +93,6 @@ class SellProductGroupControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing($this->table, ['id' => $sell_product_group->id]);
+        $this->assertSoftDeleted($this->table, ['id' => $sell_product_group->id]);
     }
 }

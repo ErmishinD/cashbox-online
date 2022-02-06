@@ -22,6 +22,7 @@ class CreateMeasureTypesTable extends Migration
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->boolean('is_common')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

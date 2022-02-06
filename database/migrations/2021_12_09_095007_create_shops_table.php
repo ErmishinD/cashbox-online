@@ -19,6 +19,7 @@ class CreateShopsTable extends Migration
             $table->string('name');
             $table->string('address')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

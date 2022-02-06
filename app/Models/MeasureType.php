@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int id
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MeasureType extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'base_measure_type_id', 'name', 'description', 'quantity', 'company_id', 'is_common',

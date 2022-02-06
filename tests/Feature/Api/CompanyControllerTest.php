@@ -113,6 +113,6 @@ class CompanyControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing($this->table, ['name' => 'My company']);
+        $this->assertSoftDeleted($this->table, ['name' => 'My company']);
     }
 }

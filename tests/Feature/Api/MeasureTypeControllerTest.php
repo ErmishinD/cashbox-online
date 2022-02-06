@@ -102,6 +102,6 @@ class MeasureTypeControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing($this->table, ['id' => $measure_type->id]);
+        $this->assertSoftDeleted($this->table, ['id' => $measure_type->id]);
     }
 }

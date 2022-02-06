@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 use App\Models\Company;
 use App\Models\Shop;
+use App\Models\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -47,6 +48,35 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
+    public function test_can_create_shop_with_storage() {
+        $company = Company::factory()->create();
+        $shop_name = 'My shop';
+        $storage_name = 'Storage in My Shop';
+        $response = $this->postJson($this->base_route, [
+            'name' => $shop_name,
+            'company_id' => $company->id,
+            'storage_name' => $storage_name
+        ]);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    'name' => $shop_name,
+                    'address' => null,
+                    'storages' => [
+                        ['name' => $storage_name,]
+                    ]
+                ]
+            ]);
+        $this->assertDatabaseHas($this->table, [
+            'name' => $shop_name, 'company_id' => $company->id, 'address' => null
+        ]);
+        $this->assertDatabaseHas('storages', [
+            'name' => $storage_name
+        ]);
+    }
+
     public function test_can_create_shop_with_address() {
         $company = Company::factory()->create();
         $shop_name = 'Shop 2';
@@ -69,12 +99,29 @@ class ShopControllerTest extends TestCase
     public function test_can_get_shop() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Shop 3']);
+        $storage1 = Storage::factory()->create(['shop_id' => $shop->id, 'name' => 'storage1 in shop 3']);
+        $storage2 = Storage::factory()->create(['shop_id' => $shop->id, 'name' => 'storage2 in shop 3']);
         $response = $this->get($this->base_route.$shop->id);
         $response
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => ['name' => 'Shop 3']
+                'data' => [
+                    'id' => $shop->id,
+                    'name' => $shop->name,
+                    'storages' => [
+                        [
+                            'id' => $storage1->id,
+                            'name' => $storage1->name,
+                            'shop_id' => $storage1->shop_id
+                        ],
+                        [
+                            'id' => $storage2->id,
+                            'name' => $storage2->name,
+                            'shop_id' => $storage2->shop_id
+                        ],
+                    ]
+                ]
             ]);
     }
 
@@ -111,6 +158,36 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
+    public function test_can_add_storage_when_editing() {
+        $company = Company::factory()->create(['name' => 'Super Company']);
+        $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Super Shop']);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id, 'name' => 'First Super Storage']);
+        $response = $this->patchJson($this->base_route.$shop->id, ['name' => 'NEW Super Shop name', 'storage_name' => 'Super Storage']);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    'name' => 'NEW Super Shop name',
+                    'storages' => [
+                        ['name' => $storage->name],
+                        ['name' => 'Super Storage']
+                    ]
+                ]
+            ]);
+
+        $this->assertDatabaseHas($this->table, [
+            'company_id' => $company->id, 'name' => 'NEW Super Shop name'
+        ]);
+
+        $this->assertDatabaseHas('storages', [
+            'shop_id' => $shop->id, 'name' => 'First Super Storage'
+        ]);
+        $this->assertDatabaseHas('storages', [
+            'shop_id' => $shop->id, 'name' => 'Super Storage'
+        ]);
+    }
+
     public function test_can_delete_shop() {
         $company = Company::factory()->create(['name' => 'My company']);
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Shop name']);
@@ -120,6 +197,6 @@ class ShopControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing($this->table, ['name' => 'Shop name']);
+        $this->assertSoftDeleted($this->table, ['name' => 'Shop name']);
     }
 }

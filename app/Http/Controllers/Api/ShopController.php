@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Shop\CreateRequest;
 use App\Http\Requests\Api\Shop\UpdateRequest;
 use App\Http\Resources\Api\Shop\DefaultResource;
+use App\Http\Resources\Api\Shop\ShowResource;
 use App\Repositories\ShopRepository;
 
 class ShopController extends Controller
@@ -41,7 +42,7 @@ class ShopController extends Controller
     {
         $data = $request->validated();
         $shop = $this->shop->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($shop)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
 
     /**
@@ -52,8 +53,8 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        $shop = $this->shop->getById($id);
-        return response()->json(['success' => true, 'data' => new DefaultResource($shop)]);
+        $shop = $this->shop->getForShow($id);
+        return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
 
     /**
@@ -66,9 +67,8 @@ class ShopController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $data = $request->validated();
-        $shop = $this->shop->getById($id);
-        $shop->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($shop)]);
+        $shop = $this->shop->update($id, $data);
+        return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
 
     /**

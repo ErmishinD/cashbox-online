@@ -22,6 +22,7 @@ class CreateProductTypesTable extends Migration
             $table->foreignId('base_measure_type_id')->constrained('base_measure_types')->onDelete('cascade');
             $table->string('barcode')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

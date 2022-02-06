@@ -21,6 +21,7 @@ class CreateSellProductGroupsTable extends Migration
             $table->string('photo')->nullable();
             $table->boolean('has_discount')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

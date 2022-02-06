@@ -27,6 +27,7 @@ class CreateRequest extends FormRequest
             'company_id' => ['required'],
             'name' => ['required'],
             'address' => ['nullable'],
+            'storage_name' => ['nullable']
         ];
     }
 }

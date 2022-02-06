@@ -181,7 +181,7 @@ class SellProductControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing($this->table, ['id' => $sell_product->id]);
+        $this->assertSoftDeleted($this->table, ['id' => $sell_product->id]);
     }
 
     public function test_can_remove_product_types() {

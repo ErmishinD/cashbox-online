@@ -17,6 +17,7 @@ class CreateStoragesTable extends Migration
             $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
