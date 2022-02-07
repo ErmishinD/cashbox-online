@@ -39,6 +39,7 @@ Route::apiResource('companies', CompanyController::class);
 /*
  * Shop
  */
+Route::post('shops/get_by_company', [ShopController::class, 'getByCompany']);
 Route::apiResource('shops', ShopController::class);
 
 /*

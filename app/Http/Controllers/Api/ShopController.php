@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Shop\CreateRequest;
+use App\Http\Requests\Api\Shop\GetByCompanyRequest;
 use App\Http\Requests\Api\Shop\UpdateRequest;
 use App\Http\Resources\Api\Shop\DefaultResource;
+use App\Http\Resources\Api\Shop\ForSelectResource;
 use App\Http\Resources\Api\Shop\ShowResource;
 use App\Repositories\ShopRepository;
 
@@ -84,5 +86,13 @@ class ShopController extends Controller
             $shop->delete();
         }
         return response()->json(['success' => true]);
+    }
+
+    public function getByCompany(GetByCompanyRequest $request)
+    {
+        $data = $request->validated();
+        $company_id = $data['company_id'];
+        $shops = $this->shop->getForSelect($company_id);
+        return response()->json(['success' => true, 'data' => ForSelectResource::collection($shops)]);
     }
 }

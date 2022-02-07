@@ -121,6 +121,7 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+        // создание "закупок товаров"
         $random_shops = $shops->random(5);
         foreach ($random_shops as $shop) {
             $company_id = $shop->company_id;

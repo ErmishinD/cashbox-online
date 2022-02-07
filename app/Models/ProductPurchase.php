@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int current_quantity
  * @property float cost
  * @property \DateTime expiration_date
+ * @property mixed product_type
  */
 class ProductPurchase extends Model
 {
@@ -22,4 +23,9 @@ class ProductPurchase extends Model
     protected $fillable = [
         'storage_id', 'product_type_id', 'measure_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',
     ];
+
+    public function product_type()
+    {
+        return $this->belongsTo(ProductType::class);
+    }
 }

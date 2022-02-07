@@ -15,7 +15,7 @@ class CreateBaseMeasureTypesTable extends Migration
     {
         Schema::create('base_measure_types', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['_weight', '_volume'])->default('_weight');
+            $table->enum('type', ['_weight', '_volume', '_quantity'])->default('_weight');
             $table->string('name')->unique();
             $table->timestamps();
         });

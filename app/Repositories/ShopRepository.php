@@ -33,8 +33,8 @@ class ShopRepository extends BaseRepository
         return null;
     }
 
-    public function getForSelect() {
-        return $this->model->select('id', 'name')->get();
+    public function getForSelect(int $company_id) {
+        return $this->model->select('id', 'name')->where('company_id', $company_id)->get();
     }
 
     public function getForShow(int $id)

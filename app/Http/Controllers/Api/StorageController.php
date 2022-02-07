@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Storage\CreateRequest;
 use App\Http\Requests\Api\Storage\UpdateRequest;
 use App\Http\Resources\Api\Storage\DefaultResource;
+use App\Http\Resources\Api\Storage\ShowResource;
 use App\Repositories\StorageRepository;
 
 class StorageController extends Controller
@@ -52,8 +53,8 @@ class StorageController extends Controller
      */
     public function show($id)
     {
-        $storage = $this->storage->getById($id);
-        return response()->json(['success' => true, 'data' => new DefaultResource($storage)]);
+        $storage = $this->storage->getForShow($id);
+        return response()->json(['success' => true, 'data' => new ShowResource($storage)]);
     }
 
     /**

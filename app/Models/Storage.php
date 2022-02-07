@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int id
  * @property int shop_id
  * @property string name
+ * @property mixed product_purchases
  * @method static inRandomOrder()
  */
 class Storage extends Model
@@ -19,4 +20,9 @@ class Storage extends Model
     protected $fillable = [
         'shop_id', 'name'
     ];
+
+    public function product_purchases()
+    {
+        return $this->hasMany(ProductPurchase::class);
+    }
 }

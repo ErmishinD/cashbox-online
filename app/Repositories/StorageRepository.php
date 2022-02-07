@@ -18,4 +18,10 @@ class StorageRepository extends BaseRepository
     {
         return Storage::class;
     }
+
+    public function getForShow(int $id) {
+        $storage = $this->model->with(['product_purchases.product_type'])->find($id);
+        $storage->product_purchases = $storage->product_purchases->groupBy('product_type.name');
+        return $storage;
+    }
 }

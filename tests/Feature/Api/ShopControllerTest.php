@@ -199,4 +199,23 @@ class ShopControllerTest extends TestCase
             ]);
         $this->assertSoftDeleted($this->table, ['name' => 'Shop name']);
     }
+
+    public function test_get_shops_for_select()
+    {
+        $company = Company::factory()->create();
+        $shop1 = Shop::factory()->create(['company_id' => $company->id]);
+        $shop2 = Shop::factory()->create(['company_id' => $company->id]);
+        $shop3 = Shop::factory()->create(['company_id' => $company->id]);
+        $response = $this->postJson($this->base_route.'get_by_company', ['company_id' => $company->id]);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    ['id' => $shop1->id, 'name' => $shop1->name],
+                    ['id' => $shop2->id, 'name' => $shop2->name],
+                    ['id' => $shop3->id, 'name' => $shop3->name],
+                ]
+            ]);
+    }
 }
