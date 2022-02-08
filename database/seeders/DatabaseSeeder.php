@@ -75,6 +75,15 @@ class DatabaseSeeder extends Seeder
             'company_id' => $random_company->id,
             'is_common' => false,
         ]);
+        MeasureType::create([
+            'base_measure_type_id' => 3,
+            'name' => 'Пачка стаканчиков',
+            'description' => 'Пачка стаканчиков (500 шт)',
+            'quantity' => 500,
+            'company_id' => $random_company->id,
+            'is_common' => false,
+        ]);
+
 
         // создать продукты
         $product_types = ProductType::factory()->count(20)->create();
@@ -138,10 +147,22 @@ class DatabaseSeeder extends Seeder
                     $to = strtotime('next month');
                     $expiration_date = date('Y-m-d H:i', mt_rand($from, $to));
                 }
+
+                if ($allowed_measure_types->isEmpty()) {
+                    $new_measure_type = MeasureType::factory()->create([
+                        'base_measure_type_id' => $product_type->base_measure_type_id,
+                        'company_id' => $random_company->id,
+                        'is_common' => false,
+                    ]);
+                    $measure_type_id = $new_measure_type->id;
+                }
+                else {
+                    $measure_type_id = $allowed_measure_types->random();
+                }
                 ProductPurchase::create([
                     'storage_id' => $storage->id,
                     'product_type_id' => $product_type->id,
-                    'measure_type_id' => $allowed_measure_types->random(),
+                    'measure_type_id' => $measure_type_id,
                     'quantity' => $quantity,
                     'current_quantity' => $quantity,
                     'cost' => random_int(100, 10000),
@@ -149,6 +170,5 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
-
     }
 }
