@@ -114,6 +114,15 @@ class StorageControllerTest extends TestCase
                                         'base_measure_type_id' => $product_type->base_measure_type_id,
                                         'barcode' => $product_type->barcode
                                     ],
+                                    'measure_type' => [
+                                        'id' => $measure_type->id,
+                                        'base_measure_type_id' => $measure_type->base_measure_type_id,
+                                        'name' => $measure_type->name,
+                                        'description' => $measure_type->description,
+                                        'quantity' => $measure_type->quantity,
+                                        'company_id' => $measure_type->company_id,
+                                        'is_common' => $measure_type->is_common,
+                                    ]
                                 ]
                             ]
                         ]
@@ -165,6 +174,15 @@ class StorageControllerTest extends TestCase
                                         'base_measure_type_id' => $product_type->base_measure_type_id,
                                         'barcode' => $product_type->barcode
                                     ],
+                                    'measure_type' => [
+                                        'id' => $measure_type->id,
+                                        'base_measure_type_id' => $measure_type->base_measure_type_id,
+                                        'name' => $measure_type->name,
+                                        'description' => $measure_type->description,
+                                        'quantity' => $measure_type->quantity,
+                                        'company_id' => $measure_type->company_id,
+                                        'is_common' => $measure_type->is_common,
+                                    ]
                                 ],
                                 [
                                     'id' => $product_purchase2->id,
@@ -183,6 +201,15 @@ class StorageControllerTest extends TestCase
                                         'base_measure_type_id' => $product_type->base_measure_type_id,
                                         'barcode' => $product_type->barcode
                                     ],
+                                    'measure_type' => [
+                                        'id' => $measure_type->id,
+                                        'base_measure_type_id' => $measure_type->base_measure_type_id,
+                                        'name' => $measure_type->name,
+                                        'description' => $measure_type->description,
+                                        'quantity' => $measure_type->quantity,
+                                        'company_id' => $measure_type->company_id,
+                                        'is_common' => $measure_type->is_common,
+                                    ]
                                 ],
                             ]
                         ]
@@ -236,6 +263,15 @@ class StorageControllerTest extends TestCase
                                         'base_measure_type_id' => $product_type1->base_measure_type_id,
                                         'barcode' => $product_type1->barcode
                                     ],
+                                    'measure_type' => [
+                                        'id' => $measure_type1->id,
+                                        'base_measure_type_id' => $measure_type1->base_measure_type_id,
+                                        'name' => $measure_type1->name,
+                                        'description' => $measure_type1->description,
+                                        'quantity' => $measure_type1->quantity,
+                                        'company_id' => $measure_type1->company_id,
+                                        'is_common' => $measure_type1->is_common,
+                                    ],
                                 ],
                             ]
                         ],
@@ -258,6 +294,15 @@ class StorageControllerTest extends TestCase
                                         'photo' => $product_type2->photo,
                                         'base_measure_type_id' => $product_type2->base_measure_type_id,
                                         'barcode' => $product_type2->barcode
+                                    ],
+                                    'measure_type' => [
+                                        'id' => $measure_type2->id,
+                                        'base_measure_type_id' => $measure_type2->base_measure_type_id,
+                                        'name' => $measure_type2->name,
+                                        'description' => $measure_type2->description,
+                                        'quantity' => $measure_type2->quantity,
+                                        'company_id' => $measure_type2->company_id,
+                                        'is_common' => $measure_type2->is_common,
                                     ],
                                 ],
                             ]
@@ -319,6 +364,15 @@ class StorageControllerTest extends TestCase
                                         'base_measure_type_id' => $product_type1->base_measure_type_id,
                                         'barcode' => $product_type1->barcode
                                     ],
+                                    'measure_type' => [
+                                        'id' => $measure_type1->id,
+                                        'base_measure_type_id' => $measure_type1->base_measure_type_id,
+                                        'name' => $measure_type1->name,
+                                        'description' => $measure_type1->description,
+                                        'quantity' => $measure_type1->quantity,
+                                        'company_id' => $measure_type1->company_id,
+                                        'is_common' => $measure_type1->is_common,
+                                    ],
                                 ],
                                 [
                                     'id' => $product_purchase2->id,
@@ -336,6 +390,15 @@ class StorageControllerTest extends TestCase
                                         'photo' => $product_type1->photo,
                                         'base_measure_type_id' => $product_type1->base_measure_type_id,
                                         'barcode' => $product_type1->barcode
+                                    ],
+                                    'measure_type' => [
+                                        'id' => $measure_type1->id,
+                                        'base_measure_type_id' => $measure_type1->base_measure_type_id,
+                                        'name' => $measure_type1->name,
+                                        'description' => $measure_type1->description,
+                                        'quantity' => $measure_type1->quantity,
+                                        'company_id' => $measure_type1->company_id,
+                                        'is_common' => $measure_type1->is_common,
                                     ],
                                 ],
                             ]
@@ -360,6 +423,15 @@ class StorageControllerTest extends TestCase
                                         'base_measure_type_id' => $product_type2->base_measure_type_id,
                                         'barcode' => $product_type2->barcode
                                     ],
+                                    'measure_type' => [
+                                        'id' => $measure_type2->id,
+                                        'base_measure_type_id' => $measure_type2->base_measure_type_id,
+                                        'name' => $measure_type2->name,
+                                        'description' => $measure_type2->description,
+                                        'quantity' => $measure_type2->quantity,
+                                        'company_id' => $measure_type2->company_id,
+                                        'is_common' => $measure_type2->is_common,
+                                    ],
                                 ],
                                 [
                                     'id' => $product_purchase4->id,
@@ -377,6 +449,15 @@ class StorageControllerTest extends TestCase
                                         'photo' => $product_type2->photo,
                                         'base_measure_type_id' => $product_type2->base_measure_type_id,
                                         'barcode' => $product_type2->barcode
+                                    ],
+                                    'measure_type' => [
+                                        'id' => $measure_type2->id,
+                                        'base_measure_type_id' => $measure_type2->base_measure_type_id,
+                                        'name' => $measure_type2->name,
+                                        'description' => $measure_type2->description,
+                                        'quantity' => $measure_type2->quantity,
+                                        'company_id' => $measure_type2->company_id,
+                                        'is_common' => $measure_type2->is_common,
                                     ],
                                 ],
                             ]

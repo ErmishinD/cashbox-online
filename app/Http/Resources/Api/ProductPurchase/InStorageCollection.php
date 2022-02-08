@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\ProductPurchase;
 
+use App\Http\Resources\Api\MeasureType\DefaultResource as MeasureTypeResource;
 use App\Http\Resources\Api\ProductType\DefaultResource as ProductTypeResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -31,6 +32,7 @@ class InStorageCollection extends ResourceCollection
                         'cost' => $product_purchase->cost,
                         'expiration_date' => $product_purchase->expiration_date,
                         'product_type' => new ProductTypeResource($product_purchase->product_type),
+                        'measure_type' => new MeasureTypeResource($product_purchase->measure_type)
                     ]
                 );
             }

@@ -28,4 +28,9 @@ class ProductPurchase extends Model
     {
         return $this->belongsTo(ProductType::class);
     }
+
+    public function measure_type()
+    {
+        return $this->belongsTo(MeasureType::class);
+    }
 }
