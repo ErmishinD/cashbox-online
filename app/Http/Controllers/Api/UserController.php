@@ -18,7 +18,11 @@ class UserController extends Controller
     public function __construct()
     {
         $this->user = app(UserRepository::class);
-        $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth']);
+        $this->middleware(['can:User_access'])->only(['index']);
+        $this->middleware(['can:User_create'])->only(['store']);
+        $this->middleware(['can:User_edit'])->only(['update']);
+        $this->middleware(['can:User_delete'])->only(['destroy']);
     }
 
     /**
@@ -28,8 +32,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->middleware(['can:User_access']);
-
         $users = $this->user->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($users)]);
     }
@@ -42,8 +44,6 @@ class UserController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $this->middleware(['can:User_create']);
-
         $data = $request->validated();
         $user = $this->user->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($user)]);
@@ -57,8 +57,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $this->middleware(['can:User_show']);
-
         $user = $this->user->getById($id);
         return response()->json(['success' => true, 'data' => new DefaultResource($user)]);
     }
@@ -72,8 +70,6 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $this->middleware(['can:User_edit']);
-
         $data = $request->validated();
         $user = $this->user->getById($id);
         $user->update($data);
@@ -88,8 +84,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->middleware(['can:User_delete']);
-
         $user = $this->user->getById($id);
         if ($user) {
             $user->delete();

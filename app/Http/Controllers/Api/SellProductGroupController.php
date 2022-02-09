@@ -18,7 +18,11 @@ class SellProductGroupController extends Controller
     public function __construct()
     {
         $this->sell_product_group = app(SellProductGroupRepository::class);
-        $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth']);
+        $this->middleware(['can:SellProductGroup_access'])->only(['index']);
+        $this->middleware(['can:SellProductGroup_create'])->only(['store']);
+        $this->middleware(['can:SellProductGroup_edit'])->only(['update']);
+        $this->middleware(['can:SellProductGroup_delete'])->only(['destroy']);
     }
 
     /**
@@ -28,8 +32,6 @@ class SellProductGroupController extends Controller
      */
     public function index()
     {
-        $this->middleware(['can:SellProductGroup_access']);
-
         $sell_product_groups = $this->sell_product_group->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($sell_product_groups)]);
     }
@@ -42,8 +44,6 @@ class SellProductGroupController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $this->middleware(['can:SellProductGroup_create']);
-
         $data = $request->validated();
         $sell_product_group = $this->sell_product_group->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($sell_product_group)]);
@@ -57,8 +57,6 @@ class SellProductGroupController extends Controller
      */
     public function show($id)
     {
-        $this->middleware(['can:SellProductGroup_show']);
-
         $sell_product_group = $this->sell_product_group->getById($id);
         return response()->json(['success' => true, 'data' => new DefaultResource($sell_product_group)]);
     }
@@ -72,8 +70,6 @@ class SellProductGroupController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $this->middleware(['can:SellProductGroup_edit']);
-
         $data = $request->validated();
         $sell_product_group = $this->sell_product_group->getById($id);
         $sell_product_group->update($data);
@@ -88,8 +84,6 @@ class SellProductGroupController extends Controller
      */
     public function destroy($id)
     {
-        $this->middleware(['can:SellProductGroup_delete']);
-
         $sell_product_group = $this->sell_product_group->getById($id);
         if ($sell_product_group) {
             $sell_product_group->delete();

@@ -19,7 +19,11 @@ class StorageController extends Controller
     public function __construct()
     {
         $this->storage = app(StorageRepository::class);
-        $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth']);
+        $this->middleware(['can:Storage_access'])->only(['index']);
+        $this->middleware(['can:Storage_create'])->only(['store']);
+        $this->middleware(['can:Storage_edit'])->only(['update']);
+        $this->middleware(['can:Storage_delete'])->only(['destroy']);
     }
 
     /**
@@ -29,8 +33,6 @@ class StorageController extends Controller
      */
     public function index()
     {
-        $this->middleware(['can:Storage_access']);
-
         $storages = $this->storage->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($storages)]);
     }
@@ -43,8 +45,6 @@ class StorageController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $this->middleware(['can:Storage_create']);
-
         $data = $request->validated();
         $storage = $this->storage->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($storage)]);
@@ -58,8 +58,6 @@ class StorageController extends Controller
      */
     public function show($id)
     {
-        $this->middleware(['can:Storage_show']);
-
         $storage = $this->storage->getForShow($id);
         return response()->json(['success' => true, 'data' => new ShowResource($storage)]);
     }
@@ -73,8 +71,6 @@ class StorageController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $this->middleware(['can:Storage_edit']);
-
         $data = $request->validated();
         $storage = $this->storage->getById($id);
         $storage->update($data);
@@ -89,8 +85,6 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
-        $this->middleware(['can:Storage_delete']);
-
         $storage = $this->storage->getById($id);
         if ($storage) {
             $storage->delete();

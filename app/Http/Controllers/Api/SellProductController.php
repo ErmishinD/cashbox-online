@@ -19,7 +19,11 @@ class SellProductController extends Controller
     public function __construct()
     {
         $this->sell_product = app(SellProductRepository::class);
-        $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth']);
+        $this->middleware(['can:SellProduct_access'])->only(['index']);
+        $this->middleware(['can:SellProduct_create'])->only(['store']);
+        $this->middleware(['can:SellProduct_edit'])->only(['update']);
+        $this->middleware(['can:SellProduct_delete'])->only(['destroy']);
     }
 
     /**
@@ -29,8 +33,6 @@ class SellProductController extends Controller
      */
     public function index()
     {
-        $this->middleware(['can:SellProduct_access']);
-
         $sell_products = $this->sell_product->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($sell_products)]);
     }
@@ -43,8 +45,6 @@ class SellProductController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $this->middleware(['can:SellProduct_create']);
-
         $data = $request->validated();
         $sell_product = $this->sell_product->create($data);
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
@@ -58,8 +58,6 @@ class SellProductController extends Controller
      */
     public function show($id)
     {
-        $this->middleware(['can:SellProduct_show']);
-
         $sell_product = $this->sell_product->getById($id);
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
@@ -73,8 +71,6 @@ class SellProductController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $this->middleware(['can:SellProduct_edit']);
-
         $data = $request->validated();
         $sell_product = $this->sell_product->getById($id);
         $sell_product->update($data);
@@ -89,8 +85,6 @@ class SellProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->middleware(['can:SellProduct_delete']);
-
         $sell_product = $this->sell_product->getById($id);
         if ($sell_product) {
             $sell_product->delete();

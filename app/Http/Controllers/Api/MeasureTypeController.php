@@ -18,7 +18,11 @@ class MeasureTypeController extends Controller
     public function __construct()
     {
         $this->measure_type = app(MeasureTypeRepository::class);
-        $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth']);
+        $this->middleware(['can:MeasureType_access'], ['only' => 'index']);
+        $this->middleware(['can:MeasureType_create'], ['only' => 'store']);
+        $this->middleware(['can:MeasureType_edit'], ['only' => 'update']);
+        $this->middleware(['can:MeasureType_delete'], ['only' => 'destroy']);
     }
 
     /**
@@ -28,8 +32,6 @@ class MeasureTypeController extends Controller
      */
     public function index()
     {
-        $this->middleware(['can:MeasureType_access']);
-
         $measure_types = $this->measure_type->all();
         return response()->json([
             'success' => true, 'data' => DefaultResource::collection($measure_types)
@@ -44,8 +46,6 @@ class MeasureTypeController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $this->middleware(['can:MeasureType_create']);
-
         $data = $request->validated();
         $measure_type = $this->measure_type->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($measure_type)]);
@@ -59,8 +59,6 @@ class MeasureTypeController extends Controller
      */
     public function show($id)
     {
-        $this->middleware(['can:MeasureType_show']);
-
         $base_measure_type = $this->measure_type->getById($id);
         return response()->json(['success' => true, 'data' => new DefaultResource($base_measure_type)]);
     }
@@ -74,8 +72,6 @@ class MeasureTypeController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $this->middleware(['can:MeasureType_edit']);
-
         $data = $request->validated();
         $measure_type = $this->measure_type->getById($id);
         $measure_type->update($data);
@@ -90,8 +86,6 @@ class MeasureTypeController extends Controller
      */
     public function destroy($id)
     {
-        $this->middleware(['can:MeasureType_delete']);
-
         $measure_type = $this->measure_type->getById($id);
         if ($measure_type) {
             $measure_type->delete();

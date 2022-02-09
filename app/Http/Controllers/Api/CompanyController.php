@@ -19,7 +19,11 @@ class CompanyController extends Controller
     public function __construct()
     {
         $this->company = app(CompanyRepository::class);
-        $this->middleware(['auth:sanctum']);
+        $this->middleware(['auth']);
+        $this->middleware(['can:Company_access'], ['only' => 'index']);
+        $this->middleware(['can:Company_create'], ['only' => 'store']);
+        $this->middleware(['can:Company_edit'], ['only' => 'update']);
+        $this->middleware(['can:Company_delete'], ['only' => 'destroy']);
     }
 
     /**
@@ -29,8 +33,6 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $this->middleware(['can:Company_access']);
-
         $companies = $this->company->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($companies)]);
     }
@@ -43,8 +45,6 @@ class CompanyController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $this->middleware(['can:Company_create']);
-
         $data = $request->validated();
         $company = $this->company->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($company)]);
@@ -58,8 +58,6 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $this->middleware(['can:Company_show']);
-
         $company = $this->company->getForShow($id);
         return response()->json(['success' => true, 'data' => new ShowResource($company)]);
     }
@@ -73,8 +71,6 @@ class CompanyController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $this->middleware(['can:Company_edit']);
-
         $data = $request->validated();
         $company = $this->company->getById($id);
         $company->update($data);
@@ -89,8 +85,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $this->middleware(['can:Company_delete']);
-
         $company = $this->company->getById($id);
         if ($company) {
             $company->delete();

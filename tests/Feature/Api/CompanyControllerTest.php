@@ -46,6 +46,14 @@ class CompanyControllerTest extends TestCase
         $this->assertCount(2, $response['data']);
     }
 
+    public function test_salesman_can_get_all_companies() {
+        $companies = Company::factory(2)->create();
+        $user = User::factory()->create(['company_id' => $companies->first()->id]);
+
+        $response = $this->actingAs($user)->getJson($this->base_route);
+        $response->assertStatus(403);
+    }
+
     public function test_admin_can_create_company() {
         $company_name = 'Company 1';
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
