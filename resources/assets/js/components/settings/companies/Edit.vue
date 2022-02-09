@@ -38,7 +38,11 @@ export default{
 							}
 		       loader.hide()
 
-		     })
+		     }).catch(function(error){
+  		     	if(error.response.status == 403){
+  		     		window.location.href = '/403';
+  		     	}
+  		     })
 		// console.log(this.company)
 	},
 	created () {

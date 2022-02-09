@@ -84,7 +84,11 @@ export default{
 		       document.title = this.company['name'];
 		       loader.hide()
 		       console.table(this.company)
-		     })
+		     }).catch(function(error){
+  		     	if(error.response.status == 403){
+  		     		window.location.href = '/403';
+  		     	}
+  		     })
 		
 	},
 	created () {

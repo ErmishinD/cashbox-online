@@ -21,7 +21,11 @@ export default{
 		       document.title = this.storage['name'];
 		       loader.hide()
 		       console.table(this.storage)
-		     })
+		     }).catch(function(error){
+  		     	if(error.response.status == 403){
+  		     		window.location.href = '/403';
+  		     	}
+  		     })
 		
 	},
 	created () {

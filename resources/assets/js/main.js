@@ -97,6 +97,9 @@ import SettingsRoles from './components/settings/Roles'
 /* import 404 */
 import PageNotFound from './components/404'
 
+/* import 403 */
+import BadPermissions from './components/403'
+
 
 // Create a new store instance.
 const store = createStore({
@@ -346,6 +349,11 @@ const router = createRouter({
 		{
 			path: "/404",
 			component: PageNotFound 
+		},
+		{
+			path: "/403",
+			name: '403',
+			component: BadPermissions 
 		},
 	]
 })
