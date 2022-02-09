@@ -102,7 +102,11 @@ export default {
   		       this.rows = this.shops
   		       loader.hide()
 
-  		     })
+  		     }).catch(function(error){
+            if(error.response.status == 403){
+              window.location.href = '/403';
+            }
+           })
   	},
   },
 };

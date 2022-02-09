@@ -32,7 +32,11 @@ export default{
 								barcode: this.product.barcode,
 							}
 		       loader.hide()
-		     })
+		     }).catch(function(error){
+  		     	if(error.response.status == 403){
+  		     		window.location.href = '/403';
+  		     	}
+  		     })
 		// console.log(this.product)
 	},
 	created () {
