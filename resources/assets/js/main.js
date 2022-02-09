@@ -21,6 +21,9 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
 
 import i18n from './i18n'
 
+
+import Permissions from './mixins/Permissions';
+
 /* import app */
 import App from './components/App'
 
@@ -320,7 +323,7 @@ const router = createRouter({
 			component: SettingsCompaniesCreate
 		},
 		{
-			path: '/settings/companies/show/:id',
+			path: '/settings/companies/:id',
 			name: 'settings_companies_show',
 			component: SettingsCompaniesShow,
 			props: true
@@ -352,6 +355,12 @@ const app = createApp({
     render: ()=>h(App)
 })
 
+app.config.globalProperties.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
+app.config.globalProperties.$companyId = document.querySelector("meta[name='company-id']").getAttribute('content');
+app.config.globalProperties.$userName = document.querySelector("meta[name='user_name']").getAttribute('content');
+app.config.globalProperties.$csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
+app.config.globalProperties.$isAdmin = document.querySelector("meta[name='is_superadmin']").getAttribute('content');
+
 app.use(VueSidebarMenu)
 app.use(router).use(i18n).use(store)
 
@@ -366,10 +375,7 @@ app.use(VueAxios, axios).use(VueGoodTablePlugin);
 app.use(VueLoading)
 app.use(GDialog).use(Notifications)
 
-app.mixin({
-  methods: {
-  },
-})
+app.mixin(Permissions)
 
 
 

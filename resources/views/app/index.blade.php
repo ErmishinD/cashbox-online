@@ -6,8 +6,10 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">  
       <!-- Tell the browser to be responsive to screen width -->
       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-      
-      
+      <meta name="user-id" content="{{ Auth::user()->id }}">
+      <meta name="company-id" content="{{ Auth::user()->company_id }}">
+      <meta name="user_name" content="{{ Auth::user()->name }}">
+      <meta name="is_superadmin" content="{{ strval(Auth::user()->hasRole('Super Admin')) }}">
       
       <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,7 +21,13 @@
         @section('styles')                
             @include('app.connect_styles')
         @show
-      
+      <script>
+        @auth
+            window.Permissions = {!! json_encode(Auth::user()->getAllPermissions(), true) !!}
+        @else
+            window.Permissions = [];
+        @endauth
+    </script>
     </head>
 
     <body>
@@ -42,3 +50,5 @@
         @show
 
     </body>
+
+    

@@ -1,8 +1,16 @@
 <template>
 
-	<header>
-		<div class="header__content" v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
-			<select @change="changeOption($event)" v-model="selected">
+	<header >
+		<div class="header__content " v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
+			<span>{{this.$userName}}</span>
+				<button class="btn btn-primary" style="margin-left: auto;" onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">{{ $t('Выход') }}</button>
+			
+            <form id="logout-form" action="/logout" method="POST">
+            	 <input type="hidden" name="_token" :value="this.$csrf">
+			</form>
+			
+			<select @change="changeOption($event)" class="" v-model="selected">
 				<option value="ru">Русcкий</option>
 				<option value="ua">Українська</option>
 				<option value="en">English</option>
@@ -29,8 +37,19 @@
   	mounted(){
   		this.$root.$i18n.locale = this.$cookies.get('lang')
   		this.menu = this.returnSidebarData()
+  		this.keyUp()
   	},
   	methods:{
+  		keyUp(){
+  			document.addEventListener('keyup', function(event){
+  			    if(event.key == 'ArrowLeft'){
+  			    	javascript:history.back()
+  			    }
+  			    else if(event.key == 'ArrowRight'){
+  			    	javascript:history.forward()
+  			    }
+  			});
+  		},
   		changeLanguage (locale) {
   		  this.$root.$i18n.locale = locale
   		  this.$cookies.set('lang', locale);
@@ -52,100 +71,154 @@
   		    	this.isCollapsed = true
   		    }
   		    else{
-  		    	this.isCollapsed = false
+  		    	this.isCollapsed = true
   		    }
   		  },
   		returnSidebarData(){
-  			return [
-          {
-            href: '/dashboard',
-            title: this.$t('Главная'),
-            icon: 'fas fa-home'
-          },
-          {
-          	href: '/products_type',
-            title: this.$t('Типы товаров'),
-            icon: 'fas fa-truck',
-          },
-          {
-          	href: '/products_for_sale',
-            title: this.$t('Товары на продажу'),
-            icon: 'fas fa-hand-holding-usd',
-          },
-          {
-            title: this.$t('Отчеты'),
-            icon: 'fas fa-chart-pie',
-            child: [
-              {
-                href: '/reports/cashbox',
-                title: this.$t('Касса'),
-                icon: 'fas fa-cash-register',
-              },
-              {
-                href: '/reports/finance',
-                title: this.$t('Финансы'),
-                icon: 'fas fa-chart-line',
-              },
+  			let sidebar_data = []
+  			let sidebar_reports_child = []
+  			let sidebar_settings_child = []
 
-              {
-              	href: '/reports/purchases',
-                title: this.$t('Закупки'),
-                icon: 'fas fa-shopping-cart',
-              },
-            ]
-          },
-          {
-          	href: '/transfers',
-            title: this.$t('Трансферы'),
-            icon: 'fas fa-exchange-alt',
-          },
-          {
-          	href: '/shops',
-            title: this.$t('Магазины'),
-            icon: 'fas fa-store',
-          },
-          {
-          	href: '/storages',
-            title: this.$t('Склады'),
-            icon: 'fas fa-boxes',
-          },
-          {
-          	href: '/users',
-            title: this.$t('Пользователи'),
-            icon: 'fas fa-users',
-          },
-          {
-            title: this.$t('Настройки'),
-            icon: 'fas fa-cogs',
-            child: [
-              {
+  			sidebar_data.push({
+	            href: '/dashboard',
+	            title: this.$t('Главная'),
+	            icon: 'fas fa-home'
+          	}) 
+
+  			if(this.$can('ProductType_access')){
+  				sidebar_data.push({
+	          	href: '/products_type',
+	            title: this.$t('Типы товаров'),
+	            icon: 'fas fa-truck',
+	          }) 
+  			}
+          	
+  			if(this.$can('SellProduct_access')){
+  				sidebar_data.push({
+	          	href: '/products_for_sale',
+	            title: this.$t('Товары на продажу'),
+	            icon: 'fas fa-hand-holding-usd',
+	          }) 
+  			}
+	         
+
+	          /* reports */
+
+	          if(this.$can('Cashbox_access')){
+	          	sidebar_reports_child.push({
+	            href: '/reports/cashbox',
+	            title: this.$t('Касса'),
+	            icon: 'fas fa-cash-register',
+	          }) 
+	          }
+	          
+
+	          sidebar_reports_child.push({
+	            href: '/reports/finance',
+	            title: this.$t('Финансы'),
+	            icon: 'fas fa-chart-line',
+	          }) 
+
+	          if(this.$can('ProductPurchase_access')){
+	          	sidebar_reports_child.push({
+	            href: '/reports/purchases',
+	            title: this.$t('Закупки'),
+	            icon: 'fas fa-shopping-cart',
+	          }) 
+	          }
+	          
+	          if(this.$can('Report_access')){
+	          	sidebar_data.push({
+		            title: this.$t('Отчеты'),
+		            icon: 'fas fa-chart-pie',
+		            child: sidebar_reports_child 
+		          }) 
+	          }
+	          
+
+		      /* end reports */
+
+		      sidebar_data.push({
+	              href: '/transfers',
+	              title: this.$t('Трансферы'),
+	              icon: 'fas fa-exchange-alt',
+		      	}) 
+
+		      if(this.$can('Shop_access')){
+		      	sidebar_data.push({
+	              	href: '/shops',
+	                title: this.$t('Магазины'),
+	                icon: 'fas fa-store',
+		      	}) 
+		      }
+		      
+		      if(this.$can('Storage_access')){
+		      	sidebar_data.push({
+	              		href: '/storages',
+	              	  title: this.$t('Склады'),
+	              	  icon: 'fas fa-boxes',
+		      	}) 
+		      }
+		      
+		      if(this.$can('User_access')){
+		      	sidebar_data.push({
+	              	href: '/users',
+		            title: this.$t('Пользователи'),
+		            icon: 'fas fa-users',
+		      	})
+		      }
+		      
+
+		     /* settings */
+
+		     sidebar_settings_child.push({
                 href: '/settings/translates',
                 title: this.$t('Переводы'),
                 icon: 'fas fa-language',
-              },
-              {
+              }) 
+
+             sidebar_settings_child.push({
                 href: '/settings/permissions',
                 title: this.$t('Разрешения'),
                 icon: 'fas fa-lock-open',
-              },
-              {
-                href: '/settings/roles',
-                title: this.$t('Роли'),
-                icon: 'fas fa-unlock',
-              },
-              {
+              }) 
+
+             if(this.$can('Role_access')){
+             	sidebar_settings_child.push({
+             	   href: '/settings/roles',
+             	  title: this.$t('Роли'),
+             	  icon: 'fas fa-unlock',
+             	 }) 
+             }
+              
+             if(this.$can('MeasureType_access')){
+             	sidebar_settings_child.push({
                 href: '/settings/measures',
                 title: this.$t('Единицы измерения'),
                 icon: 'fas fa-weight-hanging',
-              },
-              {
-                href: '/settings/companies',
-                title: this.$t('Компании'),
-                icon: 'fas fa-building',
-              },
-            ]
-          },
-        ]
+               }) 
+             }
+               
+
+               if(this.$can('Company_access')){
+               	sidebar_settings_child.push({
+               	 href: '/settings/companies',
+               	 title: this.$t('Компании'),
+               	 icon: 'fas fa-building',
+               	}) 
+               }
+               
+
+               sidebar_data.push({
+		            title: this.$t('Настройки'),
+		            icon: 'fas fa-cogs',
+		            child: sidebar_settings_child
+		          }) 
+
+
+		     /* end settings */
+
+  			return sidebar_data
   		},
   	},
   	created() {
@@ -156,7 +229,7 @@
     data() {
       return {
       	width: 0,
-      	isCollapsed: false,
+      	isCollapsed: true,
       	selected: this.$cookies.get('lang'),
         menu: this.returnSidebarData()
       }

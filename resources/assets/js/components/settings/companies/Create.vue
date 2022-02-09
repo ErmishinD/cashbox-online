@@ -3,7 +3,7 @@
 	<h1 class="tac">{{ $t('Создание компании') }}</h1>
 	<form class="tac" @submit="create_company">
 		<div class="">
-			<label for="name">{{ $t('Название') }}:</label>
+			<label for="name">{{ $t('Название') }}*:</label>
 			<input type="text" required class="form-control" name="name" v-model="formData.name">
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
@@ -14,9 +14,6 @@
 
 <script>
 export default{
-	props: [
-		'id'
-	],
 	data(){
 		return{
 			formData: {},
@@ -42,7 +39,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			window.location.href = `/settings/companies/show/${response.data.data.id}`
+    			window.location.href = `/settings/companies/${response.data.data.id}`
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){

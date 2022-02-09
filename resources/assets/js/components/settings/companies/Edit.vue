@@ -4,7 +4,7 @@
 	<h1 v-else class="tac">{{ $t('Компания') }}</h1>
 	<form class="tac" @submit="update_company_info">
 		<div class="edit_info">
-			<label for="name">Name:</label>
+			<label for="name">{{ $t('Название') }}*:</label>
 			<input type="text" required class="form-control" name="name" v-model="formData.name">
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
