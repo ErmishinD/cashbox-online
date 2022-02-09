@@ -24,6 +24,7 @@ class ShopController extends Controller
         $this->middleware(['auth']);
         $this->middleware(['can:Shop_access'])->only(['index']);
         $this->middleware(['can:Shop_create'])->only(['store']);
+        $this->middleware(['can:Shop_show'])->only(['show']);
         $this->middleware(['can:Shop_edit'])->only(['update']);
         $this->middleware(['can:Shop_delete'])->only(['destroy']);
     }

@@ -19,10 +19,11 @@ class CashboxController extends Controller
     {
         $this->cashbox = app(CashboxRepository::class);
         $this->middleware(['auth']);
-        $this->middleware(['can:Cashbox_access'], ['only' => 'index']);
-        $this->middleware(['can:Cashbox_create'], ['only' => 'store']);
-        $this->middleware(['can:Cashbox_edit'], ['only' => 'update']);
-        $this->middleware(['can:Cashbox_delete'], ['only' => 'destroy']);
+        $this->middleware(['can:Cashbox_access'])->only(['index']);
+        $this->middleware(['can:Cashbox_create'])->only(['store']);
+        $this->middleware(['can:Cashbox_show'])->only(['show']);
+        $this->middleware(['can:Cashbox_edit'])->only(['update']);
+        $this->middleware(['can:Cashbox_delete'])->only(['destroy']);
     }
 
     /**

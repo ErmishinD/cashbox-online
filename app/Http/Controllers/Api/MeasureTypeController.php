@@ -19,10 +19,11 @@ class MeasureTypeController extends Controller
     {
         $this->measure_type = app(MeasureTypeRepository::class);
         $this->middleware(['auth']);
-        $this->middleware(['can:MeasureType_access'], ['only' => 'index']);
-        $this->middleware(['can:MeasureType_create'], ['only' => 'store']);
-        $this->middleware(['can:MeasureType_edit'], ['only' => 'update']);
-        $this->middleware(['can:MeasureType_delete'], ['only' => 'destroy']);
+        $this->middleware(['can:MeasureType_access'])->only(['index']);
+        $this->middleware(['can:MeasureType_create'])->only(['store']);
+        $this->middleware(['can:MeasureType_show'])->only(['show']);
+        $this->middleware(['can:MeasureType_edit'])->only(['update']);
+        $this->middleware(['can:MeasureType_delete'])->only(['destroy']);
     }
 
     /**

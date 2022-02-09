@@ -19,10 +19,11 @@ class ProductPurchaseController extends Controller
     {
         $this->product_purchase = app(ProductPurchaseRepository::class);
         $this->middleware(['auth']);
-        $this->middleware(['can:ProductPurchase_access'], ['only' => 'index']);
-        $this->middleware(['can:ProductPurchase_create'], ['only' => 'store']);
-        $this->middleware(['can:ProductPurchase_edit'], ['only' => 'update']);
-        $this->middleware(['can:ProductPurchase_delete'], ['only' => 'destroy']);
+        $this->middleware(['can:ProductPurchase_access'])->only(['index']);
+        $this->middleware(['can:ProductPurchase_create'])->only(['store']);
+        $this->middleware(['can:ProductPurchase_show'])->only(['show']);
+        $this->middleware(['can:ProductPurchase_edit'])->only(['update']);
+        $this->middleware(['can:ProductPurchase_delete'])->only(['destroy']);
     }
 
     /**

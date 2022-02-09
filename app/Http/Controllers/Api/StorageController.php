@@ -22,6 +22,7 @@ class StorageController extends Controller
         $this->middleware(['auth']);
         $this->middleware(['can:Storage_access'])->only(['index']);
         $this->middleware(['can:Storage_create'])->only(['store']);
+        $this->middleware(['can:Storage_show'])->only(['show']);
         $this->middleware(['can:Storage_edit'])->only(['update']);
         $this->middleware(['can:Storage_delete'])->only(['destroy']);
     }

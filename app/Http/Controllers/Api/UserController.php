@@ -21,6 +21,7 @@ class UserController extends Controller
         $this->middleware(['auth']);
         $this->middleware(['can:User_access'])->only(['index']);
         $this->middleware(['can:User_create'])->only(['store']);
+        $this->middleware(['can:User_show'])->only(['show']);
         $this->middleware(['can:User_edit'])->only(['update']);
         $this->middleware(['can:User_delete'])->only(['destroy']);
     }

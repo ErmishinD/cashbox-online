@@ -22,6 +22,7 @@ class SellProductController extends Controller
         $this->middleware(['auth']);
         $this->middleware(['can:SellProduct_access'])->only(['index']);
         $this->middleware(['can:SellProduct_create'])->only(['store']);
+        $this->middleware(['can:SellProduct_show'])->only(['show']);
         $this->middleware(['can:SellProduct_edit'])->only(['update']);
         $this->middleware(['can:SellProduct_delete'])->only(['destroy']);
     }

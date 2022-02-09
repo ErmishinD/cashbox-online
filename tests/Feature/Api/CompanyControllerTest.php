@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Company;
+use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
 use App\Repositories\RoleRepository;
@@ -24,6 +25,14 @@ class CompanyControllerTest extends TestCase
      * @var User
      */
     private $admin;
+    /**
+     * @var Company
+     */
+    private $base_company;
+    /**
+     * @var User
+     */
+    private $user_without_permissions;
 
     protected function setUp(): void
     {
@@ -32,10 +41,15 @@ class CompanyControllerTest extends TestCase
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
         $this->role_repository = app(RoleRepository::class);
+
+        $this->base_company = Company::factory()->create();
+        $this->role_repository->createDefaultCompanyRoles($this->base_company->id);
+        $this->user_without_permissions = User::factory()->create(['company_id' => $this->base_company->id]);
     }
 
     public function test_admin_can_get_all_companies() {
         Company::factory(2)->create();
+        $all_companies_amount = Company::all()->count();
 
         $response = $this->actingAs($this->admin)->getJson($this->base_route);
         $response
@@ -43,14 +57,13 @@ class CompanyControllerTest extends TestCase
             ->assertJson([
                 'success' => true
             ]);
-        $this->assertCount(2, $response['data']);
+        $this->assertCount($all_companies_amount, $response['data']);
     }
 
-    public function test_salesman_can_get_all_companies() {
-        $companies = Company::factory(2)->create();
-        $user = User::factory()->create(['company_id' => $companies->first()->id]);
+    public function test_user_without_permissions_cannot_get_all_companies() {
+        Company::factory(2)->create();
 
-        $response = $this->actingAs($user)->getJson($this->base_route);
+        $response = $this->actingAs($this->user_without_permissions)->getJson($this->base_route);
         $response->assertStatus(403);
     }
 
@@ -66,6 +79,15 @@ class CompanyControllerTest extends TestCase
                 'data' => ['name' => $company_name]
             ]);
         $this->assertDatabaseHas($this->table, ['name' => $company_name]);
+    }
+
+    public function test_user_without_permissions_cannot_create_company() {
+        $company_name = 'Company +=-';
+        $response = $this->actingAs($this->user_without_permissions)->postJson($this->base_route, [
+           'name' => $company_name
+        ]);
+        $response
+            ->assertStatus(403);
     }
 
     public function test_admin_can_get_company() {
@@ -135,6 +157,12 @@ class CompanyControllerTest extends TestCase
             ]);
     }
 
+    public function test_user_without_permissions_cannot_get_company()
+    {
+        $response = $this->actingAs($this->user_without_permissions)->getJson($this->base_route.$this->base_company->id);
+        $response->assertStatus(403);
+    }
+
     public function test_admin_can_edit_company() {
         $company = Company::factory()->create(['name' => 'Company name']);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route.$company->id, ['name' => 'NEW Company name']);
@@ -147,6 +175,13 @@ class CompanyControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['name' => 'NEW Company name']);
     }
 
+    public function test_user_without_permissions_cannot_edit_company()
+    {
+        $response = $this->actingAs($this->user_without_permissions)->patchJson($this->base_route.$this->base_company->id,
+            ['name' => 'NEW Company name']);
+        $response->assertStatus(403);
+    }
+
     public function test_admin_can_delete_company() {
         $company = Company::factory()->create(['name' => 'My company']);
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$company->id);
@@ -156,5 +191,11 @@ class CompanyControllerTest extends TestCase
                 'success' => true,
             ]);
         $this->assertSoftDeleted($this->table, ['name' => 'My company']);
+    }
+
+    public function test_user_without_permissions_cannot_delete_company()
+    {
+        $response = $this->actingAs($this->user_without_permissions)->deleteJson($this->base_route.$this->base_company->id);
+        $response->assertStatus(403);
     }
 }

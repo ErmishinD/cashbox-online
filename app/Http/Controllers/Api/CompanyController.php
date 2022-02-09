@@ -20,10 +20,11 @@ class CompanyController extends Controller
     {
         $this->company = app(CompanyRepository::class);
         $this->middleware(['auth']);
-        $this->middleware(['can:Company_access'], ['only' => 'index']);
-        $this->middleware(['can:Company_create'], ['only' => 'store']);
-        $this->middleware(['can:Company_edit'], ['only' => 'update']);
-        $this->middleware(['can:Company_delete'], ['only' => 'destroy']);
+        $this->middleware(['can:Company_access'])->only(['index']);
+        $this->middleware(['can:Company_create'])->only(['store']);
+        $this->middleware(['can:Company_edit'])->only(['update']);
+        $this->middleware(['can:Company_show'])->only(['show']);
+        $this->middleware(['can:Company_delete'])->only(['destroy']);
     }
 
     /**

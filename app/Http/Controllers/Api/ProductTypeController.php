@@ -23,6 +23,7 @@ class ProductTypeController extends Controller
         $this->middleware(['auth']);
         $this->middleware(['can:ProductType_access'])->only(['index']);
         $this->middleware(['can:ProductType_create'])->only(['store']);
+        $this->middleware(['can:ProductType_show'])->only(['show']);
         $this->middleware(['can:ProductType_edit'])->only(['update', 'remove_measure_types']);
         $this->middleware(['can:ProductType_delete'])->only(['destroy']);
     }
