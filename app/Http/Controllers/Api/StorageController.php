@@ -19,7 +19,7 @@ class StorageController extends Controller
     public function __construct()
     {
         $this->storage = app(StorageRepository::class);
-//        $this->middleware(['auth']);
+        $this->middleware(['auth:sanctum']);
     }
 
     /**

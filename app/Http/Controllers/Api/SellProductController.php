@@ -19,7 +19,7 @@ class SellProductController extends Controller
     public function __construct()
     {
         $this->sell_product = app(SellProductRepository::class);
-//        $this->middleware(['auth']);
+        $this->middleware(['auth:sanctum']);
     }
 
     /**

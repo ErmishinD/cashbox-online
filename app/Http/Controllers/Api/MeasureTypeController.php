@@ -18,7 +18,7 @@ class MeasureTypeController extends Controller
     public function __construct()
     {
         $this->measure_type = app(MeasureTypeRepository::class);
-//        $this->middleware(['auth']);
+        $this->middleware(['auth:sanctum']);
     }
 
     /**

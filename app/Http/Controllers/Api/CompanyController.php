@@ -19,7 +19,7 @@ class CompanyController extends Controller
     public function __construct()
     {
         $this->company = app(CompanyRepository::class);
-//        $this->middleware(['auth']);
+        $this->middleware(['auth:sanctum']);
     }
 
     /**

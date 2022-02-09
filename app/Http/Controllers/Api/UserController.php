@@ -18,7 +18,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->user = app(UserRepository::class);
-//        $this->middleware(['auth']);
+        $this->middleware(['auth:sanctum']);
     }
 
     /**
