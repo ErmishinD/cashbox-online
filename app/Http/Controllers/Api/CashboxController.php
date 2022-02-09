@@ -18,6 +18,7 @@ class CashboxController extends Controller
     public function __construct()
     {
         $this->cashbox = app(CashboxRepository::class);
+        $this->middleware(['auth']);
     }
 
     /**
@@ -27,6 +28,8 @@ class CashboxController extends Controller
      */
     public function index()
     {
+        $this->middleware(['can:Cashbox_access']);
+
         $payments = $this->cashbox->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)]);
     }
@@ -39,6 +42,8 @@ class CashboxController extends Controller
      */
     public function store(CreateRequest $request)
     {
+        $this->middleware(['can:Cashbox_create']);
+
         $data = $request->validated();
         $payment = $this->cashbox->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
@@ -52,6 +57,8 @@ class CashboxController extends Controller
      */
     public function show($id)
     {
+        $this->middleware(['can:Cashbox_show']);
+
         $payment = $this->cashbox->getById($id);
         return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
     }
@@ -65,6 +72,8 @@ class CashboxController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
+        $this->middleware(['can:Cashbox_edit']);
+
         $data = $request->validated();
         $payment = $this->cashbox->getById($id);
         $payment->update($data);
@@ -79,6 +88,8 @@ class CashboxController extends Controller
      */
     public function destroy($id)
     {
+        $this->middleware(['can:Cashbox_delete']);
+
         $payment = $this->cashbox->getById($id);
         if ($payment) {
             $payment->delete();

@@ -21,6 +21,7 @@ class ShopController extends Controller
     public function __construct()
     {
         $this->shop = app(ShopRepository::class);
+        $this->middleware(['auth']);
     }
 
     /**
@@ -30,6 +31,8 @@ class ShopController extends Controller
      */
     public function index()
     {
+        $this->middleware(['can:Shop_access']);
+
         $shops = $this->shop->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($shops)]);
     }
@@ -42,6 +45,8 @@ class ShopController extends Controller
      */
     public function store(CreateRequest $request)
     {
+        $this->middleware(['can:Shop_create']);
+
         $data = $request->validated();
         $shop = $this->shop->create($data);
         return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
@@ -55,6 +60,8 @@ class ShopController extends Controller
      */
     public function show($id)
     {
+        $this->middleware(['can:Shop_show']);
+
         $shop = $this->shop->getForShow($id);
         return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
@@ -68,6 +75,8 @@ class ShopController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
+        $this->middleware(['can:Shop_edit']);
+
         $data = $request->validated();
         $shop = $this->shop->update($id, $data);
         return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
@@ -81,6 +90,8 @@ class ShopController extends Controller
      */
     public function destroy($id)
     {
+        $this->middleware(['can:Shop_delete']);
+
         $shop = $this->shop->getById($id);
         if ($shop) {
             $shop->delete();

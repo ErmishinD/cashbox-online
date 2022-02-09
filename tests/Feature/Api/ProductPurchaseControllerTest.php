@@ -9,6 +9,8 @@ use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\Shop;
 use App\Models\Storage;
+use App\Models\User;
+use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -20,9 +22,15 @@ class ProductPurchaseControllerTest extends TestCase
     private $base_route = '/api/product_purchases/';
     private $table = 'product_purchases';
 
+    /**
+     * @var User
+     */
+    private $admin;
+
     public function setUp(): void
     {
         parent::setUp();
+        $this->seed(RolesPermissionsSeeder::class);
         BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
         BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
         $company = Company::factory()->create();
@@ -31,12 +39,15 @@ class ProductPurchaseControllerTest extends TestCase
             ->create();
         MeasureType::factory()->create(['company_id' => $company->id]);
         ProductType::factory()->count(5)->create(['company_id' => $company->id]);
+
+        $this->admin = User::factory()->create();
+        $this->admin->assignRole('Super Admin');
     }
 
-    public function test_can_get_all_product_purchases() {
+    public function test_admin_can_get_all_product_purchases() {
         ProductPurchase::factory(5)->create();
 
-        $response = $this->get($this->base_route);
+        $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -45,11 +56,11 @@ class ProductPurchaseControllerTest extends TestCase
         $this->assertCount(5, $response['data']);
     }
 
-    public function test_can_create_product_purchase() {
+    public function test_admin_can_create_product_purchase() {
         $storage = Storage::inRandomOrder()->first();
         $product_type = ProductType::inRandomOrder()->first();
         $measure_type = MeasureType::inRandomOrder()->first();
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
             'measure_type_id' => $measure_type->id,
@@ -79,9 +90,9 @@ class ProductPurchaseControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_get_product_purchase() {
+    public function test_admin_can_get_product_purchase() {
         $product_purchase = ProductPurchase::factory()->create(['quantity' => 111, 'cost' => 333]);
-        $response = $this->get($this->base_route.$product_purchase->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$product_purchase->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -90,9 +101,9 @@ class ProductPurchaseControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_edit_product_purchase() {
+    public function test_admin_can_edit_product_purchase() {
         $product_purchase = ProductPurchase::factory()->create(['quantity' => 111, 'cost' => 222]);
-        $response = $this->patchJson($this->base_route.$product_purchase->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$product_purchase->id, [
             'cost' => 666
         ]);
         $response
@@ -104,9 +115,9 @@ class ProductPurchaseControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['quantity' => 111, 'cost' => 666]);
     }
 
-    public function test_can_delete_product_purchase() {
+    public function test_admin_can_delete_product_purchase() {
         $product_purchase = ProductPurchase::factory()->create();
-        $response = $this->deleteJson($this->base_route.$product_purchase->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$product_purchase->id);
         $response
             ->assertStatus(200)
             ->assertJson([

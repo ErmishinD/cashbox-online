@@ -48,6 +48,8 @@ class CreatePermissionTables extends Migration
             } else {
                 $table->unique(['name', 'guard_name']);
             }
+            $table->string('human_name')->nullable();
+            $table->foreignId('company_id')->nullable()->constrained('companies');
         });
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {

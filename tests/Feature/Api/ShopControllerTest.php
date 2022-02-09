@@ -5,6 +5,8 @@ namespace Tests\Feature\Api;
 use App\Models\Company;
 use App\Models\Shop;
 use App\Models\Storage;
+use App\Models\User;
+use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -15,13 +17,25 @@ class ShopControllerTest extends TestCase
 
     private $base_route = '/api/shops/';
     private $table = 'shops';
+    /**
+     * @var User
+     */
+    private $admin;
 
-    public function test_can_get_all_shops() {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(RolesPermissionsSeeder::class);
+        $this->admin = User::factory()->create();
+        $this->admin->assignRole('Super Admin');
+    }
+
+    public function test_admin_can_get_all_shops() {
         Company::factory()->create();
         Shop::factory()->create();
         Shop::factory()->create();
 
-        $response = $this->get($this->base_route);
+        $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -30,10 +44,10 @@ class ShopControllerTest extends TestCase
         $this->assertCount(2, $response['data']);
     }
 
-    public function test_can_create_shop_without_address() {
+    public function test_admin_can_create_shop_without_address() {
         $company = Company::factory()->create();
         $shop_name = 'Shop 1';
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'name' => $shop_name,
             'company_id' => $company->id
         ]);
@@ -48,11 +62,11 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_create_shop_with_storage() {
+    public function test_admin_can_create_shop_with_storage() {
         $company = Company::factory()->create();
         $shop_name = 'My shop';
         $storage_name = 'Storage in My Shop';
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'name' => $shop_name,
             'company_id' => $company->id,
             'storage_name' => $storage_name
@@ -77,10 +91,10 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_create_shop_with_address() {
+    public function test_admin_can_create_shop_with_address() {
         $company = Company::factory()->create();
         $shop_name = 'Shop 2';
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'name' => $shop_name,
             'company_id' => $company->id,
             'address' => 'some address'
@@ -96,12 +110,12 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_get_shop() {
+    public function test_admin_can_get_shop() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Shop 3']);
         $storage1 = Storage::factory()->create(['shop_id' => $shop->id, 'name' => 'storage1 in shop 3']);
         $storage2 = Storage::factory()->create(['shop_id' => $shop->id, 'name' => 'storage2 in shop 3']);
-        $response = $this->get($this->base_route.$shop->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$shop->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -125,10 +139,10 @@ class ShopControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_edit_shop_name() {
+    public function test_admin_can_edit_shop_name() {
         $company = Company::factory()->create(['name' => 'Company name']);
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Shop name', 'address' => 'some address']);
-        $response = $this->patchJson($this->base_route.$shop->id, ['name' => 'NEW Shop name']);
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$shop->id, ['name' => 'NEW Shop name']);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -141,10 +155,10 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_edit_shop_address() {
+    public function test_admin_can_edit_shop_address() {
         $company = Company::factory()->create(['name' => 'My Company name']);
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'My Shop name']);
-        $response = $this->patchJson($this->base_route.$shop->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$shop->id, [
             'name' => 'NEW My Shop name', 'address' => 'my address'
         ]);
         $response
@@ -158,11 +172,11 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_add_storage_when_editing() {
+    public function test_admin_can_add_storage_when_editing() {
         $company = Company::factory()->create(['name' => 'Super Company']);
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Super Shop']);
         $storage = Storage::factory()->create(['shop_id' => $shop->id, 'name' => 'First Super Storage']);
-        $response = $this->patchJson($this->base_route.$shop->id, ['name' => 'NEW Super Shop name', 'storage_name' => 'Super Storage']);
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$shop->id, ['name' => 'NEW Super Shop name', 'storage_name' => 'Super Storage']);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -188,10 +202,10 @@ class ShopControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_delete_shop() {
+    public function test_admin_can_delete_shop() {
         $company = Company::factory()->create(['name' => 'My company']);
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Shop name']);
-        $response = $this->deleteJson($this->base_route.$shop->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$shop->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -200,13 +214,13 @@ class ShopControllerTest extends TestCase
         $this->assertSoftDeleted($this->table, ['name' => 'Shop name']);
     }
 
-    public function test_get_shops_for_select()
+    public function test_admin_get_shops_for_select()
     {
         $company = Company::factory()->create();
         $shop1 = Shop::factory()->create(['company_id' => $company->id]);
         $shop2 = Shop::factory()->create(['company_id' => $company->id]);
         $shop3 = Shop::factory()->create(['company_id' => $company->id]);
-        $response = $this->postJson($this->base_route.'get_by_company', ['company_id' => $company->id]);
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_by_company', ['company_id' => $company->id]);
         $response
             ->assertStatus(200)
             ->assertJson([

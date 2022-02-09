@@ -20,6 +20,7 @@ class ProductTypeController extends Controller
     public function __construct()
     {
         $this->product_type = app(ProductTypeRepository::class);
+        $this->middleware(['auth']);
     }
 
     /**
@@ -29,6 +30,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
+        $this->middleware(['can:ProductType_access']);
+
         $product_types = $this->product_type->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($product_types)]);
     }
@@ -41,6 +44,8 @@ class ProductTypeController extends Controller
      */
     public function store(CreateRequest $request)
     {
+        $this->middleware(['can:ProductType_create']);
+
         $data = $request->validated();
         $product_type = $this->product_type->create($data);
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
@@ -54,6 +59,8 @@ class ProductTypeController extends Controller
      */
     public function show($id)
     {
+        $this->middleware(['can:ProductType_show']);
+
         $product_type = $this->product_type->getWithMeasureTypes($id);
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
@@ -67,10 +74,10 @@ class ProductTypeController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
+        $this->middleware(['can:ProductType_edit']);
+
         $data = $request->validated();
         $product_type = $this->product_type->update($id, $data);
-//        $product_type = $this->product_type->getById($id);
-//        $product_type->update($data);
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
@@ -82,6 +89,8 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
+        $this->middleware(['can:ProductType_delete']);
+
         $product_type = $this->product_type->getById($id);
         if ($product_type) {
             $product_type->delete();
@@ -90,6 +99,8 @@ class ProductTypeController extends Controller
     }
 
     public function remove_measure_types(RemoveMeasureTypesRequest $request) {
+        $this->middleware(['can:ProductType_edit']);
+
         $data = $request->validated();
         $this->product_type->remove_measure_types($data);
         return response()->json(['success' => true]);

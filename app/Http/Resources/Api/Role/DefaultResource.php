@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Api\User;
+namespace App\Http\Resources\Api\Role;
 
-use App\Http\Resources\Api\Role\DefaultResource as RoleResource;
-use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EmployeeResource extends JsonResource
+class DefaultResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +15,11 @@ class EmployeeResource extends JsonResource
      */
     public function toArray($request)
     {
-        /** @var User $this */
+        /** @var Role $this */
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
-            'roles' => RoleResource::collection($this->roles),
+            'human_name' => $this->human_name,
         ];
     }
 }

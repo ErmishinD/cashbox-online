@@ -4,6 +4,8 @@ namespace Tests\Feature\Api;
 
 use App\Models\Company;
 use App\Models\SellProductGroup;
+use App\Models\User;
+use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,17 +16,25 @@ class SellProductGroupControllerTest extends TestCase
 
     private $base_route = '/api/sell_product_groups/';
     private $table = 'sell_product_groups';
+    /**
+     * @var User
+     */
+    private $admin;
 
     public function setUp(): void
     {
         parent::setUp();
         Company::factory()->create();
+
+        $this->seed(RolesPermissionsSeeder::class);
+        $this->admin = User::factory()->create();
+        $this->admin->assignRole('Super Admin');
     }
 
-    public function test_can_get_all_sell_product_groups() {
+    public function test_admin_can_get_all_sell_product_groups() {
         SellProductGroup::factory(5)->create();
 
-        $response = $this->get($this->base_route);
+        $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -33,9 +43,9 @@ class SellProductGroupControllerTest extends TestCase
         $this->assertCount(5, $response['data']);
     }
 
-    public function test_can_create_sell_product_group() {
+    public function test_admin_can_create_sell_product_group() {
         $company = Company::inRandomOrder()->first();
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'company_id' => $company->id,
             'name' => 'Sell Product Group 1',
             'price' => 250.5,
@@ -60,9 +70,9 @@ class SellProductGroupControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_get_sell_product_group() {
+    public function test_admin_can_get_sell_product_group() {
         $sell_product_group = SellProductGroup::factory()->create(['name' => 'Sell Product Group 2', 'price' => 100]);
-        $response = $this->get($this->base_route.$sell_product_group->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$sell_product_group->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -71,9 +81,9 @@ class SellProductGroupControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_edit_sell_product_group() {
+    public function test_admin_can_edit_sell_product_group() {
         $sell_product_group = SellProductGroup::factory()->create(['name' => 'Sell Product Group 3', 'price' => 333.33]);
-        $response = $this->patchJson($this->base_route.$sell_product_group->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$sell_product_group->id, [
             'price' => 666.66
         ]);
         $response
@@ -85,9 +95,9 @@ class SellProductGroupControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['name' => 'Sell Product Group 3', 'price' => 666.66]);
     }
 
-    public function test_can_delete_sell_product_group() {
+    public function test_admin_can_delete_sell_product_group() {
         $sell_product_group = SellProductGroup::factory()->create();
-        $response = $this->deleteJson($this->base_route.$sell_product_group->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$sell_product_group->id);
         $response
             ->assertStatus(200)
             ->assertJson([

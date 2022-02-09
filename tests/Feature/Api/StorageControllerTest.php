@@ -9,6 +9,8 @@ use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\Shop;
 use App\Models\Storage;
+use App\Models\User;
+use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -19,6 +21,10 @@ class StorageControllerTest extends TestCase
 
     private $base_route = '/api/storages/';
     private $table = 'storages';
+    /**
+     * @var User
+     */
+    private $admin;
 
     protected function setUp(): void
     {
@@ -27,15 +33,17 @@ class StorageControllerTest extends TestCase
         BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
         BaseMeasureType::create(['type' => '_quantity', 'name' => 'шт']);
 
-//        $this->withoutExceptionHandling();
+        $this->seed(RolesPermissionsSeeder::class);
+        $this->admin = User::factory()->create();
+        $this->admin->assignRole('Super Admin');
     }
 
-    public function test_can_get_all_storages() {
+    public function test_admin_can_get_all_storages() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         Storage::factory(4)->create(['shop_id' => $shop->id]);
 
-        $response = $this->get($this->base_route);
+        $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -44,11 +52,11 @@ class StorageControllerTest extends TestCase
         $this->assertCount(4, $response['data']);
     }
 
-    public function test_can_create_storage() {
+    public function test_admin_can_create_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
 
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'shop_id' => $shop->id
         ]);
         $response
@@ -62,11 +70,11 @@ class StorageControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_get_storage() {
+    public function test_admin_can_get_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
-        $response = $this->get($this->base_route.$storage->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -75,7 +83,7 @@ class StorageControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_get_storage_with_one_product_purchase() {
+    public function test_admin_can_get_storage_with_one_product_purchase() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
@@ -84,7 +92,7 @@ class StorageControllerTest extends TestCase
         $product_purchase = ProductPurchase::factory()->create([
             'storage_id' => $storage->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type->id
             ]);
-        $response = $this->get($this->base_route.$storage->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -131,7 +139,7 @@ class StorageControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_get_storage_with_some_product_purchases_but_one_product() {
+    public function test_admin_can_get_storage_with_some_product_purchases_but_one_product() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
@@ -144,7 +152,7 @@ class StorageControllerTest extends TestCase
             'storage_id' => $storage->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type->id
             ]);
 
-        $response = $this->get($this->base_route.$storage->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -218,7 +226,7 @@ class StorageControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_get_storage_with_some_products_but_one_product_purchase_for_each() {
+    public function test_admin_can_get_storage_with_some_products_but_one_product_purchase_for_each() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
@@ -233,7 +241,7 @@ class StorageControllerTest extends TestCase
             'storage_id' => $storage->id, 'measure_type_id' => $measure_type2->id, 'product_type_id' => $product_type2->id
         ]);
 
-        $response = $this->get($this->base_route.$storage->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -312,7 +320,7 @@ class StorageControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_get_storage_with_some_product_purchases_for_some_products() {
+    public function test_admin_can_get_storage_with_some_product_purchases_for_some_products() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
@@ -334,7 +342,7 @@ class StorageControllerTest extends TestCase
             'storage_id' => $storage->id, 'measure_type_id' => $measure_type2->id, 'product_type_id' => $product_type2->id
         ]);
 
-        $response = $this->get($this->base_route.$storage->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -467,12 +475,12 @@ class StorageControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_edit_storage() {
+    public function test_admin_can_edit_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $shop_2 = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
-        $response = $this->patchJson($this->base_route.$storage->id, ['shop_id' => $shop_2->id]);
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$storage->id, ['shop_id' => $shop_2->id]);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -485,11 +493,11 @@ class StorageControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_delete_storage() {
+    public function test_admin_can_delete_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
-        $response = $this->deleteJson($this->base_route.$storage->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$storage->id);
         $response
             ->assertStatus(200)
             ->assertJson([

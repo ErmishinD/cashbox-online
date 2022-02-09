@@ -6,6 +6,8 @@ use App\Models\BaseMeasureType;
 use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductType;
+use App\Models\User;
+use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +19,10 @@ class ProductTypeControllerTest extends TestCase
 
     private $base_route = '/api/product_types/';
     private $table = 'product_types';
+    /**
+     * @var User
+     */
+    private $admin;
 
     public function setUp(): void
     {
@@ -24,12 +30,15 @@ class ProductTypeControllerTest extends TestCase
         BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
         BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
         Company::factory()->create();
+        $this->seed(RolesPermissionsSeeder::class);
+        $this->admin = User::factory()->create();
+        $this->admin->assignRole('Super Admin');
     }
 
-    public function test_can_get_all_product_types() {
+    public function test_admin_can_get_all_product_types() {
         ProductType::factory(5)->create();
 
-        $response = $this->get($this->base_route);
+        $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -38,10 +47,10 @@ class ProductTypeControllerTest extends TestCase
         $this->assertCount(5, $response['data']);
     }
 
-    public function test_can_create_product_type() {
+    public function test_admin_can_create_product_type() {
         $company = Company::inRandomOrder()->get()->first();
         $base_measure_type = BaseMeasureType::inRandomOrder()->get()->first();
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'company_id' => $company->id,
             'base_measure_type_id' => $base_measure_type->id,
             'name' => 'First product',
@@ -66,12 +75,12 @@ class ProductTypeControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_create_product_type_with_measure_types() {
+    public function test_admin_can_create_product_type_with_measure_types() {
         $company = Company::inRandomOrder()->get()->first();
         $base_measure_type = BaseMeasureType::inRandomOrder()->get()->first();
         $measure_type1 = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'name' => 'measure 1']);
         $measure_type2 = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'name' => 'measure 2']);
-        $response = $this->postJson($this->base_route, [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'company_id' => $company->id,
             'base_measure_type_id' => $base_measure_type->id,
             'name' => 'First product',
@@ -107,9 +116,9 @@ class ProductTypeControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_get_product_type() {
+    public function test_admin_can_get_product_type() {
         $product_type = ProductType::factory()->create(['name' => 'my custom name']);
-        $response = $this->get($this->base_route.$product_type->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$product_type->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -118,13 +127,13 @@ class ProductTypeControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_get_product_type_with_measure_types() {
+    public function test_admin_can_get_product_type_with_measure_types() {
         $product_type = ProductType::factory()->create(['name' => 'my custom name']);
         $measure_type = MeasureType::factory()->create(['name' => 'custom measure type']);
         DB::table('product_type_measures')->insert([
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type->id
         ]);
-        $response = $this->get($this->base_route.$product_type->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route.$product_type->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -138,9 +147,9 @@ class ProductTypeControllerTest extends TestCase
             ]);
     }
 
-    public function test_can_edit_product_type() {
+    public function test_admin_can_edit_product_type() {
         $product_type = ProductType::factory()->create(['name' => 'ProductType name']);
-        $response = $this->patchJson($this->base_route.$product_type->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$product_type->id, [
             'name' => 'NEW name'
         ]);
         $response
@@ -152,7 +161,7 @@ class ProductTypeControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['name' => 'NEW name']);
     }
 
-    public function test_can_edit_product_type_with_measure_types() {
+    public function test_admin_can_edit_product_type_with_measure_types() {
         $product_type = ProductType::factory()->create(['name' => 'My ProductType name']);
         $measure_type1 = MeasureType::factory()->create(['name' => 'measure_type 1']);
         $measure_type2 = MeasureType::factory()->create(['name' => 'measure_type 2']);
@@ -160,7 +169,7 @@ class ProductTypeControllerTest extends TestCase
         DB::table('product_type_measures')->insert([
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type1->id
         ]);
-        $response = $this->patchJson($this->base_route.$product_type->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$product_type->id, [
             'name' => 'My NEW name',
             'measure_types' => [$measure_type2->id, $measure_type3->id]
         ]);
@@ -185,9 +194,9 @@ class ProductTypeControllerTest extends TestCase
         ]);
     }
 
-    public function test_can_delete_product_type() {
+    public function test_admin_can_delete_product_type() {
         $product_type = ProductType::factory()->create();
-        $response = $this->deleteJson($this->base_route.$product_type->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$product_type->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -196,7 +205,7 @@ class ProductTypeControllerTest extends TestCase
         $this->assertSoftDeleted($this->table, ['id' => $product_type->id]);
     }
 
-    public function test_can_remove_measure_types() {
+    public function test_admin_can_remove_measure_types() {
         $product_type = ProductType::factory()->create(['name' => 'test product']);
         $measure_type1 = MeasureType::factory()->create(['name' => 'test measure type 1']);
         $measure_type2 = MeasureType::factory()->create(['name' => 'test measure type 2']);
@@ -207,7 +216,7 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type2->id
         ]);
 
-        $response = $this->postJson($this->base_route.'remove_measure_types', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'remove_measure_types', [
             'product_type_id' => $product_type->id,
             'measure_types' => [$measure_type1->id, $measure_type2->id]
         ]);
