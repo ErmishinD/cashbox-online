@@ -20,7 +20,7 @@ class ProductTypeController extends Controller
     public function __construct()
     {
         $this->product_type = app(ProductTypeRepository::class);
-        $this->middleware(['auth']);
+//        $this->middleware(['auth']);
     }
 
     /**

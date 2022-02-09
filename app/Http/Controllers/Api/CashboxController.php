@@ -18,7 +18,7 @@ class CashboxController extends Controller
     public function __construct()
     {
         $this->cashbox = app(CashboxRepository::class);
-        $this->middleware(['auth']);
+//        $this->middleware(['auth']);
     }
 
     /**

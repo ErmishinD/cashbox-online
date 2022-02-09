@@ -18,7 +18,7 @@ class ProductPurchaseController extends Controller
     public function __construct()
     {
         $this->product_purchase = app(ProductPurchaseRepository::class);
-        $this->middleware(['auth']);
+//        $this->middleware(['auth']);
     }
 
     /**
