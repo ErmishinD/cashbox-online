@@ -25,6 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'shop_id' => ['required'],
+            'name' => ['nullable']
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\ProductPurchase;
 use App\Models\Storage;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -25,5 +26,14 @@ class StorageRepository extends BaseRepository
         }])->find($id);
         $storage->product_purchases = $storage->product_purchases->groupBy('product_type.name');
         return $storage;
+    }
+
+    public function deleteById($id): bool
+    {
+        $product_purchases = ProductPurchase::where('stage_id', $id)->where('current_quantity', '>', 0)->get();
+        if ($product_purchases->count() > 0) {
+            return false;
+        }
+        return parent::deleteById($id);
     }
 }

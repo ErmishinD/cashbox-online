@@ -86,10 +86,7 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
-        $storage = $this->storage->getById($id);
-        if ($storage) {
-            $storage->delete();
-        }
+        $storage = $this->storage->deleteById($id);
         return response()->json(['success' => true]);
     }
 }
