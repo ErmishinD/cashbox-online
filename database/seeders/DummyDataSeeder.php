@@ -84,7 +84,7 @@ class DummyDataSeeder extends Seeder
 
 
         // создать продукты
-        $product_types = ProductType::factory()->count(20)->create();
+        $product_types = ProductType::factory()->count(50)->create();
 
         // к каждому продукту добавить подходящие единицы измерения
         $all_measure_types = MeasureType::all();
@@ -96,7 +96,7 @@ class DummyDataSeeder extends Seeder
         }
 
         // создать продукты для продажи
-        $sell_products = SellProduct::factory()->count(25)->create();
+        $sell_products = SellProduct::factory()->count(40)->create();
         foreach ($sell_products as $sell_product) {
             $allowed_product_types = $product_types->where('company_id', $sell_product->company_id)->pluck('id');
             $sell_product->product_types()->attach(
@@ -134,39 +134,41 @@ class DummyDataSeeder extends Seeder
             $company_id = $shop->company_id;
             foreach ($shop->storages as $storage) {
                 $allowed_product_types = $product_types->where('company_id', $company_id);
-                $product_type = $allowed_product_types->random();
-                $allowed_measure_types = $all_measure_types
-                    ->where('base_measure_type_id', $product_type->base_measure_type_id)
-                    ->where('company_id', $product_type->company_id)->pluck('id');
-                $quantity = random_int(1, 100);
-                $expiration_date = null;
-                if ($product_type->type == '_perishable') {
-                    $from = strtotime('last monday');
-                    $to = strtotime('next month');
-                    $expiration_date = date('Y-m-d H:i', mt_rand($from, $to));
-                }
+                for ($product_count = 0; $product_count < random_int(3, 30); $product_count++) {
+                    $product_type = $allowed_product_types->random();
+                    $allowed_measure_types = $all_measure_types
+                        ->where('base_measure_type_id', $product_type->base_measure_type_id)
+                        ->where('company_id', $product_type->company_id)->pluck('id');
+                    $quantity = random_int(1, 1000);
+                    $expiration_date = null;
+                    if ($product_type->type == '_perishable') {
+                        $from = strtotime('last monday');
+                        $to = strtotime('next month');
+                        $expiration_date = date('Y-m-d H:i', mt_rand($from, $to));
+                    }
 
-                if ($allowed_measure_types->isEmpty()) {
-                    $new_measure_type = MeasureType::factory()->create([
-                        'base_measure_type_id' => $product_type->base_measure_type_id,
-                        'company_id' => $random_company->id,
-                        'is_common' => false,
-                    ]);
-                    $measure_type_id = $new_measure_type->id;
-                }
-                else {
-                    $measure_type_id = $allowed_measure_types->random();
-                }
-                for ($i=0; $i < random_int(1, 5); $i++) {
-                    ProductPurchase::create([
-                        'storage_id' => $storage->id,
-                        'product_type_id' => $product_type->id,
-                        'measure_type_id' => $measure_type_id,
-                        'quantity' => $quantity,
-                        'current_quantity' => random_int(0, $quantity),
-                        'cost' => random_int(100, 10000),
-                        'expiration_date' => $expiration_date,
-                    ]);
+                    if ($allowed_measure_types->isEmpty()) {
+                        $new_measure_type = MeasureType::factory()->create([
+                            'base_measure_type_id' => $product_type->base_measure_type_id,
+                            'company_id' => $random_company->id,
+                            'is_common' => false,
+                        ]);
+                        $measure_type_id = $new_measure_type->id;
+                    }
+                    else {
+                        $measure_type_id = $allowed_measure_types->random();
+                    }
+                    for ($i=0; $i < random_int(1, 5); $i++) {
+                        ProductPurchase::create([
+                            'storage_id' => $storage->id,
+                            'product_type_id' => $product_type->id,
+                            'measure_type_id' => $measure_type_id,
+                            'quantity' => $quantity,
+                            'current_quantity' => random_int(0, $quantity),
+                            'cost' => random_int(100, 10000),
+                            'expiration_date' => $expiration_date,
+                        ]);
+                    }
                 }
             }
         }
