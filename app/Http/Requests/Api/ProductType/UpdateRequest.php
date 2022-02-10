@@ -29,6 +29,7 @@ class UpdateRequest extends FormRequest
             'type' => ['nullable'],
             'photo' => ['nullable'],
             'base_measure_type_id' => ['nullable'],
+            'main_measure_type_id' => ['nullable'],
             'barcode' => ['nullable'],
             'measure_types' => ['nullable', 'array'],
         ];

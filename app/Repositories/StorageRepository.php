@@ -22,7 +22,11 @@ class StorageRepository extends BaseRepository
 
     public function getForShow(int $id) {
         $storage = $this->model->with(['product_purchases' => function($query) {
-            $query->with(['product_type', 'measure_type']);
+            $query->with([
+                'product_type' => function($query) {
+                    $query->with('main_measure_type');
+                },
+                'measure_type']);
         }])->find($id);
         $storage->product_purchases = $storage->product_purchases->groupBy('product_type.name');
         return $storage;

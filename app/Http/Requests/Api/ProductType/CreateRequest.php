@@ -29,6 +29,7 @@ class CreateRequest extends FormRequest
             'type' => ['required'],
             'photo' => ['nullable'],
             'base_measure_type_id' => ['required'],
+            'main_measure_type_id' => ['required'],
             'barcode' => ['nullable'],
             'measure_types' => ['nullable', 'array']
         ];

@@ -157,15 +157,17 @@ class DummyDataSeeder extends Seeder
                 else {
                     $measure_type_id = $allowed_measure_types->random();
                 }
-                ProductPurchase::create([
-                    'storage_id' => $storage->id,
-                    'product_type_id' => $product_type->id,
-                    'measure_type_id' => $measure_type_id,
-                    'quantity' => $quantity,
-                    'current_quantity' => $quantity,
-                    'cost' => random_int(100, 10000),
-                    'expiration_date' => $expiration_date,
-                ]);
+                for ($i=0; $i < random_int(1, 5); $i++) {
+                    ProductPurchase::create([
+                        'storage_id' => $storage->id,
+                        'product_type_id' => $product_type->id,
+                        'measure_type_id' => $measure_type_id,
+                        'quantity' => $quantity,
+                        'current_quantity' => random_int(0, $quantity),
+                        'cost' => random_int(100, 10000),
+                        'expiration_date' => $expiration_date,
+                    ]);
+                }
             }
         }
 
