@@ -30,7 +30,7 @@ class StorageRepository extends BaseRepository
 
     public function deleteById($id): bool
     {
-        $product_purchases = ProductPurchase::where('stage_id', $id)->where('current_quantity', '>', 0)->get();
+        $product_purchases = ProductPurchase::where('storage_id', $id)->where('current_quantity', '>', 0)->get();
         if ($product_purchases->count() > 0) {
             return false;
         }
