@@ -23,6 +23,7 @@ class DefaultResource extends JsonResource
             'type' => $this->type,
             'photo' => $this->photo,
             'base_measure_type_id' => $this->base_measure_type_id,
+            'main_measure_type_id' => $this->main_measure_type_id,
             'barcode' => $this->barcode
         ];
     }

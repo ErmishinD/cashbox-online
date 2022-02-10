@@ -60,7 +60,7 @@ class ProductTypeController extends Controller
      */
     public function show($id)
     {
-        $product_type = $this->product_type->getWithMeasureTypes($id);
+        $product_type = $this->product_type->getForShow($id);
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 

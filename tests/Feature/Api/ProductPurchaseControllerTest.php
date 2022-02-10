@@ -17,7 +17,7 @@ use Tests\TestCase;
 
 class ProductPurchaseControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     private $base_route = '/api/product_purchases/';
     private $table = 'product_purchases';
@@ -30,9 +30,41 @@ class ProductPurchaseControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->setUpFaker();
+
         $this->seed(RolesPermissionsSeeder::class);
-        BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
-        BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
+
+        $this->base_measure_type_volume = BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
+        $this->base_measure_type_weight = BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
+        $this->base_measure_type_quantity = BaseMeasureType::create(['type' => '_quantity', 'name' => 'шт']);
+
+        Company::factory()->create();
+
+        MeasureType::factory()->create([
+            'base_measure_type_id' => $this->base_measure_type_volume->id,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
+            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'is_common' => $this->faker->boolean(35),
+        ]);
+        MeasureType::factory()->create([
+            'base_measure_type_id' => $this->base_measure_type_weight->id,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
+            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'is_common' => $this->faker->boolean(35),
+        ]);
+        MeasureType::factory()->create([
+            'base_measure_type_id' => $this->base_measure_type_quantity->id,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
+            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'is_common' => $this->faker->boolean(35),
+        ]);
+
         $company = Company::factory()->create();
         Shop::factory()->count(2)
             ->has(Storage::factory()->count(1))

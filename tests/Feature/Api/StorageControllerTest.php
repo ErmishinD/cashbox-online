@@ -17,7 +17,7 @@ use Tests\TestCase;
 
 class StorageControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     private $base_route = '/api/storages/';
     private $table = 'storages';
@@ -37,10 +37,16 @@ class StorageControllerTest extends TestCase
      * @var BaseMeasureType
      */
     private $base_measure_type_quantity;
+    /**
+     * @var User
+     */
+    private $user_without_roles;
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->setUpFaker();
+
         $this->base_measure_type_volume = BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
         $this->base_measure_type_weight = BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
         $this->base_measure_type_quantity = BaseMeasureType::create(['type' => '_quantity', 'name' => 'шт']);
@@ -48,6 +54,8 @@ class StorageControllerTest extends TestCase
         $this->seed(RolesPermissionsSeeder::class);
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
+
+        $this->user_without_roles = User::factory()->create();
     }
 
     public function test_admin_can_get_all_storages() {
@@ -62,6 +70,15 @@ class StorageControllerTest extends TestCase
                 'success' => true
             ]);
         $this->assertCount(4, $response['data']);
+    }
+
+    public function test_user_without_roles_cannot_get_all_storages() {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        Storage::factory(4)->create(['shop_id' => $shop->id]);
+
+        $response = $this->actingAs($this->user_without_roles)->get($this->base_route);
+        $response->assertStatus(403);
     }
 
     public function test_admin_can_create_storage() {
@@ -82,6 +99,16 @@ class StorageControllerTest extends TestCase
         ]);
     }
 
+    public function test_user_without_roles_cannot_create_storage() {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+
+        $response = $this->actingAs($this->user_without_roles)->postJson($this->base_route, [
+            'shop_id' => $shop->id
+        ]);
+        $response->assertStatus(403);
+    }
+
     public function test_admin_can_get_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
@@ -95,18 +122,29 @@ class StorageControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_get_storage_with_one_product_purchase() {
+    public function test_user_without_roles_cannot_get_storage() {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+        $response = $this->actingAs($this->user_without_roles)->get($this->base_route.$storage->id);
+        $response->assertStatus(403);
+    }
+
+    public function test_admin_can_get_storage_with_product_purchase() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
 
         $main_measure_type = MeasureType::factory()->create(['base_measure_type_id' => $this->base_measure_type_volume->id]);
         $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $this->base_measure_type_volume->id]);
-        $product_type = ProductType::factory()->create([
+        $product_type = ProductType::create([
             'company_id' => $company->id,
             'type' => '_imperishable',
             'base_measure_type_id' => $this->base_measure_type_volume->id,
             'main_measure_type_id' => $main_measure_type->id,
+            'name' => $this->faker->word,
+            'photo' => $this->faker->imageUrl,
+            'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase = ProductPurchase::factory()->create([
             'storage_id' => $storage->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type->id
@@ -162,342 +200,6 @@ class StorageControllerTest extends TestCase
             ]);
     }
 
-//    public function test_admin_can_get_storage_with_some_product_purchases_but_one_product() {
-//        $company = Company::factory()->create();
-//        $shop = Shop::factory()->create(['company_id' => $company->id]);
-//        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
-//        $product_type = ProductType::factory()->create(['company_id' => $company->id, 'type' => '_imperishable']);
-//        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $product_type->base_measure_type_id]);
-//        $product_purchase1 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type->id
-//            ]);
-//        $product_purchase2 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type->id
-//            ]);
-//
-//        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
-//        $response
-//            ->assertStatus(200)
-//            ->assertJson([
-//                'success' => true,
-//                'data' => [
-//                    'id' => $storage->id,
-//                    'shop_id' => $storage->shop_id,
-//                    'name' => $storage->name,
-//                    'product_purchases' => [
-//                        $product_type->name => [
-//                            'current_quantity' => $product_purchase1->current_quantity + $product_purchase2->current_quantity,
-//                            'data' => [
-//                                [
-//                                    'id' => $product_purchase1->id,
-//                                    'product_type_id' => $product_purchase1->product_type_id,
-//                                    'measure_type_id' => $product_purchase1->measure_type_id,
-//                                    'quantity' => $product_purchase1->quantity,
-//                                    'current_quantity' => $product_purchase1->current_quantity,
-//                                    'cost' => $product_purchase1->cost,
-//                                    'expiration_date' => $product_purchase1->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type->id,
-//                                        'company_id' => $product_type->company_id,
-//                                        'name' => $product_type->name,
-//                                        'type' => $product_type->type,
-//                                        'photo' => $product_type->photo,
-//                                        'base_measure_type_id' => $product_type->base_measure_type_id,
-//                                        'barcode' => $product_type->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type->id,
-//                                        'base_measure_type_id' => $measure_type->base_measure_type_id,
-//                                        'name' => $measure_type->name,
-//                                        'description' => $measure_type->description,
-//                                        'quantity' => $measure_type->quantity,
-//                                        'company_id' => $measure_type->company_id,
-//                                        'is_common' => $measure_type->is_common,
-//                                    ]
-//                                ],
-//                                [
-//                                    'id' => $product_purchase2->id,
-//                                    'product_type_id' => $product_purchase2->product_type_id,
-//                                    'measure_type_id' => $product_purchase2->measure_type_id,
-//                                    'quantity' => $product_purchase2->quantity,
-//                                    'current_quantity' => $product_purchase2->current_quantity,
-//                                    'cost' => $product_purchase2->cost,
-//                                    'expiration_date' => $product_purchase2->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type->id,
-//                                        'company_id' => $product_type->company_id,
-//                                        'name' => $product_type->name,
-//                                        'type' => $product_type->type,
-//                                        'photo' => $product_type->photo,
-//                                        'base_measure_type_id' => $product_type->base_measure_type_id,
-//                                        'barcode' => $product_type->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type->id,
-//                                        'base_measure_type_id' => $measure_type->base_measure_type_id,
-//                                        'name' => $measure_type->name,
-//                                        'description' => $measure_type->description,
-//                                        'quantity' => $measure_type->quantity,
-//                                        'company_id' => $measure_type->company_id,
-//                                        'is_common' => $measure_type->is_common,
-//                                    ]
-//                                ],
-//                            ]
-//                        ]
-//                    ],
-//                ]
-//            ]);
-//    }
-//
-//    public function test_admin_can_get_storage_with_some_products_but_one_product_purchase_for_each() {
-//        $company = Company::factory()->create();
-//        $shop = Shop::factory()->create(['company_id' => $company->id]);
-//        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
-//        $product_type1 = ProductType::factory()->create(['company_id' => $company->id, 'type' => '_imperishable']);
-//        $product_type2 = ProductType::factory()->create(['company_id' => $company->id, 'type' => '_imperishable']);
-//        $measure_type1 = MeasureType::factory()->create(['base_measure_type_id' => $product_type1->base_measure_type_id]);
-//        $measure_type2 = MeasureType::factory()->create(['base_measure_type_id' => $product_type2->base_measure_type_id]);
-//        $product_purchase1 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type1->id, 'product_type_id' => $product_type1->id
-//        ]);
-//        $product_purchase2 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type2->id, 'product_type_id' => $product_type2->id
-//        ]);
-//
-//        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
-//        $response
-//            ->assertStatus(200)
-//            ->assertJson([
-//                'success' => true,
-//                'data' => [
-//                    'id' => $storage->id,
-//                    'shop_id' => $storage->shop_id,
-//                    'name' => $storage->name,
-//                    'product_purchases' => [
-//                        $product_type1->name => [
-//                            'current_quantity' => $product_purchase1->current_quantity,
-//                            'data' => [
-//                                [
-//                                    'id' => $product_purchase1->id,
-//                                    'product_type_id' => $product_purchase1->product_type_id,
-//                                    'measure_type_id' => $product_purchase1->measure_type_id,
-//                                    'quantity' => $product_purchase1->quantity,
-//                                    'current_quantity' => $product_purchase1->current_quantity,
-//                                    'cost' => $product_purchase1->cost,
-//                                    'expiration_date' => $product_purchase1->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type1->id,
-//                                        'company_id' => $product_type1->company_id,
-//                                        'name' => $product_type1->name,
-//                                        'type' => $product_type1->type,
-//                                        'photo' => $product_type1->photo,
-//                                        'base_measure_type_id' => $product_type1->base_measure_type_id,
-//                                        'barcode' => $product_type1->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type1->id,
-//                                        'base_measure_type_id' => $measure_type1->base_measure_type_id,
-//                                        'name' => $measure_type1->name,
-//                                        'description' => $measure_type1->description,
-//                                        'quantity' => $measure_type1->quantity,
-//                                        'company_id' => $measure_type1->company_id,
-//                                        'is_common' => $measure_type1->is_common,
-//                                    ],
-//                                ],
-//                            ]
-//                        ],
-//                        $product_type2->name => [
-//                            'current_quantity' => $product_purchase2->current_quantity,
-//                            'data' => [
-//                                [
-//                                    'id' => $product_purchase2->id,
-//                                    'product_type_id' => $product_purchase2->product_type_id,
-//                                    'measure_type_id' => $product_purchase2->measure_type_id,
-//                                    'quantity' => $product_purchase2->quantity,
-//                                    'current_quantity' => $product_purchase2->current_quantity,
-//                                    'cost' => $product_purchase2->cost,
-//                                    'expiration_date' => $product_purchase2->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type2->id,
-//                                        'company_id' => $product_type2->company_id,
-//                                        'name' => $product_type2->name,
-//                                        'type' => $product_type2->type,
-//                                        'photo' => $product_type2->photo,
-//                                        'base_measure_type_id' => $product_type2->base_measure_type_id,
-//                                        'barcode' => $product_type2->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type2->id,
-//                                        'base_measure_type_id' => $measure_type2->base_measure_type_id,
-//                                        'name' => $measure_type2->name,
-//                                        'description' => $measure_type2->description,
-//                                        'quantity' => $measure_type2->quantity,
-//                                        'company_id' => $measure_type2->company_id,
-//                                        'is_common' => $measure_type2->is_common,
-//                                    ],
-//                                ],
-//                            ]
-//                        ],
-//                    ],
-//                ]
-//            ]);
-//    }
-//
-//    public function test_admin_can_get_storage_with_some_product_purchases_for_some_products() {
-//        $company = Company::factory()->create();
-//        $shop = Shop::factory()->create(['company_id' => $company->id]);
-//        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
-//        $product_type1 = ProductType::factory()->create(['company_id' => $company->id, 'type' => '_imperishable']);
-//        $product_type2 = ProductType::factory()->create(['company_id' => $company->id, 'type' => '_imperishable']);
-//        $measure_type1 = MeasureType::factory()->create(['base_measure_type_id' => $product_type1->base_measure_type_id]);
-//        $measure_type2 = MeasureType::factory()->create(['base_measure_type_id' => $product_type2->base_measure_type_id]);
-//        $product_purchase1 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type1->id, 'product_type_id' => $product_type1->id
-//        ]);
-//        $product_purchase2 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type1->id, 'product_type_id' => $product_type1->id
-//        ]);
-//
-//        $product_purchase3 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type2->id, 'product_type_id' => $product_type2->id
-//        ]);
-//        $product_purchase4 = ProductPurchase::factory()->create([
-//            'storage_id' => $storage->id, 'measure_type_id' => $measure_type2->id, 'product_type_id' => $product_type2->id
-//        ]);
-//
-//        $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
-//        $response
-//            ->assertStatus(200)
-//            ->assertJson([
-//                'success' => true,
-//                'data' => [
-//                    'id' => $storage->id,
-//                    'shop_id' => $storage->shop_id,
-//                    'name' => $storage->name,
-//                    'product_purchases' => [
-//                        $product_type1->name => [
-//                            'current_quantity' => $product_purchase1->current_quantity + $product_purchase2->current_quantity,
-//                            'data' => [
-//                                [
-//                                    'id' => $product_purchase1->id,
-//                                    'product_type_id' => $product_purchase1->product_type_id,
-//                                    'measure_type_id' => $product_purchase1->measure_type_id,
-//                                    'quantity' => $product_purchase1->quantity,
-//                                    'current_quantity' => $product_purchase1->current_quantity,
-//                                    'cost' => $product_purchase1->cost,
-//                                    'expiration_date' => $product_purchase1->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type1->id,
-//                                        'company_id' => $product_type1->company_id,
-//                                        'name' => $product_type1->name,
-//                                        'type' => $product_type1->type,
-//                                        'photo' => $product_type1->photo,
-//                                        'base_measure_type_id' => $product_type1->base_measure_type_id,
-//                                        'barcode' => $product_type1->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type1->id,
-//                                        'base_measure_type_id' => $measure_type1->base_measure_type_id,
-//                                        'name' => $measure_type1->name,
-//                                        'description' => $measure_type1->description,
-//                                        'quantity' => $measure_type1->quantity,
-//                                        'company_id' => $measure_type1->company_id,
-//                                        'is_common' => $measure_type1->is_common,
-//                                    ],
-//                                ],
-//                                [
-//                                    'id' => $product_purchase2->id,
-//                                    'product_type_id' => $product_purchase2->product_type_id,
-//                                    'measure_type_id' => $product_purchase2->measure_type_id,
-//                                    'quantity' => $product_purchase2->quantity,
-//                                    'current_quantity' => $product_purchase2->current_quantity,
-//                                    'cost' => $product_purchase2->cost,
-//                                    'expiration_date' => $product_purchase2->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type1->id,
-//                                        'company_id' => $product_type1->company_id,
-//                                        'name' => $product_type1->name,
-//                                        'type' => $product_type1->type,
-//                                        'photo' => $product_type1->photo,
-//                                        'base_measure_type_id' => $product_type1->base_measure_type_id,
-//                                        'barcode' => $product_type1->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type1->id,
-//                                        'base_measure_type_id' => $measure_type1->base_measure_type_id,
-//                                        'name' => $measure_type1->name,
-//                                        'description' => $measure_type1->description,
-//                                        'quantity' => $measure_type1->quantity,
-//                                        'company_id' => $measure_type1->company_id,
-//                                        'is_common' => $measure_type1->is_common,
-//                                    ],
-//                                ],
-//                            ]
-//                        ],
-//                        $product_type2->name => [
-//                            'current_quantity' => $product_purchase3->current_quantity + $product_purchase4->current_quantity,
-//                            'data' => [
-//                                [
-//                                    'id' => $product_purchase3->id,
-//                                    'product_type_id' => $product_purchase3->product_type_id,
-//                                    'measure_type_id' => $product_purchase3->measure_type_id,
-//                                    'quantity' => $product_purchase3->quantity,
-//                                    'current_quantity' => $product_purchase3->current_quantity,
-//                                    'cost' => $product_purchase3->cost,
-//                                    'expiration_date' => $product_purchase3->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type2->id,
-//                                        'company_id' => $product_type2->company_id,
-//                                        'name' => $product_type2->name,
-//                                        'type' => $product_type2->type,
-//                                        'photo' => $product_type2->photo,
-//                                        'base_measure_type_id' => $product_type2->base_measure_type_id,
-//                                        'barcode' => $product_type2->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type2->id,
-//                                        'base_measure_type_id' => $measure_type2->base_measure_type_id,
-//                                        'name' => $measure_type2->name,
-//                                        'description' => $measure_type2->description,
-//                                        'quantity' => $measure_type2->quantity,
-//                                        'company_id' => $measure_type2->company_id,
-//                                        'is_common' => $measure_type2->is_common,
-//                                    ],
-//                                ],
-//                                [
-//                                    'id' => $product_purchase4->id,
-//                                    'product_type_id' => $product_purchase4->product_type_id,
-//                                    'measure_type_id' => $product_purchase4->measure_type_id,
-//                                    'quantity' => $product_purchase4->quantity,
-//                                    'current_quantity' => $product_purchase4->current_quantity,
-//                                    'cost' => $product_purchase4->cost,
-//                                    'expiration_date' => $product_purchase4->expiration_date,
-//                                    'product_type' => [
-//                                        'id' => $product_type2->id,
-//                                        'company_id' => $product_type2->company_id,
-//                                        'name' => $product_type2->name,
-//                                        'type' => $product_type2->type,
-//                                        'photo' => $product_type2->photo,
-//                                        'base_measure_type_id' => $product_type2->base_measure_type_id,
-//                                        'barcode' => $product_type2->barcode
-//                                    ],
-//                                    'measure_type' => [
-//                                        'id' => $measure_type2->id,
-//                                        'base_measure_type_id' => $measure_type2->base_measure_type_id,
-//                                        'name' => $measure_type2->name,
-//                                        'description' => $measure_type2->description,
-//                                        'quantity' => $measure_type2->quantity,
-//                                        'company_id' => $measure_type2->company_id,
-//                                        'is_common' => $measure_type2->is_common,
-//                                    ],
-//                                ],
-//                            ]
-//                        ],
-//                    ],
-//                ]
-//            ]);
-//    }
-
     public function test_admin_can_edit_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
@@ -516,6 +218,15 @@ class StorageControllerTest extends TestCase
         ]);
     }
 
+    public function test_user_without_roles_cannot_edit_storage() {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $shop_2 = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+        $response = $this->actingAs($this->user_without_roles)->patchJson($this->base_route.$storage->id, ['shop_id' => $shop_2->id]);
+        $response->assertStatus(403);
+    }
+
     public function test_admin_can_delete_storage() {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
@@ -527,5 +238,13 @@ class StorageControllerTest extends TestCase
                 'success' => true,
             ]);
         $this->assertDatabaseMissing($this->table, ['name' => 'Shop name']);
+    }
+
+    public function test_user_without_roles_cannot_delete_storage() {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+        $response = $this->actingAs($this->user_without_roles)->deleteJson($this->base_route.$storage->id);
+        $response->assertStatus(403);
     }
 }

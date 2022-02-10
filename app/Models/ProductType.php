@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string photo
  * @property int base_measure_type_id
  * @property string barcode
+ * @property int main_measure_type_id
  * @method static inRandomOrder()
  */
 class ProductType extends Model

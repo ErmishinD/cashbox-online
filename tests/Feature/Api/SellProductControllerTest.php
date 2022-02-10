@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 use App\Models\BaseMeasureType;
 use App\Models\Company;
+use App\Models\MeasureType;
 use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\User;
@@ -15,7 +16,7 @@ use Tests\TestCase;
 
 class SellProductControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     private $base_route = '/api/sell_products/';
     private $table = 'sell_products';
@@ -27,9 +28,38 @@ class SellProductControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->setUpFaker();
+
+        $this->base_measure_type_volume = BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
+        $this->base_measure_type_weight = BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
+        $this->base_measure_type_quantity = BaseMeasureType::create(['type' => '_quantity', 'name' => 'шт']);
+
         Company::factory()->create();
-        BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
-        BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
+
+        MeasureType::factory()->create([
+            'base_measure_type_id' => $this->base_measure_type_volume->id,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
+            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'is_common' => $this->faker->boolean(35),
+        ]);
+        MeasureType::factory()->create([
+            'base_measure_type_id' => $this->base_measure_type_weight->id,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
+            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'is_common' => $this->faker->boolean(35),
+        ]);
+        MeasureType::factory()->create([
+            'base_measure_type_id' => $this->base_measure_type_quantity->id,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
+            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'is_common' => $this->faker->boolean(35),
+        ]);
 
         $this->seed(RolesPermissionsSeeder::class);
         $this->admin = User::factory()->create();

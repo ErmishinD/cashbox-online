@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Api\ProductType;
 
 use App\Http\Resources\Api\MeasureType\DefaultResource as MeasureTypeResource;
+use App\Http\Resources\Api\SellProduct\DefaultResource as SellProductResource;
 use App\Models\ProductType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -24,8 +25,10 @@ class ShowResource extends JsonResource
             'type' => $this->type,
             'photo' => $this->photo,
             'base_measure_type_id' => $this->base_measure_type_id,
+            'main_measure_type_id' => $this->main_measure_type_id,
             'barcode' => $this->barcode,
             'measure_types' => MeasureTypeResource::collection($this->measure_types),
+            'sell_products' => SellProductResource::collection($this->sell_products),
         ];
     }
 }

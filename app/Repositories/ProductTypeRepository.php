@@ -38,8 +38,8 @@ class ProductTypeRepository extends BaseRepository
         return $this->model->select('id', 'name')->get();
     }
 
-    public function getWithMeasureTypes($id) {
-        $product_type = $this->model->with('measure_types')->where('id', $id)->first();
+    public function getForShow($id) {
+        $product_type = $this->model->with(['measure_types', 'sell_products'])->find($id);
         return $product_type;
     }
 

@@ -17,7 +17,7 @@ class SellProductFactory extends Factory
         return [
             'company_id' => Company::inRandomOrder()->first()->id,
             'name' => $this->faker->word,
-            'price' => $this->faker->randomFloat(null, 1, 1000),
+            'price' => $this->faker->randomFloat(2, 1, 1000),
             'has_discount' => $this->faker->boolean(20),
         ];
     }
