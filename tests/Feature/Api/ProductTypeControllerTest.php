@@ -121,50 +121,6 @@ class ProductTypeControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_create_product_type_with_measure_types() {
-        $company = Company::inRandomOrder()->get()->first();
-        $base_measure_type = BaseMeasureType::inRandomOrder()->get()->first();
-        $main_measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id]);
-        $measure_type1 = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'name' => 'measure 1']);
-        $measure_type2 = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'name' => 'measure 2']);
-        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
-            'company_id' => $company->id,
-            'base_measure_type_id' => $base_measure_type->id,
-            'main_measure_type_id' => $main_measure_type->id,
-            'name' => 'First product',
-            'type' => '_imperishable',
-            'measure_types' => [$measure_type1->id, $measure_type2->id],
-        ]);
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'success' => true,
-                'data' => [
-                    'company_id' => $company->id,
-                    'name' => 'First product',
-                    'type' => '_imperishable',
-                    'base_measure_type_id' => $base_measure_type->id,
-                    'main_measure_type_id' => $main_measure_type->id,
-                    'measure_types' => [
-                        ['name' => 'measure 1',],
-                        ['name' => 'measure 2',],
-                    ],
-                ]
-            ]);
-        $this->assertDatabaseHas($this->table, [
-            'company_id' => $company->id,
-            'base_measure_type_id' => $base_measure_type->id,
-            'name' => 'First product',
-            'type' => '_imperishable',
-        ]);
-        $this->assertDatabaseHas('product_type_measures', [
-            'product_type_id' => $response['data']['id'], 'measure_type_id' => $measure_type1->id
-        ]);
-        $this->assertDatabaseHas('product_type_measures', [
-            'product_type_id' => $response['data']['id'], 'measure_type_id' => $measure_type2->id
-        ]);
-    }
-
     public function test_admin_can_get_product_type() {
         $product_type = ProductType::factory()->create(['name' => 'my custom name']);
         $measure_type = MeasureType::factory()->create(['name' => 'custom measure type']);
@@ -177,7 +133,7 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'sell_product_id' => $sell_product1->id, 'quantity' => 300
         ]);
         DB::table('sell_product_product_type')->insert([
-            'product_type_id' => $product_type->id, 'sell_product_id' => $sell_product2->id, 'quantity' => 300
+            'product_type_id' => $product_type->id, 'sell_product_id' => $sell_product2->id, 'quantity' => 400
         ]);
 
         $response = $this->actingAs($this->admin)->get($this->base_route.$product_type->id);
@@ -197,6 +153,7 @@ class ProductTypeControllerTest extends TestCase
                             'name' => $sell_product1->name,
                             'price' => $sell_product1->price,
                             'has_discount' => intval($sell_product1->has_discount),
+                            'quantity' => 300
                         ],
                         [
                             'id' => $sell_product2->id,
@@ -204,6 +161,7 @@ class ProductTypeControllerTest extends TestCase
                             'name' => $sell_product2->name,
                             'price' => $sell_product2->price,
                             'has_discount' => intval($sell_product2->has_discount),
+                            'quantity' => 400
                         ],
 
                     ]

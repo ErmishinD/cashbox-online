@@ -22,6 +22,7 @@ class DefaultResource extends JsonResource
             'name' => $this->name,
             'price' => $this->price,
             'has_discount' => $this->has_discount,
+            'quantity' => $this->pivot->quantity,
         ];
     }
 }
