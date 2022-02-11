@@ -2,7 +2,7 @@
 	<notifications position="bottom right" />
 	<h1 class="tac">{{ $t('Создание компании') }}</h1>
 	<form class="tac" @submit="create_company">
-		<div class="">
+		<div class="form_content">
 			<label for="name">{{ $t('Название') }}*:</label>
 			<input type="text" required class="form-control" name="name" v-model="formData.name">
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>

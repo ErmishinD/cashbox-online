@@ -2,7 +2,7 @@
 	<notifications position="bottom right" />
 	<h1 class="tac">{{ $t('Создание склада') }}</h1>
 	<form class="tac form" @submit="create_storage">
-		<div style="width: 100%;">
+		<div class="form_content">
 			<div class="form_item">
 				<label class="tal" for="name">{{ $t('Название') }}*:</label>
 				<input type="text" required class="form-control" name="name" v-model="formData.name">

@@ -4,11 +4,12 @@
 		{{storage.name}}
 		<small><router-link :to="{name: 'storages_edit', params: {ids: storage.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
-	<div class="" style="text-align: center;">
 		<div class="cards">
 			<div v-for="product in storage.product_purchases" class="card">
-				<div class="card_img" @mouseover="settingShow(product.product_type.id)" @mouseleave="settingHide(product.product_type.id)" :style="{'background-image': `url(${product.product_type.photo})`}">
+				<div class="card_img"  :style="{'background-image': `url(${product.product_type.photo})`}">
 					<div class="card_img_href" :id="'card_img_href_'+product.product_type.id">
+						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
+						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
 						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
 					</div>
 				</div>
@@ -29,7 +30,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	
 </template>
 
