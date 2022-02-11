@@ -73,22 +73,3 @@
     },
 	}
 </script>
-
-<style scoped lang="scss">
-	.form{
-		width: 360px;
-		display: flex;
-		margin-inline: auto;
-		&_item{
-			display: flex;
-			margin-bottom: 10px;
-			label{
-				width: 30%;
-
-			}
-			input{
-				width: 70%;
-			}
-		}
-	}
-</style>

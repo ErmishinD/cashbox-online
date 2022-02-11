@@ -1,6 +1,7 @@
 <template>
 
   <div>
+    <notifications position="bottom right" />
     <GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
         <div class="getting-started-example-styled">
           <div class="getting-started-example-styled__content">
@@ -71,6 +72,7 @@ export default {
   mounted(){
     this.render_list_items()
     document.title = this.$t('Склады');
+
   },
   methods:{
     onOpen(params){
@@ -80,11 +82,25 @@ export default {
         console.log(params)
     },
     delStorage(){
-        axios.delete(`/api/storages/${this.current_id}`, {
-          
-        }).then((response) => {
-            this.render_list_items()
-            this.modal_show = false
+        axios.delete(`/api/storages/${this.current_id}`).then((response) => {
+            
+            if(!(response.data.success)){
+                this.modal_show = false
+                this.$notify({
+                    text: this.$t('Удаление склада невозможно, так как в нем находятся нераспределенные продукты!'),
+                    type: 'error',
+                })
+            }
+            else{
+                
+                this.render_list_items()
+                this.$notify({
+                        text: this.$t('Успешно!'),
+                        type: 'success',
+                    })
+                this.modal_show = false
+            }
+            
         });
 
     },
@@ -107,69 +123,3 @@ export default {
   },
 };
 </script>
-
-
-<!-- <template>
-    <div>
-        <div class="box">
-            <p v-if="!messages.length">Start typing the first message</p>
-
-            <div v-for="message in messages">
-                
-
-                <div>{{message.text}}</div>
-            </div>
-        </div>
-
-        <form @submit.prevent="submit">
-            <div class="field has-addons has-addons-fullwidth">
-                <div class="control is-expanded">
-                    <input class="input" type="text" placeholder="Type a message" v-model="newMessage">
-                </div>
-                <div class="control">
-                    <button type="submit" class="button is-danger" :disabled="!newMessage">
-                        Send
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</template>
-
-<script>
-    export default {
-        data () {
-            return {
-                userId: Math.random().toString(36).slice(-5),
-                messages: [],
-                newMessage: ''
-            }
-        },
-        mounted () {
-            Echo.channel('channel-test')
-                .listen('TestEvent', (e) => {
-                        this.messages.push({
-                            text: e.message
-                        });
-                    
-                });
-        },
-        methods: {
-            submit() {
-                axios.post(`/api/test`, {
-                    message: this.newMessage
-                }).then((response) => {
-                    console.log(response);
-                    this.messages.push({
-                        text: this.newMessage
-                    });
-
-                    this.newMessage = '';
-                }, (error) => {
-                    console.log(error);
-                });
-
-            }
-        }
-    }
-</script> -->

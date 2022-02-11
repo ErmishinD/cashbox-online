@@ -243,3 +243,81 @@ label{
 	    }
 	}
 }
+
+.form{
+		width: 360px;
+		display: flex;
+		margin-inline: auto;
+		&_item{
+			display: flex;
+			margin-bottom: 10px;
+			label{
+				width: 30%;
+
+			}
+			input, select{
+				width: 70%;
+			}
+		}
+	}
+
+.cards{
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: space-around;
+}
+
+.card{
+	margin-top: 10px;
+	width: 240px;
+	border: 2px dashed #000;
+	background-color: #fff;
+	&_img{
+		width: 240px;
+		height: 150px;
+		background-size: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		transition: background-size .5s ease;
+		&_href{
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgba(0,0,0,.5);
+			transition: opacity .5s ease;
+			color: #fff;
+			i{
+				width: 30px;
+				height: 30px;
+				border-radius: 5px;
+				border: 3px solid #fff;
+			}
+		}
+		&:hover{
+			background-size: 150%;
+		}
+	}
+	img{
+		
+		object-fit: cover;
+	}
+	&_content{
+		padding-inline:7px;
+		.card_title{
+			text-transform: uppercase;
+			font-variation-settings: "wght" 800;
+		}
+		.card_items{
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
+		.card_item{
+			display: flex;
+			justify-content: space-between;
+			align-items:center;
+		}
+	}
+}

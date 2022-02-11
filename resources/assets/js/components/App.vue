@@ -3,18 +3,19 @@
 	<header >
 		<div class="header__content " v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
 			<span>{{this.$userName}}</span>
-				<button class="btn btn-primary" style="margin-left: auto;" onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">{{ $t('Выход') }}</button>
+			<select @change="changeOption($event)" style="margin-left: auto; margin-right: 20px;" class="" v-model="selected">
+				<option value="ru">Русcкий</option>
+				<option value="ua">Українська</option>
+				<option value="en">English</option>
+			</select>
+			<button class="btn btn-primary"  onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">{{ $t('Выход') }}</button>
 			
             <form id="logout-form" action="/logout" method="POST">
             	 <input type="hidden" name="_token" :value="this.$csrf">
 			</form>
 			
-			<select @change="changeOption($event)" class="" v-model="selected">
-				<option value="ru">Русcкий</option>
-				<option value="ua">Українська</option>
-				<option value="en">English</option>
-			</select>
+			
 		</div>
 	</header>
 
