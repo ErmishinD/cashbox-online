@@ -57,6 +57,7 @@ class DummyDataSeeder extends Seeder
 
         // одной компании создать единицы измерения "бутылка молока" и "пачка кофе"
         $random_company = $companies->random(1)->first();
+        User::find(1)->update(['company_id' => $random_company->id]);
         MeasureType::create([
             'base_measure_type_id' => 1,
             'name' => 'Бутылка молока',
