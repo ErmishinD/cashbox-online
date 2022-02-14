@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\SellProduct\CreateRequest;
 use App\Http\Requests\Api\SellProduct\UpdateRequest;
 use App\Http\Resources\Api\SellProduct\DefaultResource;
+use App\Http\Resources\Api\SellProduct\EditResource;
+use App\Http\Resources\Api\SellProduct\IndexResource;
 use App\Http\Resources\Api\SellProduct\ShowResource;
 use App\Repositories\SellProductRepository;
 
@@ -35,7 +37,7 @@ class SellProductController extends Controller
     public function index()
     {
         $sell_products = $this->sell_product->all();
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($sell_products)]);
+        return response()->json(['success' => true, 'data' => IndexResource::collection($sell_products)]);
     }
 
     /**
@@ -75,7 +77,7 @@ class SellProductController extends Controller
         $data = $request->validated();
         $sell_product = $this->sell_product->getById($id);
         $sell_product->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($sell_product)]);
+        return response()->json(['success' => true, 'data' => new EditResource($sell_product)]);
     }
 
     /**
