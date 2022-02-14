@@ -20,6 +20,7 @@ class ShowResource extends JsonResource
         return [
             'id' => $this->id,
             'company_id' => $this->company_id,
+            'photo' => asset($this->photo),
             'name' => $this->name,
             'price' => $this->price,
             'has_discount' => $this->has_discount,

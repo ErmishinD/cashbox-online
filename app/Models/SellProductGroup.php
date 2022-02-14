@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string name
  * @property float price
  * @property boolean has_discount
+ * @property string photo
  * @method static inRandomOrder()
  */
 class SellProductGroup extends Model
@@ -19,7 +20,7 @@ class SellProductGroup extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'company_id', 'name', 'price', 'has_discount',
+        'company_id', 'name', 'price', 'has_discount', 'photo'
     ];
 
     public function products() {
