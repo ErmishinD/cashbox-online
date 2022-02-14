@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string barcode
  * @property int main_measure_type_id
  * @method static inRandomOrder()
+ * @method static filter(\App\Filters\ProductTypeFilter $filters)
  */
 class ProductType extends Model
 {
@@ -43,5 +44,16 @@ class ProductType extends Model
     public function main_measure_type()
     {
         return $this->belongsTo(MeasureType::class, 'main_measure_type_id', 'id');
+    }
+
+    /**
+     * Query constraint
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param $filters
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($builder, $filters)
+    {
+        return $filters->apply($builder);
     }
 }

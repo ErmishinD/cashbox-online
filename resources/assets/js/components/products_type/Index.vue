@@ -21,8 +21,18 @@
   	  <router-link :to="{name: 'products_type_create'}">
   	  	<button v-if="$can('ProductType_create')" class="btn btn-success pull-right mb-10" >{{ $t('Добавить тип товара') }}</button>
   	  </router-link>
-  	
+
     <vue-good-table style="position: static;"
+      mode="remote"
+      v-on:page-change="onPageChange"
+      v-on:sort-change="onSortChange"
+      v-on:column-filter="onColumnFilter"
+      v-on:per-page-change="onPerPageChange"
+      :totalRows="totalRecords"
+      :isLoading.sync="isLoading"
+      :pagination-options="{
+        enabled: true,
+      }"
       :columns="columns"
       :rows="rows"
       :line-numbers="true">
@@ -53,6 +63,17 @@ export default {
       modal_show: false,
       current_name: null,
       current_id: null,
+      totalRecords: 0,
+      serverParams: {
+        columnFilters: {
+        },
+        sort: {
+            field: '',
+            type: '',
+        },
+        page: 1,
+        perPage: 10
+      },
       columns: [
         {
           label: this.$t('Название'),
@@ -85,7 +106,7 @@ export default {
   	},
   	delProductType(){
   		axios.delete(`/api/product_types/${this.current_id}`, {
-  		  
+
   		}).then((response) => {
   			this.render_list_items()
   			this.modal_show = false
@@ -93,21 +114,61 @@ export default {
 
   	},
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
-  		
-  		this.axios.get('/api/product_types').then((response) => {
-  		       this.products_type = response.data['data']
-  		       this.rows = this.products_type
-  		       loader.hide()
-
-  		     }).catch(function(error){
-  		     	if(error.response.status == 403){
-  		     		window.location.href = '/403';
-  		     	}
-  		     })
+  		this.loadItems()
   	},
+      updateParams(newProps) {
+          this.serverParams = Object.assign({}, this.serverParams, newProps);
+      },
+
+      onPageChange(params) {
+          this.updateParams({page: params.currentPage});
+          this.loadItems();
+      },
+
+      onPerPageChange(params) {
+          this.updateParams({perPage: params.currentPerPage});
+          this.loadItems();
+      },
+
+      onSortChange(params) {
+  	    let data = Object.assign({}, params)[0]
+
+  	    console.log(params)
+          console.log(Object.assign({}, params)[0].type);
+  	    console.log(params.target)
+  	    console.log(params[0])
+  	    console.log(params[0].target)
+          this.updateParams({
+              sort: [{
+                  type: data.type,
+                  field: data.field,
+              }],
+          });
+          this.loadItems();
+      },
+
+      onColumnFilter(params) {
+          this.updateParams(params);
+          this.loadItems();
+      },
+
+      // load items is what brings back the rows from server
+      loadItems() {
+          var loader = this.$loading.show({
+              canCancel: false,
+              loader: 'dots',});
+          this.axios.post('/api/product_types/get_paginated', this.serverParams).then((response) => {
+              this.products_type = response.data['pagination']['data']
+              this.rows = this.products_type
+              this.totalRecords = response.data['pagination']['total'];
+              loader.hide()
+
+          }).catch(function(error){
+              if(error.response.status == 403){
+                  window.location.href = '/403';
+              }
+          })
+      }
   },
 };
 </script>

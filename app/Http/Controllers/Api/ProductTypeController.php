@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\ProductTypeFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductType\CreateRequest;
 use App\Http\Requests\Api\ProductType\RemoveMeasureTypesRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
 use App\Http\Resources\Api\ProductType\DefaultResource;
 use App\Http\Resources\Api\ProductType\ShowResource;
+use App\Models\ProductType;
 use App\Repositories\ProductTypeRepository;
+use Illuminate\Http\Request;
 
 class ProductTypeController extends Controller
 {
@@ -33,10 +36,28 @@ class ProductTypeController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $product_types = $this->product_type->all();
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($product_types)]);
+        return response()->json(['success' => false, 'message' => 'method is deprecated']);
+    }
+
+    public function get_paginated(Request $request, ProductTypeFilter $filters)
+    {
+        $per_page = $request->get('perPage') ?? 10;
+        $page = $request->get('page') ?? 1;
+        $product_types = ProductType::filter($filters)->paginate($per_page, ['*'], 'page', $page);
+
+        return response()->json([
+            'success' => true,
+            'data' => $product_types,
+            'pagination' => [
+                'data' => DefaultResource::collection($product_types),
+                'current_page' => $product_types->currentPage(),
+                'last_page' => $product_types->lastPage(),
+                'per_page' => $product_types->perPage(),
+                'total' => $product_types->total(),
+            ]
+        ]);
     }
 
     /**
