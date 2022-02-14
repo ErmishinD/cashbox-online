@@ -21,7 +21,7 @@ class DefaultResource extends JsonResource
             'company_id' => $this->company_id,
             'name' => $this->name,
             'type' => $this->type,
-            'photo' => asset($this->photo),
+            'photo' => $this->photo ? asset($this->photo) : asset('default_card_img.png'),
             'base_measure_type_id' => $this->base_measure_type_id,
             'main_measure_type_id' => $this->main_measure_type_id,
             'barcode' => $this->barcode
