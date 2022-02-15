@@ -25,8 +25,9 @@ class CreateRequest extends FormRequest
     {
         return [
             'shop_id' => ['required'],
-            'resource' => ['nullable'],
-            'resource_id' => ['nullable'],
+            'sellable_type' => ['nullable'],
+            'sellable_id' => ['nullable'],
+            'data' => ['nullable'],
             'transaction_type' => ['required'],
             'payment_type' => ['required'],
             'amount' => ['required'],

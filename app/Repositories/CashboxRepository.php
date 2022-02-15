@@ -29,17 +29,22 @@ class CashboxRepository extends BaseRepository
         return $enums;
     }
 
-
-    public function getResourcces()
-    {
-        return $this->get_enum('resource');
-    }
-
     public function getTransactionTypes() {
         return $this->get_enum('transaction_type');
     }
 
     public function getPaymentTypes() {
         return $this->get_enum('payment_type');
+    }
+
+    public function create(array $data)
+    {
+        $payment = parent::create($data);
+
+        if ($data['transaction_type'] == '_in') {
+            // отнять нужное кол-во продуктов со склада
+        }
+
+        return $payment;
     }
 }

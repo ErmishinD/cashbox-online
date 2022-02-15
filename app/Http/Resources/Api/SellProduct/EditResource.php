@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Api\ProductType;
+namespace App\Http\Resources\Api\SellProduct;
 
-use App\Models\ProductType;
+use App\Models\SellProduct;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DefaultResource extends JsonResource
+class EditResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,16 +15,14 @@ class DefaultResource extends JsonResource
      */
     public function toArray($request)
     {
-        /** @var ProductType $this */
+        /** @var SellProduct $this */
         return [
             'id' => $this->id,
             'company_id' => $this->company_id,
-            'name' => $this->name,
-            'type' => $this->type,
             'photo' => $this->photo ? asset($this->photo) : asset('images/default_card_img.png'),
-            'base_measure_type_id' => $this->base_measure_type_id,
-            'main_measure_type_id' => $this->main_measure_type_id,
-            'barcode' => $this->barcode
+            'name' => $this->name,
+            'price' => $this->price,
+            'has_discount' => $this->has_discount,
         ];
     }
 }

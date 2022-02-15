@@ -128,12 +128,12 @@ class CashboxControllerTest extends TestCase
 
     public function test_admin_can_create_cashbox_in_transaction() {
         $shop = Shop::factory()->create();
-        $product = ProductType::factory()->create();
+        $sell_product = SellProduct::factory()->create();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
-            'resource' => '_product',
-            'resource_id' => $product->id,
+            'sellable_type' => 'App\\Models\\SellProduct',
+            'sellable_id' => $sell_product->id,
             'payment_type' => '_cash',
             'amount' => 200,
             'operator_id' => $this->operator->id,
@@ -145,8 +145,8 @@ class CashboxControllerTest extends TestCase
                 'data' => [
                     'shop_id' => $shop->id,
                     'transaction_type' => '_in',
-                    'resource' => '_product',
-                    'resource_id' => $product->id,
+                    'sellable_type' => 'App\\Models\\SellProduct',
+                    'sellable_id' => $sell_product->id,
                     'payment_type' => '_cash',
                     'amount' => 200,
                     'operator_id' => $this->operator->id,
@@ -155,8 +155,8 @@ class CashboxControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, [
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
-            'resource' => '_product',
-            'resource_id' => $product->id,
+            'sellable_type' => 'App\\Models\\SellProduct',
+            'sellable_id' => $sell_product->id,
             'payment_type' => '_cash',
             'amount' => 200,
             'operator_id' => $this->operator->id,

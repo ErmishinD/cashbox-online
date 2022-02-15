@@ -28,4 +28,9 @@ class SellProductGroup extends Model
             'sell_product_group_id', 'sell_product_id')
             ->withPivot('quantity');
     }
+
+    public function cashbox()
+    {
+        return $this->morphMany(Cashbox::class, 'sellable');
+    }
 }
