@@ -28,7 +28,10 @@ abstract class QueryFilter
         }
 
         foreach ($this->sorting() as $sort) {
-            //
+            if ($sort && method_exists($this, "sort_by_".$sort['field']) && in_array($sort['type'], ['asc', 'desc'])) {
+                $sort_function = "sort_by_".$sort['field'];
+                $this->$sort_function($sort['type']);
+            }
         }
 
         return $this->builder;
@@ -36,11 +39,11 @@ abstract class QueryFilter
 
     public function filters()
     {
-        return $this->request->get('columnFilters');
+        return $this->request->get('columnFilters') ?? [];
     }
 
     public function sorting()
     {
-        return $this->request->get('sort');
+        return $this->request->get('sort') ?? [];
     }
 }

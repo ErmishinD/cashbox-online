@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Filters\ProductTypeFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\ProductType\CreateRequest;
 use App\Http\Requests\Api\ProductType\RemoveMeasureTypesRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
@@ -41,15 +42,13 @@ class ProductTypeController extends Controller
         return response()->json(['success' => false, 'message' => 'method is deprecated']);
     }
 
-    public function get_paginated(Request $request, ProductTypeFilter $filters)
+    public function get_paginated(PaginateRequest $request, ProductTypeFilter $filters)
     {
-        $per_page = $request->get('perPage') ?? 10;
-        $page = $request->get('page') ?? 1;
-        $product_types = ProductType::filter($filters)->paginate($per_page, ['*'], 'page', $page);
+        $paginate_data = $request->validated();
+        $product_types = $this->product_type->get_paginated($paginate_data, $filters);
 
         return response()->json([
             'success' => true,
-            'data' => $product_types,
             'pagination' => [
                 'data' => DefaultResource::collection($product_types),
                 'current_page' => $product_types->currentPage(),

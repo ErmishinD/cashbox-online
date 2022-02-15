@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ProductType extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Filterable;
 
     protected $fillable = [
         'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'main_measure_type_id', 'barcode',
@@ -44,16 +45,5 @@ class ProductType extends Model
     public function main_measure_type()
     {
         return $this->belongsTo(MeasureType::class, 'main_measure_type_id', 'id');
-    }
-
-    /**
-     * Query constraint
-     * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param $filters
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeFilter($builder, $filters)
-    {
-        return $filters->apply($builder);
     }
 }

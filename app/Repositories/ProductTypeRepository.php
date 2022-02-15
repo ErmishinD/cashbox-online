@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Filters\ProductTypeFilter;
 use App\Models\ProductType;
 use App\Services\EnumDbCol;
 use Illuminate\Support\Facades\DB;
@@ -82,5 +83,10 @@ class ProductTypeRepository extends BaseRepository
                 ->where('measure_type_id', $measure_type_id)
                 ->delete();
         }
+    }
+
+    public function get_paginated($paginate_data, $filters)
+    {
+        return $this->model->filter($filters)->paginate($paginate_data['perPage'], ['*'], 'page', $paginate_data['page']);
     }
 }

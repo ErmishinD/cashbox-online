@@ -78,7 +78,22 @@ export default {
         {
           label: this.$t('Название'),
           field: 'name',
+          filterOptions: {
+            enabled: true, // enable filter for this column
+            placeholder: 'Filter This Thing', // placeholder for filter input
+            trigger: 'enter', //only trigger on enter not on keyup
+          },
         },
+        {
+          label: this.$t('Тип'),
+          field: 'type',
+          filterOptions: {
+              enabled: true,
+              placeholder: 'Filter This Thing',
+              filterDropdownItems: ['_perishable', '_imperishable'],
+          },
+        },
+
         {
           label: this.$t('Баркод'),
           field: 'barcode',
@@ -126,23 +141,18 @@ export default {
       },
 
       onPerPageChange(params) {
-          this.updateParams({perPage: params.currentPerPage});
+          this.updateParams({perPage: params.currentPerPage, page: 1});
           this.loadItems();
       },
 
       onSortChange(params) {
   	    let data = Object.assign({}, params)[0]
-
-  	    console.log(params)
-          console.log(Object.assign({}, params)[0].type);
-  	    console.log(params.target)
-  	    console.log(params[0])
-  	    console.log(params[0].target)
           this.updateParams({
               sort: [{
                   type: data.type,
                   field: data.field,
               }],
+              page: 1
           });
           this.loadItems();
       },
