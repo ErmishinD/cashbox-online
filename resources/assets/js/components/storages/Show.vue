@@ -9,8 +9,6 @@
 				<div class="card_img"  :style="{'background-image': `url(${product.product_type.photo})`}">
 					<div class="card_img_href" :id="'card_img_href_'+product.product_type.id">
 						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
-						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
-						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
 					</div>
 				</div>
 				
@@ -22,7 +20,7 @@
 								{{ $t('Кол-во на складе') }}:
 							</span>
 
-							<span>
+							<span style="word-break: break-all; text-align: end;">
 								{{product.current_quantity}}{{product.measure_type.name}}
 							</span>
 						</div>
