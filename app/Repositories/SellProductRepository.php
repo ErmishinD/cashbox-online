@@ -25,6 +25,9 @@ class SellProductRepository extends BaseRepository
         return $this->model->with('product_types.main_measure_type')
             ->get()
             ->each(function ($sell_product) {
+                if ($sell_product->product_types->count() == 1) {
+                    $sell_product->product_types = collect();
+                }
                 foreach ($sell_product->product_types as $product_type) {
                     $product_type->quantity_in_main_measure_type = round($product_type->pivot->quantity / $product_type->main_measure_type->quantity, 2);
                 }

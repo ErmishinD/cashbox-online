@@ -25,8 +25,9 @@ class UpdateRequest extends FormRequest
     {
         return [
             'shop_id' => ['nullable'],
-            'resource' => ['nullable'],
-            'resource_id' => ['nullable'],
+            'sellable_type' => ['nullable'],
+            'sellable_id' => ['nullable'],
+            'data' => ['nullable'],
             'transaction_type' => ['nullable'],
             'payment_type' => ['nullable'],
             'amount' => ['nullable'],

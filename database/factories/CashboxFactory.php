@@ -18,12 +18,12 @@ class CashboxFactory extends Factory
      */
     public function definition()
     {
-        $resource = $this->faker->randomElement(['_product', '_group']);
-        if ($resource == '_product') {
-            $resource_id = SellProduct::inRandomOrder()->first();
+        $sellable_type = $this->faker->randomElement([SellProduct::class, SellProductGroup::class]);
+        if ($sellable_type == SellProduct::class) {
+            $sellable_id = SellProduct::inRandomOrder()->first();
         }
         else {
-            $resource_id = SellProductGroup::inRandomOrder()->first();
+            $sellable_id = SellProductGroup::inRandomOrder()->first();
         }
         $operator = User::inRandomOrder()->first();;
 
@@ -36,8 +36,8 @@ class CashboxFactory extends Factory
         }
         return [
             'shop_id' => Shop::inRandomOrder()->first()->id,
-            'resource' => $resource,
-            'resource_id' => $resource_id,
+            'sellable_type' => $sellable_type,
+            'sellable_id' => $sellable_id,
             'transaction_type' => $this->faker->randomElement(['_in', '_out']),
             'payment_type' => $this->faker->randomElement(['_cash', '_card']),
             'amount' => $this->faker->randomFloat(2, 50, 1000),

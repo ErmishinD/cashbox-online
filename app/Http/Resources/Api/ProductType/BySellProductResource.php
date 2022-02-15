@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Api\ProductType;
 
-use App\Http\Resources\Api\MeasureType\DefaultResource as MeasureTypeResource;
+use App\Http\Resources\Api\MeasureType\ByProductTypeResource as MeasureTypeResource;
 use App\Models\ProductType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
