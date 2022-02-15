@@ -25,7 +25,7 @@ class InStorageCollection extends ResourceCollection
             ]));
             foreach ($product_purchases as $product_purchase) {
                 $current_quantity_in_base_measure_type = $product_purchase->current_quantity * $product_purchase->measure_type->quantity;
-                $current_quantity_in_main_measure_type = $current_quantity_in_base_measure_type / $product_purchase->product_type->main_measure_type->quantity;
+                $current_quantity_in_main_measure_type = round($current_quantity_in_base_measure_type / $product_purchase->product_type->main_measure_type->quantity, 2);
                 $result[strval($product_id)]['data']->push(
                     collect([
                         'id' => $product_purchase->id,

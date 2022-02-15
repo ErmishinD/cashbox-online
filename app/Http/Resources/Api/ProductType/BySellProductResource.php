@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\ProductType;
 
+use App\Http\Resources\Api\MeasureType\DefaultResource as MeasureTypeResource;
 use App\Models\ProductType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,14 +19,10 @@ class BySellProductResource extends JsonResource
         /** @var ProductType $this */
         return [
             'id' => $this->id,
-            'company_id' => $this->company_id,
             'name' => $this->name,
-            'type' => $this->type,
-            'photo' => $this->photo ? asset($this->photo) : asset('images/default_card_img.png'),
-            'base_measure_type_id' => $this->base_measure_type_id,
-            'main_measure_type_id' => $this->main_measure_type_id,
-            'barcode' => $this->barcode,
             'quantity' => $this->pivot->quantity,
+            'main_measure_type' => new MeasureTypeResource($this->main_measure_type),
+            'quantity_in_main_measure_type' => $this->quantity_in_main_measure_type
         ];
     }
 }

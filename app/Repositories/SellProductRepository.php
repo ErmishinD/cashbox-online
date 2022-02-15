@@ -22,7 +22,13 @@ class SellProductRepository extends BaseRepository
 
     public function all(array $columns = ['*'])
     {
-        return $this->model->with('product_types')->get();
+        return $this->model->with('product_types.main_measure_type')
+            ->get()
+            ->each(function ($sell_product) {
+                foreach ($sell_product->product_types as $product_type) {
+                    $product_type->quantity_in_main_measure_type = round($product_type->pivot->quantity / $product_type->main_measure_type->quantity, 2);
+                }
+            });
     }
 
     public function create(array $data)
