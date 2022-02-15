@@ -22,7 +22,7 @@ class SellProductRepository extends BaseRepository
 
     public function all(array $columns = ['*'])
     {
-        return parent::all($columns);
+        return $this->model->with('product_types')->get();
     }
 
     public function create(array $data)
