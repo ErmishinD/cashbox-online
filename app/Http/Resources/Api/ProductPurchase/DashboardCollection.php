@@ -18,8 +18,7 @@ class DashboardCollection extends JsonResource
         foreach ($this->resource as $product_id => $product_purchases) {
             $result->put(strval($product_id), collect([
                 'id' => $product_id,
-                'name' => $product_purchases->first()->product_type->name,
-                'data' => collect()
+                'name' => $product_purchases->first()->product_type->name
             ]));
             foreach ($product_purchases as $product_purchase) {
                 $current_quantity_in_base_measure_type = $product_purchase->current_quantity * $product_purchase->measure_type->quantity;

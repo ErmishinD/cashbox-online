@@ -201,6 +201,18 @@ class DummyDataSeeder extends Seeder
                         ],
 
                     ],
+                    'sell_product_groups' => [
+                        [
+                            'name' => "Набор батончиков",
+                            'photo' => 'https://images.ua.prom.st/3235065367_w640_h640_konfety-mars-snickers.jpg',
+                            'price' => 100,
+                            'has_discount' => false,
+                            'consists_of_sell_products' => [
+                                ['sell_product_id' => 4, 'quantity' => 1],  // snickers
+                                ['sell_product_id' => 5, 'quantity' => 1],  // twix
+                            ]
+                        ],
+                    ]
                 ],
                 [
                     'name' => 'АТБ',
@@ -288,6 +300,21 @@ class DummyDataSeeder extends Seeder
                         );
                     }
                     $sell_products->push($sell_product);
+                }
+            }
+
+            if (!empty($company_data['sell_product_groups'])) {
+                foreach ($company_data['sell_product_groups'] as $sell_product_group_data) {
+                    $consists_of_sell_products = $sell_product_group_data['consists_of_sell_products'];
+                    unset($sell_product_group_data['consists_of_sell_products']);
+
+                    $sell_product_group = SellProductGroup::factory()->create(array_merge($sell_product_group_data, ['company_id' => $company->id]));
+                    foreach ($consists_of_sell_products as $sell_product_data) {
+                        $sell_product_group->products()->attach(
+                            $sell_product_data['sell_product_id'],
+                            ['quantity' => $sell_product_data['quantity']]
+                        );
+                    }
                 }
             }
 

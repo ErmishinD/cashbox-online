@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\MeasureTypeController;
 use App\Http\Controllers\Api\ProductPurchaseController;
 use App\Http\Controllers\Api\ProductTypeController;
+use App\Http\Controllers\Api\SellableController;
 use App\Http\Controllers\Api\SellProductController;
 use App\Http\Controllers\Api\SellProductGroupController;
 use App\Http\Controllers\Api\ShopController;
@@ -80,6 +81,13 @@ Route::prefix('product_purchases')->group(function () {
     Route::post('get_for_dashboard', [ProductPurchaseController::class, 'get_for_dashboard']);
 });
 Route::apiResource('product_purchases', ProductPurchaseController::class);
+
+/*
+ * Sellable (SellableProduct and SellableProductGroup)
+ */
+Route::prefix('sellable')->group(function () {
+    Route::post('get_paginated', [SellableController::class, 'get_paginated']);
+});
 
 /*
  * SellProduct

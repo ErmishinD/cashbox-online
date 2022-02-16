@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,10 +15,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean has_discount
  * @property string photo
  * @method static inRandomOrder()
+ * @method static filter(\App\Filters\SellProductFilter $product_filters)
  */
 class SellProduct extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Filterable;
 
     protected $fillable = [
         'company_id', 'name', 'price', 'has_discount', 'photo'

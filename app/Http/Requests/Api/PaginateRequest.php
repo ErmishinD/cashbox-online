@@ -24,8 +24,8 @@ class PaginateRequest extends FormRequest
     public function rules()
     {
         return [
-            'per_page' => ['required'],
-            'page' => ['required']
+            'per_page' => ['required', 'integer'],
+            'page' => ['required', 'integer'],
         ];
     }
 
