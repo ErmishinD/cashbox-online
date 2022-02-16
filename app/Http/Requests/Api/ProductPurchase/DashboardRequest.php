@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Api\ProductPurchase;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaginateRequest extends FormRequest
+class DashboardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,7 @@ class PaginateRequest extends FormRequest
     public function rules()
     {
         return [
-            'per_page' => ['required'],
-            'page' => ['required']
+            'shop_id' => ['required', 'exists:shops,id']
         ];
-    }
-
-    public function prepareForValidation()
-    {
-        $this->merge([
-            'per_page' => $this->perPage ?? ($this->per_page ?? 10),
-            'page' => $this->page ?? 1
-        ]);
     }
 }

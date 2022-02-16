@@ -39,7 +39,9 @@ Route::apiResource('companies', CompanyController::class);
 /*
  * Shop
  */
-Route::post('shops/get_by_company', [ShopController::class, 'getByCompany']);
+Route::prefix('shops')->group(function() {
+    Route::post('get_by_company', [ShopController::class, 'getByCompany']);
+});
 Route::apiResource('shops', ShopController::class);
 
 /*
@@ -74,6 +76,9 @@ Route::apiResource('product_types', ProductTypeController::class);
 /*
  * ProductPurchase
  */
+Route::prefix('product_purchases')->group(function () {
+    Route::post('get_for_dashboard', [ProductPurchaseController::class, 'get_for_dashboard']);
+});
 Route::apiResource('product_purchases', ProductPurchaseController::class);
 
 /*

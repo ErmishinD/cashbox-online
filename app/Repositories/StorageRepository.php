@@ -20,14 +20,20 @@ class StorageRepository extends BaseRepository
         return Storage::class;
     }
 
-    public function getForShow(int $id) {
-        $storage = $this->model->with(['product_purchases' => function($query) {
+    protected function getWithProductTypes()
+    {
+        $storage_builder = $this->model->with(['product_purchases' => function($query) {
             $query->with([
                 'product_type' => function($query) {
                     $query->with('main_measure_type');
                 },
                 'measure_type']);
-        }])->find($id);
+        }]);
+        return $storage_builder;
+    }
+
+    public function getForShow(int $id) {
+        $storage = $this->getWithProductTypes()->find($id);
         $storage->product_purchases = $storage->product_purchases->groupBy('product_type.name');
         return $storage;
     }

@@ -78,16 +78,30 @@ class ProductTypeControllerTest extends TestCase
         $this->admin->assignRole('Super Admin');
     }
 
-    public function test_admin_can_get_all_product_types() {
-        ProductType::factory(5)->create();
-
+    public function test_admin_cant_get_all_product_types() {
         $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
             ->assertStatus(200)
             ->assertJson([
-                'success' => true
+                'success' => false
             ]);
-        $this->assertCount(5, $response['data']);
+    }
+
+    public function test_admin_can_get_paginated_product_types()
+    {
+        ProductType::factory(30)->create();
+        $response = $this->actingAs($this->admin)->post($this->base_route.'get_paginated', ['per_page' => 3, 'page' => 1]);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'pagination' => [
+                    'current_page' => 1,
+                    'last_page' => 10,
+                    'per_page' => 3,
+                    'total' => 30,
+                ]
+            ]);
     }
 
     public function test_admin_can_create_product_type() {

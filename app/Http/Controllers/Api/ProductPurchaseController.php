@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductPurchase\CreateRequest;
+use App\Http\Requests\Api\ProductPurchase\DashboardRequest;
 use App\Http\Requests\Api\ProductPurchase\UpdateRequest;
+use App\Http\Resources\Api\ProductPurchase\DashboardCollection;
 use App\Http\Resources\Api\ProductPurchase\DefaultResource;
 use App\Repositories\ProductPurchaseRepository;
 
@@ -90,5 +92,12 @@ class ProductPurchaseController extends Controller
             $product_purchase->delete();
         }
         return response()->json(['success' => true]);
+    }
+
+    public function get_for_dashboard(DashboardRequest $request)
+    {
+        $data = $request->validated();
+        $product_purchases_by_product_type = $this->product_purchase->getForDashboard($data['shop_id']);
+        return response()->json(['success' => true, 'data' => new DashboardCollection($product_purchases_by_product_type)]);
     }
 }
