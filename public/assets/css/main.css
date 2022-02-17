@@ -532,7 +532,7 @@ button:disabled {
   display: flex;
 }
 .basket_card_content .basket_card__photo_name {
-  width: 50%;
+  width: 40%;
   padding-right: 10px;
   display: flex;
   align-items: center;
@@ -556,9 +556,16 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: end;
+  width: 30%;
 }
 .basket_card_content .basket_card__price input {
-  width: 25%;
+  width: 35%;
+}
+.basket_card_content .basket_card__actions {
+  display: flex;
+  justify-content: space-evenly;
+  width: 30%;
+  align-items: center;
 }
 
 .basket_card_ingridients .card_dropdown_button {
