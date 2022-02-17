@@ -28,6 +28,7 @@ class DashboardCollection extends JsonResource
             }
             $result[strval($product_id)]['current_quantity_in_main_measure_type'] = $product_purchases->sum('current_quantity_in_main_measure_type');
             $result[strval($product_id)]['current_quantity'] = $product_purchases->sum('current_quantity');
+            $result[strval($product_id)]['main_to_base_equivalent'] = $product_purchases->first()->measure_type->quantity;
         }
         return $result->toArray();
     }

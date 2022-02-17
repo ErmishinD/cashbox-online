@@ -221,12 +221,14 @@ class ProductPurchaseControllerTest extends TestCase
                         'name' => $product_type1->name,
                         'current_quantity' => $product_purchase1->current_quantity,
                         'current_quantity_in_main_measure_type' => $current_quantity1,
+                        'main_to_base_equivalent' => $main_measure_type->quantity,
                     ],
                     [
                         'id' => $product_type2->id,
                         'name' => $product_type2->name,
                         'current_quantity' => $product_purchase2->current_quantity,
                         'current_quantity_in_main_measure_type' => $current_quantity2,
+                        'main_to_base_equivalent' => $main_measure_type->quantity,
                     ],
                 ]
             ]);
