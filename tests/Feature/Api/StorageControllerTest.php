@@ -147,10 +147,10 @@ class StorageControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase = ProductPurchase::factory()->create([
-            'storage_id' => $storage->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type->id
+            'storage_id' => $storage->id, 'base_measure_type_id' => $measure_type->base_measure_type_id, 'product_type_id' => $product_type->id
             ]);
 
-        $current_quantity = ($product_purchase->current_quantity * $measure_type->quantity) / $main_measure_type->quantity;
+        $current_quantity = $product_purchase->current_quantity / $main_measure_type->quantity;
 
 
         $response = $this->actingAs($this->admin)->get($this->base_route.$storage->id);
@@ -164,7 +164,7 @@ class StorageControllerTest extends TestCase
                     'name' => $storage->name,
                     'product_purchases' => [
                         $product_type->name => [
-                            'current_quantity' => $current_quantity,
+                            'current_quantity_in_main_measure_type' => $current_quantity,
                             'product_type' => [
                                 'id' => $product_type->id,
                                 'company_id' => $product_type->company_id,
@@ -181,7 +181,6 @@ class StorageControllerTest extends TestCase
                                 'description' => $main_measure_type->description,
                                 'quantity' => $main_measure_type->quantity,
                                 'company_id' => $main_measure_type->company_id,
-                                'is_common' => $main_measure_type->is_common,
                             ],
                             'data' => [
                                 [

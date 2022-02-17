@@ -11,7 +11,7 @@
 						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
 					</div>
 				</div>
-				
+
 				<div class="card_content">
 					<div class="card_title tac">{{product.product_type.name}}</div>
 					<div class="card_items">
@@ -21,14 +21,14 @@
 							</span>
 
 							<span style="word-break: break-all; text-align: end;">
-								{{product.current_quantity}}{{product.measure_type.name}}
+								{{product.current_quantity_in_main_measure_type}}{{product.measure_type.name}}
 							</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	
+
 </template>
 
 <script>
@@ -39,7 +39,7 @@ export default{
 	data(){
 		return{
 			storage: [],
-		} 
+		}
 	},
 	mounted(){
 		var loader = this.$loading.show({
@@ -55,10 +55,10 @@ export default{
   		     		window.location.href = '/403';
   		     	}
   		     })
-		
+
 	},
 	created () {
-        
+
     },
     methods: {
     	settingShow(id){

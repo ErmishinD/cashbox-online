@@ -24,8 +24,6 @@ class InStorageCollection extends ResourceCollection
                 'data' => collect(),
             ]));
             foreach ($product_purchases as $product_purchase) {
-                $current_quantity_in_base_measure_type = $product_purchase->current_quantity * $product_purchase->measure_type->quantity;
-                $current_quantity_in_main_measure_type = round($current_quantity_in_base_measure_type / $product_purchase->product_type->main_measure_type->quantity, 2);
                 $result[strval($product_id)]['data']->push(
                     collect([
                         'id' => $product_purchase->id,
@@ -35,11 +33,13 @@ class InStorageCollection extends ResourceCollection
                         'current_quantity' => $product_purchase->current_quantity,
                         'cost' => $product_purchase->cost,
                         'expiration_date' => $product_purchase->expiration_date,
-                        'current_quantity_in_main_measure_type' => $current_quantity_in_main_measure_type,
                     ])
                 );
             }
-            $result[strval($product_id)]['current_quantity'] = $result[strval($product_id)]['data']->sum('current_quantity_in_main_measure_type');
+            $main_to_base = $product_purchases->first()->product_type->main_measure_type->quantity;
+            $result[strval($product_id)]['current_quantity'] = $result[strval($product_id)]['data']->sum('current_quantity');
+            $result[strval($product_id)]['current_quantity_in_main_measure_type'] = $result[strval($product_id)]['current_quantity'] / $main_to_base;
+            $result[strval($product_id)]['main_to_base_equivalent'] = $main_to_base;
         }
         return $result->toArray();
     }

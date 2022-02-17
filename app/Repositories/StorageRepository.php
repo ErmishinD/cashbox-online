@@ -27,7 +27,7 @@ class StorageRepository extends BaseRepository
                 'product_type' => function($query) {
                     $query->with('main_measure_type');
                 },
-                'measure_type']);
+                'base_measure_type']);
         }]);
         return $storage_builder;
     }

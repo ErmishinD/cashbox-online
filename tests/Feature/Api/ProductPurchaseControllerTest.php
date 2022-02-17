@@ -192,7 +192,7 @@ class ProductPurchaseControllerTest extends TestCase
             'storage_id' => $storage1->id, 'base_measure_type_id' => $main_measure_type->base_measure_type_id, 'product_type_id' => $product_type1->id
         ]);
 
-        $current_quantity1 = $product_purchase1->current_quantity / $measure_type->quantity;
+        $current_quantity1 = $product_purchase1->current_quantity / $main_measure_type->quantity;
 
         $product_type2 = ProductType::create([
             'company_id' => $company->id,
@@ -207,11 +207,10 @@ class ProductPurchaseControllerTest extends TestCase
             'storage_id' => $storage2->id, 'base_measure_type_id' => $main_measure_type->base_measure_type_id, 'product_type_id' => $product_type2->id
         ]);
 
-        $current_quantity2 = $product_purchase2->current_quantity / $measure_type->quantity;
+        $current_quantity2 = $product_purchase2->current_quantity / $main_measure_type->quantity;
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_for_dashboard', ['shop_id' => $shop->id]);
 
-//        dd(['in base' => $product_purchase1->current_quantity, 'in main' => $current_quantity1, 'main to base' => $main_measure_type->quantity]);
         $response
             ->assertStatus(200)
             ->assertJson([
