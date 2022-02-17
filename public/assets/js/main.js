@@ -25249,12 +25249,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.assign.js */ "./node_modules/core-js/modules/es.object.assign.js");
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.object.assign.js */ "./node_modules/core-js/modules/es.object.assign.js");
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! gitart-vue-dialog */ "./node_modules/gitart-vue-dialog/dist/index.mjs");
 /* harmony import */ var gitart_vue_dialog_dist_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! gitart-vue-dialog/dist/style.css */ "./node_modules/gitart-vue-dialog/dist/style.css");
 
@@ -25329,7 +25329,7 @@ __webpack_require__.r(__webpack_exports__);
       this.cards_for_sailing.forEach(function (el) {
         sum += parseFloat(el.current_price);
       });
-      return parseFloat(sum).toFixed(2);
+      return parseFloat(sum.toFixed(10));
     }
   },
   methods: {
@@ -25348,7 +25348,8 @@ __webpack_require__.r(__webpack_exports__);
 
         if (el.id == card_data.id) {
           // array.splice(index, 1)
-          index_for_removing.push(index);
+          index_for_removing.push(index); ////////// TODO(форич для cards)
+
           cards[card_data.id - 1].counter = 1;
 
           if (selected_cards.indexOf(card_data.id) != -1) {
@@ -25363,7 +25364,7 @@ __webpack_require__.r(__webpack_exports__);
               var item = product_types_in_basket.find(function (item) {
                 return item.id === elem.id;
               });
-              item.quantity -= parseFloat(elem.quantity);
+              item.quantity -= parseFloat(elem.quantity.toFixed(10));
             }
           });
         }
@@ -25385,11 +25386,13 @@ __webpack_require__.r(__webpack_exports__);
               return item.id === el.id;
             });
 
-            item.quantity += parseFloat(el.quantity);
+            item.quantity += parseFloat(elem.quantity.toFixed(10));
           } else {
             _this2.product_types_in_basket.push({
               'id': el.id,
-              'quantity': el.quantity
+              'quantity': el.quantity,
+              'equal': el.main_measure_type.quantity,
+              'name_measure_type': el.main_measure_type.name
             });
           }
         });
@@ -25456,31 +25459,34 @@ __webpack_require__.r(__webpack_exports__);
           item.quantity = item.quantity - el.quantity * card.counter + el.quantity * (card.counter + 1);
         });
         var copy_card = Object.assign({}, card);
+        var copy_product_types = [];
+        copy_card.product_types.forEach(function (el) {
+          copy_product_types.push(Object.assign({}, el));
+        });
         copy_card.list_number_data = this.cards_for_sailing.length + 1;
+        copy_card.product_types = copy_product_types;
         this.cards_for_sailing.push(copy_card);
         console.log(this.cards_for_sailing);
         card.counter++;
       }
     },
-    recountProductTypes: function recountProductTypes(product_type_id) {
+    recountProductTypes: function recountProductTypes(product_type_id, product_type_equal) {
       var sum = 0;
       var items = document.querySelectorAll("input[name=ingridient_val_".concat(product_type_id, "]"));
-      console.log(items);
       items.forEach(function (el) {
-        sum += parseFloat(el.value);
+        sum += parseFloat(el.value * product_type_equal);
       });
       var item = this.product_types_in_basket.find(function (item) {
         return item.id === product_type_id;
       });
-      item.quantity = sum;
-      console.table(this.product_types_in_basket);
-      console.table(this.product_types_in_storages);
+      item.quantity = parseFloat(sum.toFixed(10));
       this.compareWithStorage();
     },
     cloneBasketItem: function cloneBasketItem(card_data) {
       var _this4 = this;
 
       console.log();
+      card_data.counter++;
       var copy_card = Object.assign({}, card_data);
       var copy_product_types = [];
       copy_card.product_types.forEach(function (el) {
@@ -25490,7 +25496,7 @@ __webpack_require__.r(__webpack_exports__);
       copy_card.list_number_data = this.cards_for_sailing.length + 1;
       Promise.resolve(this.cards_for_sailing.push(copy_card)).then(function (result) {
         _this4.product_types_in_basket.forEach(function (el) {
-          _this4.recountProductTypes(el.id);
+          _this4.recountProductTypes(el.id, el.equal);
         });
       });
     },
@@ -25498,18 +25504,33 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       var cards = this.cards;
+      var selected_cards = this.selected_cards;
       Promise.resolve(this.cards_for_sailing.forEach(function callback(el, index, array) {
         if (el.list_number_data == card_data.list_number_data) {
-          array.splice(index, 1);
+          array.splice(index, 1); ///////// TODO(форич для cards)
+
           cards[card_data.id - 1].counter -= 1;
+
+          if (cards[card_data.id - 1].counter == 0) {
+            selected_cards.forEach(function callback(elem, elem_index, elem_array) {
+              console.log(el.id, elem);
+
+              if (el.id == elem) {
+                elem_array.splice(elem_index, 1);
+                return;
+              }
+            });
+          }
         }
       })).then(function (result) {
         _this5.product_types_in_basket.forEach(function (el) {
-          _this5.recountProductTypes(el.id);
+          _this5.recountProductTypes(el.id, el.equal);
         });
       });
     },
     compareWithStorage: function compareWithStorage() {
+      var _this6 = this;
+
       var product_types_in_storages = this.product_types_in_storages;
       var overlimited_product_types = this.overlimited_product_types; // this.product_types_in_basket.forEach(function callback(el, index, array) {
       // 	product_types_in_storages.forEach(function callback(elem, elem_index, elem_array) {
@@ -25526,18 +25547,65 @@ __webpack_require__.r(__webpack_exports__);
       // 	})
       // })
 
-      for (var i = 0; i < this.product_types_in_basket.length; i++) {
-        for (var j = 0; j < this.product_types_in_storages.length; j++) {
-          if (this.product_types_in_basket[i].id == this.product_types_in_storages[j].id) {
-            console.log('sdfsdf');
+      var _loop = function _loop(i) {
+        var _loop2 = function _loop2(j) {
+          if (_this6.product_types_in_basket[i].id == _this6.product_types_in_storages[j].id) {
+            var comparing = _this6.product_types_in_storages[j].current_quantity - _this6.product_types_in_basket[i].quantity;
 
-            if (this.product_types_in_storages[j].current_quantity - this.product_types_in_basket[i].quantity < 0) {
-              this.overlimited_product_types.push(this.product_types_in_storages[j].name);
-              console.log(this.overlimited_product_types);
+            if (comparing < 0) {
+              var stop_comparing = false;
+
+              _this6.overlimited_product_types.forEach(function (el) {
+                if (el.id == _this6.product_types_in_basket[i].id) {
+                  el.overlimited_quantity = comparing;
+                  el.overlimited_quantity_in_main_measure_type = parseFloat((comparing / product_types_in_storages[j].main_to_base_equivalent).toFixed(10));
+                  stop_comparing = true;
+                  return;
+                }
+              });
+
+              if (!stop_comparing) {
+                var copy_overlimited_product_types = Object.assign({}, product_types_in_storages[j]);
+
+                _this6.overlimited_product_types.push({
+                  'id': copy_overlimited_product_types.id,
+                  'name': copy_overlimited_product_types.name,
+                  'overlimited_quantity': comparing,
+                  'overlimited_quantity_in_main_measure_type': parseFloat((comparing / product_types_in_storages[j].main_to_base_equivalent).toFixed(10)),
+                  'main_measure_type_name': _this6.product_types_in_basket[i].name_measure_type
+                });
+
+                _this6.$notify({
+                  text: _this6.$t('На складе не хватает товара: ') + copy_overlimited_product_types.name,
+                  type: 'error'
+                });
+              }
+            } else {
+              var id = _this6.product_types_in_basket[i].id; /////////////////////////////////////////////////////////////////////////// TODO (удаление нескольких элментов из списка)
+
+              _this6.overlimited_product_types.forEach(function callback(el, index, array) {
+                if (el.id == id) {
+                  array.splice(index, 1);
+                  return;
+                }
+              });
             }
           }
+        };
+
+        for (var j = 0; j < _this6.product_types_in_storages.length; j++) {
+          _loop2(j);
         }
+      };
+
+      for (var i = 0; i < this.product_types_in_basket.length; i++) {
+        _loop(i);
       }
+
+      console.log(this.overlimited_product_types);
+    },
+    manualInputCounter: function manualInputCounter(card) {
+      console.log('card');
     }
   }
 });
@@ -27158,65 +27226,83 @@ var _hoisted_23 = {
 };
 var _hoisted_24 = ["disabled", "name", "onChange", "onUpdate:modelValue"];
 var _hoisted_25 = {
-  class: "getting-started-example-styled__actions"
+  class: "getting-started-example-styled__etc"
 };
 var _hoisted_26 = {
   class: "basket_sum"
 };
 var _hoisted_27 = {
-  class: ""
+  class: "custom_notification custom_notification_error"
 };
 var _hoisted_28 = {
-  class: "tac content_title"
+  key: 0
 };
 var _hoisted_29 = {
-  class: "dashboard_actions_row"
+  key: 1
 };
-var _hoisted_30 = ["placeholder"];
-var _hoisted_31 = ["disabled"];
-var _hoisted_32 = {
-  class: "counter_basket_circle"
+var _hoisted_30 = {
+  class: "overlimited_items"
 };
-var _hoisted_33 = {
-  class: "counter_basket"
+var _hoisted_31 = {
+  class: "getting-started-example-styled__actions"
 };
+
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_33 = ["disabled"];
 var _hoisted_34 = {
-  class: "cards"
+  class: "tac content_title"
 };
 var _hoisted_35 = {
-  class: "card"
+  class: "dashboard_actions_row"
 };
-var _hoisted_36 = ["id"];
-var _hoisted_37 = ["onClick"];
+var _hoisted_36 = ["placeholder"];
+var _hoisted_37 = ["disabled"];
 var _hoisted_38 = {
-  class: "card_title tac"
+  class: "counter_basket_circle"
 };
 var _hoisted_39 = {
-  class: "card_items"
+  class: "counter_basket"
 };
 var _hoisted_40 = {
-  class: "card_item"
+  class: "cards"
 };
 var _hoisted_41 = {
+  class: "card"
+};
+var _hoisted_42 = ["id"];
+var _hoisted_43 = ["onClick"];
+var _hoisted_44 = {
+  class: "card_title tac"
+};
+var _hoisted_45 = {
+  class: "card_items"
+};
+var _hoisted_46 = {
+  class: "card_item"
+};
+var _hoisted_47 = {
   style: {
     "word-break": "break-all",
     "text-align": "end"
   }
 };
-var _hoisted_42 = ["onClick"];
-var _hoisted_43 = ["onUpdate:modelValue"];
-var _hoisted_44 = ["onClick"];
-var _hoisted_45 = {
+var _hoisted_48 = ["onClick"];
+var _hoisted_49 = ["onUpdate:modelValue"];
+var _hoisted_50 = ["onClick"];
+var _hoisted_51 = {
   class: "card_dropdown"
 };
-var _hoisted_46 = ["onClick"];
-var _hoisted_47 = {
+var _hoisted_52 = ["onClick"];
+var _hoisted_53 = {
   class: "card_dropdown_content"
 };
-var _hoisted_48 = {
+var _hoisted_54 = {
   class: "card_item"
 };
-var _hoisted_49 = {
+var _hoisted_55 = {
   style: {
     "word-break": "break-all",
     "text-align": "end"
@@ -27297,7 +27383,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             name: 'ingridient_val_' + card_ingridient.id,
             type: "number",
             onChange: function onChange($event) {
-              return $options.recountProductTypes(card_ingridient.id);
+              return $options.recountProductTypes(card_ingridient.id, card_ingridient.main_measure_type.quantity);
             },
             "onUpdate:modelValue": function onUpdateModelValue($event) {
               return card_ingridient.quantity_in_main_measure_type = $event;
@@ -27314,32 +27400,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ), [[vue__WEBPACK_IMPORTED_MODULE_3__.vShow, $data.selected_dropdown_in_basket.includes(card.list_number_data)]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_3__.createCommentVNode)("v-if", true)]);
       }), 256
       /* UNKEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)($options.countAllProductsPrice), 1
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Итого')) + ": " + (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)($options.countAllProductsPrice) + "грн ", 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_27, "sdfsdgdfg", 512
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_27, [$data.overlimited_product_types.length == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)("span", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('На складе недостаточно товара')) + ": ", 1
+      /* TEXT */
+      )) : ((0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)("span", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('На складе недостаточно товаров')) + ": ", 1
+      /* TEXT */
+      )), ((0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.renderList)($data.overlimited_product_types, function (item) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)("span", _hoisted_30, "| " + (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(item.name) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(Math.abs(item.overlimited_quantity_in_main_measure_type)) + (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(item.main_measure_type_name) + " | ", 1
+        /* TEXT */
+        );
+      }), 256
+      /* UNKEYED_FRAGMENT */
+      ))], 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_3__.vShow, $data.overlimited_product_types.length]]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("button", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_3__.vShow, $data.overlimited_product_types.length]])]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("button", {
         onClick: _cache[0] || (_cache[0] = function () {
           return $options.FixSale && $options.FixSale.apply($options, arguments);
         }),
+        disabled: $data.overlimited_product_types.length,
         class: "btn btn-success"
-      }, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Подтвердить')), 1
-      /* TEXT */
-      )])])];
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Подтвердить')), 9
+      /* TEXT, PROPS */
+      , _hoisted_33)])])];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Главная')), 1
+  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Главная')), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("input", {
     placeholder: _ctx.$t('Поиск товара'),
     type: "text"
   }, null, 8
   /* PROPS */
-  , _hoisted_30), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("button", {
+  , _hoisted_36), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("button", {
     disabled: !this.cards_for_sailing.length,
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.openBasket && $options.openBasket.apply($options, arguments);
@@ -27347,12 +27444,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     class: "btn btn-success"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Перейти к товарам')) + " ", 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(this.cards_for_sailing.length), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(this.cards_for_sailing.length), 1
   /* TEXT */
   )])], 8
   /* PROPS */
-  , _hoisted_31)]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_34, [((0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.renderList)($data.cards, function (card) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", {
+  , _hoisted_37)]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_40, [((0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.renderList)($data.cards, function (card) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", {
       class: "card_img",
       style: (0,vue__WEBPACK_IMPORTED_MODULE_3__.normalizeStyle)({
         'background-image': "url(".concat(card.photo, ")")
@@ -27367,17 +27464,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }
     }, null, 10
     /* CLASS, PROPS */
-    , _hoisted_37)], 8
+    , _hoisted_43)], 8
     /* PROPS */
-    , _hoisted_36)], 4
+    , _hoisted_42)], 4
     /* STYLE */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", {
       class: (0,vue__WEBPACK_IMPORTED_MODULE_3__.normalizeClass)(["card_content", $data.selected_cards.includes(card.id) ? 'bc-lightgreen' : ' '])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card.name), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Цена')) + ": ", 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Цена')) + ": ", 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card.price) + "грн ", 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card.price) + "грн ", 1
     /* TEXT */
     )])])], 2
     /* CLASS */
@@ -27391,24 +27488,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       class: "fas fa-minus"
     }, null, 8
     /* PROPS */
-    , _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_3__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("input", {
+    , _hoisted_48), (0,vue__WEBPACK_IMPORTED_MODULE_3__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("input", {
+      disabled: "",
       type: "text",
-      oninput: "this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\\..*)\\./g, '$1'); if(this.value == '') this.value = 1; card.counter = this.value;",
+      oninput: "this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\\..*)\\./g, '$1'); if(this.value == '') this.value = 1; ",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return card.counter = $event;
       }
     }, null, 8
     /* PROPS */
-    , _hoisted_43), [[vue__WEBPACK_IMPORTED_MODULE_3__.vModelText, card.counter]]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("i", {
+    , _hoisted_49), [[vue__WEBPACK_IMPORTED_MODULE_3__.vModelText, card.counter]]), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("i", {
       onClick: function onClick($event) {
         return $options.clickCounter(card, 'plus');
       },
       class: "fas fa-plus"
     }, null, 8
     /* PROPS */
-    , _hoisted_44)], 2
+    , _hoisted_50)], 2
     /* CLASS */
-    )) : (0,vue__WEBPACK_IMPORTED_MODULE_3__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", {
+    )) : (0,vue__WEBPACK_IMPORTED_MODULE_3__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", {
       class: "card_dropdown_button",
       onClick: function onClick($event) {
         return $options.toggleClassForDropdown(card.id);
@@ -27419,10 +27517,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(_ctx.$t('Состав')), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_47, [((0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.renderList)(card.product_types, function (card_ingridient) {
-      return (0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card_ingridient.name) + ": ", 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("div", _hoisted_53, [((0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_3__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.renderList)(card.product_types, function (card_ingridient) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_3__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementBlock)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card_ingridient.name) + ": ", 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card_ingridient.quantity_in_main_measure_type) + (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card_ingridient.main_measure_type.name), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_3__.createElementVNode)("span", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card_ingridient.quantity_in_main_measure_type) + (0,vue__WEBPACK_IMPORTED_MODULE_3__.toDisplayString)(card_ingridient.main_measure_type.name), 1
       /* TEXT */
       )]);
     }), 256
@@ -27431,7 +27529,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* NEED_PATCH */
     ), [[vue__WEBPACK_IMPORTED_MODULE_3__.vShow, $data.selected_dropdown.includes(card.id)]])], 8
     /* PROPS */
-    , _hoisted_46)])]);
+    , _hoisted_52)])]);
   }), 256
   /* UNKEYED_FRAGMENT */
   ))])], 64
@@ -29320,7 +29418,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Кол-во на складе')) + ": ", 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(product.current_quantity) + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(product.measure_type.name), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(product.current_quantity_in_main_measure_type) + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(product.measure_type.name), 1
     /* TEXT */
     )])])])]);
   }), 256

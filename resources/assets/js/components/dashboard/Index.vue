@@ -44,7 +44,7 @@
 	        				</span>
 
 	        				<span style="word-break: break-all; text-align: end;">
-	        					<input :disabled="card.product_types.length == 1"  :name="'ingridient_val_'+card_ingridient.id" type="number" @change="recountProductTypes(card_ingridient.id)" v-model="card_ingridient.quantity_in_main_measure_type">
+	        					<input :disabled="card.product_types.length == 1"  :name="'ingridient_val_'+card_ingridient.id" type="number" @change="recountProductTypes(card_ingridient.id, card_ingridient.main_measure_type.quantity)" v-model="card_ingridient.quantity_in_main_measure_type">
 	        					{{card_ingridient.main_measure_type.name}}
 	        				</span>
 	        			</div>
@@ -54,14 +54,22 @@
 	        
 	        </div>
 	      </div>
+	      <div class="getting-started-example-styled__etc">
+		      <div class="basket_sum">
+		      {{$t('Итого')}}:	{{countAllProductsPrice}}грн
+
+		      </div>
+		      <div class="custom_notification custom_notification_error" v-show="overlimited_product_types.length">
+		      		<span v-if="overlimited_product_types.length == 1">{{$t('На складе недостаточно товара')}}: </span>
+		      		<span v-else>{{$t('На складе недостаточно товаров')}}: </span>
+		      		<span class="overlimited_items" v-for="item in overlimited_product_types">| {{item.name}} - {{Math.abs(item.overlimited_quantity_in_main_measure_type)}}{{item.main_measure_type_name}} | </span>
+		  		</div>
+	  		</div>
 
 	      <div class="getting-started-example-styled__actions">
-	      	<div class="basket_sum">
-	      		{{countAllProductsPrice}}
-
-	      	</div>
-	      	<div class="" v-show="overlimited_product_types.length">sdfsdgdfg</div>
-	        <button @click="FixSale" class="btn btn-success">
+	      	
+	      	<br>
+	        <button @click="FixSale" :disabled="overlimited_product_types.length" class="btn btn-success">
 	          {{ $t('Подтвердить') }}
 	        </button>
 	      </div>
@@ -105,7 +113,7 @@
 
 			<div class="card_counter" :class="selected_cards.includes(card.id) ? 'bc-lightgreen' : ' '" v-if="selected_cards.includes(card.id)">
 				<i @click="clickCounter(card, 'minus')" class="fas fa-minus"></i>
-				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1'); if(this.value == '') this.value = 1; card.counter = this.value;"  v-model="card.counter">
+				<input disabled type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1'); if(this.value == '') this.value = 1; " v-model="card.counter">
 				<i @click="clickCounter(card, 'plus')" class="fas fa-plus"></i>
 			</div>
 
@@ -198,7 +206,7 @@
               this.cards_for_sailing.forEach(el => {
               	sum += parseFloat(el.current_price)
               })
-              return parseFloat(sum).toFixed(2)
+              return parseFloat(sum.toFixed(10))
             }
           },
         methods: {
@@ -216,7 +224,7 @@
         				
         				// array.splice(index, 1)
         				index_for_removing.push(index)
-
+        				////////// TODO(форич для cards)
         				cards[card_data.id - 1].counter = 1
         				if(selected_cards.indexOf(card_data.id) != -1){
         					selected_cards.splice(selected_cards.indexOf(card_data.id), 1)
@@ -228,7 +236,7 @@
         					if(product_types_in_basket.find(item => item.id === elem.id)){
 
 	    						let item = product_types_in_basket.find(item => item.id === elem.id)
-	    						item.quantity -= parseFloat(elem.quantity)
+	    						item.quantity -= parseFloat(elem.quantity.toFixed(10))
 
 	    					}
         				})
@@ -251,11 +259,11 @@
         			card_data.product_types.forEach(el => {
         				if(this.product_types_in_basket.find(item => item.id === el.id)){
         					let item = this.product_types_in_basket.find(item => item.id === el.id)
-        					item.quantity += parseFloat(el.quantity)
+        					item.quantity += parseFloat(elem.quantity.toFixed(10))
         					
         				}
         				else{
-        					this.product_types_in_basket.push({'id' : el.id, 'quantity': el.quantity})
+        					this.product_types_in_basket.push({'id' : el.id, 'quantity': el.quantity, 'equal' : el.main_measure_type.quantity, 'name_measure_type' : el.main_measure_type.name})
         				}
         				
         			})
@@ -331,7 +339,12 @@
         				item.quantity = item.quantity - (el.quantity * card.counter) + (el.quantity * (card.counter + 1))
         			})
         			let copy_card = Object.assign({}, card);
+        			let copy_product_types = []
+        			copy_card.product_types.forEach(el => {
+        				copy_product_types.push(Object.assign({}, el))
+        			})
         			copy_card.list_number_data = this.cards_for_sailing.length + 1
+        			copy_card.product_types = copy_product_types
         			this.cards_for_sailing.push(copy_card)
         			console.log(this.cards_for_sailing)
         			card.counter++
@@ -339,22 +352,20 @@
         		}
         	},
 
-        	recountProductTypes(product_type_id){
+        	recountProductTypes(product_type_id, product_type_equal){
         		let sum = 0
         		let items = document.querySelectorAll(`input[name=ingridient_val_${product_type_id}]`)
-        		console.log(items)
         		items.forEach(el => {
-        			sum += parseFloat(el.value)
+        			sum += parseFloat(el.value * product_type_equal)
         		})
         		let item = this.product_types_in_basket.find(item => item.id === product_type_id)
-        		item.quantity = sum
-        		console.table(this.product_types_in_basket)
-        		console.table(this.product_types_in_storages)
+        		item.quantity = parseFloat(sum.toFixed(10))
         		this.compareWithStorage()
         	},
 
         	cloneBasketItem(card_data){
         		console.log()
+        		card_data.counter++
         		let copy_card = Object.assign({}, card_data);
         		let copy_product_types = []
         		copy_card.product_types.forEach(el => {
@@ -364,7 +375,7 @@
         		copy_card.list_number_data = this.cards_for_sailing.length + 1
         		Promise.resolve(this.cards_for_sailing.push(copy_card)).then(result => {
         		    this.product_types_in_basket.forEach(el => {
-        		    	this.recountProductTypes(el.id)
+        		    	this.recountProductTypes(el.id, el.equal)
         		    })
         		});
 
@@ -372,16 +383,31 @@
 
         	removeBasketItem(card_data){
         		let cards = this.cards
+        		let selected_cards = this.selected_cards
         		Promise.resolve(
         			this.cards_for_sailing.forEach(function callback(el, index, array) {
         				if (el.list_number_data == card_data.list_number_data){
         					array.splice(index, 1)
+        					///////// TODO(форич для cards)
         					cards[card_data.id - 1].counter -= 1
+        					
+        					if(cards[card_data.id - 1].counter == 0){
+
+        						selected_cards.forEach(function callback(elem, elem_index, elem_array){
+        							console.log(el.id, elem)
+        							if(el.id == elem){
+
+        								elem_array.splice(elem_index, 1)
+
+        								return
+        							}
+        						})
+        					}
         				}
         			})
         			).then(result => {
         		    this.product_types_in_basket.forEach(el => {
-        		    	this.recountProductTypes(el.id)
+        		    	this.recountProductTypes(el.id, el.equal)
         		    })
         		});
         		
@@ -389,6 +415,7 @@
         	},
 
         	compareWithStorage() {
+
         		let product_types_in_storages = this.product_types_in_storages
         		let overlimited_product_types = this.overlimited_product_types
 
@@ -414,16 +441,56 @@
         			for(let j=0; j < this.product_types_in_storages.length; j++){
         				
         				if(this.product_types_in_basket[i].id == this.product_types_in_storages[j].id){
-        					console.log('sdfsdf')
-        					if(this.product_types_in_storages[j].current_quantity - this.product_types_in_basket[i].quantity < 0){
-        						this.overlimited_product_types.push(this.product_types_in_storages[j].name)
-        						console.log(this.overlimited_product_types)
+        					
+        					let comparing = this.product_types_in_storages[j].current_quantity - this.product_types_in_basket[i].quantity
+
+        					if(comparing < 0){
+        						let stop_comparing = false
+        						this.overlimited_product_types.forEach(el => {
+        							
+        							if(el.id == this.product_types_in_basket[i].id){
+        								el.overlimited_quantity = comparing
+        								el.overlimited_quantity_in_main_measure_type = parseFloat((comparing / product_types_in_storages[j].main_to_base_equivalent).toFixed(10))
+        								stop_comparing = true
+        								return
+        							}
+        						})
+        						if(!stop_comparing){
+        							let copy_overlimited_product_types = Object.assign({}, product_types_in_storages[j])
+        							this.overlimited_product_types.push(
+        								{
+        									'id' : copy_overlimited_product_types.id,
+        									'name' : copy_overlimited_product_types.name,
+        									'overlimited_quantity' : comparing,
+        									'overlimited_quantity_in_main_measure_type': parseFloat((comparing / product_types_in_storages[j].main_to_base_equivalent).toFixed(10)),
+        									'main_measure_type_name' : this.product_types_in_basket[i].name_measure_type
+        								})
+        							this.$notify({
+        								text: this.$t('На складе не хватает товара: ') + copy_overlimited_product_types.name,
+        								type: 'error',
+        							});
+        						}
+        						
+        					}
+        					else{
+
+        						let id = this.product_types_in_basket[i].id
+        						/////////////////////////////////////////////////////////////////////////// TODO (удаление нескольких элментов из списка)
+        						this.overlimited_product_types.forEach(function callback(el, index, array) {
+        							if(el.id == id){
+        								array.splice(index, 1)
+        								return
+        							}
+        						})
         					}
         					
         				}
         			}
         		}
-        		
+        		console.log(this.overlimited_product_types)
+        	},
+        	manualInputCounter(card){
+        		console.log('card')
         	}
         },
     }

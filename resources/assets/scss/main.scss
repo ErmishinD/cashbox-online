@@ -507,3 +507,30 @@ button:disabled{
 		}
 	}
 }
+
+.getting-started-example-styled__etc{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-inline: 20px;
+	padding-bottom: 20px;
+	text-align: end;
+	margin: -10px 0;
+	box-sizing: content-box;
+}
+
+.custom_notification{
+	text-align: left;
+	padding: 5px 10px;
+	color: #fff;
+
+}
+
+.custom_notification_error{
+	background: #e54d42;
+	border-left: 5px solid #b82e24;
+}
+
+.overlimited_items{
+	margin-right: 5px;
+}
