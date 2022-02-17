@@ -17,7 +17,7 @@ class CreateProductPurchasesTable extends Migration
             $table->id();
             $table->foreignId('storage_id')->constrained('storages')->onDelete('cascade');
             $table->foreignId('product_type_id')->constrained('product_types')->onDelete('cascade');
-            $table->foreignId('measure_type_id')->constrained('measure_types')->onDelete('cascade');
+            $table->foreignId('base_measure_type_id')->constrained('base_measure_types')->onDelete('cascade');
             $table->unsignedBigInteger('quantity');
             $table->unsignedBigInteger('current_quantity');
             $table->unsignedDecimal('cost');

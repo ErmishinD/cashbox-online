@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property int storage_id
  * @property int product_type_id
- * @property int measure_type_id
+ * @property int base_measure_type_id
  * @property int quantity
  * @property int current_quantity
  * @property float cost
@@ -21,7 +21,7 @@ class ProductPurchase extends Model
     use HasFactory;
 
     protected $fillable = [
-        'storage_id', 'product_type_id', 'measure_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',
+        'storage_id', 'product_type_id', 'base_measure_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',
     ];
 
     public function product_type()
@@ -29,8 +29,8 @@ class ProductPurchase extends Model
         return $this->belongsTo(ProductType::class);
     }
 
-    public function measure_type()
+    public function base_measure_type()
     {
-        return $this->belongsTo(MeasureType::class);
+        return $this->belongsTo(BaseMeasureType::class);
     }
 }

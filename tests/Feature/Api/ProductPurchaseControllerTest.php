@@ -103,11 +103,11 @@ class ProductPurchaseControllerTest extends TestCase
     public function test_admin_can_create_product_purchase() {
         $storage = Storage::inRandomOrder()->first();
         $product_type = ProductType::inRandomOrder()->first();
-        $measure_type = MeasureType::inRandomOrder()->first();
+        $base_measure_type = BaseMeasureType::inRandomOrder()->first();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
-            'measure_type_id' => $measure_type->id,
+            'base_measure_type_id' => $base_measure_type->id,
             'quantity' => 100,
             'cost' => 1000,
         ]);
@@ -118,7 +118,7 @@ class ProductPurchaseControllerTest extends TestCase
                 'data' => [
                     'storage_id' => $storage->id,
                     'product_type_id' => $product_type->id,
-                    'measure_type_id' => $measure_type->id,
+                    'base_measure_type_id' => $base_measure_type->id,
                     'quantity' => 100,
                     'current_quantity' => 100,
                     'cost' => 1000,
@@ -127,7 +127,7 @@ class ProductPurchaseControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, [
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
-            'measure_type_id' => $measure_type->id,
+            'base_measure_type_id' => $base_measure_type->id,
             'quantity' => 100,
             'current_quantity' => 100,
             'cost' => 1000,
@@ -189,10 +189,10 @@ class ProductPurchaseControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase1 = ProductPurchase::factory()->create([
-            'storage_id' => $storage1->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type1->id
+            'storage_id' => $storage1->id, 'base_measure_type_id' => $main_measure_type->base_measure_type_id, 'product_type_id' => $product_type1->id
         ]);
 
-        $current_quantity1 = ($product_purchase1->current_quantity * $measure_type->quantity) / $main_measure_type->quantity;
+        $current_quantity1 = $product_purchase1->current_quantity / $measure_type->quantity;
 
         $product_type2 = ProductType::create([
             'company_id' => $company->id,
@@ -204,13 +204,14 @@ class ProductPurchaseControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase2 = ProductPurchase::factory()->create([
-            'storage_id' => $storage2->id, 'measure_type_id' => $measure_type->id, 'product_type_id' => $product_type2->id
+            'storage_id' => $storage2->id, 'base_measure_type_id' => $main_measure_type->base_measure_type_id, 'product_type_id' => $product_type2->id
         ]);
 
-        $current_quantity2 = ($product_purchase2->current_quantity * $measure_type->quantity) / $main_measure_type->quantity;
+        $current_quantity2 = $product_purchase2->current_quantity / $measure_type->quantity;
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_for_dashboard', ['shop_id' => $shop->id]);
 
+//        dd(['in base' => $product_purchase1->current_quantity, 'in main' => $current_quantity1, 'main to base' => $main_measure_type->quantity]);
         $response
             ->assertStatus(200)
             ->assertJson([

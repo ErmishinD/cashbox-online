@@ -26,7 +26,7 @@ class CreateRequest extends FormRequest
         return [
             'storage_id' => ['required'],
             'product_type_id' => ['required'],
-            'measure_type_id' => ['required'],
+            'base_measure_type_id' => ['required'],
             'quantity' => ['required'],
             'current_quantity' => ['nullable'],
             'cost' => ['required'],

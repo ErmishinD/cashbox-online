@@ -20,7 +20,7 @@ class DefaultResource extends JsonResource
             'id' => $this->id,
             'product_type_id' => $this->product_type_id,
             'storage_id' => $this->storage_id,
-            'measure_type_id' => $this->measure_type_id,
+            'base_measure_type_id' => $this->base_measure_type_id,
             'quantity' => $this->quantity,
             'current_quantity' => $this->current_quantity,
             'cost' => $this->cost,

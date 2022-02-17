@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'storage_id' => ['nullable'],
             'product_type_id' => ['nullable'],
-            'measure_type_id' => ['nullable'],
+            'base_measure_type_id' => ['nullable'],
             'quantity' => ['nullable'],
             'current_quantity' => ['nullable'],
             'cost' => ['nullable'],

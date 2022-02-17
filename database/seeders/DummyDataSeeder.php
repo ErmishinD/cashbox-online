@@ -446,33 +446,19 @@ class DummyDataSeeder extends Seeder
                 for ($product_count = 0; $product_count < random_int(3, 30); $product_count++) {
                     if ($allowed_product_types->isNotEmpty()) {
                         $product_type = $allowed_product_types->random();
-                        $allowed_measure_types = $measure_types
-                            ->where('base_measure_type_id', $product_type->base_measure_type_id)
-                            ->where('company_id', $product_type->company_id)->pluck('id');
                         $quantity = random_int(1, 1000);
                         $expiration_date = null;
+
                         if ($product_type->type == '_perishable') {
                             $from = strtotime('last monday');
                             $to = strtotime('next month');
                             $expiration_date = date('Y-m-d H:i', mt_rand($from, $to));
                         }
-
-                        if ($allowed_measure_types->isEmpty()) {
-                            $new_measure_type = MeasureType::factory()->create([
-                                'base_measure_type_id' => $product_type->base_measure_type_id,
-                                'company_id' => $random_company->id,
-                                'is_common' => false,
-                            ]);
-                            $measure_type_id = $new_measure_type->id;
-                        }
-                        else {
-                            $measure_type_id = $allowed_measure_types->random();
-                        }
                         for ($i=0; $i < random_int(1, 5); $i++) {
                             ProductPurchase::create([
                                 'storage_id' => $storage->id,
                                 'product_type_id' => $product_type->id,
-                                'measure_type_id' => $measure_type_id,
+                                'base_measure_type_id' => $product_type->base_measure_type_id,
                                 'quantity' => $quantity,
                                 'current_quantity' => random_int(0, $quantity),
                                 'cost' => random_int(100, 10000),
