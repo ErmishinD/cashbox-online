@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Cashbox;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateRequest extends FormRequest
 {
@@ -37,5 +38,13 @@ class CreateRequest extends FormRequest
 
             'sell_products' => ['nullable', 'array'],
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'operator_id' => $this->operator_id ?? Auth::user()->id,
+            'transaction_type' => $this->transaction_type ?? '_in',
+        ]);
     }
 }

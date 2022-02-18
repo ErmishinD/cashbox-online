@@ -26,6 +26,9 @@ class CashboxControllerTest extends TestCase
     private $base_route = '/api/cashbox/';
     private $table = 'cashboxes';
 
+    /**
+     * @var User
+     */
     private $operator;
     private $collector;
 
@@ -81,6 +84,7 @@ class CashboxControllerTest extends TestCase
         SellProduct::factory(4)->create();
         SellProductGroup::factory(6)->create();
         $this->operator = User::factory()->create();
+        $this->operator->givePermissionTo('Cashbox_create');
         $this->collector = User::factory()->create();
 
         $this->admin = User::factory()->create();
@@ -207,7 +211,7 @@ class CashboxControllerTest extends TestCase
         $this->assertDatabaseMissing($this->table, ['id' => $cashbox->id]);
     }
 
-    public function test_admin_can_sell_many_products()
+    public function test_operator_can_sell_many_products()
     {
         // create shop
         $shop = Shop::factory()->create();
@@ -285,12 +289,11 @@ class CashboxControllerTest extends TestCase
         // product_type2: 2500 - 200
         // product_type3: 1700 - 100
         // product_type4: (1000 + 1000) - 1100
-        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
+        $response = $this->actingAs($this->operator)->postJson($this->base_route, [
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
             'payment_type' => '_cash',
             'amount' => 545,
-            'operator_id' => $this->operator->id,
             'sell_products' => [
                 [
                     'sell_product_id' => $sell_product1->id,
