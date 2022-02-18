@@ -92,6 +92,9 @@ Route::prefix('sellable')->group(function () {
 /*
  * SellProduct
  */
+Route::prefix('sell_products')->group(function () {
+    Route::post('get_paginated', [SellProductController::class, 'get_paginated']);
+});
 Route::apiResource('sell_products', SellProductController::class);
 
 /*

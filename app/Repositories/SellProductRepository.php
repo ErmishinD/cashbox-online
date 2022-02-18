@@ -20,6 +20,22 @@ class SellProductRepository extends BaseRepository
         return SellProduct::class;
     }
 
+    public function get_paginated($paginate_data, $filters)
+    {
+        $sell_product_paginator =  $this->model
+            ->filter($filters)
+            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+
+        $sell_product_paginator->getCollection()->transform(function ($sell_product) {
+            foreach ($sell_product->product_types as $product_type) {
+                $product_type->quantity_in_main_measure_type = $product_type->pivot->quantity / $product_type->main_measure_type->quantity;
+            }
+            return $sell_product;
+        });
+
+        return $sell_product_paginator;
+    }
+
     public function all(array $columns = ['*'])
     {
         return $this->model->with('product_types.main_measure_type')

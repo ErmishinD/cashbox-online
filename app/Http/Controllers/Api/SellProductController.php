@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\SellProductFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\SellProduct\CreateRequest;
 use App\Http\Requests\Api\SellProduct\UpdateRequest;
 use App\Http\Resources\Api\SellProduct\DefaultResource;
@@ -38,6 +40,23 @@ class SellProductController extends Controller
     {
         $sell_products = $this->sell_product->all();
         return response()->json(['success' => true, 'data' => IndexResource::collection($sell_products)]);
+    }
+
+    public function get_paginated(PaginateRequest $request, SellProductFilter $filters)
+    {
+        $paginate_data = $request->validated();
+        $product_types = $this->sell_product->get_paginated($paginate_data, $filters);
+
+        return response()->json([
+            'success' => true,
+            'pagination' => [
+                'data' => DefaultResource::collection($product_types),
+                'current_page' => $product_types->currentPage(),
+                'last_page' => $product_types->lastPage(),
+                'per_page' => $product_types->perPage(),
+                'total' => $product_types->total(),
+            ]
+        ]);
     }
 
     /**
