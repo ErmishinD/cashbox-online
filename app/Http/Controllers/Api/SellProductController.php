@@ -45,16 +45,16 @@ class SellProductController extends Controller
     public function get_paginated(PaginateRequest $request, SellProductFilter $filters)
     {
         $paginate_data = $request->validated();
-        $product_types = $this->sell_product->get_paginated($paginate_data, $filters);
+        $sell_products = $this->sell_product->get_paginated($paginate_data, $filters);
 
         return response()->json([
             'success' => true,
             'pagination' => [
-                'data' => DefaultResource::collection($product_types),
-                'current_page' => $product_types->currentPage(),
-                'last_page' => $product_types->lastPage(),
-                'per_page' => $product_types->perPage(),
-                'total' => $product_types->total(),
+                'data' => IndexResource::collection($sell_products),
+                'current_page' => $sell_products->currentPage(),
+                'last_page' => $sell_products->lastPage(),
+                'per_page' => $sell_products->perPage(),
+                'total' => $sell_products->total(),
             ]
         ]);
     }
