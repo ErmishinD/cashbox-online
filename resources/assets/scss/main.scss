@@ -47,6 +47,29 @@ button:disabled{
 	cursor: not-allowed;
 }
 
+input{
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    line-height: 22px;
+    color: #254050;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #dce1e7;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #f1f4f8;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $main_color;
+    border-radius: 16px;
+}
+
 .v-sidebar-menu{
 	font-variation-settings: "wght" 500;
 }
@@ -299,6 +322,7 @@ button:disabled{
 	display: flex;
 	flex-wrap:wrap;
 	justify-content: space-around;
+	padding-bottom: 50px;
 }
 
 .card{
@@ -465,6 +489,7 @@ button:disabled{
 		}
 		.basket_card__name{
 			word-break: break-all;
+			margin-left: 5px;
 		}
 	}
 	.card_counter{
@@ -533,4 +558,10 @@ button:disabled{
 
 .overlimited_items{
 	margin-right: 5px;
+}
+
+.getting-started-example-styled__actions{
+	button{
+		margin-left: 5px;
+	}
 }

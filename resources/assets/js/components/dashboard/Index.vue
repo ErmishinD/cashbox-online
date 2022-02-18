@@ -68,9 +68,11 @@
 
 	      <div class="getting-started-example-styled__actions">
 	      	
-	      	<br>
-	        <button @click="FixSale" :disabled="overlimited_product_types.length" class="btn btn-success">
-	          {{ $t('Подтвердить') }}
+	      	<button @click="FixSale('_card')" :disabled="overlimited_product_types.length" class="btn btn-warning">
+	          {{ $t('Оплачено картой') }}
+	        </button>
+	        <button @click="FixSale('_cash')" :disabled="overlimited_product_types.length" class="btn btn-success">
+	          {{ $t('Оплачено') }}
 	        </button>
 	      </div>
 	    </div>
@@ -80,7 +82,7 @@
 	</div>
 
 	<div class="dashboard_actions_row">
-		<input :placeholder="$t('Поиск товара')" type="text">
+		<input @change="search" :placeholder="$t('Поиск товара')" type="text">
 		<button  :disabled="!(this.cards_for_sailing.length)" @click="openBasket" class="btn btn-success">
 			{{$t('Перейти к товарам')}}
 			<span class="counter_basket_circle"><span class="counter_basket">{{this.cards_for_sailing.length}}</span></span>
@@ -161,7 +163,20 @@
     			products_for_sale_in_basket: [],
     			product_types_in_storages: [],
     			overlimited_product_types: [],
+    			in_progress_loading_data: false,
     			modal_show: false,
+    			serverParams: {
+    			  columnFilters: {
+    			  	name: '',
+    			  },
+    			  sort: {
+    			      field: '',
+    			      type: '',
+    			  },
+    			  page: 1,
+    			  perPage: 10
+    			},
+    			all_data_is_loaded: false,
     		}
     	},
         created () {
@@ -169,35 +184,9 @@
 
         },
         mounted(){
-        	var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
-        	this.axios.get('/api/sell_products').then((response) => {
-		       this.cards = response.data['data']
-		       this.cards.forEach(el => {
-		       		el.counter = 1;
-		       		el.current_price = el.price
-		       		el.product_types.forEach(elem => {
-		       			elem.current_quantity = elem.quantity_in_main_measure_type
-		       		})
-		       })
-		       loader.hide()
-		     }).catch(function(error){
-  		     	if(error.response.status == 403){
-  		     		window.location.href = '/403';
-  		     	}
-  		     })
-
-  		     this.axios.post('/api/product_purchases/get_for_dashboard', {shop_id : 1}).then((response) => {
-		       this.product_types_in_storages = response.data['data']
-		       
-		       loader.hide()
-		     }).catch(function(error){
-  		     	if(error.response.status == 403){
-  		     		window.location.href = '/403';
-  		     	}
-  		     })
-  		     
+        	
+  		     this.render_list_items(true)
+  		     this.scrolltoGetMoreData()
         },
         computed: {
 
@@ -210,6 +199,82 @@
             }
           },
         methods: {
+        	scrolltoGetMoreData(){	
+
+        		window.onscroll = () => {
+
+	        		if(!this.all_data_is_loaded){
+	        			let bottomOfWindow = Math.ceil(document.documentElement.scrollTop) + window.innerHeight === document.body.scrollHeight && !this.in_progress_loading_data
+	        			console.log(this.in_progress_loading_data)
+	        			if (bottomOfWindow) {
+	        			  this.render_list_items(false)
+	        			}
+	        		}
+        		  
+        		};
+        	},
+        	search(e){
+        		this.serverParams.columnFilters.name = e.target.value
+        		this.render_list_items(true)
+        	},
+        	render_list_items(is_not_paginate){
+        		this.in_progress_loading_data = true
+        		var loader = this.$loading.show({
+			        canCancel: false,
+			        loader: 'dots',});
+        		if(is_not_paginate){
+        			this.serverParams.page = 1
+        		}
+	        	this.axios.post('/api/sell_products/get_paginated', this.serverParams).then((response) => {
+	        		let data = response.data
+	        		if(is_not_paginate){
+	        			
+	        			Promise.resolve(this.cards = data.pagination.data).then(result => {
+	        				this.in_progress_loading_data = false
+	        			})
+	        			this.cards.forEach(el => {
+	        					el.counter = 1;
+	        					el.current_price = el.price
+	        					el.product_types.forEach(elem => {
+	        						elem.current_quantity = elem.quantity_in_main_measure_type
+	        					})
+	        			})
+	        		}
+			        else{
+			        	Promise.resolve(Array.prototype.push.apply(this.cards, data.pagination.data)).then(result => {
+			        		this.in_progress_loading_data = false
+			        	})
+			        	// this.cards.concat(data.pagination.data)
+			        	console.log(this.cards)
+			        }
+
+				       if(data.pagination.last_page != data.pagination.current_page){
+				       	 this.serverParams.page = data.pagination.current_page+1
+				       	 this.all_data_is_loaded = false
+				       }
+				       else{
+				       	this.all_data_is_loaded = true
+				       }
+			      
+			       
+			       loader.hide()
+			     }).catch(function(error){
+			     	console.log(error)
+	  		     	if(error.response.status == 403){
+	  		     		window.location.href = '/403';
+	  		     	}
+	  		     })
+
+	  		     this.axios.post('/api/product_purchases/get_for_dashboard', {shop_id : 1}).then((response) => {
+			       this.product_types_in_storages = response.data['data']
+			       
+			       loader.hide()
+			     }).catch(function(error){
+	  		     	if(error.response.status == 403){
+	  		     		window.location.href = '/403';
+	  		     	}
+	  		     })
+			 },
         	toggleClassForIcon(card_data) {
         		let stop_function = 0
         		let selected_cards = this.selected_cards
@@ -222,10 +287,10 @@
         			console.log(index, array.length)
         			if(el.id == card_data.id){
         				
-        				// array.splice(index, 1)
+
         				index_for_removing.push(index)
-        				////////// TODO(форич для cards)
-        				cards[card_data.id - 1].counter = 1
+        				let card = cards.find(el => el.id == card_data.id)
+        				card.counter = 1
         				if(selected_cards.indexOf(card_data.id) != -1){
         					selected_cards.splice(selected_cards.indexOf(card_data.id), 1)
         				}
@@ -255,11 +320,12 @@
         			card_data.list_number_data = this.cards_for_sailing.length + 1
         			this.cards_for_sailing.push(card_data)
         			this.selected_cards.push(card_data.id)
-
+        			let card = this.cards.find(el => el.id == card_data.id)
+        			card.counter = 1
         			card_data.product_types.forEach(el => {
         				if(this.product_types_in_basket.find(item => item.id === el.id)){
         					let item = this.product_types_in_basket.find(item => item.id === el.id)
-        					item.quantity += parseFloat(elem.quantity.toFixed(10))
+        					item.quantity += parseFloat(el.quantity.toFixed(10))
         					
         				}
         				else{
@@ -267,9 +333,8 @@
         				}
         				
         			})
-        			
         		}
-        		
+        		this.compareWithStorage()
         	},
 
         	toggleClassForDropdown(card_id){
@@ -300,8 +365,46 @@
         		}
         	},
 
-        	FixSale() {
-        		console.table(this.cards_for_sailing)
+        	FixSale(payment_type) {
+        		var loader = this.$loading.show({
+		        canCancel: false,
+		        loader: 'dots',});
+        		let data_for_sailing = this.cards_for_sailing
+        		
+        		data_for_sailing.forEach(el => {
+        			el.sell_product_id = el.id
+        			el.amount = parseFloat(el.current_price)
+        			el.product_types.forEach(elem => {
+        				elem.quantity = elem.quantity_in_main_measure_type * elem.main_measure_type.quantity
+        			})
+        		})
+        		
+        		let sale_data = {
+        			'shop_id': 1,
+        			'transaction_type' : '_in',
+        			'payment_type' : payment_type,
+        			'amount': this.countAllProductsPrice,
+        			'operator_id' : 1,
+        			'sell_products' : data_for_sailing
+        		}
+
+        		this.axios.post('/api/cashbox', sale_data).then((response) => {
+        			this.$notify({
+        				text: this.$t('Успешно!'),
+        				type: 'success',
+        			});
+        			loader.hide()
+        			this.cards_for_sailing = []
+        			this.selected_dropdown = []
+        			this.selected_cards = []
+        			this.selected_dropdown_in_basket = []
+        			this.product_types_in_basket = []
+        			this.products_for_sale_in_basket = []
+        			this.product_types_in_storages = []
+        			this.overlimited_product_types = []
+        			this.modal_show = false
+        			this.render_list_items(true)
+        		})
         	},
 
         	clickCounter(card, action){
@@ -350,6 +453,7 @@
         			card.counter++
         			
         		}
+        		this.compareWithStorage()
         	},
 
         	recountProductTypes(product_type_id, product_type_equal){
@@ -364,8 +468,10 @@
         	},
 
         	cloneBasketItem(card_data){
-        		console.log()
+        		console.log(card_data)
         		card_data.counter++
+        		let card_find = this.cards.find(el => el.id == card_data.id)
+        		card_find.counter = card_data.counter
         		let copy_card = Object.assign({}, card_data);
         		let copy_product_types = []
         		copy_card.product_types.forEach(el => {
@@ -388,8 +494,9 @@
         			this.cards_for_sailing.forEach(function callback(el, index, array) {
         				if (el.list_number_data == card_data.list_number_data){
         					array.splice(index, 1)
-        					///////// TODO(форич для cards)
-        					cards[card_data.id - 1].counter -= 1
+
+        					let card = cards.find(el => el.id == card_data.id)
+        					card.counter--
         					
         					if(cards[card_data.id - 1].counter == 0){
 
@@ -419,22 +526,7 @@
         		let product_types_in_storages = this.product_types_in_storages
         		let overlimited_product_types = this.overlimited_product_types
 
-        		// this.product_types_in_basket.forEach(function callback(el, index, array) {
-        			
-        		// 	product_types_in_storages.forEach(function callback(elem, elem_index, elem_array) {
-        		// 		console.log(array, elem_array)
-        		// 		if(el.id == elem.id){
-        					
-        		// 			if(elem.current_quantity - el.quantity < 0){
-        		// 				overlimited_product_types.push(elem.name)
-        		// 				console.log('dsfsdfsd')
-        		// 			}
-        		// 			else{
-        		// 				el.splice(index, 1)
-        		// 			}
-        		// 		}
-        		// 	})
-        		// })
+        		
 
         		for(let i=0; i < this.product_types_in_basket.length; i++){
         			
@@ -475,12 +567,18 @@
         					else{
 
         						let id = this.product_types_in_basket[i].id
-        						/////////////////////////////////////////////////////////////////////////// TODO (удаление нескольких элментов из списка)
+        						
+        						let index_for_removing = []
+        						let overlimited_product_types = this.overlimited_product_types
         						this.overlimited_product_types.forEach(function callback(el, index, array) {
         							if(el.id == id){
-        								array.splice(index, 1)
-        								return
+        								index_for_removing.push(index)
+        								
         							}
+        						})
+
+        						index_for_removing.forEach(function callback(el, index, array) {
+        							overlimited_product_types.splice(el-index, 1)
         						})
         					}
         					
