@@ -18,13 +18,7 @@ class CashboxFactory extends Factory
      */
     public function definition()
     {
-        $sellable_type = $this->faker->randomElement([SellProduct::class, SellProductGroup::class]);
-        if ($sellable_type == SellProduct::class) {
-            $sellable_id = SellProduct::inRandomOrder()->first();
-        }
-        else {
-            $sellable_id = SellProductGroup::inRandomOrder()->first();
-        }
+        $sell_product = SellProduct::inRandomOrder()->first();
         $operator = User::inRandomOrder()->first();;
 
         $collected_at = null;
@@ -36,8 +30,7 @@ class CashboxFactory extends Factory
         }
         return [
             'shop_id' => Shop::inRandomOrder()->first()->id,
-            'sellable_type' => $sellable_type,
-            'sellable_id' => $sellable_id,
+            'sell_product_id' => $sell_product->id,
             'transaction_type' => $this->faker->randomElement(['_in', '_out']),
             'payment_type' => $this->faker->randomElement(['_cash', '_card']),
             'amount' => $this->faker->randomFloat(2, 50, 1000),

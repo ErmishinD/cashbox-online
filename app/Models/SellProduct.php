@@ -33,6 +33,6 @@ class SellProduct extends Model
 
     public function cashbox()
     {
-        return $this->morphMany(Cashbox::class, 'sellable');
+        return $this->hasMany(Cashbox::class);
     }
 }

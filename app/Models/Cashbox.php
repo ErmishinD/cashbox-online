@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property int company_id
  * @property int shop_id
- * @property string sellable_type
- * @property int sellable_id
+ * @property int sell_product_id
  * @property array data
  * @property float amount
  * @property string payment_type
@@ -26,12 +25,7 @@ class Cashbox extends Model
     use HasFactory;
 
     protected $fillable = [
-        'company_id', 'shop_id', 'sellable_type', 'sellable_id', 'data', 'transaction_type', 'payment_type', 'amount',
+        'company_id', 'shop_id', 'sell_product_id', 'data', 'transaction_type', 'payment_type', 'amount',
         'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id',
     ];
-
-    public function sellable()
-    {
-        return $this->morphTo();
-    }
 }

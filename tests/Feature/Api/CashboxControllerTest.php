@@ -6,14 +6,17 @@ use App\Models\BaseMeasureType;
 use App\Models\Cashbox;
 use App\Models\Company;
 use App\Models\MeasureType;
+use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\SellProductGroup;
 use App\Models\Shop;
+use App\Models\Storage;
 use App\Models\User;
 use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class CashboxControllerTest extends TestCase
@@ -30,6 +33,9 @@ class CashboxControllerTest extends TestCase
      * @var User
      */
     private $admin;
+    private $base_measure_type_volume;
+    private $base_measure_type_weight;
+    private $base_measure_type_quantity;
 
     public function setUp(): void
     {
@@ -108,12 +114,14 @@ class CashboxControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
                 'data' => [
-                    'shop_id' => $shop->id,
-                    'transaction_type' => '_out',
-                    'payment_type' => '_cash',
-                    'amount' => 100,
-                    'description' => 'some description',
-                    'operator_id' => $this->operator->id,
+                    [
+                        'shop_id' => $shop->id,
+                        'transaction_type' => '_out',
+                        'payment_type' => '_cash',
+                        'amount' => 100,
+                        'description' => 'some description',
+                        'operator_id' => $this->operator->id,
+                    ]
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
@@ -130,10 +138,10 @@ class CashboxControllerTest extends TestCase
         $shop = Shop::factory()->create();
         $sell_product = SellProduct::factory()->create();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
+            'company_id' => $shop->company_id,
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
-            'sellable_type' => 'App\\Models\\SellProduct',
-            'sellable_id' => $sell_product->id,
+            'sell_product_id' => $sell_product->id,
             'payment_type' => '_cash',
             'amount' => 200,
             'operator_id' => $this->operator->id,
@@ -143,20 +151,20 @@ class CashboxControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
                 'data' => [
-                    'shop_id' => $shop->id,
-                    'transaction_type' => '_in',
-                    'sellable_type' => 'App\\Models\\SellProduct',
-                    'sellable_id' => $sell_product->id,
-                    'payment_type' => '_cash',
-                    'amount' => 200,
-                    'operator_id' => $this->operator->id,
+                    [
+                        'shop_id' => $shop->id,
+                        'transaction_type' => '_in',
+                        'sell_product_id' => $sell_product->id,
+                        'payment_type' => '_cash',
+                        'amount' => 200,
+                        'operator_id' => $this->operator->id,
+                    ]
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
-            'sellable_type' => 'App\\Models\\SellProduct',
-            'sellable_id' => $sell_product->id,
+            'sell_product_id' => $sell_product->id,
             'payment_type' => '_cash',
             'amount' => 200,
             'operator_id' => $this->operator->id,
@@ -197,5 +205,181 @@ class CashboxControllerTest extends TestCase
                 'success' => true,
             ]);
         $this->assertDatabaseMissing($this->table, ['id' => $cashbox->id]);
+    }
+
+    public function test_admin_can_sell_many_products()
+    {
+        // create shop
+        $shop = Shop::factory()->create();
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+
+        // create product types with purchases
+        $product_type1 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
+        ProductPurchase::factory()->create([
+            'product_type_id' => $product_type1->id, 'base_measure_type_id' => $product_type1->base_measure_type_id,
+            'quantity' => 1000, 'current_quantity' => 1000
+        ]);
+
+        $product_type2 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
+        ProductPurchase::factory()->create([
+            'product_type_id' => $product_type2->id, 'base_measure_type_id' => $product_type2->base_measure_type_id,
+            'quantity' => 2500, 'current_quantity' => 2500
+        ]);
+
+        $product_type3 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
+        ProductPurchase::factory()->create([
+            'product_type_id' => $product_type3->id, 'base_measure_type_id' => $product_type3->base_measure_type_id,
+            'quantity' => 1700, 'current_quantity' => 1700
+        ]);
+
+        $product_type4 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
+        ProductPurchase::factory()->create([
+            'product_type_id' => $product_type4->id, 'base_measure_type_id' => $product_type4->base_measure_type_id,
+            'quantity' => 1000, 'current_quantity' => 1000
+        ]);
+        ProductPurchase::factory()->create([
+            'product_type_id' => $product_type4->id, 'base_measure_type_id' => $product_type4->base_measure_type_id,
+            'quantity' => 1000, 'current_quantity' => 1000
+        ]);
+
+
+        // create sell products (with related product types)
+        $sell_product1 = SellProduct::factory()->create(['company_id' => $shop->company_id]);
+        DB::table('sell_product_product_type')->insert([
+            'product_type_id' => $product_type1->id, 'sell_product_id' => $sell_product1->id, 'quantity' => 100
+        ]);
+        DB::table('sell_product_product_type')->insert([
+            'product_type_id' => $product_type2->id, 'sell_product_id' => $sell_product1->id, 'quantity' => 200
+        ]);
+
+        $sell_product2 = SellProduct::factory()->create(['company_id' => $shop->company_id]);
+        DB::table('sell_product_product_type')->insert([
+            'product_type_id' => $product_type1->id, 'sell_product_id' => $sell_product2->id, 'quantity' => 100
+        ]);
+        DB::table('sell_product_product_type')->insert([
+            'product_type_id' => $product_type3->id, 'sell_product_id' => $sell_product2->id, 'quantity' => 100
+        ]);
+        DB::table('sell_product_product_type')->insert([
+            'product_type_id' => $product_type4->id, 'sell_product_id' => $sell_product2->id, 'quantity' => 100
+        ]);
+
+        $sell_product3 = SellProduct::factory()->create(['company_id' => $shop->company_id]);
+        DB::table('sell_product_product_type')->insert([
+            'product_type_id' => $product_type4->id, 'sell_product_id' => $sell_product3->id, 'quantity' => 500
+        ]);
+
+        // create sell product groups (with related sell products)
+        $sell_product_group1 = SellProductGroup::factory()->create(['company_id' => $shop->company_id]);
+        DB::table('sell_product_product_group')->insert([
+            'sell_product_group_id' => $sell_product_group1->id, 'sell_product_id' => $sell_product2->id, 'price' => 110
+        ]);
+        DB::table('sell_product_product_group')->insert([
+            'sell_product_group_id' => $sell_product_group1->id, 'sell_product_id' => $sell_product3->id, 'price' => 110
+        ]);
+        DB::table('sell_product_product_group')->insert([
+            'sell_product_group_id' => $sell_product_group1->id, 'sell_product_id' => $sell_product3->id, 'price' => 110
+        ]);
+
+
+        // product_type1: 1000 - 200
+        // product_type2: 2500 - 200
+        // product_type3: 1700 - 100
+        // product_type4: (1000 + 1000) - 1100
+        $response = $this->actingAs($this->admin)->postJson($this->base_route, [
+            'shop_id' => $shop->id,
+            'transaction_type' => '_in',
+            'payment_type' => '_cash',
+            'amount' => 545,
+            'operator_id' => $this->operator->id,
+            'sell_products' => [
+                [
+                    'sell_product_id' => $sell_product1->id,
+                    'amount' => 200,
+                    'product_types' => [
+                        ['id' => $product_type1->id, 'quantity' => 100],
+                        ['id' => $product_type2->id, 'quantity' => 200]
+                    ]
+                ],
+                [
+                    'sell_product_id' => $sell_product2->id,
+                    'amount' => 110,
+                    'product_types' => [
+                        ['id' => $product_type1->id, 'quantity' => 100],
+                        ['id' => $product_type3->id, 'quantity' => 100],
+                        ['id' => $product_type4->id, 'quantity' => 100],
+                    ]
+                ],
+                [
+                    'sell_product_id' => $sell_product3->id,
+                    'amount' => 110,
+                    'product_types' => [
+                        ['id' => $product_type4->id, 'quantity' => 500],
+                    ]
+                ],
+                [
+                    'sell_product_id' => $sell_product3->id,
+                    'amount' => 115,
+                    'product_types' => [
+                        ['id' => $product_type4->id, 'quantity' => 500],
+                    ]
+                ],
+            ],
+        ]);
+
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas($this->table, [
+            'shop_id' => $shop->id,
+            'transaction_type' => '_in',
+            'sell_product_id' => $sell_product1->id,
+            'payment_type' => '_cash',
+            'amount' => 200,
+            'operator_id' => $this->operator->id,
+        ]);
+        $this->assertDatabaseHas($this->table, [
+            'shop_id' => $shop->id,
+            'transaction_type' => '_in',
+            'sell_product_id' => $sell_product2->id,
+            'payment_type' => '_cash',
+            'amount' => 110,
+            'operator_id' => $this->operator->id,
+        ]);
+        $this->assertDatabaseHas($this->table, [
+            'shop_id' => $shop->id,
+            'transaction_type' => '_in',
+            'sell_product_id' => $sell_product3->id,
+            'payment_type' => '_cash',
+            'amount' => 110,
+            'operator_id' => $this->operator->id,
+        ]);
+        $this->assertDatabaseHas($this->table, [
+            'shop_id' => $shop->id,
+            'transaction_type' => '_in',
+            'sell_product_id' => $sell_product3->id,
+            'payment_type' => '_cash',
+            'amount' => 115,
+            'operator_id' => $this->operator->id,
+        ]);
+
+        $this->assertDatabaseHas('product_purchases', [
+            'product_type_id' => $product_type1->id,
+            'current_quantity' => 800,
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'product_type_id' => $product_type2->id,
+            'current_quantity' => 2300,
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'product_type_id' => $product_type3->id,
+            'current_quantity' => 1600,
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'product_type_id' => $product_type4->id,
+            'current_quantity' => 0,
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'product_type_id' => $product_type4->id,
+            'current_quantity' => 900,
+        ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Company;
+use App\Models\SellProduct;
 use App\Models\SellProductGroup;
 use App\Models\User;
 use Database\Seeders\RolesPermissionsSeeder;
@@ -45,11 +46,14 @@ class SellProductGroupControllerTest extends TestCase
 
     public function test_admin_can_create_sell_product_group() {
         $company = Company::inRandomOrder()->first();
+        $sell_product = SellProduct::factory()->create(['company_id' => $company->id]);
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'company_id' => $company->id,
             'name' => 'Sell Product Group 1',
-            'price' => 250.5,
             'has_discount' => false,
+            'sell_products' => [
+                ['id' => $sell_product->id, 'price' => 100]
+            ]
         ]);
         $response
             ->assertStatus(200)
@@ -58,41 +62,39 @@ class SellProductGroupControllerTest extends TestCase
                 'data' => [
                     'company_id' => $company->id,
                     'name' => 'Sell Product Group 1',
-                    'price' => 250.5,
                     'has_discount' => false,
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
             'company_id' => $company->id,
             'name' => 'Sell Product Group 1',
-            'price' => 250.5,
             'has_discount' => false,
         ]);
     }
 
     public function test_admin_can_get_sell_product_group() {
-        $sell_product_group = SellProductGroup::factory()->create(['name' => 'Sell Product Group 2', 'price' => 100]);
+        $sell_product_group = SellProductGroup::factory()->create(['name' => 'Sell Product Group 2']);
         $response = $this->actingAs($this->admin)->get($this->base_route.$sell_product_group->id);
         $response
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => ['name' => 'Sell Product Group 2', 'price' => 100]
+                'data' => ['name' => 'Sell Product Group 2']
             ]);
     }
 
     public function test_admin_can_edit_sell_product_group() {
-        $sell_product_group = SellProductGroup::factory()->create(['name' => 'Sell Product Group 3', 'price' => 333.33]);
+        $sell_product_group = SellProductGroup::factory()->create(['name' => 'Sell Product Group 3']);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route.$sell_product_group->id, [
-            'price' => 666.66
+            'name' => 'My new Sell Product Group 3'
         ]);
         $response
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => ['name' => 'Sell Product Group 3', 'price' => 666.66]
+                'data' => ['name' => 'My new Sell Product Group 3']
             ]);
-        $this->assertDatabaseHas($this->table, ['name' => 'Sell Product Group 3', 'price' => 666.66]);
+        $this->assertDatabaseHas($this->table, ['name' => 'My new Sell Product Group 3']);
     }
 
     public function test_admin_can_delete_sell_product_group() {

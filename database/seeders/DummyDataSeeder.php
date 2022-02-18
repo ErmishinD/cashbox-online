@@ -205,11 +205,10 @@ class DummyDataSeeder extends Seeder
                         [
                             'name' => "Набор батончиков",
                             'photo' => 'https://images.ua.prom.st/3235065367_w640_h640_konfety-mars-snickers.jpg',
-                            'price' => 100,
                             'has_discount' => false,
                             'consists_of_sell_products' => [
-                                ['sell_product_id' => 4, 'quantity' => 1],  // snickers
-                                ['sell_product_id' => 5, 'quantity' => 1],  // twix
+                                ['sell_product_id' => 4, 'price' => 15],  // snickers
+                                ['sell_product_id' => 5, 'price' => 18],  // twix
                             ]
                         ],
                     ]
@@ -312,7 +311,7 @@ class DummyDataSeeder extends Seeder
                     foreach ($consists_of_sell_products as $sell_product_data) {
                         $sell_product_group->products()->attach(
                             $sell_product_data['sell_product_id'],
-                            ['quantity' => $sell_product_data['quantity']]
+                            ['price' => $sell_product_data['price']]
                         );
                     }
                 }
@@ -430,7 +429,7 @@ class DummyDataSeeder extends Seeder
                 for ($i=1; $i<=$products_amount; $i++) {
                     $sell_group->products()->attach(
                         $allowed_sell_products->random(),
-                        ['quantity' => random_int(100, 1000)]
+                        ['price' => random_int(10, 1000)]
                     );
                 }
             }

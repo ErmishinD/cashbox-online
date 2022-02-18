@@ -16,8 +16,7 @@ class CreateCashboxesTable extends Migration
         Schema::create('cashboxes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
-            $table->string('sellable_type')->nullable();
-            $table->unsignedBigInteger('sellable_id')->nullable();
+            $table->foreignId('sell_product_id')->nullable()->constrained('sell_products');
             $table->json('data')->nullable();
             $table->enum('transaction_type', ['_in', '_out'])->default('_in');
             $table->enum('payment_type', ['_cash', '_card'])->default('_cash');

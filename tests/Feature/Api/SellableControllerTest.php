@@ -165,14 +165,12 @@ class SellableControllerTest extends TestCase
                             'sellable_type' => get_class($sell_product_group1),
                             'company_id' => $company->id,
                             'name' => $sell_product_group1->name,
-                            'price' => strval(round($sell_product_group1->price, 2)),
                         ],
                         [
                             'id' => $sell_product3->id,
                             'sellable_type' => get_class($sell_product3),
                             'company_id' => $company->id,
                             'name' => $sell_product3->name,
-                            'price' => strval(round($sell_product3->price, 2)),
                         ],
                     ]
                 ]

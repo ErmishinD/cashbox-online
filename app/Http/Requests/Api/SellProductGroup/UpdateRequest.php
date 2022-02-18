@@ -26,8 +26,8 @@ class UpdateRequest extends FormRequest
         return [
             'company_id' => ['nullable'],
             'name' => ['nullable'],
-            'price' => ['nullable'],
             'has_discount' => ['nullable', 'boolean'],
+            'sell_products' => ['nullable', 'array'],
         ];
     }
 }

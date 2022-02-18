@@ -16,7 +16,7 @@ class SellProductProductGroup extends Migration
         Schema::create('sell_product_product_group', function (Blueprint $table) {
             $table->foreignId('sell_product_group_id')->constrained('sell_product_groups')->onDelete('cascade');
             $table->foreignId('sell_product_id')->constrained('sell_products')->onDelete('cascade');
-            $table->unsignedBigInteger('quantity');
+            $table->decimal('price');
         });
     }
 

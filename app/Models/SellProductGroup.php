@@ -22,17 +22,12 @@ class SellProductGroup extends Model
     use HasFactory, SoftDeletes, Filterable;
 
     protected $fillable = [
-        'company_id', 'name', 'price', 'has_discount', 'photo'
+        'company_id', 'name', 'has_discount', 'photo'
     ];
 
     public function products() {
         return $this->belongsToMany(SellProduct::class, 'sell_product_product_group',
             'sell_product_group_id', 'sell_product_id')
-            ->withPivot('quantity');
-    }
-
-    public function cashbox()
-    {
-        return $this->morphMany(Cashbox::class, 'sellable');
+            ->withPivot('price');
     }
 }

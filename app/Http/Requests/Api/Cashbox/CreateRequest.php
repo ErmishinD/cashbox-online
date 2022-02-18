@@ -25,8 +25,7 @@ class CreateRequest extends FormRequest
     {
         return [
             'shop_id' => ['required'],
-            'sellable_type' => ['nullable'],
-            'sellable_id' => ['nullable'],
+            'sell_product_id' => ['nullable'],
             'data' => ['nullable'],
             'transaction_type' => ['required'],
             'payment_type' => ['required'],
@@ -35,6 +34,8 @@ class CreateRequest extends FormRequest
             'operator_id' => ['nullable'],
             'collected_at' => ['nullable'],
             'collector_id' => ['nullable'],
+
+            'sell_products' => ['nullable', 'array'],
         ];
     }
 }
