@@ -37,11 +37,19 @@ class ProductTypeRepository extends BaseRepository
 
     public function getForSelect($company_id) {
         return $this->model->select('id', 'name', 'company_id')
+            ->with('base_measure_type')
+            ->with('main_measure_type')
             ->with(['measure_types' => function($query) {
                 $query->orderBy('quantity');
             }])
             ->where('company_id', $company_id)
-            ->get();
+            ->get()
+            ->each(function ($product_type) {
+                $product_type->measure_types->push($product_type->main_measure_type);
+                $product_type->base_measure_type->quantity = 1;
+                $product_type->base_measure_type->description = '';
+                $product_type->measure_types->push($product_type->base_measure_type);
+            });
     }
 
     public function getForShow($id) {
