@@ -51,7 +51,7 @@ class StorageRepository extends BaseRepository
     public function getForSelect($company_id) {
         $shops_with_storages = Shop::select('id', 'company_id', 'name')
             ->with(['storages' => function($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'name', 'shop_id');
             }])
             ->where('company_id', $company_id)
             ->get();
