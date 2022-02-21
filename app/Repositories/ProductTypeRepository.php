@@ -38,7 +38,7 @@ class ProductTypeRepository extends BaseRepository
     public function getForSelect($company_id) {
         return $this->model->select('id', 'name', 'company_id')
             ->with(['measure_types' => function($query) {
-                $query->orderedBy('quantity');
+                $query->orderBy('quantity');
             }])
             ->where('company_id', $company_id)
             ->get();
