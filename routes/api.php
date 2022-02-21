@@ -79,6 +79,7 @@ Route::apiResource('product_types', ProductTypeController::class);
  */
 Route::prefix('product_purchases')->group(function () {
     Route::post('get_for_dashboard', [ProductPurchaseController::class, 'get_for_dashboard']);
+    Route::post('mass_create', [ProductPurchaseController::class, 'mass_store']);
 });
 Route::apiResource('product_purchases', ProductPurchaseController::class);
 
@@ -105,6 +106,9 @@ Route::apiResource('sell_product_groups', SellProductGroupController::class);
 /*
  * Cashbox
  */
+Route::prefix('cashbox')->group(function () {
+    Route::post('mass_create', [CashboxController::class, 'mass_store']);
+});
 Route::apiResource('cashbox', CashboxController::class);
 
 /*

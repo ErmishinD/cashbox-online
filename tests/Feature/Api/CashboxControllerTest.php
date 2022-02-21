@@ -118,14 +118,12 @@ class CashboxControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
                 'data' => [
-                    [
-                        'shop_id' => $shop->id,
-                        'transaction_type' => '_out',
-                        'payment_type' => '_cash',
-                        'amount' => 100,
-                        'description' => 'some description',
-                        'operator_id' => $this->operator->id,
-                    ]
+                    'shop_id' => $shop->id,
+                    'transaction_type' => '_out',
+                    'payment_type' => '_cash',
+                    'amount' => 100,
+                    'description' => 'some description',
+                    'operator_id' => $this->operator->id,
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
@@ -155,14 +153,12 @@ class CashboxControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
                 'data' => [
-                    [
-                        'shop_id' => $shop->id,
-                        'transaction_type' => '_in',
-                        'sell_product_id' => $sell_product->id,
-                        'payment_type' => '_cash',
-                        'amount' => 200,
-                        'operator_id' => $this->operator->id,
-                    ]
+                    'shop_id' => $shop->id,
+                    'transaction_type' => '_in',
+                    'sell_product_id' => $sell_product->id,
+                    'payment_type' => '_cash',
+                    'amount' => 200,
+                    'operator_id' => $this->operator->id,
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
@@ -289,7 +285,7 @@ class CashboxControllerTest extends TestCase
         // product_type2: 2500 - 200
         // product_type3: 1700 - 100
         // product_type4: (1000 + 1000) - 1100
-        $response = $this->actingAs($this->operator)->postJson($this->base_route, [
+        $response = $this->actingAs($this->operator)->postJson($this->base_route.'mass_create', [
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
             'payment_type' => '_cash',

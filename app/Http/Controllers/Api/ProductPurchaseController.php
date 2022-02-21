@@ -52,6 +52,15 @@ class ProductPurchaseController extends Controller
         return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)]);
     }
 
+    public function mass_store(CreateRequest $request)
+    {
+        $data = $request->validated();
+        $product_purchases = $this->product_purchase->mass_create($data);
+        return response()->json(['success' => true, 'data' => DefaultResource::collection($product_purchases)]);
+    }
+
+
+
     /**
      * Display the specified resource.
      *

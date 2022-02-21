@@ -46,9 +46,18 @@ class CashboxController extends Controller
     public function store(CreateRequest $request)
     {
         $data = $request->validated();
-        $payments = $this->cashbox->create($data);
+        $payment = $this->cashbox->create($data);
+        return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
+    }
+
+    public function mass_store(CreateRequest $request)
+    {
+        $data = $request->validated();
+        $payments = $this->cashbox->mass_create($data);
         return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)]);
     }
+
+
 
     /**
      * Display the specified resource.

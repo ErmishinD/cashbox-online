@@ -24,8 +24,11 @@ class Cashbox extends Model
 {
     use HasFactory;
 
+    public const TRANSACTION_TYPES = ['in' => '_in', 'out' => '_out'];
+    public const PAYMENT_TYPES = ['card' => '_card', 'cash' => '_cash'];
+
     protected $fillable = [
-        'company_id', 'shop_id', 'sell_product_id', 'data', 'transaction_type', 'payment_type', 'amount',
+        'shop_id', 'sell_product_id', 'product_purchase_id', 'data', 'transaction_type', 'payment_type', 'amount',
         'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id',
     ];
 }

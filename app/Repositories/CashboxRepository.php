@@ -39,7 +39,7 @@ class CashboxRepository extends BaseRepository
         return $this->get_enum('payment_type');
     }
 
-    public function create(array $data)
+    public function mass_create(array $data)
     {
         if ($data['transaction_type'] == '_in' && !empty($data['sell_products'])) {
             $payments = collect();
