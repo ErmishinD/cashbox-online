@@ -17,7 +17,7 @@ class MeasureTypeFactory extends Factory
     {
         return [
             'base_measure_type_id' => BaseMeasureType::inRandomOrder()->get()->first()->id,
-            'name' => $this->faker->word,
+            'name' => $this->faker->unique()->word,
             'description' => $this->faker->sentence,
             'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
             'company_id' => Company::inRandomOrder()->get()->first()->id,

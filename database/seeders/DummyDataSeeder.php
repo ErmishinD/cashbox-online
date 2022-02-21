@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cashbox;
 use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
@@ -24,6 +25,8 @@ class DummyDataSeeder extends Seeder
      */
     public function run()
     {
+        $faker = \Faker\Factory::create();
+
         $data = [
             'companies' => [
                 [
@@ -319,155 +322,8 @@ class DummyDataSeeder extends Seeder
 
             $companies->push($company);
         }
-        $random_company = $companies->first();
 
-
-//        // создать три компании
-//        $company_names = ['#main_stretch', 'АТБ', 'Ашан'];
-//        $companies = collect();
-//        foreach ($company_names as $company_name) {
-//            $company = Company::factory()->create(['name' => $company_name]);
-//            $companies->push($company);
-//        }
-//
-//        // создать 7 магазнов, случайно распределенных по созданным компаниям
-//        //      при этом каждому магазину создать 1 склад
-//        $shops = Shop::factory()->count(7)
-//            ->has(Storage::factory()->count(1))
-//            ->create();
-//
-//        // всем компаниям создать еденицы измерения "кг" и "л"
-//        foreach ($companies as $company) {
-//            MeasureType::create([
-//                'base_measure_type_id' => 1,
-//                'name' => 'л',
-//                'description' => 'литры',
-//                'quantity' => 1000,
-//                'company_id' => $company->id,
-//                'is_common' => true,
-//            ]);
-//            MeasureType::create([
-//                'base_measure_type_id' => 2,
-//                'name' => 'кг',
-//                'description' => 'киллограммы',
-//                'quantity' => 1000,
-//                'company_id' => $company->id,
-//                'is_common' => true,
-//            ]);
-//        }
-//
-//        // одной компании создать единицы измерения "бутылка молока" и "пачка кофе"
-//        $random_company = $companies->random(1)->first();
-//        User::find(1)->update(['company_id' => $random_company->id]);
-//        MeasureType::create([
-//            'base_measure_type_id' => 1,
-//            'name' => 'Бутылка молока',
-//            'description' => 'Бутылка молока 1,5л',
-//            'quantity' => 15000,
-//            'company_id' => $random_company->id,
-//            'is_common' => false,
-//        ]);
-//        MeasureType::create([
-//            'base_measure_type_id' => 2,
-//            'name' => 'Пачка кофе',
-//            'description' => 'Пачка кофе 3кг',
-//            'quantity' => 3000,
-//            'company_id' => $random_company->id,
-//            'is_common' => false,
-//        ]);
-//        MeasureType::create([
-//            'base_measure_type_id' => 3,
-//            'name' => 'Пачка стаканчиков',
-//            'description' => 'Пачка стаканчиков (500 шт)',
-//            'quantity' => 500,
-//            'company_id' => $random_company->id,
-//            'is_common' => false,
-//        ]);
-//
-//
-//        // создать продукты
-//        $product_types = ProductType::factory()->count(50)->create();
-//
-//        // к каждому продукту добавить подходящие единицы измерения
-//        $all_measure_types = MeasureType::all();
-//        foreach ($product_types as $product_type) {
-//            $allowed_measure_types = $all_measure_types
-//                ->where('base_measure_type_id', $product_type->base_measure_type_id)
-//                ->where('company_id', $product_type->company_id)->pluck('id');
-//            $product_type->measure_types()->attach($allowed_measure_types);
-//        }
-
-        // создать продукты для продажи
-        $sell_products = SellProduct::factory()->count(10)->create();
-        foreach ($sell_products as $sell_product) {
-            $allowed_product_types = $product_types->where('company_id', $sell_product->company_id)->pluck('id');
-            if ($allowed_product_types->isNotEmpty()) {
-                $sell_product->product_types()->attach(
-                    $allowed_product_types->random(),
-                    ['quantity' => random_int(100, 1000)]
-                );
-            }
-        }
-
-        // добавить "составные" товары (для уже созданных товаров для продажи)
-        $random_sell_products = $sell_products->random(5);
-        foreach ($random_sell_products as $sell_product) {
-            $allowed_product_types = $product_types->where('company_id', $sell_product->company_id)->pluck('id');
-            if ($allowed_product_types->isNotEmpty()) {
-                $sell_product->product_types()->attach(
-                    $allowed_product_types->random(),
-                    ['quantity' => random_int(100, 1000)]
-                );
-            }
-        }
-        // создать группы товаров для продажи
-        $sell_groups = SellProductGroup::factory()->count(5)->create();
-        foreach ($sell_groups as $sell_group) {
-            $allowed_sell_products = $sell_products->where('company_id', $sell_group->company_id)->pluck('id');
-            if ($allowed_sell_products->isNotEmpty()) {
-                $products_amount = random_int(2, 5);
-                for ($i=1; $i<=$products_amount; $i++) {
-                    $sell_group->products()->attach(
-                        $allowed_sell_products->random(),
-                        ['price' => random_int(10, 1000)]
-                    );
-                }
-            }
-
-        }
-
-        // создание "закупок товаров"
-        $random_shops = $shops->where('company_id', $random_company->id);
-        foreach ($random_shops as $shop) {
-            $company_id = $shop->company_id;
-            foreach ($shop->storages as $storage) {
-                $allowed_product_types = $product_types->where('company_id', $company_id);
-                for ($product_count = 0; $product_count < random_int(3, 30); $product_count++) {
-                    if ($allowed_product_types->isNotEmpty()) {
-                        $product_type = $allowed_product_types->random();
-                        $quantity = random_int(1, 1000);
-                        $expiration_date = null;
-
-                        if ($product_type->type == '_perishable') {
-                            $from = strtotime('last monday');
-                            $to = strtotime('next month');
-                            $expiration_date = date('Y-m-d H:i', mt_rand($from, $to));
-                        }
-                        for ($i=0; $i < random_int(1, 5); $i++) {
-                            ProductPurchase::create([
-                                'storage_id' => $storage->id,
-                                'product_type_id' => $product_type->id,
-                                'base_measure_type_id' => $product_type->base_measure_type_id,
-                                'quantity' => $quantity,
-                                'current_quantity' => random_int(0, $quantity),
-                                'cost' => random_int(100, 10000),
-                                'expiration_date' => $expiration_date,
-                            ]);
-                        }
-                    }
-                }
-            }
-        }
+        User::find(1)->update(['company_id' => $companies->first()->id]);
 
         // create roles
         $role_repository = app(RoleRepository::class);
@@ -489,6 +345,117 @@ class DummyDataSeeder extends Seeder
             foreach ($company->shops as $item) {
                 $salesman = User::factory()->create(['company_id' => $company->id]);
                 $salesman->assignRole('salesman.' . $company->id);
+            }
+        }
+
+        // create measure types
+        foreach ($companies as $company) {
+            MeasureType::factory()->count(10)->create(['company_id' => $company->id]);
+        }
+
+
+        // создать продукты
+        $product_types = ProductType::factory()->count(1000)->create();
+
+        // к каждому продукту добавить подходящие единицы измерения
+        $all_measure_types = MeasureType::all();
+        foreach ($product_types as $product_type) {
+            $allowed_measure_types = $all_measure_types
+                ->where('base_measure_type_id', $product_type->base_measure_type_id)
+                ->where('company_id', $product_type->company_id)->pluck('id');
+            $product_type->measure_types()->attach($allowed_measure_types);
+        }
+
+        // создать продукты для продажи
+        $sell_products = SellProduct::factory()->count(300)->create();
+        foreach ($sell_products as $sell_product) {
+            $allowed_product_types = $product_types->where('company_id', $sell_product->company_id)->pluck('id');
+            if ($allowed_product_types->isNotEmpty()) {
+                for ($i = 0; $i <= random_int(1, 5); $i++) {
+                    $sell_product->product_types()->attach(
+                        $allowed_product_types->random(),
+                        ['quantity' => random_int(100, 1000)]
+                    );
+                }
+            }
+        }
+
+        // создать группы товаров для продажи
+        $sell_groups = SellProductGroup::factory()->count(100)->create();
+        foreach ($sell_groups as $sell_group) {
+            $allowed_sell_products = $sell_products->where('company_id', $sell_group->company_id)->pluck('id');
+            if ($allowed_sell_products->isNotEmpty()) {
+                $products_amount = random_int(2, 5);
+                for ($i=1; $i<=$products_amount; $i++) {
+                    $sell_group->products()->attach(
+                        $allowed_sell_products->random(),
+                        ['price' => random_int(10, 1000)]
+                    );
+                }
+            }
+
+        }
+
+        // создание "закупок товаров"
+        foreach ($shops as $shop) {
+            $company_id = $shop->company_id;
+            $storage_ids = $shop->storages->pluck('id');
+            $director = User::role('director.' . $company_id)->first();
+            foreach ($shop->storages as $storage) {
+                $allowed_product_types = $product_types->where('company_id', $company_id);
+                for ($product_count = 0; $product_count < random_int(20, 100); $product_count++) {
+                    if ($allowed_product_types->isNotEmpty()) {
+                        $product_type = $allowed_product_types->random();
+                        $quantity = random_int(1, 1000);
+                        $expiration_date = null;
+
+                        if ($product_type->type == '_perishable') {
+                            $from = strtotime('last monday');
+                            $to = strtotime('next year');
+                            $expiration_date = date('Y-m-d H:i', mt_rand($from, $to));
+                        }
+                        for ($i=0; $i < random_int(1, 5); $i++) {
+                            $product_purchase = ProductPurchase::create([
+                                'storage_id' => $storage->id,
+                                'product_type_id' => $product_type->id,
+                                'base_measure_type_id' => $product_type->base_measure_type_id,
+                                'quantity' => $quantity,
+                                'current_quantity' => random_int(0, $quantity),
+                                'cost' => random_int(100, 10000),
+                                'expiration_date' => $expiration_date,
+                            ]);
+
+                            // create record in cashbox
+                            Cashbox::factory()->create([
+                                'shop_id' => $shop->id,
+                                'product_purchase_id' => $product_purchase->id,
+                                'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
+                                'payment_type' => $faker->randomElement(Cashbox::PAYMENT_TYPES),
+                                'amount' => $product_purchase->cost,
+                                'operator_id' => $director->id,
+                                'collected_at' => null,
+                                'collector_id' => null,
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            // создать продажи
+            $operators = User::role('salesman.' . $company_id)->get();
+
+            $allowed_sell_products = $sell_products->where('company_id', $company_id);
+            $sell_products_were_sold = $allowed_sell_products->random(ceil($allowed_sell_products->count() / 3));
+            foreach ($sell_products_were_sold as $sell_product) {
+                Cashbox::factory()->create([
+                    'shop_id' => $shop->id,
+                    'sell_product_id' => $sell_product->id,
+                    'transaction_type' => Cashbox::TRANSACTION_TYPES['in'],
+                    'payment_type' => $faker->randomElement(Cashbox::PAYMENT_TYPES),
+                    'operator_id' => $operators->random()->id,
+                    'collected_at' => null,
+                    'collector_id' => null,
+                ]);
             }
         }
     }
