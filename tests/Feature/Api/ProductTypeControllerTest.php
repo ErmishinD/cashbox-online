@@ -236,4 +236,44 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type2->id
         ]);
     }
+
+    public function test_admin_can_get_for_purchase()
+    {
+        $company = Company::factory()->create();
+
+        $base_measure_type = $this->base_measure_type_weight;
+
+        $main_measure_type = MeasureType::factory()->create(['name' => 'main measure type', 'base_measure_type_id' => $base_measure_type->id]);
+        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id]);
+        $product_type = ProductType::factory()->create([
+            'company_id' => $company->id,
+            'base_measure_type_id' => $base_measure_type->id,
+            'main_measure_type_id' => $main_measure_type->id
+        ]);
+
+        DB::table('product_type_measures')->insert([
+            'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type->id
+        ]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_for_purchase', [
+            'company_id' => $company->id
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    [
+                        'id' => $product_type->id,
+                        'name' => $product_type->name,
+                        'measure_types' => [
+                            ['id' => $main_measure_type->id, 'name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
+                            ['id' => $measure_type->id, 'name' => $measure_type->name, 'quantity' => $measure_type->quantity],
+                            ['id' => $base_measure_type->id, 'name' => $base_measure_type->name, 'quantity' => 1],
+                        ]
+                    ]
+                ],
+            ]);
+    }
 }

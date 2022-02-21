@@ -36,7 +36,7 @@ class ProductTypeRepository extends BaseRepository
     }
 
     public function getForSelect($company_id) {
-        return $this->model->select('id', 'name', 'company_id')
+        $product_types = $this->model->select('id', 'name', 'company_id', 'base_measure_type_id', 'main_measure_type_id')
             ->with('base_measure_type')
             ->with('main_measure_type')
             ->with(['measure_types' => function($query) {
@@ -45,15 +45,13 @@ class ProductTypeRepository extends BaseRepository
             ->where('company_id', $company_id)
             ->get()
             ->each(function ($product_type) {
-                $product_type->measure_types->push($product_type->main_measure_type);
+                $product_type->measure_types->prepend($product_type->main_measure_type);
 
-                $base_measure_type = new \stdClass();
-                $base_measure_type->name = $product_type->base_measure_type->name;
-                $base_measure_type->quantity = 1;
-                $base_measure_type->description = '';
-
-                $product_type->measure_types->push($base_measure_type);
+                $product_type->base_measure_type->quantity = 1;
+                $product_type->base_measure_type->description = '';
+                $product_type->measure_types->push($product_type->base_measure_type);
             });
+        return $product_types;
     }
 
     public function getForShow($id) {
