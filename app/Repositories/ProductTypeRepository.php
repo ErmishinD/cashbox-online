@@ -46,9 +46,13 @@ class ProductTypeRepository extends BaseRepository
             ->get()
             ->each(function ($product_type) {
                 $product_type->measure_types->push($product_type->main_measure_type);
-                $product_type->base_measure_type->quantity = 1;
-                $product_type->base_measure_type->description = '';
-                $product_type->measure_types->push($product_type->base_measure_type);
+
+                $base_measure_type = new \stdClass();
+                $base_measure_type->name = $product_type->base_measure_type->name;
+                $base_measure_type->quantity = 1;
+                $base_measure_type->description = '';
+
+                $product_type->measure_types->push($base_measure_type);
             });
     }
 
