@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Filters\ProductTypeFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\GetByCompanyRequest;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\ProductType\CreateRequest;
 use App\Http\Requests\Api\ProductType\RemoveMeasureTypesRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
 use App\Http\Resources\Api\ProductType\DefaultResource;
 use App\Http\Resources\Api\ProductType\ShowResource;
+use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
 use App\Models\ProductType;
 use App\Repositories\ProductTypeRepository;
 use Illuminate\Http\Request;
@@ -117,5 +119,13 @@ class ProductTypeController extends Controller
         $data = $request->validated();
         $this->product_type->remove_measure_types($data);
         return response()->json(['success' => true]);
+    }
+
+    public function getForPurchase(GetByCompanyRequest $request)
+    {
+        $data = $request->validated();
+        $company_id = $data['company_id'];
+        $product_types = $this->product_type->getForSelect($company_id);
+        return response()->json(['success' => true, 'data' => WithMeasureTypesResource::collection($product_types)]);
     }
 }

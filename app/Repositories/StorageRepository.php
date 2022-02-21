@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\ProductPurchase;
+use App\Models\Shop;
 use App\Models\Storage;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -45,5 +46,15 @@ class StorageRepository extends BaseRepository
             return false;
         }
         return parent::deleteById($id);
+    }
+
+    public function getForSelect($company_id) {
+        $shops_with_storages = Shop::select('id', 'company_id', 'name')
+            ->with(['storages' => function($query) {
+                $query->select('id', 'name');
+            }])
+            ->where('company_id', $company_id)
+            ->get();
+        return $shops_with_storages;
     }
 }

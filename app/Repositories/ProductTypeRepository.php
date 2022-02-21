@@ -35,8 +35,13 @@ class ProductTypeRepository extends BaseRepository
         return $enums;
     }
 
-    public function getForSelect() {
-        return $this->model->select('id', 'name')->get();
+    public function getForSelect($company_id) {
+        return $this->model->select('id', 'name', 'company_id')
+            ->with(['measure_types' => function($query) {
+                $query->orderedBy('quantity');
+            }])
+            ->where('company_id', $company_id)
+            ->get();
     }
 
     public function getForShow($id) {

@@ -48,6 +48,9 @@ Route::apiResource('shops', ShopController::class);
 /*
  * Storage
  */
+Route::prefix('storages')->group(function() {
+    Route::post('get_for_purchase', [StorageController::class, 'getByCompany']);
+});
 Route::apiResource('storages', StorageController::class);
 
 /*
@@ -71,6 +74,7 @@ Route::apiResource('users', UserController::class);
 Route::prefix('product_types')->group(function() {
     Route::post('get_paginated', [ProductTypeController::class, 'get_paginated']);
     Route::post('remove_measure_types', [ProductTypeController::class, 'remove_measure_types']);
+    Route::post('get_for_purchase', [ProductTypeController::class, 'getForPurchase']);
 });
 Route::apiResource('product_types', ProductTypeController::class);
 

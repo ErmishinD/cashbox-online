@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\GetByCompanyRequest;
 use App\Http\Requests\Api\Shop\CreateRequest;
-use App\Http\Requests\Api\Shop\GetByCompanyRequest;
 use App\Http\Requests\Api\Shop\UpdateRequest;
 use App\Http\Resources\Api\Shop\DefaultResource;
 use App\Http\Resources\Api\Shop\ForSelectResource;
