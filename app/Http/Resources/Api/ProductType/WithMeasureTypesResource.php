@@ -20,6 +20,7 @@ class WithMeasureTypesResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'photo' => $this->photo ? asset($this->photo) : asset('images/default_card_img.png'),
             'measure_types' => ByProductTypeResource::collection($this->measure_types)
         ];
     }
