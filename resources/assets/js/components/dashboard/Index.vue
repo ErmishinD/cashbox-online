@@ -177,16 +177,19 @@
     			  perPage: 10
     			},
     			all_data_is_loaded: false,
+    			unmounted: false,
     		}
     	},
         created () {
             document.title = this.$t('Главная');
-
         },
         mounted(){
-        	
+        	 document.addEventListener('scroll', this.scrolltoGetMoreData)
   		     this.render_list_items(true)
-  		     this.scrolltoGetMoreData()
+        },
+        unmounted(){
+
+        	this.unmounted = true
         },
         computed: {
 
@@ -202,15 +205,13 @@
         	scrolltoGetMoreData(){	
 
         		window.onscroll = () => {
-
-	        		if(!this.all_data_is_loaded){
-	        			let bottomOfWindow = Math.ceil(document.documentElement.scrollTop) + window.innerHeight === document.body.scrollHeight && !this.in_progress_loading_data
-	        			console.log(this.in_progress_loading_data)
-	        			if (bottomOfWindow) {
-	        			  this.render_list_items(false)
-	        			}
-	        		}
-        		  
+        			if(!this.all_data_is_loaded && !this.unmounted) {
+        				let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= (document.body.scrollHeight - 100) && !this.in_progress_loading_data
+        				console.log(this.in_progress_loading_data)
+        				if (bottomOfWindow) {
+        				  this.render_list_items(false)
+        				}
+        			}
         		};
         	},
         	search(e){
@@ -218,6 +219,7 @@
         		this.render_list_items(true)
         	},
         	render_list_items(is_not_paginate){
+        		console.log(this.cards_for_sailing.find)
         		this.in_progress_loading_data = true
         		var loader = this.$loading.show({
 			        canCancel: false,
@@ -231,6 +233,13 @@
 	        			
 	        			Promise.resolve(this.cards = data.pagination.data).then(result => {
 	        				this.in_progress_loading_data = false
+	        				this.cards.forEach(el => {
+	        					let card =this.cards_for_sailing.find(item => item.id == el.id)
+	        					if(card){
+	        						el.counter = card.counter
+	        					}
+	        					
+	        				})
 	        			})
 	        			this.cards.forEach(el => {
 	        					el.counter = 1;
@@ -388,7 +397,7 @@
         			'sell_products' : data_for_sailing
         		}
 
-        		this.axios.post('/api/cashbox', sale_data).then((response) => {
+        		this.axios.post('/api/cashbox/mass_create', sale_data).then((response) => {
         			this.$notify({
         				text: this.$t('Успешно!'),
         				type: 'success',

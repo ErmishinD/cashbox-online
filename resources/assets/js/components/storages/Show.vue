@@ -9,6 +9,7 @@
 				<div class="card_img"  :style="{'background-image': `url(${product.product_type.photo})`}">
 					<div class="card_img_href" :id="'card_img_href_'+product.product_type.id">
 						<router-link :to="{name: 'products_type_show', params: {id: product.product_type.id}}"><i class="fas fa-eye"></i></router-link>
+						<router-link :to="{name: 'purchases_index', params: {product_type_id: product.product_type.id, storage_id: this.id}}"><i class="fas fa-cart-plus"></i></router-link>
 					</div>
 				</div>
 
@@ -61,12 +62,12 @@ export default{
 
     },
     methods: {
-    	settingShow(id){
-    		document.querySelector(`#card_img_href_${id}`).style.opacity = 1
-    	},
-    	settingHide(id){
-    		document.querySelector(`#card_img_href_${id}`).style.opacity = 0
-    	},
+    	// settingShow(id){
+    	// 	document.querySelector(`#card_img_href_${id}`).style.opacity = 1
+    	// },
+    	// settingHide(id){
+    	// 	document.querySelector(`#card_img_href_${id}`).style.opacity = 0
+    	// },
     }
 }
 </script>

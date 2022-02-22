@@ -42,6 +42,8 @@ import ProductsForSaleCreate from './components/products_for_sale/Create'
 import ProductsForSaleEdit from './components/products_for_sale/Edit'
 import ProductsForSaleShow from './components/products_for_sale/Show'
 
+/* import purchases */
+import PurchasesIndex from './components/purchases/Index'
 
 /* import reports */
 	/* import cashbox */
@@ -169,6 +171,12 @@ const router = createRouter({
 			path: '/products_for_sale/:id',
 			name: 'products_for_sale_show',
 			component: ProductsForSaleShow,
+			props: true
+		},
+		{
+			path: '/purchases',
+			name: 'purchases_index',
+			component: PurchasesIndex,
 			props: true
 		},
 		{

@@ -160,6 +160,10 @@ input {
   box-sizing: border-box;
 }
 
+select {
+  outline: none;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -552,10 +556,35 @@ input {
   flex-direction: column;
 }
 
+.basket_card_rows {
+  padding-bottom: 10px;
+}
+
+.basket_card_row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+.basket_card_row .basket_card__photo_name {
+  flex: 1;
+  justify-content: center;
+}
+.basket_card_row .basket_card__actions {
+  flex: 0.5;
+}
+.basket_card_row .basket_card__price {
+  width: 50%;
+  justify-content: center;
+}
+.basket_card_row .basket_card__price input {
+  width: 45%;
+}
+
 .basket_card_content {
   display: flex;
 }
-.basket_card_content .basket_card__photo_name {
+
+.basket_card__photo_name {
   width: 40%;
   padding-right: 10px;
   display: flex;
@@ -563,34 +592,52 @@ input {
   font-size: 20px;
   text-transform: uppercase;
 }
-.basket_card_content .basket_card__photo_name .basket_card__photo {
+.basket_card__photo_name .basket_card__photo {
   height: 60px;
   width: 80px;
   -o-object-fit: cover;
   object-fit: cover;
 }
-.basket_card_content .basket_card__photo_name .basket_card__name {
+.basket_card__photo_name .basket_card__name {
   word-break: break-all;
   margin-left: 5px;
 }
-.basket_card_content .card_counter {
+
+.card_counter {
   width: 30%;
   padding-bottom: 0;
 }
-.basket_card_content .basket_card__price {
+
+.basket_card__price {
   display: flex;
   align-items: center;
   justify-content: end;
   width: 30%;
 }
-.basket_card_content .basket_card__price input {
+.basket_card__price input {
   width: 35%;
 }
-.basket_card_content .basket_card__actions {
+
+.basket_card__amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+.basket_card__amount input {
+  width: 35%;
+}
+.basket_card__amount select {
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.basket_card__actions {
   display: flex;
   justify-content: space-evenly;
-  width: 30%;
+  margin-inline: 10px;
   align-items: center;
+  flex: 1;
 }
 
 .basket_card_ingridients .card_dropdown_button {
@@ -642,6 +689,23 @@ input {
 
 .getting-started-example-styled__actions button {
   margin-left: 5px;
+}
+
+.def_select {
+  font-size: 18px;
+  outline: none;
+}
+
+.center-flex {
+  display: flex;
+  margin-inline: auto;
+}
+
+.select_storage {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  margin-top: 15px;
 }
 
 @media (max-width: 992px){
