@@ -36,7 +36,7 @@ class ProductTypeRepository extends BaseRepository
     }
 
     public function getForSelect($company_id) {
-        $product_types = $this->model->select('id', 'name', 'company_id', 'base_measure_type_id', 'main_measure_type_id', 'photo')
+        $product_types = $this->model->select('id', 'name', 'company_id', 'base_measure_type_id', 'main_measure_type_id', 'photo', 'type')
             ->with('base_measure_type')
             ->with('main_measure_type')
             ->with(['measure_types' => function($query) {
