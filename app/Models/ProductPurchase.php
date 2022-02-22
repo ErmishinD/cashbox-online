@@ -21,7 +21,7 @@ class ProductPurchase extends Model
     use HasFactory;
 
     protected $fillable = [
-        'storage_id', 'product_type_id', 'base_measure_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',
+        'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',
     ];
 
     public function product_type()
@@ -29,8 +29,4 @@ class ProductPurchase extends Model
         return $this->belongsTo(ProductType::class);
     }
 
-    public function base_measure_type()
-    {
-        return $this->belongsTo(BaseMeasureType::class);
-    }
 }

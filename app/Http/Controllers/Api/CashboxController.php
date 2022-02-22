@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Cashbox\CreateRequest;
+use App\Http\Requests\Api\Cashbox\MassCreateRequest;
 use App\Http\Requests\Api\Cashbox\UpdateRequest;
 use App\Http\Resources\Api\Cashbox\DefaultResource;
 use App\Repositories\CashboxRepository;
@@ -50,7 +51,7 @@ class CashboxController extends Controller
         return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
     }
 
-    public function mass_store(CreateRequest $request)
+    public function mass_store(MassCreateRequest $request)
     {
         $data = $request->validated();
         $payments = $this->cashbox->mass_create($data);

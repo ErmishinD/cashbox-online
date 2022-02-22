@@ -147,7 +147,7 @@ class StorageControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase = ProductPurchase::factory()->create([
-            'storage_id' => $storage->id, 'base_measure_type_id' => $measure_type->base_measure_type_id, 'product_type_id' => $product_type->id
+            'storage_id' => $storage->id, 'product_type_id' => $product_type->id
             ]);
 
         $current_quantity = $product_purchase->current_quantity / $main_measure_type->quantity;

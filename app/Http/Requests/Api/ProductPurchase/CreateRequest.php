@@ -26,12 +26,10 @@ class CreateRequest extends FormRequest
         return [
             'storage_id' => ['required'],
             'product_type_id' => ['required'],
-            'base_measure_type_id' => ['required'],
             'quantity' => ['required'],
             'current_quantity' => ['required'],
             'cost' => ['required'],
             'expiration_date' => ['nullable'],
-            'product_types' => ['nullable', 'array']
         ];
     }
 

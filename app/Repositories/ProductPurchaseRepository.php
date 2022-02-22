@@ -27,7 +27,7 @@ class ProductPurchaseRepository extends BaseRepository
     public function getForDashboard(int $shop_id)
     {
         $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $shop_id)->get()->pluck('id');
-        $product_purchases = $this->model->with(['product_type.main_measure_type', 'base_measure_type'])
+        $product_purchases = $this->model->with(['product_type.main_measure_type'])
             ->whereIn('storage_id', $storage_ids)->where('current_quantity', '>', 0)
             ->get()->groupBy('product_type.id');
 
@@ -49,24 +49,24 @@ class ProductPurchaseRepository extends BaseRepository
         $shop_id = $storage->shop_id;
 
         $product_purchases = collect();
+        $product_purchases_transactions = collect();
         $parent_id = null;
 
         foreach ($data['product_types'] as $product_type) {
             $product_purchase_data = [
                 'storage_id' => $data['storage_id'],
-                'product_type_id' => $product_type['product_type_id'],
-                'base_measure_type_id' => $product_type['base_measure_type_id'],
+                'product_type_id' => $product_type['id'],
                 'quantity' => $product_type['quantity'],
                 'current_quantity' => $product_type['quantity'],
                 'cost' => $product_type['cost'],
-                'expiration_date' => $product_type['expiration_date']
+                'expiration_date' => $product_type['expiration_date'] ?? null
             ];
             $product_purchase = $this->model->create($product_purchase_data);
             $product_purchases->push($product_purchase);
 
             // create records in `cashbox`
-            if ($product_purchases->isNotEmpty()) {
-                $parent_id = $product_purchases->first()->id;
+            if ($product_purchases_transactions->isNotEmpty()) {
+                $parent_id = $product_purchases_transactions->first()->id;
             }
             $cashbox_data = [
                 'shop_id' => $shop_id,
@@ -74,11 +74,12 @@ class ProductPurchaseRepository extends BaseRepository
                 'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
                 'payment_type' => $data['payment_type'],
                 'amount' => $product_type['cost'],
-                'description' => $product_type['description'],
+                'description' => $product_type['description'] ?? null,
                 'operator_id' => Auth::user()->id,
                 'parent_id' => $parent_id,
             ];
-            Cashbox::create($cashbox_data);
+            $transaction = Cashbox::create($cashbox_data);
+            $product_purchases_transactions->push($transaction);
         }
 
         return $product_purchases;

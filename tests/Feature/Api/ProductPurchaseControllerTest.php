@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\BaseMeasureType;
+use App\Models\Cashbox;
 use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
@@ -103,11 +104,9 @@ class ProductPurchaseControllerTest extends TestCase
     public function test_admin_can_create_product_purchase() {
         $storage = Storage::inRandomOrder()->first();
         $product_type = ProductType::inRandomOrder()->first();
-        $base_measure_type = BaseMeasureType::inRandomOrder()->first();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
-            'base_measure_type_id' => $base_measure_type->id,
             'quantity' => 100,
             'cost' => 1000,
         ]);
@@ -118,7 +117,6 @@ class ProductPurchaseControllerTest extends TestCase
                 'data' => [
                     'storage_id' => $storage->id,
                     'product_type_id' => $product_type->id,
-                    'base_measure_type_id' => $base_measure_type->id,
                     'quantity' => 100,
                     'current_quantity' => 100,
                     'cost' => 1000,
@@ -127,7 +125,6 @@ class ProductPurchaseControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, [
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
-            'base_measure_type_id' => $base_measure_type->id,
             'quantity' => 100,
             'current_quantity' => 100,
             'cost' => 1000,
@@ -189,7 +186,7 @@ class ProductPurchaseControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase1 = ProductPurchase::factory()->create([
-            'storage_id' => $storage1->id, 'base_measure_type_id' => $main_measure_type->base_measure_type_id, 'product_type_id' => $product_type1->id
+            'storage_id' => $storage1->id, 'product_type_id' => $product_type1->id
         ]);
 
         $current_quantity1 = $product_purchase1->current_quantity / $main_measure_type->quantity;
@@ -204,7 +201,7 @@ class ProductPurchaseControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase2 = ProductPurchase::factory()->create([
-            'storage_id' => $storage2->id, 'base_measure_type_id' => $main_measure_type->base_measure_type_id, 'product_type_id' => $product_type2->id
+            'storage_id' => $storage2->id, 'product_type_id' => $product_type2->id
         ]);
 
         $current_quantity2 = $product_purchase2->current_quantity / $main_measure_type->quantity;
@@ -232,5 +229,93 @@ class ProductPurchaseControllerTest extends TestCase
                     ],
                 ]
             ]);
+    }
+
+    public function test_admin_can_mass_create_product_purchase()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+
+        $product_type1 = ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['perishable']]);
+        $product_type2 = ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['imperishable']]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'mass_create', [
+            'storage_id' => $storage->id,
+            'payment_type' => Cashbox::PAYMENT_TYPES['cash'],
+            'product_types' => [
+                [
+                    'id' => $product_type1->id,
+                    'quantity' => 100,
+                    'cost' => 50,
+                    'expiration_date' => '2022-02-02',
+                ],
+                [
+                    'id' => $product_type2->id,
+                    'quantity' => 200,
+                    'cost' => 100,
+                ],
+
+            ]
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    [
+                        'product_type_id' => $product_type1->id,
+                        'storage_id' => $storage->id,
+                        'quantity' => 100,
+                        'current_quantity' => 100,
+                        'cost' => 50,
+                        'expiration_date' => '2022-02-02'
+                    ],
+                    [
+                        'product_type_id' => $product_type2->id,
+                        'storage_id' => $storage->id,
+                        'quantity' => 200,
+                        'current_quantity' => 200,
+                        'cost' => 100,
+                        'expiration_date' => null
+                    ],
+
+                ]
+            ]);
+
+        $this->assertDatabaseHas($this->table, [
+            'product_type_id' => $product_type1->id,
+            'storage_id' => $storage->id,
+            'quantity' => 100,
+            'current_quantity' => 100,
+            'cost' => 50,
+            'expiration_date' => '2022-02-02'
+        ]);
+        $this->assertDatabaseHas($this->table, [
+            'product_type_id' => $product_type2->id,
+            'storage_id' => $storage->id,
+            'quantity' => 200,
+            'current_quantity' => 200,
+            'cost' => 100,
+            'expiration_date' => null
+        ]);
+
+        $this->assertDatabaseHas('cashboxes', [
+            'shop_id' => $shop->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
+            'payment_type' => Cashbox::PAYMENT_TYPES['cash'],
+            'amount' => 50,
+            'operator_id' => $this->admin->id
+        ]);
+        $this->assertDatabaseHas('cashboxes', [
+            'shop_id' => $shop->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
+            'payment_type' => Cashbox::PAYMENT_TYPES['cash'],
+            'amount' => 100,
+            'operator_id' => $this->admin->id
+        ]);
+
+
     }
 }

@@ -216,30 +216,25 @@ class CashboxControllerTest extends TestCase
         // create product types with purchases
         $product_type1 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type1->id, 'base_measure_type_id' => $product_type1->base_measure_type_id,
-            'quantity' => 1000, 'current_quantity' => 1000
+            'product_type_id' => $product_type1->id, 'quantity' => 1000, 'current_quantity' => 1000
         ]);
 
         $product_type2 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type2->id, 'base_measure_type_id' => $product_type2->base_measure_type_id,
-            'quantity' => 2500, 'current_quantity' => 2500
+            'product_type_id' => $product_type2->id, 'quantity' => 2500, 'current_quantity' => 2500
         ]);
 
         $product_type3 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type3->id, 'base_measure_type_id' => $product_type3->base_measure_type_id,
-            'quantity' => 1700, 'current_quantity' => 1700
+            'product_type_id' => $product_type3->id, 'quantity' => 1700, 'current_quantity' => 1700
         ]);
 
         $product_type4 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type4->id, 'base_measure_type_id' => $product_type4->base_measure_type_id,
-            'quantity' => 1000, 'current_quantity' => 1000
+            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000
         ]);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type4->id, 'base_measure_type_id' => $product_type4->base_measure_type_id,
-            'quantity' => 1000, 'current_quantity' => 1000
+            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000
         ]);
 
 

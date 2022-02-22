@@ -23,6 +23,8 @@ class ProductType extends Model
 {
     use HasFactory, SoftDeletes, Filterable;
 
+    public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];
+
     protected $fillable = [
         'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'main_measure_type_id', 'barcode',
     ];

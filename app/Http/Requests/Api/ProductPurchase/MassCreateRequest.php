@@ -25,6 +25,7 @@ class MassCreateRequest extends FormRequest
     {
         return [
             'storage_id' => ['required'],
+            'payment_type' => ['required'],
             'product_types' => ['required', 'array']
         ];
     }
