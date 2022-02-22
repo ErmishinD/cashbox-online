@@ -57,7 +57,7 @@ class ProductPurchaseRepository extends BaseRepository
                 'product_type_id' => $product_type['product_type_id'],
                 'base_measure_type_id' => $product_type['base_measure_type_id'],
                 'quantity' => $product_type['quantity'],
-                'current_quantity' => $product_type['current_quantity'],
+                'current_quantity' => $product_type['quantity'],
                 'cost' => $product_type['cost'],
                 'expiration_date' => $product_type['expiration_date']
             ];
