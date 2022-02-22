@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Filters\ProductTypeFilter;
 use App\Models\ProductType;
 use App\Services\EnumDbCol;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -102,6 +103,15 @@ class ProductTypeRepository extends BaseRepository
 
     public function get_paginated($paginate_data, $filters)
     {
-        return $this->model->filter($filters)->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+        $current_authenticated_user = Auth::user();
+        $company_id = !empty($current_authenticated_user) ? $current_authenticated_user->company_id : null;
+
+        $result = $this->model
+            ->when($company_id, function ($query) use ($company_id) {
+                $query->where('company_id',$company_id);
+            })
+            ->filter($filters)
+            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+        return $result;
     }
 }

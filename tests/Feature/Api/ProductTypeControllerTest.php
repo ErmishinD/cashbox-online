@@ -276,4 +276,85 @@ class ProductTypeControllerTest extends TestCase
                 ],
             ]);
     }
+
+    // filter / sort tests
+
+    public function test_can_filter_by_name()
+    {
+        $company = Company::factory()->create();
+        ProductType::factory()->create(['company_id' => $company->id, 'name' => 'my product']);
+        ProductType::factory()->create(['company_id' => $company->id, 'name' => 'my product 2']);
+        ProductType::factory()->create(['company_id' => $company->id, 'name' => 'something']);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['name' => 'my']
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(2, 'pagination.data');
+    }
+
+    public function test_can_filter_by_type()
+    {
+        $company = Company::factory()->create();
+        ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['perishable']]);
+        ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['perishable']]);
+        ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['imperishable']]);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['type' => ProductType::TYPES['imperishable']]
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(1, 'pagination.data');
+    }
+
+    public function test_can_filter_by_base_measure_type_id()
+    {
+        $company = Company::factory()->create();
+        ProductType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_weight->id]);
+        ProductType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_volume->id]);
+        ProductType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_quantity->id]);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['base_measure_type_id' => $this->base_measure_type_quantity->id]
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(1, 'pagination.data');
+    }
+
+    public function test_can_sort_by_name()
+    {
+        $company = Company::factory()->create();
+        $product_type1 = ProductType::factory()->create(['company_id' => $company->id, 'name' => 'Banana']);
+        $product_type2 = ProductType::factory()->create(['company_id' => $company->id, 'name' => 'Apple']);
+        $product_type3 = ProductType::factory()->create(['company_id' => $company->id, 'name' => 'Coconut']);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'sort' => [['field' => 'name', 'type' => 'asc']]
+        ]);
+
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    ['id' => $product_type2->id],
+                    ['id' => $product_type1->id],
+                    ['id' => $product_type3->id],
+                ]
+            ]
+        ]);
+    }
 }
