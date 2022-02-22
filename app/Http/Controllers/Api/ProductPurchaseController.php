@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\ProductPurchaseFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\ProductPurchase\CreateRequest;
 use App\Http\Requests\Api\ProductPurchase\DashboardRequest;
 use App\Http\Requests\Api\ProductPurchase\MassCreateRequest;
@@ -22,7 +24,7 @@ class ProductPurchaseController extends Controller
     {
         $this->product_purchase = app(ProductPurchaseRepository::class);
         $this->middleware(['auth']);
-        $this->middleware(['can:ProductPurchase_access'])->only(['index']);
+        $this->middleware(['can:ProductPurchase_access'])->only(['index', 'get_paginated']);
         $this->middleware(['can:ProductPurchase_create'])->only(['store']);
         $this->middleware(['can:ProductPurchase_show'])->only(['show']);
         $this->middleware(['can:ProductPurchase_edit'])->only(['update']);
@@ -38,6 +40,23 @@ class ProductPurchaseController extends Controller
     {
         $product_purchases = $this->product_purchase->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($product_purchases)]);
+    }
+
+    public function get_paginated(PaginateRequest $request, ProductPurchaseFilter $filters)
+    {
+        $paginate_data = $request->validated();
+        $product_purchases = $this->product_purchase->get_paginated($paginate_data, $filters);
+
+        return response()->json([
+            'success' => true,
+            'pagination' => [
+                'data' => DefaultResource::collection($product_purchases),
+                'current_page' => $product_purchases->currentPage(),
+                'last_page' => $product_purchases->lastPage(),
+                'per_page' => $product_purchases->perPage(),
+                'total' => $product_purchases->total(),
+            ]
+        ]);
     }
 
     /**

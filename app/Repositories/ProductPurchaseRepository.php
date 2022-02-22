@@ -84,4 +84,12 @@ class ProductPurchaseRepository extends BaseRepository
 
         return $product_purchases;
     }
+
+    public function get_paginated($paginate_data, $filters)
+    {
+        $result = $this->model
+            ->filter($filters)
+            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+        return $result;
+    }
 }

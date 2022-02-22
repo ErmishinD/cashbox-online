@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,10 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property float cost
  * @property \DateTime expiration_date
  * @property mixed product_type
+ * @property \DateTime created_at
  */
 class ProductPurchase extends Model
 {
-    use HasFactory;
+    use HasFactory, Filterable;
 
     protected $fillable = [
         'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',

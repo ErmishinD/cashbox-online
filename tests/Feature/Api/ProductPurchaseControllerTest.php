@@ -315,7 +315,116 @@ class ProductPurchaseControllerTest extends TestCase
             'amount' => 100,
             'operator_id' => $this->admin->id
         ]);
+    }
 
+    // filter / sort tests
 
+    public function test_can_filter_storage_id()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage1 = Storage::factory()->create(['shop_id' => $shop->id]);
+        $storage2 = Storage::factory()->create(['shop_id' => $shop->id]);
+
+        ProductPurchase::factory()->create(['storage_id' => $storage1->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage1->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage2->id]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['storage_id' => $storage1->id]
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(2, 'pagination.data');
+    }
+
+    public function test_can_filter_product_type_id()
+    {
+        $company = Company::factory()->create();
+
+        $product_type1 = ProductType::factory()->create(['company_id' => $company->id]);
+        $product_type2 = ProductType::factory()->create(['company_id' => $company->id]);
+
+        ProductPurchase::factory()->create(['product_type_id' => $product_type1->id]);
+        ProductPurchase::factory()->create(['product_type_id' => $product_type1->id]);
+        ProductPurchase::factory()->create(['product_type_id' => $product_type2->id]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['product_type_id' => $product_type2->id]
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(1, 'pagination.data');
+    }
+
+    public function test_can_sort_by_cost()
+    {
+        $purchase1 = ProductPurchase::factory()->create(['cost' => 100]);
+        $purchase2 = ProductPurchase::factory()->create(['cost' => 200]);
+        $purchase3 = ProductPurchase::factory()->create(['cost' => 300]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'sort' => [['field' => 'cost', 'type' => 'desc']]
+        ]);
+
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    ['id' => $purchase3->id],
+                    ['id' => $purchase2->id],
+                    ['id' => $purchase1->id],
+                ]
+            ]
+        ]);
+    }
+
+    public function test_can_sort_by_expiration_date()
+    {
+        $purchase1 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-23']);
+        $purchase2 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-22']);
+        $purchase3 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-24']);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'sort' => [['field' => 'expiration_date', 'type' => 'asc']]
+        ]);
+
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    ['id' => $purchase2->id],
+                    ['id' => $purchase1->id],
+                    ['id' => $purchase3->id],
+                ]
+            ]
+        ]);
+    }
+
+    public function test_can_sort_by_created_at()
+    {
+        $purchase1 = ProductPurchase::factory()->create();
+        $purchase1->created_at = '2022-02-01 18:00';
+        $purchase1->save();
+
+        $purchase2 = ProductPurchase::factory()->create();
+        $purchase2->created_at = '2022-02-01 19:00';
+        $purchase2->save();
+
+        $purchase3 = ProductPurchase::factory()->create();
+        $purchase3->created_at = '2022-01-31 10:00';
+        $purchase3->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'sort' => [['field' => 'created_at', 'type' => 'desc']]
+        ]);
+
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    ['id' => $purchase2->id],
+                    ['id' => $purchase1->id],
+                    ['id' => $purchase3->id],
+                ]
+            ]
+        ]);
     }
 }
