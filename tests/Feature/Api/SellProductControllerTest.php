@@ -227,4 +227,106 @@ class SellProductControllerTest extends TestCase
     public function test_admin_can_remove_product_types() {
 
     }
+
+    // filter / sort tests
+
+    public function test_can_filter_by_name()
+    {
+        $company = Company::factory()->create();
+        SellProduct::factory()->create(['company_id' => $company->id, 'name' => 'my product']);
+        SellProduct::factory()->create(['company_id' => $company->id, 'name' => 'my product 2']);
+        SellProduct::factory()->create(['company_id' => $company->id, 'name' => 'something']);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['name' => 'my']
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(2, 'pagination.data');
+    }
+
+    public function test_can_filter_by_discount()
+    {
+        $company = Company::factory()->create();
+        SellProduct::factory()->create(['company_id' => $company->id, 'has_discount' => true]);
+        SellProduct::factory()->create(['company_id' => $company->id, 'has_discount' => false]);
+        SellProduct::factory()->create(['company_id' => $company->id, 'has_discount' => false]);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['has_discount' => 'false']
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(2, 'pagination.data');
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['has_discount' => 'true']
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(1, 'pagination.data');
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'columnFilters' => ['has_discount' => '']
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(3, 'pagination.data');
+    }
+
+    public function test_can_sort_by_name()
+    {
+        $company = Company::factory()->create();
+        $sell_product1 = SellProduct::factory()->create(['company_id' => $company->id, 'name' => 'Banana']);
+        $sell_product2 = SellProduct::factory()->create(['company_id' => $company->id, 'name' => 'Apple']);
+        $sell_product3 = SellProduct::factory()->create(['company_id' => $company->id, 'name' => 'Coconut']);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'sort' => [['field' => 'name', 'type' => 'asc']]
+        ]);
+
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    ['id' => $sell_product2->id],
+                    ['id' => $sell_product1->id],
+                    ['id' => $sell_product3->id],
+                ]
+            ]
+        ]);
+    }
+
+    public function test_can_sort_by_price()
+    {
+        $company = Company::factory()->create();
+        $sell_product1 = SellProduct::factory()->create(['company_id' => $company->id, 'price' => 500]);
+        $sell_product2 = SellProduct::factory()->create(['company_id' => $company->id, 'price' => 300]);
+        $sell_product3 = SellProduct::factory()->create(['company_id' => $company->id, 'price' => 150]);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+            'sort' => [['field' => 'price', 'type' => 'asc']]
+        ]);
+
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    ['id' => $sell_product3->id],
+                    ['id' => $sell_product2->id],
+                    ['id' => $sell_product1->id],
+                ]
+            ]
+        ]);
+    }
 }
