@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductPurchase\CreateRequest;
 use App\Http\Requests\Api\ProductPurchase\DashboardRequest;
+use App\Http\Requests\Api\ProductPurchase\MassCreateRequest;
 use App\Http\Requests\Api\ProductPurchase\UpdateRequest;
 use App\Http\Resources\Api\ProductPurchase\DashboardCollection;
 use App\Http\Resources\Api\ProductPurchase\DefaultResource;
@@ -52,7 +53,7 @@ class ProductPurchaseController extends Controller
         return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)]);
     }
 
-    public function mass_store(CreateRequest $request)
+    public function mass_store(MassCreateRequest $request)
     {
         $data = $request->validated();
         $product_purchases = $this->product_purchase->mass_create($data);
