@@ -101,7 +101,7 @@
 		</h1>
 
 	<div class="dashboard_actions_row">
-		<input @change="search" :placeholder="$t('Поиск товара')" type="text">
+		<input @change="search" :value="this.product_name" :placeholder="$t('Поиск товара')" type="text">
 		<button  :disabled="!(this.selected_products.length)" @click="openBasket" class="btn btn-success">
 			{{$t('Перейти к товарам')}}
 			<span class="counter_basket_circle"><span class="counter_basket">{{this.selected_products.length}}</span></span>
@@ -136,7 +136,8 @@ export default{
 		  },
 	props: [
 		'product_type_id',
-		'storage_id'
+		'storage_id',
+		'product_name'
 	],
 	data(){
 		return{
@@ -150,6 +151,7 @@ export default{
 			in_progress_loading_data: false,
 			all_data_is_loaded: false,
 			unmounted: false,
+			is_search_from_other_page: false,
 			serverParams: {
 
 			  columnFilters: {
@@ -214,7 +216,10 @@ export default{
     		if(is_not_paginate){
     			this.serverParams.page = 1
     		}
-
+    		if(this.product_type_id && !this.is_search_from_other_page){
+    			this.serverParams.columnFilters.name = this.product_name
+    			
+    		}
     		this.axios.post('api/product_types/get_for_purchase', this.serverParams).then(response => {
     			let data = response.data
 	    			if(is_not_paginate){
@@ -227,10 +232,10 @@ export default{
 	    					el.quantity = 1
 	    					el.current_price = 0
 	    				})
-	    				if(this.product_type_id){
+	    				if(this.product_type_id && !this.is_search_from_other_page){
 	    					let selected_out_card = this.cards.find(item => item.id == this.product_type_id)
-	    					console.log(selected_out_card)
 	    					this.selected_products.push(selected_out_card)
+	    					this.is_search_from_other_page = true
 	    				}
 	    			}
 	    			else{
