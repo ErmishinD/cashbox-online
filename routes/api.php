@@ -113,6 +113,7 @@ Route::apiResource('sell_product_groups', SellProductGroupController::class);
  */
 Route::prefix('cashbox')->group(function () {
     Route::post('mass_create', [CashboxController::class, 'mass_store']);
+    Route::post('get_paginated', [CashboxController::class, 'get_paginated']);
 });
 Route::apiResource('cashbox', CashboxController::class);
 

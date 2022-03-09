@@ -29,8 +29,7 @@ class CashboxControllerTest extends TestCase
     /**
      * @var User
      */
-    private $operator;
-    private $collector;
+    private $user;
 
     /**
      * @var User
@@ -83,9 +82,7 @@ class CashboxControllerTest extends TestCase
         ProductType::factory(10)->create();
         SellProduct::factory(4)->create();
         SellProductGroup::factory(6)->create();
-        $this->operator = User::factory()->create();
-        $this->operator->givePermissionTo('Cashbox_create');
-        $this->collector = User::factory()->create();
+        $this->user = User::factory()->create();
 
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
@@ -103,6 +100,66 @@ class CashboxControllerTest extends TestCase
         $this->assertCount(5, $response['data']);
     }
 
+    public function test_user_can_get_cashbox_transactions()
+    {
+        Cashbox::factory()->count(10)->create();  // те транзакции, которые не должны быть в списке
+
+
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+
+        $this->user->company_id = $company->id;
+        $this->user->save();
+
+        $this->user->syncPermissions(['Cashbox_access']);
+
+        $transaction1 = Cashbox::factory()->create(['shop_id' => $shop->id, 'operator_id' => $this->user->id, 'collector_id' => null]);
+        $transaction2 = Cashbox::factory()->create(['shop_id' => $shop->id, 'operator_id' => $this->admin->id, 'collector_id' => null]);
+
+        $response = $this->actingAs($this->user)->postJson($this->base_route . 'get_paginated');
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'pagination' => [
+                    'data' => [
+                        [
+                            'id' => $transaction1->id,
+                            'shop' => ['id' => $shop->id],
+                            'amount' => strval($transaction1->amount),
+                            'payment_type' => $transaction1->payment_type,
+                            'transaction_type' => $transaction1->transaction_type,
+                            'sell_product' => $transaction1->sell_product_id
+                                ? ['id' => $transaction1->sell_product_id, 'name' => $transaction1->sell_product->name]
+                                : null,
+                            'product_purchase' => $transaction1->product_purchase_id
+                                ? ['id' => $transaction1->product_purchase]
+                                : null,
+                            'operator' => ['id' => $transaction1->operator_id, 'name' => $transaction1->operator->name],
+                            'description' => $transaction1->description,
+                            'created_at' => $transaction1->created_at->format('Y-m-d H:i:s'),
+                        ],
+                        [
+                            'id' => $transaction2->id,
+                            'shop' => ['id' => $shop->id],
+                            'amount' => strval($transaction2->amount),
+                            'payment_type' => $transaction2->payment_type,
+                            'transaction_type' => $transaction2->transaction_type,
+                            'sell_product' => $transaction2->sell_product_id
+                                ? ['id' => $transaction2->sell_product_id, 'name' => $transaction2->sell_product->name]
+                                : null,
+                            'product_purchase' => $transaction2->product_purchase_id
+                                ? ['id' => $transaction2->product_purchase]
+                                : null,
+                            'operator' => ['id' => $transaction2->operator_id, 'name' => $transaction2->operator->name],
+                            'description' => $transaction2->description,
+                            'created_at' => $transaction2->created_at->format('Y-m-d H:i:s'),
+                        ],
+                    ]
+                ]
+            ]);
+    }
+
     public function test_admin_can_create_cashbox_out_transaction() {
         $shop = Shop::factory()->create();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
@@ -111,7 +168,6 @@ class CashboxControllerTest extends TestCase
             'payment_type' => '_cash',
             'amount' => 100,
             'description' => 'some description',
-            'operator_id' => $this->operator->id,
         ]);
         $response
             ->assertStatus(200)
@@ -123,7 +179,7 @@ class CashboxControllerTest extends TestCase
                     'payment_type' => '_cash',
                     'amount' => 100,
                     'description' => 'some description',
-                    'operator_id' => $this->operator->id,
+                    'operator_id' => $this->admin->id,
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
@@ -132,7 +188,7 @@ class CashboxControllerTest extends TestCase
             'payment_type' => '_cash',
             'amount' => 100,
             'description' => 'some description',
-            'operator_id' => $this->operator->id,
+            'operator_id' => $this->admin->id,
         ]);
     }
 
@@ -146,7 +202,7 @@ class CashboxControllerTest extends TestCase
             'sell_product_id' => $sell_product->id,
             'payment_type' => '_cash',
             'amount' => 200,
-            'operator_id' => $this->operator->id,
+            'operator_id' => $this->admin->id,
         ]);
         $response
             ->assertStatus(200)
@@ -158,7 +214,7 @@ class CashboxControllerTest extends TestCase
                     'sell_product_id' => $sell_product->id,
                     'payment_type' => '_cash',
                     'amount' => 200,
-                    'operator_id' => $this->operator->id,
+                    'operator_id' => $this->admin->id,
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
@@ -167,7 +223,7 @@ class CashboxControllerTest extends TestCase
             'sell_product_id' => $sell_product->id,
             'payment_type' => '_cash',
             'amount' => 200,
-            'operator_id' => $this->operator->id,
+            'operator_id' => $this->admin->id,
         ]);
     }
 
@@ -280,7 +336,8 @@ class CashboxControllerTest extends TestCase
         // product_type2: 2500 - 200
         // product_type3: 1700 - 100
         // product_type4: (1000 + 1000) - 1100
-        $response = $this->actingAs($this->operator)->postJson($this->base_route.'mass_create', [
+        $this->user->syncPermissions(['Cashbox_create']);
+        $response = $this->actingAs($this->user)->postJson($this->base_route.'mass_create', [
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
             'payment_type' => '_cash',
@@ -328,7 +385,7 @@ class CashboxControllerTest extends TestCase
             'sell_product_id' => $sell_product1->id,
             'payment_type' => '_cash',
             'amount' => 200,
-            'operator_id' => $this->operator->id,
+            'operator_id' => $this->user->id,
         ]);
         $this->assertDatabaseHas($this->table, [
             'shop_id' => $shop->id,
@@ -336,7 +393,7 @@ class CashboxControllerTest extends TestCase
             'sell_product_id' => $sell_product2->id,
             'payment_type' => '_cash',
             'amount' => 110,
-            'operator_id' => $this->operator->id,
+            'operator_id' => $this->user->id,
         ]);
         $this->assertDatabaseHas($this->table, [
             'shop_id' => $shop->id,
@@ -344,7 +401,7 @@ class CashboxControllerTest extends TestCase
             'sell_product_id' => $sell_product3->id,
             'payment_type' => '_cash',
             'amount' => 110,
-            'operator_id' => $this->operator->id,
+            'operator_id' => $this->user->id,
         ]);
         $this->assertDatabaseHas($this->table, [
             'shop_id' => $shop->id,
@@ -352,7 +409,7 @@ class CashboxControllerTest extends TestCase
             'sell_product_id' => $sell_product3->id,
             'payment_type' => '_cash',
             'amount' => 115,
-            'operator_id' => $this->operator->id,
+            'operator_id' => $this->user->id,
         ]);
 
         $this->assertDatabaseHas('product_purchases', [
