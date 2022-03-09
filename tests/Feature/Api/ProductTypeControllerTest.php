@@ -243,8 +243,8 @@ class ProductTypeControllerTest extends TestCase
 
         $base_measure_type = $this->base_measure_type_weight;
 
-        $main_measure_type = MeasureType::factory()->create(['name' => 'main measure type', 'base_measure_type_id' => $base_measure_type->id]);
-        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id]);
+        $main_measure_type = MeasureType::factory()->create(['name' => 'main measure type', 'base_measure_type_id' => $base_measure_type->id, 'quantity' => 333]);
+        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'quantity' => 500]);
         $product_type = ProductType::factory()->create([
             'company_id' => $company->id,
             'base_measure_type_id' => $base_measure_type->id,
@@ -269,9 +269,9 @@ class ProductTypeControllerTest extends TestCase
                             'id' => $product_type->id,
                             'name' => $product_type->name,
                             'measure_types' => [
-                                ['id' => $main_measure_type->id, 'name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
-                                ['id' => $measure_type->id, 'name' => $measure_type->name, 'quantity' => $measure_type->quantity],
-                                ['id' => $base_measure_type->id, 'name' => $base_measure_type->name, 'quantity' => 1],
+                                ['name' => $measure_type->name, 'quantity' => $measure_type->quantity],
+                                ['name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
+                                ['name' => $base_measure_type->name, 'quantity' => 1],
                             ]
                         ]
                     ],

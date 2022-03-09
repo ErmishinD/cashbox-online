@@ -55,6 +55,8 @@ class ProductTypeRepository extends BaseRepository
                 $product_type->base_measure_type->quantity = 1;
                 $product_type->base_measure_type->description = '';
                 $product_type->measure_types->push($product_type->base_measure_type);
+
+                $product_type->measure_types = $product_type->measure_types->unique('quantity')->sortByDesc('quantity');
             });
         return $product_types;
     }
