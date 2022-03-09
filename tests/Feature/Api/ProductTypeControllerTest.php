@@ -263,17 +263,19 @@ class ProductTypeControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => [
-                    [
-                        'id' => $product_type->id,
-                        'name' => $product_type->name,
-                        'measure_types' => [
-                            ['id' => $main_measure_type->id, 'name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
-                            ['id' => $measure_type->id, 'name' => $measure_type->name, 'quantity' => $measure_type->quantity],
-                            ['id' => $base_measure_type->id, 'name' => $base_measure_type->name, 'quantity' => 1],
+                'pagination' => [
+                    'data' => [
+                        [
+                            'id' => $product_type->id,
+                            'name' => $product_type->name,
+                            'measure_types' => [
+                                ['id' => $main_measure_type->id, 'name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
+                                ['id' => $measure_type->id, 'name' => $measure_type->name, 'quantity' => $measure_type->quantity],
+                                ['id' => $base_measure_type->id, 'name' => $base_measure_type->name, 'quantity' => 1],
+                            ]
                         ]
-                    ]
-                ],
+                    ],
+                ]
             ]);
     }
 

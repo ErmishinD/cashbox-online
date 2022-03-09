@@ -36,14 +36,18 @@ class ProductTypeRepository extends BaseRepository
         return $enums;
     }
 
-    public function getForSelect($company_id) {
+    public function getForSelect($filters) {
+        $company_id = Auth::user()->company_id;
         $product_types = $this->model->select('id', 'name', 'company_id', 'base_measure_type_id', 'main_measure_type_id', 'photo', 'type')
             ->with('base_measure_type')
             ->with('main_measure_type')
             ->with(['measure_types' => function($query) {
                 $query->orderBy('quantity');
             }])
-            ->where('company_id', $company_id)
+            ->when($company_id, function ($query) use ($company_id) {
+                $query->where('company_id', $company_id);
+            })
+            ->filter($filters)
             ->get()
             ->each(function ($product_type) {
                 $product_type->measure_types->prepend($product_type->main_measure_type);

@@ -121,11 +121,22 @@ class ProductTypeController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function getForPurchase(GetByCompanyRequest $request)
+    public function getForPurchase(PaginateRequest $request, ProductTypeFilter $filters)
     {
-        $data = $request->validated();
-        $company_id = $data['company_id'];
-        $product_types = $this->product_type->getForSelect($company_id);
-        return response()->json(['success' => true, 'data' => WithMeasureTypesResource::collection($product_types)]);
+        $paginate_data = $request->validated();
+        $product_types = $this->product_type->getForSelect($filters);
+
+        $sellable = $this->paginate_collection($product_types, $paginate_data['per_page'], $paginate_data['page']);
+
+        return response()->json([
+            'success' => true,
+            'pagination' => [
+                'data' => WithMeasureTypesResource::collection($sellable->items()),
+                'current_page' => $sellable->currentPage(),
+                'last_page' => $sellable->lastPage(),
+                'per_page' => $sellable->perPage(),
+                'total' => $sellable->total(),
+            ]
+        ]);
     }
 }
