@@ -1,4 +1,5 @@
 <template>
+	<notifications position="bottom right" />
 	<GDialog style="z-index: 9999;" :persistent="true" v-model="set_storage_show" max-width="700">
 	    <div class="getting-started-example-styled">
 	      <div class="getting-started-example-styled__content">
@@ -58,7 +59,7 @@
 	          		</div>
 	          		<div class="basket_card_row">
 	          			
-	          			<div class="basket_card__price">
+	          			<div v-if="card.type == '_perishable'" class="basket_card__price">
 	          				<label for="expiration">{{ $t('Срок годности') }}:</label>
 	          				<input type="date" name="expiration" v-model="card.expiration">
 	          			</div>
@@ -146,9 +147,25 @@ export default{
 			selected_storage: null,
 			cards: [],
 			error_while_saving: false,
+			in_progress_loading_data: false,
+			all_data_is_loaded: false,
+			unmounted: false,
+			serverParams: {
+
+			  columnFilters: {
+			  	name: '',
+			  },
+			  sort: {
+			      field: '',
+			      type: '',
+			  },
+			  page: 1,
+			  perPage: 10
+			},
 		} 
 	},
 	mounted(){
+		document.addEventListener('scroll', this.scrolltoGetMoreData)
 		console.log(this.product_type_id, this.storage_id)
 		this.axios.post('api/storages/get_for_purchase', {company_id:1}).then(response => {
 			this.storage_list = response.data.data
@@ -162,7 +179,7 @@ export default{
 			}
 		})
 
-		this.render_list_items()
+		this.render_list_items(true)
 		
 		// var loader = this.$loading.show({
 		//         canCancel: false,
@@ -181,32 +198,62 @@ export default{
   // 		     })
 		
 	},
+	unmounted(){
+
+		this.unmounted = true
+	},
 	created () {
         document.title = this.$t('Закупка')
     },
     methods: {
-    	render_list_items(){
+    	render_list_items(is_not_paginate=true){
+    		this.in_progress_loading_data = true
     		var loader = this.$loading.show({
     		        canCancel: false,
     		        loader: 'dots',});
-    		this.axios.post('api/product_types/get_for_purchase', {company_id:1}).then(response => {
-    				this.cards = response.data.data
-    				let date = new Date()
-    				this.cards.forEach(el => {
-    					el.amount = 0
-    					el.expiration = 0;
-    					el.quantity = 1
-    					el.current_price = 0
-    				})
+    		if(is_not_paginate){
+    			this.serverParams.page = 1
+    		}
 
-    				if(this.product_type_id){
-    					let selected_out_card = this.cards.find(item => item.id == this.product_type_id)
-    					console.log(selected_out_card)
-    					this.selected_products.push(selected_out_card)
-    				}
-    				
-    				loader.hide()
-    			})
+    		this.axios.post('api/product_types/get_for_purchase', this.serverParams).then(response => {
+    			let data = response.data
+	    			if(is_not_paginate){
+	    				Promise.resolve(this.cards = response.data.pagination.data).then(result => {
+	    					this.in_progress_loading_data = false
+	    				})
+	    				this.cards.forEach(el => {
+	    					el.amount = 0
+	    					el.expiration = 0;
+	    					el.quantity = 1
+	    					el.current_price = 0
+	    				})
+	    				if(this.product_type_id){
+	    					let selected_out_card = this.cards.find(item => item.id == this.product_type_id)
+	    					console.log(selected_out_card)
+	    					this.selected_products.push(selected_out_card)
+	    				}
+	    			}
+	    			else{
+	    				Promise.resolve(Array.prototype.push.apply(this.cards, data.pagination.data)).then(result => {
+	    					this.in_progress_loading_data = false
+	    				})
+	    			}
+
+	    			if(data.pagination.last_page != data.pagination.current_page){
+	    				 this.serverParams.page = data.pagination.current_page+1
+	    				 this.all_data_is_loaded = false
+	    			}
+	    			else{
+	    				this.all_data_is_loaded = true
+	    			}
+
+	    			loader.hide()
+    			}).catch(function(error){
+			     	console.log(error)
+	  		     	if(error.response.status == 403){
+	  		     		window.location.href = '/403';
+	  		     	}
+	  		     })
 
     	},
     	setStorage() {
@@ -265,6 +312,7 @@ export default{
 		        loader: 'dots',});
     			this.error_while_saving = false
     			purchase_data.storage_id = this.selected_storage
+    			purchase_data.payment_type = '_cash'
     			purchase_data.product_types = this.selected_products
     			purchase_data.product_types.forEach(el => {
     				el.quantity *= el.amount
@@ -286,7 +334,23 @@ export default{
     			})
     		}
     		
-    	}
+    	},
+    	search(e){
+    		this.serverParams.columnFilters.name = e.target.value
+    		this.render_list_items(true)
+    	},
+    	scrolltoGetMoreData(){	
+
+    		window.onscroll = () => {
+    			if(!this.all_data_is_loaded && !this.unmounted) {
+    				let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= (document.body.scrollHeight - 100) && !this.in_progress_loading_data
+    				console.log(this.in_progress_loading_data)
+    				if (bottomOfWindow) {
+    				  this.render_list_items(false)
+    				}
+    			}
+    		};
+    	},
     },
 }
 </script>
