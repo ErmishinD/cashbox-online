@@ -23,7 +23,7 @@ class CashboxController extends Controller
     {
         $this->cashbox = app(CashboxRepository::class);
         $this->middleware(['auth']);
-        $this->middleware(['can:Cashbox_access'])->only(['index', 'get_paginated']);
+        $this->middleware(['can:Cashbox_access'])->only(['index']);
         $this->middleware(['can:Cashbox_create'])->only(['store']);
         $this->middleware(['can:Cashbox_show'])->only(['show']);
         $this->middleware(['can:Cashbox_edit'])->only(['update']);
@@ -37,25 +37,8 @@ class CashboxController extends Controller
      */
     public function index()
     {
-        $payments = $this->cashbox->all();
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)]);
-    }
-
-    public function get_paginated(PaginateRequest $request, CashboxFilter $filters)
-    {
-        $paginate_data = $request->validated();
-        $cashbox_transactions = $this->cashbox->get_paginated($paginate_data, $filters);
-
-        return response()->json([
-            'success' => true,
-            'pagination' => [
-                'data' => IndexResource::collection($cashbox_transactions),
-                'current_page' => $cashbox_transactions->currentPage(),
-                'last_page' => $cashbox_transactions->lastPage(),
-                'per_page' => $cashbox_transactions->perPage(),
-                'total' => $cashbox_transactions->total(),
-            ]
-        ]);
+        $payments = $this->cashbox->get_not_collected();
+        return response()->json(['success' => true, 'data' => IndexResource::collection($payments)]);
     }
 
     /**

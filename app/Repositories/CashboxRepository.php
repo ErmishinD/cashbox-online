@@ -87,19 +87,19 @@ class CashboxRepository extends BaseRepository
         return $payments;
     }
 
-    public function get_paginated($paginate_data, $filters)
+    public function get_not_collected()
     {
         $company_id = Auth::user()->company_id;
+        $allowed_shop_ids = [];
         if ($company_id) {
             $allowed_shop_ids = Shop::where('company_id', $company_id)->get()->pluck('id');
         }
-        $cashbox_paginator =  $this->model
+        $cashbox_transactions =  $this->model
             ->with(['sell_product', 'product_purchase', 'operator', 'shop'])
             ->when($allowed_shop_ids, function ($query) use ($allowed_shop_ids) {
                 $query->whereIn('shop_id', $allowed_shop_ids);
             })
-            ->filter($filters)
-            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
-        return $cashbox_paginator;
+            ->get();
+        return $cashbox_transactions;
     }
 }
