@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Filters\CashboxFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Cashbox\CollectPaymentsRequest;
 use App\Http\Requests\Api\Cashbox\CreateRequest;
 use App\Http\Requests\Api\Cashbox\MassCreateRequest;
 use App\Http\Requests\Api\Cashbox\UpdateRequest;
@@ -114,5 +115,12 @@ class CashboxController extends Controller
     {
         $payments = $this->cashbox->get_for_balance();
         return response()->json(['success' => true, 'data' => new BalanceResource($payments)]);
+    }
+
+    public function collect_payments(CollectPaymentsRequest $request)
+    {
+        $payment_ids = $request->validated()['ids'];
+        $this->cashbox->collect_payments($payment_ids);
+        return response()->json(['success' => true]);
     }
 }

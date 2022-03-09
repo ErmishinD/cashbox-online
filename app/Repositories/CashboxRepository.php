@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\Storage;
 use App\Services\EnumDbCol;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -42,7 +43,7 @@ class CashboxRepository extends BaseRepository
         return $this->get_enum('payment_type');
     }
 
-    public function mass_create(array $data)
+    public function mass_create(array $data): \Illuminate\Support\Collection
     {
         $payments = collect();
         $parent_id = null;
@@ -88,7 +89,7 @@ class CashboxRepository extends BaseRepository
         return $payments;
     }
 
-    public function get_not_collected()
+    public function get_not_collected(): Collection
     {
         $cashbox_transactions =  $this->model
             ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
@@ -98,12 +99,22 @@ class CashboxRepository extends BaseRepository
         return $cashbox_transactions;
     }
 
-    public function get_for_balance()
+    public function get_for_balance(): Collection
     {
         return $this->model
             ->select('transaction_type', 'payment_type', 'amount')
             ->onlyInCompany()
             ->notCollected()
             ->get();
+    }
+
+    public function collect_payments(array $ids)
+    {
+        $collected_time = now();
+        $this->model
+            ->whereIn('id', $ids)
+            ->update([
+                'collector_id' => Auth::user()->id, 'collected_at' => $collected_time
+            ]);
     }
 }

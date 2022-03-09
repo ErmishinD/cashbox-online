@@ -452,4 +452,28 @@ class CashboxControllerTest extends TestCase
                 ]
             ]);
     }
+
+    public function test_can_collect_payments()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        // create _in _card transactions
+        $payments = Cashbox::factory(10)->create(['shop_id' => $shop->id, 'collected_at' => null]);
+
+        // collect payments
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'collect', ['ids' => $payments->pluck('id')]);
+        $response->assertStatus(200);
+
+        $this->assertCount(10, Cashbox::where('shop_id', $shop->id)
+            ->where('collector_id', $this->admin->id)->whereNotNull('collected_at')
+            ->get()
+        );
+        $this->assertCount(0, Cashbox::where('shop_id', $shop->id)
+            ->whereNull('collector_id')->whereNull('collected_at')
+            ->get()
+        );
+    }
 }
