@@ -82,8 +82,10 @@ class Cashbox extends Model
         return $builder->whereNull('collected_at');
     }
 
-    public function scopeCollected(Builder $builder)
+    public function scopeCollected(Builder $builder, $collected_at=null)
     {
-        return $builder->whereNotNull('collected_at');
+        if (is_null($collected_at))
+            return $builder->whereNotNull('collected_at');
+        return $builder->where('collected_at', $collected_at);
     }
 }

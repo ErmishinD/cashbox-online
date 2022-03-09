@@ -117,4 +117,22 @@ class CashboxRepository extends BaseRepository
                 'collector_id' => Auth::user()->id, 'collected_at' => $collected_time
             ]);
     }
+
+    public function get_collection_history()
+    {
+        return $this->model
+            ->with('collector')
+            ->onlyInCompany()
+            ->collected()
+            ->get()
+            ->groupBy('collected_at');
+    }
+
+    public function get_payments_from_history($collected_at): Collection
+    {
+        return $this->model
+            ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
+            ->collected($collected_at)
+            ->get();
+    }
 }

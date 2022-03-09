@@ -30,7 +30,6 @@ class IndexResource extends JsonResource
             'product_purchase' => $this->product_purchase_id ? new ProductPurchaseResource($this->product_purchase) : null,
             'data' => $this->data,
             'operator' => new UserResource($this->operator),
-            'collector' => $this->collector_id ? new UserResource($this->collector) : null,
             'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i')
         ];

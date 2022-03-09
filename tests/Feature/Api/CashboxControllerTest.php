@@ -476,4 +476,173 @@ class CashboxControllerTest extends TestCase
             ->get()
         );
     }
+
+    public function test_can_get_collection_history()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $collected_time1 = now()->subMonth();
+        Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time1, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 200
+        ]);
+        Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time1, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'], 'amount' => 100
+        ]);
+        Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time1, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
+        ]);
+
+        $collected_time2 = now()->subWeek();
+        Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time2, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 500
+        ]);
+        Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time2, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'], 'amount' => 200
+        ]);
+        Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time2, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
+        ]);
+
+        $response = $this->actingAs($this->admin)->getJson($this->base_route.'collection_history');
+        $response->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    $collected_time1->format('Y-m-d H:i:s') => [
+                        'amount' => 200,
+                        'collector' => [
+                            'id' => $this->admin->id,
+                            'name' => $this->admin->name,
+                        ]
+                    ],
+                    $collected_time2->format('Y-m-d H:i:s') => [
+                        'amount' => 400,
+                        'collector' => [
+                            'id' => $this->admin->id,
+                            'name' => $this->admin->name,
+                        ]
+                    ],
+                ]
+            ]);
+    }
+
+    public function test_can_get_payments_from_history()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $collected_time = now()->subMonth();
+        $payment1 = Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 200
+        ]);
+        $payment2 = Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'], 'amount' => 100
+        ]);
+        $payment3 = Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
+        ]);
+        Cashbox::factory()->create([
+            'shop_id' => $shop->id, 'collected_at' => now(), 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
+        ]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route.'payments_from_history', [
+            'collected_at' => $collected_time->format('Y-m-d H:i:s')
+        ]);
+        $response->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    [
+                        'id' => $payment1->id,
+                        'shop' => [
+                            'id' => $payment1->shop_id
+                        ],
+                        'amount' => $payment1->amount,
+                        'payment_type' => $payment1->payment_type,
+                        'transaction_type' => $payment1->transaction_type,
+                        'sell_product' => $payment1->sell_product_id
+                            ? [
+                                'id' => $payment1->sell_product_id,
+                            ]
+                            : null,
+                        'product_purchase' => $payment1->product_purchase_id
+                            ? [
+                                'id' => $payment1->product_purchase_id,
+                            ]
+                            : null,
+                        'data' => $payment1->data,
+                        'operator' => [
+                            'id' => $payment1->operator_id
+                        ],
+                        'description' => $payment1->description,
+                        'created_at' => $payment1->created_at->format('Y-m-d H:i')
+                    ],
+                    [
+                        'id' => $payment2->id,
+                        'shop' => [
+                            'id' => $payment2->shop_id
+                        ],
+                        'amount' => $payment2->amount,
+                        'payment_type' => $payment2->payment_type,
+                        'transaction_type' => $payment2->transaction_type,
+                        'sell_product' => $payment2->sell_product_id
+                            ? [
+                                'id' => $payment2->sell_product_id,
+                            ]
+                            : null,
+                        'product_purchase' => $payment2->product_purchase_id
+                            ? [
+                                'id' => $payment2->product_purchase_id,
+                            ]
+                            : null,
+                        'data' => $payment2->data,
+                        'operator' => [
+                            'id' => $payment2->operator_id
+                        ],
+                        'description' => $payment2->description,
+                        'created_at' => $payment2->created_at->format('Y-m-d H:i')
+                    ],
+                    [
+                        'id' => $payment3->id,
+                        'shop' => [
+                            'id' => $payment3->shop_id
+                        ],
+                        'amount' => $payment3->amount,
+                        'payment_type' => $payment3->payment_type,
+                        'transaction_type' => $payment3->transaction_type,
+                        'sell_product' => $payment3->sell_product_id
+                            ? [
+                                'id' => $payment3->sell_product_id,
+                            ]
+                            : null,
+                        'product_purchase' => $payment3->product_purchase_id
+                            ? [
+                                'id' => $payment3->product_purchase_id,
+                            ]
+                            : null,
+                        'data' => $payment3->data,
+                        'operator' => [
+                            'id' => $payment3->operator_id
+                        ],
+                        'description' => $payment3->description,
+                        'created_at' => $payment3->created_at->format('Y-m-d H:i')
+                    ],
+                ]
+            ]);
+    }
 }

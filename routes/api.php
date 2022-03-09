@@ -115,6 +115,8 @@ Route::prefix('cashbox')->group(function () {
     Route::post('mass_create', [CashboxController::class, 'mass_store']);
     Route::get('get_current_balance', [CashboxController::class, 'get_current_balance']);
     Route::post('collect', [CashboxController::class, 'collect_payments']);
+    Route::get('collection_history', [CashboxController::class, 'get_collection_history']);
+    Route::post('payments_from_history', [CashboxController::class, 'get_payments_from_history']);
 });
 Route::apiResource('cashbox', CashboxController::class);
 
