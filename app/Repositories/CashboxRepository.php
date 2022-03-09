@@ -99,6 +99,7 @@ class CashboxRepository extends BaseRepository
             ->when($allowed_shop_ids, function ($query) use ($allowed_shop_ids) {
                 $query->whereIn('shop_id', $allowed_shop_ids);
             })
+            ->whereNull('collected_at')
             ->get();
         return $cashbox_transactions;
     }

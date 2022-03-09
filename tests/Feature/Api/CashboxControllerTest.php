@@ -89,76 +89,48 @@ class CashboxControllerTest extends TestCase
     }
 
     public function test_admin_can_get_all_cashbox_transactions() {
-        Cashbox::factory(5)->create();
+        $shop = Shop::factory()->create();
+        // create _in _card transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_card', 'transaction_type' => '_in', 'amount' => 100, 'collected_at' => null]);
+
+        // create _in _cash transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_in', 'amount' => 150, 'collected_at' => null]);
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_in', 'amount' => 550.50, 'collected_at' => null]);
+
+        // create _out _card transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_card', 'transaction_type' => '_out', 'amount' => 30, 'collected_at' => null]);
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_card', 'transaction_type' => '_out', 'amount' => 60, 'collected_at' => null]);
+
+        // create _out _cash transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_out', 'amount' => 10, 'collected_at' => null]);
 
         $response = $this->actingAs($this->admin)->getJson($this->base_route);
         $response
             ->assertStatus(200)
             ->assertJson([
-                'success' => true
+                'success' => true,
+                'data' => [],
+                'balance' => [
+                    '_in' => [
+                        'sum' => 800.50,
+                        '_card' => 100,
+                        '_cash' => 700.50,
+                    ],
+                    '_out' => [
+                        'sum' => 100,
+                        '_card' => 90,
+                        '_cash' => 10,
+                    ],
+                    'all' => [
+                        'sum' => 700.50,
+                        '_card' => 10,
+                        '_cash' => 690.50,
+                    ],
+                ]
             ]);
-        $this->assertCount(5, $response['data']);
+        $this->assertCount(6, $response['data']);
     }
 
-//    public function test_user_can_get_cashbox_transactions()
-//    {
-//        Cashbox::factory()->count(10)->create();  // те транзакции, которые не должны быть в списке
-//
-//
-//        $company = Company::factory()->create();
-//        $shop = Shop::factory()->create(['company_id' => $company->id]);
-//
-//        $this->user->company_id = $company->id;
-//        $this->user->save();
-//
-//        $this->user->syncPermissions(['Cashbox_access']);
-//
-//        $transaction1 = Cashbox::factory()->create(['shop_id' => $shop->id, 'operator_id' => $this->user->id, 'collector_id' => null]);
-//        $transaction2 = Cashbox::factory()->create(['shop_id' => $shop->id, 'operator_id' => $this->admin->id, 'collector_id' => null]);
-//
-//        $response = $this->actingAs($this->user)->postJson($this->base_route . 'get_paginated');
-//        $response
-//            ->assertStatus(200)
-//            ->assertJson([
-//                'success' => true,
-//                'pagination' => [
-//                    'data' => [
-//                        [
-//                            'id' => $transaction1->id,
-//                            'shop' => ['id' => $shop->id],
-//                            'amount' => strval($transaction1->amount),
-//                            'payment_type' => $transaction1->payment_type,
-//                            'transaction_type' => $transaction1->transaction_type,
-//                            'sell_product' => $transaction1->sell_product_id
-//                                ? ['id' => $transaction1->sell_product_id, 'name' => $transaction1->sell_product->name]
-//                                : null,
-//                            'product_purchase' => $transaction1->product_purchase_id
-//                                ? ['id' => $transaction1->product_purchase]
-//                                : null,
-//                            'operator' => ['id' => $transaction1->operator_id, 'name' => $transaction1->operator->name],
-//                            'description' => $transaction1->description,
-//                            'created_at' => $transaction1->created_at->format('Y-m-d H:i:s'),
-//                        ],
-//                        [
-//                            'id' => $transaction2->id,
-//                            'shop' => ['id' => $shop->id],
-//                            'amount' => strval($transaction2->amount),
-//                            'payment_type' => $transaction2->payment_type,
-//                            'transaction_type' => $transaction2->transaction_type,
-//                            'sell_product' => $transaction2->sell_product_id
-//                                ? ['id' => $transaction2->sell_product_id, 'name' => $transaction2->sell_product->name]
-//                                : null,
-//                            'product_purchase' => $transaction2->product_purchase_id
-//                                ? ['id' => $transaction2->product_purchase]
-//                                : null,
-//                            'operator' => ['id' => $transaction2->operator_id, 'name' => $transaction2->operator->name],
-//                            'description' => $transaction2->description,
-//                            'created_at' => $transaction2->created_at->format('Y-m-d H:i:s'),
-//                        ],
-//                    ]
-//                ]
-//            ]);
-//    }
 
     public function test_admin_can_create_cashbox_out_transaction() {
         $shop = Shop::factory()->create();

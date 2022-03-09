@@ -10,6 +10,7 @@ use App\Http\Requests\Api\Cashbox\UpdateRequest;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Resources\Api\Cashbox\DefaultResource;
 use App\Http\Resources\Api\Cashbox\IndexResource;
+use App\Http\Resources\Cashbox\BalanceResource;
 use App\Repositories\CashboxRepository;
 
 class CashboxController extends Controller
@@ -38,7 +39,11 @@ class CashboxController extends Controller
     public function index()
     {
         $payments = $this->cashbox->get_not_collected();
-        return response()->json(['success' => true, 'data' => IndexResource::collection($payments)]);
+        return response()->json([
+            'success' => true,
+            'data' => IndexResource::collection($payments),
+            'balance' => new BalanceResource($payments),
+        ]);
     }
 
     /**
