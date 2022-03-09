@@ -111,20 +111,20 @@ class CashboxControllerTest extends TestCase
                 'success' => true,
                 'data' => [],
                 'balance' => [
-                    '_in' => [
+                    'in' => [
                         'sum' => 800.50,
-                        '_card' => 100,
-                        '_cash' => 700.50,
+                        'card' => 100,
+                        'cash' => 700.50,
                     ],
-                    '_out' => [
+                    'out' => [
                         'sum' => 100,
-                        '_card' => 90,
-                        '_cash' => 10,
+                        'card' => 90,
+                        'cash' => 10,
                     ],
                     'all' => [
                         'sum' => 700.50,
-                        '_card' => 10,
-                        '_cash' => 690.50,
+                        'card' => 10,
+                        'cash' => 690.50,
                     ],
                 ]
             ]);

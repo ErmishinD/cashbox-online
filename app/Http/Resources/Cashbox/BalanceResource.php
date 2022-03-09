@@ -15,10 +15,10 @@ class BalanceResource extends JsonResource
     public function toArray($request)
     {
         $payments = $this->resource;
-        $in_card = $payments->where('transaction_type', '_in')->where('payment_type', '_card')->sum('amount');
-        $in_cash = $payments->where('transaction_type', '_in')->where('payment_type', '_cash')->sum('amount');
-        $out_card = $payments->where('transaction_type', '_out')->where('payment_type', '_card')->sum('amount');
-        $out_cash = $payments->where('transaction_type', '_out')->where('payment_type', '_cash')->sum('amount');
+        $in_card = round($payments->where('transaction_type', '_in')->where('payment_type', '_card')->sum('amount'), 2);
+        $in_cash = round($payments->where('transaction_type', '_in')->where('payment_type', '_cash')->sum('amount'), 2);
+        $out_card = round($payments->where('transaction_type', '_out')->where('payment_type', '_card')->sum('amount'), 2);
+        $out_cash = round($payments->where('transaction_type', '_out')->where('payment_type', '_cash')->sum('amount'), 2);
         return [
             'in' => [
                 'sum' => $in_card + $in_cash,
