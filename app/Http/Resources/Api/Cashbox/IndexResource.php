@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Api\Cashbox;
 
-use App\Http\Resources\Api\ProductPurchase\DefaultResource as ProductPurchaseResource;
+use App\Http\Resources\Api\ProductPurchase\InCashboxResource as ProductPurchaseResource;
 use App\Http\Resources\Api\SellProduct\InCashboxResource as SellProductResource;
 use App\Http\Resources\Api\Shop\DefaultResource as ShopResource;
 use App\Http\Resources\Api\User\DefaultResource as UserResource;
@@ -32,7 +32,7 @@ class IndexResource extends JsonResource
             'operator' => new UserResource($this->operator),
             'collector' => $this->collector_id ? new UserResource($this->collector) : null,
             'description' => $this->description,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s')
+            'created_at' => $this->created_at->format('Y-m-d H:i')
         ];
     }
 }

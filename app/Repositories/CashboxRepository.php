@@ -95,7 +95,7 @@ class CashboxRepository extends BaseRepository
             $allowed_shop_ids = Shop::where('company_id', $company_id)->get()->pluck('id');
         }
         $cashbox_transactions =  $this->model
-            ->with(['sell_product', 'product_purchase', 'operator', 'shop'])
+            ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
             ->when($allowed_shop_ids, function ($query) use ($allowed_shop_ids) {
                 $query->whereIn('shop_id', $allowed_shop_ids);
             })
