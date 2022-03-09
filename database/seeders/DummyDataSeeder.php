@@ -418,7 +418,6 @@ class DummyDataSeeder extends Seeder
                             $product_purchase = ProductPurchase::create([
                                 'storage_id' => $storage->id,
                                 'product_type_id' => $product_type->id,
-                                'base_measure_type_id' => $product_type->base_measure_type_id,
                                 'quantity' => $quantity,
                                 'current_quantity' => random_int(0, $quantity),
                                 'cost' => random_int(100, 10000),
