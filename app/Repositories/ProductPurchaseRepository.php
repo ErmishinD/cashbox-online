@@ -74,6 +74,7 @@ class ProductPurchaseRepository extends BaseRepository
                 'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
                 'payment_type' => $data['payment_type'],
                 'amount' => $product_type['cost'],
+                'product_purchase_id' => $product_purchase->id,
                 'description' => $product_type['description'] ?? null,
                 'operator_id' => Auth::user()->id,
                 'parent_id' => $parent_id,
