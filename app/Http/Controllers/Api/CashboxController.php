@@ -109,4 +109,10 @@ class CashboxController extends Controller
         }
         return response()->json(['success' => true]);
     }
+
+    public function get_current_balance()
+    {
+        $payments = $this->cashbox->get_for_balance();
+        return response()->json(['success' => true, 'data' => new BalanceResource($payments)]);
+    }
 }

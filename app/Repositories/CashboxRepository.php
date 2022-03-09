@@ -7,6 +7,7 @@ use App\Models\ProductPurchase;
 use App\Models\Shop;
 use App\Models\Storage;
 use App\Services\EnumDbCol;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -89,18 +90,20 @@ class CashboxRepository extends BaseRepository
 
     public function get_not_collected()
     {
-        $company_id = Auth::user()->company_id;
-        $allowed_shop_ids = [];
-        if ($company_id) {
-            $allowed_shop_ids = Shop::where('company_id', $company_id)->get()->pluck('id');
-        }
         $cashbox_transactions =  $this->model
             ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
-            ->when($allowed_shop_ids, function ($query) use ($allowed_shop_ids) {
-                $query->whereIn('shop_id', $allowed_shop_ids);
-            })
-            ->whereNull('collected_at')
+            ->onlyInCompany()
+            ->notCollected()
             ->get();
         return $cashbox_transactions;
+    }
+
+    public function get_for_balance()
+    {
+        return $this->model
+            ->select('transaction_type', 'payment_type', 'amount')
+            ->onlyInCompany()
+            ->notCollected()
+            ->get();
     }
 }

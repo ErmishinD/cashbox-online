@@ -113,6 +113,7 @@ Route::apiResource('sell_product_groups', SellProductGroupController::class);
  */
 Route::prefix('cashbox')->group(function () {
     Route::post('mass_create', [CashboxController::class, 'mass_store']);
+    Route::get('get_current_balance', [CashboxController::class, 'get_current_balance']);
 });
 Route::apiResource('cashbox', CashboxController::class);
 

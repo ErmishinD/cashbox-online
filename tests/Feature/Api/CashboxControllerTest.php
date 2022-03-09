@@ -104,6 +104,7 @@ class CashboxControllerTest extends TestCase
         // create _out _cash transactions
         Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_out', 'amount' => 10, 'collected_at' => null]);
 
+        $this->withoutExceptionHandling();
         $response = $this->actingAs($this->admin)->getJson($this->base_route);
         $response
             ->assertStatus(200)
@@ -404,5 +405,51 @@ class CashboxControllerTest extends TestCase
             'product_type_id' => $product_type4->id,
             'current_quantity' => 900,
         ]);
+    }
+
+    public function test_can_get_current_balance()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        // create _in _card transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_card', 'transaction_type' => '_in', 'amount' => 100, 'collected_at' => null]);
+
+        // create _in _cash transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_in', 'amount' => 150, 'collected_at' => null]);
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_in', 'amount' => 550.50, 'collected_at' => null]);
+
+        // create _out _card transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_card', 'transaction_type' => '_out', 'amount' => 30, 'collected_at' => null]);
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_card', 'transaction_type' => '_out', 'amount' => 60, 'collected_at' => null]);
+
+        // create _out _cash transactions
+        Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_out', 'amount' => 10, 'collected_at' => null]);
+
+        $response = $this->actingAs($this->admin)->getJson($this->base_route.'get_current_balance');
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    'in' => [
+                        'sum' => 800.50,
+                        'card' => 100,
+                        'cash' => 700.50,
+                    ],
+                    'out' => [
+                        'sum' => 100,
+                        'card' => 90,
+                        'cash' => 10,
+                    ],
+                    'all' => [
+                        'sum' => 700.50,
+                        'card' => 10,
+                        'cash' => 690.50,
+                    ],
+                ]
+            ]);
     }
 }

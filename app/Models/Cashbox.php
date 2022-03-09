@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Http\Traits\Filterable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property int id
@@ -62,5 +64,26 @@ class Cashbox extends Model
     public function collector()
     {
         return $this->belongsTo(User::class, 'collector_id');
+    }
+
+
+    public function scopeOnlyInCompany(Builder $builder, $company_id=null)
+    {
+        $company_id = $company_id ?? Auth::user()->company_id;
+        if ($company_id) {
+            $allowed_shop_ids = Shop::where('company_id', $company_id)->get()->pluck('id');
+            return $builder->whereIn('shop_id', $allowed_shop_ids);
+        }
+        return $builder;
+    }
+
+    public function scopeNotCollected(Builder $builder)
+    {
+        return $builder->whereNull('collected_at');
+    }
+
+    public function scopeCollected(Builder $builder)
+    {
+        return $builder->whereNotNull('collected_at');
     }
 }
