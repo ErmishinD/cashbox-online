@@ -428,6 +428,7 @@ class DummyDataSeeder extends Seeder
                             Cashbox::factory()->create([
                                 'shop_id' => $shop->id,
                                 'product_purchase_id' => $product_purchase->id,
+                                'sell_product_id' => null,
                                 'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
                                 'payment_type' => $faker->randomElement(Cashbox::PAYMENT_TYPES),
                                 'amount' => $product_purchase->cost,

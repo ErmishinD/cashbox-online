@@ -26,23 +26,6 @@ class CashboxRepository extends BaseRepository
         return Cashbox::class;
     }
 
-    protected function get_enum($column_name) {
-        $enums = [];
-        $enumKeys = EnumDbCol::getEnumValues($this->model->getTable(), $column_name);
-
-        foreach($enumKeys as $k => $v) $enums[$k] = __($v);
-
-        return $enums;
-    }
-
-    public function getTransactionTypes() {
-        return $this->get_enum('transaction_type');
-    }
-
-    public function getPaymentTypes() {
-        return $this->get_enum('payment_type');
-    }
-
     public function mass_create(array $data): \Illuminate\Support\Collection
     {
         $payments = collect();
@@ -118,7 +101,7 @@ class CashboxRepository extends BaseRepository
             ]);
     }
 
-    public function get_collection_history()
+    public function get_collection_history(): Collection
     {
         return $this->model
             ->with('collector')
@@ -134,5 +117,15 @@ class CashboxRepository extends BaseRepository
             ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
             ->collected($collected_at)
             ->get();
+    }
+
+    public function deleteById($id): bool
+    {
+        $payment = $this->model->find($id);
+
+        if (is_null($payment))
+            return false;
+
+        return $payment->delete();
     }
 }

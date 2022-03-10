@@ -28,6 +28,7 @@ class CreateCashboxesTable extends Migration
             $table->foreignId('collector_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('parent_id')->nullable()->constrained('cashboxes')->onDelete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

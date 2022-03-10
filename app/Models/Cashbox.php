@@ -6,6 +6,7 @@ use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -31,7 +32,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Cashbox extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory, SoftDeletes, Filterable;
 
     public const TRANSACTION_TYPES = ['in' => '_in', 'out' => '_out'];
     public const PAYMENT_TYPES = ['card' => '_card', 'cash' => '_cash'];

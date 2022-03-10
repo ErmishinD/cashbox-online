@@ -18,17 +18,18 @@ class DefaultResource extends JsonResource
         /** @var Cashbox $this */
         return [
             'id' => $this->id,
-            'company_id' => $this->company_id,
             'shop_id' => $this->shop_id,
             'sell_product_id' => $this->sell_product_id,
+            'product_purchase_id' => $this->product_purchase_id,
             'data' => $this->data,
             'amount' => $this->amount,
+            'transaction_type' => $this->transaction_type,
             'payment_type' => $this->payment_type,
             'operator_id' => $this->operator_id,
             'description' => $this->description,
-            'transaction_type' => $this->transaction_type,
             'collected_at' => $this->collected_at,
             'collector_id' => $this->collector_id,
+            'created_at' => $this->created_at
         ];
     }
 }

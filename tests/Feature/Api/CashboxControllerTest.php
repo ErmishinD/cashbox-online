@@ -233,7 +233,7 @@ class CashboxControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing($this->table, ['id' => $cashbox->id]);
+        $this->assertSoftDeleted($this->table, ['id' => $cashbox->id]);
     }
 
     public function test_operator_can_sell_many_products()
