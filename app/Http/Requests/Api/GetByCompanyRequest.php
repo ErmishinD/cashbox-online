@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Models\Company;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class GetByCompanyRequest extends FormRequest
 {
@@ -26,5 +28,12 @@ class GetByCompanyRequest extends FormRequest
         return [
             'company_id' => ['required', 'exists:companies,id']
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'company_id' => $this->company_id ?? Auth::user()->company_id
+        ]);
     }
 }

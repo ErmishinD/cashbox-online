@@ -73,14 +73,14 @@
         <button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button>
         <button @click="addOperation" class="btn btn-success mar-left mb-10" >{{ $t('Добавить операцию') }}</button>
       </div>
-      
 
-  	
+
+
     <vue-good-table style="position: static; "
       v-on:select-all="selectAll"
       :columns="columns"
       :rows="rows"
-      :select-options="{ 
+      :select-options="{
         enabled: true,
         selectOnCheckboxOnly: true,
         disableSelectInfo: true,
@@ -170,6 +170,7 @@ export default {
         },
       ],
       rows: [],
+      all_checked: false
     };
   },
   mounted(){
@@ -188,7 +189,7 @@ export default {
   	},
   	delProduct(){
   		this.axios.delete(`/api/cashbox/${this.current_id}`, {
-  		  
+
   		}).then((response) => {
         this.$notify({
                 text: this.$t('Успешно!'),
@@ -218,15 +219,18 @@ export default {
     selectionChanged(props) {
       // console.log(props)
     },
-    selectAll(params){
-      console.log(params)
+    selectAll(props){
+        this.all_checked = !this.all_checked
+        this.rows.forEach(item => {
+            item.vgtSelected = this.all_checked
+        },this);
     },
 
   	render_list_items: function(){
   		var loader = this.$loading.show({
   		        canCancel: false,
   		        loader: 'dots',});
-  		
+
   		this.axios.get('/api/cashbox').then((response) => {
   		       this.products = response.data['data']
   		       this.rows = this.products
