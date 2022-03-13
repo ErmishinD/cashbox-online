@@ -101,6 +101,7 @@
           allLabel: 'All',
         }"
         v-on:selected-rows-change="selectionChanged"
+        v-on:row-click="rowClick"
         >
       <template #table-row="props">
           <span v-if="props.column.field == 'sell_product_name'">{{props.row.sell_product ? props.row.sell_product.name : (props.row.product_purchase ? props.row.product_purchase.product_type.name : '')}}</span>
@@ -218,6 +219,10 @@ export default {
     },
     selectionChanged(props) {
       // console.log(props)
+    },
+    rowClick(props) {
+      console.log(props)
+      this.all_checked = false
     },
     selectAll(props){
         this.all_checked = !this.all_checked
