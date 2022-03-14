@@ -336,6 +336,7 @@ export default {
           text: this.$t('Успешно!'),
           type: 'success',
         })
+        this.collection_ids = {}
         this.balance.income.cash = 0
         this.balance.income.card = 0
         this.balance.outcome.cash = 0
