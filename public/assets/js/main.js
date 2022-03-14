@@ -26579,6 +26579,7 @@ __webpack_require__.r(__webpack_exports__);
           type: 'success'
         });
 
+        _this6.collection_ids = {};
         _this6.balance.income.cash = 0;
         _this6.balance.income.card = 0;
         _this6.balance.outcome.cash = 0;
