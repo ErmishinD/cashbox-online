@@ -9,7 +9,9 @@ use App\Http\Requests\Api\Shop\UpdateRequest;
 use App\Http\Resources\Api\Shop\DefaultResource;
 use App\Http\Resources\Api\Shop\ForSelectResource;
 use App\Http\Resources\Api\Shop\ShowResource;
+use App\Models\Shop;
 use App\Repositories\ShopRepository;
+use Illuminate\Http\JsonResponse;
 
 class ShopController extends Controller
 {
@@ -21,80 +23,50 @@ class ShopController extends Controller
     public function __construct()
     {
         $this->shop = app(ShopRepository::class);
-        $this->middleware(['auth']);
-        $this->middleware(['can:Shop_access'])->only(['index']);
-        $this->middleware(['can:Shop_create'])->only(['store']);
-        $this->middleware(['can:Shop_show'])->only(['show']);
-        $this->middleware(['can:Shop_edit'])->only(['update']);
-        $this->middleware(['can:Shop_delete'])->only(['destroy']);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function index()
+    public function index(): JsonResponse
     {
+        $this->authorize('Shop_access');
+
         $shops = $this->shop->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($shops)]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param CreateRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request): JsonResponse
     {
+        $this->authorize('Shop_create');
+
         $data = $request->validated();
         $shop = $this->shop->create($data);
         return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
+    public function show(Shop $shop): JsonResponse
     {
-        $shop = $this->shop->getForShow($id);
+        $this->authorize('Shop_show');
+
         return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateRequest $request
-     * @param int $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, Shop $shop): JsonResponse
     {
+        $this->authorize('Shop_edit');
+
         $data = $request->validated();
-        $shop = $this->shop->update($id, $data);
+        $shop = $this->shop->update($shop, $data);
         return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id)
+    public function destroy(Shop $shop): JsonResponse
     {
-        $shop = $this->shop->getById($id);
-        if ($shop) {
-            $shop->delete();
-        }
+        $this->authorize('Shop_delete');
+
+        $shop->delete();
         return response()->json(['success' => true]);
     }
 
-    public function getByCompany(GetByCompanyRequest $request)
+    public function getByCompany(GetByCompanyRequest $request): JsonResponse
     {
         $data = $request->validated();
         $company_id = $data['company_id'];

@@ -89,7 +89,8 @@ class ProductPurchaseControllerTest extends TestCase
         $this->admin->assignRole('Super Admin');
     }
 
-    public function test_admin_can_get_all_product_purchases() {
+    public function test_admin_can_get_all_product_purchases()
+    {
         ProductPurchase::factory(5)->create();
 
         $response = $this->actingAs($this->admin)->get($this->base_route);
@@ -101,7 +102,8 @@ class ProductPurchaseControllerTest extends TestCase
         $this->assertCount(5, $response['data']);
     }
 
-    public function test_admin_can_create_product_purchase() {
+    public function test_admin_can_create_product_purchase()
+    {
         $storage = Storage::inRandomOrder()->first();
         $product_type = ProductType::inRandomOrder()->first();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
@@ -131,9 +133,10 @@ class ProductPurchaseControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_get_product_purchase() {
+    public function test_admin_can_get_product_purchase()
+    {
         $product_purchase = ProductPurchase::factory()->create(['quantity' => 111, 'cost' => 333]);
-        $response = $this->actingAs($this->admin)->get($this->base_route.$product_purchase->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route . $product_purchase->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -142,9 +145,10 @@ class ProductPurchaseControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_edit_product_purchase() {
+    public function test_admin_can_edit_product_purchase()
+    {
         $product_purchase = ProductPurchase::factory()->create(['quantity' => 111, 'cost' => 222]);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$product_purchase->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $product_purchase->id, [
             'cost' => 666
         ]);
         $response
@@ -156,9 +160,10 @@ class ProductPurchaseControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['quantity' => 111, 'cost' => 666]);
     }
 
-    public function test_admin_can_delete_product_purchase() {
+    public function test_admin_can_delete_product_purchase()
+    {
         $product_purchase = ProductPurchase::factory()->create();
-        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$product_purchase->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $product_purchase->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -206,7 +211,7 @@ class ProductPurchaseControllerTest extends TestCase
 
         $current_quantity2 = $product_purchase2->current_quantity / $main_measure_type->quantity;
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_for_dashboard', ['shop_id' => $shop->id]);
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_for_dashboard', ['shop_id' => $shop->id]);
 
         $response
             ->assertStatus(200)
@@ -240,7 +245,7 @@ class ProductPurchaseControllerTest extends TestCase
         $product_type1 = ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['perishable']]);
         $product_type2 = ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['imperishable']]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'mass_create', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'mass_create', [
             'storage_id' => $storage->id,
             'payment_type' => Cashbox::PAYMENT_TYPES['cash'],
             'product_types' => [
@@ -330,7 +335,7 @@ class ProductPurchaseControllerTest extends TestCase
         ProductPurchase::factory()->create(['storage_id' => $storage1->id]);
         ProductPurchase::factory()->create(['storage_id' => $storage2->id]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['storage_id' => $storage1->id]
         ]);
 
@@ -349,7 +354,7 @@ class ProductPurchaseControllerTest extends TestCase
         ProductPurchase::factory()->create(['product_type_id' => $product_type1->id]);
         ProductPurchase::factory()->create(['product_type_id' => $product_type2->id]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['product_type_id' => $product_type2->id]
         ]);
 
@@ -363,7 +368,7 @@ class ProductPurchaseControllerTest extends TestCase
         $purchase2 = ProductPurchase::factory()->create(['cost' => 200]);
         $purchase3 = ProductPurchase::factory()->create(['cost' => 300]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'cost', 'type' => 'desc']]
         ]);
 
@@ -384,7 +389,7 @@ class ProductPurchaseControllerTest extends TestCase
         $purchase2 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-22']);
         $purchase3 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-24']);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'expiration_date', 'type' => 'asc']]
         ]);
 
@@ -413,7 +418,7 @@ class ProductPurchaseControllerTest extends TestCase
         $purchase3->created_at = '2022-01-31 10:00';
         $purchase3->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'created_at', 'type' => 'desc']]
         ]);
 

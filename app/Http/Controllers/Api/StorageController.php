@@ -9,7 +9,9 @@ use App\Http\Requests\Api\Storage\UpdateRequest;
 use App\Http\Resources\Api\Shop\WithStoragesResource;
 use App\Http\Resources\Api\Storage\DefaultResource;
 use App\Http\Resources\Api\Storage\ShowResource;
+use App\Models\Storage;
 use App\Repositories\StorageRepository;
+use Illuminate\Http\JsonResponse;
 
 class StorageController extends Controller
 {
@@ -21,78 +23,51 @@ class StorageController extends Controller
     public function __construct()
     {
         $this->storage = app(StorageRepository::class);
-        $this->middleware(['auth']);
-        $this->middleware(['can:Storage_access'])->only(['index']);
-        $this->middleware(['can:Storage_create'])->only(['store']);
-        $this->middleware(['can:Storage_show'])->only(['show']);
-        $this->middleware(['can:Storage_edit'])->only(['update']);
-        $this->middleware(['can:Storage_delete'])->only(['destroy']);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function index()
+    public function index(): JsonResponse
     {
+        $this->authorize('Storage_access');
+
         $storages = $this->storage->all();
         return response()->json(['success' => true, 'data' => DefaultResource::collection($storages)]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param CreateRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request): JsonResponse
     {
+        $this->authorize('Storage_create');
+
         $data = $request->validated();
         $storage = $this->storage->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($storage)]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
+        $this->authorize('Storage_show');
+
         $storage = $this->storage->getForShow($id);
         return response()->json(['success' => true, 'data' => new ShowResource($storage)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateRequest $request
-     * @param int $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, Storage $storage): JsonResponse
     {
+        $this->authorize('Storage_edit');
+
         $data = $request->validated();
-        $storage = $this->storage->getById($id);
         $storage->update($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($storage)]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
+        $this->authorize('Storage_delete');
+
         $storage_deleted = $this->storage->deleteById($id);
         return response()->json(['success' => $storage_deleted]);
     }
 
-    public function getByCompany(GetByCompanyRequest $request)
+    public function getByCompany(GetByCompanyRequest $request): JsonResponse
     {
         $data = $request->validated();
         $company_id = $data['company_id'];

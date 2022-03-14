@@ -66,7 +66,8 @@ class SellProductControllerTest extends TestCase
         $this->admin->assignRole('Super Admin');
     }
 
-    public function test_admin_can_get_all_sell_products() {
+    public function test_admin_can_get_all_sell_products()
+    {
         SellProduct::factory(5)->create();
 
         $response = $this->actingAs($this->admin)->get($this->base_route);
@@ -78,7 +79,8 @@ class SellProductControllerTest extends TestCase
         $this->assertCount(5, $response['data']);
     }
 
-    public function test_admin_can_create_sell_product() {
+    public function test_admin_can_create_sell_product()
+    {
         $company = Company::inRandomOrder()->first();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'company_id' => $company->id,
@@ -105,7 +107,8 @@ class SellProductControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_create_sell_product_with_product_types() {
+    public function test_admin_can_create_sell_product_with_product_types()
+    {
         $company = Company::inRandomOrder()->first();
         $product_type1 = ProductType::factory()->create(['name' => 'First Product Type']);
         $product_type2 = ProductType::factory()->create(['name' => 'Second Product Type']);
@@ -157,9 +160,10 @@ class SellProductControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_get_sell_product() {
+    public function test_admin_can_get_sell_product()
+    {
         $sell_product = SellProduct::factory()->create(['name' => 'Sell Product 2', 'price' => 100]);
-        $response = $this->actingAs($this->admin)->get($this->base_route.$sell_product->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route . $sell_product->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -168,7 +172,8 @@ class SellProductControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_get_sell_product_with_product_types() {
+    public function test_admin_can_get_sell_product_with_product_types()
+    {
         $product_type1 = ProductType::factory()->create(['name' => 'product type 1']);
         $product_type2 = ProductType::factory()->create(['name' => 'product type 2']);
         $sell_product = SellProduct::factory()->create(['name' => 'Sell Product 2', 'price' => 100]);
@@ -179,7 +184,7 @@ class SellProductControllerTest extends TestCase
             'product_type_id' => $product_type2->id, 'sell_product_id' => $sell_product->id, 'quantity' => 250
         ]);
 
-        $response = $this->actingAs($this->admin)->get($this->base_route.$sell_product->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route . $sell_product->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -195,9 +200,10 @@ class SellProductControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_edit_sell_product() {
+    public function test_admin_can_edit_sell_product()
+    {
         $sell_product = SellProduct::factory()->create(['name' => 'Sell Product 3', 'price' => 333.33]);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$sell_product->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $sell_product->id, [
             'price' => 666.66
         ]);
         $response
@@ -209,13 +215,15 @@ class SellProductControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['name' => 'Sell Product 3', 'price' => 666.66]);
     }
 
-    public function test_admin_can_edit_sell_product_with_product_types() {
+    public function test_admin_can_edit_sell_product_with_product_types()
+    {
 
     }
 
-    public function test_admin_can_delete_sell_product() {
+    public function test_admin_can_delete_sell_product()
+    {
         $sell_product = SellProduct::factory()->create();
-        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$sell_product->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $sell_product->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -224,7 +232,8 @@ class SellProductControllerTest extends TestCase
         $this->assertSoftDeleted($this->table, ['id' => $sell_product->id]);
     }
 
-    public function test_admin_can_remove_product_types() {
+    public function test_admin_can_remove_product_types()
+    {
 
     }
 
@@ -240,7 +249,7 @@ class SellProductControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['name' => 'my']
         ]);
 
@@ -258,21 +267,21 @@ class SellProductControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['has_discount' => 'false']
         ]);
 
         $response->assertStatus(200);
         $response->assertJsonCount(2, 'pagination.data');
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['has_discount' => 'true']
         ]);
 
         $response->assertStatus(200);
         $response->assertJsonCount(1, 'pagination.data');
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['has_discount' => '']
         ]);
 
@@ -290,7 +299,7 @@ class SellProductControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'name', 'type' => 'asc']]
         ]);
 
@@ -315,7 +324,7 @@ class SellProductControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'price', 'type' => 'asc']]
         ]);
 

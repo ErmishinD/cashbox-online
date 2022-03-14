@@ -36,7 +36,8 @@ class MeasureTypeControllerTest extends TestCase
     }
 
 
-    public function test_admin_can_get_all_measure_types() {
+    public function test_admin_can_get_all_measure_types()
+    {
         MeasureType::factory(5)->create();
 
         $response = $this->actingAs($this->admin)->get($this->base_route);
@@ -48,7 +49,8 @@ class MeasureTypeControllerTest extends TestCase
         $this->assertCount(5, $response['data']);
     }
 
-    public function test_admin_can_create_measure_type() {
+    public function test_admin_can_create_measure_type()
+    {
         $company = Company::factory()->create();
         $base_measure_type = BaseMeasureType::inRandomOrder()->get()->first();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
@@ -80,9 +82,10 @@ class MeasureTypeControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_get_measure_type() {
+    public function test_admin_can_get_measure_type()
+    {
         $measure_type = MeasureType::factory()->create(['name' => 'my custom name']);
-        $response = $this->actingAs($this->admin)->get($this->base_route.$measure_type->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route . $measure_type->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -91,9 +94,10 @@ class MeasureTypeControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_edit_measure_type() {
+    public function test_admin_can_edit_measure_type()
+    {
         $measure_type = MeasureType::factory()->create(['name' => 'MeasureType name']);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$measure_type->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $measure_type->id, [
             'name' => 'NEW name', 'description' => 'some description'
         ]);
         $response
@@ -105,9 +109,10 @@ class MeasureTypeControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['name' => 'NEW name', 'description' => 'some description']);
     }
 
-    public function test_admin_can_delete_measure_type() {
+    public function test_admin_can_delete_measure_type()
+    {
         $measure_type = MeasureType::factory()->create();
-        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$measure_type->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $measure_type->id);
         $response
             ->assertStatus(200)
             ->assertJson([

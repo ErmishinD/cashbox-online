@@ -25,15 +25,18 @@ class RolesPermissionsSeeder extends Seeder
             'SellProduct_access', 'SellProduct_create', 'SellProduct_show', 'SellProduct_edit', 'SellProduct_delete',
             'SellProductGroup_access', 'SellProductGroup_create', 'SellProductGroup_show', 'SellProductGroup_edit', 'SellProductGroup_delete',
             'ProductPurchase_access', 'ProductPurchase_create', 'ProductPurchase_show', 'ProductPurchase_edit', 'ProductPurchase_delete',
-            'Cashbox_access', 'Cashbox_create', 'Cashbox_show', 'Cashbox_edit', 'Cashbox_delete',
+            'Cashbox_access', 'Cashbox_create', 'Cashbox_show', 'Cashbox_edit', 'Cashbox_delete', 'Cashbox_collect', 'Cashbox_history',
             'User_access', 'User_create', 'User_show', 'User_edit', 'User_delete',
             'Report_access',
         ];
 
+        $data_for_create = [];
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            $data_for_create[] = ['name' => $permission, 'guard_name' => config('auth.defaults.guard')];
         }
+        Permission::insert($data_for_create);
 
-        $super_admin_role = Role::create(['name' => 'Super Admin']);
+        // create super admin
+        Role::create(['name' => 'Super Admin', 'human_name' => 'Super Administrator']);
     }
 }

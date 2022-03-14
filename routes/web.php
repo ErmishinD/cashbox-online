@@ -19,9 +19,9 @@ Route::get('/', function () {
     return redirect(url('login'));
 });
 
-Route::get('/login-as/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'loginAs']);
+Route::get('/login-as/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'loginAs']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/{vue_capture?}', function () {
     return view('dashboard');

@@ -7,11 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\SellProduct\CreateRequest;
 use App\Http\Requests\Api\SellProduct\UpdateRequest;
-use App\Http\Resources\Api\SellProduct\DefaultResource;
 use App\Http\Resources\Api\SellProduct\EditResource;
 use App\Http\Resources\Api\SellProduct\IndexResource;
 use App\Http\Resources\Api\SellProduct\ShowResource;
+use App\Models\SellProduct;
 use App\Repositories\SellProductRepository;
+use Illuminate\Http\JsonResponse;
 
 class SellProductController extends Controller
 {
@@ -23,27 +24,20 @@ class SellProductController extends Controller
     public function __construct()
     {
         $this->sell_product = app(SellProductRepository::class);
-        $this->middleware(['auth']);
-        $this->middleware(['can:SellProduct_access'])->only(['index']);
-        $this->middleware(['can:SellProduct_create'])->only(['store']);
-        $this->middleware(['can:SellProduct_show'])->only(['show']);
-        $this->middleware(['can:SellProduct_edit'])->only(['update']);
-        $this->middleware(['can:SellProduct_delete'])->only(['destroy']);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function index()
+    public function index(): JsonResponse
     {
+        $this->authorize('SellProduct_access');
+
         $sell_products = $this->sell_product->all();
         return response()->json(['success' => true, 'data' => IndexResource::collection($sell_products)]);
     }
 
-    public function get_paginated(PaginateRequest $request, SellProductFilter $filters)
+    public function get_paginated(PaginateRequest $request, SellProductFilter $filters): JsonResponse
     {
+        $this->authorize('SellProduct_access');
+
         $paginate_data = $request->validated();
         $sell_products = $this->sell_product->get_paginated($paginate_data, $filters);
 
@@ -59,58 +53,35 @@ class SellProductController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param CreateRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request): JsonResponse
     {
+        $this->authorize('SellProduct_create');
+
         $data = $request->validated();
         $sell_product = $this->sell_product->create($data);
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
+    public function show(SellProduct $sell_product): JsonResponse
     {
-        $sell_product = $this->sell_product->getById($id);
+        $this->authorize('SellProduct_show');
+
+        $sell_product->load('product_types');
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateRequest $request
-     * @param int $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, SellProduct $sell_product): JsonResponse
     {
+        $this->authorize('SellProduct_edit');
+
         $data = $request->validated();
-        $sell_product = $this->sell_product->getById($id);
         $sell_product->update($data);
         return response()->json(['success' => true, 'data' => new EditResource($sell_product)]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id)
+    public function destroy(SellProduct $sell_product): JsonResponse
     {
-        $sell_product = $this->sell_product->getById($id);
-        if ($sell_product) {
-            $sell_product->delete();
-        }
+        $sell_product->delete();
         return response()->json(['success' => true]);
     }
 }

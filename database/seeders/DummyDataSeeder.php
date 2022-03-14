@@ -332,19 +332,27 @@ class DummyDataSeeder extends Seeder
         }
 
         // create users
+        $directors = collect();
+        $accountants = collect();
+        $analysts = collect();
+        $salesmen = collect();
         foreach ($companies as $company) {
             $director = User::factory()->create(['company_id' => $company->id]);
-            $director->assignRole('director.'.$company->id);
+            $director->assignRole('director.' . $company->id);
+            $directors->push($director);
 
             $accountant = User::factory()->create(['company_id' => $company->id]);
             $accountant->assignRole('accountant.' . $company->id);
+            $accountants->push($accountant);
 
             $analyst = User::factory()->create(['company_id' => $company->id]);
             $analyst->assignRole('analyst.' . $company->id);
+            $analysts->push($analyst);
 
             foreach ($company->shops as $item) {
                 $salesman = User::factory()->create(['company_id' => $company->id]);
                 $salesman->assignRole('salesman.' . $company->id);
+                $salesmen->push($salesman);
             }
         }
 
@@ -352,7 +360,6 @@ class DummyDataSeeder extends Seeder
         foreach ($companies as $company) {
             MeasureType::factory()->count(10)->create(['company_id' => $company->id]);
         }
-
 
         // создать продукты
         $product_types = ProductType::factory()->count(1000)->create();
@@ -386,7 +393,7 @@ class DummyDataSeeder extends Seeder
             $allowed_sell_products = $sell_products->where('company_id', $sell_group->company_id)->pluck('id');
             if ($allowed_sell_products->isNotEmpty()) {
                 $products_amount = random_int(2, 5);
-                for ($i=1; $i<=$products_amount; $i++) {
+                for ($i = 1; $i <= $products_amount; $i++) {
                     $sell_group->products()->attach(
                         $allowed_sell_products->random(),
                         ['price' => random_int(10, 1000)]
@@ -399,8 +406,7 @@ class DummyDataSeeder extends Seeder
         // создание "закупок товаров"
         foreach ($shops as $shop) {
             $company_id = $shop->company_id;
-            $storage_ids = $shop->storages->pluck('id');
-            $director = User::role('director.' . $company_id)->first();
+            $director = $directors->where('company_id', $company_id)->first();
             foreach ($shop->storages as $storage) {
                 $allowed_product_types = $product_types->where('company_id', $company_id);
                 for ($product_count = 0; $product_count < random_int(20, 100); $product_count++) {
@@ -414,7 +420,7 @@ class DummyDataSeeder extends Seeder
                             $to = strtotime('next year');
                             $expiration_date = date('Y-m-d H:i', mt_rand($from, $to));
                         }
-                        for ($i=0; $i < random_int(1, 5); $i++) {
+                        for ($i = 0; $i < random_int(1, 5); $i++) {
                             $product_purchase = ProductPurchase::create([
                                 'storage_id' => $storage->id,
                                 'product_type_id' => $product_type->id,
@@ -442,7 +448,7 @@ class DummyDataSeeder extends Seeder
             }
 
             // создать продажи
-            $operators = User::role('salesman.' . $company_id)->get();
+            $operators = $salesmen->where('company_id', $company_id);
 
             $allowed_sell_products = $sell_products->where('company_id', $company_id);
             $sell_products_were_sold = $allowed_sell_products->random(ceil($allowed_sell_products->count() / 3));
@@ -452,7 +458,7 @@ class DummyDataSeeder extends Seeder
                     'sell_product_id' => $sell_product->id,
                     'transaction_type' => Cashbox::TRANSACTION_TYPES['in'],
                     'payment_type' => $faker->randomElement(Cashbox::PAYMENT_TYPES),
-                    'operator_id' => $operators->random()->id,
+                    'operator_id' => $operators->where('company_id', $company_id)->random()->id,
                     'collected_at' => null,
                     'collector_id' => null,
                 ]);

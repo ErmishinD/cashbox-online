@@ -78,7 +78,8 @@ class ProductTypeControllerTest extends TestCase
         $this->admin->assignRole('Super Admin');
     }
 
-    public function test_admin_cant_get_all_product_types() {
+    public function test_admin_cant_get_all_product_types()
+    {
         $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
             ->assertStatus(200)
@@ -90,7 +91,7 @@ class ProductTypeControllerTest extends TestCase
     public function test_admin_can_get_paginated_product_types()
     {
         ProductType::factory(30)->create();
-        $response = $this->actingAs($this->admin)->post($this->base_route.'get_paginated', ['per_page' => 3, 'page' => 1]);
+        $response = $this->actingAs($this->admin)->post($this->base_route . 'get_paginated', ['per_page' => 3, 'page' => 1]);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -104,7 +105,8 @@ class ProductTypeControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_create_product_type() {
+    public function test_admin_can_create_product_type()
+    {
         $company = Company::inRandomOrder()->get()->first();
         $base_measure_type = BaseMeasureType::inRandomOrder()->get()->first();
         $main_measure_type_id = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id]);
@@ -135,7 +137,8 @@ class ProductTypeControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_get_product_type() {
+    public function test_admin_can_get_product_type()
+    {
         $product_type = ProductType::factory()->create(['name' => 'my custom name']);
         $measure_type = MeasureType::factory()->create(['name' => 'custom measure type']);
         $sell_product1 = SellProduct::factory()->create();
@@ -150,7 +153,7 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'sell_product_id' => $sell_product2->id, 'quantity' => 400
         ]);
 
-        $response = $this->actingAs($this->admin)->get($this->base_route.$product_type->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route . $product_type->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -183,9 +186,10 @@ class ProductTypeControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_edit_product_type() {
+    public function test_admin_can_edit_product_type()
+    {
         $product_type = ProductType::factory()->create(['name' => 'ProductType name']);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$product_type->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $product_type->id, [
             'name' => 'NEW name'
         ]);
         $response
@@ -197,9 +201,10 @@ class ProductTypeControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['name' => 'NEW name']);
     }
 
-    public function test_admin_can_delete_product_type() {
+    public function test_admin_can_delete_product_type()
+    {
         $product_type = ProductType::factory()->create();
-        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$product_type->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $product_type->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -208,7 +213,8 @@ class ProductTypeControllerTest extends TestCase
         $this->assertSoftDeleted($this->table, ['id' => $product_type->id]);
     }
 
-    public function test_admin_can_remove_measure_types() {
+    public function test_admin_can_remove_measure_types()
+    {
         $product_type = ProductType::factory()->create(['name' => 'test product']);
         $measure_type1 = MeasureType::factory()->create(['name' => 'test measure type 1']);
         $measure_type2 = MeasureType::factory()->create(['name' => 'test measure type 2']);
@@ -219,7 +225,7 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type2->id
         ]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'remove_measure_types', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'remove_measure_types', [
             'product_type_id' => $product_type->id,
             'measure_types' => [$measure_type1->id, $measure_type2->id]
         ]);
@@ -255,7 +261,7 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type->id
         ]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_for_purchase', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_for_purchase', [
             'company_id' => $company->id
         ]);
 
@@ -291,7 +297,7 @@ class ProductTypeControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['name' => 'my']
         ]);
 
@@ -309,7 +315,7 @@ class ProductTypeControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['type' => ProductType::TYPES['imperishable']]
         ]);
 
@@ -327,7 +333,7 @@ class ProductTypeControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['base_measure_type_id' => $this->base_measure_type_quantity->id]
         ]);
 
@@ -345,7 +351,7 @@ class ProductTypeControllerTest extends TestCase
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'name', 'type' => 'asc']]
         ]);
 

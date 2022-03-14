@@ -88,7 +88,8 @@ class CashboxControllerTest extends TestCase
         $this->admin->assignRole('Super Admin');
     }
 
-    public function test_admin_can_get_all_cashbox_transactions() {
+    public function test_admin_can_get_all_cashbox_transactions()
+    {
         $shop = Shop::factory()->create();
         // create _in _card transactions
         Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_card', 'transaction_type' => '_in', 'amount' => 100, 'collected_at' => null]);
@@ -132,8 +133,8 @@ class CashboxControllerTest extends TestCase
         $this->assertCount(6, $response['data']);
     }
 
-
-    public function test_admin_can_create_cashbox_out_transaction() {
+    public function test_admin_can_create_cashbox_out_transaction()
+    {
         $shop = Shop::factory()->create();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'shop_id' => $shop->id,
@@ -165,7 +166,8 @@ class CashboxControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_create_cashbox_in_transaction() {
+    public function test_admin_can_create_cashbox_in_transaction()
+    {
         $shop = Shop::factory()->create();
         $sell_product = SellProduct::factory()->create();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
@@ -200,9 +202,10 @@ class CashboxControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_get_cashbox_transaction() {
+    public function test_admin_can_get_cashbox_transaction()
+    {
         $cashbox = Cashbox::factory()->create(['transaction_type' => '_out', 'amount' => 111, 'description' => 'my description']);
-        $response = $this->actingAs($this->admin)->get($this->base_route.$cashbox->id);
+        $response = $this->actingAs($this->admin)->get($this->base_route . $cashbox->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -211,9 +214,10 @@ class CashboxControllerTest extends TestCase
             ]);
     }
 
-    public function test_admin_can_edit_cashbox_transaction() {
+    public function test_admin_can_edit_cashbox_transaction()
+    {
         $cashbox = Cashbox::factory()->create(['transaction_type' => '_out', 'amount' => 333.33]);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route.$cashbox->id, [
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $cashbox->id, [
             'amount' => 666.66
         ]);
         $response
@@ -225,9 +229,10 @@ class CashboxControllerTest extends TestCase
         $this->assertDatabaseHas($this->table, ['transaction_type' => '_out', 'amount' => 666.66]);
     }
 
-    public function test_admin_can_delete_cashbox_transaction() {
+    public function test_admin_can_delete_cashbox_transaction()
+    {
         $cashbox = Cashbox::factory()->create();
-        $response = $this->actingAs($this->admin)->deleteJson($this->base_route.$cashbox->id);
+        $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $cashbox->id);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -310,7 +315,7 @@ class CashboxControllerTest extends TestCase
         // product_type3: 1700 - 100
         // product_type4: (1000 + 1000) - 1100
         $this->user->syncPermissions(['Cashbox_create']);
-        $response = $this->actingAs($this->user)->postJson($this->base_route.'mass_create', [
+        $response = $this->actingAs($this->user)->postJson($this->base_route . 'mass_create', [
             'shop_id' => $shop->id,
             'transaction_type' => '_in',
             'payment_type' => '_cash',
@@ -428,7 +433,7 @@ class CashboxControllerTest extends TestCase
         // create _out _cash transactions
         Cashbox::factory()->create(['shop_id' => $shop->id, 'payment_type' => '_cash', 'transaction_type' => '_out', 'amount' => 10, 'collected_at' => null]);
 
-        $response = $this->actingAs($this->admin)->getJson($this->base_route.'get_current_balance');
+        $response = $this->actingAs($this->admin)->getJson($this->base_route . 'get_current_balance');
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -464,7 +469,7 @@ class CashboxControllerTest extends TestCase
         $payments = Cashbox::factory(10)->create(['shop_id' => $shop->id, 'collected_at' => null]);
 
         // collect payments
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'collect', ['ids' => $payments->pluck('id')]);
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'collect', ['ids' => $payments->pluck('id')]);
         $response->assertStatus(200);
 
         $this->assertCount(10, Cashbox::where('shop_id', $shop->id)
@@ -512,7 +517,7 @@ class CashboxControllerTest extends TestCase
             'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
         ]);
 
-        $response = $this->actingAs($this->admin)->getJson($this->base_route.'collection_history');
+        $response = $this->actingAs($this->admin)->getJson($this->base_route . 'collection_history');
         $response->assertStatus(200)
             ->assertJson([
                 'success' => true,
@@ -560,7 +565,7 @@ class CashboxControllerTest extends TestCase
             'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
         ]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'payments_from_history', [
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'payments_from_history', [
             'collected_at' => $collected_time->format('Y-m-d H:i:s')
         ]);
         $response->assertStatus(200)

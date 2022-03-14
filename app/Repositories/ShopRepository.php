@@ -53,8 +53,7 @@ class ShopRepository extends BaseRepository
     }
 
     public function update($shopOrId, $data) {
-        $shop = $this->model->find($shopOrId);
-        $shop = $this->getByIdOrModel($shop);
+        $shop = $this->getByIdOrModel($shopOrId);
         if (!$shop) {
             return false;
         }

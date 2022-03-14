@@ -19,11 +19,6 @@ class CompanyRepository extends BaseRepository
         return Company::class;
     }
 
-    public function getForShow($id)
-    {
-        return $this->model->with(['shops', 'employees.roles'])->find($id);
-    }
-
     public function create(array $data)
     {
         $company = parent::create($data);

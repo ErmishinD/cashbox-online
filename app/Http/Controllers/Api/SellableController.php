@@ -9,14 +9,15 @@ use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Resources\Api\Sellable\DashboardResource;
 use App\Models\SellProduct;
 use App\Models\SellProductGroup;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Http\JsonResponse;
 
 class SellableController extends Controller
 {
-    public function get_paginated(PaginateRequest $request, SellProductFilter $product_filters, SellProductGroupFilter $group_filters)
+    public function get_paginated(
+        PaginateRequest $request,
+        SellProductFilter $product_filters,
+        SellProductGroupFilter $group_filters
+    ): JsonResponse
     {
         $paginate_data = $request->validated();
 
@@ -24,7 +25,7 @@ class SellableController extends Controller
         $sell_product_groups = SellProductGroup::with(['products.product_types.main_measure_type'])->filter($group_filters)->get();
 
         $sellable = $sell_product_groups->concat($sell_products);
-        $sellable = $this->paginate_collection($sellable, $paginate_data['per_page'], $paginate_data['page']);
+        $sellable = $sellable->paginate($paginate_data['per_page'], $paginate_data['page']);
 
         return response()->json([
             'success' => true,
@@ -36,6 +37,5 @@ class SellableController extends Controller
                 'total' => $sellable->total(),
             ]
         ]);
-
     }
 }

@@ -86,7 +86,7 @@ class SellableControllerTest extends TestCase
         SellProduct::factory()->count(20)->create(['company_id' => $company->id]);
         SellProductGroup::factory()->count(20)->create(['company_id' => $company->id]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated');
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated');
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -106,7 +106,7 @@ class SellableControllerTest extends TestCase
         SellProduct::factory()->count(20)->create(['company_id' => $company->id]);
         SellProductGroup::factory()->count(20)->create(['company_id' => $company->id]);
 
-        $response = $this->actingAs($this->admin)->postJson($this->base_route.'get_paginated', ['per_page' => 5, 'page' => 2]);
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', ['per_page' => 5, 'page' => 2]);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -131,7 +131,7 @@ class SellableControllerTest extends TestCase
         $sell_product_group2 = SellProductGroup::factory()->create(['company_id' => $company->id, 'name' => "Два бутерброда"]);
 
         $response = $this->actingAs($this->admin)->postJson(
-            $this->base_route.'get_paginated', ['columnFilters' => ['name' => 'вода']]);
+            $this->base_route . 'get_paginated', ['columnFilters' => ['name' => 'вода']]);
         $response
             ->assertStatus(200)
             ->assertJson([
@@ -152,7 +152,7 @@ class SellableControllerTest extends TestCase
             ]);
 
         $response = $this->actingAs($this->admin)->postJson(
-            $this->base_route.'get_paginated', ['columnFilters' => ['name' => 'чай']]);
+            $this->base_route . 'get_paginated', ['columnFilters' => ['name' => 'чай']]);
         $response
             ->assertStatus(200)
             ->assertJson([

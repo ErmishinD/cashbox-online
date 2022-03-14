@@ -25,16 +25,12 @@ class CashboxController extends Controller
     public function __construct()
     {
         $this->cashbox = app(CashboxRepository::class);
-        $this->middleware(['auth']);
-        $this->middleware(['can:Cashbox_access'])->only(['index']);
-        $this->middleware(['can:Cashbox_create'])->only(['store']);
-        $this->middleware(['can:Cashbox_show'])->only(['show']);
-        $this->middleware(['can:Cashbox_edit'])->only(['update']);
-        $this->middleware(['can:Cashbox_delete'])->only(['destroy']);
     }
 
     public function index(): JsonResponse
     {
+        $this->authorize('Cashbox_access');
+
         $payments = $this->cashbox->get_not_collected();
         return response()->json([
             'success' => true,
@@ -45,6 +41,8 @@ class CashboxController extends Controller
 
     public function store(CreateRequest $request): JsonResponse
     {
+        $this->authorize('Cashbox_create');
+
         $data = $request->validated();
         $payment = $this->cashbox->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
@@ -52,6 +50,8 @@ class CashboxController extends Controller
 
     public function mass_store(MassCreateRequest $request): JsonResponse
     {
+        $this->authorize('Cashbox_create');
+
         $data = $request->validated();
         $payments = $this->cashbox->mass_create($data);
         return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)]);
@@ -59,12 +59,16 @@ class CashboxController extends Controller
 
     public function show(int $id): JsonResponse
     {
+        $this->authorize('Cashbox_show');
+
         $payment = $this->cashbox->getById($id);
         return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
     }
 
     public function update(UpdateRequest $request, int $id): JsonResponse
     {
+        $this->authorize('Cashbox_edit');
+
         $data = $request->validated();
         $payment = $this->cashbox->getById($id);
         $payment->update($data);
@@ -73,6 +77,8 @@ class CashboxController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
+        $this->authorize('Cashbox_delete');
+
         $is_deleted = $this->cashbox->deleteById($id);
         return response()->json(['success' => $is_deleted]);
     }
@@ -85,6 +91,8 @@ class CashboxController extends Controller
 
     public function collect_payments(CollectPaymentsRequest $request): JsonResponse
     {
+        $this->authorize('Cashbox_collect');
+
         $payment_ids = $request->validated()['ids'];
         $this->cashbox->collect_payments($payment_ids);
         return response()->json(['success' => true]);
@@ -92,12 +100,16 @@ class CashboxController extends Controller
 
     public function get_collection_history(): JsonResponse
     {
+        $this->authorize('Cashbox_history');
+
         $payments = $this->cashbox->get_collection_history();
         return response()->json(['success' => true, 'data' => new HistoryCollection($payments)]);
     }
 
     public function get_payments_from_history(PaymentsFromHistoryRequest $request): JsonResponse
     {
+        $this->authorize('Cashbox_history');
+
         $collected_at = $request->validated()['collected_at'];
         $payments = $this->cashbox->get_payments_from_history($collected_at);
         return response()->json(['success' => true, 'data' => IndexResource::collection($payments)]);

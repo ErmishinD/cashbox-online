@@ -79,12 +79,11 @@ class ProductTypeRepository extends BaseRepository
         return $product_type;
     }
 
-    public function update($id, $data) {
-        $product_type = $this->getById($id);
+    public function update($product_type, $data) {
         $product_type->update($data);
 
         // удалить все единицы измерения для данного продукта
-        DB::table('product_type_measures')->where('product_type_id', $id)->delete();
+        DB::table('product_type_measures')->where('product_type_id', $product_type->id)->delete();
 
         // добавить единицы измерения к продукту
         if (!empty($data['measure_types'])) {
