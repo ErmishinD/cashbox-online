@@ -69,12 +69,58 @@
         </GDialog>
 
       <div style="display: flex;">
-        <button class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
+        <button :disabled="!(this.collection_ids.length)" @click="makeCollection" class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
         <button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button>
         <button @click="addOperation" class="btn btn-success mar-left mb-10" >{{ $t('Добавить операцию') }}</button>
       </div>
 
-
+      <div class="detail">
+        <div class="detail__title">{{$t('Баланс')}}</div>
+        <div class="detail__conent">
+          <div class="detail__content_item">
+            <div class="content__item_title">{{$t('Поступление')}}</div>
+            <div class="content__item_row">
+              <div class="item__row_item">
+                {{$t('Наличные')}}: {{balance.income.cash}}грн
+              </div>
+              <div class="item__row_item">
+                {{$t('Карта')}}: {{balance.income.card}}грн
+              </div>
+              <div class="item__row_item">
+                {{$t('Всего')}}: {{parseFloat(parseFloat(balance.income.cash) + parseFloat(balance.income.card)).toFixed(2)}}грн
+              </div>
+            </div>
+          </div>
+          <div class="detail__content_item">
+            <div class="content__item_title">{{$t('Расход')}}</div>
+            <div class="content__item_row">
+              <div class="item__row_item">
+                {{$t('Наличные')}}: {{balance.outcome.cash}}грн
+              </div>
+              <div class="item__row_item">
+                {{$t('Карта')}}: {{balance.outcome.card}}грн
+              </div>
+              <div class="item__row_item">
+                {{$t('Всего')}}: {{parseFloat(parseFloat(balance.outcome.cash) + parseFloat(balance.outcome.card)).toFixed(2)}}грн
+              </div>
+            </div>
+          </div>
+          <div class="detail__content_item">
+            <div class="content__item_title">{{$t('Всего')}}</div>
+            <div class="content__item_row">
+              <div class="item__row_item">
+                {{$t('Наличные')}}: {{balance.sum.cash}}грн
+              </div>
+              <div class="item__row_item">
+                {{$t('Карта')}}: {{balance.sum.card}}грн
+              </div>
+              <div class="item__row_item">
+                {{$t('Всего')}}: {{parseFloat(parseFloat(balance.sum.cash) + parseFloat(balance.sum.card)).toFixed(2)}}грн
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <vue-good-table style="position: static; "
       v-on:select-all="selectAll"
@@ -133,7 +179,24 @@ export default {
       current_id: null,
       shop_list: null,
       formData: {},
-      balance: null,
+      collection_ids: {},
+      balance: {
+        income: {
+          cash: 0,
+          card: 0,
+          sum: 0
+        },
+        outcome: {
+          cash: 0,
+          card: 0,
+          sum: 0
+        },
+        sum: {
+          cash: 0,
+          card: 0,
+          sum: 0
+        }
+      },
       columns: [
         {
           label: this.$t('Тип транзакции'),
@@ -221,16 +284,67 @@ export default {
       // console.log(props)
     },
     rowClick(props) {
-      console.log(props)
-      this.all_checked = false
+      console.log(props.row.vgtSelected)
+      if(props.selected == false){
+        this.all_checked = false
+      }
+      // props.row.vgtSelected = props.selected
+      this.rows.find(item => item.id == props.row.id).vgtSelected = props.selected
+      this.countBalance()
     },
     selectAll(props){
         this.all_checked = !this.all_checked
         this.rows.forEach(item => {
             item.vgtSelected = this.all_checked
         },this);
+        this.countBalance()
     },
-
+    countBalance() {
+      this.balance.income.cash = 0
+      this.balance.income.card = 0
+      this.balance.outcome.cash = 0
+      this.balance.outcome.card = 0
+      this.collection_ids = []
+      this.rows.forEach(item => {
+        if(item.vgtSelected){
+          if(item.transaction_type == '_in'){
+            if(item.payment_type == '_cash'){
+              this.balance.income.cash = parseFloat(parseFloat(this.balance.income.cash) + parseFloat(item.amount)).toFixed(2)
+            }
+            else{
+              this.balance.income.card = parseFloat(parseFloat(this.balance.income.card) + parseFloat(item.amount)).toFixed(2)
+            }
+          }
+          else{
+            if(item.payment_type == '_cash'){
+              this.balance.outcome.cash = parseFloat(parseFloat(this.balance.outcome.cash) + parseFloat(item.amount)).toFixed(2)
+            }
+            else{
+              this.balance.outcome.card = parseFloat(parseFloat(this.balance.outcome.card) + parseFloat(item.amount)).toFixed(2)
+            }
+          }
+          this.collection_ids.push(item.id)
+        }
+      },this);
+      console.log(this.collection_ids)
+      this.balance.sum.cash = parseFloat(parseFloat(this.balance.income.cash) - parseFloat(this.balance.outcome.cash)).toFixed(2)
+      this.balance.sum.card = parseFloat(parseFloat(this.balance.income.card) - parseFloat(this.balance.outcome.card)).toFixed(2)
+    },
+    makeCollection(){
+      this.axios.post('/api/cashbox/collect', {ids : this.collection_ids}).then((response) => {
+        this.$notify({
+          text: this.$t('Успешно!'),
+          type: 'success',
+        })
+        this.balance.income.cash = 0
+        this.balance.income.card = 0
+        this.balance.outcome.cash = 0
+        this.balance.outcome.card = 0
+        this.balance.sum.cash = 0
+        this.balance.sum.card = 0
+        this.render_list_items()
+      })
+    },
   	render_list_items: function(){
   		var loader = this.$loading.show({
   		        canCancel: false,
@@ -239,6 +353,9 @@ export default {
   		this.axios.get('/api/cashbox').then((response) => {
   		       this.products = response.data['data']
   		       this.rows = this.products
+             this.rows.forEach(item => {
+              item.vgtSelected = false
+             })
   		       loader.hide()
 
   		     }).catch(function(error){
@@ -250,3 +367,31 @@ export default {
   },
 };
 </script>
+
+
+<style scoped lang="scss">
+  .detail{
+    margin-inline: 0;
+  }
+
+  .detail__title {
+    font-size: 30px;
+  }
+
+  .detail__content_item{
+    padding-block: 5px;
+    border-bottom: 1px solid #dadada;
+  }
+
+  .content__item_title{
+    font-size: 22px;
+    text-align: center;
+    padding-bottom: 5px;
+  }
+
+  .content__item_row{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+</style>
