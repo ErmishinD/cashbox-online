@@ -10,12 +10,12 @@
 			</select>
 			<button class="btn btn-primary"  onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">{{ $t('Выход') }}</button>
-			
+
             <form id="logout-form" action="/logout" method="POST">
             	 <input type="hidden" name="_token" :value="this.$csrf">
 			</form>
-			
-			
+
+
 		</div>
 	</header>
 
@@ -25,16 +25,13 @@
 	<div id="main_content" v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
 		<router-view></router-view>
 	</div>
-	
-		
+
+
 </template>
 
 <script>
 
   export default {
-  	data: {
-  		
-  	},
   	mounted(){
   		this.$root.$i18n.locale = this.$cookies.get('lang')
   		this.menu = this.returnSidebarData()
@@ -64,7 +61,7 @@
   		},
   		changeOption (event) {
   			this.changeLanguage(event.target.value)
-  			
+
   		},
   		updateWidth() {
   		    this.width = window.innerWidth;
@@ -84,24 +81,24 @@
 	            href: '/dashboard',
 	            title: this.$t('Главная'),
 	            icon: 'fas fa-home'
-          	}) 
+          	})
 
   			if(this.$can('ProductType_access')){
   				sidebar_data.push({
 	          	href: '/products_type',
 	            title: this.$t('Типы товаров'),
 	            icon: 'fas fa-truck',
-	          }) 
+	          })
   			}
-          	
+
   			if(this.$can('SellProduct_access')){
   				sidebar_data.push({
 	          	href: '/products_for_sale',
 	            title: this.$t('Товары на продажу'),
 	            icon: 'fas fa-hand-holding-usd',
-	          }) 
+	          })
   			}
-	         
+
 
 	          /* reports */
 
@@ -110,32 +107,32 @@
 	            href: '/reports/cashbox',
 	            title: this.$t('Касса'),
 	            icon: 'fas fa-cash-register',
-	          }) 
+	          })
 	          }
-	          
+
 
 	          sidebar_reports_child.push({
 	            href: '/reports/finance',
 	            title: this.$t('Финансы'),
 	            icon: 'fas fa-chart-line',
-	          }) 
+	          })
 
 	          if(this.$can('ProductPurchase_access')){
 	          	sidebar_reports_child.push({
 	            href: '/reports/purchases',
 	            title: this.$t('Закупки'),
 	            icon: 'fas fa-shopping-cart',
-	          }) 
+	          })
 	          }
-	          
+
 	          if(this.$can('Report_access')){
 	          	sidebar_data.push({
 		            title: this.$t('Отчеты'),
 		            icon: 'fas fa-chart-pie',
-		            child: sidebar_reports_child 
-		          }) 
+		            child: sidebar_reports_child
+		          })
 	          }
-	          
+
 
 		      /* end reports */
 
@@ -143,24 +140,24 @@
 	              href: '/transfers',
 	              title: this.$t('Трансферы'),
 	              icon: 'fas fa-exchange-alt',
-		      	}) 
+		      	})
 
 		      if(this.$can('Shop_access')){
 		      	sidebar_data.push({
 	              	href: '/shops',
 	                title: this.$t('Магазины'),
 	                icon: 'fas fa-store',
-		      	}) 
+		      	})
 		      }
-		      
+
 		      if(this.$can('Storage_access')){
 		      	sidebar_data.push({
 	              		href: '/storages',
 	              	  title: this.$t('Склады'),
 	              	  icon: 'fas fa-boxes',
-		      	}) 
+		      	})
 		      }
-		      
+
 		      if(this.$can('User_access')){
 		      	sidebar_data.push({
 	              	href: '/users',
@@ -168,7 +165,7 @@
 		            icon: 'fas fa-users',
 		      	})
 		      }
-		      
+
 
 		     /* settings */
 
@@ -176,45 +173,45 @@
                 href: '/settings/translates',
                 title: this.$t('Переводы'),
                 icon: 'fas fa-language',
-              }) 
+              })
 
              sidebar_settings_child.push({
                 href: '/settings/permissions',
                 title: this.$t('Разрешения'),
                 icon: 'fas fa-lock-open',
-              }) 
+              })
 
              if(this.$can('Role_access')){
              	sidebar_settings_child.push({
              	   href: '/settings/roles',
              	  title: this.$t('Роли'),
              	  icon: 'fas fa-unlock',
-             	 }) 
+             	 })
              }
-              
+
              if(this.$can('MeasureType_access')){
              	sidebar_settings_child.push({
                 href: '/settings/measures',
                 title: this.$t('Единицы измерения'),
                 icon: 'fas fa-weight-hanging',
-               }) 
+               })
              }
-               
+
 
                if(this.$can('Company_access')){
                	sidebar_settings_child.push({
                	 href: '/settings/companies',
                	 title: this.$t('Компании'),
                	 icon: 'fas fa-building',
-               	}) 
+               	})
                }
-               
+
 
                sidebar_data.push({
 		            title: this.$t('Настройки'),
 		            icon: 'fas fa-cogs',
 		            child: sidebar_settings_child
-		          }) 
+		          })
 
 
 		     /* end settings */
@@ -235,11 +232,11 @@
         menu: this.returnSidebarData()
       }
     },
-    
+
   }
 </script>
 
 <script>
-	
+
 </script>
 

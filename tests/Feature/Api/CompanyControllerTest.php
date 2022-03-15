@@ -37,6 +37,8 @@ class CompanyControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
         $this->seed(RolesPermissionsSeeder::class);
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
@@ -71,6 +73,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_admin_can_create_company()
     {
+        $this->withoutExceptionHandling();
         $company_name = 'Company 1';
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'name' => $company_name

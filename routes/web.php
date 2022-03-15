@@ -14,15 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('login-as/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'loginAs']);
 
-Route::get('/', function () {
-    return redirect(url('login'));
-});
+require __DIR__.'/auth.php';
 
-Route::get('/login-as/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'loginAs']);
-
-require __DIR__ . '/auth.php';
-
-Route::get('/{vue_capture?}', function () {
-    return view('dashboard');
-})->where('vue_capture', '[\/\w\.-]*')->middleware(['auth'])->name('dashboard');
+Route::view('/{any?}', 'dashboard')
+    ->name('dashboard')
+    ->where('any', '.*');

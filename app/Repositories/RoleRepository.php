@@ -19,7 +19,7 @@ class RoleRepository extends BaseRepository
         return Role::class;
     }
 
-    public function createDefaultCompanyRoles($company_id)
+    public function createDefaultCompanyRoles($company_id): void
     {
         $director_role = $this->model->create([
             'name' => 'director.'.$company_id, 'human_name' => 'Директор', 'company_id' => $company_id
@@ -62,6 +62,7 @@ class RoleRepository extends BaseRepository
             'SellProductGroup_access', 'SellProductGroup_show',
             'ProductPurchase_access', 'ProductPurchase_show',
         ]);
+
         $analyst_role = $this->model->create([
             'name' => 'analyst.'.$company_id, 'human_name' => 'Аналитик', 'company_id' => $company_id
         ]);

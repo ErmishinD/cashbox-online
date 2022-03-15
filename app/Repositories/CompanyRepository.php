@@ -24,8 +24,7 @@ class CompanyRepository extends BaseRepository
         $company = parent::create($data);
 
         // create default company roles
-        $role_repository = app(RoleRepository::class);
-        $role_repository->createDefaultCompanyRoles($company->id);
+        app(RoleRepository::class)->createDefaultCompanyRoles($company->id);
         return $company;
     }
 }
