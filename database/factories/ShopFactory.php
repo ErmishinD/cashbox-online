@@ -15,7 +15,7 @@ class ShopFactory extends Factory
     public function definition()
     {
         return [
-            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'company_id' => (isset($attribues['company_id'])) ?: $this->faker->randomElement(Company::pluck('id')),
             'name' => 'Shop ' . $this->faker->word,
             'address' => $this->faker->address
         ];

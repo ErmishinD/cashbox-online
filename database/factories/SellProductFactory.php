@@ -15,7 +15,7 @@ class SellProductFactory extends Factory
     public function definition()
     {
         return [
-            'company_id' => Company::inRandomOrder()->first()->id,
+            'company_id' => (isset($attribues['company_id'])) ?: $this->faker->randomElement(Company::pluck('id')),
             'name' => $this->faker->word,
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'has_discount' => $this->faker->boolean(20),

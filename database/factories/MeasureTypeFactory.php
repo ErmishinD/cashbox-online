@@ -15,12 +15,14 @@ class MeasureTypeFactory extends Factory
      */
     public function definition()
     {
+        $base_measure_type_id = (isset($attribues['base_measure_type_id'])) ?: $this->faker->randomElement(BaseMeasureType::pluck('id'));
+
         return [
-            'base_measure_type_id' => BaseMeasureType::inRandomOrder()->get()->first()->id,
+            'base_measure_type_id' => $base_measure_type_id,
             'name' => $this->faker->unique()->word,
             'description' => $this->faker->sentence,
             'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
-            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'company_id' => (isset($attribues['company_id'])) ?: $this->faker->randomElement(Company::pluck('id')),
             'is_common' => $this->faker->boolean(35),
         ];
     }

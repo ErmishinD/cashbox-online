@@ -18,26 +18,20 @@ class CashboxFactory extends Factory
      */
     public function definition()
     {
-        $sell_product = SellProduct::inRandomOrder()->first();
-        $operator = User::inRandomOrder()->first();;
+        $shop_id = (isset($attribues['shop_id'])) ?: $this->faker->randomElement(Shop::pluck('id'));
+        $sell_product_id = (isset($attribues['sell_product_id'])) ?: $this->faker->randomElement(SellProduct::pluck('id'));
+        $operator_id = (isset($attribues['operator_id'])) ?: $this->faker->randomElement(User::pluck('id'));
 
-        $collected_at = null;
-        $collector_id = null;
-        if ($this->faker->boolean) {
-            $collector = User::factory()->create();
-            $collector_id = $collector->id;
-            $collected_at = $this->faker->dateTime;
-        }
         return [
-            'shop_id' => Shop::inRandomOrder()->first()->id,
-            'sell_product_id' => $sell_product->id,
+            'shop_id' => $shop_id,
+            'sell_product_id' => $sell_product_id,
             'transaction_type' => $this->faker->randomElement(['_in', '_out']),
             'payment_type' => $this->faker->randomElement(['_cash', '_card']),
             'amount' => $this->faker->randomFloat(2, 50, 1000),
             'description' => $this->faker->sentence,
-            'operator_id' => $operator->id,
-            'collected_at' => $collected_at,
-            'collector_id' => $collector_id,
+            'operator_id' => $operator_id,
+            'collected_at' => null,
+            'collector_id' => null,
         ];
     }
 }
