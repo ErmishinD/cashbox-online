@@ -8,10 +8,10 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     @auth
-        <meta name="user-id" content="{{ Auth::user()->id }}">
-        <meta name="company-id" content="{{ Auth::user()->company_id }}">
-        <meta name="user_name" content="{{ Auth::user()->name }}">
-        <meta name="is_superadmin" content="{{ strval(Auth::user()->hasRole('Super Admin')) }}">
+{{--        <meta name="user-id" content="{{ Auth::user()->id }}">--}}
+{{--        <meta name="company-id" content="{{ Auth::user()->company_id }}">--}}
+{{--        <meta name="user_name" content="{{ Auth::user()->name }}">--}}
+{{--        <meta name="is_superadmin" content="{{ strval(Auth::user()->hasRole('Super Admin')) }}">--}}
     @endauth
 
 <!-- CSRF Token -->

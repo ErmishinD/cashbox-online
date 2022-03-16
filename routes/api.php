@@ -31,7 +31,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        $user = $request->user();
+        $user->user_permissions = $user->getAllPermissions()->pluck('name');
+        $user->is_admin = $user->hasRole('Super Admin');
+        unset($user->roles);
+        unset($user->permissions);
+        return $user;
     });
 
     /*

@@ -27454,9 +27454,41 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _composables_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../composables/auth */ "./resources/assets/js/composables/auth.js");
+/* harmony import */ var vue3_cookies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue3-cookies */ "./node_modules/vue3-cookies/dist/index.js");
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  setup: function setup() {
+    var _useAuth = (0,_composables_auth__WEBPACK_IMPORTED_MODULE_0__["default"])(),
+        user = _useAuth.user,
+        processing = _useAuth.processing,
+        logout = _useAuth.logout;
+
+    var _useCookies = (0,vue3_cookies__WEBPACK_IMPORTED_MODULE_1__.useCookies)(),
+        cookies = _useCookies.cookies;
+
+    return {
+      user: user,
+      processing: processing,
+      logout: logout,
+      cookies: cookies
+    };
+  },
+  data: function data() {
+    return {
+      width: 0,
+      isCollapsed: true,
+      selected: this.cookies.get('lang'),
+      menu: this.returnSidebarData()
+    };
+  },
+  created: function created() {
+    window.addEventListener('resize', this.updateWidth);
+    this.updateWidth();
+  },
   mounted: function mounted() {
-    this.$root.$i18n.locale = this.$cookies.get('lang');
+    this.$root.$i18n.locale = this.cookies.get('lang');
     this.menu = this.returnSidebarData();
     this.keyUp();
   },
@@ -27472,14 +27504,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeLanguage: function changeLanguage(locale) {
       this.$root.$i18n.locale = locale;
-      this.$cookies.set('lang', locale);
+      this.cookies.set('lang', locale);
       this.$root.selectedLanguage = locale;
       this.isDropdownOpened = false;
       this.menu = this.returnSidebarData();
     },
     onToggleCollapse: function onToggleCollapse(collapsed) {
       this.isCollapsed = !this.isCollapsed;
-      this.$cookies.set('isCollapsed', this.isCollapsed);
+      this.cookies.set('isCollapsed', this.isCollapsed);
     },
     changeOption: function changeOption(event) {
       this.changeLanguage(event.target.value);
@@ -27629,19 +27661,6 @@ __webpack_require__.r(__webpack_exports__);
 
       return sidebar_data;
     }
-  },
-  created: function created() {
-    window.addEventListener('resize', this.updateWidth);
-    this.updateWidth();
-    console.log(this.width);
-  },
-  data: function data() {
-    return {
-      width: 0,
-      isCollapsed: true,
-      selected: this.$cookies.get('lang'),
-      menu: this.returnSidebarData()
-    };
   }
 });
 
@@ -27658,7 +27677,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     $can: function $can(permissionName) {
-      if (!this.$isAdmin) {
+      if (!JSON.parse(localStorage.getItem('isAdmin'))) {
+        console.log(JSON.parse(localStorage.getItem('isAdmin')));
         return Permissions.indexOf(permissionName) !== -1;
       }
 
@@ -31224,50 +31244,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": function() { return /* binding */ render; }
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _img_sidebar_arrow_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/sidebar_arrow.svg */ "./resources/assets/img/sidebar_arrow.svg");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _img_sidebar_arrow_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/sidebar_arrow.svg */ "./resources/assets/img/sidebar_arrow.svg");
 
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("option", {
   value: "ru"
 }, "Русcкий", -1
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("option", {
   value: "ua"
 }, "Українська", -1
 /* HOISTED */
 );
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("option", {
   value: "en"
 }, "English", -1
 /* HOISTED */
 );
 
 var _hoisted_4 = [_hoisted_1, _hoisted_2, _hoisted_3];
-var _hoisted_5 = {
-  class: "btn btn-primary",
-  onclick: "event.preventDefault();\n                     document.getElementById('logout-form').submit();"
-};
-var _hoisted_6 = {
-  id: "logout-form",
-  action: "/logout",
-  method: "POST"
-};
-var _hoisted_7 = ["value"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_sidebar_menu = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("sidebar-menu");
+  var _component_sidebar_menu = (0,vue__WEBPACK_IMPORTED_MODULE_1__.resolveComponent)("sidebar-menu");
 
-  var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
+  var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_1__.resolveComponent)("router-view");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["header__content", [$data.isCollapsed ? 'pl-75' : 'pl-300']])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$userName), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", {
+    class: (0,vue__WEBPACK_IMPORTED_MODULE_1__.normalizeClass)(["header__content", [$data.isCollapsed ? 'pl-75' : 'pl-300']])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($setup.user.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("select", {
     onChange: _cache[0] || (_cache[0] = function ($event) {
       return $options.changeOption($event);
     }),
@@ -31281,25 +31294,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, _hoisted_4, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selected]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Выход')), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_1__.vModelSelect, $data.selected]]), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("button", {
+    class: "btn btn-primary",
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $setup.logout && $setup.logout.apply($setup, arguments);
+    })
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Выход')), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "hidden",
-    name: "_token",
-    value: this.$csrf
-  }, null, 8
-  /* PROPS */
-  , _hoisted_7)])], 2
+  )], 2
   /* CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_sidebar_menu, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createVNode)(_component_sidebar_menu, {
     collapsed: $data.isCollapsed,
     menu: $data.menu,
     "onUpdate:collapsed": $options.onToggleCollapse
   }, {
-    "toggle-icon": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-        class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.isCollapsed ? '' : 'trans-180deg']),
-        src: _img_sidebar_arrow_svg__WEBPACK_IMPORTED_MODULE_1__["default"],
+    "toggle-icon": (0,vue__WEBPACK_IMPORTED_MODULE_1__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("img", {
+        class: (0,vue__WEBPACK_IMPORTED_MODULE_1__.normalizeClass)([$data.isCollapsed ? '' : 'trans-180deg']),
+        src: _img_sidebar_arrow_svg__WEBPACK_IMPORTED_MODULE_2__["default"],
         alt: ""
       }, null, 2
       /* CLASS */
@@ -31310,10 +31322,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["collapsed", "menu", "onUpdate:collapsed"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , ["collapsed", "menu", "onUpdate:collapsed"]), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", {
     id: "main_content",
-    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.isCollapsed ? 'pl-75' : 'pl-300'])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)], 2
+    class: (0,vue__WEBPACK_IMPORTED_MODULE_1__.normalizeClass)([$data.isCollapsed ? 'pl-75' : 'pl-300'])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createVNode)(_component_router_view)], 2
   /* CLASS */
   )], 64
   /* STABLE_FRAGMENT */
@@ -31336,28 +31348,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  class: "min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"
+  style: {
+    "min-height": "100vh",
+    "display": "flex",
+    "flex-direction": "column",
+    "justify-content": "center",
+    "align-items": "center",
+    "padding-top": "1.5rem",
+    "background-color": "rgba(243, 244, 246, 1)"
+  }
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
-  viewBox: "0 0 316 316",
-  xmlns: "http://www.w3.org/2000/svg",
-  class: "w-20 h-20 fill-current text-gray-500"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M305.8 81.125C305.77 80.995 305.69 80.885 305.65 80.755C305.56 80.525 305.49 80.285 305.37 80.075C305.29 79.935 305.17 79.815 305.07 79.685C304.94 79.515 304.83 79.325 304.68 79.175C304.55 79.045 304.39 78.955 304.25 78.845C304.09 78.715 303.95 78.575 303.77 78.475L251.32 48.275C249.97 47.495 248.31 47.495 246.96 48.275L194.51 78.475C194.33 78.575 194.19 78.725 194.03 78.845C193.89 78.955 193.73 79.045 193.6 79.175C193.45 79.325 193.34 79.515 193.21 79.685C193.11 79.815 192.99 79.935 192.91 80.075C192.79 80.285 192.71 80.525 192.63 80.755C192.58 80.875 192.51 80.995 192.48 81.125C192.38 81.495 192.33 81.875 192.33 82.265V139.625L148.62 164.795V52.575C148.62 52.185 148.57 51.805 148.47 51.435C148.44 51.305 148.36 51.195 148.32 51.065C148.23 50.835 148.16 50.595 148.04 50.385C147.96 50.245 147.84 50.125 147.74 49.995C147.61 49.825 147.5 49.635 147.35 49.485C147.22 49.355 147.06 49.265 146.92 49.155C146.76 49.025 146.62 48.885 146.44 48.785L93.99 18.585C92.64 17.805 90.98 17.805 89.63 18.585L37.18 48.785C37 48.885 36.86 49.035 36.7 49.155C36.56 49.265 36.4 49.355 36.27 49.485C36.12 49.635 36.01 49.825 35.88 49.995C35.78 50.125 35.66 50.245 35.58 50.385C35.46 50.595 35.38 50.835 35.3 51.065C35.25 51.185 35.18 51.305 35.15 51.435C35.05 51.805 35 52.185 35 52.575V232.235C35 233.795 35.84 235.245 37.19 236.025L142.1 296.425C142.33 296.555 142.58 296.635 142.82 296.725C142.93 296.765 143.04 296.835 143.16 296.865C143.53 296.965 143.9 297.015 144.28 297.015C144.66 297.015 145.03 296.965 145.4 296.865C145.5 296.835 145.59 296.775 145.69 296.745C145.95 296.655 146.21 296.565 146.45 296.435L251.36 236.035C252.72 235.255 253.55 233.815 253.55 232.245V174.885L303.81 145.945C305.17 145.165 306 143.725 306 142.155V82.265C305.95 81.875 305.89 81.495 305.8 81.125ZM144.2 227.205L100.57 202.515L146.39 176.135L196.66 147.195L240.33 172.335L208.29 190.625L144.2 227.205ZM244.75 114.995V164.795L226.39 154.225L201.03 139.625V89.825L219.39 100.395L244.75 114.995ZM249.12 57.105L292.81 82.265L249.12 107.425L205.43 82.265L249.12 57.105ZM114.49 184.425L96.13 194.995V85.305L121.49 70.705L139.85 60.135V169.815L114.49 184.425ZM91.76 27.425L135.45 52.585L91.76 77.745L48.07 52.585L91.76 27.425ZM43.67 60.135L62.03 70.705L87.39 85.305V202.545V202.555V202.565C87.39 202.735 87.44 202.895 87.46 203.055C87.49 203.265 87.49 203.485 87.55 203.695V203.705C87.6 203.875 87.69 204.035 87.76 204.195C87.84 204.375 87.89 204.575 87.99 204.745C87.99 204.745 87.99 204.755 88 204.755C88.09 204.905 88.22 205.035 88.33 205.175C88.45 205.335 88.55 205.495 88.69 205.635L88.7 205.645C88.82 205.765 88.98 205.855 89.12 205.965C89.28 206.085 89.42 206.225 89.59 206.325C89.6 206.325 89.6 206.325 89.61 206.335C89.62 206.335 89.62 206.345 89.63 206.345L139.87 234.775V285.065L43.67 229.705V60.135ZM244.75 229.705L148.58 285.075V234.775L219.8 194.115L244.75 179.875V229.705ZM297.2 139.625L253.49 164.795V114.995L278.85 100.395L297.21 89.825V139.625H297.2Z"
-})])])], -1
-/* HOISTED */
-);
-
-var _hoisted_3 = {
-  class: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
+var _hoisted_2 = {
+  style: {
+    "width": "100%",
+    "max-width": "28rem",
+    "margin-top": "1.5rem",
+    "padding-inline": "1.5rem",
+    "padding-top": "1rem",
+    "padding-bottom": "1rem",
+    "background-color": "white"
+  }
 };
 function render(_ctx, _cache) {
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)])]);
 }
 
 /***/ }),
@@ -31462,7 +31477,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var user = (0,vue__WEBPACK_IMPORTED_MODULE_6__.reactive)({
   name: '',
-  email: ''
+  email: '',
+  company_id: '',
+  id: ''
 });
 function useAuth() {
   var processing = (0,vue__WEBPACK_IMPORTED_MODULE_6__.ref)(false);
@@ -31541,13 +31558,16 @@ function useAuth() {
             case 0:
               user.name = response.data.name;
               user.email = response.data.email;
+              user.id = response.data.id;
+              user.company_id = response.data.company_id;
+              localStorage.setItem('isAdmin', JSON.stringify(response.data.is_admin));
               localStorage.setItem('loggedIn', JSON.stringify(true));
-              _context3.next = 5;
+              _context3.next = 8;
               return router.push({
                 name: 'home'
               });
 
-            case 5:
+            case 8:
             case "end":
               return _context3.stop();
           }
@@ -31695,27 +31715,31 @@ function loadLocaleMessages() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var vue3_cookies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue3-cookies */ "./node_modules/vue3-cookies/dist/index.js");
-/* harmony import */ var vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-sidebar-menu */ "./node_modules/vue-sidebar-menu/dist/vue-sidebar-menu.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.esm.min.js");
-/* harmony import */ var vue_sidebar_menu_dist_vue_sidebar_menu_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-sidebar-menu/dist/vue-sidebar-menu.css */ "./node_modules/vue-sidebar-menu/dist/vue-sidebar-menu.css");
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
-/* harmony import */ var _kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @kyvg/vue3-notification */ "./node_modules/@kyvg/vue3-notification/dist/index.esm.js");
-/* harmony import */ var vue_good_table_next__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-good-table-next */ "./node_modules/vue-good-table-next/dist/vue-good-table.esm.js");
-/* harmony import */ var gitart_vue_dialog_dist_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! gitart-vue-dialog/dist/style.css */ "./node_modules/gitart-vue-dialog/dist/style.css");
-/* harmony import */ var gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! gitart-vue-dialog */ "./node_modules/gitart-vue-dialog/dist/index.mjs");
-/* harmony import */ var vue_good_table_next_dist_vue_good_table_next_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-good-table-next/dist/vue-good-table-next.css */ "./node_modules/vue-good-table-next/dist/vue-good-table-next.css");
-/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./i18n */ "./resources/assets/js/i18n.js");
-/* harmony import */ var _mixins_Permissions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./mixins/Permissions */ "./resources/assets/js/mixins/Permissions.vue");
-/* harmony import */ var _composables_auth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./composables/auth */ "./resources/assets/js/composables/auth.js");
-/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./routes/index */ "./resources/assets/js/routes/index.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vue3_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue3-cookies */ "./node_modules/vue3-cookies/dist/index.js");
+/* harmony import */ var vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-sidebar-menu */ "./node_modules/vue-sidebar-menu/dist/vue-sidebar-menu.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.esm.min.js");
+/* harmony import */ var vue_sidebar_menu_dist_vue_sidebar_menu_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-sidebar-menu/dist/vue-sidebar-menu.css */ "./node_modules/vue-sidebar-menu/dist/vue-sidebar-menu.css");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var _kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @kyvg/vue3-notification */ "./node_modules/@kyvg/vue3-notification/dist/index.esm.js");
+/* harmony import */ var vue_good_table_next__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-good-table-next */ "./node_modules/vue-good-table-next/dist/vue-good-table.esm.js");
+/* harmony import */ var gitart_vue_dialog_dist_style_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! gitart-vue-dialog/dist/style.css */ "./node_modules/gitart-vue-dialog/dist/style.css");
+/* harmony import */ var gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! gitart-vue-dialog */ "./node_modules/gitart-vue-dialog/dist/index.mjs");
+/* harmony import */ var vue_good_table_next_dist_vue_good_table_next_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-good-table-next/dist/vue-good-table-next.css */ "./node_modules/vue-good-table-next/dist/vue-good-table-next.css");
+/* harmony import */ var _i18n__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./i18n */ "./resources/assets/js/i18n.js");
+/* harmony import */ var _mixins_Permissions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./mixins/Permissions */ "./resources/assets/js/mixins/Permissions.vue");
+/* harmony import */ var _composables_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./composables/auth */ "./resources/assets/js/composables/auth.js");
+/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./routes/index */ "./resources/assets/js/routes/index.js");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 
@@ -31738,7 +31762,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
  // Create a new store instance.
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_16__.createStore)({
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_17__.createStore)({
   state: function state() {
     appLanguage: localStorage.getItem("appLanguage") || process.env.VUE_APP_I18N_LOCALE || 'ru';
   },
@@ -31754,32 +31778,33 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_16__.createStore)({
     }
   }
 });
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)({
   setup: function setup() {
-    var _useAuth = (0,_composables_auth__WEBPACK_IMPORTED_MODULE_14__["default"])(),
+    var _useAuth = (0,_composables_auth__WEBPACK_IMPORTED_MODULE_15__["default"])(),
+        user = _useAuth.user,
         getUser = _useAuth.getUser;
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getUser);
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getUser);
+    console.log(user.name);
+    app.config.globalProperties.$userId = user.id;
+    app.config.globalProperties.$userName = user.name;
+    app.config.globalProperties.$companyId = user.company_id;
   }
 });
-app.config.globalProperties.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
-app.config.globalProperties.$companyId = document.querySelector("meta[name='company-id']").getAttribute('content');
-app.config.globalProperties.$userName = document.querySelector("meta[name='user_name']").getAttribute('content');
 app.config.globalProperties.$csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
-app.config.globalProperties.$isAdmin = document.querySelector("meta[name='is_superadmin']").getAttribute('content');
-app.use(vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_2__["default"]);
-app.use(_routes_index__WEBPACK_IMPORTED_MODULE_15__["default"]).use(_i18n__WEBPACK_IMPORTED_MODULE_12__["default"]).use(store);
-app.use(vue3_cookies__WEBPACK_IMPORTED_MODULE_1__["default"], {
+app.use(vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_3__["default"]);
+app.use(_routes_index__WEBPACK_IMPORTED_MODULE_16__["default"]).use(_i18n__WEBPACK_IMPORTED_MODULE_13__["default"]).use(store);
+app.use(vue3_cookies__WEBPACK_IMPORTED_MODULE_2__["default"], {
   expireTimes: "30d",
   path: "/",
   domain: "",
   secure: true,
   sameSite: "None"
 });
-app.use(vue_axios__WEBPACK_IMPORTED_MODULE_4__["default"], (axios__WEBPACK_IMPORTED_MODULE_3___default())).use(vue_good_table_next__WEBPACK_IMPORTED_MODULE_17__["default"]);
-app.use((vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default()));
-app.use(gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_10__.GDialog).use(_kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_8__["default"]);
-app.mixin(_mixins_Permissions__WEBPACK_IMPORTED_MODULE_13__["default"]);
+app.use(vue_axios__WEBPACK_IMPORTED_MODULE_5__["default"], (axios__WEBPACK_IMPORTED_MODULE_4___default())).use(vue_good_table_next__WEBPACK_IMPORTED_MODULE_18__["default"]);
+app.use((vue_loading_overlay__WEBPACK_IMPORTED_MODULE_7___default()));
+app.use(gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_11__.GDialog).use(_kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_9__["default"]);
+app.mixin(_mixins_Permissions__WEBPACK_IMPORTED_MODULE_14__["default"]);
 app.mount("#app");
 
 /***/ }),
@@ -79086,7 +79111,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"login":"Login","signout":"Sign Out","navigation":"Navigation"}');
+module.exports = JSON.parse('{"login":"Sign in","signout":"Logout","navigation":"Navigation","Главная":"Main","Типы товаров":"Product types","Товары на продажу":"Sell products","Отчеты":"Reports","Касса":"Cashbox","Финансы":"Finance","Закупки":"Purchases","Трансферы":"Transfers","Магазины":"Shops","Склады":"Storages","Пользователи":"Users","Настройки":"Settings","Переводы":"Translations","Разрешения":"Permissions","Роли":"Roles","Единицы измерения":"Measure types","Компании":"Companies","Вход":"Sign in","Вы уверены, что хотите удалить":"Are you sure you want to delete","Внимание":"Attention","Удалить":"Delete","Добавить компанию":"Add company","Название":"Name","Действия":"Actions","Создание компании":"Create company","Сохранить":"Save","Успешно!":"Success!","Данное название компании уже существует!":"There is already company with such name!","Компания":"Company","Сотрудники":"Employees","Редактировать":"Edit","Добавить магазин":"Add shop","Адрес":"Address","Создание магазина":"Create shop","Произошла ошибка!":"Error occurred!","Добавить тип товара":"Add product type","Баркод":"Barcode","Выход":"Logout","Создание склада":"Create storage","Удаление склада невозможно, так как в нем находятся нераспределенные продукты!":"Deleting storage is unavailable, because there are products in!","Редактирование склада":"Edit storage","Кол-во на складе":"Amount in storage","еще один склад":"one more storage","Поиск товара":"Search product","Цена":"Price","Перейти к товарам":"Go to products","Детальнее":"More info","Состав":"Storage","Подтвердить":"Confirm","Подтверждение продажи":"Confirmation of selling","На складе недостаточно товара":"Not enough products in storage","На складе недостаточно товаров":"Not enough product in storage","Оплачено картой":"Paid with card","Оплачено":"Paid","Выберите склад":"Choose storage","Выбрать":"Choose","Закупка":"Purchase","Подтверждение закупки":"Purchase confirmation","Стоимость":"Price","Срок годности":"Expiration date","Заполните пропущенные данные!":"Fill skipped fields!","из":"of","Вперед":"Next","Назад":"Previous","Записей на одной странице":"Records per page","Тип транзакции":"Transaction type","Сумма":"Sum","Операция":"Operation","Продукт":"Product","Создано":"Created","Вы уверены, что хотите удалить эту запись?":"Are you sure you want to delete this record?","Добавить операцию":"Add operation","Архив инкассаций":"Collection archive","Инкассация":"Collection","Описание":"Description","Тип оплаты":"Payment type","Поступление":"Cash receipts","Расход":"Consumption","Карта":"Card","Наличные":"Cash","Баланс":"Balance"}');
 
 /***/ }),
 
@@ -79097,7 +79122,7 @@ module.exports = JSON.parse('{"login":"Login","signout":"Sign Out","navigation":
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"login":"Вход","signout":"Выход","navigation":"Навигация"}');
+module.exports = JSON.parse('{"login":"Вход","signout":"Выход","navigation":"Навигация","Главная":"Главная","Типы товаров":"Типы товаров","Товары на продажу":"Товары на продажу","Отчеты":"Отчеты","Касса":"Касса","Финансы":"Финансы","Закупки":"Закупки","Трансферы":"Трансферы","Магазины":"Магазины","Склады":"Склады","Пользователи":"Пользователи","Настройки":"Настройки","Переводы":"Переводы","Разрешения":"Разрешения","Роли":"Роли","Единицы измерения":"Единицы измерения","Компании":"Компании","Вход":"Вход","Вы уверены, что хотите удалить":"Вы уверены, что хотите удалить","Внимание":"Внимание","Удалить":"Удалить","Добавить компанию":"Добавить компанию","Название":"Название","Действия":"Действия","Создание компании":"Создание компании","Сохранить":"Сохранить","Успешно!":"Успешно!","Данное название компании уже существует!":"Данное название компании уже существует!","Компания":"Компания","Сотрудники":"Сотрудники","Редактировать":"Редактировать","Добавить магазин":"Добавить магазин","Адрес":"Адрес","Создание магазина":"Создание магазина","Произошла ошибка!":"Произошла ошибка!","Добавить тип товара":"Добавить тип товара","Баркод":"Баркод","Выход":"Выход","Создание склада":"Создание склада","Удаление склада невозможно, так как в нем находятся нераспределенные продукты!":"Удаление склада невозможно, так как в нем находятся нераспределенные продукты!","Редактирование склада":"Редактирование склада","Кол-во на складе":"Кол-во на складе","еще один склад":"еще один склад","Поиск товара":"Поиск товара","Цена":"Цена","Перейти к товарам":"Перейти к товарам","Детальнее":"Детальнее","Состав":"Состав","Подтвердить":"Подтвердить","Подтверждение продажи":"Подтверждение продажи","На складе недостаточно товара":"На складе недостаточно товара","На складе недостаточно товаров":"На складе недостаточно товаров","Оплачено картой":"Оплачено картой","Оплачено":"Оплачено","Выберите склад":"Выберите склад","Выбрать":"Выбрать","Закупка":"Закупка","Подтверждение закупки":"Подтверждение закупки","Стоимость":"Стоимость","Срок годности":"Срок годности","Заполните пропущенные данные!":"Заполните пропущенные данные!","из":"из","Вперед":"Вперед","Назад":"Назад","Записей на одной странице":"Записей на одной странице","Тип транзакции":"Тип транзакции","Сумма":"Сумма","Операция":"Операция","Продукт":"Продукт","Создано":"Создано","Вы уверены, что хотите удалить эту запись?":"Вы уверены, что хотите удалить эту запись?","Добавить операцию":"Добавить операцию","Архив инкассаций":"Архив инкассаций","Инкассация":"Инкассация","Описание":"Описание","Тип оплаты":"Тип оплаты","Поступление":"Поступление","Расход":"Расход","Карта":"Карта","Наличные":"Наличные","Баланс":"Баланс"}');
 
 /***/ }),
 
@@ -79108,7 +79133,7 @@ module.exports = JSON.parse('{"login":"Вход","signout":"Выход","navigat
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"login":"Вхід","signout":"Вихід","navigation":"Навігація"}');
+module.exports = JSON.parse('{"login":"Вхід","signout":"Вихід","navigation":"Навігація","Главная":"Головна","Типы товаров":"Типи товарів","Товары на продажу":"Товари на продаж","Отчеты":"Звіти","Касса":"Каса","Финансы":"Фінанси","Закупки":"Закупівля","Трансферы":"Трансфери","Магазины":"Магазини","Склады":"Склади","Пользователи":"Користувачі","Настройки":"Налаштування","Переводы":"Переклади","Разрешения":"Дозволи","Роли":"Ролі","Единицы измерения":"Одиниці вмиіру","Компании":"Компанії","Вход":"Вхід","Вы уверены, что хотите удалить":"Ви впевнені, що хочете видалити","Внимание":"Увага","Удалить":"Видалити","Добавить компанию":"Додати компанію","Название":"Назва","Действия":"Дії","Создание компании":"Створення компанії","Сохранить":"Зберегти","Успешно!":"Успішно!","Данное название компании уже существует!":"Компанія з такою назвою вже існує!","Компания":"Компанія","Сотрудники":"Співробітники","Редактировать":"Редагувати","Добавить магазин":"Додати магазин","Адрес":"Адреса","Создание магазина":"Створення магазину","Произошла ошибка!":"Виникла помилка!","Добавить тип товара":"Додати тип товара","Баркод":"Штрих-код","Выход":"Вихід","Создание склада":"Створення склада","Удаление склада невозможно, так как в нем находятся нераспределенные продукты!":"Видалення складу неможливе, оскільки в ньому знаходяться продукти!","Редактирование склада":"Редагування складу","Кол-во на складе":"Кількість на складі","еще один склад":"ще один склад","Поиск товара":"Пошук товара","Цена":"Ціна","Перейти к товарам":"Перейти до товарів","Детальнее":"Детальніше","Состав":"Склад","Подтвердить":"Підтвердити","Подтверждение продажи":"Підтвердження продажу","На складе недостаточно товара":"На складі недостатньо товару","На складе недостаточно товаров":"На складі недостатньо товарів","Оплачено картой":"Сплачено карткою","Оплачено":"Сплачено","Выберите склад":"Оберіть склад","Выбрать":"Обрати","Закупка":"Закупівля","Подтверждение закупки":"Підтвердження закупівлі","Стоимость":"Вартість","Срок годности":"Строк придатності","Заполните пропущенные данные!":"Заповніть пропущені дані!","из":"з","Вперед":"Вперед","Назад":"Назад","Записей на одной странице":"Записів на одній сторінці","Тип транзакции":"Тип транзакції","Сумма":"Сума","Операция":"Операція","Продукт":"Продукт","Создано":"Створено","Вы уверены, что хотите удалить эту запись?":"Ви впевнені, що хочете видалити цей запис?","Добавить операцию":"Додати операцію","Архив инкассаций":"Архів інкасацій","Инкассация":"Інкасація","Описание":"Опис","Тип оплаты":"Тип сплати","Поступление":"Дохід","Расход":"Витрата","Карта":"Карта","Наличные":"Готівка","Баланс":"Баланс"}');
 
 /***/ })
 

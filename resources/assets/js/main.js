@@ -46,16 +46,17 @@ const store = createStore({
 
 const app = createApp({
     setup() {
-        const {getUser} = useAuth()
+        const {user, getUser} = useAuth()
         onMounted(getUser)
+
+        console.log(user.name)
+        app.config.globalProperties.$userId = user.id
+        app.config.globalProperties.$userName = user.name;
+        app.config.globalProperties.$companyId = user.company_id
     }
 })
 
-app.config.globalProperties.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
-app.config.globalProperties.$companyId = document.querySelector("meta[name='company-id']").getAttribute('content');
-app.config.globalProperties.$userName = document.querySelector("meta[name='user_name']").getAttribute('content');
 app.config.globalProperties.$csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
-app.config.globalProperties.$isAdmin = document.querySelector("meta[name='is_superadmin']").getAttribute('content');
 
 app.use(VueSidebarMenu)
 app.use(router).use(i18n).use(store)

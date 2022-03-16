@@ -186,7 +186,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Twix",
-                            'photo' => 'https://twix.ru/static/media/tw1.30817941.webp',
+                            'photo' => 'https://thumbs.dreamstime.com/b/конфету-twix-изоляции-на-белом-фоне-вкусный-изолированные-фотография-169305936.jpg',
                             'price' => 18,
                             'has_discount' => false,
                             'consists_of_product_types' => [

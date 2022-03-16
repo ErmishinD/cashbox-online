@@ -4,6 +4,8 @@ import {useRouter} from "vue-router";
 const user = reactive({
     name: '',
     email: '',
+    company_id: '',
+    id: '',
 })
 
 export default function useAuth() {
@@ -38,6 +40,10 @@ export default function useAuth() {
     const loginUser = async (response) => {
         user.name = response.data.name
         user.email = response.data.email
+        user.id = response.data.id
+        user.company_id = response.data.company_id
+
+        localStorage.setItem('isAdmin', JSON.stringify(response.data.is_admin))
         localStorage.setItem('loggedIn', JSON.stringify(true))
         await router.push({name: 'home'})
     }

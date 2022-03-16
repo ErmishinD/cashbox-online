@@ -2,20 +2,14 @@
 
     <header>
         <div class="header__content " v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
-            <span>{{ this.$userName }}</span>
+            <span>{{ user.name }}</span>
             <select @change="changeOption($event)" style="margin-left: auto; margin-right: 20px;" class=""
                     v-model="selected">
                 <option value="ru">Русcкий</option>
                 <option value="ua">Українська</option>
                 <option value="en">English</option>
             </select>
-            <button class="btn btn-primary" onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();">{{ $t('Выход') }}
-            </button>
-
-            <form id="logout-form" action="/logout" method="POST">
-                <input type="hidden" name="_token" :value="this.$csrf">
-            </form>
+            <button class="btn btn-primary" @click="logout">{{ $t('Выход') }}</button>
 
 
         </div>
@@ -34,9 +28,35 @@
 
 <script>
 
+import useAuth from "../composables/auth";
+import {useCookies} from "vue3-cookies";
+
 export default {
+    setup() {
+        const { user, processing, logout } = useAuth()
+        const { cookies } = useCookies();
+
+        return {
+            user,
+            processing,
+            logout,
+            cookies,
+        }
+    },
+    data() {
+        return {
+            width: 0,
+            isCollapsed: true,
+            selected: this.cookies.get('lang'),
+            menu: this.returnSidebarData()
+        }
+    },
+    created() {
+        window.addEventListener('resize', this.updateWidth);
+        this.updateWidth()
+    },
     mounted() {
-        this.$root.$i18n.locale = this.$cookies.get('lang')
+        this.$root.$i18n.locale = this.cookies.get('lang')
         this.menu = this.returnSidebarData()
         this.keyUp()
     },
@@ -52,14 +72,14 @@ export default {
         },
         changeLanguage(locale) {
             this.$root.$i18n.locale = locale
-            this.$cookies.set('lang', locale);
+            this.cookies.set('lang', locale);
             this.$root.selectedLanguage = locale
             this.isDropdownOpened = false
             this.menu = this.returnSidebarData()
         },
         onToggleCollapse(collapsed) {
             this.isCollapsed = !this.isCollapsed
-            this.$cookies.set('isCollapsed', this.isCollapsed);
+            this.cookies.set('isCollapsed', this.isCollapsed);
         },
         changeOption(event) {
             this.changeLanguage(event.target.value)
@@ -219,19 +239,6 @@ export default {
 
             return sidebar_data
         },
-    },
-    created() {
-        window.addEventListener('resize', this.updateWidth);
-        this.updateWidth()
-        console.log(this.width)
-    },
-    data() {
-        return {
-            width: 0,
-            isCollapsed: true,
-            selected: this.$cookies.get('lang'),
-            menu: this.returnSidebarData()
-        }
     },
 
 }
