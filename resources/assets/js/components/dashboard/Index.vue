@@ -174,7 +174,7 @@
     			      type: '',
     			  },
     			  page: 1,
-    			  perPage: 10
+    			  perPage: 20
     			},
     			all_data_is_loaded: false,
     			unmounted: false,
