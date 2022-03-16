@@ -68,9 +68,9 @@
           </div>
         </GDialog>
 
-      <div style="display: flex;">
+      <div style="display: flex; flex-wrap: wrap;">
         <button :disabled="!(this.collection_ids.length)" @click="makeCollection" class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
-        <button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button>
+        <router-link :to='{name: "reports_casbox_collections"}'><button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button></router-link>
         <button @click="addOperation" class="btn btn-success mar-left mb-10" >{{ $t('Добавить операцию') }}</button>
       </div>
 
@@ -150,6 +150,8 @@
         v-on:row-click="rowClick"
         >
       <template #table-row="props">
+          <span v-if="props.column.field == 'transaction_type'" v-bind:style="[props.row.transaction_type == '_in' ? {color: 'green'} : {color: 'red'}]">{{props.row.transaction_type == '_in' ? this.$t('поступление') : this.$t('расход')}}</span>
+          <span v-if="props.column.field == 'payment_type'">{{props.row.payment_type == '_card' ? this.$t('карта') : this.$t('наличные')}}</span>
           <span v-if="props.column.field == 'sell_product_name'">{{props.row.sell_product ? props.row.sell_product.name : (props.row.product_purchase ? props.row.product_purchase.product_type.name : '')}}</span>
           <span class="table_actions" v-if="props.column.field == 'actions'">
             <!-- <router-link :to="{name: 'products_for_sale_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
@@ -184,17 +186,14 @@ export default {
         income: {
           cash: 0,
           card: 0,
-          sum: 0
         },
         outcome: {
           cash: 0,
           card: 0,
-          sum: 0
         },
         sum: {
           cash: 0,
           card: 0,
-          sum: 0
         }
       },
       columns: [
@@ -234,7 +233,7 @@ export default {
         },
       ],
       rows: [],
-      all_checked: false
+      all_checked: true
     };
   },
   mounted(){
@@ -294,10 +293,14 @@ export default {
     },
     selectAll(props){
         this.all_checked = !this.all_checked
-        this.rows.forEach(item => {
+        console.log(this.all_checked)
+        Promise.resolve(this.rows.forEach(item => {
             item.vgtSelected = this.all_checked
-        },this);
-        this.countBalance()
+        },this)).then(result => {
+          this.countBalance()
+        })
+        
+        
     },
     countBalance() {
       this.balance.income.cash = 0
@@ -306,7 +309,7 @@ export default {
       this.balance.outcome.card = 0
       this.collection_ids = []
       this.rows.forEach(item => {
-        if(item.vgtSelected){
+        if(item.vgtSelected == true){
           if(item.transaction_type == '_in'){
             if(item.payment_type == '_cash'){
               this.balance.income.cash = parseFloat(parseFloat(this.balance.income.cash) + parseFloat(item.amount)).toFixed(2)
@@ -355,8 +358,9 @@ export default {
   		       this.products = response.data['data']
   		       this.rows = this.products
              this.rows.forEach(item => {
-              item.vgtSelected = false
+              item.vgtSelected = true
              })
+             this.countBalance()
   		       loader.hide()
 
   		     }).catch(function(error){

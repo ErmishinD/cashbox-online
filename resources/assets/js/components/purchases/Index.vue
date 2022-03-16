@@ -101,7 +101,7 @@
 		</h1>
 
 	<div class="dashboard_actions_row">
-		<input @change="search" :value="this.product_name" :placeholder="$t('Поиск товара')" type="text">
+		<input @change="search" :value="this.changable_product_name" :placeholder="$t('Поиск товара')" type="text">
 		<button  :disabled="!(this.selected_products.length)" @click="openBasket" class="btn btn-success">
 			{{$t('Перейти к товарам')}}
 			<span class="counter_basket_circle"><span class="counter_basket">{{this.selected_products.length}}</span></span>
@@ -152,6 +152,7 @@ export default{
 			all_data_is_loaded: false,
 			unmounted: false,
 			is_search_from_other_page: false,
+			changable_product_name: this.product_name,
 			serverParams: {
 
 			  columnFilters: {
@@ -162,7 +163,7 @@ export default{
 			      type: '',
 			  },
 			  page: 1,
-			  perPage: 10
+			  perPage: 20
 			},
 		} 
 	},
@@ -341,6 +342,7 @@ export default{
     		
     	},
     	search(e){
+    		this.changable_product_name = e.target.value
     		this.serverParams.columnFilters.name = e.target.value
     		this.render_list_items(true)
     	},

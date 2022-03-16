@@ -48,8 +48,7 @@ import PurchasesIndex from './components/purchases/Index'
 /* import reports */
 	/* import cashbox */
 	import ReportsCashboxIndex from './components/reports/cashbox/Index'
-	import ReportsCashboxCreate from './components/reports/cashbox/Create'
-	import ReportsCashboxEdit from './components/reports/cashbox/Edit'
+	import ReportsCashboxCollections from './components/reports/cashbox/Collections'
 
 	/* import finance */
 	import ReportsFinanceIndex from './components/reports/finance/Index'
@@ -190,15 +189,9 @@ const router = createRouter({
 			component: ReportsCashboxIndex
 		},
 		{
-			path: '/reports/cashbox/create',
-			name: 'reports_casbox_create',
-			component: ReportsCashboxCreate
-		},
-		{
-			path: '/reports/cashbox/edit/:id',
-			name: 'reports_casbox_edit',
-			component: ReportsCashboxEdit,
-			props: true
+			path: '/reports/cashbox/collections',
+			name: 'reports_casbox_collections',
+			component: ReportsCashboxCollections
 		},
 		{
 			path: '/reports/finance',
