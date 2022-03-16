@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\MeasureType;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class GetByBaseMeasureTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['nullable'],
-            'description' => ['nullable'],
-            'quantity' => ['nullable', 'min:1'],
-            'is_common' => ['nullable', 'boolean'],
+            'base_measure_type_id' => ['required']
         ];
     }
 }

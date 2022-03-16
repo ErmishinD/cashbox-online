@@ -67,7 +67,6 @@ class Cashbox extends Model
         return $this->belongsTo(User::class, 'collector_id');
     }
 
-
     public function scopeOnlyInCompany(Builder $builder, $company_id=null)
     {
         $company_id = $company_id ?? Auth::user()->company_id;

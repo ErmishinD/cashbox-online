@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\MeasureType\CreateRequest;
+use App\Http\Requests\Api\MeasureType\GetByBaseMeasureTypeRequest;
 use App\Http\Requests\Api\MeasureType\UpdateRequest;
 use App\Http\Resources\Api\MeasureType\DefaultResource;
 use App\Models\MeasureType;
@@ -26,7 +27,7 @@ class MeasureTypeController extends Controller
     {
         $this->authorize('MeasureType_access');
 
-        $measure_types = $this->measure_type->all();
+        $measure_types = $this->measure_type->get_for_index();
         return response()->json([
             'success' => true, 'data' => DefaultResource::collection($measure_types)
         ]);
@@ -63,5 +64,12 @@ class MeasureTypeController extends Controller
 
         $measure_type->delete();
         return response()->json(['success' => true]);
+    }
+
+    public function getByBaseMeasureType(GetByBaseMeasureTypeRequest $request)
+    {
+        $base_measure_type_id = $request->validated()['base_measure_type_id'];
+        $measure_types = $this->measure_type->get_by_base_measure_type($base_measure_type_id);
+        return response()->json(['success' => true, 'data' => DefaultResource::collection($measure_types)]);
     }
 }

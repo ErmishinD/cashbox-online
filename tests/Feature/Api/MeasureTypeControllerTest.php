@@ -19,6 +19,15 @@ class MeasureTypeControllerTest extends TestCase
     private $table = 'measure_types';
 
     /**
+     * @var BaseMeasureType
+     */
+    private $base_measure_type_volume;
+    /**
+     * @var BaseMeasureType
+     */
+    private $base_measure_type_weight;
+
+    /**
      * @var User
      */
     private $admin;
@@ -27,18 +36,39 @@ class MeasureTypeControllerTest extends TestCase
     {
         parent::setUp();
         $this->seed(RolesPermissionsSeeder::class);
-        BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
-        BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
+        $this->base_measure_type_volume = BaseMeasureType::create(['type' => '_volume', 'name' => 'мл']);
+        $this->base_measure_type_weight = BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
         Company::factory()->create();
 
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
     }
 
+    public function test_admin_can_get_by_base_measure_type()
+    {
+        $company = Company::factory()->create();
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        MeasureType::factory(5)->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_weight->id]);
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_by_base_measure_type', [
+            'base_measure_type_id' => $this->base_measure_type_weight->id
+        ]);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true
+            ]);
+        $this->assertCount(5, $response['data']);
+    }
 
     public function test_admin_can_get_all_measure_types()
     {
-        MeasureType::factory(5)->create();
+        $company = Company::factory()->create();
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        MeasureType::factory(5)->create(['company_id' => $company->id]);
 
         $response = $this->actingAs($this->admin)->get($this->base_route);
         $response

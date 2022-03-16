@@ -114,4 +114,12 @@ class ProductTypeController extends Controller
             ]
         ]);
     }
+
+    public function getTypesForSelect()
+    {
+        return response()->json([
+            'success' => true,
+            'data' => array_values(ProductType::TYPES)
+        ]);
+    }
 }

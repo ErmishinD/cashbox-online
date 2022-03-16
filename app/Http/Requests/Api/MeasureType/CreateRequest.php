@@ -36,8 +36,8 @@ class CreateRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        $this->merge([
-            'company_id' => Auth::user()->company_id
+        return $this->merge([
+            'company_id' => $this->company_id ?? Auth::user()->company_id
         ]);
     }
 }

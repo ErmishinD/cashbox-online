@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ProductType extends Model
 {
-    use HasFactory, SoftDeletes, Filterable;
+    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
 
     public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];
 

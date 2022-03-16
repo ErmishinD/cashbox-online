@@ -37,16 +37,13 @@ class ProductTypeRepository extends BaseRepository
     }
 
     public function getForSelect($filters) {
-        $company_id = Auth::user()->company_id;
         $product_types = $this->model->select('id', 'name', 'company_id', 'base_measure_type_id', 'main_measure_type_id', 'photo', 'type')
             ->with('base_measure_type')
             ->with('main_measure_type')
             ->with(['measure_types' => function($query) {
                 $query->orderBy('quantity');
             }])
-            ->when($company_id, function ($query) use ($company_id) {
-                $query->where('company_id', $company_id);
-            })
+            ->onlyInCompany()
             ->filter($filters)
             ->get()
             ->each(function ($product_type) {
@@ -108,15 +105,9 @@ class ProductTypeRepository extends BaseRepository
 
     public function get_paginated($paginate_data, $filters)
     {
-        $current_authenticated_user = Auth::user();
-        $company_id = !empty($current_authenticated_user) ? $current_authenticated_user->company_id : null;
-
-        $result = $this->model
-            ->when($company_id, function ($query) use ($company_id) {
-                $query->where('company_id',$company_id);
-            })
+        return $this->model
+            ->onlyInCompany()
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
-        return $result;
     }
 }

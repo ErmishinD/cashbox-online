@@ -63,6 +63,9 @@ Route::middleware('auth')->group(function () {
     /*
      * MeasureType
      */
+    Route::prefix('measure_types')->group(function () {
+        Route::post('get_by_base_measure_type', [MeasureTypeController::class, 'getByBaseMeasureType']);
+    });
     Route::apiResource('measure_types', MeasureTypeController::class);
 
     /*
@@ -77,6 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::post('get_paginated', [ProductTypeController::class, 'get_paginated']);
         Route::post('remove_measure_types', [ProductTypeController::class, 'remove_measure_types']);
         Route::post('get_for_purchase', [ProductTypeController::class, 'getForPurchase']);
+        Route::get('get_types', [ProductTypeController::class, 'getTypesForSelect']);
     });
     Route::apiResource('product_types', ProductTypeController::class);
 

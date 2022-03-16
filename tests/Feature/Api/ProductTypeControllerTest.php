@@ -90,7 +90,11 @@ class ProductTypeControllerTest extends TestCase
 
     public function test_admin_can_get_paginated_product_types()
     {
-        ProductType::factory(30)->create();
+        $company = Company::factory()->create();
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        ProductType::factory(30)->create(['company_id' => $company->id]);
         $response = $this->actingAs($this->admin)->post($this->base_route . 'get_paginated', ['per_page' => 3, 'page' => 1]);
         $response
             ->assertStatus(200)
@@ -363,6 +367,15 @@ class ProductTypeControllerTest extends TestCase
                     ['id' => $product_type3->id],
                 ]
             ]
+        ]);
+    }
+
+    public function test_admin_can_get_types_for_select()
+    {
+        $response = $this->actingAs($this->admin)->get($this->base_route . 'get_types');
+
+        $response->assertStatus(200)->assertJson([
+            'data' => ['_perishable', '_imperishable']
         ]);
     }
 }
