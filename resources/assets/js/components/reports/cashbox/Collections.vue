@@ -1,0 +1,159 @@
+<template>
+	<div class="tac content_title">
+		{{$t('Архив инкассаций')}}
+	</div>
+	<div class="details col-12">
+		<div class="col-6 detail">
+			<div class="detail__title">
+				<span>{{ $t('Инкассации') }}</span>
+			</div>
+			<vue-good-table style="position: static;"
+		      :columns="collections_columns"
+		      :rows="collections_rows"
+		      :search-options="{ enabled: true }"
+		      :pagination-options="{
+		                enabled: true,
+		                mode: 'records',
+		                perPage: 10,
+		                position: 'top',
+		                dropdownAllowAll: true,
+		                setCurrentPage: 1,
+		                nextLabel: $t('Вперед'),
+		                prevLabel: $t('Назад'),
+		                rowsPerPageLabel: $t('Записей на одной странице'),
+		                ofLabel: $t('из'),
+		                pageLabel: 'page', // for 'pages' mode
+		                allLabel: 'All',
+		              }">
+		      <template #table-row="props">
+			      <span class="table_actions" v-if="props.column.field == 'actions'">
+		      	    <i @click="showCollectionDetail(props.row.collected_at)" class="fas fa-eye"></i>
+		      	  </span>
+	      	  </template>
+		    </vue-good-table>
+		</div>
+		<div class="col-6 detail">
+			<div class="detail__title">
+				<span>{{ $t('Операции') }}</span>
+			</div>
+			<vue-good-table style="position: static;"
+		      :columns="collection_item_columns"
+		      :rows="collection_item_rows"
+		      :line-numbers="true"
+		      :search-options="{ enabled: true }"
+		      :pagination-options="{
+		                enabled: true,
+		                mode: 'records',
+		                perPage: 10,
+		                position: 'top',
+		                dropdownAllowAll: true,
+		                setCurrentPage: 1,
+		                nextLabel: $t('Вперед'),
+		                prevLabel: $t('Назад'),
+		                rowsPerPageLabel: $t('Записей на одной странице'),
+		                ofLabel: $t('из'),
+		                pageLabel: 'page', // for 'pages' mode
+		                allLabel: 'All',
+		              }">
+		      <template #table-row="props">
+		      	 <span v-if="props.column.field == 'transaction_type'" v-bind:style="[props.row.transaction_type == '_in' ? {color: 'green'} : {color: 'red'}]">{{props.row.transaction_type == '_in' ? this.$t('поступление') : this.$t('расход')}}</span>
+		        </template>
+		    </vue-good-table>
+		</div>
+	</div>
+</template>
+
+<script>
+export default{
+	props: [
+		'id'
+	],
+	data(){
+		return{
+			collections_columns: [
+			  {
+			    label: '',
+			    field: 'actions',
+			    sortable: false,
+			    width: '30px',
+			  },
+			  {
+			    label: this.$t('Время'),
+			    field: 'collected_at',
+			  },
+			  {
+			    label: this.$t('Сумма'),
+			    field: 'amount',
+			  },
+			  {
+			    label: this.$t('Инкассатор'),
+			    field: 'collector.name',
+			  },
+			],
+			collections_rows: [],
+			collection_item_columns: [
+			  {
+			    label: this.$t('Операция'),
+			    field: 'transaction_type',
+			  },
+			  {
+			    label: this.$t('Сумма'),
+			    field: 'amount',
+			  },
+			  {
+			    label: this.$t('Оператор'),
+			    field: 'operator.name',
+			  },
+			  {
+			    label: this.$t('Описание'),
+			    field: 'data',
+			  },
+			  {
+			    label: this.$t('Время'),
+			    field: 'created_at',
+			  },
+			],
+			collection_item_rows: [],
+		} 
+	},
+	mounted(){
+		var loader = this.$loading.show({
+		        canCancel: false,
+		        loader: 'dots',});
+		this.axios.get('/api/cashbox/collection_history').then((response) => {
+		       this.collections_rows = response.data.data
+		       console.log(this.collections_rows)
+		       // this.workers_rows = this.company['employees']
+		       // document.title = this.company['name'];
+		       loader.hide()
+		       // console.table(this.company)
+		     }).catch(function(error){
+  		     	if(error.response.status == 403){
+  		     		window.location.href = '/403';
+  		     	}
+  		     })
+		
+	},
+	created () {
+        
+    },
+    methods: {
+    	showCollectionDetail(collected_at) {
+    		var loader = this.$loading.show({
+			        canCancel: false,
+			        loader: 'dots',});
+			this.axios.post('/api/cashbox/payments_from_history', {collected_at: collected_at}).then((response) => {
+			       this.collection_item_rows = response.data.data
+			       // this.workers_rows = this.company['employees']
+			       // document.title = this.company['name'];
+			       loader.hide()
+			       // console.table(this.company)
+			     }).catch(function(error){
+	  		     	if(error.response.status == 403){
+	  		     		window.location.href = '/403';
+	  		     	}
+	  		     })
+	    	}
+    }
+}
+</script>
