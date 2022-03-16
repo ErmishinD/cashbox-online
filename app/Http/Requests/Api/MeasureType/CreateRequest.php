@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\MeasureType;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateRequest extends FormRequest
 {
@@ -31,5 +32,12 @@ class CreateRequest extends FormRequest
             'company_id' => ['required', 'exists:companies,id'],
             'is_common' => ['required', 'boolean'],
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'company_id' => Auth::user()->company_id
+        ]);
     }
 }
