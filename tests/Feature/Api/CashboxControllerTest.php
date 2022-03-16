@@ -522,7 +522,7 @@ class CashboxControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
                 'data' => [
-                    $collected_time1->format('Y-m-d H:i:s') => [
+                    [
                         'collected_at' => $collected_time1->format('Y-m-d H:i:s'),
                         'amount' => 200,
                         'collector' => [
@@ -530,7 +530,7 @@ class CashboxControllerTest extends TestCase
                             'name' => $this->admin->name,
                         ]
                     ],
-                    $collected_time2->format('Y-m-d H:i:s') => [
+                    [
                         'collected_at' => $collected_time2->format('Y-m-d H:i:s'),
                         'amount' => 400,
                         'collector' => [
