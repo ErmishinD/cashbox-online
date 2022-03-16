@@ -17,8 +17,9 @@ class HistoryCollection extends ResourceCollection
     public function toArray($request)
     {
         $result = collect();
-        foreach ($this->collection as $created_at => $data) {
-            $result->put(date('Y-m-d H:i:s', strtotime($created_at)), [
+        foreach ($this->collection as $collected_at => $data) {
+            $result->put(date('Y-m-d H:i:s', strtotime($collected_at)), [
+                'collected_at' => $collected_at,
                 'amount' => round(
                     $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('amount') - $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('amount'),
                     2),
