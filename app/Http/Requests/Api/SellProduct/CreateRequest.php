@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\SellProduct;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateRequest extends FormRequest
 {
@@ -30,5 +31,12 @@ class CreateRequest extends FormRequest
             'has_discount' => ['required', 'boolean'],
             'product_types' => ['nullable', 'array']
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+           'company_id' => $this->company_id ?? Auth::user()->company_id
+        ]);
     }
 }

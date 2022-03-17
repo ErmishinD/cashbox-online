@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::post('remove_measure_types', [ProductTypeController::class, 'remove_measure_types']);
         Route::post('get_for_purchase', [ProductTypeController::class, 'getForPurchase']);
         Route::get('get_types', [ProductTypeController::class, 'getTypesForSelect']);
+        Route::get('get_for_sell_product', [ProductTypeController::class, 'getForSellProduct']);
     });
     Route::apiResource('product_types', ProductTypeController::class);
 
@@ -105,6 +106,7 @@ Route::middleware('auth')->group(function () {
      * SellProduct
      */
     Route::prefix('sell_products')->group(function () {
+        Route::post('remove_product_types', [SellProductController::class, 'remove_product_types']);
         Route::post('get_paginated', [SellProductController::class, 'get_paginated']);
     });
     Route::apiResource('sell_products', SellProductController::class);

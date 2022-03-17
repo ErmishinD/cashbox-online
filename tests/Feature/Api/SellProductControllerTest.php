@@ -109,6 +109,7 @@ class SellProductControllerTest extends TestCase
 
     public function test_admin_can_create_sell_product_with_product_types()
     {
+        $this->withoutExceptionHandling();
         $company = Company::inRandomOrder()->first();
         $product_type1 = ProductType::factory()->create(['name' => 'First Product Type']);
         $product_type2 = ProductType::factory()->create(['name' => 'Second Product Type']);
@@ -119,9 +120,9 @@ class SellProductControllerTest extends TestCase
             'price' => 111.11,
             'has_discount' => false,
             'product_types' => [
-                ['product_type_id' => $product_type1->id, 'quantity' => 250],
-                ['product_type_id' => $product_type2->id, 'quantity' => 50],
-                ['product_type_id' => $product_type3->id, 'quantity' => 5],
+                $product_type1->id => ['quantity' => 250],
+                $product_type2->id => ['quantity' => 50],
+                $product_type3->id => ['quantity' => 5],
             ]
         ]);
         $response
@@ -217,7 +218,23 @@ class SellProductControllerTest extends TestCase
 
     public function test_admin_can_edit_sell_product_with_product_types()
     {
-
+        $product_type1 = ProductType::factory()->create();
+        $product_type2 = ProductType::factory()->create();
+        $sell_product = SellProduct::factory()->create();
+        $sell_product->product_types()->attach([$product_type1->id => ['quantity' => 100]]);
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $sell_product->id, [
+            'product_types' => [$product_type2->id => ['quantity' => 200]]
+        ]);
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('sell_product_product_type', [
+            'product_type_id' => $product_type2->id,
+            'sell_product_id' => $sell_product->id,
+            'quantity' => 200
+        ]);
+        $this->assertDatabaseMissing('sell_product_product_type', [
+            'product_type_id' => $product_type1->id,
+            'sell_product_id' => $sell_product->id,
+        ]);
     }
 
     public function test_admin_can_delete_sell_product()
@@ -234,7 +251,30 @@ class SellProductControllerTest extends TestCase
 
     public function test_admin_can_remove_product_types()
     {
+        $sell_product = SellProduct::factory()->create();
+        $product_type1 = ProductType::factory()->create();
+        $product_type2 = ProductType::factory()->create();
+        $sell_product->product_types()->attach([
+            $product_type1->id => ['quantity' => 50],
+            $product_type2->id => ['quantity' => 150],
+        ]);
 
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'remove_product_types', [
+            'sell_product_id' => $sell_product->id,
+            'product_types' => [$product_type1->id]
+        ]);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+            ]);
+
+        $this->assertDatabaseMissing('sell_product_product_type', [
+            'sell_product_id' => $sell_product->id, 'product_type_id' => $product_type1->id
+        ]);
+        $this->assertDatabaseHas('sell_product_product_type', [
+            'sell_product_id' => $sell_product->id, 'product_type_id' => $product_type2->id
+        ]);
     }
 
     // filter / sort tests

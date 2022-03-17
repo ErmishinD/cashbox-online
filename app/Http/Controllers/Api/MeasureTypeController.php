@@ -66,7 +66,7 @@ class MeasureTypeController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function getByBaseMeasureType(GetByBaseMeasureTypeRequest $request)
+    public function getByBaseMeasureType(GetByBaseMeasureTypeRequest $request): JsonResponse
     {
         $base_measure_type_id = $request->validated()['base_measure_type_id'];
         $measure_types = $this->measure_type->get_by_base_measure_type($base_measure_type_id);

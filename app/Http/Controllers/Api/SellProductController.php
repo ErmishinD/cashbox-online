@@ -6,6 +6,7 @@ use App\Filters\SellProductFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\SellProduct\CreateRequest;
+use App\Http\Requests\Api\SellProduct\RemoveProductTypesRequest;
 use App\Http\Requests\Api\SellProduct\UpdateRequest;
 use App\Http\Resources\Api\SellProduct\EditResource;
 use App\Http\Resources\Api\SellProduct\IndexResource;
@@ -75,13 +76,24 @@ class SellProductController extends Controller
         $this->authorize('SellProduct_edit');
 
         $data = $request->validated();
-        $sell_product->update($data);
+        $sell_product = $this->sell_product->update($sell_product, $data);
         return response()->json(['success' => true, 'data' => new EditResource($sell_product)]);
     }
 
     public function destroy(SellProduct $sell_product): JsonResponse
     {
+        $this->authorize('SellProduct_delete');
+
         $sell_product->delete();
+        return response()->json(['success' => true]);
+    }
+
+    public function remove_product_types(RemoveProductTypesRequest $request): JsonResponse
+    {
+        $this->authorize('SellProduct_edit');
+
+        $data = $request->validated();
+        $this->sell_product->remove_product_types($data);
         return response()->json(['success' => true]);
     }
 }

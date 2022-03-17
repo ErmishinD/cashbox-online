@@ -2,11 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Filters\ProductTypeFilter;
 use App\Models\ProductType;
 use App\Services\EnumDbCol;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -31,16 +28,17 @@ class ProductTypeRepository extends BaseRepository
         $enums = [];
         $enumKeys = EnumDbCol::getEnumValues($this->model->getTable(), 'type');
 
-        foreach($enumKeys as $k => $v) $enums[$k] = __($v);
+        foreach ($enumKeys as $k => $v) $enums[$k] = __($v);
 
         return $enums;
     }
 
-    public function getForSelect($filters) {
+    public function getForSelect($filters = null)
+    {
         $product_types = $this->model->select('id', 'name', 'company_id', 'base_measure_type_id', 'main_measure_type_id', 'photo', 'type')
             ->with('base_measure_type')
             ->with('main_measure_type')
-            ->with(['measure_types' => function($query) {
+            ->with(['measure_types' => function ($query) {
                 $query->orderBy('quantity');
             }])
             ->onlyInCompany()
@@ -58,7 +56,8 @@ class ProductTypeRepository extends BaseRepository
         return $product_types;
     }
 
-    public function getForShow($id) {
+    public function getForShow($id)
+    {
         $product_type = $this->model->with(['measure_types', 'sell_products'])->find($id);
         return $product_type;
     }
@@ -67,40 +66,25 @@ class ProductTypeRepository extends BaseRepository
     {
         $product_type = parent::create($data);
         if (!empty($data['measure_types'])) {
-            foreach ($data['measure_types'] as $measure_type_id) {
-                DB::table('product_type_measures')->insert([
-                    'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type_id
-                ]);
-            }
+            $product_type->measure_types()->attach($data['measure_types']);
         }
         return $product_type;
     }
 
-    public function update($product_type, $data) {
+    public function update($product_type, $data)
+    {
         $product_type->update($data);
 
-        // удалить все единицы измерения для данного продукта
-        DB::table('product_type_measures')->where('product_type_id', $product_type->id)->delete();
-
-        // добавить единицы измерения к продукту
         if (!empty($data['measure_types'])) {
-            foreach ($data['measure_types'] as $measure_type_id) {
-                DB::table('product_type_measures')->insert([
-                    'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type_id
-                ]);
-            }
+            $product_type->measure_types()->sync($data['measure_types']);
         }
         return $product_type;
     }
 
-    public function remove_measure_types($data) {
-        $product_type_id = $data['product_type_id'];
-        foreach ($data['measure_types'] as $measure_type_id) {
-            DB::table('product_type_measures')
-                ->where('product_type_id', $product_type_id)
-                ->where('measure_type_id', $measure_type_id)
-                ->delete();
-        }
+    public function remove_measure_types($data): void
+    {
+        $product_type = $this->model->find($data['product_type_id']);
+        $product_type->measure_types()->detach($data['measure_types']);
     }
 
     public function get_paginated($paginate_data, $filters)

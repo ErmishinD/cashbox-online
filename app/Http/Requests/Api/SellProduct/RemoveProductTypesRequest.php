@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\SellProduct;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class RemoveProductTypesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => ['nullable'],
-            'name' => ['nullable'],
-            'price' => ['nullable'],
-            'has_discount' => ['nullable', 'boolean'],
-            'product_types' => ['nullable', 'array']
+            'sell_product_id' => ['required'],
+            'product_types' => ['required', 'array'],
         ];
     }
 }

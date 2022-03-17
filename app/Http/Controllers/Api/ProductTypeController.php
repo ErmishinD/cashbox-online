@@ -115,11 +115,20 @@ class ProductTypeController extends Controller
         ]);
     }
 
-    public function getTypesForSelect()
+    public function getTypesForSelect(): JsonResponse
     {
         return response()->json([
             'success' => true,
             'data' => array_values(ProductType::TYPES)
+        ]);
+    }
+
+    public function getForSellProduct(): JsonResponse
+    {
+        $product_types = $this->product_type->getForSelect();
+        return response()->json([
+            'success' => true,
+            'data' => WithMeasureTypesResource::collection($product_types)
         ]);
     }
 }

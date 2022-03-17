@@ -14,6 +14,9 @@ trait Filterable
      */
     public function scopeFilter($builder, $filters)
     {
-        return $filters->apply($builder);
+        if (!empty($filters)) {
+            return $filters->apply($builder);
+        }
+        return $builder;
     }
 }
