@@ -20,7 +20,6 @@ class DashboardCollection extends JsonResource
                 'id' => $product_id,
                 'name' => $product_purchases->first()->product_type->name
             ]));
-            info($product_purchases->first()->product_type);
             $main_to_base = $product_purchases->first()->product_type->main_measure_type->quantity;
             $result[strval($product_id)]['current_quantity_in_main_measure_type'] = $product_purchases->sum('current_quantity') / $main_to_base;
             $result[strval($product_id)]['current_quantity'] = $product_purchases->sum('current_quantity');
