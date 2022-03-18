@@ -168,6 +168,7 @@ export default{
 		} 
 	},
 	mounted(){
+		document.title = this.$t('Закупки');
 		document.addEventListener('scroll', this.scrolltoGetMoreData)
 		console.log(this.product_type_id, this.storage_id)
 		this.axios.post('api/storages/get_for_purchase', {company_id:1}).then(response => {
