@@ -184,22 +184,7 @@ export default{
 		})
 
 		this.render_list_items(true)
-		
-		// var loader = this.$loading.show({
-		//         canCancel: false,
-		//         loader: 'dots',});
-		// this.axios.get('/api/companies/'+this.id).then((response) => {
-		//        this.company = response.data['data']
-		//        this.shops_rows = this.company['shops']
-		//        this.workers_rows = this.company['employees']
-		//        document.title = this.company['name'];
-		//        loader.hide()
-		//        console.table(this.company)
-		//      }).catch(function(error){
-  // 		     	if(error.response.status == 403){
-  // 		     		window.location.href = '/403';
-  // 		     	}
-  // 		     })
+
 		
 	},
 	unmounted(){
@@ -258,7 +243,7 @@ export default{
     			}).catch(function(error){
 			     	console.log(error)
 	  		     	if(error.response.status == 403){
-	  		     		window.location.href = '/403';
+	  		     		this.$router.push({ name: '403' })
 	  		     	}
 	  		     })
 

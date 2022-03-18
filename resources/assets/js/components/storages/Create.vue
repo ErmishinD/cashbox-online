@@ -44,7 +44,7 @@ export default{
 		       loader.hide()
 		     }).catch(function(error){
   		     	if(error.response.status == 403){
-  		     		window.location.href = '/403';
+  		     		this.$router.push({ name: '403' })
   		     	}
   		     })
 		
@@ -63,7 +63,8 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			window.location.href = `/storages/${response.data.data.id}`
+    			this.$router.push({ name: 'storages_show', params: {id: response.data.data.id} })
+    			// window.location.href = `/storages/${response.data.data.id}`
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){

@@ -62,7 +62,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			window.location.href = `/shops/${response.data.data.id}`
+    			this.$router.push({ name: 'shops_show', params: {id: response.data.data.id}  })
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){

@@ -3,8 +3,11 @@
 	<h1 class="tac">{{ $t('Создание компании') }}</h1>
 	<form class="tac" @submit="create_company">
 		<div class="form_content">
-			<label for="name">{{ $t('Название') }}*:</label>
-			<input type="text" required class="form-control" name="name" v-model="formData.name">
+			<div class="form_item">
+				<label for="name">{{ $t('Название') }}*:</label>
+				<input type="text" required class="form-control" name="name" v-model="formData.name">
+			</div>
+			
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
 		
@@ -39,7 +42,8 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			window.location.href = `/settings/companies/${response.data.data.id}`
+    			this.$router.push({ name: 'settings_companies_show', params: {id: response.data.data.id} })
+    			// window.location.href = `/settings/companies/${response.data.data.id}`
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){
@@ -53,3 +57,10 @@ export default{
     },
 }
 </script>
+
+<style scoped>
+	.form_item{
+		width: 360px;
+		margin-inline: auto;
+	}
+</style>

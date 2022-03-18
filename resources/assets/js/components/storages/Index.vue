@@ -116,7 +116,7 @@ export default {
 
              }).catch(function(error){
                 if(error.response.status == 403){
-                    window.location.href = '/403';
+                    this.$router.push({ name: '403' })
                 }
              })
     },
