@@ -11,7 +11,7 @@ trait BelongsToCompany
 {
     public function scopeOnlyInCompany(Builder $builder, $company_id=null)
     {
-        $company_id = $company_id ?? Auth::user()->company_id;
+        $company_id = $company_id ?? optional(Auth::user())->company_id;
         if ($company_id) {
             return $builder->where('company_id', $company_id);
         }

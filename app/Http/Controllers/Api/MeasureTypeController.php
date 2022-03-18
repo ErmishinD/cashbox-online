@@ -7,6 +7,7 @@ use App\Http\Requests\Api\MeasureType\CreateRequest;
 use App\Http\Requests\Api\MeasureType\GetByBaseMeasureTypeRequest;
 use App\Http\Requests\Api\MeasureType\UpdateRequest;
 use App\Http\Resources\Api\MeasureType\DefaultResource;
+use App\Http\Resources\Api\MeasureType\IndexResource;
 use App\Models\MeasureType;
 use App\Repositories\MeasureTypeRepository;
 use Illuminate\Http\JsonResponse;
@@ -29,7 +30,7 @@ class MeasureTypeController extends Controller
 
         $measure_types = $this->measure_type->get_for_index();
         return response()->json([
-            'success' => true, 'data' => DefaultResource::collection($measure_types)
+            'success' => true, 'data' => IndexResource::collection($measure_types)
         ]);
     }
 

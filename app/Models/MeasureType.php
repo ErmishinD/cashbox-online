@@ -29,4 +29,9 @@ class MeasureType extends Model
         return $this->belongsToMany(ProductType::class, 'product_type_measures',
             'measure_type_id', 'product_type_id');
     }
+
+    public function base_measure_type()
+    {
+        return $this->belongsTo(BaseMeasureType::class);
+    }
 }
