@@ -120,6 +120,7 @@ export default{
 		var loader = this.$loading.show({
 		        canCancel: false,
 		        loader: 'dots',});
+		document.title = this.$t('Архив инкассаций');
 		this.axios.get('/api/cashbox/collection_history').then((response) => {
 		       this.collections_rows = response.data.data
 		       console.log(this.collections_rows)

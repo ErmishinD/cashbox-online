@@ -1,6 +1,7 @@
 <template>
 
   <div>
+  	<notifications position="bottom right" />
   	<GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
   	    <div class="getting-started-example-styled">
   	      <div class="getting-started-example-styled__content">
@@ -83,6 +84,10 @@ export default {
   		axios.delete(`/api/companies/${this.current_id}`, {
   		  
   		}).then((response) => {
+  			this.$notify({
+                text: this.$t('Успешно!'),
+                type: 'success',
+              });
   			this.render_list_items()
   			this.modal_show = false
   		});

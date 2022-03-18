@@ -242,7 +242,7 @@ export default {
       this.shop_list = response.data.data
       console.log(this.shop_list)
     })
-  	document.title = this.$t('Товары на продажу');
+  	document.title = this.$t('Инкассация');
   },
   methods:{
   	onOpen(params){
