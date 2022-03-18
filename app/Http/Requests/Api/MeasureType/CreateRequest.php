@@ -30,7 +30,7 @@ class CreateRequest extends FormRequest
             'description' => ['nullable'],
             'quantity' => ['required', 'min:1'],
             'company_id' => ['required', 'exists:companies,id'],
-            'is_common' => ['required', 'boolean'],
+            'is_common' => ['nullable', 'boolean'],
         ];
     }
 
