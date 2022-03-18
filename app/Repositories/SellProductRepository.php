@@ -23,6 +23,7 @@ class SellProductRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         $sell_product_paginator =  $this->model
+            ->with('product_types.main_measure_type')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 

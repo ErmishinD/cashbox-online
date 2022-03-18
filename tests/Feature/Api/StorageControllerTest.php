@@ -174,7 +174,6 @@ class StorageControllerTest extends TestCase
                             'current_quantity_in_main_measure_type' => $current_quantity,
                             'product_type' => [
                                 'id' => $product_type->id,
-                                'company_id' => $product_type->company_id,
                                 'name' => $product_type->name,
                                 'type' => $product_type->type,
                                 'photo' => $product_type->photo,
@@ -187,7 +186,6 @@ class StorageControllerTest extends TestCase
                                 'name' => $main_measure_type->name,
                                 'description' => $main_measure_type->description,
                                 'quantity' => $main_measure_type->quantity,
-                                'company_id' => $main_measure_type->company_id,
                             ],
                             'data' => [
                                 [

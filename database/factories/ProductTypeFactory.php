@@ -20,7 +20,7 @@ class ProductTypeFactory extends Factory
         $main_measure_type_id = (isset($attribues['main_measure_type_id'])) ?: $this->faker->randomElement(MeasureType::where('base_measure_type_id', $base_measure_type_id)->pluck('id'));
 
         return [
-            'company_id' => Company::inRandomOrder()->first()->id,
+            'company_id' => (isset($attribues['company_id'])) ?: $this->faker->randomElement(Company::pluck('id')),
             'name' => $this->faker->word,
             'type' => $this->faker->randomElement(['_perishable', '_imperishable']),
             'photo' => $this->faker->imageUrl,

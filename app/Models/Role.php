@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int id
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Role extends \Spatie\Permission\Models\Role
 {
-    use HasFactory;
+    use HasFactory, BelongsToCompany;
 
     public function company()
     {
