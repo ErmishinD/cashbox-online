@@ -11,7 +11,7 @@ use App\Http\Requests\Api\Cashbox\UpdateRequest;
 use App\Http\Resources\Api\Cashbox\DefaultResource;
 use App\Http\Resources\Api\Cashbox\HistoryCollection;
 use App\Http\Resources\Api\Cashbox\IndexResource;
-use App\Http\Resources\Cashbox\BalanceResource;
+use App\Http\Resources\Api\Cashbox\BalanceResource;
 use App\Repositories\CashboxRepository;
 use Illuminate\Http\JsonResponse;
 

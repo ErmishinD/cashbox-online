@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Cashbox;
+namespace App\Http\Resources\Api\Cashbox;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

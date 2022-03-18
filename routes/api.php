@@ -4,8 +4,10 @@ use App\Http\Controllers\Api\BaseMeasureTypeController;
 use App\Http\Controllers\Api\CashboxController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\MeasureTypeController;
+use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ProductPurchaseController;
 use App\Http\Controllers\Api\ProductTypeController;
+use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\SellableController;
 use App\Http\Controllers\Api\SellProductController;
 use App\Http\Controllers\Api\SellProductGroupController;
@@ -132,6 +134,16 @@ Route::middleware('auth')->group(function () {
      * Transfer
      */
     Route::apiResource('transfers', TransferController::class);
+
+    /*
+     * Permission
+     */
+    Route::get('permissions', [PermissionController::class, 'index']);
+
+    /*
+     * Role
+     */
+    Route::apiResource('roles', RoleController::class);
 });
 
 

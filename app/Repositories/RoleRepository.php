@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Collection;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -22,7 +23,7 @@ class RoleRepository extends BaseRepository
     public function createDefaultCompanyRoles($company_id)
     {
         $director_role = $this->model->create([
-            'name' => 'director.'.$company_id, 'human_name' => 'Директор', 'company_id' => $company_id
+            'name' => 'director.' . $company_id, 'human_name' => 'Директор', 'company_id' => $company_id
         ]);
         $director_role->syncPermissions([
             'Role_access', 'Role_create', 'Role_show', 'Role_edit', 'Role_delete',
@@ -39,7 +40,7 @@ class RoleRepository extends BaseRepository
         ]);
 
         $salesman_role = $this->model->create([
-            'name' => 'salesman.'.$company_id, 'human_name' => 'Продавец', 'company_id' => $company_id
+            'name' => 'salesman.' . $company_id, 'human_name' => 'Продавец', 'company_id' => $company_id
         ]);
         $salesman_role->syncPermissions([
             'Shop_access', 'Shop_show',
@@ -51,7 +52,7 @@ class RoleRepository extends BaseRepository
         ]);
 
         $accountant_role = $this->model->create([
-            'name' => 'accountant.'.$company_id, 'human_name' => 'Бухгалтер', 'company_id' => $company_id
+            'name' => 'accountant.' . $company_id, 'human_name' => 'Бухгалтер', 'company_id' => $company_id
         ]);
         $accountant_role->syncPermissions([
             'Cashbox_access', 'Cashbox_create', 'Cashbox_show', 'Cashbox_edit', 'Cashbox_delete',
@@ -63,7 +64,7 @@ class RoleRepository extends BaseRepository
             'ProductPurchase_access', 'ProductPurchase_show',
         ]);
         $analyst_role = $this->model->create([
-            'name' => 'analyst.'.$company_id, 'human_name' => 'Аналитик', 'company_id' => $company_id
+            'name' => 'analyst.' . $company_id, 'human_name' => 'Аналитик', 'company_id' => $company_id
         ]);
         $analyst_role->syncPermissions([
             'Cashbox_access', 'Cashbox_show',
@@ -75,5 +76,37 @@ class RoleRepository extends BaseRepository
             'SellProductGroup_access', 'SellProductGroup_show',
             'ProductPurchase_access', 'ProductPurchase_show',
         ]);
+    }
+
+    public function getWithPermissions(): Collection
+    {
+        return $this->model
+            ->with(['permissions' => function ($query) {
+                $query->select('id');
+            }])
+            ->onlyInCompany()
+            ->get();
+    }
+
+    public function create(array $data)
+    {
+        $role = parent::create($data);
+
+        if (!empty($data['permissions'])) {
+            $role->permissions()->attach($data['permissions']);
+        }
+
+        return $role;
+    }
+
+    public function update($role, $data)
+    {
+        $role->update($data);
+
+        if (!empty($data['permissions'])) {
+            $role->permissions()->sync($data['permissions']);
+        }
+
+        return $role;
     }
 }
