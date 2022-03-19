@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductPurchase extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory, Filterable, BelongsToCompany;
 
     protected $fillable = [
         'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',

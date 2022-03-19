@@ -566,6 +566,12 @@ class CashboxControllerTest extends TestCase
             'shop_id' => $shop->id, 'collected_at' => now(), 'collector_id' => $this->admin->id,
             'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
         ]);
+        $another_company = Company::factory()->create();
+        $another_company_shop = Shop::factory()->create(['company_id' => $another_company->id]);
+        Cashbox::factory()->create([
+            'shop_id' => $another_company_shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
+        ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'payments_from_history', [
             'collected_at' => $collected_time->format('Y-m-d H:i:s')

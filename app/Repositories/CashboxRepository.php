@@ -76,7 +76,6 @@ class CashboxRepository extends BaseRepository
     {
         $cashbox_transactions =  $this->model
             ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
-            ->onlyInCompany()
             ->notCollected()
             ->get();
         return $cashbox_transactions;
@@ -86,7 +85,6 @@ class CashboxRepository extends BaseRepository
     {
         return $this->model
             ->select('transaction_type', 'payment_type', 'amount')
-            ->onlyInCompany()
             ->notCollected()
             ->get();
     }
@@ -105,7 +103,6 @@ class CashboxRepository extends BaseRepository
     {
         return $this->model
             ->with('collector')
-            ->onlyInCompany()
             ->collected()
             ->get()
             ->groupBy('collected_at');

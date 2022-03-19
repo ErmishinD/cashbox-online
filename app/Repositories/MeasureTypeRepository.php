@@ -22,11 +22,11 @@ class MeasureTypeRepository extends BaseRepository
 
     public function get_for_index(): Collection
     {
-        return $this->model->with('base_measure_type')->onlyInCompany()->get();
+        return $this->model->with('base_measure_type')->get();
     }
 
     public function get_by_base_measure_type($base_measure_type_id): Collection
     {
-        return $this->model->onlyInCompany()->where('base_measure_type_id', $base_measure_type_id)->get();
+        return $this->model->where('base_measure_type_id', $base_measure_type_id)->get();
     }
 }

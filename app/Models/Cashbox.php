@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,7 +33,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Cashbox extends Model
 {
-    use HasFactory, SoftDeletes, Filterable;
+    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
 
     public const TRANSACTION_TYPES = ['in' => '_in', 'out' => '_out'];
     public const PAYMENT_TYPES = ['card' => '_card', 'cash' => '_cash'];
@@ -67,15 +68,15 @@ class Cashbox extends Model
         return $this->belongsTo(User::class, 'collector_id');
     }
 
-    public function scopeOnlyInCompany(Builder $builder, $company_id=null)
-    {
-        $company_id = $company_id ?? Auth::user()->company_id;
-        if ($company_id) {
-            $allowed_shop_ids = Shop::where('company_id', $company_id)->get()->pluck('id');
-            return $builder->whereIn('shop_id', $allowed_shop_ids);
-        }
-        return $builder;
-    }
+//    public function scopeOnlyInCompany(Builder $builder, $company_id=null)
+//    {
+//        $company_id = $company_id ?? Auth::user()->company_id;
+//        if ($company_id) {
+//            $allowed_shop_ids = Shop::where('company_id', $company_id)->get()->pluck('id');
+//            return $builder->whereIn('shop_id', $allowed_shop_ids);
+//        }
+//        return $builder;
+//    }
 
     public function scopeNotCollected(Builder $builder)
     {

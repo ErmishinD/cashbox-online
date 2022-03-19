@@ -84,7 +84,6 @@ class RoleRepository extends BaseRepository
             ->with(['permissions' => function ($query) {
                 $query->select('id');
             }])
-            ->onlyInCompany()
             ->get();
     }
 

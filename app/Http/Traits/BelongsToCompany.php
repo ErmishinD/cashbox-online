@@ -4,17 +4,12 @@
 namespace App\Http\Traits;
 
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Scopes\InCompanyScope;
 
 trait BelongsToCompany
 {
-    public function scopeOnlyInCompany(Builder $builder, $company_id=null)
+    public function bootInCompany()
     {
-        $company_id = $company_id ?? optional(Auth::user())->company_id;
-        if ($company_id) {
-            return $builder->where('company_id', $company_id);
-        }
-        return $builder;
+        static::addGlobalScope(new InCompanyScope());
     }
 }

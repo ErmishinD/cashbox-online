@@ -41,7 +41,6 @@ class ProductTypeRepository extends BaseRepository
             ->with(['measure_types' => function ($query) {
                 $query->orderBy('quantity');
             }])
-            ->onlyInCompany()
             ->filter($filters)
             ->get()
             ->each(function ($product_type) {
@@ -90,7 +89,6 @@ class ProductTypeRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         return $this->model
-            ->onlyInCompany()
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
     }
