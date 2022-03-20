@@ -550,21 +550,22 @@ class CashboxControllerTest extends TestCase
         $this->admin->save();
 
         $collected_time = now()->subMonth();
+        $sell_product = SellProduct::factory()->create(['company_id' => $company->id]);
         $payment1 = Cashbox::factory()->create([
-            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id,
-            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 200
+            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id, 'operator_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 200, 'sell_product_id' => $sell_product->id
         ]);
         $payment2 = Cashbox::factory()->create([
-            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id,
-            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'], 'amount' => 100
+            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id, 'operator_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'], 'amount' => 100, 'sell_product_id' => $sell_product->id
         ]);
         $payment3 = Cashbox::factory()->create([
-            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id,
-            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
+            'shop_id' => $shop->id, 'collected_at' => $collected_time, 'collector_id' => $this->admin->id, 'operator_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100, 'sell_product_id' => $sell_product->id
         ]);
         Cashbox::factory()->create([
-            'shop_id' => $shop->id, 'collected_at' => now(), 'collector_id' => $this->admin->id,
-            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100
+            'shop_id' => $shop->id, 'collected_at' => now(), 'collector_id' => $this->admin->id, 'operator_id' => $this->admin->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['in'], 'amount' => 100, 'sell_product_id' => $sell_product->id
         ]);
         $another_company = Company::factory()->create();
         $another_company_shop = Shop::factory()->create(['company_id' => $another_company->id]);

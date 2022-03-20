@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
+use App\Models\Scopes\InCompanyScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,7 +22,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ProductType extends Model
 {
-    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
+    use HasFactory, SoftDeletes, Filterable;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new InCompanyScope);
+    }
 
     public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];
 

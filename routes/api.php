@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
      */
     Route::prefix('measure_types')->group(function () {
         Route::post('get_by_base_measure_type', [MeasureTypeController::class, 'getByBaseMeasureType']);
+        Route::get('get_grouped_by_base', [MeasureTypeController::class, 'getGroupedByBaseMeasureType']);
     });
     Route::apiResource('measure_types', MeasureTypeController::class);
 

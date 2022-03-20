@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\MeasureType;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -28,5 +29,10 @@ class MeasureTypeRepository extends BaseRepository
     public function get_by_base_measure_type($base_measure_type_id): Collection
     {
         return $this->model->where('base_measure_type_id', $base_measure_type_id)->get();
+    }
+
+    public function get_grouped_by_base_measure_type(): Collection
+    {
+        return $this->model->with('base_measure_type:id,type')->get()->groupBy('base_measure_type.type');
     }
 }

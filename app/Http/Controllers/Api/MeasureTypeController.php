@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\MeasureType\CreateRequest;
 use App\Http\Requests\Api\MeasureType\GetByBaseMeasureTypeRequest;
 use App\Http\Requests\Api\MeasureType\UpdateRequest;
+use App\Http\Resources\Api\MeasureType\ByBaseMeasureTypeCollection;
 use App\Http\Resources\Api\MeasureType\DefaultResource;
 use App\Http\Resources\Api\MeasureType\IndexResource;
 use App\Models\MeasureType;
@@ -72,5 +73,14 @@ class MeasureTypeController extends Controller
         $base_measure_type_id = $request->validated()['base_measure_type_id'];
         $measure_types = $this->measure_type->get_by_base_measure_type($base_measure_type_id);
         return response()->json(['success' => true, 'data' => DefaultResource::collection($measure_types)]);
+    }
+
+    public function getGroupedByBaseMeasureType(): JsonResponse
+    {
+        $measure_types = $this->measure_type->get_grouped_by_base_measure_type();
+        return response()->json([
+            'success' => true,
+            'data' => new ByBaseMeasureTypeCollection($measure_types)
+        ]);
     }
 }

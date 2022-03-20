@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Traits\BelongsToCompany;
+use App\Models\Scopes\InCompanyScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -14,7 +14,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Role extends \Spatie\Permission\Models\Role
 {
-    use HasFactory, BelongsToCompany;
+    use HasFactory;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new InCompanyScope);
+    }
 
     public function company()
     {

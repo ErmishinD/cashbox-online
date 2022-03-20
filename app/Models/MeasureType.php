@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Traits\BelongsToCompany;
+use App\Models\Scopes\InCompanyScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,7 +19,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class MeasureType extends Model
 {
-    use HasFactory, SoftDeletes, BelongsToCompany;
+    use HasFactory, SoftDeletes;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new InCompanyScope);
+    }
+
+    public const TYPES = ['weight' => '_weight', 'volume' => '_volume', 'quantity' => '_quantity'];
 
     protected $fillable = [
         'base_measure_type_id', 'name', 'description', 'quantity', 'company_id', 'is_common',

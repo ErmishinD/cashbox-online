@@ -150,4 +150,51 @@ class MeasureTypeControllerTest extends TestCase
             ]);
         $this->assertSoftDeleted($this->table, ['id' => $measure_type->id]);
     }
+
+    public function test_admin_can_get_grouped_by_base_measure_type()
+    {
+        $another_company = Company::factory()->create();
+        MeasureType::factory()->count(15)->create([
+            'company_id' => $another_company->id
+        ]);
+
+        $company = Company::factory()->create();
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $measure_type_volume1 = MeasureType::factory()->create([
+            'company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_volume->id
+        ]);
+        $measure_type_volume2 = MeasureType::factory()->create([
+            'company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_volume->id
+        ]);
+
+        $measure_type_weight1 = MeasureType::factory()->create([
+            'company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_weight->id
+        ]);
+        $measure_type_weight2 = MeasureType::factory()->create([
+            'company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_weight->id
+        ]);
+        $measure_type_weight3 = MeasureType::factory()->create([
+            'company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_weight->id
+        ]);
+
+        $response = $this->actingAs($this->admin)->get($this->base_route . 'get_grouped_by_base');
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                    MeasureType::TYPES['volume'] => [
+                        ['id' => $measure_type_volume1->id],
+                        ['id' => $measure_type_volume2->id],
+                    ],
+                    MeasureType::TYPES['weight'] => [
+                        ['id' => $measure_type_weight1->id],
+                        ['id' => $measure_type_weight2->id],
+                        ['id' => $measure_type_weight3->id],
+                    ],
+                ]
+            ]);
+    }
 }

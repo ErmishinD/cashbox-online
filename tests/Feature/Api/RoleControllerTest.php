@@ -42,6 +42,7 @@ class RoleControllerTest extends TestCase
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
         $this->admin->company_id = $company->id;
+        $this->admin->save();
     }
 
     public function test_admin_can_get_all_roles_in_company()
@@ -81,13 +82,13 @@ class RoleControllerTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-               'success' => true,
-               'data' => [
-                   'id' => $role->id,
-                   'name' => $role->name,
-                   'human_name' => $role->human_name,
-                   'permissions' => $random_permissions
-               ]
+                'success' => true,
+                'data' => [
+                    'id' => $role->id,
+                    'name' => $role->name,
+                    'human_name' => $role->human_name,
+                    'permissions' => $random_permissions
+                ]
             ]);
     }
 
@@ -101,12 +102,12 @@ class RoleControllerTest extends TestCase
         $response->assertStatus(200)->assertJson(['success' => true]);
 
 
-        $role = Role::factory()->create(['company_id' => $this->admin->company_id]);
-        $role->permissions()->sync($random_permissions);
-        $some_user = User::factory()->create();
-        $some_user->assignRole($role);
+        $role2 = Role::factory()->create(['company_id' => $this->admin->company_id]);
+        $role2->permissions()->sync($random_permissions);
+        $some_user = User::factory()->create(['company_id' => $this->admin->company_id]);
+        $some_user->assignRole($role2);
 
-        $response = $this->actingAs($this->admin)->delete($this->base_route . $role->id);
+        $response = $this->actingAs($this->admin)->delete($this->base_route . $role2->id);
         $response->assertStatus(403)->assertJson(['success' => false]);
     }
 }

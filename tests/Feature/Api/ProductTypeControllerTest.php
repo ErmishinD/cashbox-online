@@ -351,8 +351,8 @@ class ProductTypeControllerTest extends TestCase
 
         $base_measure_type = $this->base_measure_type_weight;
 
-        $main_measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'quantity' => 333]);
-        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'quantity' => 500]);
+        $main_measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'quantity' => 333, 'company_id' => $company->id]);
+        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'quantity' => 500, 'company_id' => $company->id]);
         $product_type = ProductType::factory()->create([
             'company_id' => $company->id,
             'base_measure_type_id' => $base_measure_type->id,
