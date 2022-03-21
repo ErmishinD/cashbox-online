@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
-use App\Models\Scopes\InCompanyScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,12 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Cashbox extends Model
 {
-    use HasFactory, SoftDeletes, Filterable;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new InCompanyScope);
-    }
+    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
 
     public const TRANSACTION_TYPES = ['in' => '_in', 'out' => '_out'];
     public const PAYMENT_TYPES = ['card' => '_card', 'cash' => '_cash'];

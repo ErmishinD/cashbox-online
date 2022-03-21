@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\InCompanyScope;
+use App\Http\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,12 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class MeasureType extends Model
 {
-    use HasFactory, SoftDeletes;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new InCompanyScope);
-    }
+    use HasFactory, SoftDeletes, BelongsToCompany;
 
     public const TYPES = ['weight' => '_weight', 'volume' => '_volume', 'quantity' => '_quantity'];
 
@@ -32,7 +27,8 @@ class MeasureType extends Model
         'base_measure_type_id', 'name', 'description', 'quantity', 'company_id', 'is_common',
     ];
 
-    public function product_types() {
+    public function product_types()
+    {
         return $this->belongsToMany(ProductType::class, 'product_type_measures',
             'measure_type_id', 'product_type_id');
     }

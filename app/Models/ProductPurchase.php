@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
-use App\Models\Scopes\InCompanyScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,12 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductPurchase extends Model
 {
-    use HasFactory, Filterable;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new InCompanyScope);
-    }
+    use HasFactory, Filterable, BelongsToCompany;
 
     protected $fillable = [
         'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\InCompanyScope;
+use App\Http\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,12 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Shop extends Model
 {
-    use HasFactory, SoftDeletes;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new InCompanyScope);
-    }
+    use HasFactory, SoftDeletes, BelongsToCompany;
 
     protected $fillable = [
         'company_id', 'name', 'address',

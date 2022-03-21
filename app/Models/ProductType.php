@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
-use App\Models\Scopes\InCompanyScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,12 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ProductType extends Model
 {
-    use HasFactory, SoftDeletes, Filterable;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new InCompanyScope);
-    }
+    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
 
     public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];
 
@@ -35,18 +30,21 @@ class ProductType extends Model
         'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'main_measure_type_id', 'barcode',
     ];
 
-    public function measure_types() {
+    public function measure_types()
+    {
         return $this->belongsToMany(MeasureType::class, 'product_type_measures',
             'product_type_id', 'measure_type_id');
     }
 
-    public function sell_products() {
+    public function sell_products()
+    {
         return $this->belongsToMany(SellProduct::class, 'sell_product_product_type',
             'product_type_id', 'sell_product_id')
             ->withPivot('quantity');
     }
 
-    public function base_measure_type() {
+    public function base_measure_type()
+    {
         return $this->belongsTo(BaseMeasureType::class);
     }
 
