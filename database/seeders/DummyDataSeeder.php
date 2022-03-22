@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
+use App\Models\Role;
 use App\Models\SellProduct;
 use App\Models\SellProductGroup;
 use App\Models\Shop;
@@ -111,7 +112,7 @@ class DummyDataSeeder extends Seeder
                         [
                             'name' => 'Вода',
                             'type' => '_imperishable',
-                            'photo' => 'https://kot.sh/sites/default/files/articles-image/29-es-water-preview_0.jpg',
+                            'photo' => 'https://examsbook.co.in/img/post/large/0lBTMirror-and-Water-Image-Questions.jpg',
                             'base_measure_type_id' => 1,
                             'main_measure_type_id' => 1,
                         ],
@@ -125,7 +126,7 @@ class DummyDataSeeder extends Seeder
                         [
                             'name' => 'Твикс',
                             'type' => '_imperishable',
-                            'photo' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Twix_opened.jpg/1200px-Twix_opened.jpg',
+                            'photo' => 'https://i.imgur.com/9mCKTf0.jpg',
                             'base_measure_type_id' => 3,
                             'main_measure_type_id' => 3,
                         ],
@@ -152,7 +153,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Americano",
-                            'photo' => 'https://i.obozrevatel.com/food/recipemain/2019/3/16/coffee-americano.jpg?size=636x424',
+                            'photo' => 'https://chay-kava.com/uploads/posts/2021-03/1614596676_kofe-amerikano-v-domashnix-usoviyax-768x512.jpg',
                             'price' => 48.5,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -185,7 +186,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Twix",
-                            'photo' => 'https://twix.ru/static/media/tw1.30817941.webp',
+                            'photo' => 'https://aquamarket.ua/80089-large_default/twix-50-g-batonchik-tviks.jpg',
                             'price' => 18,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -283,13 +284,21 @@ class DummyDataSeeder extends Seeder
 
             if (!empty($company_data['product_types'])) {
                 foreach ($company_data['product_types'] as $product_type_data) {
+                    $photo_url = $product_type_data['photo'];
+                    unset($product_type_data['photo']);
+
                     $product_type = ProductType::factory()->create(array_merge($product_type_data, ['company_id' => $company->id]));
                     $product_types->push($product_type);
+
+                    $product_type->addMediaFromUrl($photo_url)->toMediaCollection();
                 }
             }
 
             if (!empty($company_data['sell_products'])) {
                 foreach ($company_data['sell_products'] as $sell_product_data) {
+                    $photo_url = $sell_product_data['photo'];
+                    unset($sell_product_data['photo']);
+
                     $consists_of_product_types = $sell_product_data['consists_of_product_types'];
                     unset($sell_product_data['consists_of_product_types']);
 
@@ -301,11 +310,16 @@ class DummyDataSeeder extends Seeder
                         );
                     }
                     $sell_products->push($sell_product);
+
+                    $sell_product->addMediaFromUrl($photo_url)->toMediaCollection();
                 }
             }
 
             if (!empty($company_data['sell_product_groups'])) {
                 foreach ($company_data['sell_product_groups'] as $sell_product_group_data) {
+                    $photo_url = $sell_product_group_data['photo'];
+                    unset($sell_product_group_data['photo']);
+
                     $consists_of_sell_products = $sell_product_group_data['consists_of_sell_products'];
                     unset($sell_product_group_data['consists_of_sell_products']);
 
@@ -316,6 +330,8 @@ class DummyDataSeeder extends Seeder
                             ['price' => $sell_product_data['price']]
                         );
                     }
+
+                    $sell_product_group->addMediaFromUrl($photo_url)->toMediaCollection();
                 }
             }
 

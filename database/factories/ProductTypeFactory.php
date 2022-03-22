@@ -27,7 +27,6 @@ class ProductTypeFactory extends Factory
             'company_id' => $company_id,
             'name' => $this->faker->word,
             'type' => $this->faker->randomElement(['_perishable', '_imperishable']),
-            'photo' => $this->faker->imageUrl,
             'base_measure_type_id' => $base_measure_type_id,
             'main_measure_type_id' => $main_measure_type_id,
             'barcode' => $this->faker->numerify('##########')

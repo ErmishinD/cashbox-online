@@ -89,6 +89,7 @@ class ProductTypeRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         return $this->model
+            ->with('media')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
     }

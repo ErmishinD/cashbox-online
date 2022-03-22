@@ -7,6 +7,8 @@ use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property int id
@@ -18,9 +20,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static inRandomOrder()
  * @method static filter(\App\Filters\SellProductFilter $product_filters)
  */
-class SellProduct extends Model
+class SellProduct extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
+    use Filterable, BelongsToCompany;
 
     protected $fillable = [
         'company_id', 'name', 'price', 'has_discount', 'photo'

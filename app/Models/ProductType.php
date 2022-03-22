@@ -7,6 +7,8 @@ use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property int id
@@ -20,9 +22,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static inRandomOrder()
  * @method static filter(\App\Filters\ProductTypeFilter $filters)
  */
-class ProductType extends Model
+class ProductType extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
+    use Filterable, BelongsToCompany;
 
     public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];
 

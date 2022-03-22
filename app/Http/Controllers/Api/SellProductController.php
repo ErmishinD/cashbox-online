@@ -67,7 +67,7 @@ class SellProductController extends Controller
     {
         $this->authorize('SellProduct_show');
 
-        $sell_product->load('product_types');
+        $sell_product->load('product_types.media');
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
