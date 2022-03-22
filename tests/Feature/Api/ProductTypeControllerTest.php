@@ -91,6 +91,7 @@ class ProductTypeControllerTest extends TestCase
     public function test_admin_can_get_paginated_product_types()
     {
         $company = Company::factory()->create();
+        MeasureType::factory()->count(20)->create(['company_id' => $company->id]);
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
@@ -385,6 +386,7 @@ class ProductTypeControllerTest extends TestCase
     public function test_can_filter_by_name()
     {
         $company = Company::factory()->create();
+        MeasureType::factory()->count(20)->create(['company_id' => $company->id]);
         ProductType::factory()->create(['company_id' => $company->id, 'name' => 'my product']);
         ProductType::factory()->create(['company_id' => $company->id, 'name' => 'my product 2']);
         ProductType::factory()->create(['company_id' => $company->id, 'name' => 'something']);
@@ -403,6 +405,7 @@ class ProductTypeControllerTest extends TestCase
     public function test_can_filter_by_type()
     {
         $company = Company::factory()->create();
+        MeasureType::factory()->count(20)->create(['company_id' => $company->id]);
         ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['perishable']]);
         ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['perishable']]);
         ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['imperishable']]);
@@ -421,6 +424,7 @@ class ProductTypeControllerTest extends TestCase
     public function test_can_filter_by_base_measure_type_id()
     {
         $company = Company::factory()->create();
+        MeasureType::factory()->count(20)->create(['company_id' => $company->id]);
         ProductType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_weight->id]);
         ProductType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_volume->id]);
         ProductType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_quantity->id]);
@@ -439,6 +443,7 @@ class ProductTypeControllerTest extends TestCase
     public function test_can_sort_by_name()
     {
         $company = Company::factory()->create();
+        MeasureType::factory()->count(20)->create(['company_id' => $company->id]);
         $product_type1 = ProductType::factory()->create(['company_id' => $company->id, 'name' => 'Banana']);
         $product_type2 = ProductType::factory()->create(['company_id' => $company->id, 'name' => 'Apple']);
         $product_type3 = ProductType::factory()->create(['company_id' => $company->id, 'name' => 'Coconut']);

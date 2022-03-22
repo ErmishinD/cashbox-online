@@ -7,7 +7,6 @@ use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
-use App\Models\Role;
 use App\Models\SellProduct;
 use App\Models\SellProductGroup;
 use App\Models\Shop;
@@ -322,8 +321,6 @@ class DummyDataSeeder extends Seeder
 
             $companies->push($company);
         }
-
-        User::find(1)->update(['company_id' => $companies->first()->id]);
 
         // create roles
         $role_repository = app(RoleRepository::class);

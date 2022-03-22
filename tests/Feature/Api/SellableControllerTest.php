@@ -8,7 +8,6 @@ use App\Models\MeasureType;
 use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\SellProductGroup;
-use App\Models\Shop;
 use App\Models\User;
 use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -47,6 +46,15 @@ class SellableControllerTest extends TestCase
         $this->base_measure_type_weight = BaseMeasureType::create(['type' => '_weight', 'name' => 'г']);
         $this->base_measure_type_quantity = BaseMeasureType::create(['type' => '_quantity', 'name' => 'шт']);
 
+        $company = Company::factory()->create();
+
+        $this->seed(RolesPermissionsSeeder::class);
+        $this->admin = User::factory()->create();
+        $this->admin->assignRole('Super Admin');
+    }
+
+    private function _fill_measure_types($company_id)
+    {
         Company::factory()->create();
 
         MeasureType::factory()->create([
@@ -54,7 +62,7 @@ class SellableControllerTest extends TestCase
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
             'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
-            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'company_id' => $company_id,
             'is_common' => $this->faker->boolean(35),
         ]);
         MeasureType::factory()->create([
@@ -62,7 +70,7 @@ class SellableControllerTest extends TestCase
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
             'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
-            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'company_id' => $company_id,
             'is_common' => $this->faker->boolean(35),
         ]);
         MeasureType::factory()->create([
@@ -70,19 +78,17 @@ class SellableControllerTest extends TestCase
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
             'quantity' => $this->faker->randomElement([10, 100, 1000, 10000]),
-            'company_id' => Company::inRandomOrder()->get()->first()->id,
+            'company_id' => $company_id,
             'is_common' => $this->faker->boolean(35),
         ]);
 
-        $this->seed(RolesPermissionsSeeder::class);
-        $this->admin = User::factory()->create();
-        $this->admin->assignRole('Super Admin');
     }
 
     public function test_admin_can_get_paginated_sellable()
     {
         $company = Company::factory()->create();
-        ProductType::factory()->count(20)->create(['company_id' => $company->id]);
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
         SellProduct::factory()->count(20)->create(['company_id' => $company->id]);
         SellProductGroup::factory()->count(20)->create(['company_id' => $company->id]);
 
@@ -102,7 +108,8 @@ class SellableControllerTest extends TestCase
     public function test_admin_can_get_different_pages_of_sellable()
     {
         $company = Company::factory()->create();
-        ProductType::factory()->count(20)->create(['company_id' => $company->id]);
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
         SellProduct::factory()->count(20)->create(['company_id' => $company->id]);
         SellProductGroup::factory()->count(20)->create(['company_id' => $company->id]);
 
@@ -122,7 +129,8 @@ class SellableControllerTest extends TestCase
     public function test_admin_can_search_sellable()
     {
         $company = Company::factory()->create();
-        ProductType::factory()->count(20)->create(['company_id' => $company->id]);
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
         $sell_product1 = SellProduct::factory()->create(['company_id' => $company->id, 'name' => "Вода"]);
         $sell_product2 = SellProduct::factory()->create(['company_id' => $company->id, 'name' => "Кофе"]);
         $sell_product3 = SellProduct::factory()->create(['company_id' => $company->id, 'name' => "Чай"]);

@@ -47,6 +47,7 @@ class MeasureTypeControllerTest extends TestCase
     public function test_admin_can_get_by_base_measure_type()
     {
         $company = Company::factory()->create();
+        session()->put('company_id', $company->id);
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
@@ -65,6 +66,7 @@ class MeasureTypeControllerTest extends TestCase
     public function test_admin_can_get_all_measure_types()
     {
         $company = Company::factory()->create();
+        session()->put('company_id', $company->id);
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
@@ -159,6 +161,7 @@ class MeasureTypeControllerTest extends TestCase
         ]);
 
         $company = Company::factory()->create();
+        session()->put('company_id', $company->id);
         $this->admin->company_id = $company->id;
         $this->admin->save();
 

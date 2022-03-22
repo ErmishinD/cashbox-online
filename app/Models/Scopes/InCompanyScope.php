@@ -21,7 +21,7 @@ class InCompanyScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $company_id = optional(Auth::user())->company_id;
+        $company_id = session()->get('company_id');
         if ($company_id) {
             $table = $model->getTable();
 
@@ -40,6 +40,21 @@ class InCompanyScope implements Scope
 
     public function does_column_exists($table_name, $column): bool
     {
+        $tables_with_tenant = [
+            'users' => 'company_id',
+            'product_types' => 'company_id',
+            'measure_types' => 'company_id',
+            'sell_products' => 'company_id',
+            'sell_product_groups' => 'company_id',
+            'shops' => 'company_id',
+            'roles' => 'company_id',
+            'storages' => 'shop_id',
+            'cashboxes' => 'shop_id',
+            'product_purchases' => 'storage_id',
+        ];
+        if (array_key_exists($table_name, $tables_with_tenant)) {
+            return $tables_with_tenant[$table_name] == $column;
+        }
         return Schema::hasColumn($table_name, $column);
     }
 
