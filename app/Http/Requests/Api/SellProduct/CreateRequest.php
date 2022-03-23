@@ -28,7 +28,7 @@ class CreateRequest extends FormRequest
             'company_id' => ['required'],
             'name' => ['required'],
             'price' => ['required'],
-            'has_discount' => ['required', 'boolean'],
+            'has_discount' => ['nullable', 'boolean'],
             'product_types' => ['nullable', 'array']
         ];
     }
