@@ -141,7 +141,7 @@ class DummyDataSeeder extends Seeder
                     'sell_products' => [
                         [
                             'name' => "Cappuccino",
-                            'photo' => 'https://ambassador-manufaktura.ru/upload/medialibrary/4ff/4ff982a7c3d3a59d0525472472115390.jpg',
+                            'photo' => 'https://coffeeatthree.com/wp-content/uploads/cappuccino-1a.jpg',
                             'price' => 55,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -290,7 +290,7 @@ class DummyDataSeeder extends Seeder
                     $product_type = ProductType::factory()->create(array_merge($product_type_data, ['company_id' => $company->id]));
                     $product_types->push($product_type);
 
-                    $product_type->addMediaFromUrl($photo_url)->toMediaCollection();
+                    $product_type->addMediaFromUrl($photo_url)->toMediaCollection('photo');
                 }
             }
 
@@ -311,7 +311,7 @@ class DummyDataSeeder extends Seeder
                     }
                     $sell_products->push($sell_product);
 
-                    $sell_product->addMediaFromUrl($photo_url)->toMediaCollection();
+                    $sell_product->addMediaFromUrl($photo_url)->toMediaCollection('photo');
                 }
             }
 
@@ -331,7 +331,7 @@ class DummyDataSeeder extends Seeder
                         );
                     }
 
-                    $sell_product_group->addMediaFromUrl($photo_url)->toMediaCollection();
+                    $sell_product_group->addMediaFromUrl($photo_url)->toMediaCollection('photo');
                 }
             }
 

@@ -13,6 +13,7 @@ use App\Http\Resources\Api\SellProduct\IndexResource;
 use App\Http\Resources\Api\SellProduct\ShowResource;
 use App\Models\SellProduct;
 use App\Repositories\SellProductRepository;
+use App\Services\UploadFileService;
 use Illuminate\Http\JsonResponse;
 
 class SellProductController extends Controller
@@ -59,7 +60,17 @@ class SellProductController extends Controller
         $this->authorize('SellProduct_create');
 
         $data = $request->validated();
+        if (!empty($data['photo'])) {
+            $photo = $data['photo'];
+            unset($data['photo']);
+        }
+
         $sell_product = $this->sell_product->create($data);
+
+        if (!empty($photo)) {
+            UploadFileService::save_photo($photo, $sell_product);
+        }
+
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
@@ -76,6 +87,12 @@ class SellProductController extends Controller
         $this->authorize('SellProduct_edit');
 
         $data = $request->validated();
+
+        if (!empty($data['photo'])) {
+            UploadFileService::save_photo($data['photo'], $sell_product);
+            unset($data['photo']);
+        }
+
         $sell_product = $this->sell_product->update($sell_product, $data);
         return response()->json(['success' => true, 'data' => new EditResource($sell_product)]);
     }

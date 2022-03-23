@@ -12,7 +12,9 @@ use App\Http\Resources\Api\ProductType\DefaultResource;
 use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
 use App\Models\ProductType;
+use App\Models\TemporaryFile;
 use App\Repositories\ProductTypeRepository;
+use App\Services\UploadFileService;
 use Illuminate\Http\JsonResponse;
 
 class ProductTypeController extends Controller
@@ -58,7 +60,16 @@ class ProductTypeController extends Controller
         $this->authorize('ProductType_create');
 
         $data = $request->validated();
+        if (!empty($data['photo'])) {
+            $photo = $data['photo'];
+            unset($data['photo']);
+        }
+
         $product_type = $this->product_type->create($data);
+
+        if (!empty($photo)) {
+            UploadFileService::save_photo($photo, $product_type);
+        }
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
@@ -75,6 +86,11 @@ class ProductTypeController extends Controller
         $this->authorize('ProductType_edit');
 
         $data = $request->validated();
+        if (!empty($data['photo'])) {
+            UploadFileService::save_photo($data['photo'], $product_type);
+            unset($data['photo']);
+        }
+
         $product_type = $this->product_type->update($product_type, $data);
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }

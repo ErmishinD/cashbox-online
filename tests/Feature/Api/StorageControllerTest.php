@@ -150,7 +150,6 @@ class StorageControllerTest extends TestCase
             'base_measure_type_id' => $this->base_measure_type_volume->id,
             'main_measure_type_id' => $main_measure_type->id,
             'name' => $this->faker->word,
-            'photo' => $this->faker->imageUrl,
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase = ProductPurchase::factory()->create([
@@ -176,7 +175,6 @@ class StorageControllerTest extends TestCase
                                 'id' => $product_type->id,
                                 'name' => $product_type->name,
                                 'type' => $product_type->type,
-                                'photo' => $product_type->photo,
                                 'base_measure_type_id' => $product_type->base_measure_type_id,
                                 'barcode' => $product_type->barcode
                             ],

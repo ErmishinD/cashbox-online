@@ -34,4 +34,9 @@ class SellProductGroup extends Model implements HasMedia
             'sell_product_group_id', 'sell_product_id')
             ->withPivot('price');
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('photo')->singleFile();
+    }
 }

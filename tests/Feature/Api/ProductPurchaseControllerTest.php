@@ -187,7 +187,6 @@ class ProductPurchaseControllerTest extends TestCase
             'base_measure_type_id' => $this->base_measure_type_volume->id,
             'main_measure_type_id' => $main_measure_type->id,
             'name' => $this->faker->word,
-            'photo' => $this->faker->imageUrl,
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase1 = ProductPurchase::factory()->create([
@@ -202,7 +201,6 @@ class ProductPurchaseControllerTest extends TestCase
             'base_measure_type_id' => $this->base_measure_type_volume->id,
             'main_measure_type_id' => $main_measure_type->id,
             'name' => $this->faker->word,
-            'photo' => $this->faker->imageUrl,
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase2 = ProductPurchase::factory()->create([

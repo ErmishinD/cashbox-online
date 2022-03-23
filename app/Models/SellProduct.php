@@ -39,4 +39,9 @@ class SellProduct extends Model implements HasMedia
     {
         return $this->hasMany(Cashbox::class);
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('photo')->singleFile();
+    }
 }
