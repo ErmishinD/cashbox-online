@@ -28,6 +28,7 @@ class UpdateRequest extends FormRequest
             'name' => ['nullable'],
             'has_discount' => ['nullable', 'boolean'],
             'sell_products' => ['nullable', 'array'],
+            'photo' => ['nullable']
         ];
     }
 }
