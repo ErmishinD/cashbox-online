@@ -36,16 +36,9 @@ class SellProductGroupController extends Controller
         $this->authorize('SellProductGroup_create');
 
         $data = $request->validated();
-        if (!empty($data['photo'])) {
-            $photo = $data['photo'];
-            unset($data['photo']);
-        }
 
         $sell_product_group = $this->sell_product_group->create($data);
 
-        if (!empty($photo)) {
-            UploadFileService::save_photo($photo, $sell_product_group);
-        }
         return response()->json(['success' => true, 'data' => new DefaultResource($sell_product_group)]);
     }
 
@@ -61,10 +54,6 @@ class SellProductGroupController extends Controller
         $this->authorize('SellProductGroup_edit');
 
         $data = $request->validated();
-        if (!empty($data['photo'])) {
-            UploadFileService::save_photo($data['photo'], $sell_product_group);
-            unset($data['photo']);
-        }
 
         $sell_product_group->update($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($sell_product_group)]);

@@ -22,7 +22,7 @@ class SellableController extends Controller
         $paginate_data = $request->validated();
 
         $sell_products = SellProduct::with(['product_types.main_measure_type'])->filter($product_filters)->get();
-        $sell_product_groups = SellProductGroup::with(['products.product_types.main_measure_type'])->filter($group_filters)->get();
+        $sell_product_groups = SellProductGroup::with(['sell_products.product_types.main_measure_type'])->filter($group_filters)->get();
 
         $sellable = $sell_product_groups->concat($sell_products);
         $sellable = $sellable->paginate($paginate_data['per_page'], $paginate_data['page']);

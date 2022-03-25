@@ -54,7 +54,7 @@ class SellProductGroupControllerTest extends TestCase
             'name' => 'Sell Product Group 1',
             'has_discount' => false,
             'sell_products' => [
-                ['id' => $sell_product->id, 'price' => 100]
+                ['sell_product_id' => $sell_product->id, 'price' => 100]
             ]
         ]);
         $response

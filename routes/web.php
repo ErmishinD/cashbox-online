@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', function () {
-    session()->invalidate();
-    dd(\App\Models\User::with('roles')->find(1));
-});
-
 Route::get('/', function () {
     return redirect(url('login'));
 });

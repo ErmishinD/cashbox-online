@@ -29,7 +29,7 @@ class SellProductGroup extends Model implements HasMedia
         'company_id', 'name', 'has_discount', 'photo'
     ];
 
-    public function products() {
+    public function sell_products() {
         return $this->belongsToMany(SellProduct::class, 'sell_product_product_group',
             'sell_product_group_id', 'sell_product_id')
             ->withPivot('price');

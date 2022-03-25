@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\ProductType;
 use App\Services\EnumDbCol;
+use App\Services\UploadFileService;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -64,15 +65,28 @@ class ProductTypeRepository extends BaseRepository
 
     public function create(array $data)
     {
+        if (!empty($data['photo'])) {
+            $photo = $data['photo'];
+            unset($data['photo']);
+        }
+
         $product_type = parent::create($data);
         if (!empty($data['measure_types'])) {
             $product_type->measure_types()->attach($data['measure_types']);
+        }
+        if (!empty($photo)) {
+            UploadFileService::save_photo($photo, $product_type);
         }
         return $product_type;
     }
 
     public function update($product_type, $data)
     {
+        if (!empty($data['photo'])) {
+            UploadFileService::save_photo($data['photo'], $product_type);
+            unset($data['photo']);
+        }
+
         $product_type->update($data);
 
         if (!empty($data['measure_types'])) {

@@ -32,7 +32,7 @@ class DashboardResource extends JsonResource
             $result['product_types'] = ProductTypeResource::collection($this->product_types);
         }
         elseif ($result['sellable_type'] == SellProductGroup::class) {
-            $result['sell_products'] = IndexResource::collection($this->products);
+            $result['sell_products'] = IndexResource::collection($this->sell_products);
         }
         return $result;
     }

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\SellProduct;
+use App\Services\UploadFileService;
 use Illuminate\Support\Facades\DB;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -23,42 +24,42 @@ class SellProductRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         $sell_product_paginator =  $this->model
-            ->with('product_types.main_measure_type')
+            ->with('media')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
-
-        $sell_product_paginator->getCollection()->transform(function ($sell_product) {
-            foreach ($sell_product->product_types as $product_type) {
-                $product_type->quantity_in_main_measure_type = $product_type->pivot->quantity / $product_type->main_measure_type->quantity;
-            }
-            return $sell_product;
-        });
 
         return $sell_product_paginator;
     }
 
     public function all(array $columns = ['*'])
     {
-        return $this->model->with('product_types.main_measure_type')
-            ->get()
-            ->each(function ($sell_product) {
-                foreach ($sell_product->product_types as $product_type) {
-                    $product_type->quantity_in_main_measure_type = $product_type->pivot->quantity / $product_type->main_measure_type->quantity;
-                }
-            });
+        return $this->model->with('media')->get();
     }
 
     public function create(array $data)
     {
+        if (!empty($data['photo'])) {
+            $photo = $data['photo'];
+            unset($data['photo']);
+        }
+
         $sell_product = parent::create($data);
         if (!empty($data['product_types'])) {
             $sell_product->product_types()->attach($data['product_types']);
+        }
+        if (!empty($photo)) {
+            UploadFileService::save_photo($photo, $sell_product);
         }
         return $sell_product;
     }
 
     public function update($sell_product, $data)
     {
+        if (!empty($data['photo'])) {
+            UploadFileService::save_photo($data['photo'], $sell_product);
+            unset($data['photo']);
+        }
+
         $sell_product->update($data);
 
         if (!empty($data['product_types'])) {
