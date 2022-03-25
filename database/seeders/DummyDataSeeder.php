@@ -91,7 +91,7 @@ class DummyDataSeeder extends Seeder
                         [
                             'name' => 'Молоко',
                             'type' => '_perishable',
-                            'photo' => 'https://s1.stc.all.kpcdn.net/putevoditel/projectid_379258/images/tild6235-3230-4935-b664-656138326364__960.jpg',
+                            'photo' => 'https://storage1a.censor.net/images/1/2/1/d/121d635e26009e78d7df3a9a4f676731/original.jpg',
                             'base_measure_type_id' => 1,
                             'main_measure_type_id' => 1,
                         ],
@@ -177,7 +177,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Snickers",
-                            'photo' => 'https://menuprosto.ru/assets/Images/Recipe/RCP_7766.jpg',
+                            'photo' => 'https://storage1a.censor.net/images/1/2/1/d/121d635e26009e78d7df3a9a4f676731/original.jpg',
                             'price' => 20,
                             'has_discount' => false,
                             'consists_of_product_types' => [

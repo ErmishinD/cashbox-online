@@ -9,6 +9,7 @@
             ref="pond"
             v-bind:file="formData.photo"
             v-on:init="handleFilePondInit"
+            labelIdle="Перетащите файлы вручную или <span class='filepond--label-action'> Навигация </span>"
         />
 		<button type="submit">{{ $t('Сохранить') }}</button>
 	</form>
