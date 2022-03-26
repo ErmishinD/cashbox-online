@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\ProductType;
 
+use App\Http\Resources\Api\BaseMeasureType\DefaultResource as BaseMeasureTypeResource;
 use App\Http\Resources\Api\MeasureType\DefaultResource as MeasureTypeResource;
 use App\Http\Resources\Api\SellProduct\DefaultResource as SellProductResource;
 use App\Models\ProductType;
@@ -25,8 +26,9 @@ class ShowResource extends JsonResource
             'type' => $this->type,
             'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty() ? $this->media->where('collection_name', 'photo')->first()->getUrl() : asset('images/default_card_img.png'),
             'base_measure_type_id' => $this->base_measure_type_id,
-            'main_measure_type_id' => $this->main_measure_type_id,
             'barcode' => $this->barcode,
+            'base_measure_type' => new BaseMeasureTypeResource($this->base_measure_type),
+            'main_measure_type' => new MeasureTypeResource($this->main_measure_type),
             'measure_types' => MeasureTypeResource::collection($this->measure_types),
             'sell_products' => SellProductResource::collection($this->sell_products),
         ];

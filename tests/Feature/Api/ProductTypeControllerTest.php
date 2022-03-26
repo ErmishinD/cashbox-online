@@ -130,8 +130,8 @@ class ProductTypeControllerTest extends TestCase
                     'company_id' => $company->id,
                     'name' => 'First product',
                     'type' => '_imperishable',
-                    'base_measure_type_id' => $base_measure_type->id,
-                    'main_measure_type_id' => $main_measure_type_id->id,
+                    'base_measure_type' => ['id' => $base_measure_type->id],
+                    'main_measure_type' => ['id' => $main_measure_type_id->id],
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [
@@ -165,8 +165,8 @@ class ProductTypeControllerTest extends TestCase
                     'company_id' => $company->id,
                     'name' => 'First product',
                     'type' => '_imperishable',
-                    'base_measure_type_id' => $base_measure_type->id,
-                    'main_measure_type_id' => $main_measure_type->id,
+                    'base_measure_type' => ['id' => $base_measure_type->id],
+                    'main_measure_type' => ['id' => $main_measure_type->id],
                 ]
             ]);
         $this->assertDatabaseHas($this->table, [

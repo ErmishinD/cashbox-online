@@ -68,7 +68,7 @@ class ProductTypeController extends Controller
     {
         $this->authorize('ProductType_create');
 
-        $product_type->load(['measure_types', 'sell_products', 'media']);
+        $product_type->load(['measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type']);
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
