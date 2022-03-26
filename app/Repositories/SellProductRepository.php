@@ -23,7 +23,7 @@ class SellProductRepository extends BaseRepository
 
     public function get_paginated($paginate_data, $filters)
     {
-        $sell_product_paginator =  $this->model
+        $sell_product_paginator = $this->model
             ->with('media')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
@@ -38,7 +38,7 @@ class SellProductRepository extends BaseRepository
 
     public function create(array $data)
     {
-        if (!empty($data['photo'])) {
+        if (array_key_exists('photo', $data)) {
             $photo = $data['photo'];
             unset($data['photo']);
         }
@@ -55,8 +55,10 @@ class SellProductRepository extends BaseRepository
 
     public function update($sell_product, $data)
     {
-        if (!empty($data['photo'])) {
-            UploadFileService::save_photo($data['photo'], $sell_product);
+        if (array_key_exists('photo', $data)) {
+            if (!empty($data['photo'])) {
+                UploadFileService::save_photo($data['photo'], $sell_product);
+            }
             unset($data['photo']);
         }
 

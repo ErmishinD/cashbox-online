@@ -22,7 +22,7 @@ class SellProductGroupRepository extends BaseRepository
 
     public function create(array $data)
     {
-        if (!empty($data['photo'])) {
+        if (array_key_exists('photo', $data)) {
             $photo = $data['photo'];
             unset($data['photo']);
         }
@@ -39,8 +39,10 @@ class SellProductGroupRepository extends BaseRepository
 
     public function update($sell_product_group, $data)
     {
-        if (!empty($data['photo'])) {
-            UploadFileService::save_photo($data['photo'], $sell_product_group);
+        if (array_key_exists('photo', $data)) {
+            if (!empty($data['photo'])) {
+                UploadFileService::save_photo($data['photo'], $sell_product_group);
+            }
             unset($data['photo']);
         }
 

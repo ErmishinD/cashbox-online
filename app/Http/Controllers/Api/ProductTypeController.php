@@ -13,7 +13,6 @@ use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
 use App\Models\ProductType;
 use App\Repositories\ProductTypeRepository;
-use App\Services\UploadFileService;
 use Illuminate\Http\JsonResponse;
 
 class ProductTypeController extends Controller
@@ -62,9 +61,6 @@ class ProductTypeController extends Controller
 
         $product_type = $this->product_type->create($data);
 
-        if (!empty($data['photo'])) {
-            UploadFileService::save_photo($data['photo'], $product_type);
-        }
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
