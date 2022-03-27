@@ -5,6 +5,7 @@
 $main_color: #2a2a2e;
 $background: #E5E5E5;
 $grey: #dadada;
+$green: #41b883;
 $success: #198754;
 $primary: #0d6efd;
 $secondary: #6c757d;
@@ -63,6 +64,7 @@ input, select{
 select{
 	outline: none;
 }
+
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -639,4 +641,38 @@ select{
 
 .multiselect__option--highlight{
 	background: $dark !important;
+}
+
+.product_card_CRUD{
+	display: flex;
+	flex-wrap: wrap;
+	background-color: #fff;
+	border-radius: 5px;
+	padding-block: 5px;
+	padding-inline: 10px;
+	a:hover{
+		opacity: .7;
+	}
+	&__photo{
+		max-width: 300px;
+		width: 100%;
+		text-align: center;
+		img{
+			width: 240px;
+			height: 150px;
+			object-fit: cover;
+		}
+	}
+	&__content{
+		flex: 1;
+		min-width: 300px;
+		&_row{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+		&_item{
+			margin-bottom: 10px;
+		}
+	}
 }

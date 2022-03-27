@@ -1,32 +1,75 @@
 <template>
-	<div class="">{{formData.id}} - {{formData.name}} - {{formData.barcode}}</div>
-	<form @submit="update_product_info">
-		<input type="text" name="id" v-model="formData.id">
-		<input type="text" name="name" v-model="formData.name">
-		<input type="text" name="barcode" v-model="formData.barcode">
-        <file-pond
-            name="photo"
-            ref="pond"
-            v-bind:file="formData.photo"
-            v-on:init="handleFilePondInit"
-            labelIdle="Перетащите файлы вручную или <span class='filepond--label-action'> Навигация </span>"
-        />
-		<button type="submit">{{ $t('Сохранить') }}</button>
+	<notifications position="bottom right" />
+	<h1 class="tac">{{ $t('Редактироваие типа товара') }}</h1>
+	<form class="tac form" @submit="UpdateProduct">
+		<div class="form_content">
+			<div class="form_item">
+				<label class="tal" for="name">{{ $t('Название') }}*:</label>
+				<input type="text" required class="form-control" name="name" v-model="formData.name">
+			</div>
+			<div class="form_item">
+				<label class="tal" for="type">{{ $t('Тип') }}*:</label>
+				<select required class="form-control" name="type" v-model="formData.type">
+					<option value="_perishable">{{$t('Портящийся')}}</option>
+					<option value="_imperishable">{{$t('Непортящийся')}}</option>
+				</select>
+			</div>
+			<div class="form_item" v-if="formData.main_measure_type">
+				<label class="tal" for="main_measure_type_id">{{ $t('Основная ед. изм.') }}*:</label>
+				<select @change="MeasureTypesForSetMeasureTypes" style="padding: 0;" class="form-control" name="main_measure_type_id" v-model="formData.main_measure_type.id">
+					<option  v-for="measure_type in measure_types" :value="measure_type.id">{{measure_type.name}}</option>
+				</select>
+			</div>
+			<div class="form_item">
+				<VueMultiselect 
+					v-model="formData.measure_types" 
+					:options="measure_types_by_main_select"
+					label="name"
+					:multiple="true"
+					:placeholder="$t('Установите доступные ед. изм.')"
+					selectLabel=""
+					:disabled="isDisabled"
+					@select="SetMeasureTypes"
+					@remove="UnsetMeasureTypes"
+					>
+				</VueMultiselect>
+			</div>				
+			<file-pond
+			    name="photo"
+			    ref="pond"
+			    v-bind:file="updateData.photo"
+			    v-on:init="handleFilePondInit"
+			    :multiple="false"
+			    maxFiles='1'
+			    labelIdle="Фото товара: перетащите файлы вручную или <span class='filepond--label-action'> Навигация </span>"
+			    accept="image/png, image/jpeg, image/gif"
+			    :required="false"
+			/>	
+			<button style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
+		</div>
 	</form>
-
+	
 </template>
 
 
 <script>
-
 // Import FilePond
 import vueFilePond, { setOptions } from 'vue-filepond';
+import VueMultiselect from 'vue-multiselect'
+// Import the plugin code
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+
+// Import the plugin styles
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 // Import styles
 import 'filepond/dist/filepond.min.css';
+import "vue-multiselect/dist/vue-multiselect.css"
 
 // Create FilePond component
-const FilePond = vueFilePond();
+const FilePond = vueFilePond(FilePondPluginImagePreview);
+// FilePond.registerPlugin(FilePondPluginImagePreview);
+
 setOptions({
     server: {
         url: '/api/file_upload',
@@ -36,6 +79,7 @@ setOptions({
         process: {
             onload: function (response) {
                 document.querySelector("input[type='file']").setAttribute('value', response)
+
                 return response
             },
         }
@@ -50,6 +94,11 @@ export default{
         return{
             product: [],
             formData: {},
+            measure_types: [],
+            measure_types_by_main_select: [],
+            selected_measure_types: [],
+            updateData: {},
+            value: null,
         }
     },
     mounted(){
@@ -57,40 +106,69 @@ export default{
             canCancel: false,
             loader: 'dots',});
         this.axios.get('/api/product_types/'+this.id).then((response) => {
-            this.product = response.data['data']
-            document.title = this.product['name'];
-            this.formData = {id: this.product.id,
-                name: this.product.name,
-                barcode: this.product.barcode,
-                photo: ''
-            }
+            // this.product = response.data['data']
+            Promise.resolve(this.formData = response.data['data']).then(result => {
+            	this.axios.post('/api/measure_types/get_by_base_measure_type', {base_measure_type_id: this.formData.base_measure_type_id}).then((response) => {
+            		Promise.resolve(this.measure_types = response.data.data).then(result => {
+            			this.MeasureTypesForSetMeasureTypes()
+            		})
+            		
+            	})
+            })
+            
+            document.title = this.formData['name'];
+            
             loader.hide()
         }).catch(function(error){
             if(error.response.status == 403){
                 this.$router.push({ name: '403' })
             }
         })
+        
     },
     created () {
-
+    	
     },
     methods:{
-        update_product_info: function(e){
-            e.preventDefault()
-            this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
-            this.axios.put('/api/product_types/'+this.id, this.formData).then((response) => {
-            	console.log(response)
-            })
-        },
-        handleFilePondInit: function () {
-            console.log('FilePond has initialized');
+        MeasureTypesForSetMeasureTypes(e) {
+        		let measure_types = Object.assign([], this.measure_types)
+    			this.measure_types_by_main_select = measure_types
 
-            // example of instance method call on pond reference
-            // this.$refs.pond.getFiles();
-        },
+    			this.measure_types_by_main_select.splice(this.measure_types_by_main_select.indexOf(this.measure_types_by_main_select.find(item => item.id == this.formData.main_measure_type.id)), 1)
+    			console.log(this.measure_types_by_main_select)
+    	},
+    	SetMeasureTypes(measure_type) {
+    		this.selected_measure_types.push(measure_type.id)
+    	},
+    	UnsetMeasureTypes(measure_type){
+    		this.selected_measure_types.splice(this.selected_measure_types.indexOf(this.selected_measure_types.find(item => item.id == measure_type.id)), 0)
+    	},
+    	UpdateProduct(e) {
+    		e.preventDefault()
+    		var loader = this.$loading.show({
+    		        canCancel: false,
+    		        loader: 'dots',});
+    		this.updateData = Object.assign({}, this.formData)
+    		this.updateData.photo = document.querySelector("input[type='file']").getAttribute('value')
+    		console.log(document.querySelector("input[type='file']"))
+    		this.updateData.measure_types = []
+    		this.selected_measure_types.forEach(item => {
+    			this.updateData.measure_types.push(item)
+    		})
+    		this.updateData.main_measure_type_id = this.updateData.main_measure_type.id
+    		console.log(this.updateData)
+    		this.axios.put('/api/product_types/' + this.id, this.updateData).then((response) => {
+    			this.$notify({
+    				text: this.$t('Успешно!'),
+    				type: 'success',
+    			});
+    			loader.hide()
+    		})
+    	},
     },
     components: {
         FilePond,
+        VueMultiselect,
     },
 }
 </script>

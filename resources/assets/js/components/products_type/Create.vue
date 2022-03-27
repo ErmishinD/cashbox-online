@@ -46,6 +46,7 @@
 			    maxFiles='1'
 			    labelIdle="Фото товара: перетащите файлы вручную или <span class='filepond--label-action'> Навигация </span>"
 			    accept="image/png, image/jpeg, image/gif"
+			    :required="false"
 			/>	
 			<div class="" style="display: flex; justify-content: center; align-items: center;">
 				<input type="checkbox" v-model="is_create_product_for_sale" name="is_create_product_for_sale">
@@ -53,7 +54,7 @@
 			</div>
 			<div class="form_item" style="margin-top: 10px;" v-if="is_create_product_for_sale">
 				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
-				<input min="1" type="number" required class="form-control" name="price" v-model="formData.price">
+				<input min="1" type="number" step="any" max="999999.99" required class="form-control" name="price" v-model="formData.price">
 			</div>
 			<button style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
@@ -85,6 +86,13 @@ setOptions({
         headers: {
             'X-CSRF-TOKEN': document.querySelector("meta[name='csrf-token']").getAttribute('content')
         },
+        process: {
+            onload: function (response) {
+                document.querySelector("input[type='file']").setAttribute('value', response)
+
+                return response
+            },
+        }
     }
 });
 
@@ -149,7 +157,7 @@ export default{
     			
     		})
     		this.axios.post('/api/measure_types/get_by_base_measure_type', {base_measure_type_id : base_measure_type_id}).then((response) => {
-    			console.log()
+    			console.log(response.data.data)
     			this.measure_types_by_main_select = response.data.data
     			this.measure_types_by_main_select.splice(this.measure_types_by_main_select.indexOf(this.measure_types_by_main_select.find(item => item.id == this.formData.main_measure_type_id)), 1)
     			this.isDisabled = false
@@ -160,10 +168,13 @@ export default{
     		this.selected_measure_types.push(measure_type.id)
     	},
     	UnsetMeasureTypes(measure_type){
-    		this.selected_measure_types.splice(this.selected_measure_types.indexOf(this.selected_measure_types.find(item => item.id == measure_type.id).id), 1)
+    		this.selected_measure_types.splice(this.selected_measure_types.indexOf(this.selected_measure_types.find(item => item.id == measure_type.id)), 1)
     	},
     	CreateProduct(e) {
     		e.preventDefault()
+    		var loader = this.$loading.show({
+    		        canCancel: false,
+    		        loader: 'dots',});
     		this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
     		this.formData.measure_types = this.selected_measure_types
     		console.log(this.formData)
@@ -171,6 +182,12 @@ export default{
     			if(this.is_create_product_for_sale){
     				this.axios.post('/api/sell_products', this.formData)
     			}
+    			this.$notify({
+    				text: this.$t('Успешно!'),
+    				type: 'success',
+    			});
+    			loader.hide()
+    			this.$router.push({ name: 'products_type_show', params: {id: response.data.data.id}  })
     		})
     	},
     },
