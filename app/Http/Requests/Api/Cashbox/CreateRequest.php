@@ -31,8 +31,8 @@ class CreateRequest extends FormRequest
             'sell_product_id' => ['nullable', 'exists:sell_products,id'],
             'product_purchase_id' => ['nullable', 'exists:product_purchases,id'],
             'data' => ['nullable'],
-            'transaction_type' => ['required', Rule::in(array_values(Cashbox::TRANSACTION_TYPES))],
-            'payment_type' => ['required', Rule::in(array_values(Cashbox::PAYMENT_TYPES))],
+            'transaction_type' => ['required', Rule::in(Cashbox::TRANSACTION_TYPES)],
+            'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
             'amount' => ['required'],
             'description' => ['nullable'],
             'operator_id' => ['required', 'exists:users,id'],
@@ -42,7 +42,7 @@ class CreateRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'shop_id' => session()->get('shop_id'),
+            'shop_id' => $this->shop_id ?? session()->get('shop_id'),
             'operator_id' => $this->operator_id ?? Auth::user()->id,
             'transaction_type' => $this->transaction_type ?? Cashbox::TRANSACTION_TYPES['in'],
             'payment_type' => $this->payment_type ?? Cashbox::PAYMENT_TYPES['cash'],

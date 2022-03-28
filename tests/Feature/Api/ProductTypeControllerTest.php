@@ -344,7 +344,7 @@ class ProductTypeControllerTest extends TestCase
         ]);
     }
 
-    public function test_admin_can_get_for_sell_product()
+    public function test_admin_can_get_short_info()
     {
         $company = Company::factory()->create();
         $this->admin->company_id = $company->id;
@@ -364,18 +364,16 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type->id
         ]);
 
-        $response = $this->actingAs($this->admin)->get($this->base_route . 'get_for_sell_product');
+        $response = $this->actingAs($this->admin)->get($this->base_route . 'get_short_info/' . $product_type->id);
 
         $response->assertStatus(200)->assertJson([
             'data' => [
-                [
-                    'id' => $product_type->id,
-                    'name' => $product_type->name,
-                    'measure_types' => [
-                        ['name' => $measure_type->name, 'quantity' => $measure_type->quantity],
-                        ['name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
-                        ['name' => $base_measure_type->name, 'quantity' => 1],
-                    ]
+                'id' => $product_type->id,
+                'name' => $product_type->name,
+                'measure_types' => [
+                    ['name' => $measure_type->name, 'quantity' => $measure_type->quantity],
+                    ['name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
+                    ['name' => $base_measure_type->name, 'quantity' => 1],
                 ]
             ],
         ]);

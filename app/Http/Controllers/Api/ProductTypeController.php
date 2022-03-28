@@ -15,6 +15,7 @@ use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
 use App\Models\ProductType;
 use App\Repositories\ProductTypeRepository;
+use App\Services\ProductTypeService;
 use Illuminate\Http\JsonResponse;
 
 class ProductTypeController extends Controller
@@ -129,15 +130,6 @@ class ProductTypeController extends Controller
         ]);
     }
 
-    public function getForSellProduct(): JsonResponse
-    {
-        $product_types = $this->product_type->getForSelect();
-        return response()->json([
-            'success' => true,
-            'data' => WithMeasureTypesResource::collection($product_types)
-        ]);
-    }
-
     public function getForSelectForSellProduct(): JsonResponse
     {
         $product_types = $this->product_type->getForSelectForSellProduct();
@@ -150,13 +142,7 @@ class ProductTypeController extends Controller
     public function getShortInfo(ProductType $product_type): JsonResponse
     {
         $product_type->load('media', 'base_measure_type', 'main_measure_type');
-        $product_type->measure_types->prepend($product_type->main_measure_type);
-
-        $product_type->base_measure_type->quantity = 1;
-        $product_type->base_measure_type->description = '';
-        $product_type->measure_types->push($product_type->base_measure_type);
-
-        $product_type->measure_types = $product_type->measure_types->unique('quantity')->sortByDesc('quantity');
+        $product_type = ProductTypeService::prepare_measure_types($product_type);
         return response()->json(['success' => true, 'data' => new WithMeasureTypesResource($product_type)]);
     }
 }

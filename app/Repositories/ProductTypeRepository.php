@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\ProductType;
 use App\Services\EnumDbCol;
+use App\Services\ProductTypeService;
 use App\Services\UploadFileService;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -46,13 +47,7 @@ class ProductTypeRepository extends BaseRepository
             ->filter($filters)
             ->get()
             ->each(function ($product_type) {
-                $product_type->measure_types->prepend($product_type->main_measure_type);
-
-                $product_type->base_measure_type->quantity = 1;
-                $product_type->base_measure_type->description = '';
-                $product_type->measure_types->push($product_type->base_measure_type);
-
-                $product_type->measure_types = $product_type->measure_types->unique('quantity')->sortByDesc('quantity');
+                $product_type = ProductTypeService::prepare_measure_types($product_type);
             });
         return $product_types;
     }
