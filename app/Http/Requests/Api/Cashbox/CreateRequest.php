@@ -42,6 +42,7 @@ class CreateRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
+            'shop_id' => session()->get('shop_id'),
             'operator_id' => $this->operator_id ?? Auth::user()->id,
             'transaction_type' => $this->transaction_type ?? Cashbox::TRANSACTION_TYPES['in'],
             'payment_type' => $this->payment_type ?? Cashbox::PAYMENT_TYPES['cash'],

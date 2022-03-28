@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
         return $request->user();
     });
 
+    Route::post('change_shop', [UserController::class, 'changeShop']);
+
     Route::post('file_upload', [FileUploadController::class, 'store']);
 
     /*

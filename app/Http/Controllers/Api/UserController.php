@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\User\ChangeShopRequest;
 use App\Http\Requests\Api\User\CreateRequest;
 use App\Http\Requests\Api\User\UpdateRequest;
 use App\Http\Resources\Api\User\DefaultResource;
@@ -60,6 +61,13 @@ class UserController extends Controller
         $this->authorize('User_delete');
 
         $user->delete();
+        return response()->json(['success' => true]);
+    }
+
+    public function changeShop(ChangeShopRequest $request): JsonResponse
+    {
+        $shop_id = $request->validated()['shop_id'];
+        session()->put('shop_id', $shop_id);
         return response()->json(['success' => true]);
     }
 }
