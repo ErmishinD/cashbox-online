@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
         Route::get('get_types', [ProductTypeController::class, 'getTypesForSelect']);
         Route::get('get_for_sell_product', [ProductTypeController::class, 'getForSellProduct']);
         Route::get('get_for_select', [ProductTypeController::class, 'getForSelectForSellProduct']);
+        Route::get('get_short_info/{product_type}', [ProductTypeController::class, 'getShortInfo']);
     });
     Route::apiResource('product_types', ProductTypeController::class);
 

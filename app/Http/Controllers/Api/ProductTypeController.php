@@ -10,6 +10,7 @@ use App\Http\Requests\Api\ProductType\RemoveMeasureTypesRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
 use App\Http\Resources\Api\ProductType\DefaultResource;
 use App\Http\Resources\Api\ProductType\SelectForSellProductResource;
+use App\Http\Resources\Api\ProductType\ShortInfoResource;
 use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
 use App\Models\ProductType;
@@ -144,5 +145,18 @@ class ProductTypeController extends Controller
             'success' => true,
             'data' => SelectForSellProductResource::collection($product_types)
         ]);
+    }
+
+    public function getShortInfo(ProductType $product_type): JsonResponse
+    {
+        $product_type->load('media', 'base_measure_type', 'main_measure_type');
+        $product_type->measure_types->prepend($product_type->main_measure_type);
+
+        $product_type->base_measure_type->quantity = 1;
+        $product_type->base_measure_type->description = '';
+        $product_type->measure_types->push($product_type->base_measure_type);
+
+        $product_type->measure_types = $product_type->measure_types->unique('quantity')->sortByDesc('quantity');
+        return response()->json(['success' => true, 'data' => new WithMeasureTypesResource($product_type)]);
     }
 }
