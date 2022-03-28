@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Api\SellProduct;
 
-use App\Http\Resources\Api\ProductType\DefaultResource as ProductTypeResource;
+use App\Http\Resources\Api\ProductType\BySellProductResource as ProductTypeResource;
 use App\Models\SellProduct;
 use Illuminate\Http\Resources\Json\JsonResource;
 

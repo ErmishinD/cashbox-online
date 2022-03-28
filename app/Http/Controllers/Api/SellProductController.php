@@ -70,7 +70,9 @@ class SellProductController extends Controller
     {
         $this->authorize('SellProduct_show');
 
-        $sell_product->load('product_types.media');
+        $sell_product->load(['media', 'product_types' => function($query) {
+            $query->with(['main_measure_type']);
+        }]);
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
