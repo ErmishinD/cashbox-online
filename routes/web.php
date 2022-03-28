@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,9 @@ Route::get('/', function () {
     return redirect(url('login'));
 });
 
-Route::get('/login-as/{user}', [\App\Http\Controllers\Admin\AdminController::class, 'loginAs']);
+Route::group(['middleware' => 'is_admin'], function() {
+    Route::get('/login-as/{user}', [AdminController::class, 'loginAs']);
+});
 
 require __DIR__ . '/auth.php';
 
