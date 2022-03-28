@@ -88,6 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::post('get_for_purchase', [ProductTypeController::class, 'getForPurchase']);
         Route::get('get_types', [ProductTypeController::class, 'getTypesForSelect']);
         Route::get('get_for_sell_product', [ProductTypeController::class, 'getForSellProduct']);
+        Route::get('get_for_select', [ProductTypeController::class, 'getForSelectForSellProduct']);
     });
     Route::apiResource('product_types', ProductTypeController::class);
 

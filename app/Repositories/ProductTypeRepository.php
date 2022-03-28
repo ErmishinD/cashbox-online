@@ -110,4 +110,9 @@ class ProductTypeRepository extends BaseRepository
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
     }
+
+    public function getForSelectForSellProduct()
+    {
+        return $this->model->select('id', 'name')->get();
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Requests\Api\ProductType\CreateRequest;
 use App\Http\Requests\Api\ProductType\RemoveMeasureTypesRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
 use App\Http\Resources\Api\ProductType\DefaultResource;
+use App\Http\Resources\Api\ProductType\SelectForSellProductResource;
 use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
 use App\Models\ProductType;
@@ -133,6 +134,15 @@ class ProductTypeController extends Controller
         return response()->json([
             'success' => true,
             'data' => WithMeasureTypesResource::collection($product_types)
+        ]);
+    }
+
+    public function getForSelectForSellProduct(): JsonResponse
+    {
+        $product_types = $this->product_type->getForSelectForSellProduct();
+        return response()->json([
+            'success' => true,
+            'data' => SelectForSellProductResource::collection($product_types)
         ]);
     }
 }

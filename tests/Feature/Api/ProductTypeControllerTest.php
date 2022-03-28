@@ -381,6 +381,26 @@ class ProductTypeControllerTest extends TestCase
         ]);
     }
 
+    public function test_can_get_for_select()
+    {
+        $company = Company::factory()->create();
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $base_measure_type = $this->base_measure_type_weight;
+
+        $main_measure_type = MeasureType::factory()->create(['base_measure_type_id' => $base_measure_type->id, 'quantity' => 333, 'company_id' => $company->id]);
+        ProductType::factory()->count(10)->create([
+            'company_id' => $company->id,
+            'base_measure_type_id' => $base_measure_type->id,
+            'main_measure_type_id' => $main_measure_type->id
+        ]);
+
+        $response = $this->actingAs($this->admin)->get($this->base_route . 'get_for_select');
+        $response->assertStatus(200)->assertJson(['success' => true]);
+        $this->assertCount(10, $response['data']);
+    }
+
     // filter / sort tests
 
     public function test_can_filter_by_name()
