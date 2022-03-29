@@ -27,6 +27,6 @@ class SetCompanyIdToSession
     public function handle($event)
     {
         session()->put('company_id', $event->user->company_id);
-        session()->put('shop_id', $event->user->company_id ? Shop::where('company_id', $event->user->company_id)->first()->id : null);
+//        session()->put('shop_id', $event->user->company_id ? Shop::where('company_id', $event->user->company_id)->first()->id : null);
     }
 }
