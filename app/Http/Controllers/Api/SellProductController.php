@@ -72,7 +72,7 @@ class SellProductController extends Controller
         $this->authorize('SellProduct_show');
 
         $sell_product->load(['media', 'product_types' => function($query) {
-            $query->with(['main_measure_type', 'measure_types', 'base_measure_types']);
+            $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
         }]);
         foreach ($sell_product->product_types as $product_type) {
             $product_type = ProductTypeService::prepare_measure_types($product_type);
