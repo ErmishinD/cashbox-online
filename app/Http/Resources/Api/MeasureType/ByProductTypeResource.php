@@ -17,6 +17,7 @@ class ByProductTypeResource extends JsonResource
     {
         /** @var MeasureType $this */
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
             'quantity' => $this->quantity,
