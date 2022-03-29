@@ -676,3 +676,16 @@ select{
 		}
 	}
 }
+
+.permissions_blocks{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.permission_block{
+	padding-inline: 5px;
+	padding-block: 10px;
+	border: 2px solid $grey;
+	margin-top: 5px;
+}

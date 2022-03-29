@@ -83,7 +83,10 @@ import UsersShow from './components/users/Show'
 /* import settings */
 import SettingsTranslates from './components/settings/Translates'
 import SettingsPermissions from './components/settings/Permissions'
-import SettingsRoles from './components/settings/Roles'
+	/* import roles */
+	import SettingsRolesIndex from './components/settings/roles/Index'
+	import SettingsRolesCreate from './components/settings/roles/Create'
+	import SettingsRolesEdit from './components/settings/roles/Edit'
 	/* import measures */
 	import SettingsMeasuresIndex from './components/settings/measures/Index'
 	import SettingsMeasuresCreate from './components/settings/measures/Create'
@@ -297,8 +300,19 @@ const router = createRouter({
 		},
 		{
 			path: '/settings/roles',
-			name: 'settings_roles',
-			component: SettingsRoles
+			name: 'settings_roles_index',
+			component: SettingsRolesIndex
+		},
+		{
+			path: '/settings/roles/create',
+			name: 'settings_roles_create',
+			component: SettingsRolesCreate
+		},
+		{
+			path: '/settings/roles/edit/:id',
+			name: 'settings_roles_edit',
+			component: SettingsRolesEdit,
+			props: true
 		},
 		{
 			path: '/settings/measures',

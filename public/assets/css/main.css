@@ -768,6 +768,20 @@ select {
 .product_card_CRUD__content_item {
   margin-bottom: 10px;
 }
+
+.permissions_blocks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.permission_block {
+  padding-inline: 5px;
+  padding-block: 10px;
+  border: 2px solid #dadada;
+  margin-top: 5px;
+}
+
 @media (max-width: 992px){
   .col-6 {
     width: 100%;
@@ -776,6 +790,7 @@ select {
     flex-wrap: wrap;
   }
 }
+
 @media (max-width: 540px){
   .header__content span {
     display: none;
