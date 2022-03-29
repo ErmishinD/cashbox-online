@@ -56,6 +56,11 @@ class ProductType extends Model implements HasMedia
         return $this->belongsTo(MeasureType::class, 'main_measure_type_id', 'id');
     }
 
+    public function product_purchases()
+    {
+        return $this->hasMany(ProductPurchase::class);
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')->singleFile();

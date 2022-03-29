@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Api\Storage;
 
-use App\Http\Resources\Api\ProductPurchase\InStorageCollection;
+use App\Http\Resources\Api\ProductType\InStorageResource;
 use App\Models\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +21,7 @@ class ShowResource extends JsonResource
             'id' => $this->id,
             'shop_id' => $this->shop_id,
             'name' => $this->name,
-            'product_purchases' => new InStorageCollection($this->product_purchases),
+            'product_types' => !empty($this->product_types) ? InStorageResource::collection($this->product_types) : null,
         ];
     }
 }

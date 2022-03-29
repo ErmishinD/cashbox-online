@@ -24,6 +24,7 @@ class IndexResource extends JsonResource
             'name' => $this->name,
             'price' => $this->price,
             'has_discount' => $this->has_discount,
+            'product_types' => ProductTypeResource::collection($this->product_types),
         ];
     }
 }
