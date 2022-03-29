@@ -369,6 +369,7 @@ app.config.globalProperties.$companyId = document.querySelector("meta[name='comp
 app.config.globalProperties.$userName = document.querySelector("meta[name='user_name']").getAttribute('content');
 app.config.globalProperties.$csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
 app.config.globalProperties.$isAdmin = document.querySelector("meta[name='is_superadmin']").getAttribute('content');
+app.config.globalProperties.$shopId = document.querySelector("meta[name='shop_id']").getAttribute('content');
 
 app.use(VueSidebarMenu)
 app.use(router).use(i18n).use(store)

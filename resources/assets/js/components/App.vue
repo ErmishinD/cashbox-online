@@ -1,8 +1,30 @@
 <template>
+	<GDialog v-model="modal_show" style="z-index: 9999;" :persistent="true" max-width="700">
+	    <div class="getting-started-example-styled">
+	      <div class="getting-started-example-styled__content">
+	        <div class="getting-started-example-styled__title">
+	        	{{ $t('Выберите магазин') }}:
+	        </div>
+	        <select class="def_select center-flex" name="select_storage" v-model="current_shop_in_select" id="">
+	        		<option v-for="shop in shop_by_company_list" :value="shop.id">{{shop.name}}</option>
+	        </select>
+	      </div>
 
+
+	      <div class="getting-started-example-styled__actions">
+	      	
+	      	<button @click="changeShop" :disabled="!this.current_shop_in_select" class="btn btn-success">
+	          {{ $t('Выбрать') }}
+	        </button>
+	      </div>
+	    </div>
+	  </GDialog>
 	<header >
 		<div class="header__content " v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
 			<span>{{this.$userName}}</span>
+			<select style="margin-left: 20px;" v-if="!this.$isAdmin" @change="changeShop" v-model="current_shop">
+				<option v-for="shop in shop_by_company_list" :value="shop.id">{{shop.name}}</option>
+			</select>
 			<select @change="changeOption($event)" style="margin-left: auto; margin-right: 20px;" class="" v-model="selected">
 				<option value="ru">Русcкий</option>
 				<option value="ua">Українська</option>
@@ -30,15 +52,30 @@
 </template>
 
 <script>
+	import { GDialog } from 'gitart-vue-dialog'
+	import "gitart-vue-dialog/dist/style.css";
 
   export default {
+	 components: {
+    	GDialog,
+  	  },
   	data: {
-  		
+
   	},
   	mounted(){
   		this.$root.$i18n.locale = this.$cookies.get('lang')
   		this.menu = this.returnSidebarData()
   		this.keyUp()
+  		if(!this.$isAdmin){
+  			this.axios.post('/api/shops/get_by_company').then((response) => {
+  				this.shop_by_company_list = response.data.data
+  				console.log(!this.current_shop && !this.$isAdmin)
+  			})
+  			if(!this.current_shop){
+  				this.modal_show = true
+  			}
+  		}
+  		
   	},
   	methods:{
   		keyUp(){
@@ -50,6 +87,16 @@
   			    	javascript:history.forward()
   			    }
   			});
+  		},
+  		changeShop() {
+  			if(this.current_shop_in_select){
+  				this.current_shop = this.current_shop_in_select
+  			}
+  			this.axios.post('/api/change_shop', {shop_id : this.current_shop}).then((response) => {
+  				console.log(response)
+  				this.modal_show = false
+  				this.$shopId = this.current_shop
+  			})
   		},
   		changeLanguage (locale) {
   		  this.$root.$i18n.locale = locale
@@ -232,7 +279,11 @@
       	width: 0,
       	isCollapsed: true,
       	selected: this.$cookies.get('lang'),
-        menu: this.returnSidebarData()
+        menu: this.returnSidebarData(),
+        shop_by_company_list: {},
+        current_shop: this.$shopId,
+        current_shop_in_select : null,
+        modal_show: false,
       }
     },
     
