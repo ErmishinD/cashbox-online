@@ -22,7 +22,8 @@ class BySellProductResource extends JsonResource
             'name' => $this->name,
             'quantity' => $this->pivot->quantity,
             'main_measure_type' => new MeasureTypeResource($this->main_measure_type),
-            'quantity_in_main_measure_type' => round($this->pivot->quantity / $this->main_measure_type->quantity, 3)
+            'quantity_in_main_measure_type' => round($this->pivot->quantity / $this->main_measure_type->quantity, 3),
+            'measure_types' => MeasureTypeResource::collection($this->measure_types)
         ];
     }
 }

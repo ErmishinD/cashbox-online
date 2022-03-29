@@ -13,6 +13,7 @@ use App\Http\Resources\Api\SellProduct\IndexResource;
 use App\Http\Resources\Api\SellProduct\ShowResource;
 use App\Models\SellProduct;
 use App\Repositories\SellProductRepository;
+use App\Services\ProductTypeService;
 use App\Services\UploadFileService;
 use Illuminate\Http\JsonResponse;
 
@@ -71,8 +72,11 @@ class SellProductController extends Controller
         $this->authorize('SellProduct_show');
 
         $sell_product->load(['media', 'product_types' => function($query) {
-            $query->with(['main_measure_type']);
+            $query->with(['main_measure_type', 'measure_types', 'base_measure_types']);
         }]);
+        foreach ($sell_product->product_types as $product_type) {
+            $product_type = ProductTypeService::prepare_measure_types($product_type);
+        }
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
 
