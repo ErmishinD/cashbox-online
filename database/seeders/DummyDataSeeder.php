@@ -7,7 +7,6 @@ use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
-use App\Models\Role;
 use App\Models\SellProduct;
 use App\Models\SellProductGroup;
 use App\Models\Shop;
@@ -325,7 +324,7 @@ class DummyDataSeeder extends Seeder
 
                     $sell_product_group = SellProductGroup::factory()->create(array_merge($sell_product_group_data, ['company_id' => $company->id]));
                     foreach ($consists_of_sell_products as $sell_product_data) {
-                        $sell_product_group->products()->attach(
+                        $sell_product_group->sell_products()->attach(
                             $sell_product_data['sell_product_id'],
                             ['price' => $sell_product_data['price']]
                         );
@@ -407,7 +406,7 @@ class DummyDataSeeder extends Seeder
             if ($allowed_sell_products->isNotEmpty()) {
                 $products_amount = random_int(2, 5);
                 for ($i = 1; $i <= $products_amount; $i++) {
-                    $sell_group->products()->attach(
+                    $sell_group->sell_products()->attach(
                         $allowed_sell_products->random(),
                         ['price' => random_int(10, 1000)]
                     );
