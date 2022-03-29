@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Role\CreateRequest;
 use App\Http\Requests\Api\Role\UpdateRequest;
 use App\Http\Resources\Api\Role\DefaultResource;
+use App\Http\Resources\Api\Role\IndexResource;
 use App\Models\Role;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ class RoleController extends Controller
         $this->authorize('Role_access');
 
         $roles = $this->role->getWithPermissions();
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($roles)]);
+        return response()->json(['success' => true, 'data' => IndexResource::collection($roles)]);
     }
 
     public function store(CreateRequest $request): JsonResponse

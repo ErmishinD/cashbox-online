@@ -81,6 +81,7 @@ class RoleRepository extends BaseRepository
     public function getWithPermissions(): Collection
     {
         return $this->model
+            ->withCount('users')
             ->with(['permissions' => function ($query) {
                 $query->select('id');
             }])
