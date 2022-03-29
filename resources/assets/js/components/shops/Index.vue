@@ -104,9 +104,10 @@ export default {
 
   		     }).catch(function(error){
             if(error.response.status == 403){
-              this.$router.push({ name: '403' })
+              loader.hide()
+                this.$router.push({ name: '403' })
             }
-           })
+        })
   	},
   },
 };

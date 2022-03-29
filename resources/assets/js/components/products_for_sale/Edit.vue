@@ -1,11 +1,182 @@
 <template>
+	<notifications position="bottom right" />
+	<h1 class="tac">{{ $t('Редактирование товара для продажи') }}</h1>
+	<form class="tac form" @submit="UpdateProduct">
+		<div class="form_content">
+			<div class="form_item">
+				<label class="tal" for="name">{{ $t('Название') }}*:</label>
+				<input type="text" required class="form-control" name="name" v-model="formData.name">
+			</div>
+			<div class="form_item">
+				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
+				<input type="number" min="1" max="999999.99" step="any" required class="form-control" name="price" v-model="formData.price">
+			</div>
+			<div class="form_item">
+				<VueMultiselect  
+					v-model="default_selected_contains"
+					:options="contains_for_multiselect"
+					track-by="name"
+					label="name"
+					:multiple="true"
+					:placeholder="$t('Укажите состав')"
+					selectLabel=""
+					@select="SetContain"
+					@remove="UnsetContain"
+									>
+				</VueMultiselect>
+			</div>
+			<div class="form_item" v-for="contain in selected_contains">
+				<span style="margin-right: 10px;">{{contain.name}}</span>
+				<input type="number"  class="form-control" step="any" v-model="contain.quantity_in_main_measure_type">
+				<select class="form-control"  v-model="contain.quantity" required>
+					<option v-for="measure_type in contain.measure_types" :value="measure_type.quantity">{{measure_type.name}}</option>
+				</select>
+			</div>				
+			<file-pond
+			    name="photo"
+			    ref="pond"
+			    v-bind:file="formData.photo"
+			    v-on:init="handleFilePondInit"
+			    :multiple="false"
+			    maxFiles='1'
+			    labelIdle="Фото товара: перетащите файлы вручную или <span class='filepond--label-action'> Навигация </span>"
+			    accept="image/png, image/jpeg, image/gif"
+			    :required="false"
+			/>	
+			
+			<button :disabled="!selected_contains.length" style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
+		</div>
+	</form>
 	
 </template>
 
 <script>
-	export default{
-		props: [
+// Import FilePond
+import vueFilePond, { setOptions } from 'vue-filepond';
+import VueMultiselect from 'vue-multiselect'
+// Import the plugin code
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+
+// Import the plugin styles
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+// Import styles
+import 'filepond/dist/filepond.min.css';
+import "vue-multiselect/dist/vue-multiselect.css"
+
+// Create FilePond component
+const FilePond = vueFilePond(FilePondPluginImagePreview);
+// FilePond.registerPlugin(FilePondPluginImagePreview);
+
+setOptions({
+    server: {
+        url: '/api/file_upload',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector("meta[name='csrf-token']").getAttribute('content')
+        },
+        process: {
+            onload: function (response) {
+                document.querySelector("input[type='file']").setAttribute('value', response)
+
+                return response
+            },
+        }
+    }
+});
+
+
+
+
+export default{
+	props: [
 			'id'
-		]
-	}
+		],
+	components: {
+        FilePond,
+        VueMultiselect,
+    },
+	data(){
+		return{
+			formData: {
+				company_id: this.$userId,
+			},
+			productData: {},
+			contains_for_multiselect: [],
+			default_selected_contains: [],
+			selected_contains: [],
+			contains: null,
+		} 
+	},
+	mounted(){
+		
+
+	},
+	created () {
+        document.title = this.$t('Редактирование товара для продажи');
+		var loader = this.$loading.show({
+		        canCancel: false,
+		        loader: 'dots',});
+		this.axios.get(`/api/sell_products/${this.id}`).then((response) => {
+			this.formData = response.data.data
+			this.productData = response.data.data
+			this.productData.product_types.forEach(item => {
+				item.quantity = item.main_measure_type.quantity
+				this.selected_contains.push(item)
+				this.default_selected_contains.push(item)
+				loader.hide()
+			}).catch(function(error){
+            if(error.response.status == 403){
+            	loader.hide()
+                this.$router.push({ name: '403' })
+            }
+        })
+			console.log(this.selected_contains)
+			this.axios.get('/api/product_types/get_for_select').then((response) => {
+				console.log(response.data.data)
+				this.contains_for_multiselect = response.data.data
+			})
+		})
+		
+		
+		
+    },
+    methods:{
+    	SetContain(contain) {
+    		this.axios.get(`/api/product_types/get_short_info/${contain.id}`).then((response) => {
+    			response.data.data.quantity_in_main_measure_type = 0
+    			response.data.data.selected_measure_type = null
+    			this.selected_contains.push(response.data.data)
+    			console.log(this.selected_contains)
+    		})
+    		
+    	},
+    	UnsetContain(contain){
+    		this.selected_contains.splice(this.selected_contains.indexOf(this.selected_contains.find(item => item.id == contain.id)), 1)
+    	},
+    	UpdateProduct(e) {
+    		e.preventDefault()
+    		let photo = document.querySelector("input[type='file']").getAttribute('value')
+    		if(photo){
+    			this.formData.photo = photo
+    		}
+    		
+    		let product_types = {}
+    		console.log(this.selected_contains)
+    		this.selected_contains.forEach(item => {
+    			product_types[item.id] = {'quantity' : item.quantity_in_main_measure_type * item.quantity}
+    		})
+    		this.formData.product_types = product_types
+    		var loader = this.$loading.show({
+    		        canCancel: false,
+    		        loader: 'dots',});
+    		this.axios.put(`/api/sell_products/${this.id}`, this.formData).then((response) => {
+    			this.$notify({
+    				text: this.$t('Успешно!'),
+    				type: 'success',
+    			});
+    			loader.hide()
+    		})
+    	},
+    },
+}
 </script>

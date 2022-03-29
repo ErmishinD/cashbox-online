@@ -121,6 +121,7 @@ export default{
             loader.hide()
         }).catch(function(error){
             if(error.response.status == 403){
+            	loader.hide()
                 this.$router.push({ name: '403' })
             }
         })
@@ -149,8 +150,10 @@ export default{
     		        canCancel: false,
     		        loader: 'dots',});
     		this.updateData = Object.assign({}, this.formData)
-    		this.updateData.photo = document.querySelector("input[type='file']").getAttribute('value')
-    		console.log(document.querySelector("input[type='file']"))
+    		let photo = document.querySelector("input[type='file']").getAttribute('value')
+    		if(photo){
+    			this.formData.photo = photo
+    		}    		console.log(document.querySelector("input[type='file']"))
     		this.updateData.measure_types = []
     		this.selected_measure_types.forEach(item => {
     			this.updateData.measure_types.push(item)

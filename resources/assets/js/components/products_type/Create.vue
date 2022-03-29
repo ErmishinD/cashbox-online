@@ -133,9 +133,15 @@ export default{
 			this.measure_types = response.data.data
 			// document.getElementsByClassName('filepond--credits').style.opacity = 0
 			console.log(this.measure_types)
-		})
+			loader.hide()
+		}).catch(function(error){
+            if(error.response.status == 403){
+            	loader.hide()
+                this.$router.push({ name: '403' })
+            }
+        })
 		
-		loader.hide()
+		
 
 	},
 	created () {

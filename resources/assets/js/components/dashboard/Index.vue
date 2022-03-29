@@ -268,21 +268,22 @@
 			       
 			       loader.hide()
 			     }).catch(function(error){
-			     	console.log(error)
-	  		     	if(error.response.status == 403){
-	  		     		this.$router.push({ name: '403' })
-	  		     	}
-	  		     })
+		            if(error.response.status == 403){
+		            	loader.hide()
+		                this.$router.push({ name: '403' })
+		            }
+		        })
 
 	  		     this.axios.post('/api/product_purchases/get_for_dashboard', {shop_id : 1}).then((response) => {
 			       this.product_types_in_storages = response.data['data']
 			       
 			       loader.hide()
 			     }).catch(function(error){
-	  		     	if(error.response.status == 403){
-	  		     		this.$router.push({ name: '403' })
-	  		     	}
-	  		     })
+		            if(error.response.status == 403){
+		            	loader.hide()
+		                this.$router.push({ name: '403' })
+		            }
+		        })
 			 },
         	toggleClassForIcon(card_data) {
         		let stop_function = 0
