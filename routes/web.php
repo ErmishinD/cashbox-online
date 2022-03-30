@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect(url('login'));
-});
-
 Route::group(['middleware' => 'is_admin'], function() {
     Route::get('/login-as/{user}', [AdminController::class, 'loginAs']);
+});
+
+Route::get('login-from-mains', [AdminController::class, 'authorizeMainsUser']);
+
+Route::get('/', function () {
+    return redirect(url('login'));
 });
 
 require __DIR__ . '/auth.php';

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateRequest extends FormRequest
 {
@@ -25,10 +26,18 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'email' => ['required'],
+            'username' => ['required'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
-            'photo' => ['nullable'],
-            'phone' => ['nullable'],
+            'company_id' => ['required'],
+            'roles' => ['nullable', 'array']
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'company_id' => session('company_id') ?? Auth::user()->company_id
+        ]);
     }
 }

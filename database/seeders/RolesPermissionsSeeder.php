@@ -17,7 +17,7 @@ class RolesPermissionsSeeder extends Seeder
     {
         $permissions = [
             'Role_access', 'Role_create', 'Role_show', 'Role_edit', 'Role_delete',
-            'Company_access', 'Company_create', 'Company_show', 'Company_edit', 'Company_delete',
+            'Company_show', 'Company_edit',
             'Shop_access', 'Shop_create', 'Shop_show', 'Shop_edit', 'Shop_delete',
             'Storage_access', 'Storage_create', 'Storage_show', 'Storage_edit', 'Storage_delete',
             'ProductType_access', 'ProductType_create', 'ProductType_show', 'ProductType_edit', 'ProductType_delete',

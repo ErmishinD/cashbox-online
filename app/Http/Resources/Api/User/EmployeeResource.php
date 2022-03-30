@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Api\User;
 
-use App\Http\Resources\Api\Role\DefaultResource as RoleResource;
+use App\Http\Resources\Api\Role\ByUserResource as RoleResource;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,6 +20,7 @@ class EmployeeResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'username' => $this->username,
             'email' => $this->email,
             'roles' => RoleResource::collection($this->roles),
         ];

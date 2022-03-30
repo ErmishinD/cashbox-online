@@ -7,6 +7,7 @@ use App\Http\Requests\Api\User\ChangeShopRequest;
 use App\Http\Requests\Api\User\CreateRequest;
 use App\Http\Requests\Api\User\UpdateRequest;
 use App\Http\Resources\Api\User\DefaultResource;
+use App\Http\Resources\Api\User\EmployeeResource;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\JsonResponse;
@@ -27,8 +28,8 @@ class UserController extends Controller
     {
         $this->authorize('User_access');
 
-        $users = $this->user->all();
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($users)]);
+        $users = $this->user->getWithRoles();
+        return response()->json(['success' => true, 'data' => EmployeeResource::collection($users)]);
     }
 
     public function store(CreateRequest $request): JsonResponse
@@ -37,14 +38,14 @@ class UserController extends Controller
 
         $data = $request->validated();
         $user = $this->user->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($user)]);
+        return response()->json(['success' => true, 'data' => new EmployeeResource($user)]);
     }
 
     public function show(User $user): JsonResponse
     {
         $this->authorize('User_show');
 
-        return response()->json(['success' => true, 'data' => new DefaultResource($user)]);
+        return response()->json(['success' => true, 'data' => new EmployeeResource($user)]);
     }
 
     public function update(UpdateRequest $request, User $user): JsonResponse
@@ -52,8 +53,8 @@ class UserController extends Controller
         $this->authorize('User_edit');
 
         $data = $request->validated();
-        $user->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($user)]);
+        $user = $this->user->update($user, $data);
+        return response()->json(['success' => true, 'data' => new EmployeeResource($user)]);
     }
 
     public function destroy(User $user): JsonResponse

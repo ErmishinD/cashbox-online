@@ -18,7 +18,6 @@ class IndexResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'human_name' => $this->human_name,
-            'permissions' => $this->permissions->pluck('id'),
             'users_amount' => $this->users_count
         ];
     }

@@ -24,7 +24,7 @@ class RoleController extends Controller
     {
         $this->authorize('Role_access');
 
-        $roles = $this->role->getWithPermissions();
+        $roles = $this->role->getWithUsersCount();
         return response()->json(['success' => true, 'data' => IndexResource::collection($roles)]);
     }
 

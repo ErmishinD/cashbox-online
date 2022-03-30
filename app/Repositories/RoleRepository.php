@@ -78,13 +78,10 @@ class RoleRepository extends BaseRepository
         ]);
     }
 
-    public function getWithPermissions(): Collection
+    public function getWithUsersCount(): Collection
     {
         return $this->model
             ->withCount('users')
-            ->with(['permissions' => function ($query) {
-                $query->select('id');
-            }])
             ->get();
     }
 

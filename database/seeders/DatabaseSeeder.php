@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             RolesPermissionsSeeder::class,
         ]);
 
-        if (getenv('APP_ENV') == 'local') {
+        if (config('app.env') == 'local') {
             $this->call([
                 AdminDevSeeder::class,
                 DummyDataSeeder::class,
