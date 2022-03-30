@@ -168,34 +168,13 @@ class StorageControllerTest extends TestCase
                     'id' => $storage->id,
                     'shop_id' => $storage->shop_id,
                     'name' => $storage->name,
-                    'product_purchases' => [
-                        $product_type->name => [
+                    'product_types' => [
+                        [
+                            'id' => $product_type->id,
+                            'name' => $product_type->name,
+                            'type' => $product_type->type,
+                            'main_measure_type' => ['id' => $main_measure_type->id],
                             'current_quantity_in_main_measure_type' => $current_quantity,
-                            'product_type' => [
-                                'id' => $product_type->id,
-                                'name' => $product_type->name,
-                                'type' => $product_type->type,
-                                'base_measure_type_id' => $product_type->base_measure_type_id,
-                                'barcode' => $product_type->barcode
-                            ],
-                            'measure_type' => [
-                                'id' => $main_measure_type->id,
-                                'base_measure_type_id' => $main_measure_type->base_measure_type_id,
-                                'name' => $main_measure_type->name,
-                                'description' => $main_measure_type->description,
-                                'quantity' => $main_measure_type->quantity,
-                            ],
-                            'data' => [
-                                [
-                                    'id' => $product_purchase->id,
-                                    'product_type_id' => $product_purchase->product_type_id,
-                                    'measure_type_id' => $product_purchase->measure_type_id,
-                                    'quantity' => $product_purchase->quantity,
-                                    'current_quantity' => $product_purchase->current_quantity,
-                                    'cost' => $product_purchase->cost,
-                                    'expiration_date' => $product_purchase->expiration_date,
-                                ]
-                            ]
                         ]
                     ],
                 ]
