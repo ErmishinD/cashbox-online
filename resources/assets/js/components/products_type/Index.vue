@@ -38,9 +38,9 @@
       :line-numbers="true">
       <template #table-row="props">
           <span class="table_actions" v-if="props.column.field == 'actions'">
-            <router-link :to="{name: 'products_type_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
-            <router-link :to="{name: 'products_type_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
-            <a @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
+            <router-link v-if="$can('ProductType_show')" :to="{name: 'products_type_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
+            <router-link v-if="$can('ProductType_edit')" :to="{name: 'products_type_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
+            <a v-if="$can('ProductType_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
           </span>
         </template>
     </vue-good-table>

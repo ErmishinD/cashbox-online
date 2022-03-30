@@ -20,7 +20,7 @@
         </div>
       </GDialog>
       <router-link :to="{name: 'storages_create'}">
-        <button class="btn btn-success pull-right mb-10" >{{ $t('Добавить склад') }}</button>
+        <button v-if="this.$can('Storage_create')" class="btn btn-success pull-right mb-10" >{{ $t('Добавить склад') }}</button>
       </router-link>
     
     <vue-good-table style="position: static;"
@@ -29,9 +29,9 @@
       :line-numbers="true">
       <template #table-row="props">
           <span class="table_actions" v-if="props.column.field == 'actions'">
-            <router-link :to="{name: 'storages_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
-            <router-link :to="{name: 'storages_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
-            <a @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
+            <router-link v-if="this.$can('Storage_show')" :to="{name: 'storages_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
+            <router-link v-if="this.$can('Storage_edit')" :to="{name: 'storages_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
+            <a v-if="this.$can('Storage_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
           </span>
         </template>
     </vue-good-table>

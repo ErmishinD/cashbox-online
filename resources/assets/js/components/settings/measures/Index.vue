@@ -3,7 +3,7 @@
   <div>
     <notifications position="bottom right" />
   	  <router-link :to="{name: 'settings_measures_create'}">
-  	  	<button class="btn btn-success pull-right mb-10" >{{ $t('Добавить единицу измерения') }}</button>
+  	  	<button v-if="this.$can('MeasureType_create')" class="btn btn-success pull-right mb-10" >{{ $t('Добавить единицу измерения') }}</button>
   	  </router-link>
   	
     <vue-good-table style="position: static;"
@@ -15,7 +15,7 @@
           {{props.row.quantity}} {{props.row.base_measure_type_name}}
         </span>
           <span class="table_actions" v-if="props.column.field == 'actions'">
-            <router-link :to="{name: 'settings_measures_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
+            <router-link v-if="this.$can('MeasureType_edit')" :to="{name: 'settings_measures_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
           </span>
         </template>
     </vue-good-table>

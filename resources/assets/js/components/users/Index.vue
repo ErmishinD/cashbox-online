@@ -19,7 +19,7 @@
   	    </div>
   	  </GDialog>
   	  <router-link :to="{name: 'users_create'}">
-  	  	<button class="btn btn-success pull-right mb-10" >{{ $t('Добавить пользователя') }}</button>
+  	  	<button v-if="this.$can('User_create')" class="btn btn-success pull-right mb-10" >{{ $t('Добавить пользователя') }}</button>
   	  </router-link>
   	
     <vue-good-table style="position: static;"
@@ -28,9 +28,9 @@
       :line-numbers="true">
       <template #table-row="props">
           <span class="table_actions" v-if="props.column.field == 'actions'">
-            <router-link :to="{name: 'users_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
-            <router-link :to="{name: 'users_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
-            <a @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
+            <router-link v-if="this.$can('User_show')" :to="{name: 'users_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
+            <router-link v-if="this.$can('User_edit')" :to="{name: 'users_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
+            <a v-if="this.$can('User_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
           </span>
         </template>
     </vue-good-table>

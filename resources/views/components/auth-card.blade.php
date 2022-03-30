@@ -15,7 +15,7 @@
                         <div>
                             
             
-                            <input  class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" id="email" type="email" name="email" required="required" autofocus="autofocus" placeholder="{{__('Email')}}" style="width: 100%; height: 30px; margin-bottom: 5px;"> 
+                            <input  class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" id="email" type="text" name="email" required="required" autofocus="autofocus" placeholder="{{__('Email')}}" style="width: 100%; height: 30px; margin-bottom: 5px;"> 
                         </div>
             
                         <!-- Password -->

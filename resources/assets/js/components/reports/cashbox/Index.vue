@@ -69,9 +69,9 @@
         </GDialog>
 
       <div style="display: flex; flex-wrap: wrap;">
-        <button :disabled="!(this.collection_ids.length)" @click="makeCollection" class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
-        <router-link :to='{name: "reports_casbox_collections"}'><button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button></router-link>
-        <button @click="addOperation" class="btn btn-success mar-left mb-10" >{{ $t('Добавить операцию') }}</button>
+        <button v-if="this.$can('Cashbox_collect')" :disabled="!(this.collection_ids.length)" @click="makeCollection" class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
+        <router-link v-if="this.$can('Cashbox_history')" :to='{name: "reports_casbox_collections"}'><button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button></router-link>
+        <button v-if="this.$can('Cashbox_create')" @click="addOperation" class="btn btn-success mar-left mb-10" >{{ $t('Добавить операцию') }}</button>
       </div>
 
       <div class="detail">
@@ -156,7 +156,7 @@
           <span class="table_actions" v-if="props.column.field == 'actions'">
             <!-- <router-link :to="{name: 'products_for_sale_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
             <router-link :to="{name: 'products_for_sale_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link> -->
-            <a @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
+            <a v-if="this.$can('Cashbox_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
           </span>
         </template>
     </vue-good-table>

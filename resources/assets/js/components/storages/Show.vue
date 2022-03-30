@@ -2,14 +2,14 @@
 	<notifications position="bottom right" />
 	<div class="tac content_title">
 		{{storage.name}}
-		<small><router-link :to="{name: 'storages_edit', params: {ids: storage.id}}">{{ $t('Редактировать') }}</router-link></small>
+		<small><router-link v-if="this.$can('Storage_edit')" :to="{name: 'storages_edit', params: {ids: storage.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
 		<div class="cards">
 			<div v-for="product in storage.product_types" class="card">
 				<div class="card_img"  :style="{'background-image': `url(${product.photo})`}">
 					<div class="card_img_href" :id="'card_img_href_'+product.id">
-						<router-link :to="{name: 'products_type_show', params: {id: product.id}}"><i class="fas fa-eye"></i></router-link>
-						<router-link :to="{name: 'purchases_index', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-cart-plus"></i></router-link>
+						<router-link v-if="this.$can('ProductType_show')" :to="{name: 'products_type_show', params: {id: product.id}}"><i class="fas fa-eye"></i></router-link>
+						<router-link v-if="this.$can('ProductPurchase_show')" :to="{name: 'purchases_index', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-cart-plus"></i></router-link>
 					</div>
 				</div>
 

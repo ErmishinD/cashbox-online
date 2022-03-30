@@ -3,7 +3,7 @@
   <div>
     <notifications position="bottom right" />
   	  <router-link :to="{name: 'settings_roles_create'}">
-  	  	<button class="btn btn-success pull-right mb-10" >{{ $t('Добавить роль') }}</button>
+  	  	<button v-if="this.$can('Role_create')" class="btn btn-success pull-right mb-10" >{{ $t('Добавить роль') }}</button>
   	  </router-link>
   	<GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
         <div class="getting-started-example-styled">
@@ -28,8 +28,8 @@
       :line-numbers="true">
       <template #table-row="props">
           <span class="table_actions" v-if="props.column.field == 'actions'">
-            <router-link :to="{name: 'settings_roles_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
-            <a v-if="props.row.users_amount == 0" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
+            <router-link v-if="this.$can('Role_edit')" :to="{name: 'settings_roles_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
+            <a v-if="props.row.users_amount == 0 && this.$can('Role_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
           </span>
         </template>
     </vue-good-table>

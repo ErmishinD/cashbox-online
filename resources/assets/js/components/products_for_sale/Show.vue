@@ -1,14 +1,14 @@
 <template>
+	<div class="tac content_title">
+		{{formData.name}}
+		<small><router-link v-if="$can('SellProduct_edit')" :to="{name: 'products_type_edit', params: {ids: formData.id}}">{{ $t('Редактировать') }}</router-link></small>
+	</div>
 	<form class="tac form">
 		<div class="form_content">
 			<div class=" tac">
 				<img :src="formData.photo" alt="" style="width: 240px;
 			height: 150px;
 			object-fit: cover;">
-			</div>
-			<div class="form_item">
-				<label class="tal" for="name">{{ $t('Название') }}:</label>
-				<span  >{{formData.name}}</span>
 			</div>
 			<div class="form_item">
 				<label class="tal" for="price">{{ $t('Цена') }}:</label>

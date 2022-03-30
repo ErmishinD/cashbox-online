@@ -170,7 +170,7 @@
 	          if(this.$can('ProductPurchase_access')){
 	          	sidebar_reports_child.push({
 	            href: '/reports/purchases',
-	            title: this.$t('Закупки'),
+	            title: this.$t('История закупок'),
 	            icon: 'fas fa-shopping-cart',
 	          }) 
 	          }
@@ -186,11 +186,19 @@
 
 		      /* end reports */
 
-		      sidebar_data.push({
-	              href: '/transfers',
-	              title: this.$t('Трансферы'),
-	              icon: 'fas fa-exchange-alt',
-		      	}) 
+		      if(this.$can('ProductPurchase_create')){
+	          	sidebar_data.push({
+	            href: '/purchases',
+	            title: this.$t('Закупки'),
+	            icon: 'fas fa-shopping-cart',
+	          }) 
+	          }
+
+		      // sidebar_data.push({
+	       //        href: '/transfers',
+	       //        title: this.$t('Трансферы'),
+	       //        icon: 'fas fa-exchange-alt',
+		      // 	}) 
 
 		      if(this.$can('Shop_access')){
 		      	sidebar_data.push({
@@ -219,17 +227,12 @@
 
 		     /* settings */
 
-		     sidebar_settings_child.push({
-                href: '/settings/translates',
-                title: this.$t('Переводы'),
-                icon: 'fas fa-language',
-              }) 
+		     // sidebar_settings_child.push({
+       //          href: '/settings/translates',
+       //          title: this.$t('Переводы'),
+       //          icon: 'fas fa-language',
+       //        }) 
 
-             sidebar_settings_child.push({
-                href: '/settings/permissions',
-                title: this.$t('Разрешения'),
-                icon: 'fas fa-lock-open',
-              }) 
 
              if(this.$can('Role_access')){
              	sidebar_settings_child.push({

@@ -27,7 +27,7 @@
 			</div>
 			<div class="form_item" v-for="contain in selected_contains">
 				<span style="margin-right: 10px;">{{contain.name}}</span>
-				<input type="number"  class="form-control" step="any" v-model="contain.amount">
+				<input type="number" min="0" class="form-control" step="any" v-model="contain.amount">
 				<select class="form-control" v-model="contain.quantity" required>
 					<option v-for="measure_type in contain.measure_types" :value="measure_type.quantity">{{measure_type.name}}</option>
 				</select>

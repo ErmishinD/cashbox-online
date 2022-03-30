@@ -1,7 +1,7 @@
 <template>
 	<div class="tac content_title">
 		{{product.name}}
-		<small><router-link :to="{name: 'products_type_edit', params: {ids: product.id}}">{{ $t('Редактировать') }}</router-link></small>
+		<small><router-link v-if="$can('ProductType_edit')" :to="{name: 'products_type_edit', params: {ids: product.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
 	<div class="product_card_CRUD">
 		<div class="product_card_CRUD__photo">
