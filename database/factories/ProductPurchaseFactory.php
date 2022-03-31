@@ -25,6 +25,9 @@ class ProductPurchaseFactory extends Factory
         if (!isset($attribues['product_type_id']) && !isset($attribues['expiration_date'])) {
             $product_type = $this->faker->randomElement(ProductType::where('company_id', $company_id)->select('id', 'type')->get());
 
+            if (!$product_type) {
+                $product_type = ProductType::factory()->create(['company_id' => $company_id]);
+            }
             $product_type_id = $product_type->id;
             if ($product_type->type == ProductType::TYPES['perishable']) {
                 $expiration_date = $this->faker->dateTimeBetween('+1 week', '+1 year');

@@ -361,14 +361,22 @@ class ProductPurchaseControllerTest extends TestCase
     public function test_can_filter_product_type_id()
     {
         $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
         $this->admin->update(['company_id' => $company->id]);
 
         $product_type1 = ProductType::factory()->create(['company_id' => $company->id]);
         $product_type2 = ProductType::factory()->create(['company_id' => $company->id]);
 
-        ProductPurchase::factory()->create(['product_type_id' => $product_type1->id]);
-        ProductPurchase::factory()->create(['product_type_id' => $product_type1->id]);
-        ProductPurchase::factory()->create(['product_type_id' => $product_type2->id]);
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type2->id
+        ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['product_type_id' => $product_type2->id]
@@ -454,7 +462,6 @@ class ProductPurchaseControllerTest extends TestCase
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $this->admin->update(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
-        ProductType::factory()->create(['company_id' => $shop->company_id]);
 
         $purchase1 = ProductPurchase::factory()->create(['company_id' => $shop->company_id, 'storage_id' => $storage->id]);
         $purchase1->created_at = '2022-02-01 18:00';
