@@ -9,7 +9,7 @@
 			</div>
 			<div class="form_item">
 				<label class="tal" for="address">{{ $t('Адрес') }}:</label>
-				<input type="text" required class="form-control" name="address" v-model="formData.address">
+				<input type="text" class="form-control" name="address" v-model="formData.address">
 			</div>
 			<div class="form_item" id="for_copy_storage">
 				<label class="tal" for="storage_name">{{ $t('Название склада') }}:</label>
@@ -19,7 +19,7 @@
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
 	</form>
-	
+
 </template>
 
 <script>
@@ -33,7 +33,7 @@ export default{
 				company_id: this.$userId,
 				storage_names: []
 			},
-		} 
+		}
 	},
 	mounted(){
 		document.title = this.$t('Создание магазина');
@@ -44,7 +44,7 @@ export default{
 
 	},
 	created () {
-        
+
     },
     methods:{
     	create_shop: function(e){
@@ -66,7 +66,7 @@ export default{
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){
-    				
+
     			}
     			else{
     					this.$notify({

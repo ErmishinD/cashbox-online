@@ -7,12 +7,12 @@
 				<label for="name">{{ $t('Название') }}*:</label>
 				<input type="text" required class="form-control" name="name" v-model="formData.name">
 			</div>
-			
+
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
-		
+
 	</form>
-	
+
 </template>
 
 <script>
@@ -20,7 +20,7 @@ export default{
 	data(){
 		return{
 			formData: {},
-		} 
+		}
 	},
 	mounted(){
 		document.title = this.$t('Создание компании');
@@ -30,13 +30,13 @@ export default{
 		loader.hide()
 	},
 	created () {
-        
+
     },
     methods:{
     	create_company: function(e){
     		e.preventDefault()
     		console.log(this.formData)
-    		this.axios.post('/api/companies', this.formData ).then((response) => {
+    		this.axios.post('/admin/companies', this.formData ).then((response) => {
     			console.log(response.data.data.id)
     			this.$notify({
     				text: this.$t('Успешно!'),

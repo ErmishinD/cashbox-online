@@ -96,6 +96,7 @@ class CashboxRepository extends BaseRepository
                 }
             ])
             ->notCollected()
+            ->orderByDesc('created_at')
             ->get();
         return $cashbox_transactions;
     }
