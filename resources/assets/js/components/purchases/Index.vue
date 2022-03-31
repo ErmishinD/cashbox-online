@@ -48,7 +48,7 @@
 	          			</div>
 	          			<div class="basket_card__amount">
 	          				<label for="amount">{{ $t('Кол-во') }}:</label>
-	          				<input name="amount" type="number" min="0" v-model="card.amount">
+	          				<input step="any" name="amount" type="number" min="0" v-model="card.amount">
 	          				<select v-model="card.quantity" name="" id="">
 	          					<option :value="measure_type.quantity" v-for="measure_type in card.measure_types">{{measure_type.name}}</option>
 	          				</select>

@@ -80,12 +80,16 @@
   	methods:{
   		keyUp(){
   			document.addEventListener('keyup', function(event){
-  			    if(event.key == 'ArrowLeft'){
-  			    	javascript:history.back()
-  			    }
-  			    else if(event.key == 'ArrowRight'){
-  			    	javascript:history.forward()
-  			    }
+  				var activeElement = document.activeElement;
+  				if(activeElement.tagName.toLowerCase() != 'input'){
+  					if(event.key == 'ArrowLeft'){
+  						javascript:history.back()
+  					}
+  					else if(event.key == 'ArrowRight'){
+  						javascript:history.forward()
+  					}
+  				}
+  			    
   			});
   		},
   		changeShop() {

@@ -639,6 +639,7 @@ select {
 }
 .basket_card__amount input {
   width: 35%;
+  min-width: 30px;
 }
 .basket_card__amount select {
   font-size: 18px;

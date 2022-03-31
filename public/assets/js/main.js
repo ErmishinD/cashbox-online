@@ -25068,10 +25068,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     keyUp: function keyUp() {
       document.addEventListener('keyup', function (event) {
-        if (event.key == 'ArrowLeft') {
-          javascript: history.back();
-        } else if (event.key == 'ArrowRight') {
-          javascript: history.forward();
+        var activeElement = document.activeElement;
+
+        if (activeElement.tagName.toLowerCase() != 'input') {
+          if (event.key == 'ArrowLeft') {
+            javascript: history.back();
+          } else if (event.key == 'ArrowRight') {
+            javascript: history.forward();
+          }
         }
       });
     },
@@ -29786,8 +29790,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8
     /* PROPS */
     , _hoisted_48), (0,vue__WEBPACK_IMPORTED_MODULE_5__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_5__.createElementVNode)("input", {
-      disabled: "",
-      type: "text",
+      type: "number",
+      step: "any",
       oninput: "this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\\..*)\\./g, '$1'); if(this.value == '') this.value = 1; ",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return card.counter = $event;
@@ -31415,6 +31419,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         )]), (0,vue__WEBPACK_IMPORTED_MODULE_5__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_5__.createElementVNode)("label", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_5__.toDisplayString)(_ctx.$t('Кол-во')) + ":", 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_5__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_5__.createElementVNode)("input", {
+          step: "any",
           name: "amount",
           type: "number",
           min: "0",
