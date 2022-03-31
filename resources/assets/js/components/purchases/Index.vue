@@ -321,8 +321,8 @@ export default{
     					type: 'success',
     				});
     				loader.hide()
-    				basket_modal_show: false
-    				selected_products: []
+    				this.basket_modal_show = false
+    				this.selected_products = []
     			})
     		}
     		
