@@ -23,6 +23,16 @@
   	  </router-link>
   	
     <vue-good-table style="position: static;"
+      mode="remote"
+      v-on:page-change="onPageChange"
+      v-on:sort-change="onSortChange"
+      v-on:column-filter="onColumnFilter"
+      v-on:per-page-change="onPerPageChange"
+      :totalRows="totalRecords"
+      :isLoading.sync="isLoading"
+      :pagination-options="{
+        enabled: true,
+      }"
       :columns="columns"
       :rows="rows"
       :line-numbers="true">
@@ -53,6 +63,17 @@ export default {
       modal_show: false,
       current_name: null,
       current_id: null,
+      totalRecords: 0,
+      serverParams: {
+        columnFilters: {
+        },
+        sort: {
+            field: '',
+            type: '',
+        },
+        page: 1,
+        perPage: 10
+      },
       columns: [
         {
           label: this.$t('Название'),
@@ -92,14 +113,45 @@ export default {
   		});
 
   	},
+    updateParams(newProps) {
+          this.serverParams = Object.assign({}, this.serverParams, newProps);
+      },
+
+      onPageChange(params) {
+          this.updateParams({page: params.currentPage});
+          this.render_list_items();
+      },
+
+      onPerPageChange(params) {
+          this.updateParams({perPage: params.currentPerPage, page: 1});
+          this.render_list_items();
+      },
+
+      onSortChange(params) {
+        let data = Object.assign({}, params)[0]
+          this.updateParams({
+              sort: [{
+                  type: data.type,
+                  field: data.field,
+              }],
+              page: 1
+          });
+          this.render_list_items();
+      },
+
+      onColumnFilter(params) {
+          this.updateParams(params);
+          this.render_list_items();
+      },
   	render_list_items: function(){
   		var loader = this.$loading.show({
   		        canCancel: false,
   		        loader: 'dots',});
   		
-  		this.axios.get('/api/sell_products').then((response) => {
-  		       this.products = response.data['data']
+  		this.axios.post('/api/sell_products/get_paginated', this.serverParams).then((response) => {
+  		       this.products = response.data['pagination']['data']
   		       this.rows = this.products
+             this.totalRecords = response.data['pagination']['total'];
   		       loader.hide()
 
   		     }).catch(function(error){

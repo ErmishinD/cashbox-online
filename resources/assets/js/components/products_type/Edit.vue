@@ -22,15 +22,14 @@
 			</div>
 			<div class="form_item">
 				<VueMultiselect 
-					v-model="formData.measure_types" 
+					v-model="selected_measure_types" 
 					:options="measure_types_by_main_select"
 					label="name"
+                    track-by="name"
 					:multiple="true"
 					:placeholder="$t('Установите доступные ед. изм.')"
 					selectLabel=""
 					:disabled="isDisabled"
-					@select="SetMeasureTypes"
-					@remove="UnsetMeasureTypes"
 					>
 				</VueMultiselect>
 			</div>				
@@ -115,6 +114,14 @@ export default{
             		
             	})
             })
+
+            this.formData.measure_types.forEach(item => {
+                console.log(item.id, this.formData.main_measure_type.id)
+                if(item.id != this.formData.main_measure_type.id){
+                    this.selected_measure_types.push(item)
+                }
+            })
+            console.log(this.selected_measure_types)
             
             document.title = this.formData['name'];
             
@@ -138,12 +145,7 @@ export default{
     			this.measure_types_by_main_select.splice(this.measure_types_by_main_select.indexOf(this.measure_types_by_main_select.find(item => item.id == this.formData.main_measure_type.id)), 1)
     			console.log(this.measure_types_by_main_select)
     	},
-    	SetMeasureTypes(measure_type) {
-    		this.selected_measure_types.push(measure_type.id)
-    	},
-    	UnsetMeasureTypes(measure_type){
-    		this.selected_measure_types.splice(this.selected_measure_types.indexOf(this.selected_measure_types.find(item => item.id == measure_type.id)), 0)
-    	},
+
     	UpdateProduct(e) {
     		e.preventDefault()
     		var loader = this.$loading.show({
@@ -153,10 +155,10 @@ export default{
     		let photo = document.querySelector("input[type='file']").getAttribute('value')
     		if(photo){
     			this.formData.photo = photo
-    		}    		console.log(document.querySelector("input[type='file']"))
+    		}    		
     		this.updateData.measure_types = []
     		this.selected_measure_types.forEach(item => {
-    			this.updateData.measure_types.push(item)
+    			this.updateData.measure_types.push(item.id)
     		})
     		this.updateData.main_measure_type_id = this.updateData.main_measure_type.id
     		console.log(this.updateData)
