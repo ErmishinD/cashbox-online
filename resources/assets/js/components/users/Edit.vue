@@ -97,9 +97,11 @@ export default{
     		        canCancel: false,
     		        loader: 'dots',});
     		this.formData.roles = []
-    		this.selected_roles.forEach(item => {
-    			this.formData.roles.push(item.id)
-    		})
+    		if(this.selected_roles.length){
+    			this.selected_roles.forEach(item => {
+    				this.formData.roles.push(item.id)
+    			})
+    		}
     		console.log(this.formData)
     		this.axios.put(`/api/users/${this.id}`, this.formData).then((response) => {
     			this.$notify({
@@ -108,6 +110,22 @@ export default{
     			});
     			loader.hide()
     			
+    		}).catch(error => {
+    			console.log(error.response.data.errors.username)
+    			
+    			if(error.response.data.errors.username){
+    				this.$notify({
+	    				text: this.$t('Данный логин уже существует!'),
+	    				type: 'error',
+    				});
+    			}
+    			if(error.response.data.errors.email){
+	    			this.$notify({
+	    				text: this.$t('Данная почта уже существует!'),
+	    				type: 'error',
+    				});
+    			}
+    			loader.hide()
     		})
     	},
     },

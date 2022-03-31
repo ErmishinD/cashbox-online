@@ -27624,7 +27624,7 @@ __webpack_require__.r(__webpack_exports__);
     delCompany: function delCompany() {
       var _this = this;
 
-      axios.delete("/api/companies/".concat(this.current_id), {}).then(function (response) {
+      axios.delete("/admin/companies/".concat(this.current_id), {}).then(function (response) {
         _this.$notify({
           text: _this.$t('Успешно!'),
           type: 'success'
@@ -27642,7 +27642,7 @@ __webpack_require__.r(__webpack_exports__);
         canCancel: false,
         loader: 'dots'
       });
-      this.axios.get('/api/companies').then(function (response) {
+      this.axios.get('/admin/companies').then(function (response) {
         _this2.companies = response.data['data'];
         _this2.rows = _this2.companies;
         loader.hide();
@@ -28839,7 +28839,7 @@ __webpack_require__.r(__webpack_exports__);
       formData: {
         company_id: this.$userId
       },
-      selected_roles: null,
+      selected_roles: [],
       roles: []
     };
   },
@@ -28874,9 +28874,13 @@ __webpack_require__.r(__webpack_exports__);
         loader: 'dots'
       });
       this.formData.roles = [];
-      this.selected_roles.forEach(function (item) {
-        _this2.formData.roles.push(item.id);
-      });
+
+      if (this.selected_roles.length) {
+        this.selected_roles.forEach(function (item) {
+          _this2.formData.roles.push(item.id);
+        });
+      }
+
       console.log(this.formData);
       this.axios.post('/api/users', this.formData).then(function (response) {
         _this2.$notify({
@@ -28892,6 +28896,24 @@ __webpack_require__.r(__webpack_exports__);
             id: response.data.data.id
           }
         });
+      }).catch(function (error) {
+        console.log(error.response.data.errors.username);
+
+        if (error.response.data.errors.username) {
+          _this2.$notify({
+            text: _this2.$t('Данный логин уже существует!'),
+            type: 'error'
+          });
+        }
+
+        if (error.response.data.errors.email) {
+          _this2.$notify({
+            text: _this2.$t('Данная почта уже существует!'),
+            type: 'error'
+          });
+        }
+
+        loader.hide();
       });
     }
   }
@@ -28971,15 +28993,37 @@ __webpack_require__.r(__webpack_exports__);
         loader: 'dots'
       });
       this.formData.roles = [];
-      this.selected_roles.forEach(function (item) {
-        _this2.formData.roles.push(item.id);
-      });
+
+      if (this.selected_roles.length) {
+        this.selected_roles.forEach(function (item) {
+          _this2.formData.roles.push(item.id);
+        });
+      }
+
       console.log(this.formData);
       this.axios.put("/api/users/".concat(this.id), this.formData).then(function (response) {
         _this2.$notify({
           text: _this2.$t('Успешно!'),
           type: 'success'
         });
+
+        loader.hide();
+      }).catch(function (error) {
+        console.log(error.response.data.errors.username);
+
+        if (error.response.data.errors.username) {
+          _this2.$notify({
+            text: _this2.$t('Данный логин уже существует!'),
+            type: 'error'
+          });
+        }
+
+        if (error.response.data.errors.email) {
+          _this2.$notify({
+            text: _this2.$t('Данная почта уже существует!'),
+            type: 'error'
+          });
+        }
 
         loader.hide();
       });
@@ -32555,7 +32599,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), 256
       /* UNKEYED_FRAGMENT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_1__.createCommentVNode)("v-if", true), props.column.field == 'actions' ? ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("span", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("a", {
-        href: '/login-as/' + props.row.id
+        href: '/admin/login-as/' + props.row.id
       }, _hoisted_13, 8
       /* PROPS */
       , _hoisted_11)])) : (0,vue__WEBPACK_IMPORTED_MODULE_1__.createCommentVNode)("v-if", true)];
