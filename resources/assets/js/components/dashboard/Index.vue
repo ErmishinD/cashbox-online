@@ -115,7 +115,7 @@
 
 			<div class="card_counter" :class="selected_cards.includes(card.id) ? 'bc-lightgreen' : ' '" v-if="selected_cards.includes(card.id)">
 				<i @click="clickCounter(card, 'minus')" class="fas fa-minus"></i>
-				<input type="number" step="any" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1'); if(this.value == '') this.value = 1; " v-model="card.counter">
+				<input type="text" disabled step="any" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1'); if(this.value == '') this.value = 1; " v-model="card.counter">
 				<i @click="clickCounter(card, 'plus')" class="fas fa-plus"></i>
 			</div>
 

@@ -259,8 +259,17 @@ export default {
                 type: 'success',
               })
   			this.render_list_items()
-  			this.del_modal_show = false
-  		});
+  		}).catch(error => {
+        if(error.response.status == 409){
+          this.$notify({
+            text: this.$t('Ошибка при удалении!'),
+            type: 'error',
+          });
+          
+        }
+      }).finally((result) => {
+        this.del_modal_show = false
+      })
 
   	},
     addOperation(){

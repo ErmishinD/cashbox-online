@@ -1,6 +1,7 @@
 <template>
 
   <div>
+
   	<GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
   	    <div class="getting-started-example-styled">
   	      <div class="getting-started-example-styled__content">
@@ -89,7 +90,21 @@ export default {
   		}).then((response) => {
   			this.render_list_items()
   			this.modal_show = false
-  		});
+        this.$notify({
+            text: this.$t('Успешно!'),
+            type: 'success',
+          });
+  		}).catch(error => {
+        if(error.response.status == 409){
+          this.$notify({
+            text: this.$t('Ошибка при удалении!'),
+            type: 'error',
+          });
+          
+        }
+      }).finally((result) => {
+        this.modal_show = false
+      })
 
   	},
   	render_list_items: function(){

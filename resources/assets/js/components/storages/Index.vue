@@ -83,25 +83,22 @@ export default {
     },
     delStorage(){
         axios.delete(`/api/storages/${this.current_id}`).then((response) => {
+          this.render_list_items()
+          this.$notify({
+                  text: this.$t('Успешно!'),
+                  type: 'success',
+              })
+        }).catch(error => {
+          if(error.response.status == 409){
+            this.$notify({
+              text: this.$t('Ошибка при удалении!'),
+              type: 'error',
+            });
             
-            if(!(response.data.success)){
-                this.modal_show = false
-                this.$notify({
-                    text: this.$t('Удаление склада невозможно, так как в нем находятся нераспределенные продукты!'),
-                    type: 'error',
-                })
-            }
-            else{
-                
-                this.render_list_items()
-                this.$notify({
-                        text: this.$t('Успешно!'),
-                        type: 'success',
-                    })
-                this.modal_show = false
-            }
-            
-        });
+          }
+        }).finally((result) => {
+          this.modal_show = false
+        })
 
     },
     render_list_items: function(){

@@ -124,8 +124,17 @@ export default {
 
   		}).then((response) => {
   			this.render_list_items()
-  			this.modal_show = false
-  		});
+  		}).catch(error => {
+        if(error.response.status == 409){
+          this.$notify({
+            text: this.$t('Ошибка при удалении!'),
+            type: 'error',
+          });
+          
+        }
+      }).finally((result) => {
+        this.modal_show = false
+      })
 
   	},
   	render_list_items: function(){

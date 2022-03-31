@@ -1,4 +1,5 @@
 <template>
+	<notifications position="bottom right" />
 	<GDialog v-model="modal_show" style="z-index: 9999;" :persistent="true" max-width="700">
 	    <div class="getting-started-example-styled">
 	      <div class="getting-started-example-styled__content">
