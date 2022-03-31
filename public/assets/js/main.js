@@ -27061,10 +27061,8 @@ __webpack_require__.r(__webpack_exports__);
           });
 
           loader.hide();
-
-          basket_modal_show: false;
-
-          selected_products: [];
+          _this3.basket_modal_show = false;
+          _this3.selected_products = [];
         });
       }
     },
