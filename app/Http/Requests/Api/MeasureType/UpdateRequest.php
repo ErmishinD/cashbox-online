@@ -15,7 +15,6 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'base_measure_type_id' => ['required'],
             'name' => [
                 'required',
                 Rule::unique('measure_types')->where(function ($query) {

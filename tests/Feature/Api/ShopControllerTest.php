@@ -56,7 +56,7 @@ class ShopControllerTest extends TestCase
             'company_id' => $company->id
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => ['name' => $shop_name, 'address' => null]
@@ -74,10 +74,10 @@ class ShopControllerTest extends TestCase
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'name' => $shop_name,
             'company_id' => $company->id,
-            'storage_name' => $storage_name
+            'storage_names' => [$storage_name]
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -106,7 +106,7 @@ class ShopControllerTest extends TestCase
             'address' => 'some address'
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => ['name' => $shop_name, 'address' => 'some address']
@@ -150,9 +150,11 @@ class ShopControllerTest extends TestCase
     {
         $company = Company::factory()->create(['name' => 'Company name']);
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Shop name', 'address' => 'some address']);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $shop->id, ['name' => 'NEW Shop name']);
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $shop->id, [
+            'name' => 'NEW Shop name', 'address' => $shop->address
+        ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
                 'data' => ['name' => 'NEW Shop name', 'address' => 'some address']
@@ -171,7 +173,7 @@ class ShopControllerTest extends TestCase
             'name' => 'NEW My Shop name', 'address' => 'my address'
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
                 'data' => ['name' => 'NEW My Shop name', 'address' => 'my address']
@@ -186,9 +188,12 @@ class ShopControllerTest extends TestCase
         $company = Company::factory()->create(['name' => 'Super Company']);
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Super Shop']);
         $storage = Storage::factory()->create(['shop_id' => $shop->id, 'name' => 'First Super Storage']);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $shop->id, ['name' => 'NEW Super Shop name', 'storage_name' => 'Super Storage']);
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $shop->id, [
+            'name' => 'NEW Super Shop name',
+            'storage_names' => ['Super Storage']
+        ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -218,7 +223,7 @@ class ShopControllerTest extends TestCase
         $shop = Shop::factory()->create(['company_id' => $company->id, 'name' => 'Shop name']);
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $shop->id);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
             ]);

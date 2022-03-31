@@ -60,7 +60,7 @@ class ProductPurchaseController extends Controller
 
         $data = $request->validated();
         $product_purchase = $this->product_purchase->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)], 201);
     }
 
     public function mass_store(MassCreateRequest $request): JsonResponse
@@ -69,7 +69,7 @@ class ProductPurchaseController extends Controller
 
         $data = $request->validated();
         $product_purchases = $this->product_purchase->mass_create($data);
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($product_purchases)]);
+        return response()->json(['success' => true, 'data' => DefaultResource::collection($product_purchases)], 201);
     }
 
     public function show(ProductPurchase $product_purchase): JsonResponse
@@ -85,7 +85,7 @@ class ProductPurchaseController extends Controller
 
         $data = $request->validated();
         $product_purchase->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)], 202);
     }
 
     public function destroy(ProductPurchase $product_purchase): JsonResponse
@@ -93,7 +93,7 @@ class ProductPurchaseController extends Controller
         $this->authorize('ProductPurchase_delete');
 
         $product_purchase->delete();
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 202);
     }
 
     public function get_for_dashboard(DashboardRequest $request): JsonResponse

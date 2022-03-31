@@ -14,6 +14,7 @@ class CreateRequest extends TenantRequest
     public function rules()
     {
         return [
+            'company_id' => ['required'],
             'storage_id' => ['required'],
             'product_type_id' => ['required'],
             'quantity' => ['required', 'min:0'],

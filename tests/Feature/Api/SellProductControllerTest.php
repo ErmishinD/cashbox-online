@@ -89,7 +89,7 @@ class SellProductControllerTest extends TestCase
             'has_discount' => false,
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -126,7 +126,7 @@ class SellProductControllerTest extends TestCase
             ]
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -205,10 +205,11 @@ class SellProductControllerTest extends TestCase
     {
         $sell_product = SellProduct::factory()->create(['name' => 'Sell Product 3', 'price' => 333.33]);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $sell_product->id, [
+            'name' => $sell_product->name,
             'price' => 666.66
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
                 'data' => ['name' => 'Sell Product 3', 'price' => 666.66]
@@ -223,9 +224,11 @@ class SellProductControllerTest extends TestCase
         $sell_product = SellProduct::factory()->create();
         $sell_product->product_types()->attach([$product_type1->id => ['quantity' => 100]]);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $sell_product->id, [
-            'product_types' => [$product_type2->id => ['quantity' => 200]]
+            'name' => $sell_product->name,
+            'price' => $sell_product->price,
+            'product_types' => [$product_type2->id => ['quantity' => 200]],
         ]);
-        $response->assertStatus(200);
+        $response->assertStatus(202);
         $this->assertDatabaseHas('sell_product_product_type', [
             'product_type_id' => $product_type2->id,
             'sell_product_id' => $sell_product->id,
@@ -242,39 +245,11 @@ class SellProductControllerTest extends TestCase
         $sell_product = SellProduct::factory()->create();
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $sell_product->id);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
             ]);
         $this->assertSoftDeleted($this->table, ['id' => $sell_product->id]);
-    }
-
-    public function test_admin_can_remove_product_types()
-    {
-        $sell_product = SellProduct::factory()->create();
-        $product_type1 = ProductType::factory()->create();
-        $product_type2 = ProductType::factory()->create();
-        $sell_product->product_types()->attach([
-            $product_type1->id => ['quantity' => 50],
-            $product_type2->id => ['quantity' => 150],
-        ]);
-
-        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'remove_product_types', [
-            'sell_product_id' => $sell_product->id,
-            'product_types' => [$product_type1->id]
-        ]);
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'success' => true,
-            ]);
-
-        $this->assertDatabaseMissing('sell_product_product_type', [
-            'sell_product_id' => $sell_product->id, 'product_type_id' => $product_type1->id
-        ]);
-        $this->assertDatabaseHas('sell_product_product_type', [
-            'sell_product_id' => $sell_product->id, 'product_type_id' => $product_type2->id
-        ]);
     }
 
     // filter / sort tests

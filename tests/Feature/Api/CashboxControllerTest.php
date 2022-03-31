@@ -136,6 +136,7 @@ class CashboxControllerTest extends TestCase
     public function test_admin_can_create_cashbox_out_transaction()
     {
         $shop = Shop::factory()->create();
+        session()->put('shop_id', $shop->id);
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'shop_id' => $shop->id,
             'transaction_type' => '_out',
@@ -144,7 +145,7 @@ class CashboxControllerTest extends TestCase
             'description' => 'some description',
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -169,6 +170,7 @@ class CashboxControllerTest extends TestCase
     public function test_admin_can_create_cashbox_in_transaction()
     {
         $shop = Shop::factory()->create();
+        session()->put('shop_id', $shop->id);
         $sell_product = SellProduct::factory()->create();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'company_id' => $shop->company_id,
@@ -180,7 +182,7 @@ class CashboxControllerTest extends TestCase
             'operator_id' => $this->admin->id,
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -204,7 +206,11 @@ class CashboxControllerTest extends TestCase
 
     public function test_admin_can_get_cashbox_transaction()
     {
-        $cashbox = Cashbox::factory()->create(['transaction_type' => '_out', 'amount' => 111, 'description' => 'my description']);
+        $shop = Shop::factory()->create();
+        $cashbox = Cashbox::factory()->create([
+            'transaction_type' => '_out', 'amount' => 111, 'description' => 'my description',
+            'shop_id' => $shop->id, 'company_id' => $shop->company_id
+        ]);
         $response = $this->actingAs($this->admin)->get($this->base_route . $cashbox->id);
         $response
             ->assertStatus(200)
@@ -216,25 +222,51 @@ class CashboxControllerTest extends TestCase
 
     public function test_admin_can_edit_cashbox_transaction()
     {
-        $cashbox = Cashbox::factory()->create(['transaction_type' => '_out', 'amount' => 333.33]);
+        $shop = Shop::factory()->create();
+        session()->put('shop_id', $shop->id);
+        $cashbox = Cashbox::factory()->create([
+            'company_id' => $shop->company_id,
+            'shop_id' => $shop->id,
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
+            'amount' => 333.33
+        ]);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $cashbox->id, [
-            'amount' => 666.66
+            'payment_type' => Cashbox::PAYMENT_TYPES['card']
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
-                'data' => ['transaction_type' => '_out', 'amount' => 666.66]
+                'data' => [
+                    'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
+                    'payment_type' => Cashbox::PAYMENT_TYPES['card']
+                ]
             ]);
-        $this->assertDatabaseHas($this->table, ['transaction_type' => '_out', 'amount' => 666.66]);
+        $this->assertDatabaseHas($this->table, [
+            'transaction_type' => Cashbox::TRANSACTION_TYPES['out'], 'amount' => $cashbox->amount,
+            'payment_type' => Cashbox::PAYMENT_TYPES['card']
+        ]);
     }
 
     public function test_admin_can_delete_cashbox_transaction()
     {
-        $cashbox = Cashbox::factory()->create();
+        $shop = Shop::factory()->create();
+        session()->put('shop_id', $shop->id);
+        $cashbox = Cashbox::create([
+            'company_id' => $shop->company_id,
+            'shop_id' => $shop->id,
+            'sell_product_id' => null,
+            'transaction_type' => '_out',
+            'payment_type' => '_cash',
+            'amount' => 155,
+            'description' => null,
+            'operator_id' => $this->admin->id,
+            'collected_at' => null,
+            'collector_id' => null,
+        ]);
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $cashbox->id);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
             ]);
@@ -243,32 +275,34 @@ class CashboxControllerTest extends TestCase
 
     public function test_operator_can_sell_many_products()
     {
+        $company = Company::factory()->create();
         // create shop
-        $shop = Shop::factory()->create();
-        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        session()->put('shop_id', $shop->id);
+        $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
 
         // create product types with purchases
         $product_type1 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type1->id, 'quantity' => 1000, 'current_quantity' => 1000
+            'product_type_id' => $product_type1->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id
         ]);
 
         $product_type2 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type2->id, 'quantity' => 2500, 'current_quantity' => 2500
+            'product_type_id' => $product_type2->id, 'quantity' => 2500, 'current_quantity' => 2500, 'storage_id' => $storage->id
         ]);
 
         $product_type3 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type3->id, 'quantity' => 1700, 'current_quantity' => 1700
+            'product_type_id' => $product_type3->id, 'quantity' => 1700, 'current_quantity' => 1700, 'storage_id' => $storage->id
         ]);
 
         $product_type4 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000
+            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id
         ]);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000
+            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id
         ]);
 
 
@@ -355,7 +389,7 @@ class CashboxControllerTest extends TestCase
             ],
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
 
         $this->assertDatabaseHas($this->table, [
             'shop_id' => $shop->id,
@@ -599,7 +633,6 @@ class CashboxControllerTest extends TestCase
                                 'id' => $payment1->product_purchase_id,
                             ]
                             : null,
-                        'data' => $payment1->data,
                         'operator' => [
                             'id' => $payment1->operator_id
                         ],
@@ -624,7 +657,6 @@ class CashboxControllerTest extends TestCase
                                 'id' => $payment2->product_purchase_id,
                             ]
                             : null,
-                        'data' => $payment2->data,
                         'operator' => [
                             'id' => $payment2->operator_id
                         ],
@@ -649,7 +681,6 @@ class CashboxControllerTest extends TestCase
                                 'id' => $payment3->product_purchase_id,
                             ]
                             : null,
-                        'data' => $payment3->data,
                         'operator' => [
                             'id' => $payment3->operator_id
                         ],

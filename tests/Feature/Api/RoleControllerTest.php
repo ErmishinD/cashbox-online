@@ -61,7 +61,7 @@ class RoleControllerTest extends TestCase
             'permissions' => $random_permissions
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -99,7 +99,7 @@ class RoleControllerTest extends TestCase
         $role->permissions()->sync($random_permissions);
 
         $response = $this->actingAs($this->admin)->delete($this->base_route . $role->id);
-        $response->assertStatus(200)->assertJson(['success' => true]);
+        $response->assertStatus(202)->assertJson(['success' => true]);
 
 
         $role2 = Role::factory()->create(['company_id' => $this->admin->company_id]);
@@ -108,6 +108,6 @@ class RoleControllerTest extends TestCase
         $some_user->assignRole($role2);
 
         $response = $this->actingAs($this->admin)->delete($this->base_route . $role2->id);
-        $response->assertStatus(403)->assertJson(['success' => false]);
+        $response->assertStatus(409)->assertJson(['success' => false]);
     }
 }

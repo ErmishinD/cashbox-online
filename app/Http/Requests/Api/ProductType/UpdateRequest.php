@@ -24,7 +24,6 @@ class UpdateRequest extends TenantRequest
             ],
             'type' => ['required', Rule::in(array_values(ProductType::TYPES))],
             'photo' => ['nullable'],
-            'base_measure_type_id' => ['required', 'exists:base_measure_types,id'],
             'main_measure_type_id' => ['required', 'exists:measure_types,id'],
             'barcode' => ['nullable'],
             'measure_types' => ['nullable', 'array']

@@ -123,7 +123,7 @@ class ProductTypeControllerTest extends TestCase
             'main_measure_type_id' => $main_measure_type_id->id,
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -158,7 +158,7 @@ class ProductTypeControllerTest extends TestCase
             'measure_types' => [$measure_type1->id, $measure_type2->id]
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -240,10 +240,12 @@ class ProductTypeControllerTest extends TestCase
     {
         $product_type = ProductType::factory()->create(['name' => 'ProductType name']);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $product_type->id, [
-            'name' => 'NEW name'
+            'name' => 'NEW name',
+            'type' => $product_type->type,
+            'main_measure_type_id' => $product_type->main_measure_type_id
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
                 'data' => ['name' => 'NEW name']
@@ -256,41 +258,11 @@ class ProductTypeControllerTest extends TestCase
         $product_type = ProductType::factory()->create();
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $product_type->id);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
             ]);
         $this->assertSoftDeleted($this->table, ['id' => $product_type->id]);
-    }
-
-    public function test_admin_can_remove_measure_types()
-    {
-        $product_type = ProductType::factory()->create(['name' => 'test product']);
-        $measure_type1 = MeasureType::factory()->create(['name' => 'test measure type 1']);
-        $measure_type2 = MeasureType::factory()->create(['name' => 'test measure type 2']);
-        DB::table('product_type_measures')->insert([
-            'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type1->id
-        ]);
-        DB::table('product_type_measures')->insert([
-            'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type2->id
-        ]);
-
-        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'remove_measure_types', [
-            'product_type_id' => $product_type->id,
-            'measure_types' => [$measure_type1->id, $measure_type2->id]
-        ]);
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'success' => true,
-            ]);
-
-        $this->assertDatabaseMissing('product_type_measures', [
-            'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type1->id
-        ]);
-        $this->assertDatabaseMissing('product_type_measures', [
-            'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type2->id
-        ]);
     }
 
     public function test_admin_can_get_for_purchase()

@@ -91,7 +91,20 @@ class ProductPurchaseControllerTest extends TestCase
 
     public function test_admin_can_get_all_product_purchases()
     {
-        ProductPurchase::factory(5)->create();
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
+        $main_measure_type = MeasureType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_volume->id]);
+        ProductType::create([
+            'company_id' => $company->id,
+            'type' => '_imperishable',
+            'base_measure_type_id' => $this->base_measure_type_volume->id,
+            'main_measure_type_id' => $main_measure_type->id,
+            'name' => $this->faker->word,
+            'barcode' => $this->faker->numerify('##########')
+        ]);
+
+        ProductPurchase::factory(5)->create(['company_id' => $company->id, 'storage_id' => $storage->id]);
 
         $response = $this->actingAs($this->admin)->get($this->base_route);
         $response
@@ -113,7 +126,7 @@ class ProductPurchaseControllerTest extends TestCase
             'cost' => 1000,
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -152,20 +165,24 @@ class ProductPurchaseControllerTest extends TestCase
             'cost' => 666
         ]);
         $response
-            ->assertStatus(200)
-            ->assertJson([
-                'success' => true,
-                'data' => ['quantity' => 111, 'cost' => 666]
-            ]);
-        $this->assertDatabaseHas($this->table, ['quantity' => 111, 'cost' => 666]);
+            ->assertStatus(403);
+//            ->assertJson([
+//                'success' => true,
+//                'data' => ['quantity' => 111, 'cost' => 666]
+//            ]);
+//        $this->assertDatabaseHas($this->table, ['quantity' => 111, 'cost' => 666]);
     }
 
     public function test_admin_can_delete_product_purchase()
     {
-        $product_purchase = ProductPurchase::factory()->create();
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
+        ProductType::factory()->create(['company_id' => $company->id]);
+        $product_purchase = ProductPurchase::factory()->create(['company_id' => $company->id, 'storage_id' => $storage->id]);
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $product_purchase->id);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
             ]);
@@ -176,11 +193,11 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
-        $storage1 = Storage::factory()->create(['shop_id' => $shop->id]);
-        $storage2 = Storage::factory()->create(['shop_id' => $shop->id]);
+        session()->put('shop_id', $shop->id);
+        $storage1 = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
+        $storage2 = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
 
         $main_measure_type = MeasureType::factory()->create(['base_measure_type_id' => $this->base_measure_type_volume->id]);
-        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $this->base_measure_type_volume->id]);
         $product_type1 = ProductType::create([
             'company_id' => $company->id,
             'type' => '_imperishable',
@@ -190,7 +207,7 @@ class ProductPurchaseControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase1 = ProductPurchase::factory()->create([
-            'storage_id' => $storage1->id, 'product_type_id' => $product_type1->id
+            'storage_id' => $storage1->id, 'product_type_id' => $product_type1->id, 'company_id' => $storage1->company_id
         ]);
 
         $current_quantity1 = $product_purchase1->current_quantity / $main_measure_type->quantity;
@@ -204,7 +221,7 @@ class ProductPurchaseControllerTest extends TestCase
             'barcode' => $this->faker->numerify('##########')
         ]);
         $product_purchase2 = ProductPurchase::factory()->create([
-            'storage_id' => $storage2->id, 'product_type_id' => $product_type2->id
+            'storage_id' => $storage2->id, 'product_type_id' => $product_type2->id, 'company_id' => $storage2->company_id
         ]);
 
         $current_quantity2 = $product_purchase2->current_quantity / $main_measure_type->quantity;
@@ -263,7 +280,7 @@ class ProductPurchaseControllerTest extends TestCase
         ]);
 
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -326,12 +343,12 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
-        $storage1 = Storage::factory()->create(['shop_id' => $shop->id]);
-        $storage2 = Storage::factory()->create(['shop_id' => $shop->id]);
+        $storage1 = Storage::factory()->create(['shop_id' => $shop->id, 'company_id' => $company->id]);
+        $storage2 = Storage::factory()->create(['shop_id' => $shop->id, 'company_id' => $company->id]);
 
-        ProductPurchase::factory()->create(['storage_id' => $storage1->id]);
-        ProductPurchase::factory()->create(['storage_id' => $storage1->id]);
-        ProductPurchase::factory()->create(['storage_id' => $storage2->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage1->id, 'company_id' => $company->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage1->id, 'company_id' => $company->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage2->id, 'company_id' => $company->id]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['storage_id' => $storage1->id]
@@ -344,6 +361,7 @@ class ProductPurchaseControllerTest extends TestCase
     public function test_can_filter_product_type_id()
     {
         $company = Company::factory()->create();
+        $this->admin->update(['company_id' => $company->id]);
 
         $product_type1 = ProductType::factory()->create(['company_id' => $company->id]);
         $product_type2 = ProductType::factory()->create(['company_id' => $company->id]);
@@ -362,9 +380,20 @@ class ProductPurchaseControllerTest extends TestCase
 
     public function test_can_sort_by_cost()
     {
-        $purchase1 = ProductPurchase::factory()->create(['cost' => 100]);
-        $purchase2 = ProductPurchase::factory()->create(['cost' => 200]);
-        $purchase3 = ProductPurchase::factory()->create(['cost' => 300]);
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $this->admin->update(['company_id' => $shop->company_id]);
+        $storage = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
+
+        $purchase1 = ProductPurchase::factory()->create([
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id,'cost' => 100
+        ]);
+        $purchase2 = ProductPurchase::factory()->create([
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id,'cost' => 200
+        ]);
+        $purchase3 = ProductPurchase::factory()->create([
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id,'cost' => 300
+        ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'cost', 'type' => 'desc']]
@@ -383,9 +412,26 @@ class ProductPurchaseControllerTest extends TestCase
 
     public function test_can_sort_by_expiration_date()
     {
-        $purchase1 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-23']);
-        $purchase2 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-22']);
-        $purchase3 = ProductPurchase::factory()->create(['expiration_date' => '2022-02-24']);
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $this->admin->update(['company_id' => $shop->company_id]);
+        $storage = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
+        $product_type = ProductType::factory()->create([
+            'company_id' => $shop->company_id, 'type' => ProductType::TYPES['perishable']
+        ]);
+
+        $purchase1 = ProductPurchase::factory()->create([
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id,
+            'expiration_date' => '2022-02-23', 'product_type_id' => $product_type->id
+        ]);
+        $purchase2 = ProductPurchase::factory()->create([
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id,
+            'expiration_date' => '2022-02-22', 'product_type_id' => $product_type->id
+        ]);
+        $purchase3 = ProductPurchase::factory()->create([
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id,
+            'expiration_date' => '2022-02-24', 'product_type_id' => $product_type->id
+        ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'sort' => [['field' => 'expiration_date', 'type' => 'asc']]
@@ -404,15 +450,21 @@ class ProductPurchaseControllerTest extends TestCase
 
     public function test_can_sort_by_created_at()
     {
-        $purchase1 = ProductPurchase::factory()->create();
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $this->admin->update(['company_id' => $shop->company_id]);
+        $storage = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
+        ProductType::factory()->create(['company_id' => $shop->company_id]);
+
+        $purchase1 = ProductPurchase::factory()->create(['company_id' => $shop->company_id, 'storage_id' => $storage->id]);
         $purchase1->created_at = '2022-02-01 18:00';
         $purchase1->save();
 
-        $purchase2 = ProductPurchase::factory()->create();
+        $purchase2 = ProductPurchase::factory()->create(['company_id' => $shop->company_id, 'storage_id' => $storage->id]);
         $purchase2->created_at = '2022-02-01 19:00';
         $purchase2->save();
 
-        $purchase3 = ProductPurchase::factory()->create();
+        $purchase3 = ProductPurchase::factory()->create(['company_id' => $shop->company_id, 'storage_id' => $storage->id]);
         $purchase3->created_at = '2022-01-31 10:00';
         $purchase3->save();
 

@@ -94,7 +94,7 @@ class MeasureTypeControllerTest extends TestCase
             'is_common' => true,
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
                 'success' => true,
                 'data' => [
@@ -130,10 +130,10 @@ class MeasureTypeControllerTest extends TestCase
     {
         $measure_type = MeasureType::factory()->create(['name' => 'MeasureType name']);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $measure_type->id, [
-            'name' => 'NEW name', 'description' => 'some description'
+            'name' => 'NEW name', 'description' => 'some description', 'quantity' => $measure_type->quantity
         ]);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
                 'data' => ['name' => 'NEW name', 'description' => 'some description']
@@ -146,7 +146,7 @@ class MeasureTypeControllerTest extends TestCase
         $measure_type = MeasureType::factory()->create();
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $measure_type->id);
         $response
-            ->assertStatus(200)
+            ->assertStatus(202)
             ->assertJson([
                 'success' => true,
             ]);

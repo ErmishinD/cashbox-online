@@ -31,6 +31,7 @@ class CreateRequest extends TenantRequest
 
     public function prepareForValidation()
     {
+        parent::prepareForValidation();
         $this->merge([
             'name' => $this->name ?? 'Склад '. Auth::id() . '-' . Str::random(5),
         ]);

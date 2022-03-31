@@ -89,7 +89,12 @@ class CashboxController extends Controller
             }
             return response()->json(['success' => false, 'Someone has already used products from this purchase'], 409);
         }
-        return response()->json(['success' => false, 'Someone has already used products from this purchase'], 409);
+        elseif (!empty($cashbox->sell_product_id)) {
+            return response()->json(['success' => false, 'Can not delete this payment'], 409);
+        }
+
+        $cashbox->delete();
+        return response()->json(['success' => true], 202);
     }
 
     public function get_current_balance(): JsonResponse

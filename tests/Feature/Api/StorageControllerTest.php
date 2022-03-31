@@ -87,6 +87,7 @@ class StorageControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        session()->put('shop_id', $shop->id);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'shop_id' => $shop->id
@@ -105,8 +106,10 @@ class StorageControllerTest extends TestCase
     public function test_user_without_roles_cannot_create_storage()
     {
         $company = Company::factory()->create();
-        $this->user_without_roles->update(['company_id' => $company->id]);
+        $this->user_without_roles->company_id = $company->id;
+        $this->user_without_roles->save();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        session()->put('shop_id', $shop->id);
 
         $response = $this->actingAs($this->user_without_roles)->postJson($this->base_route, [
             'shop_id' => $shop->id
