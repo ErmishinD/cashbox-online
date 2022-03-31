@@ -19,7 +19,6 @@ class InCashboxResource extends JsonResource
         return [
             'id' => $this->id,
             'company_id' => $this->company_id,
-            'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty() ? $this->media->where('collection_name', 'photo')->first()->getUrl() : asset('images/default_card_img.png'),
             'name' => $this->name,
             'price' => $this->price,
             'has_discount' => $this->has_discount,

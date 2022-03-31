@@ -39,7 +39,7 @@ class Cashbox extends Model
 
     protected $fillable = [
         'shop_id', 'sell_product_id', 'product_purchase_id', 'data', 'transaction_type', 'payment_type', 'amount',
-        'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id',
+        'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id'
     ];
 
     public function shop()

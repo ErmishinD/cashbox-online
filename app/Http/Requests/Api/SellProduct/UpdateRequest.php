@@ -2,20 +2,11 @@
 
 namespace App\Http\Requests\Api\SellProduct;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,11 +15,16 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => ['nullable'],
-            'name' => ['nullable'],
-            'price' => ['nullable'],
+            'name' => [
+                'required',
+                Rule::unique('sell_products')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->sell_product)
+            ],
+            'price' => ['required', 'numeric', 'min:0'],
             'has_discount' => ['nullable', 'boolean'],
             'product_types' => ['nullable', 'array'],
+            'product_types.*.quantity' => ['numeric', 'min:0'],
             'photo' => ['nullable']
         ];
     }

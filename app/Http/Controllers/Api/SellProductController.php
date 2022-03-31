@@ -64,7 +64,7 @@ class SellProductController extends Controller
 
         $sell_product = $this->sell_product->create($data);
 
-        return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($sell_product)], 201);
     }
 
     public function show(SellProduct $sell_product): JsonResponse
@@ -87,7 +87,7 @@ class SellProductController extends Controller
         $data = $request->validated();
 
         $sell_product = $this->sell_product->update($sell_product, $data);
-        return response()->json(['success' => true, 'data' => new EditResource($sell_product)]);
+        return response()->json(['success' => true, 'data' => new EditResource($sell_product)], 202);
     }
 
     public function destroy(SellProduct $sell_product): JsonResponse
@@ -95,15 +95,6 @@ class SellProductController extends Controller
         $this->authorize('SellProduct_delete');
 
         $sell_product->delete();
-        return response()->json(['success' => true]);
-    }
-
-    public function remove_product_types(RemoveProductTypesRequest $request): JsonResponse
-    {
-        $this->authorize('SellProduct_edit');
-
-        $data = $request->validated();
-        $this->sell_product->remove_product_types($data);
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 202);
     }
 }

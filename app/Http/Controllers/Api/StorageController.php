@@ -39,7 +39,7 @@ class StorageController extends Controller
 
         $data = $request->validated();
         $storage = $this->storage->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($storage)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($storage)], 201);
     }
 
     public function show(int $id): JsonResponse
@@ -56,7 +56,7 @@ class StorageController extends Controller
 
         $data = $request->validated();
         $storage->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($storage)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($storage)], 202);
     }
 
     public function destroy(int $id): JsonResponse
@@ -64,7 +64,10 @@ class StorageController extends Controller
         $this->authorize('Storage_delete');
 
         $storage_deleted = $this->storage->deleteById($id);
-        return response()->json(['success' => $storage_deleted]);
+        if ($storage_deleted) {
+            return response()->json(['success' => true], 202);
+        }
+        return response()->json(['success' => false, 'message' => 'There are products in storage'], 409);
     }
 
     public function getByCompany(GetByCompanyRequest $request): JsonResponse

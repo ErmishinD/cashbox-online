@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\ProductType;
+namespace App\Http\Requests\Admin\Company;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RemoveMeasureTypesRequest extends FormRequest
+class CreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class RemoveMeasureTypesRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_type_id' => ['required', 'exists:product_type_measures,product_type_id'],
-            'measure_types' => ['required', 'array'],
+            'name' => ['required', 'unique:companies,name']
         ];
     }
 }

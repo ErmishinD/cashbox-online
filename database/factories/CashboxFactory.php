@@ -18,11 +18,13 @@ class CashboxFactory extends Factory
      */
     public function definition()
     {
-        $shop_id = (isset($attribues['shop_id'])) ?: $this->faker->randomElement(Shop::pluck('id'));
+        $company_id = (isset($attribues['company_id'])) ?: $this->faker->randomElement(Company::pluck('id'));
+        $shop_id = (isset($attribues['shop_id'])) ?: $this->faker->randomElement(Shop::where('company_id', $company_id)->pluck('id'));
         $sell_product_id = (isset($attribues['sell_product_id'])) ?: $this->faker->randomElement(SellProduct::pluck('id'));
         $operator_id = (isset($attribues['operator_id'])) ?: $this->faker->randomElement(User::pluck('id'));
 
         return [
+            'company_id' => $company_id,
             'shop_id' => $shop_id,
             'sell_product_id' => $sell_product_id,
             'transaction_type' => $this->faker->randomElement(['_in', '_out']),

@@ -2,20 +2,10 @@
 
 namespace App\Http\Requests\Api\ProductPurchase;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
 
-class CreateRequest extends FormRequest
+class CreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,15 +16,16 @@ class CreateRequest extends FormRequest
         return [
             'storage_id' => ['required'],
             'product_type_id' => ['required'],
-            'quantity' => ['required'],
+            'quantity' => ['required', 'min:0'],
             'current_quantity' => ['required'],
-            'cost' => ['required'],
-            'expiration_date' => ['nullable'],
+            'cost' => ['required', 'numeric', 'min:0'],
+            'expiration_date' => ['nullable', 'date', 'after:today'],
         ];
     }
 
     public function prepareForValidation()
     {
+        parent::prepareForValidation();
         $this->merge([
             'current_quantity' => $this->quantity
         ]);

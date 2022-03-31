@@ -9,8 +9,11 @@ use App\Http\Requests\Api\User\UpdateRequest;
 use App\Http\Resources\Api\User\DefaultResource;
 use App\Http\Resources\Api\User\EmployeeResource;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use App\Repositories\UserRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -70,5 +73,19 @@ class UserController extends Controller
         $shop_id = $request->validated()['shop_id'];
         session()->put('shop_id', $shop_id);
         return response()->json(['success' => true]);
+    }
+
+    public function authorizeMainsUser(Request $request)
+    {
+        $data = decrypt($request->data);
+        $user = User::firstOrCreate(
+            ['username' => $data['username'], 'email' => $data['email']],
+            ['company_id' => 1, 'password' => $data['password'], 'name' => $data['name']]
+        );
+        $user->assignRole(3);
+
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }

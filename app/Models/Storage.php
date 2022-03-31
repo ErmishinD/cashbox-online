@@ -19,7 +19,7 @@ class Storage extends Model
     use HasFactory, SoftDeletes, BelongsToCompany;
 
     protected $fillable = [
-        'shop_id', 'name'
+        'shop_id', 'name', 'company_id'
     ];
 
     public function product_purchases()

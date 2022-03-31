@@ -3,19 +3,10 @@
 namespace App\Http\Requests\Api\MeasureType;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,9 +15,15 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['nullable'],
+            'base_measure_type_id' => ['required'],
+            'name' => [
+                'required',
+                Rule::unique('measure_types')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->measure_type)
+            ],
             'description' => ['nullable'],
-            'quantity' => ['nullable', 'min:1'],
+            'quantity' => ['required', 'numeric', 'min:0'],
             'is_common' => ['nullable', 'boolean'],
         ];
     }

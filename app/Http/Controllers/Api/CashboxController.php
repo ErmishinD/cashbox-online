@@ -12,6 +12,7 @@ use App\Http\Resources\Api\Cashbox\DefaultResource;
 use App\Http\Resources\Api\Cashbox\HistoryCollection;
 use App\Http\Resources\Api\Cashbox\IndexResource;
 use App\Http\Resources\Api\Cashbox\BalanceResource;
+use App\Models\Cashbox;
 use App\Repositories\CashboxRepository;
 use Illuminate\Http\JsonResponse;
 
@@ -45,7 +46,7 @@ class CashboxController extends Controller
 
         $data = $request->validated();
         $payment = $this->cashbox->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($payment)], 201);
     }
 
     public function mass_store(MassCreateRequest $request): JsonResponse
@@ -54,7 +55,7 @@ class CashboxController extends Controller
 
         $data = $request->validated();
         $payments = $this->cashbox->mass_create($data);
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)]);
+        return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)], 201);
     }
 
     public function show(int $id): JsonResponse
@@ -72,19 +73,29 @@ class CashboxController extends Controller
         $data = $request->validated();
         $payment = $this->cashbox->getById($id);
         $payment->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($payment)], 202);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Cashbox $cashbox): JsonResponse
     {
         $this->authorize('Cashbox_delete');
 
-        $is_deleted = $this->cashbox->deleteById($id);
-        return response()->json(['success' => $is_deleted]);
+        if(!empty($cashbox->product_purchase_id)) {
+            //  удалить и саму закупку, только если с нее не было использовано продуктов
+            if ($cashbox->product_purchase->quantity == $cashbox->product_purchase->current_quantity) {
+                $cashbox->product_purchase->delete();
+                $cashbox->delete();
+                return response()->json(['success' => true], 202);
+            }
+            return response()->json(['success' => false, 'Someone has already used products from this purchase'], 409);
+        }
+        return response()->json(['success' => false, 'Someone has already used products from this purchase'], 409);
     }
 
     public function get_current_balance(): JsonResponse
     {
+        $this->authorize('Cashbox_access');
+
         $payments = $this->cashbox->get_for_balance();
         return response()->json(['success' => true, 'data' => new BalanceResource($payments)]);
     }

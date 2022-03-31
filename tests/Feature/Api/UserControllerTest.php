@@ -112,12 +112,18 @@ class UserControllerTest extends TestCase
     public function test_admin_can_edit_user()
     {
         $user = User::factory()->create(['company_id' => $this->admin->company_id]);
-        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $user->id, ['name' => 'NEW name']);
+        $response = $this->actingAs($this->admin)->patchJson($this->base_route . $user->id, [
+            'name' => 'NEW name',
+            'username' => $user->username,
+            'email' => $user->email
+        ]);
         $response
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => ['name' => 'NEW name']
+                'data' => [
+                    'name' => 'NEW name'
+                ]
             ]);
 
         $this->assertDatabaseHas($this->table, [

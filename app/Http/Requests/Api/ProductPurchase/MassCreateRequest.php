@@ -2,20 +2,12 @@
 
 namespace App\Http\Requests\Api\ProductPurchase;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
+use App\Models\Cashbox;
+use Illuminate\Validation\Rule;
 
-class MassCreateRequest extends FormRequest
+class MassCreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +17,7 @@ class MassCreateRequest extends FormRequest
     {
         return [
             'storage_id' => ['required'],
-            'payment_type' => ['required'],
+            'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
             'product_types' => ['required', 'array']
         ];
     }

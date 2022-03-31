@@ -2,21 +2,12 @@
 
 namespace App\Http\Requests\Api\User;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TenantRequest;
+use App\Models\Role;
+use Illuminate\Validation\Rule;
 
-class CreateRequest extends FormRequest
+class CreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,18 +17,12 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'username' => ['required'],
-            'email' => ['required', 'email'],
+            'username' => ['required', Rule::unique('users')->ignore($this->user)],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)],
             'password' => ['required'],
             'company_id' => ['required'],
-            'roles' => ['nullable', 'array']
+            'roles' => ['nullable', 'array'],
+            'roles.*' => [Rule::in(Role::pluck('id'))]
         ];
-    }
-
-    public function prepareForValidation()
-    {
-        $this->merge([
-            'company_id' => session('company_id') ?? Auth::user()->company_id
-        ]);
     }
 }

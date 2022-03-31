@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Company\CreateRequest;
 use App\Http\Requests\Api\Company\UpdateRequest;
 use App\Http\Resources\Api\Company\DefaultResource;
 use App\Http\Resources\Api\Company\ShowResource;
@@ -22,20 +23,35 @@ class CompanyController extends Controller
         $this->company = app(CompanyRepository::class);
     }
 
+    public function index(): JsonResponse
+    {
+        $companies = $this->company->all();
+        return response()->json(['success' => true, 'data' => DefaultResource::collection($companies)]);
+    }
+
+    public function store(CreateRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+        $company = $this->company->create($data);
+        return response()->json(['success' => true, 'data' => new DefaultResource($company)], 201);
+    }
+
     public function show(Company $company): JsonResponse
     {
-        $this->authorize('Company_show');
-
         $company->load(['shops', 'employees.roles']);
         return response()->json(['success' => true, 'data' => new ShowResource($company)]);
     }
 
     public function update(UpdateRequest $request, Company $company): JsonResponse
     {
-        $this->authorize('Company_edit');
-
         $data = $request->validated();
         $company->update($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($company)], 202);
+    }
+
+    public function destroy(Company $company): JsonResponse
+    {
+        $company->delete();
+        return response()->json(['success' => true], 202);
     }
 }

@@ -16,18 +16,4 @@ class AdminController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-
-    public function authorizeMainsUser(Request $request)
-    {
-        $data = decrypt($request->data);
-        $user = User::firstOrCreate(
-            ['username' => $data['username'], 'email' => $data['email']],
-            ['company_id' => 1, 'password' => $data['password'], 'name' => $data['name']]
-        );
-        $user->assignRole(3);
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
-    }
 }

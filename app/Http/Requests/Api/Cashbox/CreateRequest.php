@@ -2,23 +2,13 @@
 
 namespace App\Http\Requests\Api\Cashbox;
 
+use App\Http\Requests\TenantRequest;
 use App\Models\Cashbox;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class CreateRequest extends FormRequest
+class CreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -27,13 +17,14 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
+            'company_id' => ['required'],
             'shop_id' => ['required'],
             'sell_product_id' => ['nullable', 'exists:sell_products,id'],
             'product_purchase_id' => ['nullable', 'exists:product_purchases,id'],
             'data' => ['nullable'],
             'transaction_type' => ['required', Rule::in(Cashbox::TRANSACTION_TYPES)],
             'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
-            'amount' => ['required'],
+            'amount' => ['required', 'numeric', 'min:0'],
             'description' => ['nullable'],
             'operator_id' => ['required', 'exists:users,id'],
         ];
@@ -41,9 +32,9 @@ class CreateRequest extends FormRequest
 
     public function prepareForValidation()
     {
+        parent::prepareForValidation();
         $this->merge([
-            'shop_id' => $this->shop_id ?? session()->get('shop_id'),
-            'operator_id' => $this->operator_id ?? Auth::user()->id,
+            'operator_id' => $this->operator_id ?? Auth::id(),
             'transaction_type' => $this->transaction_type ?? Cashbox::TRANSACTION_TYPES['in'],
             'payment_type' => $this->payment_type ?? Cashbox::PAYMENT_TYPES['cash'],
         ]);

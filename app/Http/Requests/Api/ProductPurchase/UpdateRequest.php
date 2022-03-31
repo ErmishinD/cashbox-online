@@ -2,18 +2,13 @@
 
 namespace App\Http\Requests\Api\ProductPurchase;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,13 +18,6 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'storage_id' => ['nullable'],
-            'product_type_id' => ['nullable'],
-            'quantity' => ['nullable'],
-            'current_quantity' => ['nullable'],
-            'cost' => ['nullable'],
-            'expiration_date' => ['nullable'],
-        ];
+        return [];
     }
 }

@@ -15,7 +15,9 @@ class CreateStoragesTable extends Migration
     {
         Schema::create('storages', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

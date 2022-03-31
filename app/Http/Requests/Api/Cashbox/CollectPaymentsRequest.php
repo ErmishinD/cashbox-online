@@ -2,20 +2,10 @@
 
 namespace App\Http\Requests\Api\Cashbox;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
 
-class CollectPaymentsRequest extends FormRequest
+class CollectPaymentsRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *

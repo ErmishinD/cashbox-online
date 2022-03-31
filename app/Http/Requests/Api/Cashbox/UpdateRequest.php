@@ -2,20 +2,12 @@
 
 namespace App\Http\Requests\Api\Cashbox;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
+use App\Models\Cashbox;
+use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,16 +16,16 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'shop_id' => ['nullable'],
-            'sell_product_id' => ['nullable'],
-            'data' => ['nullable'],
-            'transaction_type' => ['nullable'],
-            'payment_type' => ['nullable'],
-            'amount' => ['nullable'],
+            'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
             'description' => ['nullable'],
-            'operator_id' => ['nullable'],
-            'collected_at' => ['nullable'],
-            'collector_id' => ['nullable'],
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        parent::prepareForValidation();
+        $this->merge([
+            'payment_type' => $this->payment_type ?? Cashbox::PAYMENT_TYPES['cash'],
+        ]);
     }
 }

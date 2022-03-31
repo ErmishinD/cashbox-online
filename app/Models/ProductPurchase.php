@@ -24,7 +24,7 @@ class ProductPurchase extends Model
     use HasFactory, Filterable, BelongsToCompany;
 
     protected $fillable = [
-        'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date',
+        'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date', 'company_id'
     ];
 
     public function product_type()

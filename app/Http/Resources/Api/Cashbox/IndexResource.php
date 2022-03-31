@@ -28,7 +28,7 @@ class IndexResource extends JsonResource
             'transaction_type' => $this->transaction_type,
             'sell_product' => $this->sell_product_id ? new SellProductResource($this->sell_product) : null,
             'product_purchase' => $this->product_purchase_id ? new ProductPurchaseResource($this->product_purchase) : null,
-            'data' => $this->data,
+//            'data' => $this->data,
             'operator' => new UserResource($this->operator),
             'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i')

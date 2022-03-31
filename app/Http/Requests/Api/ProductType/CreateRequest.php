@@ -2,23 +2,12 @@
 
 namespace App\Http\Requests\Api\ProductType;
 
+use App\Http\Requests\TenantRequest;
 use App\Models\ProductType;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class CreateRequest extends FormRequest
+class CreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,7 +17,12 @@ class CreateRequest extends FormRequest
     {
         return [
             'company_id' => ['required'],
-            'name' => ['required'],
+            'name' => [
+                'required',
+                Rule::unique('product_types')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->product_type)
+            ],
             'type' => ['required', Rule::in(array_values(ProductType::TYPES))],
             'photo' => ['nullable'],
             'base_measure_type_id' => ['required', 'exists:base_measure_types,id'],
@@ -36,12 +30,5 @@ class CreateRequest extends FormRequest
             'barcode' => ['nullable'],
             'measure_types' => ['nullable', 'array']
         ];
-    }
-
-    public function prepareForValidation()
-    {
-        $this->merge([
-            'company_id' => $this->company_id ?? Auth::user()->company_id
-        ]);
     }
 }

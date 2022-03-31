@@ -54,6 +54,7 @@ class ProductPurchaseRepository extends BaseRepository
 
         foreach ($data['product_types'] as $product_type) {
             $product_purchase_data = [
+                'company_id' => $storage->company_id,
                 'storage_id' => $data['storage_id'],
                 'product_type_id' => $product_type['id'],
                 'quantity' => $product_type['quantity'],
@@ -68,9 +69,11 @@ class ProductPurchaseRepository extends BaseRepository
             if ($product_purchases_transactions->isNotEmpty()) {
                 $parent_id = $product_purchases_transactions->first()->id;
             }
+            unset($product_purchase_data['company_id'], $product_purchase_data['storage_id']);
             $cashbox_data = [
+                'company_id' => $storage->company_id,
                 'shop_id' => $shop_id,
-                'data',
+                'data' => json_encode($product_purchase_data),
                 'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
                 'payment_type' => $data['payment_type'],
                 'amount' => $product_type['cost'],

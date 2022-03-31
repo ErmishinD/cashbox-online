@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use App\Models\ProductType;
 use App\Models\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,13 +16,14 @@ class ProductPurchaseFactory extends Factory
      */
     public function definition()
     {
-        $storage_id = (isset($attribues['storage_id'])) ?: $this->faker->randomElement(Storage::pluck('id'));
+        $company_id = (isset($attribues['company_id'])) ?: $this->faker->randomElement(Company::pluck('id'));
+        $storage_id = (isset($attribues['storage_id'])) ?: $this->faker->randomElement(Storage::where('company_id', $company_id)->pluck('id'));
 
         $quantity = $this->faker->randomElement([1, 5, 10, 20, 50, 100, 1000, 1500, 2000]);
 
         $expiration_date = null;
         if (!isset($attribues['product_type_id']) && !isset($attribues['expiration_date'])) {
-            $product_type = $this->faker->randomElement(ProductType::select('id', 'type')->get());
+            $product_type = $this->faker->randomElement(ProductType::where('company_id', $company_id)->select('id', 'type')->get());
 
             $product_type_id = $product_type->id;
             if ($product_type->type == ProductType::TYPES['perishable']) {
@@ -33,6 +35,7 @@ class ProductPurchaseFactory extends Factory
         }
 
         return [
+            'company_id' => $company_id,
             'storage_id' => $storage_id,
             'product_type_id' => $product_type_id,
             'quantity' => $quantity,

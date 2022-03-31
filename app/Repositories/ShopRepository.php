@@ -45,9 +45,17 @@ class ShopRepository extends BaseRepository
     public function create(array $data)
     {
         $shop = parent::create($data);
-        if (!empty($data['storage_name'])) {
-            $storage = Storage::create(['name' => $data['storage_name'], 'shop_id' => $shop->id]);
-            $shop->storages = collect([$storage]);
+        if (!empty($data['storage_names'])) {
+            $storages = collect();
+            foreach ($data['storage_names'] as $storage_name) {
+                $storage = Storage::create([
+                    'name' => $storage_name,
+                    'shop_id' => $shop->id,
+                    'company_id' => $shop->company_id
+                ]);
+                $storages->push($storage);
+            }
+            $shop->storages = $storages;
         }
         return $shop;
     }
@@ -59,9 +67,17 @@ class ShopRepository extends BaseRepository
         }
 
         $shop->update($data);
-        if (!empty($data['storage_name'])) {
-            $storage = Storage::create(['name' => $data['storage_name'], 'shop_id' => $shop->id]);
-            $shop->storages->push($storage);
+        if (!empty($data['storage_names'])) {
+            $storages = collect();
+            foreach ($data['storage_names'] as $storage_name) {
+                $storage = Storage::create([
+                    'name' => $storage_name,
+                    'shop_id' => $shop->id,
+                    'company_id' => $shop->company_id
+                ]);
+                $storages->push($storage);
+            }
+            $shop->storages->concat($storages);
         }
         return $shop;
     }

@@ -27,7 +27,7 @@
 		      	    {{role['human_name']}}
 		      	  </span>
 		          <span class="table_actions" v-if="props.column.field == 'actions'">
-		            <a :href="'/login-as/' + props.row.id"><i class="fas fa-sign-out-alt"></i></a>
+		            <a :href="'/admin/login-as/' + props.row.id"><i class="fas fa-sign-out-alt"></i></a>
 		          </span>
 		        </template>
 		    </vue-good-table>
@@ -71,7 +71,7 @@ export default{
 			  },
 			],
 			workers_rows: [],
-		} 
+		}
 	},
 	mounted(){
 		var loader = this.$loading.show({
@@ -90,10 +90,10 @@ export default{
                 this.$router.push({ name: '403' })
             }
         })
-		
+
 	},
 	created () {
-        
+
     },
 }
 </script>

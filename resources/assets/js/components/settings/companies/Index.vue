@@ -22,7 +22,7 @@
   	  <router-link :to="{name: 'settings_companies_create'}">
   	  	<button class="btn btn-success pull-right mb-10" >{{ $t('Добавить компанию') }}</button>
   	  </router-link>
-  	
+
     <vue-good-table style="position: static;"
       :columns="columns"
       :rows="rows"
@@ -81,8 +81,8 @@ export default {
   		console.log(params)
   	},
   	delCompany(){
-  		axios.delete(`/api/companies/${this.current_id}`, {
-  		  
+  		axios.delete(`/admin/companies/${this.current_id}`, {
+
   		}).then((response) => {
   			this.$notify({
                 text: this.$t('Успешно!'),
@@ -97,8 +97,8 @@ export default {
   		var loader = this.$loading.show({
   		        canCancel: false,
   		        loader: 'dots',});
-  		
-  		this.axios.get('/api/companies').then((response) => {
+
+  		this.axios.get('/admin/companies').then((response) => {
   		       this.companies = response.data['data']
   		       this.rows = this.companies
   		       loader.hide()

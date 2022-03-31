@@ -2,21 +2,11 @@
 
 namespace App\Http\Requests\Api\MeasureType;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TenantRequest;
+use Illuminate\Validation\Rule;
 
-class CreateRequest extends FormRequest
+class CreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,19 +15,17 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'base_measure_type_id' => ['required', 'exists:base_measure_types,id'],
-            'name' => ['required'],
+            'base_measure_type_id' => ['required'],
+            'name' => [
+                'required',
+                Rule::unique('measure_types')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->measure_type)
+            ],
             'description' => ['nullable'],
-            'quantity' => ['required', 'min:1'],
-            'company_id' => ['required', 'exists:companies,id'],
+            'quantity' => ['required', 'numeric', 'min:0'],
+            'company_id' => ['required'],
             'is_common' => ['nullable', 'boolean'],
         ];
-    }
-
-    public function prepareForValidation()
-    {
-        return $this->merge([
-            'company_id' => $this->company_id ?? Auth::user()->company_id
-        ]);
     }
 }

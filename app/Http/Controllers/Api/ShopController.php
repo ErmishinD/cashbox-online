@@ -11,6 +11,7 @@ use App\Http\Resources\Api\Shop\ForSelectResource;
 use App\Http\Resources\Api\Shop\ShowResource;
 use App\Models\Shop;
 use App\Repositories\ShopRepository;
+use App\Services\ShopService;
 use Illuminate\Http\JsonResponse;
 
 class ShopController extends Controller
@@ -39,12 +40,14 @@ class ShopController extends Controller
 
         $data = $request->validated();
         $shop = $this->shop->create($data);
-        return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($shop)], 201);
     }
 
     public function show(Shop $shop): JsonResponse
     {
         $this->authorize('Shop_show');
+
+        $shop->load('storages');
 
         return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
     }
@@ -55,15 +58,20 @@ class ShopController extends Controller
 
         $data = $request->validated();
         $shop = $this->shop->update($shop, $data);
-        return response()->json(['success' => true, 'data' => new ShowResource($shop)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($shop)], 202);
     }
 
     public function destroy(Shop $shop): JsonResponse
     {
         $this->authorize('Shop_delete');
 
-        $shop->delete();
-        return response()->json(['success' => true]);
+        $shop->load('storages');
+
+        if (!ShopService::has_products_in_storages($shop)) {
+            $shop->delete();
+            return response()->json(['success' => true], 202);
+        }
+        return response()->json(['success' => false, 'message' => 'There are products in this shop!'], 409);
     }
 
     public function getByCompany(GetByCompanyRequest $request): JsonResponse

@@ -2,20 +2,11 @@
 
 namespace App\Http\Requests\Api\Storage;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,8 +15,13 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'shop_id' => ['required'],
-            'name' => ['nullable']
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('storages')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->storage)
+            ],
         ];
     }
 }

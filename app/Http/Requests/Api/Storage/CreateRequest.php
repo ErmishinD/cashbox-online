@@ -2,20 +2,13 @@
 
 namespace App\Http\Requests\Api\Storage;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
-class CreateRequest extends FormRequest
+class CreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +18,21 @@ class CreateRequest extends FormRequest
     {
         return [
             'shop_id' => ['required'],
-            'name' => ['nullable']
+            'company_id' => ['required'],
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('storages')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->storage)
+            ],
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'name' => $this->name ?? 'Склад '. Auth::id() . '-' . Str::random(5),
+        ]);
     }
 }

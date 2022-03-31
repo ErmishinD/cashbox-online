@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'is_admin'], function() {
-    Route::get('/login-as/{user}', [AdminController::class, 'loginAs']);
-});
+require __DIR__ . '/admin.php';
 
-Route::get('login-from-mains', [AdminController::class, 'authorizeMainsUser']);
+Route::get('login-from-mains', [UserController::class, 'authorizeMainsUser']);
 
 Route::get('/', function () {
     return redirect(url('login'));

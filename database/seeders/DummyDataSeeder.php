@@ -434,6 +434,7 @@ class DummyDataSeeder extends Seeder
                         }
                         for ($i = 0; $i < random_int(1, 5); $i++) {
                             $product_purchase = ProductPurchase::create([
+                                'company_id' => $company_id,
                                 'storage_id' => $storage->id,
                                 'product_type_id' => $product_type->id,
                                 'quantity' => $quantity,
@@ -444,6 +445,7 @@ class DummyDataSeeder extends Seeder
 
                             // create record in cashbox
                             Cashbox::factory()->create([
+                                'company_id' => $company_id,
                                 'shop_id' => $shop->id,
                                 'product_purchase_id' => $product_purchase->id,
                                 'sell_product_id' => null,
@@ -466,6 +468,7 @@ class DummyDataSeeder extends Seeder
             $sell_products_were_sold = $allowed_sell_products->random(ceil($allowed_sell_products->count() / 3));
             foreach ($sell_products_were_sold as $sell_product) {
                 Cashbox::factory()->create([
+                    'company_id' => $company_id,
                     'shop_id' => $shop->id,
                     'sell_product_id' => $sell_product->id,
                     'transaction_type' => Cashbox::TRANSACTION_TYPES['in'],

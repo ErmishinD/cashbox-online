@@ -42,7 +42,7 @@ class CashboxRepository extends BaseRepository
             $payments->push($payment);
 
             // отнять нужное кол-во продуктов со склада
-            $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $data['shop_id'])->get()->pluck('id');
+            $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $data['shop_id'])->pluck('id');
 
             $product_type_ids = collect();
             foreach ($sell_product['product_types'] as $product_type) {
@@ -74,8 +74,27 @@ class CashboxRepository extends BaseRepository
 
     public function get_not_collected(): Collection
     {
-        $cashbox_transactions =  $this->model
-            ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
+        $cashbox_transactions = $this->model
+            ->select([
+                'shop_id', 'sell_product_id', 'product_purchase_id', 'transaction_type', 'payment_type', 'amount',
+                'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id', 'created_at'
+            ])
+            ->with([
+                'sell_product' => function ($query) {
+                    $query->withTrashed();
+                },
+                'product_purchase' => function ($query) {
+                    $query->with(['product_type' => function ($q) {
+                        $q->withTrashed();
+                    }]);
+                },
+                'operator' => function ($query) {
+                    $query->withTrashed();
+                },
+                'shop' => function ($query) {
+                    $query->withTrashed();
+                }
+            ])
             ->notCollected()
             ->get();
         return $cashbox_transactions;
@@ -102,7 +121,9 @@ class CashboxRepository extends BaseRepository
     public function get_collection_history(): Collection
     {
         return $this->model
-            ->with('collector')
+            ->with(['collector' => function ($query) {
+                $query->withTrashed();
+            }])
             ->collected()
             ->get()
             ->groupBy('collected_at');
@@ -111,7 +132,22 @@ class CashboxRepository extends BaseRepository
     public function get_payments_from_history($collected_at): Collection
     {
         return $this->model
-            ->with(['sell_product', 'product_purchase.product_type', 'operator', 'shop'])
+            ->with([
+                'sell_product' => function ($query) {
+                    $query->withTrashed();
+                },
+                'product_purchase' => function ($query) {
+                    $query->with(['product_type' => function ($q) {
+                        $q->withTrashed();
+                    }]);
+                },
+                'operator' => function ($query) {
+                    $query->withTrashed();
+                },
+                'shop' => function ($query) {
+                    $query->withTrashed();
+                }
+            ])
             ->collected($collected_at)
             ->get();
     }

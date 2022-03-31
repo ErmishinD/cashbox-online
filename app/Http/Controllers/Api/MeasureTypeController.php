@@ -11,6 +11,7 @@ use App\Http\Resources\Api\MeasureType\DefaultResource;
 use App\Http\Resources\Api\MeasureType\IndexResource;
 use App\Models\MeasureType;
 use App\Repositories\MeasureTypeRepository;
+use App\Services\MeasureTypeService;
 use Illuminate\Http\JsonResponse;
 
 class MeasureTypeController extends Controller
@@ -41,7 +42,7 @@ class MeasureTypeController extends Controller
 
         $data = $request->validated();
         $measure_type = $this->measure_type->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($measure_type)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($measure_type)], 201);
     }
 
     public function show(MeasureType $measure_type): JsonResponse
@@ -57,15 +58,19 @@ class MeasureTypeController extends Controller
 
         $data = $request->validated();
         $measure_type->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($measure_type)]);
+        return response()->json(['success' => true, 'data' => new DefaultResource($measure_type)], 202);
     }
 
     public function destroy(MeasureType $measure_type): JsonResponse
     {
         $this->authorize('MeasureType_delete');
-
-        $measure_type->delete();
-        return response()->json(['success' => true]);
+        if (!MeasureTypeService::is_main_for_any_product_type($measure_type)) {
+            $measure_type->delete();
+            return response()->json(['success' => true], 202);
+        }
+        return response()->json([
+            'success' => false, 'message' => 'This measure type is main for at least one product type!'
+        ], 409);
     }
 
     public function getByBaseMeasureType(GetByBaseMeasureTypeRequest $request): JsonResponse

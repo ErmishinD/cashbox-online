@@ -64,7 +64,7 @@ class ProductTypeController extends Controller
 
         $product_type = $this->product_type->create($data);
 
-        return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 201);
     }
 
     public function show(ProductType $product_type): JsonResponse
@@ -83,24 +83,18 @@ class ProductTypeController extends Controller
 
         $product_type = $this->product_type->update($product_type, $data);
 
-        return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
+        return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 202);
     }
 
     public function destroy(ProductType $product_type): JsonResponse
     {
         $this->authorize('ProductType_delete');
 
-        $product_type->delete();
-        return response()->json(['success' => true]);
-    }
-
-    public function remove_measure_types(RemoveMeasureTypesRequest $request): JsonResponse
-    {
-        $this->authorize('ProductType_edit');
-
-        $data = $request->validated();
-        $this->product_type->remove_measure_types($data);
-        return response()->json(['success' => true]);
+        if (!ProductTypeService::is_part_of_sell_products($product_type)) {
+            $product_type->delete();
+            return response()->json(['success' => true], 202);
+        }
+        return response()->json(['success' => false, 'message' => 'This product type is a part of sell products!'], 409);
     }
 
     public function getForPurchase(PaginateRequest $request, ProductTypeFilter $filters): JsonResponse

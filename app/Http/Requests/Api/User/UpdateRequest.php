@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Api\User;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
+use App\Models\Role;
+use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends TenantRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +26,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['nullable'],
-            'username' => ['nullable'],
-            'email' => ['nullable', 'email'],
+            'name' => ['required'],
+            'username' => ['required', Rule::unique('users')->ignore($this->user)],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)],
             'password' => ['nullable'],
-            'roles' => ['nullable', 'array']
+            'roles' => ['nullable', 'array'],
+            'roles.*' => [Rule::in(Role::pluck('id'))]
         ];
     }
 }

@@ -2,21 +2,13 @@
 
 namespace App\Http\Requests\Api\Cashbox;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
+use App\Models\Cashbox;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
-class MassCreateRequest extends FormRequest
+class MassCreateRequest extends TenantRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,19 +17,21 @@ class MassCreateRequest extends FormRequest
     public function rules()
     {
         return [
+            'company_id' => ['required'],
             'shop_id' => ['required'],
-            'transaction_type' => ['required'],
-            'payment_type' => ['required'],
-            'operator_id' => ['required', 'exists:users,id'],
+            'transaction_type' => ['required', Rule::in(Cashbox::TRANSACTION_TYPES)],
+            'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
+            'operator_id' => ['required'],
             'sell_products' => ['required', 'array'],
         ];
     }
 
     public function prepareForValidation()
     {
+        parent::prepareForValidation();
         $this->merge([
-            'operator_id' => $this->operator_id ?? Auth::user()->id,
-            'transaction_type' => $this->transaction_type ?? '_in',
+            'operator_id' => Auth::id(),
+            'transaction_type' => $this->transaction_type ?? Cashbox::TRANSACTION_TYPES['in'],
         ]);
     }
 }
