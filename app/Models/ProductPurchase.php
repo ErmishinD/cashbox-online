@@ -32,4 +32,8 @@ class ProductPurchase extends Model
         return $this->belongsTo(ProductType::class);
     }
 
+    public function storage() {
+        return $this->belongsTo(Storage::class);
+    }
+
 }

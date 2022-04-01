@@ -11,6 +11,7 @@ use App\Http\Requests\Api\ProductPurchase\MassCreateRequest;
 use App\Http\Requests\Api\ProductPurchase\UpdateRequest;
 use App\Http\Resources\Api\ProductPurchase\DashboardCollection;
 use App\Http\Resources\Api\ProductPurchase\DefaultResource;
+use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
 use App\Models\ProductPurchase;
 use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\JsonResponse;
@@ -45,7 +46,7 @@ class ProductPurchaseController extends Controller
         return response()->json([
             'success' => true,
             'pagination' => [
-                'data' => DefaultResource::collection($product_purchases),
+                'data' => WithProductTypeResource::collection($product_purchases),
                 'current_page' => $product_purchases->currentPage(),
                 'last_page' => $product_purchases->lastPage(),
                 'per_page' => $product_purchases->perPage(),
@@ -92,8 +93,13 @@ class ProductPurchaseController extends Controller
     {
         $this->authorize('ProductPurchase_delete');
 
-        $product_purchase->delete();
-        return response()->json(['success' => true], 202);
+        if ($product_purchase->quantity == $product_purchase->current_quantity) {
+            $product_purchase->delete();
+            return response()->json(['success' => true], 202);
+        }
+        return response()->json([
+            'success' => false, 'message' => 'Someone has already used products from this purchase!'
+        ], 409);
     }
 
     public function get_for_dashboard(DashboardRequest $request): JsonResponse
