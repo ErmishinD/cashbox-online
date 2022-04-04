@@ -23,8 +23,8 @@ class InStorageResource extends JsonResource
             'type' => $this->type,
             'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty() ? $this->media->where('collection_name', 'photo')->first()->getUrl() : asset('images/default_card_img.png'),
             'main_measure_type' => new ByProductTypeResource($this->main_measure_type),
-            'current_quantity' => $this->product_purchases->sum('quantity'),
-            'current_quantity_in_main_measure_type' => $this->product_purchases->sum('quantity') / $this->main_measure_type->quantity,
+            'current_quantity' => $this->product_purchases->sum('current_quantity'),
+            'current_quantity_in_main_measure_type' => $this->product_purchases->sum('current_quantity') / $this->main_measure_type->quantity,
         ];
     }
 }

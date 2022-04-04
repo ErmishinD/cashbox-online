@@ -28,7 +28,7 @@ class StorageRepository extends BaseRepository
 
         $product_types = ProductType::query()
             ->with(['media', 'main_measure_type', 'product_purchases' => function ($query) use ($id) {
-                return $query->select('id', 'product_type_id', 'storage_id', 'quantity')->where('storage_id', $id);
+                return $query->select('id', 'product_type_id', 'storage_id', 'quantity', 'current_quantity')->where('storage_id', $id);
             }])
             ->get();
 

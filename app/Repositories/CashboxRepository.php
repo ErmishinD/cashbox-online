@@ -30,6 +30,14 @@ class CashboxRepository extends BaseRepository
     {
         $payments = collect();
         $parent_id = null;
+
+        $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $data['shop_id'])->pluck('id');
+        $product_purchases = ProductPurchase::query()
+            ->whereIn('storage_id', $storage_ids)
+            ->where('current_quantity', '>', 0)
+            ->orderBy('created_at')
+            ->get();
+
         foreach ($data['sell_products'] as $sell_product) {
             if ($payments->isNotEmpty()) {
                 $parent_id = $payments->first()->id;
@@ -42,18 +50,6 @@ class CashboxRepository extends BaseRepository
             $payments->push($payment);
 
             // отнять нужное кол-во продуктов со склада
-            $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $data['shop_id'])->pluck('id');
-
-            $product_type_ids = collect();
-            foreach ($sell_product['product_types'] as $product_type) {
-                $product_type_ids->push($product_type['id']);
-            }
-            $product_purchases = ProductPurchase::whereIn('storage_id', $storage_ids)
-                ->whereIn('product_type_id', $product_type_ids)
-                ->where('current_quantity', '>', 0)
-                ->orderBy('created_at')
-                ->get();
-
             foreach ($sell_product['product_types'] as $product_type) {
                 foreach ($product_purchases->where('product_type_id', $product_type['id']) as $product_purchase) {
                     if ($product_purchase->current_quantity >= $product_type['quantity']) {
