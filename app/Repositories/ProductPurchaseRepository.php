@@ -92,7 +92,7 @@ class ProductPurchaseRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         $result = $this->model
-            ->with('product_type.main_measure_type')
+            ->with(['product_type.main_measure_type', 'storage'])
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
         return $result;
