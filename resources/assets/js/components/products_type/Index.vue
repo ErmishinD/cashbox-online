@@ -42,6 +42,8 @@
             <router-link v-if="$can('ProductType_edit')" :to="{name: 'products_type_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
             <a v-if="$can('ProductType_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
           </span>
+
+          <span v-if="props.column.field == 'type'">{{props.row.type == '_imperishable' ? $t('Непортящийся') : $t('Портящийся')}}</span>
         </template>
     </vue-good-table>
   </div>
@@ -80,7 +82,7 @@ export default {
           field: 'name',
           filterOptions: {
             enabled: true, // enable filter for this column
-            placeholder: 'Filter This Thing', // placeholder for filter input
+            placeholder: this.$t('Фильтрация'), // placeholder for filter input
             trigger: 'enter', //only trigger on enter not on keyup
           },
         },
@@ -89,14 +91,9 @@ export default {
           field: 'type',
           filterOptions: {
               enabled: true,
-              placeholder: 'Filter This Thing',
-              filterDropdownItems: ['_perishable', '_imperishable'],
+              placeholder: this.$t('Фильтрация'),
+              filterDropdownItems: [this.$t('Портящийся'), this.$t('Непортящийся')],
           },
-        },
-
-        {
-          label: this.$t('Баркод'),
-          field: 'barcode',
         },
         {
           label: this.$t('Действия'),
@@ -156,6 +153,8 @@ export default {
 
       onSortChange(params) {
   	    let data = Object.assign({}, params)[0]
+
+          
           this.updateParams({
               sort: [{
                   type: data.type,
@@ -167,6 +166,13 @@ export default {
       },
 
       onColumnFilter(params) {
+        console.log(params.columnFilters.type)
+        if(params.columnFilters.type == this.$t('Портящийся')){
+          params.columnFilters.type = '_perishable'
+        }
+        else if(params.columnFilters.type == this.$t('Непортящийся')){
+          params.columnFilters.type = '_imperishable'
+        }
           this.updateParams(params);
           this.loadItems();
       },
