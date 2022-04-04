@@ -31225,7 +31225,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("span", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Основная ед. изм.')) + ": " + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($data.product.main_measure_type.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Тип')) + ": " + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($data.product.type == '_imperishable' ? _ctx.$t('Портящийся') : _ctx.$t('Непортящийся')), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Тип')) + ": " + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)($data.product.type == '_imperishable' ? _ctx.$t('Непортящийся') : _ctx.$t('Портящийся')), 1
   /* TEXT */
   )]), $data.product.measure_types.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Доступные ед. изм.')) + ": ", 1
   /* TEXT */

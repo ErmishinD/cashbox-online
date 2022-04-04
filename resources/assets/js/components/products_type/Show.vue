@@ -14,7 +14,7 @@
 				</span>
 					
 				<span class="product_card_CRUD__content_item">
-					{{$t('Тип')}}: {{product.type == '_imperishable' ? $t('Портящийся') : $t('Непортящийся')}}
+					{{$t('Тип')}}: {{product.type == '_imperishable' ? $t('Непортящийся') : $t('Портящийся')}}
 				</span>
 			</div>
 			<div class="product_card_CRUD__content_item" v-if="product.measure_types.length">
