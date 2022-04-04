@@ -154,8 +154,8 @@ export default{
     		this.updateData = Object.assign({}, this.formData)
     		let photo = document.querySelector("input[type='file']").getAttribute('value')
     		if(photo){
-    			this.formData.photo = photo
-    		}    		
+    			this.updateData.photo = photo
+    		} 		
     		this.updateData.measure_types = []
     		this.selected_measure_types.forEach(item => {
     			this.updateData.measure_types.push(item.id)

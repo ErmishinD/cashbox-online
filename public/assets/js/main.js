@@ -26609,7 +26609,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_7___default()((filepond_plu
       var photo = document.querySelector("input[type='file']").getAttribute('value');
 
       if (photo) {
-        this.formData.photo = photo;
+        this.updateData.photo = photo;
       }
 
       this.updateData.measure_types = [];
