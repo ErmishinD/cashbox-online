@@ -338,7 +338,7 @@ export default {
           this.collection_ids.push(item.id)
         }
       },this);
-      console.log(this.collection_ids)
+      console.log(this.rows)
       this.balance.sum.cash = parseFloat(parseFloat(this.balance.income.cash) - parseFloat(this.balance.outcome.cash)).toFixed(2)
       this.balance.sum.card = parseFloat(parseFloat(this.balance.income.card) - parseFloat(this.balance.outcome.card)).toFixed(2)
     },

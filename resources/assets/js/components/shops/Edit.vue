@@ -1,6 +1,6 @@
 <template>
 	<notifications position="bottom right" />
-	<h1 class="tac">{{ $t('Редактирование магазина') }}</h1>
+	<h1 class="tac"><button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>{{ $t('Редактирование магазина') }}</h1>
 	<form class="tac form" @submit="update_shop">
 		<div style="width: 100%;">
 			<div class="form_item">

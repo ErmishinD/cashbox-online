@@ -1,5 +1,6 @@
 <template>
 	<div class="tac content_title">
+		<button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>
 		{{shop.name}}
 		<small><router-link v-if="this.$can('Shop_edit')" :to="{name: 'shops_edit', params: {ids: shop.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>

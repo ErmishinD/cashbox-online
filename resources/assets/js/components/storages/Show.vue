@@ -1,6 +1,7 @@
 <template>
 	<notifications position="bottom right" />
 	<div class="tac content_title">
+		<button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>
 		{{storage.name}}
 		<small><router-link v-if="this.$can('Storage_edit')" :to="{name: 'storages_edit', params: {ids: storage.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>

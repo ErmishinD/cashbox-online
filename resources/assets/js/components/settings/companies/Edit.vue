@@ -1,7 +1,7 @@
 <template>
 	<notifications position="bottom right" />
 	<h1 v-if="formData.name" class="tac">{{formData.name}}</h1>
-	<h1 v-else class="tac">{{ $t('Компания') }}</h1>
+	<h1 v-else class="tac"><button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>{{ $t('Компания') }}</h1>
 	<form class="tac" @submit="update_company_info">
 		<div class="edit_info">
 			<label for="name">{{ $t('Название') }}*:</label>
