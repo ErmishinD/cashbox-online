@@ -18,7 +18,11 @@
       }"
       :columns="columns"
       :rows="rows"
-      :line-numbers="true">
+      :line-numbers="true"
+      :group-options="{
+          enabled: true,
+          collapsable: true
+        }">
       <template #table-row="props">
 
         </template>
@@ -52,8 +56,8 @@ export default {
       },
       columns: [
         {
-          label: "Name",
-          field: "name",
+          label: this.$t("Товар"),
+          field: "product_type.name",
         },
       ],
       rows: [],

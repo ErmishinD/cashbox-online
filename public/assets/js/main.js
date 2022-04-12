@@ -27276,8 +27276,8 @@ __webpack_require__.r(__webpack_exports__);
         perPage: 10
       },
       columns: [{
-        label: "Name",
-        field: "name"
+        label: this.$t("Товар"),
+        field: "product_type.name"
       }],
       rows: []
     };
@@ -32426,7 +32426,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     },
     columns: $data.columns,
     rows: $data.rows,
-    "line-numbers": true
+    "line-numbers": true,
+    "group-options": {
+      enabled: true,
+      collapsable: true
+    }
   }, {
     "table-row": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (props) {
       return [];
