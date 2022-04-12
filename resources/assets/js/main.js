@@ -44,6 +44,7 @@ import ProductsForSaleShow from './components/products_for_sale/Show'
 
 /* import purchases */
 import PurchasesIndex from './components/purchases/Index'
+import PurchasesCreate from './components/purchases/Create'
 
 /* import reports */
 	/* import cashbox */
@@ -97,6 +98,11 @@ import SettingsPermissions from './components/settings/Permissions'
 	import SettingsCompaniesCreate from './components/settings/companies/Create'
 	import SettingsCompaniesEdit from './components/settings/companies/Edit'
 	import SettingsCompaniesShow from './components/settings/companies/Show'
+
+	/* import categories */
+	import SettingsCategoriesIndex from './components/settings/categories/Index'
+	import SettingsCategoriesCreate from './components/settings/categories/Create'
+	import SettingsCategoriesEdit from './components/settings/categories/Edit'
 
 /* import 404 */
 import PageNotFound from './components/404'
@@ -179,6 +185,12 @@ const router = createRouter({
 			path: '/purchases',
 			name: 'purchases_index',
 			component: PurchasesIndex,
+			props: true
+		},
+		{
+			path: '/purchases/create',
+			name: 'purchases_create',
+			component: PurchasesCreate,
 			props: true
 		},
 		{
@@ -350,6 +362,22 @@ const router = createRouter({
 			path: '/settings/companies/edit/:id',
 			name: 'settings_companies_edit',
 			component: SettingsCompaniesEdit,
+			props: true
+		},
+		{
+			path: '/settings/categories',
+			name: 'settings_categories_index',
+			component: SettingsCategoriesIndex
+		},
+		{
+			path: '/settings/categories/create',
+			name: 'settings_categories_create',
+			component: SettingsCategoriesCreate
+		},
+		{
+			path: '/settings/categories/edit/:id',
+			name: 'settings_categories_edit',
+			component: SettingsCategoriesEdit,
 			props: true
 		},
 		{

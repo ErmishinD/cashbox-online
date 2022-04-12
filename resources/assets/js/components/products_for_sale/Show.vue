@@ -2,7 +2,7 @@
 	<div class="tac content_title">
 		<button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>
 		{{formData.name}}
-		<small><router-link v-if="$can('SellProduct_edit')" :to="{name: 'products_type_edit', params: {ids: formData.id}}">{{ $t('Редактировать') }}</router-link></small>
+		<small><router-link v-if="$can('SellProduct_edit')" :to="{name: 'products_for_sale_edit', params: {ids: formData.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
 	<form class="tac form">
 		<div class="form_content">
@@ -15,7 +15,7 @@
 				<label class="tal" for="price">{{ $t('Цена') }}:</label>
 				<span >{{formData.price}}</span>
 			</div>
-			<span class="tac">{{$t('Состав')}}:</span>
+			<span v-if="selected_contains.length" class="tac">{{$t('Состав')}}:</span>
 			<div class="form_item" v-for="contain in selected_contains">
 				<span style="margin-right: 10px;">{{contain.name}}</span>
 				<span >{{contain.quantity_in_main_measure_type}} {{contain.main_measure_type.name}}</span>
@@ -58,6 +58,7 @@ export default{
 				item.quantity = item.main_measure_type.quantity
 				this.selected_contains.push(item)
 				this.default_selected_contains.push(item)
+			})
 				loader.hide()
 			}).catch(function(error){
             if(error.response.status == 403){
@@ -66,7 +67,6 @@ export default{
             }
         })
 			console.log(this.selected_contains)
-		})
 		
 		
 		

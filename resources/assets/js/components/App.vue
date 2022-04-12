@@ -191,7 +191,7 @@
 
 		      /* end reports */
 
-		      if(this.$can('ProductPurchase_create')){
+		      if(this.$can('ProductPurchase_access')){
 	          	sidebar_data.push({
 	            href: '/purchases',
 	            title: this.$t('Закупки'),
@@ -252,6 +252,14 @@
                 href: '/settings/measures',
                 title: this.$t('Единицы измерения'),
                 icon: 'fas fa-weight-hanging',
+               })
+             }
+
+             if(this.$can('Category_access')){
+              sidebar_settings_child.push({
+                href: '/settings/categories',
+                title: this.$t('Категории'),
+                icon: 'fas fa-list-alt',
                })
              }
 

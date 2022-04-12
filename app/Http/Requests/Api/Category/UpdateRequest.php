@@ -29,7 +29,7 @@ class UpdateRequest extends FormRequest
                 'required',
                 Rule::unique('categories')->where(function ($query) {
                     return $query->where('company_id', session('company_id'));
-                })->ignore($this->category)
+                })->ignore($this->id)
             ]
         ];
     }

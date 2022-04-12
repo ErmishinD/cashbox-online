@@ -8,8 +8,10 @@
 				<input type="text" required class="form-control" name="name" v-model="formData.name">
 			</div>
 			<div class="form_item">
-				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
-				<input type="number" min="1" max="999999.99" step="any" required class="form-control" name="price" v-model="formData.price">
+				<label class="tal" for="type">{{ $t('Категория') }}:</label>
+				<select class="form-control" name="category" v-model="formData.category_id">
+					<option v-for="category in categories" :value="category.id">{{category.name}}</option>
+				</select>
 			</div>
 			<div class="form_item">
 				<VueMultiselect  
@@ -43,6 +45,10 @@
 			    accept="image/png, image/jpeg, image/gif"
 			    :required="false"
 			/>	
+			<div class="form_item">
+				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
+				<input type="number" min="1" max="999999.99" step="any" required class="form-control" name="price" v-model="formData.price">
+			</div>
 			
 			<button :disabled="!selected_contains.length" style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
@@ -100,6 +106,7 @@ export default{
 			formData: {
 				company_id: this.$userId,
 			},
+			categories: {},
 			contains_for_multiselect: [],
 			selected_contains: [],
 			value: null,
@@ -117,6 +124,16 @@ export default{
 		this.axios.get('/api/product_types/get_for_select').then((response) => {
 			console.log(response.data.data)
 			this.contains_for_multiselect = response.data.data
+			loader.hide()
+		}).catch(function(error){
+            if(error.response.status == 403){
+            	loader.hide()
+                this.$router.push({ name: '403' })
+            }
+        })
+
+        this.axios.get('/api/categories').then((response) => {
+			this.categories = response.data.data
 			loader.hide()
 		}).catch(function(error){
             if(error.response.status == 403){
@@ -157,6 +174,13 @@ export default{
     			});
     			loader.hide()
     			this.$router.push({ name: 'products_for_sale_show', params: {id: response.data.data.id}  })
+    		}).catch(err => {
+    			if(err.response.data.errors.name){
+    				this.$notify({
+	    				text: this.$t('Данное название уже существует!'),
+	    				type: 'error',
+	    			});
+    			}
     		})
     	},
     },

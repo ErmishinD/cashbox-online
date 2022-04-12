@@ -84,6 +84,10 @@ export default {
           field: 'price',
         },
         {
+          label: this.$t('Категория'),
+          field: 'category.name',
+        },
+        {
           label: this.$t('Действия'),
           field: 'actions',
           sortable: false,

@@ -15,6 +15,12 @@
 				</select>
 			</div>
 			<div class="form_item">
+				<label class="tal" for="type">{{ $t('Категория') }}:</label>
+				<select class="form-control" name="category" v-model="formData.category_id">
+					<option v-for="category in categories" :value="category.id">{{category.name}}</option>
+				</select>
+			</div>
+			<div class="form_item">
 				<label class="tal" for="main_measure_type_id">{{ $t('Основная ед. изм.') }}*:</label>
 				<select @change="MeasureTypesForSetMeasureTypes" style="padding: 0;" class="form-control" name="main_measure_type_id" v-model="formData.main_measure_type_id">
 					<optgroup v-for="(measure_types_groups, group_name) in measure_types" :label="group_name == '_volume' ? $t('Обьем') : (group_name == '_weight' ? $t('Вес') : $t('Количество'))">
@@ -113,6 +119,7 @@ export default{
 				company_id: this.$userId,
 			},
 			measure_types: {},
+			categories: {},
 			measure_types_by_main_select: [],
 			measure_types_id_by_main_select: [],
 			measure_types_name_by_main_select: [],
@@ -129,10 +136,7 @@ export default{
 		        canCancel: false,
 		        loader: 'dots',});
 		this.axios.get('/api/measure_types/get_grouped_by_base').then((response) => {
-			console.log(response.data.data)
 			this.measure_types = response.data.data
-			// document.getElementsByClassName('filepond--credits').style.opacity = 0
-			console.log(this.measure_types)
 			loader.hide()
 		}).catch(function(error){
             if(error.response.status == 403){
@@ -141,6 +145,15 @@ export default{
             }
         })
 		
+		this.axios.get('/api/categories').then((response) => {
+			this.categories = response.data.data
+			loader.hide()
+		}).catch(function(error){
+            if(error.response.status == 403){
+            	loader.hide()
+                this.$router.push({ name: '403' })
+            }
+        })
 		
 
 	},
@@ -194,6 +207,13 @@ export default{
     			});
     			loader.hide()
     			this.$router.push({ name: 'products_type_show', params: {id: response.data.data.id}  })
+    		}).catch(err => {
+    			if(err.response.data.errors.name){
+    				this.$notify({
+	    				text: this.$t('Данное название уже существует!'),
+	    				type: 'error',
+	    			});
+    			}
     		})
     	},
     },

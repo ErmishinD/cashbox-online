@@ -8,9 +8,11 @@
 				<input type="text" required class="form-control" name="name" v-model="formData.name">
 			</div>
 			<div class="form_item">
-				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
-				<input type="number" min="1" max="999999.99" step="any" required class="form-control" name="price" v-model="formData.price">
-			</div>
+                <label class="tal" for="type">{{ $t('Категория') }}:</label>
+                <select class="form-control" name="category" v-model="formData.category_id">
+                    <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+                </select>
+            </div>
 			<div class="form_item">
 				<VueMultiselect  
 					v-model="default_selected_contains"
@@ -43,6 +45,10 @@
 			    accept="image/png, image/jpeg, image/gif"
 			    :required="false"
 			/>	
+			<div class="form_item">
+				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
+				<input type="number" min="1" max="999999.99" step="any" required class="form-control" name="price" v-model="formData.price">
+			</div>
 			
 			<button :disabled="!selected_contains.length" style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
@@ -101,6 +107,7 @@ export default{
 				company_id: this.$userId,
 			},
 			productData: {},
+			categories: {},
 			contains_for_multiselect: [],
 			default_selected_contains: [],
 			selected_contains: [],
@@ -137,7 +144,16 @@ export default{
 			})
 		})
 		
-		
+		this.axios.get('/api/categories').then((response) => {
+                this.categories = response.data.data
+                this.formData.category_id = this.formData.category.id
+                loader.hide()
+            }).catch(function(error){
+                if(error.response.status == 403){
+                    loader.hide()
+                    this.$router.push({ name: '403' })
+                }
+            })
 		
     },
     methods:{
@@ -175,6 +191,13 @@ export default{
     				type: 'success',
     			});
     			loader.hide()
+    		}).catch(err => {
+    			if(err.response.data.errors.name){
+    				this.$notify({
+	    				text: this.$t('Данное название уже существует!'),
+	    				type: 'error',
+	    			});
+    			}
     		})
     	},
     },
