@@ -87,6 +87,7 @@ class ProductPurchaseControllerTest extends TestCase
 
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
+        $this->admin->update(['company_id' => $company->id]);
     }
 
     public function test_admin_can_get_all_product_purchases()
@@ -148,7 +149,9 @@ class ProductPurchaseControllerTest extends TestCase
 
     public function test_admin_can_get_product_purchase()
     {
-        $product_purchase = ProductPurchase::factory()->create(['quantity' => 111, 'cost' => 333]);
+        $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $storage = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
+        $product_purchase = ProductPurchase::factory()->create(['storage_id' => $storage->id, 'quantity' => 111, 'cost' => 333]);
         $response = $this->actingAs($this->admin)->get($this->base_route . $product_purchase->id);
         $response
             ->assertStatus(200)

@@ -24,6 +24,16 @@ class ProductTypeFilter extends QueryFilter
         $this->builder->where('base_measure_type_id', $value);
     }
 
+    public function category_id($value)
+    {
+        if (!$value) {
+            $this->builder->whereNull('category_id');
+            return;
+        }
+
+        $this->builder->where('category_id', $value);
+    }
+
     public function sort_by_name($direction)
     {
         $this->builder->orderBy('name', $direction);

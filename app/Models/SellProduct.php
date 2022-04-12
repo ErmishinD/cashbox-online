@@ -26,7 +26,7 @@ class SellProduct extends Model implements HasMedia
     use Filterable, BelongsToCompany;
 
     protected $fillable = [
-        'company_id', 'name', 'price', 'has_discount', 'photo'
+        'company_id', 'name', 'price', 'has_discount', 'photo', 'category_id'
     ];
 
     public function product_types() {
@@ -38,6 +38,11 @@ class SellProduct extends Model implements HasMedia
     public function cashbox()
     {
         return $this->hasMany(Cashbox::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function registerMediaCollections(): void

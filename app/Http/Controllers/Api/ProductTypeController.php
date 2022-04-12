@@ -64,6 +64,10 @@ class ProductTypeController extends Controller
 
         $product_type = $this->product_type->create($data);
 
+        $product_type->load([
+            'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
+        ]);
+
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 201);
     }
 
@@ -71,7 +75,9 @@ class ProductTypeController extends Controller
     {
         $this->authorize('ProductType_create');
 
-        $product_type->load(['measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type']);
+        $product_type->load([
+            'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
+        ]);
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)]);
     }
 
@@ -82,6 +88,10 @@ class ProductTypeController extends Controller
         $data = $request->validated();
 
         $product_type = $this->product_type->update($product_type, $data);
+
+        $product_type->load([
+            'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
+        ]);
 
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 202);
     }

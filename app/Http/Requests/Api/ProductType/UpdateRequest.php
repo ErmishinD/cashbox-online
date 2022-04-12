@@ -26,7 +26,8 @@ class UpdateRequest extends TenantRequest
             'photo' => ['nullable'],
             'main_measure_type_id' => ['required', 'exists:measure_types,id'],
             'barcode' => ['nullable'],
-            'measure_types' => ['nullable', 'array']
+            'measure_types' => ['nullable', 'array'],
+            'category_id' => ['nullable']
         ];
     }
 }

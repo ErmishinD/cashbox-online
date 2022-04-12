@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BaseMeasureTypeController;
 use App\Http\Controllers\Api\CashboxController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\FileUploadController;
 use App\Http\Controllers\Api\MeasureTypeController;
@@ -80,6 +81,14 @@ Route::middleware('auth')->group(function () {
      * User
      */
     Route::apiResource('users', UserController::class);
+
+    /*
+     * Category
+     */
+    Route::prefix('categories')->group(function () {
+       Route::get('get_for_select', [CategoryController::class, 'get_for_select']);
+    });
+    Route::apiResource('categories', CategoryController::class);
 
     /*
      * ProductType

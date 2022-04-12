@@ -92,16 +92,10 @@ class ProductTypeRepository extends BaseRepository
         return $product_type;
     }
 
-    public function remove_measure_types($data): void
-    {
-        $product_type = $this->model->find($data['product_type_id']);
-        $product_type->measure_types()->detach($data['measure_types']);
-    }
-
     public function get_paginated($paginate_data, $filters)
     {
         return $this->model
-            ->with('media')
+            ->with('media', 'category')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
     }

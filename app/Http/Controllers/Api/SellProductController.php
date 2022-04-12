@@ -64,6 +64,10 @@ class SellProductController extends Controller
 
         $sell_product = $this->sell_product->create($data);
 
+        $sell_product->load(['category', 'media', 'product_types' => function($query) {
+            $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
+        }]);
+
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)], 201);
     }
 
@@ -71,7 +75,7 @@ class SellProductController extends Controller
     {
         $this->authorize('SellProduct_show');
 
-        $sell_product->load(['media', 'product_types' => function($query) {
+        $sell_product->load(['category', 'media', 'product_types' => function($query) {
             $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
         }]);
         foreach ($sell_product->product_types as $product_type) {
@@ -87,6 +91,11 @@ class SellProductController extends Controller
         $data = $request->validated();
 
         $sell_product = $this->sell_product->update($sell_product, $data);
+
+        $sell_product->load(['category', 'media', 'product_types' => function($query) {
+            $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
+        }]);
+
         return response()->json(['success' => true, 'data' => new EditResource($sell_product)], 202);
     }
 

@@ -30,7 +30,7 @@ class ProductType extends Model implements HasMedia
     public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];
 
     protected $fillable = [
-        'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'main_measure_type_id', 'barcode',
+        'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'main_measure_type_id', 'barcode', 'category_id'
     ];
 
     public function measure_types()
@@ -59,6 +59,11 @@ class ProductType extends Model implements HasMedia
     public function product_purchases()
     {
         return $this->hasMany(ProductPurchase::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function registerMediaCollections(): void

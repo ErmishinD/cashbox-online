@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\BaseMeasureType;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductType;
@@ -302,6 +303,27 @@ class SellProductControllerTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'pagination.data');
+    }
+
+    public function test_can_filter_by_category_id()
+    {
+        $company = Company::factory()->create();
+        $category1 = Category::factory()->create(['company_id' => $company->id]);
+        $category2 = Category::factory()->create(['company_id' => $company->id]);
+
+        SellProduct::factory()->create(['company_id' => $company->id, 'category_id' => $category1->id]);
+        SellProduct::factory()->create(['company_id' => $company->id, 'category_id' => $category1->id]);
+        SellProduct::factory()->create(['company_id' => $company->id, 'category_id' => $category2->id]);
+
+        $this->admin->company_id = $company->id;
+        $this->admin->save();
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
+            'columnFilters' => ['category_id' => $category2->id]
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(1, 'pagination.data');
     }
 
     public function test_can_sort_by_name()

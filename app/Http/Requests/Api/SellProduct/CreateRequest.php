@@ -26,7 +26,8 @@ class CreateRequest extends TenantRequest
             'has_discount' => ['nullable', 'boolean'],
             'product_types' => ['nullable', 'array'],
             'product_types.*.quantity' => ['numeric', 'min:0'],
-            'photo' => ['nullable']
+            'photo' => ['nullable'],
+            'category_id' => ['nullable']
         ];
     }
 }

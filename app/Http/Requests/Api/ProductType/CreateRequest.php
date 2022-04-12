@@ -28,7 +28,8 @@ class CreateRequest extends TenantRequest
             'base_measure_type_id' => ['required', 'exists:base_measure_types,id'],
             'main_measure_type_id' => ['required', 'exists:measure_types,id'],
             'barcode' => ['nullable'],
-            'measure_types' => ['nullable', 'array']
+            'measure_types' => ['nullable', 'array'],
+            'category_id' => ['nullable']
         ];
     }
 }

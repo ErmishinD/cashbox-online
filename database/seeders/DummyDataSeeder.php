@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Cashbox;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
@@ -337,10 +338,11 @@ class DummyDataSeeder extends Seeder
             $companies->push($company);
         }
 
-        // create roles
+        // create roles and categories
         $role_repository = app(RoleRepository::class);
         foreach ($companies as $company) {
             $role_repository->createDefaultCompanyRoles($company->id);
+            Category::factory()->count(5)->create(['company_id' => $company->id]);
         }
 
         // create users
