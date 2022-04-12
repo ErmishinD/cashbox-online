@@ -27288,6 +27288,9 @@ __webpack_require__.r(__webpack_exports__);
         label: this.$t("Стоимость"),
         field: 'cost'
       }, {
+        label: this.$t("Срок годности"),
+        field: 'expiration_date'
+      }, {
         label: this.$t("Склад"),
         field: 'storage_id.name'
       }, {
@@ -27484,8 +27487,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var core_js_modules_es_number_to_fixed_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.number.to-fixed.js */ "./node_modules/core-js/modules/es.number.to-fixed.js");
 /* harmony import */ var core_js_modules_es_number_to_fixed_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_to_fixed_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! gitart-vue-dialog */ "./node_modules/gitart-vue-dialog/dist/index.mjs");
-/* harmony import */ var gitart_vue_dialog_dist_style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gitart-vue-dialog/dist/style.css */ "./node_modules/gitart-vue-dialog/dist/style.css");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gitart-vue-dialog */ "./node_modules/gitart-vue-dialog/dist/index.mjs");
+/* harmony import */ var gitart_vue_dialog_dist_style_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! gitart-vue-dialog/dist/style.css */ "./node_modules/gitart-vue-dialog/dist/style.css");
+
 
 
 
@@ -27496,11 +27502,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    GDialog: gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_6__.GDialog
+    GDialog: gitart_vue_dialog__WEBPACK_IMPORTED_MODULE_7__.GDialog
   },
   data: function data() {
     return {
       products: null,
+      operators: [],
       del_modal_show: false,
       add_modal_show: false,
       current_id: null,
@@ -27529,7 +27536,12 @@ __webpack_require__.r(__webpack_exports__);
         field: 'amount'
       }, {
         label: this.$t('Оператор'),
-        field: 'operator.name'
+        field: 'operator.name',
+        filterOptions: {
+          enabled: true,
+          placeholder: this.$t('Выбрать оператора'),
+          filterDropdownItems: []
+        }
       }, {
         label: this.$t('Тип оплаты'),
         field: 'payment_type'
@@ -27668,6 +27680,25 @@ __webpack_require__.r(__webpack_exports__);
       this.balance.sum.cash = parseFloat(parseFloat(this.balance.income.cash) - parseFloat(this.balance.outcome.cash)).toFixed(2);
       this.balance.sum.card = parseFloat(parseFloat(this.balance.income.card) - parseFloat(this.balance.outcome.card)).toFixed(2);
     },
+    onColumnFilter: function onColumnFilter(params) {
+      var selected_name = params.columnFilters['operator.name'];
+
+      if (selected_name) {
+        this.rows.forEach(function (item) {
+          if (item.operator.name == selected_name) {
+            item.vgtSelected = true;
+          } else {
+            item.vgtSelected = false;
+          }
+        });
+      } else {
+        this.rows.forEach(function (item) {
+          item.vgtSelected = true;
+        });
+      }
+
+      this.countBalance();
+    },
     makeCollection: function makeCollection() {
       var _this6 = this;
 
@@ -27699,6 +27730,16 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.axios.get('/api/cashbox').then(function (response) {
         _this7.products = response.data['data'];
+
+        _this7.products.forEach(function (item) {
+          if (!_this7.columns[2].filterOptions.filterDropdownItems.find(function (operator) {
+            return operator == item.operator.name;
+          })) {
+            _this7.columns[2].filterOptions.filterDropdownItems.push(item.operator.name);
+          }
+        });
+
+        console.log(_this7.operators);
         _this7.rows = _this7.products;
 
         _this7.rows.forEach(function (item) {
@@ -33016,6 +33057,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "position": "static"
     },
     onSelectAll: $options.selectAll,
+    onColumnFilter: $options.onColumnFilter,
     columns: $data.columns,
     rows: $data.rows,
     "select-options": {
@@ -33073,7 +33115,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["onSelectAll", "columns", "rows", "pagination-options", "onSelectedRowsChange", "onRowClick"])])], 64
+  , ["onSelectAll", "onColumnFilter", "columns", "rows", "pagination-options", "onSelectedRowsChange", "onRowClick"])])], 64
   /* STABLE_FRAGMENT */
   );
 }

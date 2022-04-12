@@ -124,6 +124,7 @@
 
     <vue-good-table style="position: static; "
       v-on:select-all="selectAll"
+      v-on:column-filter="onColumnFilter"
       :columns="columns"
       :rows="rows"
       :select-options="{
@@ -176,6 +177,7 @@ export default {
   data(){
     return {
       products: null,
+      operators: [],
       del_modal_show: false,
       add_modal_show: false,
       current_id: null,
@@ -208,6 +210,11 @@ export default {
         {
           label: this.$t('Оператор'),
           field: 'operator.name',
+          filterOptions: {
+              enabled: true,
+              placeholder: this.$t('Выбрать оператора'),
+              filterDropdownItems: [],
+          },
         },
         {
           label: this.$t('Тип оплаты'),
@@ -342,6 +349,25 @@ export default {
       this.balance.sum.cash = parseFloat(parseFloat(this.balance.income.cash) - parseFloat(this.balance.outcome.cash)).toFixed(2)
       this.balance.sum.card = parseFloat(parseFloat(this.balance.income.card) - parseFloat(this.balance.outcome.card)).toFixed(2)
     },
+    onColumnFilter(params){
+      let selected_name = params.columnFilters['operator.name']
+      if(selected_name){
+        this.rows.forEach(item => {
+          if(item.operator.name == selected_name){
+            item.vgtSelected = true
+          }
+          else{
+            item.vgtSelected = false
+          }
+        })
+      }
+      else{
+        this.rows.forEach(item => {
+            item.vgtSelected = true
+        })
+      }
+      this.countBalance()
+    },
     makeCollection(){
       this.axios.post('/api/cashbox/collect', {ids : this.collection_ids}).then((response) => {
         this.$notify({
@@ -365,6 +391,12 @@ export default {
 
   		this.axios.get('/api/cashbox').then((response) => {
   		       this.products = response.data['data']
+             this.products.forEach(item => {
+                if(!this.columns[2].filterOptions.filterDropdownItems.find(operator => operator == item.operator.name)){
+                   this.columns[2].filterOptions.filterDropdownItems.push(item.operator.name)
+                }
+             })
+             console.log(this.operators)
   		       this.rows = this.products
              this.rows.forEach(item => {
               item.vgtSelected = true

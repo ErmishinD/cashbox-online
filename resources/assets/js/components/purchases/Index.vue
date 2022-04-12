@@ -70,6 +70,10 @@ export default {
           field: 'cost'
         },
         {
+          label: this.$t("Срок годности"),
+          field: 'expiration_date'
+        },
+        {
           label: this.$t("Склад"),
           field: 'storage_id.name'
         },
