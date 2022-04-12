@@ -15,6 +15,11 @@ class ProductPurchaseFilter extends QueryFilter
         $this->builder->where('product_type_id', $value);
     }
 
+    public function user_id($value)
+    {
+        $this->builder->where('user_id', $value);
+    }
+
 
     public function sort_by_cost($direction)
     {

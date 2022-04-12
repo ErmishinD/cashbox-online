@@ -143,6 +143,7 @@ class StorageControllerTest extends TestCase
     public function test_admin_can_get_storage_with_product_purchase()
     {
         $company = Company::factory()->create();
+        $this->admin->update(['company_id' => $company->id]);
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
 

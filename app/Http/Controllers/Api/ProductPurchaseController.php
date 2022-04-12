@@ -61,6 +61,9 @@ class ProductPurchaseController extends Controller
 
         $data = $request->validated();
         $product_purchase = $this->product_purchase->create($data);
+
+        $product_purchase->load('user');
+
         return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)], 201);
     }
 
@@ -77,6 +80,8 @@ class ProductPurchaseController extends Controller
     {
         $this->authorize('ProductPurchase_show');
 
+        $product_purchase->load('user');
+
         return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)]);
     }
 
@@ -86,6 +91,9 @@ class ProductPurchaseController extends Controller
 
         $data = $request->validated();
         $product_purchase->update($data);
+
+        $product_purchase->load('user');
+
         return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)], 202);
     }
 

@@ -24,8 +24,11 @@ class ProductPurchase extends Model
     use HasFactory, Filterable, BelongsToCompany;
 
     protected $fillable = [
-        'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date', 'company_id'
+        'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date', 'company_id',
+        'user_id'
     ];
+
+    protected $dates = ['expiration_date'];
 
     public function product_type()
     {
@@ -34,6 +37,11 @@ class ProductPurchase extends Model
 
     public function storage() {
         return $this->belongsTo(Storage::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

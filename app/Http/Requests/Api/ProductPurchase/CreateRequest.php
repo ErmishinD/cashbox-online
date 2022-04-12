@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\ProductPurchase;
 
 use App\Http\Requests\TenantRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateRequest extends TenantRequest
 {
@@ -21,6 +22,7 @@ class CreateRequest extends TenantRequest
             'current_quantity' => ['required'],
             'cost' => ['required', 'numeric', 'min:0'],
             'expiration_date' => ['nullable', 'date', 'after:today'],
+            'user_id' => ['required']
         ];
     }
 
@@ -28,7 +30,8 @@ class CreateRequest extends TenantRequest
     {
         parent::prepareForValidation();
         $this->merge([
-            'current_quantity' => $this->quantity
+            'current_quantity' => $this->quantity,
+            'user_id' => Auth::id()
         ]);
     }
 }

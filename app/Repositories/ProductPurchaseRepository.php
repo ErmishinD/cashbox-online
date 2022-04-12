@@ -46,10 +46,8 @@ class ProductPurchaseRepository extends BaseRepository
     public function mass_create($data)
     {
         $storage = Storage::find($data['storage_id']);
-        $shop_id = $storage->shop_id;
 
         $product_purchases = collect();
-        $product_purchases_transactions = collect();
         $parent_id = null;
 
         foreach ($data['product_types'] as $product_type) {
@@ -60,30 +58,11 @@ class ProductPurchaseRepository extends BaseRepository
                 'quantity' => $product_type['quantity'],
                 'current_quantity' => $product_type['quantity'],
                 'cost' => $product_type['cost'],
-                'expiration_date' => $product_type['expiration_date'] ?? null
+                'expiration_date' => $product_type['expiration_date'] ?? null,
+                'user_id' => $data['user_id']
             ];
             $product_purchase = $this->model->create($product_purchase_data);
             $product_purchases->push($product_purchase);
-
-            // create records in `cashbox`
-            if ($product_purchases_transactions->isNotEmpty()) {
-                $parent_id = $product_purchases_transactions->first()->id;
-            }
-            unset($product_purchase_data['company_id'], $product_purchase_data['storage_id']);
-            $cashbox_data = [
-                'company_id' => $storage->company_id,
-                'shop_id' => $shop_id,
-                'data' => json_encode($product_purchase_data),
-                'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
-                'payment_type' => $data['payment_type'],
-                'amount' => $product_type['cost'],
-                'product_purchase_id' => $product_purchase->id,
-                'description' => $product_type['description'] ?? null,
-                'operator_id' => Auth::user()->id,
-                'parent_id' => $parent_id,
-            ];
-            $transaction = Cashbox::create($cashbox_data);
-            $product_purchases_transactions->push($transaction);
         }
 
         return $product_purchases;
@@ -92,7 +71,7 @@ class ProductPurchaseRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         $result = $this->model
-            ->with(['product_type.main_measure_type', 'storage'])
+            ->with(['product_type.main_measure_type', 'storage', 'user'])
             ->filter($filters)
             ->get()
             ->paginate($paginate_data['per_page'], $paginate_data['page']);

@@ -276,6 +276,8 @@ class CashboxControllerTest extends TestCase
     public function test_operator_can_sell_many_products()
     {
         $company = Company::factory()->create();
+        $this->admin->update(['company_id' => $company->id]);
+
         // create shop
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         session()->put('shop_id', $shop->id);
@@ -284,25 +286,30 @@ class CashboxControllerTest extends TestCase
         // create product types with purchases
         $product_type1 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type1->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id
+            'product_type_id' => $product_type1->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id,
+            'user_id' => $this->admin->id
         ]);
 
         $product_type2 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type2->id, 'quantity' => 2500, 'current_quantity' => 2500, 'storage_id' => $storage->id
+            'product_type_id' => $product_type2->id, 'quantity' => 2500, 'current_quantity' => 2500, 'storage_id' => $storage->id,
+            'user_id' => $this->admin->id
         ]);
 
         $product_type3 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type3->id, 'quantity' => 1700, 'current_quantity' => 1700, 'storage_id' => $storage->id
+            'product_type_id' => $product_type3->id, 'quantity' => 1700, 'current_quantity' => 1700, 'storage_id' => $storage->id,
+            'user_id' => $this->admin->id
         ]);
 
         $product_type4 = ProductType::factory()->create(['company_id' => $shop->company_id, 'type' => '_imperishable']);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id
+            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id,
+            'user_id' => $this->admin->id
         ]);
         ProductPurchase::factory()->create([
-            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id
+            'product_type_id' => $product_type4->id, 'quantity' => 1000, 'current_quantity' => 1000, 'storage_id' => $storage->id,
+            'user_id' => $this->admin->id
         ]);
 
 
