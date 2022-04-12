@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Category;
 
 use App\Http\Requests\TenantRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends TenantRequest
 {
@@ -24,7 +25,12 @@ class CreateRequest extends TenantRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => [
+                'required',
+                Rule::unique('categories')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->category)
+            ],
             'company_id' => ['required']
         ];
     }

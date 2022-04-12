@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -24,7 +25,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required']
+            'name' => [
+                'required',
+                Rule::unique('categories')->where(function ($query) {
+                    return $query->where('company_id', session('company_id'));
+                })->ignore($this->category)
+            ]
         ];
     }
 }
