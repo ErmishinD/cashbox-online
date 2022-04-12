@@ -19,12 +19,10 @@
       :columns="columns"
       :rows="rows"
       :line-numbers="true"
-      :group-options="{
-          enabled: true,
-          collapsable: true
-        }">
+      >
       <template #table-row="props">
-
+        <span v-if="props.column.field == 'purchased'">{{props.row.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
+        <span v-if="props.column.field == 'current_quantity'">{{props.row.current_quantity}} {{props.row.product_type.main_measure_type.name}}</span>
         </template>
     </vue-good-table>
   </div>
@@ -58,6 +56,26 @@ export default {
         {
           label: this.$t("Товар"),
           field: "product_type.name",
+        },
+        {
+          label: this.$t("Закуплено"),
+          field: 'purchased'
+        },
+        {
+          label: this.$t("Осталось"),
+          field: 'current_quantity'
+        },
+        {
+          label: this.$t("Стоимость"),
+          field: 'cost'
+        },
+        {
+          label: this.$t("Склад"),
+          field: 'storage_id.name'
+        },
+        {
+          label: this.$t("Дата закупки"),
+          field: 'created_at'
         },
       ],
       rows: [],

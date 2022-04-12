@@ -27278,6 +27278,21 @@ __webpack_require__.r(__webpack_exports__);
       columns: [{
         label: this.$t("Товар"),
         field: "product_type.name"
+      }, {
+        label: this.$t("Закуплено"),
+        field: 'purchased'
+      }, {
+        label: this.$t("Осталось"),
+        field: 'current_quantity'
+      }, {
+        label: this.$t("Стоимость"),
+        field: 'cost'
+      }, {
+        label: this.$t("Склад"),
+        field: 'storage_id.name'
+      }, {
+        label: this.$t("Дата закупки"),
+        field: 'created_at'
       }],
       rows: []
     };
@@ -32386,31 +32401,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": function() { return /* binding */ render; }
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
 
 var _hoisted_1 = {
   key: 0,
   class: "btn btn-success pull-right mb-10"
 };
+var _hoisted_2 = {
+  key: 0
+};
+var _hoisted_3 = {
+  key: 1
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_1__.resolveComponent)("router-link");
 
-  var _component_vue_good_table = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue-good-table");
+  var _component_vue_good_table = (0,vue__WEBPACK_IMPORTED_MODULE_1__.resolveComponent)("vue-good-table");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_1__.createVNode)(_component_router_link, {
     to: {
       name: 'purchases_create'
     }
   }, {
-    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_ctx.$can('ProductPurchase_create') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Добавить закупку')), 1
+    default: (0,vue__WEBPACK_IMPORTED_MODULE_1__.withCtx)(function () {
+      return [_ctx.$can('ProductPurchase_create') ? ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("button", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(_ctx.$t('Добавить закупку')), 1
       /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_1__.createCommentVNode)("v-if", true)];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue_good_table, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createVNode)(_component_vue_good_table, {
     style: {
       "position": "static"
     },
@@ -32426,14 +32450,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     },
     columns: $data.columns,
     rows: $data.rows,
-    "line-numbers": true,
-    "group-options": {
-      enabled: true,
-      collapsable: true
-    }
+    "line-numbers": true
   }, {
-    "table-row": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (props) {
-      return [];
+    "table-row": (0,vue__WEBPACK_IMPORTED_MODULE_1__.withCtx)(function (props) {
+      return [props.column.field == 'purchased' ? ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(props.row.quantity) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(props.row.product_type.main_measure_type.name), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_1__.createCommentVNode)("v-if", true), props.column.field == 'current_quantity' ? ((0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(props.row.current_quantity) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_1__.toDisplayString)(props.row.product_type.main_measure_type.name), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_1__.createCommentVNode)("v-if", true)];
     }),
     _: 1
     /* STABLE */
