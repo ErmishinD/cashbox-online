@@ -94,7 +94,9 @@ class ProductPurchaseRepository extends BaseRepository
         $result = $this->model
             ->with(['product_type.main_measure_type', 'storage'])
             ->filter($filters)
-            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+            ->get()
+            ->groupBy('created_at')
+            ->paginate($paginate_data['per_page'], $paginate_data['page']);
         return $result;
     }
 }
