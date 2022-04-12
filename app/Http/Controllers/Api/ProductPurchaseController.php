@@ -11,7 +11,7 @@ use App\Http\Requests\Api\ProductPurchase\MassCreateRequest;
 use App\Http\Requests\Api\ProductPurchase\UpdateRequest;
 use App\Http\Resources\Api\ProductPurchase\DashboardCollection;
 use App\Http\Resources\Api\ProductPurchase\DefaultResource;
-use App\Http\Resources\Api\ProductPurchase\WithProductTypeCollection;
+use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
 use App\Models\ProductPurchase;
 use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\JsonResponse;
@@ -46,7 +46,7 @@ class ProductPurchaseController extends Controller
         return response()->json([
             'success' => true,
             'pagination' => [
-                'data' => new WithProductTypeCollection($product_purchases),
+                'data' => WithProductTypeResource::collection($product_purchases),
                 'current_page' => $product_purchases->currentPage(),
                 'last_page' => $product_purchases->lastPage(),
                 'per_page' => $product_purchases->perPage(),

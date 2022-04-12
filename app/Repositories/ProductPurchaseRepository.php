@@ -95,10 +95,6 @@ class ProductPurchaseRepository extends BaseRepository
             ->with(['product_type.main_measure_type', 'storage'])
             ->filter($filters)
             ->get()
-            ->each(function ($purchase) {
-                $purchase->created_at_for_grouping = $purchase->created_at->format('Y-m-d H:i'); 
-            })
-            ->groupBy('created_at_for_grouping')
             ->paginate($paginate_data['per_page'], $paginate_data['page']);
         return $result;
     }

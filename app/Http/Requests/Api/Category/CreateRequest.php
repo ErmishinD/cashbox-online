@@ -29,7 +29,7 @@ class CreateRequest extends TenantRequest
                 'required',
                 Rule::unique('categories')->where(function ($query) {
                     return $query->where('company_id', session('company_id'));
-                })->ignore($this->category)
+                })
             ],
             'company_id' => ['required']
         ];
