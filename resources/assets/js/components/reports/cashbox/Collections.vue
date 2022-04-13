@@ -26,6 +26,10 @@
 		                allLabel: 'All',
 		              }">
 		      <template #table-row="props">
+		      	<span  v-if="props.column.field == 'collector.name'">
+		      	  <router-link class="redirect_from_table" v-if="$can('Users_show')" :to="{name: 'users_show', params: {id: props.row.collector.id}}">{{props.row.collector.name}}</router-link>
+		      	  <span v-else>{{props.row.collector.name}}</span>
+		      	</span>
 			      <span class="table_actions" v-if="props.column.field == 'actions'">
 		      	    <i @click="showCollectionDetail(props.row.collected_at)" class="fas fa-eye"></i>
 		      	  </span>
@@ -56,7 +60,13 @@
 		                allLabel: 'All',
 		              }">
 		      <template #table-row="props">
-		      	 <span v-if="props.column.field == 'transaction_type'" v-bind:style="[props.row.transaction_type == '_in' ? {color: 'green'} : {color: 'red'}]">{{props.row.transaction_type == '_in' ? this.$t('поступление') : this.$t('расход')}}</span>
+		      	<span  v-if="props.column.field == 'operator.name'">
+		      	  <router-link class="redirect_from_table" v-if="$can('Users_show')" :to="{name: 'users_show', params: {id: props.row.operator.id}}">{{props.row.operator.name}}</router-link>
+		      	  <span v-else>{{props.row.operator.name}}</span>
+		      	</span>
+
+		      	 <span v-if="props.column.field == 'transaction_type'" v-bind:style="[props.row.transaction_type == '_in' ? {color: 'green'} : {color: 'red'}]">{{props.row.transaction_type == '_in' ? this.$t('поступление') : this.$t('расход')}}
+		      	 </span>
 		        </template>
 		    </vue-good-table>
 		</div>

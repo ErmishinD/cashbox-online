@@ -37,6 +37,10 @@
       :rows="rows"
       :line-numbers="true">
       <template #table-row="props">
+        <span  v-if="props.column.field == 'category.name'">
+          <router-link class="redirect_from_table" v-if="$can('Category_edit') && props.row.category" :to="{name: 'settings_categories_edit', params: {id: props.row.category.id}}">{{props.row.category.name}}</router-link>
+          <span v-else-if="props.row.category">{{props.row.category.name}}</span>
+        </span>
           <span class="table_actions" v-if="props.column.field == 'actions'">
             <router-link v-if="$can('ProductType_show')" :to="{name: 'products_type_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
             <router-link v-if="$can('ProductType_edit')" :to="{name: 'products_type_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>

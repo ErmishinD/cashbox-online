@@ -151,9 +151,30 @@
         v-on:row-click="rowClick"
         >
       <template #table-row="props">
+          <span v-if="props.column.field == 'operator.name'">
+            <router-link class="redirect_from_table" v-if="$can('User_show')" :to="{name: 'users_show', params: {id: props.row.operator.id}}">{{props.row.operator.name}}
+            </router-link>
+            <span v-else>{{props.row.operator.name}}</span>
+          </span>
+
           <span v-if="props.column.field == 'transaction_type'" v-bind:style="[props.row.transaction_type == '_in' ? {color: 'green'} : {color: 'red'}]">{{props.row.transaction_type == '_in' ? this.$t('поступление') : this.$t('расход')}}</span>
+
           <span v-if="props.column.field == 'payment_type'">{{props.row.payment_type == '_card' ? this.$t('карта') : this.$t('наличные')}}</span>
-          <span v-if="props.column.field == 'sell_product_name'">{{props.row.sell_product ? props.row.sell_product.name : (props.row.product_purchase ? props.row.product_purchase.product_type.name : '')}}</span>
+
+          <span  v-if="props.column.field == 'sell_product_name'">
+            <router-link class="redirect_from_table" v-if="$can('SellProduct_show') && props.row.sell_product" :to="{name: 'products_for_sale_show', params: {id: props.row.sell_product.id}}">{{props.row.sell_product.name}}
+            </router-link>
+            <router-link class="redirect_from_table" v-else-if="$can('ProductType_show') && props.row.product_purchase" :to="{name: 'products_type_show', params: {id: props.row.product_purchase.product_type.id}}">{{props.row.product_purchase.product_type.name}}
+            </router-link>
+            <span v-else>{{props.row.sell_product ? props.row.sell_product.name : (props.row.product_purchase ? props.row.product_purchase.product_type.name : '')}}</span>
+          </span>
+
+          <span v-if="props.column.field == 'shop.name'">
+            <router-link class="redirect_from_table" v-if="$can('Shop_show')" :to="{name: 'shops_show', params: {id: props.row.shop.id}}">{{props.row.shop.name}}
+            </router-link>
+            <span v-else>{{props.row.shop.name}}</span>
+          </span>
+
           <span class="table_actions" v-if="props.column.field == 'actions'">
             <!-- <router-link :to="{name: 'products_for_sale_show', params: {id: props.row.id}}"><i class="fas fa-eye"></i></router-link>
             <router-link :to="{name: 'products_for_sale_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link> -->

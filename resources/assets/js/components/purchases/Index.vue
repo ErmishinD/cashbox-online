@@ -21,6 +21,21 @@
       :line-numbers="true"
       >
       <template #table-row="props">
+        <span  v-if="props.column.field == 'product_type.name'">
+          <router-link class="redirect_from_table" v-if="$can('ProductType_show')" :to="{name: 'products_type_show', params: {id: props.row.product_type.id}}">{{props.row.product_type.name}}</router-link>
+          <span v-else>{{props.row.product_type.name}}</span>
+        </span>
+
+        <span  v-if="props.column.field == 'user.name'">
+          <router-link class="redirect_from_table" v-if="$can('User_show')" :to="{name: 'users_show', params: {id: props.row.user.id}}">{{props.row.user.name}}</router-link>
+          <span v-else>{{props.row.user.name}}</span>
+        </span>
+
+        <span  v-if="props.column.field == 'storage_id.name'">
+          <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: props.row.storage_id.id}}">{{props.row.storage_id.name}}</router-link>
+          <span v-else>{{props.row.storage_id.name}}</span>
+        </span>
+
         <span v-if="props.column.field == 'purchased'">{{props.row.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
         <span v-if="props.column.field == 'current_quantity'">{{props.row.current_quantity}} {{props.row.product_type.main_measure_type.name}}</span>
         </template>
@@ -56,6 +71,10 @@ export default {
         {
           label: this.$t("Товар"),
           field: "product_type.name",
+        },
+        {
+          label: this.$t("Оператор"),
+          field: 'user.name'
         },
         {
           label: this.$t("Закуплено"),
