@@ -15,7 +15,7 @@
 
 
 	      <div class="getting-started-example-styled__actions">
-	      	
+
 	      	<button @click="this.set_storage_show=false" :disabled="!this.selected_storage" class="btn btn-success">
 	          {{ $t('Выбрать') }}
 	        </button>
@@ -36,7 +36,7 @@
 	          		</optgroup>
 	          	</select>
 	          	</div>
-	          	
+
 	          </div>
 
 	          <div v-for="card in selected_products" class="basket_card">
@@ -59,7 +59,7 @@
 	          			</div>
 	          		</div>
 	          		<div class="basket_card_row">
-	          			
+
 	          			<div v-if="card.type == '_perishable'" class="basket_card__price">
 	          				<label for="expiration">{{ $t('Срок годности') }}:</label>
 	          				<input type="date" name="expiration" v-model="card.expiration">
@@ -70,9 +70,9 @@
 	          			</div>
 	          		</div>
 	          	</div>
-	          	
 
-	          
+
+
 	          </div>
 
 	          <!-- <select @change="setStorage" value="" class="def_select center-flex" name="select_storage" id="">
@@ -89,7 +89,7 @@
 	  		</div>
 
 	        <div class="getting-started-example-styled__actions">
-	        	
+
 	        	<button @click="savePurchase" class="btn btn-success">
 	            {{ $t('Сохранить') }}
 	          </button>
@@ -106,7 +106,7 @@
 		<button  :disabled="!(this.selected_products.length)" @click="openBasket" class="btn btn-success">
 			{{$t('Перейти к товарам')}}
 			<span class="counter_basket_circle"><span class="counter_basket">{{this.selected_products.length}}</span></span>
-			
+
 		</button>
 	</div>
 
@@ -117,10 +117,10 @@
 					<i class="fas " :class="selected_products.find(item => item.id == card.id) ? 'fa-trash' : 'fa-plus'"  @click="toggleClassForIcon(card)"></i>
 				</div>
 			</div>
-			
+
 			<div class="card_content" :class="selected_products.find(item => item.id == card.id) ? 'bc-lightgreen' : ' '">
 				<div class="card_title tac">{{card.name}}</div>
-			</div>		
+			</div>
 		</div>
 	</div>
 </template>
@@ -166,7 +166,7 @@ export default{
 			  page: 1,
 			  perPage: 20
 			},
-		} 
+		}
 	},
 	mounted(){
 		document.title = this.$t('Закупки');
@@ -177,7 +177,7 @@ export default{
 			console.log(this.storage_list)
 			if(!this.storage_id){
 				this.set_storage_show = true
-				
+
 			}
 			else{
 				this.selected_storage = this.storage_id
@@ -186,7 +186,7 @@ export default{
 
 		this.render_list_items(true)
 
-		
+
 	},
 	unmounted(){
 
@@ -206,7 +206,7 @@ export default{
     		}
     		if(this.product_type_id && !this.is_search_from_other_page){
     			this.serverParams.columnFilters.name = this.product_name
-    			
+
     		}
     		this.axios.post('/api/product_types/get_for_purchase', this.serverParams).then(response => {
     			let data = response.data
@@ -324,7 +324,7 @@ export default{
     				}
     			})
     			console.log(purchase_data)
-    			this.axios.post('api/product_purchases/mass_create', purchase_data).then((response) => {
+    			this.axios.post('/api/product_purchases/mass_create', purchase_data).then((response) => {
     				this.$notify({
     					text: this.$t('Успешно!'),
     					type: 'success',
@@ -334,14 +334,14 @@ export default{
     				this.selected_products = []
     			})
     		}
-    		
+
     	},
     	search(e){
     		this.changable_product_name = e.target.value
     		this.serverParams.columnFilters.name = e.target.value
     		this.render_list_items(true)
     	},
-    	scrolltoGetMoreData(){	
+    	scrolltoGetMoreData(){
 
     		window.onscroll = () => {
     			if(!this.all_data_is_loaded && !this.unmounted) {

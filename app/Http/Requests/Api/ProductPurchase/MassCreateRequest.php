@@ -18,7 +18,6 @@ class MassCreateRequest extends TenantRequest
     {
         return [
             'storage_id' => ['required'],
-            'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
             'product_types' => ['required', 'array'],
             'user_id' => ['required']
         ];
