@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\LogEventsSubscriber;
 use App\Listeners\SetCompanyIdToSession;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
@@ -23,6 +24,10 @@ class EventServiceProvider extends ServiceProvider
         Login::class => [
             SetCompanyIdToSession::class
         ]
+    ];
+
+    protected $subscribe = [
+        LogEventsSubscriber::class
     ];
 
     /**

@@ -66,6 +66,26 @@ class ProductType extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
+    public function system_logs()
+    {
+        return $this->morphMany(SystemLog::class, 'loggable');
+    }
+
+    public function getDataForAudit()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+        ];
+    }
+
+    public function getDescriptionForAudit()
+    {
+        $result = "<router-link class=\"redirect_from_table\" :to=\"{name: 'products_type_show'}\" ";
+        $result .= "params: {id: ".$this->id."}>".$this->name."</router-link>";
+        return $result;
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')->singleFile();

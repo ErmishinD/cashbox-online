@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\SellProductController;
 use App\Http\Controllers\Api\SellProductGroupController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\StorageController;
+use App\Http\Controllers\Api\SystemLogController;
 use App\Http\Controllers\Api\TransferController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\TestWebsocketController;
@@ -158,6 +159,11 @@ Route::middleware('auth')->group(function () {
      * Role
      */
     Route::apiResource('roles', RoleController::class);
+
+    /*
+     * SystemLog
+     */
+    Route::post('system_logs/get_paginated', [SystemLogController::class, 'get_paginated']);
 });
 
 

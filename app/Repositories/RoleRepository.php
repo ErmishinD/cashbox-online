@@ -39,6 +39,7 @@ class RoleRepository extends BaseRepository
             'Cashbox_access', 'Cashbox_create', 'Cashbox_show', 'Cashbox_edit', 'Cashbox_delete', 'Cashbox_collect', 'Cashbox_history',
             'User_access', 'User_create', 'User_show', 'User_edit', 'User_delete',
             'Report_access',
+            'Audit_access',
         ]);
 
         $salesman_role = $this->model->create([

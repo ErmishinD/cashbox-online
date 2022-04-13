@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ProductTypeCreated;
+use App\Events\ProductTypeDeleted;
+use App\Events\ProductTypeEdited;
 use App\Filters\ProductTypeFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
@@ -17,6 +20,7 @@ use App\Models\ProductType;
 use App\Repositories\ProductTypeRepository;
 use App\Services\ProductTypeService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ProductTypeController extends Controller
 {
@@ -68,6 +72,8 @@ class ProductTypeController extends Controller
             'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
         ]);
 
+        ProductTypeCreated::dispatch($product_type, Auth::user());
+
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 201);
     }
 
@@ -93,6 +99,8 @@ class ProductTypeController extends Controller
             'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
         ]);
 
+        ProductTypeEdited::dispatch($product_type, Auth::user());
+
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 202);
     }
 
@@ -102,6 +110,7 @@ class ProductTypeController extends Controller
 
         if (!ProductTypeService::is_part_of_sell_products($product_type)) {
             $product_type->delete();
+            ProductTypeDeleted::dispatch($product_type, Auth::user());
             return response()->json(['success' => true], 202);
         }
         return response()->json(['success' => false, 'message' => 'This product type is a part of sell products!'], 409);
