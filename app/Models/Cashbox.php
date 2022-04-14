@@ -65,6 +65,11 @@ class Cashbox extends Model implements SystemLoggable
         return $this->belongsTo(User::class, 'collector_id');
     }
 
+    public function product_purchase()
+    {
+        return $this->belongsTo(ProductPurchase::class);
+    }
+
     public function payments()
     {
         return $this->hasMany(Cashbox::class, 'parent_id');
