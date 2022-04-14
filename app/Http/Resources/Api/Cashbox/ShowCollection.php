@@ -29,7 +29,7 @@ class ShowCollection extends ResourceCollection
                 'name' => $first_payment->operator->name
             ],
             'created_at' => $first_payment->created_at->format('Y-m-d H:i'),
-            'collected_at' => optional($first_payment->collected_at)->format('Y-m-d H:i'),
+            'collected_at' => optional($first_payment->collected_at)->format('Y-m-d H:i:s'),
             'collector' => $first_payment->collector_id
                 ? ['id' => $first_payment->collector_id, 'name' => $first_payment->collector->name]
                 : null,
