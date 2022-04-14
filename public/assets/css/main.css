@@ -774,6 +774,12 @@ select {
   margin-bottom: 10px;
 }
 
+.row-btw {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .permissions_blocks {
   display: flex;
   flex-wrap: wrap;
