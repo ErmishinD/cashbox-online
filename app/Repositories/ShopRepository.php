@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Events\StorageCreated;
 use App\Models\Shop;
 use App\Models\Storage;
+use Illuminate\Support\Facades\Auth;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 use phpDocumentor\Reflection\Types\Integer;
 use function PHPUnit\Framework\isInstanceOf;
@@ -54,6 +56,7 @@ class ShopRepository extends BaseRepository
                     'company_id' => $shop->company_id
                 ]);
                 $storages->push($storage);
+                StorageCreated::dispatch($storage, Auth::user());
             }
             $shop->storages = $storages;
         }
@@ -75,6 +78,7 @@ class ShopRepository extends BaseRepository
                     'shop_id' => $shop->id,
                     'company_id' => $shop->company_id
                 ]);
+                StorageCreated::dispatch($storage, Auth::user());
                 $storages->push($storage);
             }
             $shop->storages->concat($storages);

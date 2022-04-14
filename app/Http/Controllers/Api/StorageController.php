@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\StorageCreated;
+use App\Events\StorageDeleted;
+use App\Events\StorageEdited;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\GetByCompanyRequest;
 use App\Http\Requests\Api\Storage\CreateRequest;
@@ -9,9 +12,11 @@ use App\Http\Requests\Api\Storage\UpdateRequest;
 use App\Http\Resources\Api\Shop\WithStoragesResource;
 use App\Http\Resources\Api\Storage\DefaultResource;
 use App\Http\Resources\Api\Storage\ShowResource;
+use App\Models\ProductPurchase;
 use App\Models\Storage;
 use App\Repositories\StorageRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class StorageController extends Controller
 {
@@ -39,6 +44,9 @@ class StorageController extends Controller
 
         $data = $request->validated();
         $storage = $this->storage->create($data);
+
+        StorageCreated::dispatch($storage, Auth::user());
+
         return response()->json(['success' => true, 'data' => new DefaultResource($storage)], 201);
     }
 
@@ -56,18 +64,26 @@ class StorageController extends Controller
 
         $data = $request->validated();
         $storage->update($data);
+
+        StorageEdited::dispatch($storage, Auth::user());
+
         return response()->json(['success' => true, 'data' => new DefaultResource($storage)], 202);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Storage $storage): JsonResponse
     {
         $this->authorize('Storage_delete');
 
-        $storage_deleted = $this->storage->deleteById($id);
-        if ($storage_deleted) {
-            return response()->json(['success' => true], 202);
+        $product_purchases = ProductPurchase::where('storage_id', $storage->id)->where('current_quantity', '>', 0)->count();
+        if ($product_purchases > 0) {
+            return response()->json(['success' => false, 'message' => 'There are products in storage'], 409);
         }
-        return response()->json(['success' => false, 'message' => 'There are products in storage'], 409);
+
+        $storage->delete();
+
+        StorageDeleted::dispatch($storage, Auth::user());
+
+        return response()->json(['success' => true], 202);
     }
 
     public function getByCompany(GetByCompanyRequest $request): JsonResponse

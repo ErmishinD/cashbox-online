@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\SystemLoggable;
 use App\Http\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed product_purchases
  * @method static inRandomOrder()
  */
-class Storage extends Model
+class Storage extends Model implements SystemLoggable
 {
     use HasFactory, SoftDeletes, BelongsToCompany;
 
@@ -25,5 +26,22 @@ class Storage extends Model
     public function product_purchases()
     {
         return $this->hasMany(ProductPurchase::class);
+    }
+
+    public function getTextForAudit(string $action): string
+    {
+        return $this->name;
+    }
+
+    public function getVueRoute(string $action): ?string
+    {
+        if (!in_array($action, [SystemLog::ACTIONS['created'], SystemLog::ACTIONS['edited']]))
+            return null;
+        return 'storages_show';
+    }
+
+    public function getVueParams(string $action): array
+    {
+        return ['id' => $this->id];
     }
 }
