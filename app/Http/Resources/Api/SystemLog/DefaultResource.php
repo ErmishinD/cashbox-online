@@ -22,10 +22,9 @@ class DefaultResource extends JsonResource
             ],
             'action' => $this->action,
             'object_type' => $this->loggable_type,
-            'object' => [
-                'data' => $this->loggable->getDataForAudit(),
-                'description' => $this->loggable->getDescriptionForAudit(),
-            ],
+            'text' => $this->loggable->getTextForAudit($this->action),
+            'route' => $this->loggable->getVueRoute($this->action),
+            'params' => $this->loggable->getVueParams($this->action),
             'created_at' => $this->created_at->format('Y-m-d H:i'),
         ];
     }

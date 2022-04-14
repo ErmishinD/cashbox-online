@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
+use App\Contracts\SystemLoggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,7 +23,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static inRandomOrder()
  * @method static filter(\App\Filters\ProductTypeFilter $filters)
  */
-class ProductType extends Model implements HasMedia
+class ProductType extends Model implements HasMedia, SystemLoggable
 {
     use HasFactory, SoftDeletes, InteractsWithMedia;
     use Filterable, BelongsToCompany;
@@ -71,23 +72,25 @@ class ProductType extends Model implements HasMedia
         return $this->morphMany(SystemLog::class, 'loggable');
     }
 
-    public function getDataForAudit()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-        ];
-    }
-
-    public function getDescriptionForAudit()
-    {
-        $result = "<router-link class=\"redirect_from_table\" :to=\"{name: 'products_type_show'}\" ";
-        $result .= "params: {id: ".$this->id."}>".$this->name."</router-link>";
-        return $result;
-    }
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')->singleFile();
+    }
+
+    public function getTextForAudit(string $action): string
+    {
+        return $this->name;
+    }
+
+    public function getVueRoute(string $action): ?string
+    {
+        if (!in_array($action, [SystemLog::ACTIONS['created'], SystemLog::ACTIONS['edited']]))
+            return null;
+        return 'products_type_show';
+    }
+
+    public function getVueParams(string $action): array
+    {
+        return ['id' => $this->id];
     }
 }
