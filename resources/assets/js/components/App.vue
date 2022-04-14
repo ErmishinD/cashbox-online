@@ -6,7 +6,7 @@
 	        <div class="getting-started-example-styled__title">
 	        	{{ $t('Выберите магазин') }}:
 	        </div>
-	        <select class="def_select center-flex" name="select_storage" v-model="current_shop_in_select" id="">
+	        <select class="def_select center-flex" v-model="current_shop_in_select" id="">
 	        		<option v-for="shop in shop_by_company_list" :value="shop.id">{{shop.name}}</option>
 	        </select>
 	      </div>
@@ -23,7 +23,7 @@
 	<header >
 		<div class="header__content " v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
 			<span>{{this.$userName}}</span>
-			<select style="margin-left: 20px;" v-if="!this.$isAdmin" @change="changeShop" v-model="current_shop">
+			<select name="select_storage" style="margin-left: 20px;" v-if="!this.$isAdmin" @change="changeShop" v-model="current_shop">
 				<option v-for="shop in shop_by_company_list" :value="shop.id">{{shop.name}}</option>
 			</select>
 			<select @change="changeOption($event)" style="margin-left: auto; margin-right: 20px;" class="" v-model="selected">
@@ -98,9 +98,9 @@
   				this.current_shop = this.current_shop_in_select
   			}
   			this.axios.post('/api/change_shop', {shop_id : this.current_shop}).then((response) => {
-  				console.log(response)
   				this.modal_show = false
   				this.$shopId = this.current_shop
+          window.shop_id = this.current_shop
   			})
   		},
   		changeLanguage (locale) {
@@ -260,6 +260,14 @@
                 href: '/settings/categories',
                 title: this.$t('Категории'),
                 icon: 'fas fa-list-alt',
+               })
+             }
+
+             if(this.$can('Audit_access')){
+              sidebar_settings_child.push({
+                href: '/settings/audites',
+                title: this.$t('История изменений'),
+                icon: 'fas fa-list-ol',
                })
              }
 

@@ -790,6 +790,7 @@ select {
 .redirect_from_table {
   color: #3c8dbc;
   transition: opacity 0.15s ease;
+  cursor: pointer;
 }
 .redirect_from_table:hover {
   opacity: 0.7;

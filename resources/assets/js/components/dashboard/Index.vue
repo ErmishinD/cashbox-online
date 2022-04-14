@@ -1,4 +1,4 @@
-<template>
+<template >
 	<notifications position="bottom right" />
 	<GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="700">
 	    <div class="getting-started-example-styled">
@@ -178,13 +178,21 @@
     			},
     			all_data_is_loaded: false,
     			unmounted: false,
+    			shop_id: this.$shopId
     		}
     	},
         created () {
             document.title = this.$t('Главная');
         },
+        watch:{
+        	shop_id(){
+        		this.resetData()
+        		this.render_list_items(true)
+        	}
+        },
         mounted(){
         	 document.addEventListener('scroll', this.scrolltoGetMoreData)
+        	 document.querySelector('select[name=select_storage]').addEventListener('change', this.changeShop)
   		     this.render_list_items(true)
         },
         unmounted(){
@@ -202,6 +210,9 @@
             }
           },
         methods: {
+        	changeShop(){
+        		this.shop_id = document.querySelector('select[name=select_storage]').value
+        	},
         	scrolltoGetMoreData(){	
 
         		window.onscroll = () => {
@@ -285,6 +296,7 @@
 		            }
 		        })
 			 },
+
         	toggleClassForIcon(card_data) {
         		let stop_function = 0
         		let selected_cards = this.selected_cards
@@ -404,17 +416,21 @@
         				type: 'success',
         			});
         			loader.hide()
-        			this.cards_for_sailing = []
-        			this.selected_dropdown = []
-        			this.selected_cards = []
-        			this.selected_dropdown_in_basket = []
-        			this.product_types_in_basket = []
-        			this.products_for_sale_in_basket = []
-        			this.product_types_in_storages = []
-        			this.overlimited_product_types = []
-        			this.modal_show = false
+        			this.resetData()
         			this.render_list_items(true)
         		})
+        	},
+
+        	resetData(){
+        		this.cards_for_sailing = []
+        		this.selected_dropdown = []
+        		this.selected_cards = []
+        		this.selected_dropdown_in_basket = []
+        		this.product_types_in_basket = []
+        		this.products_for_sale_in_basket = []
+        		this.product_types_in_storages = []
+        		this.overlimited_product_types = []
+        		this.modal_show = false
         	},
 
         	clickCounter(card, action){
