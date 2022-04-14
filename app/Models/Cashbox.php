@@ -91,7 +91,7 @@ class Cashbox extends Model implements SystemLoggable
     public function getVueRoute(string $action): ?string
     {
         if ($action == SystemLog::ACTIONS['collected']) {
-            return 'reports_cashbox_collection';
+            return 'reports_cashbox_collections';
         }
         return null;
     }
