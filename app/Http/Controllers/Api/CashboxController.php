@@ -13,6 +13,7 @@ use App\Http\Resources\Api\Cashbox\DefaultResource;
 use App\Http\Resources\Api\Cashbox\HistoryCollection;
 use App\Http\Resources\Api\Cashbox\IndexResource;
 use App\Http\Resources\Api\Cashbox\BalanceResource;
+use App\Http\Resources\Api\Cashbox\ShowCollection;
 use App\Models\Cashbox;
 use App\Repositories\CashboxRepository;
 use Illuminate\Http\JsonResponse;
@@ -60,12 +61,19 @@ class CashboxController extends Controller
         return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)], 201);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Cashbox $cashbox): JsonResponse
     {
         $this->authorize('Cashbox_show');
 
-        $payment = $this->cashbox->getById($id);
-        return response()->json(['success' => true, 'data' => new DefaultResource($payment)]);
+        $cashbox->load(['sell_product', 'operator', 'collector', 'shop', 'payments.sell_product']);
+
+        $all_payments = collect();
+        $all_payments->push($cashbox);
+        if ($cashbox->payments->isNotEmpty()) {
+            $all_payments = $all_payments->concat($cashbox->payments);
+        }
+
+        return response()->json(['success' => true, 'data' => new ShowCollection($all_payments)]);
     }
 
     public function update(UpdateRequest $request, int $id): JsonResponse

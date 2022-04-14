@@ -25,7 +25,7 @@ class ProductPurchase extends Model
 
     protected $fillable = [
         'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date', 'company_id',
-        'user_id'
+        'user_id', 'parent_id'
     ];
 
     protected $dates = ['expiration_date'];
@@ -42,6 +42,11 @@ class ProductPurchase extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function product_purchases()
+    {
+        return $this->hasMany(ProductPurchase::class, 'parent_id');
     }
 
 }

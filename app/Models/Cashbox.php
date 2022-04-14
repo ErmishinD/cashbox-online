@@ -43,6 +43,8 @@ class Cashbox extends Model implements SystemLoggable
         'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id'
     ];
 
+    protected $dates = ['collected_at'];
+
     public function shop()
     {
         return $this->belongsTo(Shop::class);
@@ -53,11 +55,6 @@ class Cashbox extends Model implements SystemLoggable
         return $this->belongsTo(SellProduct::class);
     }
 
-    public function product_purchase()
-    {
-        return $this->belongsTo(ProductPurchase::class);
-    }
-
     public function operator()
     {
         return $this->belongsTo(User::class, 'operator_id');
@@ -66,6 +63,11 @@ class Cashbox extends Model implements SystemLoggable
     public function collector()
     {
         return $this->belongsTo(User::class, 'collector_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Cashbox::class, 'parent_id');
     }
 
     public function scopeNotCollected(Builder $builder)

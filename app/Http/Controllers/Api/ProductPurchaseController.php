@@ -11,6 +11,7 @@ use App\Http\Requests\Api\ProductPurchase\MassCreateRequest;
 use App\Http\Requests\Api\ProductPurchase\UpdateRequest;
 use App\Http\Resources\Api\ProductPurchase\DashboardCollection;
 use App\Http\Resources\Api\ProductPurchase\DefaultResource;
+use App\Http\Resources\Api\ProductPurchase\ShowCollection;
 use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
 use App\Models\ProductPurchase;
 use App\Repositories\ProductPurchaseRepository;
@@ -80,9 +81,17 @@ class ProductPurchaseController extends Controller
     {
         $this->authorize('ProductPurchase_show');
 
-        $product_purchase->load('user');
+        $product_purchase->load([
+            'user', 'storage', 'product_type.main_measure_type', 'product_purchases.product_type.main_measure_type'
+        ]);
 
-        return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)]);
+        $all_product_purchases = collect();
+        $all_product_purchases->push($product_purchase);
+        if ($product_purchase->product_purchases->isNotEmpty()) {
+            $all_product_purchases = $all_product_purchases->concat($product_purchase->product_purchases);
+        }
+
+        return response()->json(['success' => true, 'data' => new ShowCollection($all_product_purchases)]);
     }
 
     public function update(UpdateRequest $request, ProductPurchase $product_purchase): JsonResponse
