@@ -123,7 +123,10 @@ class CashboxRepository extends BaseRepository
             }])
             ->collected()
             ->get()
-            ->groupBy('collected_at');
+            ->each(function ($payment) {
+                $payment->collected_at_string = $payment->collected_at->format('Y-m-d H:i');
+            })
+            ->groupBy('collected_at_string');
     }
 
     public function get_payments_from_history($collected_at): Collection
