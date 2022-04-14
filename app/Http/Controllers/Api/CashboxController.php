@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Events\MoneyCollected;
+use App\Events\OrderSold;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Cashbox\CollectPaymentsRequest;
 use App\Http\Requests\Api\Cashbox\CreateRequest;
@@ -58,6 +59,9 @@ class CashboxController extends Controller
 
         $data = $request->validated();
         $payments = $this->cashbox->mass_create($data);
+
+        OrderSold::dispatch($payments, Auth::user());
+
         return response()->json(['success' => true, 'data' => DefaultResource::collection($payments)], 201);
     }
 

@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\MoneyCollected;
+use App\Events\OrderSold;
+use App\Events\ProductPurchaseMade;
 use App\Events\ProductTypeCreated;
 use App\Events\ProductTypeDeleted;
 use App\Events\ProductTypeEdited;
@@ -62,6 +64,9 @@ class LogEventsSubscriber
             UserDeleted::class => 'handle',
 
             MoneyCollected::class => 'handle',
+            OrderSold::class => 'handle',
+
+            ProductPurchaseMade::class => 'handle',
         ];
     }
 }

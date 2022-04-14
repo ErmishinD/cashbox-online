@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ProductPurchaseMade;
 use App\Filters\ProductPurchaseFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
@@ -16,6 +17,7 @@ use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
 use App\Models\ProductPurchase;
 use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ProductPurchaseController extends Controller
 {
@@ -74,6 +76,9 @@ class ProductPurchaseController extends Controller
 
         $data = $request->validated();
         $product_purchases = $this->product_purchase->mass_create($data);
+
+        ProductPurchaseMade::dispatch($product_purchases, Auth::user());
+
         return response()->json(['success' => true, 'data' => DefaultResource::collection($product_purchases)], 201);
     }
 

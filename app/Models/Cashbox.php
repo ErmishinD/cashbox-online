@@ -87,6 +87,9 @@ class Cashbox extends Model implements SystemLoggable
         if ($action == SystemLog::ACTIONS['collected']) {
             return __('Операции');
         }
+        elseif ($action == SystemLog::ACTIONS['sold']) {
+            return __('Заказ');
+        }
         return '';
     }
 
@@ -95,6 +98,9 @@ class Cashbox extends Model implements SystemLoggable
         if ($action == SystemLog::ACTIONS['collected']) {
             return 'reports_cashbox_collections';
         }
+        elseif ($action == SystemLog::ACTIONS['sold']) {
+            return 'sale_detail';
+        }
         return null;
     }
 
@@ -102,6 +108,9 @@ class Cashbox extends Model implements SystemLoggable
     {
         if ($action == SystemLog::ACTIONS['collected']) {
             return ['collected_at' => $this->collected_at];
+        }
+        elseif ($action == SystemLog::ACTIONS['sold']) {
+            return ['id' => $this->id];
         }
         return [];
     }

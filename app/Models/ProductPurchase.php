@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\SystemLoggable;
 use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed product_type
  * @property \DateTime created_at
  */
-class ProductPurchase extends Model
+class ProductPurchase extends Model implements SystemLoggable
 {
     use HasFactory, Filterable, BelongsToCompany;
 
@@ -49,4 +50,24 @@ class ProductPurchase extends Model
         return $this->hasMany(ProductPurchase::class, 'parent_id');
     }
 
+    public function getTextForAudit(string $action): string
+    {
+        if ($action == SystemLog::ACTIONS['purchased']) {
+            return __('Закупка');
+        }
+        return '';
+    }
+
+    public function getVueRoute(string $action): ?string
+    {
+        if ($action == SystemLog::ACTIONS['purchased']) {
+            return 'purchases_show';
+        }
+        return null;
+    }
+
+    public function getVueParams(string $action): array
+    {
+        return ['id' => $this->id];
+    }
 }
