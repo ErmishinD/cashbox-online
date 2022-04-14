@@ -98,9 +98,9 @@ class ProductTypeController extends Controller
         $product_type->load([
             'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
         ]);
-
+        
         ProductTypeEdited::dispatch($product_type, Auth::user());
-
+        
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 202);
     }
 

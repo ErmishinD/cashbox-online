@@ -70,7 +70,7 @@
 
       <div style="display: flex; flex-wrap: wrap;">
         <button v-if="this.$can('Cashbox_collect')" :disabled="!(this.collection_ids.length)" @click="makeCollection" class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
-        <router-link v-if="this.$can('Cashbox_history')" :to='{name: "reports_casbox_collections"}'><button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button></router-link>
+        <router-link v-if="this.$can('Cashbox_history')" :to='{name: "reports_cashbox_collections"}'><button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button></router-link>
         <button v-if="this.$can('Cashbox_create')" @click="addOperation" class="btn btn-success mar-left mb-10" >{{ $t('Добавить операцию') }}</button>
       </div>
 

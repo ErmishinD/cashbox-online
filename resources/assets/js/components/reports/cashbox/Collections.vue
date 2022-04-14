@@ -76,7 +76,7 @@
 <script>
 export default{
 	props: [
-		'id'
+		'collected_at'
 	],
 	data(){
 		return{
@@ -137,6 +137,9 @@ export default{
 		       // this.workers_rows = this.company['employees']
 		       // document.title = this.company['name'];
 		       loader.hide()
+		       if(this.collected_at){
+		       	this.showCollectionDetail(this.collected_at)
+		       }
 		       // console.table(this.company)
 		     }).catch(function(error){
             if(error.response.status == 403){

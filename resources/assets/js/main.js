@@ -104,6 +104,9 @@ import SettingsPermissions from './components/settings/Permissions'
 	import SettingsCategoriesCreate from './components/settings/categories/Create'
 	import SettingsCategoriesEdit from './components/settings/categories/Edit'
 
+	/* import audites */
+	import SettingsAuditesIndex from './components/settings/audites/Index'
+
 /* import 404 */
 import PageNotFound from './components/404'
 
@@ -205,8 +208,9 @@ const router = createRouter({
 		},
 		{
 			path: '/reports/cashbox/collections',
-			name: 'reports_casbox_collections',
-			component: ReportsCashboxCollections
+			name: 'reports_cashbox_collections',
+			component: ReportsCashboxCollections,
+			props: true
 		},
 		{
 			path: '/reports/finance',
@@ -379,6 +383,11 @@ const router = createRouter({
 			name: 'settings_categories_edit',
 			component: SettingsCategoriesEdit,
 			props: true
+		},
+		{
+			path: '/settings/audites',
+			name: 'settings_audites_index',
+			component: SettingsAuditesIndex
 		},
 		{
 			path: '/logout',
