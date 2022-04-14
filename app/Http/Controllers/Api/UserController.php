@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\UserChangedShop;
+use App\Events\UserCreated;
+use App\Events\UserDeleted;
+use App\Events\UserEdited;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\ChangeShopRequest;
 use App\Http\Requests\Api\User\CreateRequest;
 use App\Http\Requests\Api\User\UpdateRequest;
 use App\Http\Resources\Api\User\DefaultResource;
 use App\Http\Resources\Api\User\EmployeeResource;
+use App\Models\Shop;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\UserRepository;
@@ -41,6 +46,11 @@ class UserController extends Controller
 
         $data = $request->validated();
         $user = $this->user->create($data);
+
+        if (!Auth::user()->hasRole('Super Admin')) {
+            UserCreated::dispatch($user, Auth::user());
+        }
+
         return response()->json(['success' => true, 'data' => new EmployeeResource($user)]);
     }
 
@@ -57,6 +67,11 @@ class UserController extends Controller
 
         $data = $request->validated();
         $user = $this->user->update($user, $data);
+
+        if (!Auth::user()->hasRole('Super Admin')) {
+            UserEdited::dispatch($user, Auth::user());
+        }
+
         return response()->json(['success' => true, 'data' => new EmployeeResource($user)]);
     }
 
@@ -65,6 +80,11 @@ class UserController extends Controller
         $this->authorize('User_delete');
 
         $user->delete();
+
+        if (!Auth::user()->hasRole('Super Admin')) {
+            UserDeleted::dispatch($user, Auth::user());
+        }
+
         return response()->json(['success' => true]);
     }
 
@@ -72,6 +92,9 @@ class UserController extends Controller
     {
         $shop_id = $request->validated()['shop_id'];
         session()->put('shop_id', $shop_id);
+
+        UserChangedShop::dispatch(Shop::find($shop_id), Auth::user());
+
         return response()->json(['success' => true]);
     }
 

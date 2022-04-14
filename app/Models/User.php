@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\SystemLoggable;
 use App\Http\Traits\BelongsToCompany;
 use App\Models\Scopes\InCompanyScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int company_id
  * @method static inRandomOrder()
  */
-class User extends Authenticatable
+class User extends Authenticatable implements SystemLoggable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
     use BelongsToCompany;
@@ -64,5 +65,20 @@ class User extends Authenticatable
     public function product_purchases()
     {
         return $this->hasMany(ProductPurchase::class);
+    }
+
+    public function getTextForAudit(string $action): string
+    {
+        return $this->name;
+    }
+
+    public function getVueRoute(string $action): ?string
+    {
+        return 'users_show';
+    }
+
+    public function getVueParams(string $action): array
+    {
+        return ['id' => $this->id];
     }
 }

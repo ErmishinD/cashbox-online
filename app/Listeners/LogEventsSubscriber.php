@@ -14,6 +14,10 @@ use App\Events\ShopEdited;
 use App\Events\StorageCreated;
 use App\Events\StorageDeleted;
 use App\Events\StorageEdited;
+use App\Events\UserChangedShop;
+use App\Events\UserCreated;
+use App\Events\UserDeleted;
+use App\Events\UserEdited;
 use App\Models\SystemLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -49,6 +53,11 @@ class LogEventsSubscriber
             StorageCreated::class => 'handle',
             StorageEdited::class => 'handle',
             StorageDeleted::class => 'handle',
+
+            UserChangedShop::class => 'handle',
+            UserCreated::class => 'handle',
+            UserEdited::class => 'handle',
+            UserDeleted::class => 'handle',
         ];
     }
 }

@@ -19,6 +19,7 @@ class SystemLog extends Model
         'sold' => 'sold',
         'purchased' => 'purchased',
         'collected' => 'collected',
+        'changed_shop' => 'changed_shop',
     ];
 
     protected $fillable = ['company_id', 'action', 'user_id', 'loggable_type', 'loggable_id'];

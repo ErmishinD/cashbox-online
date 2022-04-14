@@ -58,8 +58,6 @@ class SellProduct extends Model implements HasMedia, SystemLoggable
 
     public function getVueRoute(string $action): ?string
     {
-        if (!in_array($action, [SystemLog::ACTIONS['created'], SystemLog::ACTIONS['edited']]))
-            return null;
         return 'products_for_sale_show';
     }
 
