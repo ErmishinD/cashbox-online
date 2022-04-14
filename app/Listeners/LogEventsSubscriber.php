@@ -5,6 +5,9 @@ namespace App\Listeners;
 use App\Events\ProductTypeCreated;
 use App\Events\ProductTypeDeleted;
 use App\Events\ProductTypeEdited;
+use App\Events\SellProductCreated;
+use App\Events\SellProductDeleted;
+use App\Events\SellProductEdited;
 use App\Models\SystemLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,6 +31,10 @@ class LogEventsSubscriber
             ProductTypeCreated::class => 'handle',
             ProductTypeEdited::class => 'handle',
             ProductTypeDeleted::class => 'handle',
+
+            SellProductCreated::class => 'handle',
+            SellProductEdited::class => 'handle',
+            SellProductDeleted::class => 'handle',
         ];
     }
 }

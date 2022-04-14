@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\SellProductCreated;
+use App\Events\SellProductDeleted;
+use App\Events\SellProductEdited;
 use App\Filters\SellProductFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\SellProduct\CreateRequest;
-use App\Http\Requests\Api\SellProduct\RemoveProductTypesRequest;
 use App\Http\Requests\Api\SellProduct\UpdateRequest;
 use App\Http\Resources\Api\SellProduct\EditResource;
 use App\Http\Resources\Api\SellProduct\IndexResource;
@@ -14,8 +16,8 @@ use App\Http\Resources\Api\SellProduct\ShowResource;
 use App\Models\SellProduct;
 use App\Repositories\SellProductRepository;
 use App\Services\ProductTypeService;
-use App\Services\UploadFileService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class SellProductController extends Controller
 {
@@ -68,6 +70,8 @@ class SellProductController extends Controller
             $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
         }]);
 
+        SellProductCreated::dispatch($sell_product, Auth::user());
+
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)], 201);
     }
 
@@ -96,6 +100,8 @@ class SellProductController extends Controller
             $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
         }]);
 
+        SellProductEdited::dispatch($sell_product, Auth::user());
+
         return response()->json(['success' => true, 'data' => new EditResource($sell_product)], 202);
     }
 
@@ -104,6 +110,9 @@ class SellProductController extends Controller
         $this->authorize('SellProduct_delete');
 
         $sell_product->delete();
+
+        SellProductDeleted::dispatch($sell_product, Auth::user());
+
         return response()->json(['success' => true], 202);
     }
 }

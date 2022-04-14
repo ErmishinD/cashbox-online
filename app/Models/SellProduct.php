@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\SystemLoggable;
 use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,7 +21,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static inRandomOrder()
  * @method static filter(\App\Filters\SellProductFilter $product_filters)
  */
-class SellProduct extends Model implements HasMedia
+class SellProduct extends Model implements HasMedia, SystemLoggable
 {
     use HasFactory, SoftDeletes, InteractsWithMedia;
     use Filterable, BelongsToCompany;
@@ -48,5 +49,22 @@ class SellProduct extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('photo')->singleFile();
+    }
+
+    public function getTextForAudit(string $action): string
+    {
+        return $this->name;
+    }
+
+    public function getVueRoute(string $action): ?string
+    {
+        if (!in_array($action, [SystemLog::ACTIONS['created'], SystemLog::ACTIONS['edited']]))
+            return null;
+        return 'products_for_sale_show';
+    }
+
+    public function getVueParams(string $action): array
+    {
+        return ['id' => $this->id];
     }
 }

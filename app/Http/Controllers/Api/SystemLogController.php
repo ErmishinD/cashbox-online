@@ -18,6 +18,7 @@ class SystemLogController extends Controller
         $system_logs = SystemLog::query()
             ->with('loggable')
             ->filter($filters)
+            ->orderByDesc('created_at')
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 
         return response()->json([
