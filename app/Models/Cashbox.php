@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\SystemLoggable;
 use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Builder;
@@ -30,7 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property User collector
  * @property Shop shop
  */
-class Cashbox extends Model
+class Cashbox extends Model implements SystemLoggable
 {
     use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
 
@@ -77,5 +78,29 @@ class Cashbox extends Model
         if (is_null($collected_at))
             return $builder->whereNotNull('collected_at');
         return $builder->where('collected_at', $collected_at);
+    }
+
+    public function getTextForAudit(string $action): string
+    {
+        if ($action == SystemLog::ACTIONS['collected']) {
+            return __('Операции');
+        }
+        return '';
+    }
+
+    public function getVueRoute(string $action): ?string
+    {
+        if ($action == SystemLog::ACTIONS['collected']) {
+            return 'reports_cashbox_collection';
+        }
+        return null;
+    }
+
+    public function getVueParams(string $action): array
+    {
+        if ($action == SystemLog::ACTIONS['collected']) {
+            return ['collected_at' => $this->collected_at];
+        }
+        return [];
     }
 }

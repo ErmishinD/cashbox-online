@@ -3,7 +3,7 @@
 namespace App\Events;
 
 use App\Contracts\SystemLoggableEvent;
-use App\Models\Shop;
+use App\Models\Cashbox;
 use App\Models\SystemLog;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
@@ -14,18 +14,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserChangedShop implements SystemLoggableEvent
+class MoneyCollected implements SystemLoggableEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $object;
-    public $action = SystemLog::ACTIONS['changed_shop'];
+    public $cashbox_transactions;
+    public $action = SystemLog::ACTIONS['collected'];
     public $user_id;
     public $company_id;
 
-    public function __construct(Shop $object, User $user)
+    public function __construct($payment_ids, User $user)
     {
-        $this->object = $object;
+        $this->cashbox_transactions = Cashbox::whereIn('id', $payment_ids)->get();
         $this->user_id = $user->id;
         $this->company_id = $user->company_id;
     }
@@ -42,16 +42,18 @@ class UserChangedShop implements SystemLoggableEvent
 
     public function getLoggableType(): ?string
     {
-        return get_class($this->object);
+        return get_class($this->cashbox_transactions->first());
     }
 
     public function getLoggableId(): ?int
     {
-        $this->object->id;
+        return $this->cashbox_transactions->first()->id;
     }
 
     public function getAdditionalText(): ?string
     {
-        return null;
+        $sum = $this->cashbox_transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('amount');
+        $sum -= $this->cashbox_transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('amount');
+        return __('на сумму: ') . $sum;
     }
 }

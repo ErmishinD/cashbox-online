@@ -14,6 +14,11 @@ class DefaultResource extends JsonResource
      */
     public function toArray($request)
     {
+        $text = $this->loggable->getTextForAudit($this->action);
+        if ($this->additional_text) {
+            $text .= ' ' . $this->additional_text;
+        }
+
         return [
             'id' => $this->id,
             'user' => [
@@ -22,7 +27,7 @@ class DefaultResource extends JsonResource
             ],
             'action' => $this->action,
             'object_type' => $this->loggable_type,
-            'text' => $this->loggable->getTextForAudit($this->action),
+            'text' => $text,
             'route' => $this->loggable->getVueRoute($this->action),
             'params' => $this->loggable->getVueParams($this->action),
             'created_at' => $this->created_at->format('Y-m-d H:i'),

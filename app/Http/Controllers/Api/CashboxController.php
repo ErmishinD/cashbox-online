@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\MoneyCollected;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Cashbox\CollectPaymentsRequest;
 use App\Http\Requests\Api\Cashbox\CreateRequest;
@@ -15,6 +16,7 @@ use App\Http\Resources\Api\Cashbox\BalanceResource;
 use App\Models\Cashbox;
 use App\Repositories\CashboxRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class CashboxController extends Controller
 {
@@ -111,6 +113,9 @@ class CashboxController extends Controller
 
         $payment_ids = $request->validated()['ids'];
         $this->cashbox->collect_payments($payment_ids);
+
+        MoneyCollected::dispatch($payment_ids, Auth::user());
+
         return response()->json(['success' => true]);
     }
 

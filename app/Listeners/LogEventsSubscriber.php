@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\MoneyCollected;
 use App\Events\ProductTypeCreated;
 use App\Events\ProductTypeDeleted;
 use App\Events\ProductTypeEdited;
@@ -30,8 +31,9 @@ class LogEventsSubscriber
             'company_id' => $event->company_id,
             'user_id' => $event->user_id,
             'action' => $event->action,
-            'loggable_type' => get_class($event->object),
-            'loggable_id' => $event->object->id
+            'loggable_type' => $event->getLoggableType(),
+            'loggable_id' => $event->getLoggableId(),
+            'additional_text' => $event->getAdditionalText(),
         ]);
     }
 
@@ -58,6 +60,8 @@ class LogEventsSubscriber
             UserCreated::class => 'handle',
             UserEdited::class => 'handle',
             UserDeleted::class => 'handle',
+
+            MoneyCollected::class => 'handle',
         ];
     }
 }

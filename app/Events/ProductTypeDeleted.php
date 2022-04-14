@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Contracts\SystemLoggableEvent;
+use App\Http\Traits\CrudLoggableEvent;
 use App\Models\ProductType;
 use App\Models\SystemLog;
 use App\Models\User;
@@ -13,9 +15,10 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ProductTypeDeleted
+class ProductTypeDeleted implements SystemLoggableEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    use CrudLoggableEvent;
 
     public $object;
     public $action = SystemLog::ACTIONS['deleted'];
