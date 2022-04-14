@@ -13,13 +13,13 @@ class SystemLog extends Model
     use BelongsToCompany, Filterable;
 
     public const ACTIONS = [
-        'created' => 'created',
-        'edited' => 'edited',
-        'deleted' => 'deleted',
-        'sold' => 'sold',
-        'purchased' => 'purchased',
-        'collected' => 'collected',
-        'changed_shop' => 'changed_shop',
+        'created' => '_created',
+        'edited' => '_edited',
+        'deleted' => '_deleted',
+        'sold' => '_sold',
+        'purchased' => '_purchased',
+        'collected' => '_collected',
+        'changed_shop' => '_changed_shop',
     ];
 
     protected $fillable = ['company_id', 'action', 'user_id', 'loggable_type', 'loggable_id'];
