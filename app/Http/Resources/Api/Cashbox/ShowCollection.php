@@ -39,6 +39,7 @@ class ShowCollection extends ResourceCollection
                 'id' => $payment->sell_product_id,
                 'name' => $payment->sell_product->name,
                 'amount' => $payment->amount,
+                'description' => $payment->description
             ];
         }
         return $result;

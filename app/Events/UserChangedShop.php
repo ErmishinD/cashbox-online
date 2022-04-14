@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Contracts\SystemLoggableEvent;
+use App\Http\Traits\CrudLoggableEvent;
 use App\Models\Shop;
 use App\Models\SystemLog;
 use App\Models\User;
@@ -17,6 +18,7 @@ use Illuminate\Queue\SerializesModels;
 class UserChangedShop implements SystemLoggableEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    use CrudLoggableEvent;
 
     public $object;
     public $action = SystemLog::ACTIONS['changed_shop'];
@@ -38,20 +40,5 @@ class UserChangedShop implements SystemLoggableEvent
     public function broadcastOn()
     {
         return new PrivateChannel('channel-name');
-    }
-
-    public function getLoggableType(): ?string
-    {
-        return get_class($this->object);
-    }
-
-    public function getLoggableId(): ?int
-    {
-        $this->object->id;
-    }
-
-    public function getAdditionalText(): ?string
-    {
-        return null;
     }
 }

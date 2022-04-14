@@ -28,7 +28,7 @@ class Storage extends Model implements SystemLoggable
         return $this->hasMany(ProductPurchase::class);
     }
 
-    public function getTextForAudit(string $action): string
+    public function getTextForAudit(string $action, array $data): string
     {
         return $this->name;
     }

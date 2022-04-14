@@ -9,5 +9,5 @@ interface SystemLoggableEvent
 
     public function getLoggableId(): ?int;
 
-    public function getAdditionalText(): ?string;
+    public function getAdditionalData(): ?array;
 }

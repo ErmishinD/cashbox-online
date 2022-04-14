@@ -49,8 +49,8 @@ class OrderSold implements SystemLoggableEvent
         return $this->payments->first()->id;
     }
 
-    public function getAdditionalText(): ?string
+    public function getAdditionalData(): ?array
     {
-        return __('на сумму: ') . round($this->payments->sum('amount'), 2);
+        return ['sum' => round($this->payments->sum('amount'), 2)];
     }
 }

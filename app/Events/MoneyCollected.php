@@ -50,10 +50,10 @@ class MoneyCollected implements SystemLoggableEvent
         return $this->cashbox_transactions->first()->id;
     }
 
-    public function getAdditionalText(): ?string
+    public function getAdditionalData(): ?array
     {
         $sum = $this->cashbox_transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('amount');
         $sum -= $this->cashbox_transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('amount');
-        return __('на сумму: ') . $sum;
+        return ['sum' => $sum];
     }
 }

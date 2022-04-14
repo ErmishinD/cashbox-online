@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('system_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('company_id')->nullable()->constrained();
             $table->string('action');
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('loggable_type')->nullable();

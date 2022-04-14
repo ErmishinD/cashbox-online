@@ -51,7 +51,7 @@ class SellProduct extends Model implements HasMedia, SystemLoggable
         $this->addMediaCollection('photo')->singleFile();
     }
 
-    public function getTextForAudit(string $action): string
+    public function getTextForAudit(string $action, array $data): string
     {
         return $this->name;
     }

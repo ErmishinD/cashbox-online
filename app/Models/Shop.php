@@ -30,7 +30,7 @@ class Shop extends Model implements SystemLoggable
         return $this->hasMany(Storage::class);
     }
 
-    public function getTextForAudit(string $action): string
+    public function getTextForAudit(string $action, array $data): string
     {
         return $this->name;
     }

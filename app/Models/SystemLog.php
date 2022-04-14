@@ -22,7 +22,11 @@ class SystemLog extends Model
         'changed_shop' => '_changed_shop',
     ];
 
-    protected $fillable = ['company_id', 'action', 'user_id', 'loggable_type', 'loggable_id', 'additional_text'];
+    protected $fillable = ['company_id', 'action', 'user_id', 'loggable_type', 'loggable_id', 'data'];
+
+    protected $casts = [
+        'data' => 'array'
+    ];
 
     public function company()
     {

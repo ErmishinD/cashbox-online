@@ -87,13 +87,13 @@ class Cashbox extends Model implements SystemLoggable
         return $builder->where('collected_at', $collected_at);
     }
 
-    public function getTextForAudit(string $action): string
+    public function getTextForAudit(string $action, array $data): string
     {
         if ($action == SystemLog::ACTIONS['collected']) {
-            return __('Операции');
+            return __('Операции на сумму') . ': ' . ($data['sum'] ?? 0);
         }
         elseif ($action == SystemLog::ACTIONS['sold']) {
-            return __('Заказ');
+            return __('Заказна сумму') . ': ' . ($data['sum'] ?? 0);
         }
         return '';
     }

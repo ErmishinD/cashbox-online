@@ -161,7 +161,9 @@ class ProductPurchaseControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => ['quantity' => 111, 'cost' => 333]
+                'data' => [
+                    'product_types' => [['quantity' => 111, 'amount' => 333]]
+                ]
             ]);
     }
 
@@ -196,7 +198,7 @@ class ProductPurchaseControllerTest extends TestCase
             ->assertJson([
                 'success' => true,
             ]);
-        $this->assertDatabaseMissing($this->table, ['id' => $product_purchase->id]);
+        $this->assertSoftDeleted($this->table, ['id' => $product_purchase->id]);
     }
 
     public function test_admin_can_get_info_for_dashboard()

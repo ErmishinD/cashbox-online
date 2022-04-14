@@ -49,8 +49,8 @@ class ProductPurchaseMade implements SystemLoggableEvent
         return $this->product_purchases->first()->id;
     }
 
-    public function getAdditionalText(): ?string
+    public function getAdditionalData(): ?array
     {
-        return __('на сумму: ') . round($this->product_purchases->sum('cost'), 2);
+        return ['sum' => round($this->product_purchases->sum('cost'), 2)];
     }
 }

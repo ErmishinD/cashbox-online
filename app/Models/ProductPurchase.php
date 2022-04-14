@@ -51,10 +51,10 @@ class ProductPurchase extends Model implements SystemLoggable
         return $this->hasMany(ProductPurchase::class, 'parent_id');
     }
 
-    public function getTextForAudit(string $action): string
+    public function getTextForAudit(string $action, array $data): string
     {
         if ($action == SystemLog::ACTIONS['purchased']) {
-            return __('Закупка');
+            return __('Закупка на сумму') . ': '. ($data['sum'] ?? 0);
         }
         return '';
     }

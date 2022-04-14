@@ -216,7 +216,15 @@ class CashboxControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'data' => ['transaction_type' => '_out', 'amount' => 111, 'description' => 'my description']
+                'data' => [
+                    'transaction_type' => '_out',
+                    'sell_products' => [
+                        [
+                            'amount' => 111,
+                            'description' => 'my description'
+                        ]
+                    ],
+                ]
             ]);
     }
 

@@ -35,7 +35,7 @@ class LogEventsSubscriber
             'action' => $event->action,
             'loggable_type' => $event->getLoggableType(),
             'loggable_id' => $event->getLoggableId(),
-            'additional_text' => $event->getAdditionalText(),
+            'data' => $event->getAdditionalData(),
         ]);
     }
 

@@ -16,7 +16,7 @@ trait CrudLoggableEvent
         return $this->object->id;
     }
 
-    public function getAdditionalText(): ?string
+    public function getAdditionalData(): ?array
     {
         return null;
     }

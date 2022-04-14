@@ -14,7 +14,7 @@ class DefaultResource extends JsonResource
      */
     public function toArray($request)
     {
-        $text = $this->loggable->getTextForAudit($this->action);
+        $text = $this->loggable->getTextForAudit($this->action, $this->data);
         if ($this->additional_text) {
             $text .= ' ' . $this->additional_text;
         }
