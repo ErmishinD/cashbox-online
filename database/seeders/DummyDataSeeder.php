@@ -443,6 +443,7 @@ class DummyDataSeeder extends Seeder
                                 'current_quantity' => random_int(0, $quantity),
                                 'cost' => random_int(100, 10000),
                                 'expiration_date' => $expiration_date,
+                                'user_id' => $director->id
                             ]);
 
                             // create record in cashbox

@@ -51,6 +51,9 @@ class ProductPurchaseRepository extends BaseRepository
         $parent_id = null;
 
         foreach ($data['product_types'] as $product_type) {
+            if ($product_purchases->isNotEmpty()) {
+                $parent_id = $product_purchases->first()->id;
+            }
             $product_purchase_data = [
                 'company_id' => $storage->company_id,
                 'storage_id' => $data['storage_id'],
@@ -59,7 +62,8 @@ class ProductPurchaseRepository extends BaseRepository
                 'current_quantity' => $product_type['quantity'],
                 'cost' => $product_type['cost'],
                 'expiration_date' => $product_type['expiration_date'] ?? null,
-                'user_id' => $data['user_id']
+                'user_id' => $data['user_id'],
+                'parent_id' => $parent_id
             ];
             $product_purchase = $this->model->create($product_purchase_data);
             $product_purchases->push($product_purchase);
