@@ -7,6 +7,7 @@ use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int id
@@ -22,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductPurchase extends Model implements SystemLoggable
 {
-    use HasFactory, Filterable, BelongsToCompany;
+    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
 
     protected $fillable = [
         'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date', 'company_id',
