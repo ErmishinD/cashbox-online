@@ -29,6 +29,7 @@ import App from './components/App'
 
 /* import dashboard */
 import DashboardIndex from './components/dashboard/Index'
+import DashboardShow from './components/dashboard/Show'
 
 /* import products_type */
 import ProductsTypeIndex from './components/products_type/Index'
@@ -45,6 +46,7 @@ import ProductsForSaleShow from './components/products_for_sale/Show'
 /* import purchases */
 import PurchasesIndex from './components/purchases/Index'
 import PurchasesCreate from './components/purchases/Create'
+import PurchasesShow from './components/purchases/Show'
 
 /* import reports */
 	/* import cashbox */
@@ -141,6 +143,12 @@ const router = createRouter({
 			component: DashboardIndex
 		},
 		{
+			path: '/sale_detail/:id',
+			name: 'sale_detail',
+			component: DashboardShow,
+			props: true
+		},
+		{
 			path: '/products_type',
 			name: 'products_type_index',
 			component: ProductsTypeIndex
@@ -188,6 +196,12 @@ const router = createRouter({
 			path: '/purchases',
 			name: 'purchases_index',
 			component: PurchasesIndex,
+			props: true
+		},
+		{
+			path: '/purchases/purchase_detail/:id',
+			name: 'purchases_show',
+			component: PurchasesShow,
 			props: true
 		},
 		{

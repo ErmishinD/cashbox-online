@@ -678,6 +678,12 @@ select{
 	}
 }
 
+.row-btw{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
 .permissions_blocks{
 	display: flex;
 	flex-wrap: wrap;

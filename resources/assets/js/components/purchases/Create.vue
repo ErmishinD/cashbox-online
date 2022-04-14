@@ -6,7 +6,7 @@
 	        <div class="getting-started-example-styled__title">
 	        	{{ $t('Выберите склад') }}:
 	        </div>
-	        <select @change="setStorage" value="" class="def_select center-flex" name="select_storage" id="">
+	        <select v-model="selected_storage"  class="def_select center-flex" name="select_storage" id="">
 	        	<optgroup v-for="shop in storage_list" :label="shop.name">
 	        		<option v-for="storage in shop.storages" :value="storage.id">{{storage.name}}</option>
 	        	</optgroup>
@@ -30,7 +30,7 @@
 	          	{{ $t('Подтверждение закупки') }}
 	          	<div class="select_storage">
 	          		<span>{{ $t('Выберите склад') }}:</span>
-	          		<select @change="setStorage" :v-model="storage_id" class="def_select" name="select_storage" id="">
+	          		<select v-model="selected_storage" class="def_select" name="select_storage" id="">
 	          		<optgroup v-for="shop in storage_list" :label="shop.name">
 	          			<option v-for="storage in shop.storages" :value="storage.id">{{storage.name}}</option>
 	          		</optgroup>
