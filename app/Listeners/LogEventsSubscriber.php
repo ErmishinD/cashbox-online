@@ -8,6 +8,9 @@ use App\Events\ProductTypeEdited;
 use App\Events\SellProductCreated;
 use App\Events\SellProductDeleted;
 use App\Events\SellProductEdited;
+use App\Events\ShopCreated;
+use App\Events\ShopDeleted;
+use App\Events\ShopEdited;
 use App\Models\SystemLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -35,6 +38,10 @@ class LogEventsSubscriber
             SellProductCreated::class => 'handle',
             SellProductEdited::class => 'handle',
             SellProductDeleted::class => 'handle',
+
+            ShopCreated::class => 'handle',
+            ShopEdited::class => 'handle',
+            ShopDeleted::class => 'handle',
         ];
     }
 }

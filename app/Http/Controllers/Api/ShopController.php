@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ShopCreated;
+use App\Events\ShopDeleted;
+use App\Events\ShopEdited;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\GetByCompanyRequest;
 use App\Http\Requests\Api\Shop\CreateRequest;
@@ -13,6 +16,7 @@ use App\Models\Shop;
 use App\Repositories\ShopRepository;
 use App\Services\ShopService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -40,6 +44,9 @@ class ShopController extends Controller
 
         $data = $request->validated();
         $shop = $this->shop->create($data);
+
+        ShopCreated::dispatch($shop, Auth::user());
+
         return response()->json(['success' => true, 'data' => new ShowResource($shop)], 201);
     }
 
@@ -58,6 +65,9 @@ class ShopController extends Controller
 
         $data = $request->validated();
         $shop = $this->shop->update($shop, $data);
+
+        ShopEdited::dispatch($shop, Auth::user());
+
         return response()->json(['success' => true, 'data' => new ShowResource($shop)], 202);
     }
 
@@ -69,6 +79,9 @@ class ShopController extends Controller
 
         if (!ShopService::has_products_in_storages($shop)) {
             $shop->delete();
+
+            ShopDeleted::dispatch($shop, Auth::user());
+
             return response()->json(['success' => true], 202);
         }
         return response()->json(['success' => false, 'message' => 'There are products in this shop!'], 409);
