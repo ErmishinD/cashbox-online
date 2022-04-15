@@ -241,4 +241,32 @@ class StorageControllerTest extends TestCase
         $response->assertStatus(403);
     }
 
+    public function test_admin_can_get_storage_balance()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+        $this->admin->update(['company_id' => $company->id]);
+
+        $purchase1 = ProductPurchase::factory()->create(['company_id' => $company->id, 'storage_id' => $storage->id]);
+        $purchase1->update(['cost' => 100, 'current_cost' => 75]);
+        $purchase2 = ProductPurchase::factory()->create(['company_id' => $company->id, 'storage_id' => $storage->id]);
+
+        $response = $this->actingAs($this->admin)->post($this->base_route . 'get_balance', ['storage_ids' => []]);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'all_balance' => round($purchase1->current_cost + $purchase2->current_cost, 2),
+                    'storages' => [
+                        [
+                            'id' => $storage->id,
+                            'name' => $storage->name,
+                            'balance' => round($purchase1->current_cost + $purchase2->current_cost, 2),
+                        ]
+                    ]
+                ]
+            ]);
+    }
+
 }
