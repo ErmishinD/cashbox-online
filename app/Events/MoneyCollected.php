@@ -54,6 +54,6 @@ class MoneyCollected implements SystemLoggableEvent
     {
         $sum = $this->cashbox_transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('amount');
         $sum -= $this->cashbox_transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('amount');
-        return ['sum' => $sum];
+        return ['sum' => round($sum, 2)];
     }
 }
