@@ -36,6 +36,10 @@ class CashboxRepository extends BaseRepository
         $product_purchases = ProductPurchase::query()
             ->whereIn('storage_id', $storage_ids)
             ->where('current_quantity', '>', 0)
+            ->where(function ($q) {
+                $q->whereNull('expiration_date')
+                    ->orWhere('expiration_date', '>', now(new \DateTimeZone('Europe/Kiev')));
+            })
             ->orderBy('created_at')
             ->get();
 
@@ -52,12 +56,7 @@ class CashboxRepository extends BaseRepository
 
             // отнять нужное кол-во продуктов со склада
             foreach ($sell_product['product_types'] as $product_type) {
-                $current_product_purchases = $product_type['type'] == ProductType::TYPES['imperishable']
-                    ? $product_purchases->where('product_type_id', $product_type['id'])
-                    : $product_purchases->where('product_type_id', $product_type['id'])
-                        ->where('expiration_date', '>', now(new \DateTimeZone('Europe/Kiev')));
-
-                foreach ($current_product_purchases as $product_purchase) {
+                foreach ($product_purchases->where('product_type_id', $product_type['id']) as $product_purchase) {
                     if ($product_purchase->current_quantity >= $product_type['quantity']) {
                         $product_purchase->current_quantity -= $product_type['quantity'];
                         $product_purchase->current_cost -= ($product_purchase->cost / $product_purchase->quantity) * $product_type['quantity'];

@@ -114,7 +114,12 @@ class ProductTypeRepository extends BaseRepository
         $product_types = ProductType::query()
             ->with('main_measure_type')
             ->withSum(['product_purchases' => function ($query) use ($storage_ids) {
-                $query->whereIn('storage_id', $storage_ids);
+                $query
+                    ->whereIn('storage_id', $storage_ids)
+                    ->where(function ($q) {
+                        $q->whereNull('expiration_date')
+                            ->orWhere('expiration_date', '>', now(new \DateTimeZone('Europe/Kiev')));
+                    });
             }], 'current_quantity')
             ->orderByDesc('product_purchases_sum_current_quantity')
             ->get();
