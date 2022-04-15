@@ -8,12 +8,12 @@ use App\Events\ProductTypeEdited;
 use App\Filters\ProductTypeFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
+use App\Http\Requests\Api\ProductType\DashboardRequest;
 use App\Http\Requests\Api\ProductType\CreateRequest;
-use App\Http\Requests\Api\ProductType\RemoveMeasureTypesRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
+use App\Http\Resources\Api\ProductType\DashboardResource;
 use App\Http\Resources\Api\ProductType\DefaultResource;
 use App\Http\Resources\Api\ProductType\SelectForSellProductResource;
-use App\Http\Resources\Api\ProductType\ShortInfoResource;
 use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
 use App\Models\ProductType;
@@ -98,9 +98,9 @@ class ProductTypeController extends Controller
         $product_type->load([
             'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
         ]);
-        
+
         ProductTypeEdited::dispatch($product_type, Auth::user());
-        
+
         return response()->json(['success' => true, 'data' => new ShowResource($product_type)], 202);
     }
 
@@ -157,5 +157,12 @@ class ProductTypeController extends Controller
         $product_type->load('media', 'base_measure_type', 'main_measure_type');
         $product_type = ProductTypeService::prepare_measure_types($product_type);
         return response()->json(['success' => true, 'data' => new WithMeasureTypesResource($product_type)]);
+    }
+
+    public function getForDashboard(DashboardRequest $request)
+    {
+        $shop_id = $request->validated()['shop_id'];
+        $product_types = $this->product_type->get_for_dashboard($shop_id);
+        return response()->json(['success' => true, 'data' => DashboardResource::collection($product_types)]);
     }
 }

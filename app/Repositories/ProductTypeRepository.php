@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\ProductType;
+use App\Models\Storage;
 use App\Services\EnumDbCol;
 use App\Services\ProductTypeService;
 use App\Services\UploadFileService;
@@ -104,5 +105,20 @@ class ProductTypeRepository extends BaseRepository
     public function getForSelectForSellProduct()
     {
         return $this->model->select('id', 'name')->get();
+    }
+
+    public function get_for_dashboard(int $shop_id)
+    {
+        $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $shop_id)->pluck('id');
+
+        $product_types = ProductType::query()
+            ->with('main_measure_type')
+            ->withSum(['product_purchases' => function ($query) use ($storage_ids) {
+                $query->whereIn('storage_id', $storage_ids);
+            }], 'current_quantity')
+            ->orderByDesc('product_purchases_sum_current_quantity')
+            ->get();
+
+        return $product_types;
     }
 }

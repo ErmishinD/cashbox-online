@@ -41,13 +41,16 @@ class ProductPurchaseFactory extends Factory
             $product_type_id = $attribues['product_type_id'];
         }
 
+        $cost = $this->faker->randomElement([100, 250, 500, 1000, 2500]);
+
         return [
             'company_id' => $company_id,
             'storage_id' => $storage_id,
             'product_type_id' => $product_type_id,
             'quantity' => $quantity,
             'current_quantity' => $quantity,
-            'cost' => $this->faker->randomElement([100, 250, 500, 1000, 2500]),
+            'cost' => $cost,
+            'current_cost' => $cost,
             'expiration_date' => $expiration_date,
             'user_id' => $user_id,
         ];

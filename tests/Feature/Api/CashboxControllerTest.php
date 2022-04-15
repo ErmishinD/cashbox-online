@@ -374,31 +374,31 @@ class CashboxControllerTest extends TestCase
                     'sell_product_id' => $sell_product1->id,
                     'amount' => 200,
                     'product_types' => [
-                        ['id' => $product_type1->id, 'quantity' => 100],
-                        ['id' => $product_type2->id, 'quantity' => 200]
+                        ['id' => $product_type1->id, 'quantity' => 100, 'type' => $product_type1->type],
+                        ['id' => $product_type2->id, 'quantity' => 200, 'type' => $product_type2->type]
                     ]
                 ],
                 [
                     'sell_product_id' => $sell_product2->id,
                     'amount' => 110,
                     'product_types' => [
-                        ['id' => $product_type1->id, 'quantity' => 100],
-                        ['id' => $product_type3->id, 'quantity' => 100],
-                        ['id' => $product_type4->id, 'quantity' => 100],
+                        ['id' => $product_type1->id, 'quantity' => 100, 'type' => $product_type1->type],
+                        ['id' => $product_type3->id, 'quantity' => 100, 'type' => $product_type3->type],
+                        ['id' => $product_type4->id, 'quantity' => 100, 'type' => $product_type4->type],
                     ]
                 ],
                 [
                     'sell_product_id' => $sell_product3->id,
                     'amount' => 110,
                     'product_types' => [
-                        ['id' => $product_type4->id, 'quantity' => 500],
+                        ['id' => $product_type4->id, 'quantity' => 500, 'type' => $product_type4->type],
                     ]
                 ],
                 [
                     'sell_product_id' => $sell_product3->id,
                     'amount' => 115,
                     'product_types' => [
-                        ['id' => $product_type4->id, 'quantity' => 500],
+                        ['id' => $product_type4->id, 'quantity' => 500, 'type' => $product_type3->type],
                     ]
                 ],
             ],

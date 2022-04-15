@@ -30,11 +30,11 @@
 	        	<div class="basket_card_ingridients" v-if="card.product_types">
 
 	        		<div class="card_dropdown_button" @click="toggleClassForDropdownInBasket(card.list_number_data)">
-	        			
+
 	        			<i class="fas fa-chevron-down" :class="selected_dropdown_in_basket.includes(card.list_number_data) ? 'fa-chevron-up' : 'fa-chevron-down'" ></i>
 	        			<span>{{$t('Состав')}}</span>
 
-	        			
+
 	        		</div>
 
 	        		<div v-show="selected_dropdown_in_basket.includes(card.list_number_data)" class="card_dropdown_content">
@@ -51,7 +51,7 @@
 	        		</div>
 	        	</div>
 
-	        
+
 	        </div>
 	      </div>
 	      <div class="getting-started-example-styled__etc">
@@ -67,7 +67,7 @@
 	  		</div>
 
 	      <div class="getting-started-example-styled__actions">
-	      	
+
 	      	<button @click="FixSale('_card')" :disabled="overlimited_product_types.length" class="btn btn-warning">
 	          {{ $t('Оплачено картой') }}
 	        </button>
@@ -86,7 +86,7 @@
 		<button  :disabled="!(this.cards_for_sailing.length)" @click="openBasket" class="btn btn-success">
 			{{$t('Перейти к товарам')}}
 			<span class="counter_basket_circle"><span class="counter_basket">{{this.cards_for_sailing.length}}</span></span>
-			
+
 		</button>
 	</div>
 
@@ -97,7 +97,7 @@
 					<i class="fas " :class="selected_cards.includes(card.id) ? 'fa-trash' : 'fa-plus'"  @click="toggleClassForIcon(card)"></i>
 				</div>
 			</div>
-			
+
 			<div class="card_content" :class="selected_cards.includes(card.id) ? 'bc-lightgreen' : ' '">
 				<div class="card_title tac">{{card.name}}</div>
 				<div class="card_items" >
@@ -121,7 +121,7 @@
 
 			<div class="card_dropdown">
 				<div class="card_dropdown_button" @click="toggleClassForDropdown(card.id)">
-					
+
 					<i class="fas fa-chevron-down" :class="selected_dropdown.includes(card.id) ? 'fa-chevron-up' : 'fa-chevron-down'" ></i>
 					<span>{{$t('Состав')}}</span>
 
@@ -138,7 +138,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </template>
@@ -213,7 +213,7 @@
         	changeShop(){
         		this.shop_id = document.querySelector('select[name=select_storage]').value
         	},
-        	scrolltoGetMoreData(){	
+        	scrolltoGetMoreData(){
 
         		window.onscroll = () => {
         			if(!this.all_data_is_loaded && !this.unmounted) {
@@ -241,7 +241,7 @@
 	        	this.axios.post('/api/sell_products/get_paginated', this.serverParams).then((response) => {
 	        		let data = response.data
 	        		if(is_not_paginate){
-	        			
+
 	        			Promise.resolve(this.cards = data.pagination.data).then(result => {
 	        				this.in_progress_loading_data = false
 	        				this.cards.forEach(el => {
@@ -249,7 +249,7 @@
 	        					if(card){
 	        						el.counter = card.counter
 	        					}
-	        					
+
 	        				})
 	        			})
 	        			this.cards.forEach(el => {
@@ -275,8 +275,8 @@
 				       else{
 				       	this.all_data_is_loaded = true
 				       }
-			      
-			       
+
+
 			       loader.hide()
 			     }).catch(function(error){
 		            if(error.response.status == 403){
@@ -285,9 +285,9 @@
 		            }
 		        })
 
-	  		     this.axios.post('/api/product_purchases/get_for_dashboard', {shop_id : 1}).then((response) => {
+	  		     this.axios.post('/api/product_types/get_for_dashboard', {shop_id : 1}).then((response) => {
 			       this.product_types_in_storages = response.data['data']
-			       
+
 			       loader.hide()
 			     }).catch(function(error){
 		            if(error.response.status == 403){
@@ -308,7 +308,7 @@
         		this.cards_for_sailing.forEach(function callback(el, index, array) {
         			console.log(index, array.length)
         			if(el.id == card_data.id){
-        				
+
 
         				index_for_removing.push(index)
         				let card = cards.find(el => el.id == card_data.id)
@@ -316,7 +316,7 @@
         				if(selected_cards.indexOf(card_data.id) != -1){
         					selected_cards.splice(selected_cards.indexOf(card_data.id), 1)
         				}
-        				
+
         				stop_function = 1
 
         				card_data.product_types.forEach(elem => {
@@ -327,9 +327,9 @@
 
 	    					}
         				})
-        				
-        				
-        				
+
+
+
         			}
         		})
 
@@ -348,12 +348,12 @@
         				if(this.product_types_in_basket.find(item => item.id === el.id)){
         					let item = this.product_types_in_basket.find(item => item.id === el.id)
         					item.quantity += parseFloat(el.quantity.toFixed(10))
-        					
+
         				}
         				else{
         					this.product_types_in_basket.push({'id' : el.id, 'quantity': el.quantity, 'equal' : el.main_measure_type.quantity, 'name_measure_type' : el.main_measure_type.name})
         				}
-        				
+
         			})
         		}
         		this.compareWithStorage()
@@ -369,7 +369,7 @@
         	},
 
         	openBasket() {
-        		
+
         		this.modal_show = true
         		this.cards_for_sailing.forEach(el => {
         			el.sum_all = el.counter * el.price
@@ -392,7 +392,7 @@
 		        canCancel: false,
 		        loader: 'dots',});
         		let data_for_sailing = this.cards_for_sailing
-        		
+
         		data_for_sailing.forEach(el => {
         			el.sell_product_id = el.id
         			el.amount = parseFloat(el.current_price)
@@ -400,7 +400,7 @@
         				elem.quantity = elem.quantity_in_main_measure_type * elem.main_measure_type.quantity
         			})
         		})
-        		
+
         		let sale_data = {
         			'shop_id': 1,
         			'transaction_type' : '_in',
@@ -446,23 +446,23 @@
 
 	        						if(el.id == card.id){
 	        							array.splice(index, 1)
-	        							
+
 	        							throw 'Break';
 	        						}
-	        					
-	        					
+
+
 	        				})
 	        			} catch (e) {
 						  if (e !== 'Break') throw e
 						}
         			}
-        			
+
         			console.log(this.cards_for_sailing)
         			card.counter == 1 ? card.counter = 1 : card.counter--
 
         		}
         		else{
-        			
+
         			card.product_types.forEach(el => {
         				let item = this.product_types_in_basket.find(item => item.id === el.id)
         				item.quantity = item.quantity - (el.quantity * card.counter) + (el.quantity * (card.counter + 1))
@@ -477,7 +477,7 @@
         			this.cards_for_sailing.push(copy_card)
         			console.log(this.cards_for_sailing)
         			card.counter++
-        			
+
         		}
         		this.compareWithStorage()
         	},
@@ -523,7 +523,7 @@
 
         					let card = cards.find(el => el.id == card_data.id)
         					card.counter--
-        					
+
         					if(cards[card_data.id - 1].counter == 0){
 
         						selected_cards.forEach(function callback(elem, elem_index, elem_array){
@@ -543,8 +543,8 @@
         		    	this.recountProductTypes(el.id, el.equal)
         		    })
         		});
-        		
-        		
+
+
         	},
 
         	compareWithStorage() {
@@ -552,20 +552,20 @@
         		let product_types_in_storages = this.product_types_in_storages
         		let overlimited_product_types = this.overlimited_product_types
 
-        		
+
 
         		for(let i=0; i < this.product_types_in_basket.length; i++){
-        			
+
         			for(let j=0; j < this.product_types_in_storages.length; j++){
-        				
+
         				if(this.product_types_in_basket[i].id == this.product_types_in_storages[j].id){
-        					
+
         					let comparing = this.product_types_in_storages[j].current_quantity - this.product_types_in_basket[i].quantity
 
         					if(comparing < 0){
         						let stop_comparing = false
         						this.overlimited_product_types.forEach(el => {
-        							
+
         							if(el.id == this.product_types_in_basket[i].id){
         								el.overlimited_quantity = comparing
         								el.overlimited_quantity_in_main_measure_type = parseFloat((comparing / product_types_in_storages[j].main_to_base_equivalent).toFixed(10))
@@ -588,18 +588,18 @@
         								type: 'error',
         							});
         						}
-        						
+
         					}
         					else{
 
         						let id = this.product_types_in_basket[i].id
-        						
+
         						let index_for_removing = []
         						let overlimited_product_types = this.overlimited_product_types
         						this.overlimited_product_types.forEach(function callback(el, index, array) {
         							if(el.id == id){
         								index_for_removing.push(index)
-        								
+
         							}
         						})
 
@@ -607,7 +607,7 @@
         							overlimited_product_types.splice(el-index, 1)
         						})
         					}
-        					
+
         				}
         			}
         		}

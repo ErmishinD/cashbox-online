@@ -7,10 +7,8 @@ use App\Filters\ProductPurchaseFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\ProductPurchase\CreateRequest;
-use App\Http\Requests\Api\ProductPurchase\DashboardRequest;
 use App\Http\Requests\Api\ProductPurchase\MassCreateRequest;
 use App\Http\Requests\Api\ProductPurchase\UpdateRequest;
-use App\Http\Resources\Api\ProductPurchase\DashboardCollection;
 use App\Http\Resources\Api\ProductPurchase\DefaultResource;
 use App\Http\Resources\Api\ProductPurchase\ShowCollection;
 use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
@@ -122,12 +120,5 @@ class ProductPurchaseController extends Controller
         return response()->json([
             'success' => false, 'message' => 'Someone has already used products from this purchase!'
         ], 409);
-    }
-
-    public function get_for_dashboard(DashboardRequest $request): JsonResponse
-    {
-        $data = $request->validated();
-        $product_purchases_by_product_type = $this->product_purchase->getForDashboard($data['shop_id']);
-        return response()->json(['success' => true, 'data' => new DashboardCollection($product_purchases_by_product_type)]);
     }
 }

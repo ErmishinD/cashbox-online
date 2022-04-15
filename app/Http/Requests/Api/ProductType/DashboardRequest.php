@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\ProductPurchase;
+namespace App\Http\Requests\Api\ProductType;
 
 use App\Http\Requests\TenantRequest;
 

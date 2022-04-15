@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Cashbox;
 use App\Models\ProductPurchase;
+use App\Models\ProductType;
 use App\Models\Shop;
 use App\Models\Storage;
 use App\Services\EnumDbCol;
@@ -51,15 +52,22 @@ class CashboxRepository extends BaseRepository
 
             // отнять нужное кол-во продуктов со склада
             foreach ($sell_product['product_types'] as $product_type) {
-                foreach ($product_purchases->where('product_type_id', $product_type['id']) as $product_purchase) {
+                $current_product_purchases = $product_type['type'] == ProductType::TYPES['imperishable']
+                    ? $product_purchases->where('product_type_id', $product_type['id'])
+                    : $product_purchases->where('product_type_id', $product_type['id'])
+                        ->where('expiration_date', '>', now(new \DateTimeZone('Europe/Kiev')));
+
+                foreach ($current_product_purchases as $product_purchase) {
                     if ($product_purchase->current_quantity >= $product_type['quantity']) {
-                        $product_purchase->current_quantity = $product_purchase->current_quantity - $product_type['quantity'];
+                        $product_purchase->current_quantity -= $product_type['quantity'];
+                        $product_purchase->current_cost -= ($product_purchase->cost / $product_purchase->quantity) * $product_type['quantity'];
                         $product_purchase->save();
                         break;
                     }
 
                     $product_type['quantity'] = $product_type['quantity'] - $product_purchase->current_quantity;
                     $product_purchase->current_quantity = 0;
+                    $product_purchase->current_cost = 0;
                     $product_purchase->save();
                 }
             }

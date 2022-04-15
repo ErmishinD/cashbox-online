@@ -61,6 +61,7 @@ class ProductPurchaseRepository extends BaseRepository
                 'quantity' => $product_type['quantity'],
                 'current_quantity' => $product_type['quantity'],
                 'cost' => $product_type['cost'],
+                'current_cost' => $product_type['cost'],
                 'expiration_date' => $product_type['expiration_date'] ?? null,
                 'user_id' => $data['user_id'],
                 'parent_id' => $parent_id
@@ -76,9 +77,9 @@ class ProductPurchaseRepository extends BaseRepository
     {
         $result = $this->model
             ->with(['product_type.main_measure_type', 'storage', 'user'])
+            ->orderByDesc('created_at')
             ->filter($filters)
-            ->get()
-            ->paginate($paginate_data['per_page'], $paginate_data['page']);
+            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
         return $result;
     }
 }

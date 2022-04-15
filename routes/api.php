@@ -100,6 +100,7 @@ Route::middleware('auth')->group(function () {
         Route::get('get_types', [ProductTypeController::class, 'getTypesForSelect']);
         Route::get('get_for_select', [ProductTypeController::class, 'getForSelectForSellProduct']);
         Route::get('get_short_info/{product_type}', [ProductTypeController::class, 'getShortInfo']);
+        Route::post('get_for_dashboard', [ProductTypeController::class, 'getForDashboard']);
     });
     Route::apiResource('product_types', ProductTypeController::class);
 
@@ -107,7 +108,6 @@ Route::middleware('auth')->group(function () {
      * ProductPurchase
      */
     Route::prefix('product_purchases')->group(function () {
-        Route::post('get_for_dashboard', [ProductPurchaseController::class, 'get_for_dashboard']);
         Route::post('mass_create', [ProductPurchaseController::class, 'mass_store']);
         Route::post('get_paginated', [ProductPurchaseController::class, 'get_paginated']);
     });
