@@ -28,6 +28,7 @@ class SellProductRepository extends BaseRepository
                 $query->with(['main_measure_type', 'measure_types']);
             }])
             ->with(['category', 'media'])
+            ->orderByDesc('created_at')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 

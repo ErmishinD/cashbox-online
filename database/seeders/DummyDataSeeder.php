@@ -133,7 +133,7 @@ class DummyDataSeeder extends Seeder
                         [
                             'name' => 'Баунти',
                             'type' => '_imperishable',
-                            'photo' => 'https://cigarelka.com.ua/image/catalog/aroma/destilla/ds-baunty.jpg',
+                            'photo' => 'https://cdn-irec.r-99.com/sites/default/files/imagecache/300o/product-images/4410/productimage-picture-00007026-101286_jpg_520x520_q85.jpg',
                             'base_measure_type_id' => 3,
                             'main_measure_type_id' => 3,
                         ],
@@ -269,7 +269,9 @@ class DummyDataSeeder extends Seeder
             foreach ($company_data['shops'] as $shop_data) {
                 $shop = Shop::factory()->create(['name' => $shop_data['name'], 'company_id' => $company->id]);
                 foreach ($shop_data['storages'] as $storage_data) {
-                    $storage = Storage::factory()->create(['shop_id' => $shop->id, 'name' => $storage_data['name']]);
+                    $storage = Storage::factory()->create([
+                        'shop_id' => $shop->id, 'name' => $storage_data['name'], 'company_id' => $company->id
+                    ]);
                     $shop->storages = collect([$storage]);
                 }
                 $shops->push($shop);
@@ -376,7 +378,7 @@ class DummyDataSeeder extends Seeder
         }
 
         // создать продукты
-        $product_types = ProductType::factory()->count(1000)->create();
+        $product_types = ProductType::factory()->count(300)->create();
 
         // к каждому продукту добавить подходящие единицы измерения
         $all_measure_types = MeasureType::all();
@@ -444,20 +446,6 @@ class DummyDataSeeder extends Seeder
                                 'cost' => random_int(100, 10000),
                                 'expiration_date' => $expiration_date,
                                 'user_id' => $director->id
-                            ]);
-
-                            // create record in cashbox
-                            Cashbox::factory()->create([
-                                'company_id' => $company_id,
-                                'shop_id' => $shop->id,
-                                'product_purchase_id' => $product_purchase->id,
-                                'sell_product_id' => null,
-                                'transaction_type' => Cashbox::TRANSACTION_TYPES['out'],
-                                'payment_type' => $faker->randomElement(Cashbox::PAYMENT_TYPES),
-                                'amount' => $product_purchase->cost,
-                                'operator_id' => $director->id,
-                                'collected_at' => null,
-                                'collector_id' => null,
                             ]);
                         }
                     }

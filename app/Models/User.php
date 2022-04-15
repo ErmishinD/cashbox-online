@@ -67,13 +67,16 @@ class User extends Authenticatable implements SystemLoggable
         return $this->hasMany(ProductPurchase::class);
     }
 
-    public function getTextForAudit(string $action, array $data): string
+    public function getTextForAudit(string $action, ?array $data): string
     {
         return $this->name;
     }
 
     public function getVueRoute(string $action): ?string
     {
+        if ($this->deleted_at) {
+            return null;
+        }
         return 'users_show';
     }
 

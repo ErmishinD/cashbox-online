@@ -96,6 +96,7 @@ class ProductTypeRepository extends BaseRepository
     {
         return $this->model
             ->with('media', 'category')
+            ->orderByDesc('created_at')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
     }

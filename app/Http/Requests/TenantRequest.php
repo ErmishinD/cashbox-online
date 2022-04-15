@@ -21,7 +21,6 @@ class TenantRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        info('in tenant request');
         $this->merge([
             'company_id' => session('company_id') ?? (Auth::user()->company_id ?? optional(Company::first())->id),
             'shop_id' => session('shop_id'),

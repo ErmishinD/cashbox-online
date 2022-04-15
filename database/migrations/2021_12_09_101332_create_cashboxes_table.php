@@ -18,7 +18,6 @@ class CreateCashboxesTable extends Migration
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->foreignId('sell_product_id')->nullable()->constrained('sell_products')->onDelete('set null');
-            $table->foreignId('product_purchase_id')->nullable()->constrained('product_purchases')->onDelete('set null');
             $table->json('data')->nullable();
             $table->enum('transaction_type', ['_in', '_out'])->default('_in');
             $table->enum('payment_type', ['_cash', '_card'])->default('_cash');

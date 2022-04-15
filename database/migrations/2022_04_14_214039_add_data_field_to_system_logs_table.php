@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('system_logs', function (Blueprint $table) {
-            $table->string('additional_text')->nullable();
+            $table->json('data')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('system_logs', function (Blueprint $table) {
-            $table->dropColumn('additional_text');
+            $table->dropColumn('data');
         });
     }
 };

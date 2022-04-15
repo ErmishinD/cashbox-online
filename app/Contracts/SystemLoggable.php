@@ -5,7 +5,7 @@ namespace App\Contracts;
 
 interface SystemLoggable
 {
-    public function getTextForAudit(string $action, array $data): string;
+    public function getTextForAudit(string $action, ?array $data): string;
 
     public function getVueRoute(string $action): ?string;
 

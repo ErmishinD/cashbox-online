@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int id
  * @property int shop_id
  * @property int sell_product_id
- * @property int product_purchase_id
  * @property array data
  * @property float amount
  * @property string payment_type
@@ -39,7 +38,7 @@ class Cashbox extends Model implements SystemLoggable
     public const PAYMENT_TYPES = ['card' => '_card', 'cash' => '_cash'];
 
     protected $fillable = [
-        'shop_id', 'sell_product_id', 'product_purchase_id', 'data', 'transaction_type', 'payment_type', 'amount',
+        'shop_id', 'sell_product_id', 'data', 'transaction_type', 'payment_type', 'amount',
         'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id'
     ];
 
@@ -65,11 +64,6 @@ class Cashbox extends Model implements SystemLoggable
         return $this->belongsTo(User::class, 'collector_id');
     }
 
-    public function product_purchase()
-    {
-        return $this->belongsTo(ProductPurchase::class);
-    }
-
     public function payments()
     {
         return $this->hasMany(Cashbox::class, 'parent_id');
@@ -87,13 +81,13 @@ class Cashbox extends Model implements SystemLoggable
         return $builder->where('collected_at', $collected_at);
     }
 
-    public function getTextForAudit(string $action, array $data): string
+    public function getTextForAudit(string $action, ?array $data): string
     {
         if ($action == SystemLog::ACTIONS['collected']) {
             return __('Операции на сумму') . ': ' . ($data['sum'] ?? 0);
         }
         elseif ($action == SystemLog::ACTIONS['sold']) {
-            return __('Заказна сумму') . ': ' . ($data['sum'] ?? 0);
+            return __('Заказ на сумму') . ': ' . ($data['sum'] ?? 0);
         }
         return '';
     }

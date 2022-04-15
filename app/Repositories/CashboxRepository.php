@@ -72,17 +72,12 @@ class CashboxRepository extends BaseRepository
     {
         $cashbox_transactions = $this->model
             ->select([
-                'id', 'shop_id', 'sell_product_id', 'product_purchase_id', 'transaction_type', 'payment_type', 'amount',
+                'id', 'shop_id', 'sell_product_id', 'transaction_type', 'payment_type', 'amount',
                 'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id', 'created_at'
             ])
             ->with([
                 'sell_product' => function ($query) {
                     $query->withTrashed();
-                },
-                'product_purchase' => function ($query) {
-                    $query->with(['product_type' => function ($q) {
-                        $q->withTrashed();
-                    }]);
                 },
                 'operator' => function ($query) {
                     $query->withTrashed();
@@ -135,11 +130,6 @@ class CashboxRepository extends BaseRepository
             ->with([
                 'sell_product' => function ($query) {
                     $query->withTrashed();
-                },
-                'product_purchase' => function ($query) {
-                    $query->with(['product_type' => function ($q) {
-                        $q->withTrashed();
-                    }]);
                 },
                 'operator' => function ($query) {
                     $query->withTrashed();

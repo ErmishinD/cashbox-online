@@ -26,17 +26,21 @@ class Shop extends Model implements SystemLoggable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function storages() {
+    public function storages()
+    {
         return $this->hasMany(Storage::class);
     }
 
-    public function getTextForAudit(string $action, array $data): string
+    public function getTextForAudit(string $action, ?array $data): string
     {
         return $this->name;
     }
 
     public function getVueRoute(string $action): ?string
     {
+        if ($this->deleted_at) {
+            return null;
+        }
         return 'shops_show';
     }
 
