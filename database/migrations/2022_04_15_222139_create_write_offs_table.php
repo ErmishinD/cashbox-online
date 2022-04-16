@@ -25,6 +25,16 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        // create permission
+        \Spatie\Permission\Models\Permission::create(['name' => 'WriteOff_access']);
+
+        // add this permission to director's roles
+        $companyIds = \App\Models\Company::pluck('id');
+        foreach ($companyIds as $companyId) {
+            $role = \App\Models\Role::where('company_id', $companyId)->first();
+            $role->givePermissionTo('WriteOff_access');
+        }
     }
 
     /**

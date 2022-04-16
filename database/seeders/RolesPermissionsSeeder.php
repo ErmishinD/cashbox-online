@@ -33,6 +33,7 @@ class RolesPermissionsSeeder extends Seeder
         // comes from migration
         // 'Category_access', 'Category_create', 'Category_show', 'Category_edit', 'Category_delete'
         // 'Audit_access'
+        // 'WriteOff_access'
 
         $data_for_create = [];
         foreach ($permissions as $permission) {

@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\StorageController;
 use App\Http\Controllers\Api\SystemLogController;
 use App\Http\Controllers\Api\TransferController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\WriteOffController;
 use App\Http\Controllers\TestWebsocketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -166,6 +167,14 @@ Route::middleware('auth')->group(function () {
      * SystemLog
      */
     Route::post('system_logs/get_paginated', [SystemLogController::class, 'get_paginated']);
+
+    /*
+     * WriteOff
+     */
+    Route::prefix('write_offs')->group(function () {
+        Route::post('get_paginated', [WriteOffController::class, 'get_paginated']);
+        Route::get('/{write_off}', [WriteOffController::class, 'show']);
+    });
 });
 
 
