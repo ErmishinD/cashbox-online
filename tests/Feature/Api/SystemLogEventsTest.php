@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use App\Events\MoneyCollected;
 use App\Events\OrderSold;
 use App\Events\ProductPurchaseMade;
+use App\Events\ProductsWrittenOff;
 use App\Events\ProductTypeCreated;
 use App\Events\ProductTypeDeleted;
 use App\Events\ProductTypeEdited;
@@ -31,6 +32,7 @@ use App\Models\Shop;
 use App\Models\Storage;
 use App\Models\SystemLog;
 use App\Models\User;
+use App\Models\WriteOff;
 use Database\Seeders\BaseMeasureTypeSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -198,5 +200,51 @@ class SystemLogEventsTest extends TestCase
         $sum = round($payments->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('amount') - $payments->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('amount'), 2);
 
         $this->assertSystemLogsHave(SystemLog::ACTIONS['collected'], $payments->first(), ['sum' => $sum]);
+    }
+
+    public function test_products_written_off_event_is_working()
+    {
+        $shop = Shop::factory()->create(['company_id' => $this->user->company_id]);
+        $storage = Storage::factory()->create(['company_id' => $this->user->company_id, 'shop_id' => $shop->id]);
+
+        $main_measure_type = MeasureType::factory()->create(['company_id' => $this->user->company_id]);
+        $product_types = ProductType::factory()->count(2)->create([
+            'company_id' => $this->user->company_id, 'main_measure_type_id' => $main_measure_type->id
+        ]);
+        $product_purchase1 = ProductPurchase::factory()->create([
+            'company_id' => $this->user->company_id, 'storage_id' => $storage->id,
+            'product_type_id' => $product_types->first()->id,
+        ]);
+        $product_purchase2 = ProductPurchase::factory()->create([
+            'company_id' => $this->user->company_id, 'storage_id' => $storage->id,
+            'product_type_id' => $product_types->last()->id
+        ]);
+
+        $write_off1 = WriteOff::factory()->create([
+            'company_id' => $this->user->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_purchase1->product_type_id,
+            'quantity' => 50,
+            'user_id' => $this->user->id,
+            'data' => [
+                ['id' => $product_purchase1->id, 'quantity' => 50, 'cost' => 50]
+            ]
+        ]);
+        $write_off2 = WriteOff::factory()->create([
+            'company_id' => $this->user->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_purchase2->product_type_id,
+            'quantity' => 100,
+            'user_id' => $this->user->id,
+            'data' => [
+                ['id' => $product_purchase1->id, 'quantity' => 100, 'cost' => 50]
+            ],
+            'parent_id' => $write_off1->parent_id
+        ]);
+        $write_offs = collect([$write_off1, $write_off2]);
+
+        ProductsWrittenOff::dispatch($write_offs, $this->user);
+
+        $this->assertSystemLogsHave(SystemLog::ACTIONS['write_off'], $write_offs->first(), ['sum' => 100, 'storage_name' => $storage->name]);
     }
 }

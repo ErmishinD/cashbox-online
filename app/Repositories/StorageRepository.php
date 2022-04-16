@@ -6,6 +6,8 @@ use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\Shop;
 use App\Models\Storage;
+use App\Models\WriteOff;
+use App\Services\ProductPurchaseService;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -56,5 +58,35 @@ class StorageRepository extends BaseRepository
             ->where('company_id', $company_id)
             ->get();
         return $shops_with_storages;
+    }
+
+    public function write_off($data)
+    {
+        $product_purchases = ProductPurchase::query()
+            ->where('storage_id', $data['storage_id'])
+            ->where('current_quantity', '>', 0)
+            ->orderBy('created_at')
+            ->get();
+
+        $used_purchases = ProductPurchaseService::subtract_product_types($product_purchases, $data);
+
+        $write_offs = collect();
+        $parent_id = null;
+        foreach ($data['product_types'] as $product_type) {
+            if ($write_offs->isNotEmpty()) {
+                $parent_id = $write_offs->first()->id;
+            }
+            $write_off = WriteOff::create([
+                'company_id' => $data['company_id'],
+                'storage_id' => $data['storage_id'],
+                'user_id' => $data['user_id'],
+                'product_type_id' => $product_type['id'],
+                'quantity' => $product_type['quantity'],
+                'parent_id' => $parent_id,
+                'data' => $used_purchases[$product_type['id']]
+            ]);
+            $write_offs->push($write_off);
+        }
+        return $write_offs;
     }
 }

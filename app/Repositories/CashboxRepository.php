@@ -8,6 +8,7 @@ use App\Models\ProductType;
 use App\Models\Shop;
 use App\Models\Storage;
 use App\Services\EnumDbCol;
+use App\Services\ProductPurchaseService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -55,21 +56,7 @@ class CashboxRepository extends BaseRepository
             $payments->push($payment);
 
             // отнять нужное кол-во продуктов со склада
-            foreach ($sell_product['product_types'] as $product_type) {
-                foreach ($product_purchases->where('product_type_id', $product_type['id']) as $product_purchase) {
-                    if ($product_purchase->current_quantity >= $product_type['quantity']) {
-                        $product_purchase->current_quantity -= $product_type['quantity'];
-                        $product_purchase->current_cost -= ($product_purchase->cost / $product_purchase->quantity) * $product_type['quantity'];
-                        $product_purchase->save();
-                        break;
-                    }
-
-                    $product_type['quantity'] = $product_type['quantity'] - $product_purchase->current_quantity;
-                    $product_purchase->current_quantity = 0;
-                    $product_purchase->current_cost = 0;
-                    $product_purchase->save();
-                }
-            }
+            ProductPurchaseService::subtract_product_types($product_purchases, $sell_product);
         }
 
         return $payments;

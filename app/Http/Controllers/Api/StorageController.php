@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ProductsWrittenOff;
 use App\Events\StorageCreated;
 use App\Events\StorageDeleted;
 use App\Events\StorageEdited;
@@ -10,6 +11,7 @@ use App\Http\Requests\Api\GetByCompanyRequest;
 use App\Http\Requests\Api\Storage\CreateRequest;
 use App\Http\Requests\Api\Storage\GetBalanceRequest;
 use App\Http\Requests\Api\Storage\UpdateRequest;
+use App\Http\Requests\Api\Storage\WriteOffRequest;
 use App\Http\Resources\Api\Shop\WithStoragesResource;
 use App\Http\Resources\Api\Storage\BalanceCollection;
 use App\Http\Resources\Api\Storage\DefaultResource;
@@ -102,5 +104,15 @@ class StorageController extends Controller
         $storage_ids = $request->validated()['storage_ids'];
         $storages = StorageService::get_storages_balances($storage_ids);
         return new BalanceCollection($storages);
+    }
+
+    public function write_off(WriteOffRequest $request)
+    {
+        $data = $request->validated();
+        $write_offs = $this->storage->write_off($data);
+
+        ProductsWrittenOff::dispatch($write_offs, Auth::user());
+
+        return response()->noContent();
     }
 }

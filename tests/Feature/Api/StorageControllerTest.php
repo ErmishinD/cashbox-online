@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\BaseMeasureType;
+use App\Models\Cashbox;
 use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
@@ -267,6 +268,89 @@ class StorageControllerTest extends TestCase
                     ]
                 ]
             ]);
+    }
+
+    public function test_admin_can_write_off_product_types()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+        $this->admin->update(['company_id' => $company->id]);
+
+        $product_type1 = ProductType::factory()->create(['company_id' => $company->id]);
+        $product_type2 = ProductType::factory()->create(['company_id' => $company->id]);
+
+        $purchase1 = ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
+            'quantity' => 100, 'current_quantity' => 100, 'cost' => 100, 'current_cost' => 100
+        ]);
+        $purchase2 = ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type2->id,
+            'quantity' => 1000, 'current_quantity' => 1000, 'cost' => 500, 'current_cost' => 500
+        ]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'write_off', [
+            'storage_id' => $storage->id,
+            'product_types' => [
+                [
+                    'id' => $product_type1->id,
+                    'quantity' => 50,
+                ],
+                [
+                    'id' => $product_type2->id,
+                    'quantity' => 250,
+                ],
+
+            ]
+        ]);
+
+        $response->assertNoContent();
+
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type1->id,
+            'quantity' => 100,
+            'current_quantity' => 50,
+            'cost' => 100,
+            'current_cost' => 50
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type2->id,
+            'quantity' => 1000,
+            'current_quantity' => 750,
+            'cost' => 500,
+            'current_cost' => 375
+        ]);
+
+        $this->assertDatabaseHas('write_offs', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type1->id,
+            'quantity' => 50,
+            'data' => $this->castAsJson([
+                [
+                    'id' => $purchase1->id,
+                    'quantity' => 50,
+                    'cost' => 50
+                ]
+            ])
+        ]);
+        $this->assertDatabaseHas('write_offs', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type2->id,
+            'quantity' => 250,
+            'data' => $this->castAsJson([
+                [
+                    'id' => $purchase2->id,
+                    'quantity' => 250,
+                    'cost' => 125
+                ]
+            ])
+        ]);
     }
 
 }

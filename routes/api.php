@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('storages')->group(function () {
         Route::post('get_for_purchase', [StorageController::class, 'getByCompany']);
         Route::post('get_balance', [StorageController::class, 'getBalance']);
+        Route::post('write_off', [StorageController::class, 'write_off']);
     });
     Route::apiResource('storages', StorageController::class);
 
