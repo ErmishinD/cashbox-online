@@ -159,10 +159,12 @@ class ProductTypeController extends Controller
         return response()->json(['success' => true, 'data' => new WithMeasureTypesResource($product_type)]);
     }
 
-    public function getForDashboard(DashboardRequest $request)
+    public function getCurrentQuantity(DashboardRequest $request)
     {
-        $shop_id = $request->validated()['shop_id'];
-        $product_types = $this->product_type->get_for_dashboard($shop_id);
+        $data = $request->validated();
+        $shop_id = $data['shop_id'];
+        $storage_ids = !empty($data['storage_ids']) ? $data['storage_ids'] : null;
+        $product_types = $this->product_type->get_current_quantity($shop_id, $storage_ids);
         return response()->json(['success' => true, 'data' => DashboardResource::collection($product_types)]);
     }
 }

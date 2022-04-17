@@ -14,7 +14,9 @@ class DashboardRequest extends TenantRequest
     public function rules()
     {
         return [
-            'shop_id' => ['required']
+            'shop_id' => ['required'],
+            'storage_ids' => ['nullable', 'array'],
+            'storage_ids.*' => ['numeric']
         ];
     }
 }

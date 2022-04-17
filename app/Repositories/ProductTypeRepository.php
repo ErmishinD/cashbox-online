@@ -107,9 +107,11 @@ class ProductTypeRepository extends BaseRepository
         return $this->model->select('id', 'name')->get();
     }
 
-    public function get_for_dashboard(int $shop_id)
+    public function get_current_quantity(int $shop_id, ?array $storage_ids)
     {
-        $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $shop_id)->pluck('id');
+        if (empty($storage_ids)) {
+            $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $shop_id)->pluck('id');
+        }
 
         $product_types = ProductType::query()
             ->with('main_measure_type')
