@@ -1,9 +1,30 @@
 <template>
 
   <div>
-  	  <router-link :to="{name: 'purchases_create'}">
-  	  	<button v-if="$can('ProductPurchase_create')" class="btn btn-success pull-right mb-10" >{{ $t('Добавить закупку') }}</button>
-  	  </router-link>
+    <div class="row-btw mb-10">
+      <button @click="openBalance" class="btn btn-primary">
+        {{ $t('Баланс складов') }}
+      </button>
+      <router-link :to="{name: 'purchases_create'}">
+        <button v-if="$can('ProductPurchase_create')" class="btn btn-success" >{{ $t('Добавить закупку') }}</button>
+      </router-link>
+    </div>
+  	  
+
+      <GDialog style="z-index: 9999;" :persistent="false" v-model="balance_modal_show" max-width="500">
+        <h1 class="tac">{{$t('Суммарный баланс')}}: {{balance.all_balance}}</h1>
+        <vue-good-table style="position: static; padding: 10px 20px;"
+          mode="remote"
+          :columns="balance_columns"
+          :rows="balance_rows"
+          :line-numbers="true"
+          >
+        }
+      <template #table-row="props">
+        
+      </template>
+    </vue-good-table>
+      </GDialog>
 
     <vue-good-table style="position: static;"
       mode="remote"
@@ -57,6 +78,8 @@ export default {
     return {
       purchases: null,
       totalRecords: 0,
+      balance_modal_show: false,
+      balance:null,
       serverParams: {
         columnFilters: {
         },
@@ -102,10 +125,22 @@ export default {
         },
       ],
       rows: [],
+      balance_columns:[
+        {
+          label: this.$t("Склад"),
+          field: "name",
+        },
+        {
+          label: this.$t("Баланс"),
+          field: 'balance'
+        },
+      ],
+      balance_rows:[],
     };
   },
   mounted(){
   	this.render_list_items()
+
   	document.title = this.$t('Архив закупок');
   },
   methods:{
@@ -163,6 +198,23 @@ export default {
                 this.$router.push({ name: '403' })
             }
         })
+
+          this.axios.post('/api/storages/get_balance', {storage_ids:[]}).then((response) => {
+
+
+          })
+      },
+
+      openBalance() {
+
+
+        this.axios.post('/api/storages/get_balance', {storage_ids:[]}).then((response) => {
+          this.balance = response.data.data
+          this.balance_rows = response.data.data.storages
+          this.balance_modal_show = true
+        })
+
+
       }
   },
 };

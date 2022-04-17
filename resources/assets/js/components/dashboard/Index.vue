@@ -191,9 +191,12 @@
         	}
         },
         mounted(){
-        	 document.addEventListener('scroll', this.scrolltoGetMoreData)
-        	 document.querySelector('select[name=select_storage]').addEventListener('change', this.changeShop)
-  		     this.render_list_items(true)
+        	 if(this.shop_id){
+        	 	document.addEventListener('scroll', this.scrolltoGetMoreData)
+	        	 document.querySelector('select[name=select_storage]').addEventListener('change', this.changeShop)
+	  		     this.render_list_items(true)
+        	 }
+        	 
         },
         unmounted(){
 
