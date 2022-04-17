@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ProductsTransferred;
 use App\Events\ProductsWrittenOff;
 use App\Events\StorageCreated;
 use App\Events\StorageDeleted;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\GetByCompanyRequest;
 use App\Http\Requests\Api\Storage\CreateRequest;
 use App\Http\Requests\Api\Storage\GetBalanceRequest;
+use App\Http\Requests\Api\Storage\TransferRequest;
 use App\Http\Requests\Api\Storage\UpdateRequest;
 use App\Http\Requests\Api\Storage\WriteOffRequest;
 use App\Http\Resources\Api\Shop\WithStoragesResource;
@@ -101,6 +103,8 @@ class StorageController extends Controller
 
     public function getBalance(GetBalanceRequest $request)
     {
+        $this->authorize('Storage_access');
+
         $storage_ids = $request->validated()['storage_ids'];
         $storages = StorageService::get_storages_balances($storage_ids);
         return new BalanceCollection($storages);
@@ -108,10 +112,24 @@ class StorageController extends Controller
 
     public function write_off(WriteOffRequest $request)
     {
+        $this->authorize('WriteOff_create');
+
         $data = $request->validated();
         $write_offs = $this->storage->write_off($data);
 
         ProductsWrittenOff::dispatch($write_offs, Auth::user());
+
+        return response()->noContent();
+    }
+
+    public function transfer(TransferRequest $request)
+    {
+        $this->authorize('Transfer_create');
+
+        $data = $request->validated();
+        $transfers = $this->storage->transfer($data);
+
+        ProductsTransferred::dispatch($transfers, Auth::user());
 
         return response()->noContent();
     }

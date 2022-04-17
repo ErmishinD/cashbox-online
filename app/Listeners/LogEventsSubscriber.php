@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\MoneyCollected;
 use App\Events\OrderSold;
 use App\Events\ProductPurchaseMade;
+use App\Events\ProductsTransferred;
 use App\Events\ProductsWrittenOff;
 use App\Events\ProductTypeCreated;
 use App\Events\ProductTypeDeleted;
@@ -58,6 +59,8 @@ class LogEventsSubscriber
             StorageCreated::class => 'handle',
             StorageEdited::class => 'handle',
             StorageDeleted::class => 'handle',
+            ProductsWrittenOff::class => 'handle',
+            ProductsTransferred::class => 'handle',
 
             UserChangedShop::class => 'handle',
             UserCreated::class => 'handle',
@@ -68,8 +71,6 @@ class LogEventsSubscriber
             OrderSold::class => 'handle',
 
             ProductPurchaseMade::class => 'handle',
-
-            ProductsWrittenOff::class => 'handle',
         ];
     }
 }

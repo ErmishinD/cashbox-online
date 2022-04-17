@@ -22,7 +22,7 @@ class DefaultResource extends JsonResource
             'to_storage_id' => $this->to_storage_id,
             'product_type_id' => $this->product_type_id,
             'quantity' => $this->quantity,
-            'confirmed_by' => $this->confirmed_by,
+            'transferred_by' => $this->transferred_by,
         ];
     }
 }

@@ -40,7 +40,8 @@ class RoleRepository extends BaseRepository
             'User_access', 'User_create', 'User_show', 'User_edit', 'User_delete',
             'Report_access',
             'Audit_access',
-            'WriteOff_access',
+            'WriteOff_access', 'WriteOff_create', 'WriteOff_show',
+            'Transfer_access', 'Transfer_create', 'Transfer_show',
         ]);
 
         $salesman_role = $this->model->create([

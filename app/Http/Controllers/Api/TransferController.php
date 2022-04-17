@@ -2,87 +2,53 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\TransferFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Transfer\CreateRequest;
-use App\Http\Requests\Api\Transfer\UpdateRequest;
+use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Resources\Api\Transfer\DefaultResource;
-use App\Repositories\TransferRepository;
+use App\Http\Resources\Api\Transfer\IndexResource;
+use App\Http\Resources\Api\Transfer\ShowCollection;
+use App\Models\Transfer;
 
 class TransferController extends Controller
 {
-    /**
-     * @var TransferRepository
-     */
-    private $transfer;
-
-    public function __construct()
+    public function get_paginated(PaginateRequest $request, TransferFilter $filters)
     {
-        $this->transfer = app(TransferRepository::class);
+        $this->authorize('Transfer_access');
+
+        $paginate_data = $request->validated();
+        $transfers = Transfer::query()
+            ->with(['from_storage', 'to_storage', 'product_purchase.product_type.main_measure_type', 'transferred_by_user'])
+            ->filter($filters)
+            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+
+        return response()->json([
+            'success' => true,
+            'pagination' => [
+                'data' => IndexResource::collection($transfers),
+                'current_page' => $transfers->currentPage(),
+                'last_page' => $transfers->lastPage(),
+                'per_page' => $transfers->perPage(),
+                'total' => $transfers->total(),
+            ]
+        ]);
+
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function index()
+    public function show(Transfer $transfer)
     {
-        $transfers = $this->transfer->all();
-        return response()->json(['success' => true, 'data' => DefaultResource::collection($transfers)]);
-    }
+        $this->authorize('Transfer_show');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param CreateRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(CreateRequest $request)
-    {
-        $data = $request->validated();
-        $transfer = $this->transfer->create($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($transfer)]);
-    }
+        $transfer->load([
+            'from_storage', 'to_storage', 'product_purchase.product_type.main_measure_type',
+            'transferred_by_user', 'transfers.product_purchase.product_type.main_measure_type'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
-    {
-        $transfer = $this->transfer->getById($id);
-        return response()->json(['success' => true, 'data' => new DefaultResource($transfer)]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateRequest $request
-     * @param int $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update(UpdateRequest $request, $id)
-    {
-        $data = $request->validated();
-        $transfer = $this->transfer->getById($id);
-        $transfer->update($data);
-        return response()->json(['success' => true, 'data' => new DefaultResource($transfer)]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id)
-    {
-        $transfer = $this->transfer->getById($id);
-        if ($transfer) {
-            $transfer->delete();
+        $all_transfers = collect([$transfer]);
+        if ($transfer->transfers->isNotEmpty()) {
+            $all_transfers = $all_transfers->concat($transfer->transfers);
         }
-        return response()->json(['success' => true]);
+
+        return new ShowCollection($all_transfers);
     }
 }

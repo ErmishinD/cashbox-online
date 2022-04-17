@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTransfersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('write_offs', function (Blueprint $table) {
+        Schema::create('transfers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
-            $table->foreignId('storage_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('product_type_id')->constrained();
-            $table->unsignedBigInteger('quantity');
-            $table->foreignId('parent_id')->nullable()->references('id')->on('write_offs');
+            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('from_storage_id')->constrained('storages')->onDelete('cascade');
+            $table->foreignId('to_storage_id')->constrained('storages')->onDelete('cascade');
+            $table->foreignId('product_purchase_id')->constrained('product_purchases');
+            $table->foreignId('transferred_by')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('parent_id')->nullable()->references('id')->on('transfers');
             $table->json('data')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
 
         // create permissions
-        $permissions = ['WriteOff_access', 'WriteOff_create', 'WriteOff_show'];
+        $permissions = ['Transfer_access', 'Transfer_create', 'Transfer_show'];
         foreach ($permissions as $permission) {
             \Spatie\Permission\Models\Permission::create(['name' => $permission]);
         }
@@ -47,6 +47,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('write_offs');
+        Schema::dropIfExists('transfers');
     }
-};
+}

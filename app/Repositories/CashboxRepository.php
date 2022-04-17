@@ -12,6 +12,7 @@ use App\Services\ProductPurchaseService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -44,20 +45,22 @@ class CashboxRepository extends BaseRepository
             ->orderBy('created_at')
             ->get();
 
-        foreach ($data['sell_products'] as $sell_product) {
-            if ($payments->isNotEmpty()) {
-                $parent_id = $payments->first()->id;
-            }
-            $data['sell_product_id'] = $sell_product['sell_product_id'];
-            $data['amount'] = $sell_product['amount'];
-            $data['data'] = json_encode($sell_product['product_types']);
-            $data['parent_id'] = $parent_id;
-            $payment = $this->model->create($data);
-            $payments->push($payment);
+        DB::transaction(function () use ($product_purchases, $payments, $data, $parent_id) {
+            foreach ($data['sell_products'] as $sell_product) {
+                if ($payments->isNotEmpty()) {
+                    $parent_id = $payments->first()->id;
+                }
+                $data['sell_product_id'] = $sell_product['sell_product_id'];
+                $data['amount'] = $sell_product['amount'];
+                $data['data'] = json_encode($sell_product['product_types']);
+                $data['parent_id'] = $parent_id;
+                $payment = $this->model->create($data);
+                $payments->push($payment);
 
-            // отнять нужное кол-во продуктов со склада
-            ProductPurchaseService::subtract_product_types($product_purchases, $sell_product);
-        }
+                // отнять нужное кол-во продуктов со склада
+                ProductPurchaseService::subtract_product_types($product_purchases, $sell_product);
+            }
+        });
 
         return $payments;
     }

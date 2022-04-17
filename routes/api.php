@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::post('get_for_purchase', [StorageController::class, 'getByCompany']);
         Route::post('get_balance', [StorageController::class, 'getBalance']);
         Route::post('write_off', [StorageController::class, 'write_off']);
+        Route::post('transfer', [StorageController::class, 'transfer']);
     });
     Route::apiResource('storages', StorageController::class);
 
@@ -151,7 +152,10 @@ Route::middleware('auth')->group(function () {
     /*
      * Transfer
      */
-    Route::apiResource('transfers', TransferController::class);
+    Route::prefix('transfers')->group(function () {
+        Route::post('get_paginated', [TransferController::class, 'get_paginated']);
+        Route::get('/{transfer}', [TransferController::class, 'show']);
+    });
 
     /*
      * Permission

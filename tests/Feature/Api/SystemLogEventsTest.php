@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use App\Events\MoneyCollected;
 use App\Events\OrderSold;
 use App\Events\ProductPurchaseMade;
+use App\Events\ProductsTransferred;
 use App\Events\ProductsWrittenOff;
 use App\Events\ProductTypeCreated;
 use App\Events\ProductTypeDeleted;
@@ -31,6 +32,7 @@ use App\Models\SellProduct;
 use App\Models\Shop;
 use App\Models\Storage;
 use App\Models\SystemLog;
+use App\Models\Transfer;
 use App\Models\User;
 use App\Models\WriteOff;
 use Database\Seeders\BaseMeasureTypeSeeder;
@@ -245,6 +247,79 @@ class SystemLogEventsTest extends TestCase
 
         ProductsWrittenOff::dispatch($write_offs, $this->user);
 
-        $this->assertSystemLogsHave(SystemLog::ACTIONS['write_off'], $write_offs->first(), ['sum' => 100, 'storage_name' => $storage->name]);
+        $this->assertSystemLogsHave(
+            SystemLog::ACTIONS['write_off'],
+            $write_offs->first(),
+            ['sum' => 100, 'storage_name' => $storage->name]
+        );
+    }
+
+    public function test_products_transferred_event_is_working()
+    {
+        $shop = Shop::factory()->create(['company_id' => $this->user->company_id]);
+        $storage1 = Storage::factory()->create(['company_id' => $this->user->company_id, 'shop_id' => $shop->id]);
+        $storage2 = Storage::factory()->create(['company_id' => $this->user->company_id, 'shop_id' => $shop->id]);
+
+        $main_measure_type = MeasureType::factory()->create(['company_id' => $this->user->company_id]);
+        $product_types = ProductType::factory()->count(2)->create([
+            'company_id' => $this->user->company_id, 'main_measure_type_id' => $main_measure_type->id
+        ]);
+        $product_purchase1 = ProductPurchase::factory()->create([
+            'company_id' => $this->user->company_id, 'storage_id' => $storage2->id,
+            'product_type_id' => $product_types->first()->id,
+        ]);
+        $product_purchase2 = ProductPurchase::factory()->create([
+            'company_id' => $this->user->company_id, 'storage_id' => $storage2->id,
+            'product_type_id' => $product_types->last()->id
+        ]);
+
+        $transfer1 = Transfer::factory()->create([
+            'company_id' => $this->user->company_id,
+            'from_storage_id' => $storage1->id,
+            'to_storage_id' => $storage2->id,
+            'product_purchase_id' => $product_purchase1->id,
+            'transferred_by' => $this->user->id,
+            'data' => [
+                [
+                    'id' => $product_purchase1->id,
+                    'quantity' => 50,
+                    'cost' => 50,
+                    'expiration_date' => $product_purchase1->expiration_date
+                        ? $product_purchase1->expiration_date->format('Y-m-d')
+                        : null
+                ]
+            ]
+        ]);
+        $transfer2 = Transfer::factory()->create([
+            'company_id' => $this->user->company_id,
+            'from_storage_id' => $storage1->id,
+            'to_storage_id' => $storage2->id,
+            'product_purchase_id' => $product_purchase2->id,
+            'transferred_by' => $this->user->id,
+            'data' => [
+                [
+                    'id' => $product_purchase1->id,
+                    'quantity' => 100,
+                    'cost' => 50,
+                    'expiration_date' => $product_purchase2->expiration_date
+                        ? $product_purchase2->expiration_date->format('Y-m-d')
+                        : null
+                ]
+            ],
+            'parent_id' => $transfer1->id
+        ]);
+        $transfers = collect([$transfer1, $transfer2]);
+
+        ProductsTransferred::dispatch($transfers, $this->user);
+
+        $this->assertSystemLogsHave(
+            SystemLog::ACTIONS['transferred'],
+            $transfers->first(),
+            [
+                'sum' => 100,
+                'from_storage_name' => $storage1->name,
+                'to_storage_name' => $storage2->name,
+            ]
+        );
     }
 }

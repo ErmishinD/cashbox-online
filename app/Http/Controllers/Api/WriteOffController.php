@@ -37,7 +37,7 @@ class WriteOffController extends Controller
 
     public function show(WriteOff $write_off)
     {
-        $this->authorize('WriteOff_access');
+        $this->authorize('WriteOff_show');
 
         $write_off->load(['storage', 'product_type.main_measure_type', 'user', 'write_offs.product_type.main_measure_type']);
 

@@ -11,6 +11,7 @@ use App\Models\ProductType;
 use App\Models\Shop;
 use App\Models\Storage;
 use App\Models\User;
+use App\Models\WriteOff;
 use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -325,6 +326,57 @@ class StorageControllerTest extends TestCase
             'current_cost' => 375
         ]);
 
+//        $write_off1_from_db = WriteOff::query()
+//            ->where('company_id', $company->id)
+//            ->where('storage_id', $storage->id)
+//            ->where('product_type_id', $product_type1->id)
+//            ->where('quantity', 50)
+//            ->get();
+//        $this->assertCount(1, $write_off1_from_db);
+//        $write_off1_from_db = $write_off1_from_db->first();
+//        $this->assertEquals($purchase1->id, $write_off1_from_db->data[0]['id']);
+//        $this->assertEquals(50, $write_off1_from_db->data[0]['quantity']);
+//        $this->assertEquals(50, $write_off1_from_db->data[0]['cost']);
+//        $purchase1_expiration_date = $purchase1->expiration_date
+//            ? $purchase1->expiration_date->format('Y-m-d')
+//            : null;
+//        $this->assertEquals($purchase1_expiration_date, $write_off1_from_db->data[0]['expiration_data']);
+//
+//        $write_off2_from_db = WriteOff::query()
+//            ->where('company_id', $company->id)
+//            ->where('storage_id', $storage->id)
+//            ->where('product_type_id', $product_type2->id)
+//            ->where('quantity', 250)
+//            ->get();
+//        $this->assertCount(1, $write_off2_from_db);
+//        $write_off2_from_db = $write_off2_from_db->first();
+//        $this->assertEquals($purchase2->id, $write_off2_from_db->data[0]['id']);
+//        $this->assertEquals(250, $write_off2_from_db->data[0]['quantity']);
+//        $this->assertEquals(125, $write_off2_from_db->data[0]['cost']);
+//        $purchase2_expiration_date = $purchase2->expiration_date
+//            ? $purchase2->expiration_date->format('Y-m-d')
+//            : null;
+//        $this->assertEquals($purchase2_expiration_date, $write_off2_from_db->data[0]['expiration_data']);
+
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type1->id,
+            'quantity' => 100,
+            'current_quantity' => 50,
+            'cost' => 100,
+            'current_cost' => 50
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type2->id,
+            'quantity' => 1000,
+            'current_quantity' => 750,
+            'cost' => 500,
+            'current_cost' => 375
+        ]);
+
         $this->assertDatabaseHas('write_offs', [
             'company_id' => $company->id,
             'storage_id' => $storage->id,
@@ -334,7 +386,10 @@ class StorageControllerTest extends TestCase
                 [
                     'id' => $purchase1->id,
                     'quantity' => 50,
-                    'cost' => 50
+                    'cost' => 50,
+                    'expiration_date' => $purchase1->expiration_date
+                        ? $purchase1->expiration_date->format('Y-m-d')
+                        : null
                 ]
             ])
         ]);
@@ -347,7 +402,120 @@ class StorageControllerTest extends TestCase
                 [
                     'id' => $purchase2->id,
                     'quantity' => 250,
-                    'cost' => 125
+                    'cost' => 125,
+                    'expiration_date' => $purchase2->expiration_date
+                        ? $purchase2->expiration_date->format('Y-m-d')
+                        : null
+                ]
+            ])
+        ]);
+    }
+
+    public function test_admin_can_transfer_product_types()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
+        $storage2 = Storage::factory()->create(['shop_id' => $shop->id]);
+        $this->admin->update(['company_id' => $company->id]);
+
+        $product_type1 = ProductType::factory()->create(['company_id' => $company->id]);
+        $product_type2 = ProductType::factory()->create(['company_id' => $company->id]);
+
+        $purchase1 = ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
+            'quantity' => 100, 'current_quantity' => 100, 'cost' => 100, 'current_cost' => 100
+        ]);
+        $purchase2 = ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type2->id,
+            'quantity' => 1000, 'current_quantity' => 1000, 'cost' => 500, 'current_cost' => 500
+        ]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'transfer', [
+            'from_storage_id' => $storage->id,
+            'to_storage_id' => $storage2->id,
+            'product_types' => [
+                [
+                    'id' => $product_type1->id,
+                    'quantity' => 50,
+                ],
+                [
+                    'id' => $product_type2->id,
+                    'quantity' => 250,
+                ],
+
+            ]
+        ]);
+
+        $response->assertNoContent();
+
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type1->id,
+            'quantity' => 100,
+            'current_quantity' => 50,
+            'cost' => 100,
+            'current_cost' => 50
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage2->id,
+            'product_type_id' => $product_type1->id,
+            'quantity' => 50,
+            'current_quantity' => 50,
+            'cost' => 50,
+            'current_cost' => 50
+        ]);
+
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type2->id,
+            'quantity' => 1000,
+            'current_quantity' => 750,
+            'cost' => 500,
+            'current_cost' => 375
+        ]);
+        $this->assertDatabaseHas('product_purchases', [
+            'company_id' => $company->id,
+            'storage_id' => $storage2->id,
+            'product_type_id' => $product_type2->id,
+            'quantity' => 250,
+            'current_quantity' => 250,
+            'cost' => 125,
+            'current_cost' => 125
+        ]);
+
+        $this->assertDatabaseHas('transfers', [
+            'company_id' => $company->id,
+            'from_storage_id' => $storage->id,
+            'to_storage_id' => $storage2->id,
+            'transferred_by' => $this->admin->id,
+            'data' => $this->castAsJson([
+                [
+                    'id' => $purchase1->id,
+                    'quantity' => 50,
+                    'cost' => 50,
+                    'expiration_date' => $purchase1->expiration_date
+                        ? $purchase1->expiration_date->format('Y-m-d')
+                        : null
+                ]
+            ])
+        ]);
+        $this->assertDatabaseHas('transfers', [
+            'company_id' => $company->id,
+            'from_storage_id' => $storage->id,
+            'to_storage_id' => $storage2->id,
+            'transferred_by' => $this->admin->id,
+            'data' => $this->castAsJson([
+                [
+                    'id' => $purchase2->id,
+                    'quantity' => 250,
+                    'cost' => 125,
+                    'expiration_date' => $purchase2->expiration_date
+                        ? $purchase2->expiration_date->format('Y-m-d')
+                        : null
                 ]
             ])
         ]);
