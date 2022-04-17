@@ -104,7 +104,7 @@ Route::middleware('auth')->group(function () {
         Route::get('get_types', [ProductTypeController::class, 'getTypesForSelect']);
         Route::get('get_for_select', [ProductTypeController::class, 'getForSelectForSellProduct']);
         Route::get('get_short_info/{product_type}', [ProductTypeController::class, 'getShortInfo']);
-        Route::post('get_for_dashboard', [ProductTypeController::class, 'getCurrentQuantity']);
+        Route::post('get_current_quantity', [ProductTypeController::class, 'getCurrentQuantity']);
     });
     Route::apiResource('product_types', ProductTypeController::class);
 

@@ -196,7 +196,7 @@
 	        	 document.querySelector('select[name=select_storage]').addEventListener('change', this.changeShop)
 	  		     this.render_list_items(true)
         	 }
-        	 
+
         },
         unmounted(){
 
@@ -288,7 +288,7 @@
 		            }
 		        })
 
-	  		     this.axios.post('/api/product_types/get_for_dashboard', {shop_id : 1}).then((response) => {
+	  		     this.axios.post('/api/product_types/get_current_quantity', {shop_id : 1}).then((response) => {
 			       this.product_types_in_storages = response.data['data']
 
 			       loader.hide()
