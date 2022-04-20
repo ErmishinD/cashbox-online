@@ -8,6 +8,7 @@ use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 /**
  * @property int id
@@ -24,7 +25,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ProductPurchase extends Model implements SystemLoggable
 {
-    use HasFactory, SoftDeletes, Filterable, BelongsToCompany;
+    use HasFactory, SoftDeletes, HasEagerLimit;
+    use Filterable, BelongsToCompany;
 
     protected $fillable = [
         'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date', 'company_id',
@@ -50,6 +52,11 @@ class ProductPurchase extends Model implements SystemLoggable
     public function product_purchases()
     {
         return $this->hasMany(ProductPurchase::class, 'parent_id');
+    }
+
+    public function get_cost_price()
+    {
+        return round($this->cost / $this->quantity, 2);
     }
 
     public function getTextForAudit(string $action, ?array $data): string

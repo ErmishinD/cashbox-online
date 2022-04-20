@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 /**
  * @property int id
@@ -25,7 +26,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class ProductType extends Model implements HasMedia, SystemLoggable
 {
-    use HasFactory, SoftDeletes, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia, HasEagerLimit;
     use Filterable, BelongsToCompany;
 
     public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];

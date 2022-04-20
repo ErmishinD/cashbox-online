@@ -22,7 +22,8 @@ class WithMeasureTypesResource extends JsonResource
             'name' => $this->name,
             'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty() ? $this->media->where('collection_name', 'photo')->first()->getUrl() : asset('images/default_card_img.png'),
             'type' => $this->type,
-            'measure_types' => ByProductTypeResource::collection($this->measure_types)
+            'measure_types' => ByProductTypeResource::collection($this->measure_types),
+            'cost_price' => optional($this->product_purchases->first())->get_cost_price()
         ];
     }
 }

@@ -154,7 +154,14 @@ class ProductTypeController extends Controller
 
     public function getShortInfo(ProductType $product_type): JsonResponse
     {
-        $product_type->load('media', 'base_measure_type', 'main_measure_type');
+        $product_type->load([
+            'media',
+            'base_measure_type',
+            'main_measure_type',
+            'product_purchases' => function($query) {
+                $query->orderBy('id')->take(1);
+            }
+        ]);
         $product_type = ProductTypeService::prepare_measure_types($product_type);
         return response()->json(['success' => true, 'data' => new WithMeasureTypesResource($product_type)]);
     }

@@ -6,8 +6,11 @@ use App\Models\BaseMeasureType;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\MeasureType;
+use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
+use App\Models\Shop;
+use App\Models\Storage;
 use App\Models\User;
 use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -320,6 +323,8 @@ class ProductTypeControllerTest extends TestCase
     public function test_admin_can_get_short_info()
     {
         $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
         $this->admin->company_id = $company->id;
         $this->admin->save();
 
@@ -337,6 +342,22 @@ class ProductTypeControllerTest extends TestCase
             'product_type_id' => $product_type->id, 'measure_type_id' => $measure_type->id
         ]);
 
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type->id,
+            'cost' => 100,
+            'quantity' => 100
+        ]);
+
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type->id,
+            'cost' => 100,
+            'quantity' => 200
+        ]);
+
         $response = $this->actingAs($this->admin)->get($this->base_route . 'get_short_info/' . $product_type->id);
 
         $response->assertStatus(200)->assertJson([
@@ -347,7 +368,8 @@ class ProductTypeControllerTest extends TestCase
                     ['name' => $measure_type->name, 'quantity' => $measure_type->quantity],
                     ['name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
                     ['name' => $base_measure_type->name, 'quantity' => 1],
-                ]
+                ],
+                'cost_price' => 1
             ],
         ]);
     }
