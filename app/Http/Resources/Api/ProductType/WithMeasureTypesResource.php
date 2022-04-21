@@ -4,6 +4,7 @@ namespace App\Http\Resources\Api\ProductType;
 
 use App\Http\Resources\Api\MeasureType\ByProductTypeResource;
 use App\Models\ProductType;
+use App\Services\ProductPurchaseService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class WithMeasureTypesResource extends JsonResource
@@ -23,7 +24,7 @@ class WithMeasureTypesResource extends JsonResource
             'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty() ? $this->media->where('collection_name', 'photo')->first()->getUrl() : asset('images/default_card_img.png'),
             'type' => $this->type,
             'measure_types' => ByProductTypeResource::collection($this->measure_types),
-            'cost_price' => optional($this->product_purchases->first())->get_cost_price()
+            'price_per_unit' => ProductPurchaseService::get_price_per_unit($this->product_purchases->first())
         ];
     }
 }

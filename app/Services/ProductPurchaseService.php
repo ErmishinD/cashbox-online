@@ -48,6 +48,14 @@ class ProductPurchaseService
 
         return $used_purchases;
     }
+
+    public static function get_price_per_unit($purchase)
+    {
+        if (!$purchase) {
+            return null;
+        }
+        return round($purchase->cost / $purchase->quantity, 2);
+    }
 }
 
 

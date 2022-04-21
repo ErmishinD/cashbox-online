@@ -343,6 +343,7 @@ class ProductTypeControllerTest extends TestCase
         ]);
 
         ProductPurchase::factory()->create([
+            'user_id' => $this->admin->id,
             'company_id' => $company->id,
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
@@ -351,6 +352,7 @@ class ProductTypeControllerTest extends TestCase
         ]);
 
         ProductPurchase::factory()->create([
+            'user_id' => $this->admin->id,
             'company_id' => $company->id,
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
@@ -369,7 +371,7 @@ class ProductTypeControllerTest extends TestCase
                     ['name' => $main_measure_type->name, 'quantity' => $main_measure_type->quantity],
                     ['name' => $base_measure_type->name, 'quantity' => 1],
                 ],
-                'cost_price' => 1
+                'price_per_unit' => 1
             ],
         ]);
     }
