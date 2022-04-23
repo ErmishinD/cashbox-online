@@ -44,7 +44,7 @@ class WriteOff extends Model implements SystemLoggable
     public function getTextForAudit(string $action, ?array $data): string
     {
         if ($action == SystemLog::ACTIONS['write_off']) {
-            return __('Списание со склада') . ' ' . $data['storage_name'] . ' ' . __('в эквиваленте на сумму') . $data['sum'];
+            return __('Списание со склада') . ': ' . $data['storage_name'] . ' ' . __('в эквиваленте на сумму') . ': ' . $data['sum'] . ' грн';
         }
         return '';
     }

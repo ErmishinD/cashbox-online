@@ -61,7 +61,7 @@ class Transfer extends Model implements SystemLoggable
     public function getTextForAudit(string $action, ?array $data): string
     {
         if ($action == SystemLog::ACTIONS['transferred']) {
-            return __('Со склада') . ': ' . $data['from_storage_name'] . ', ' . __('на склад') . ': ' . $data['to_storage_name'] . ' ' . __('в эквиваленте на сумму') . $data['sum'];
+            return __('Со склада') . ': ' . $data['from_storage_name'] . ', ' . __('на склад') . ': ' . $data['to_storage_name'] . ' ' . __('в эквиваленте на сумму') . ': ' . $data['sum'] . ' грн';
         }
         return '';
     }
@@ -69,7 +69,7 @@ class Transfer extends Model implements SystemLoggable
     public function getVueRoute(string $action): ?string
     {
         if ($action == SystemLog::ACTIONS['transferred']) {
-            return '';
+            return 'transfers_show';
         }
         return null;
     }
