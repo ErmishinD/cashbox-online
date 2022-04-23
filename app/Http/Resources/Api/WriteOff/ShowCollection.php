@@ -41,6 +41,7 @@ class ShowCollection extends ResourceCollection
                     'name' => $write_off->product_type->main_measure_type->name,
                     'quantity' => $write_off->product_type->main_measure_type->quantity
                 ],
+                'quantity' => $write_off->quantity,
                 'amount' => $write_off_amount,
             ];
         }
