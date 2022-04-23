@@ -429,6 +429,9 @@ class DummyDataSeeder extends Seeder
                     if ($allowed_product_types->isNotEmpty()) {
                         $product_type = $allowed_product_types->random();
                         $quantity = random_int(1, 1000);
+                        $current_quantity = random_int(0, $quantity);
+                        $cost = random_int(100, 10000);
+                        $current_cost = round($cost / $quantity * $current_quantity, 2);
                         $expiration_date = null;
 
                         if ($product_type->type == '_perishable') {
@@ -442,8 +445,9 @@ class DummyDataSeeder extends Seeder
                                 'storage_id' => $storage->id,
                                 'product_type_id' => $product_type->id,
                                 'quantity' => $quantity,
-                                'current_quantity' => random_int(0, $quantity),
-                                'cost' => random_int(100, 10000),
+                                'current_quantity' => $current_quantity,
+                                'cost' => $cost,
+                                'current_cost' => $current_cost,
                                 'expiration_date' => $expiration_date,
                                 'user_id' => $director->id
                             ]);
