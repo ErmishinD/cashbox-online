@@ -36,7 +36,7 @@ class ProductTypeRepository extends BaseRepository
         return $enums;
     }
 
-    public function getForSelect($filters = null)
+    public function getForPurchase($filters = null)
     {
         $product_types = $this->model->select('id', 'name', 'company_id', 'base_measure_type_id', 'main_measure_type_id', 'type')
             ->with('media')
@@ -44,6 +44,9 @@ class ProductTypeRepository extends BaseRepository
             ->with('main_measure_type')
             ->with(['measure_types' => function ($query) {
                 $query->orderBy('quantity');
+            }])
+            ->with(['product_purchases' => function ($query) {
+                $query->orderBy('id')->take(1);
             }])
             ->filter($filters)
             ->get()

@@ -119,7 +119,7 @@ class ProductTypeController extends Controller
     public function getForPurchase(PaginateRequest $request, ProductTypeFilter $filters): JsonResponse
     {
         $paginate_data = $request->validated();
-        $product_types = $this->product_type->getForSelect($filters);
+        $product_types = $this->product_type->getForPurchase($filters);
 
         $product_types = $product_types->paginate($paginate_data['per_page'], $paginate_data['page']);
 
