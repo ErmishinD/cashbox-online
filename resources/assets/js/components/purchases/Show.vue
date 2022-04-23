@@ -29,7 +29,7 @@
           </span>
 
           <span  v-if="props.column.field == 'product_types_count'">
-            {{props.row.quantity}} {{props.row.main_measure_type.name}}
+            {{props.row.quantity / props.row.main_measure_type.quantity}} {{props.row.main_measure_type.name}}
           </span>
       </template>
     </vue-good-table>

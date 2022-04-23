@@ -109,6 +109,11 @@ import SettingsPermissions from './components/settings/Permissions'
 	/* import audites */
 	import SettingsAuditesIndex from './components/settings/audites/Index'
 
+/* import write-off */
+import WriteOffIndex from './components/writeoff/Index'
+import WriteOffShow from './components/writeoff/Show'
+import WriteOffCreate from './components/writeoff/Create'
+
 /* import 404 */
 import PageNotFound from './components/404'
 
@@ -402,6 +407,24 @@ const router = createRouter({
 			path: '/settings/audites',
 			name: 'settings_audites_index',
 			component: SettingsAuditesIndex
+		},
+		{
+			path: '/write_off',
+			name: 'write_off_index',
+			component: WriteOffIndex,
+			props: true,
+		},
+		{
+			path: '/write_off/create',
+			name: 'write_off_create',
+			component: WriteOffCreate,
+			props: true,
+		},
+		{
+			path: '/write_off/:id',
+			name: 'write_off_show',
+			component: WriteOffShow,
+			props: true
 		},
 		{
 			path: '/logout',

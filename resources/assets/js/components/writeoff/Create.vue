@@ -6,7 +6,7 @@
 	        <div class="getting-started-example-styled__title">
 	        	{{ $t('Выберите склад') }}:
 	        </div>
-	        <select v-model="storage_from"  class="def_select center-flex" name="select_storage" id="">
+	        <select v-model="selected_storage"  class="def_select center-flex" name="select_storage" id="">
 	        	<optgroup v-for="shop in storage_list" :label="shop.name">
 	        		<option v-for="storage in shop.storages" :value="storage.id">{{storage.name}}</option>
 	        	</optgroup>
@@ -16,7 +16,7 @@
 
 	      <div class="getting-started-example-styled__actions">
 
-	      	<button @click="this.set_storage_show=false" :disabled="!this.storage_from" class="btn btn-success">
+	      	<button @click="this.set_storage_show=false" :disabled="!this.selected_storage" class="btn btn-success">
 	          {{ $t('Выбрать') }}
 	        </button>
 	      </div>
@@ -27,19 +27,10 @@
 	      <div class="getting-started-example-styled">
 	        <div class="getting-started-example-styled__content">
 	          <div class="getting-started-example-styled__title">
-	          	{{ $t('Подтверждение трансфера') }}
+	          	{{ $t('Подтверждение списания') }}
 	          	<div class="select_storage">
-	          		<span>{{ $t('Выберите склад-отправитель') }}:</span>
-	          		<select v-model="storage_from" class="def_select" name="select_storage" id="">
-	          		<optgroup v-for="shop in storage_list" :label="shop.name">
-	          			<option v-for="storage in shop.storages" :value="storage.id">{{storage.name}}</option>
-	          		</optgroup>
-	          	</select>
-	          	</div>
-
-	          	<div class="select_storage">
-	          		<span>{{ $t('Выберите склад-получатель') }}:</span>
-	          		<select v-model="storage_to" class="def_select" name="select_storage" id="">
+	          		<span>{{ $t('Выберите склад') }}:</span>
+	          		<select v-model="selected_storage" class="def_select" name="select_storage" id="">
 	          		<optgroup v-for="shop in storage_list" :label="shop.name">
 	          			<option v-for="storage in shop.storages" :value="storage.id">{{storage.name}}</option>
 	          		</optgroup>
@@ -76,10 +67,6 @@
 	          
 	        </div>
 
-	        <div class="custom_notification custom_notification_error" v-show="!storage_to">
-	        	<span>{{$t('Не выбран склад-получатель!')}}</span>
-	        </div>
-
 	        <div class="custom_notification custom_notification_error" v-show="overlimited_product_types.length">
 		      		<span v-if="overlimited_product_types.length == 1">{{$t('На складе недостаточно товара')}}: </span>
 		      		<span v-else>{{$t('На складе недостаточно товаров')}}: </span>
@@ -88,7 +75,7 @@
 
 	        <div class="getting-started-example-styled__actions">
 
-	        	<button @click="saveTransfer" :disabled="overlimited_product_types.length" class="btn btn-success">
+	        	<button @click="saveWriteOff" :disabled="overlimited_product_types.length" class="btn btn-success">
 	            {{ $t('Сохранить') }}
 	          </button>
 	        </div>
@@ -144,8 +131,7 @@ export default{
 			basket_modal_show: false,
 			storage_list: [],
 			selected_products: [],
-			storage_from: null,
-			storage_to: null,
+			selected_storage: null,
 			cards: [],
 			storage_balance: [],
 			error_while_saving: false,
@@ -171,13 +157,10 @@ export default{
 	},
 	watch:{
 			// при изменении склада меняется баланс товаров
-        	storage_from(){
-        		if(this.storage_from){
-        			this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.storage_from]}).then(response => {
-        				this.storage_balance = response.data.data
-        			})
-        		}
-        		
+        	selected_storage(){
+        		this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.selected_storage]}).then(response => {
+        			this.storage_balance = response.data.data
+        		})
         	},
         	selected_products: {
         	    handler() {
@@ -192,7 +175,7 @@ export default{
 	mounted(){
 		document.addEventListener('scroll', this.scrolltoGetMoreData)
 		console.log(this.product_type_id, this.storage_id)
-		this.storage_from = this.storage_id
+		this.selected_storage = this.storage_id
 		this.axios.post('/api/storages/get_for_purchase', {company_id:1}).then(response => {
 			this.storage_list = response.data.data
 			console.log(this.storage_list)
@@ -201,7 +184,7 @@ export default{
 
 			}
 			else{
-				this.storage_from = this.storage_id
+				this.selected_storage = this.storage_id
 			}
 		})
 
@@ -214,7 +197,7 @@ export default{
 		this.unmounted = true
 	},
 	created () {
-        document.title = this.$t('Трансфер')
+        document.title = this.$t('Списание')
     },
     methods: {
     	render_list_items(is_not_paginate=true){
@@ -310,21 +293,20 @@ export default{
     		})
     		console.log(this.overlimited_product_types)
     	},
-    	saveTransfer(){
-    		let transfer_data = {}
+    	saveWriteOff(){
+    		let write_off_data = {}
     		console.log(this.selected_products)
 			var loader = this.$loading.show({
 	        canCancel: false,
 	        loader: 'dots',});
-			transfer_data.from_storage_id = this.storage_from
-			transfer_data.to_storage_id = this.storage_to
-			transfer_data.product_types = this.selected_products
-			transfer_data.product_types.forEach(el => {
+			write_off_data.storage_id = this.selected_storage
+			write_off_data.product_types = this.selected_products
+			write_off_data.product_types.forEach(el => {
 				el.quantity *= el.amount
 				el.product_type_id = el.id
 			})
-			console.log(transfer_data)
-			this.axios.post('/api/storages/transfer', transfer_data).then((response) => {
+			console.log(write_off_data)
+			this.axios.post('/api/storages/write_off', write_off_data).then((response) => {
 				this.$notify({
 					text: this.$t('Успешно!'),
 					type: 'success',

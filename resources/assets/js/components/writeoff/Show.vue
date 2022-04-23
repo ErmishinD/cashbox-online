@@ -1,22 +1,17 @@
 <template>
    
-    <h1 class="tac"><button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>{{$t('Просмотр трансфера')}}</h1>
-    <div v-if="transfer.from_storage" class="common_info">
+    <h1 class="tac"><button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>{{$t('Просмотр списания')}}</h1>
+    <div v-if="write_off.storage" class="common_info">
       <div class="row-btw"><span>
-        {{$t('Склад-отправитель')}}: <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: transfer.from_storage.id}}">{{transfer.from_storage.name}}</router-link>
-            <span v-else>{{transfer.from_storage.name}}</span>
+        {{$t('Склад')}}: <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: write_off.storage.id}}">{{write_off.storage.name}}</router-link>
+            <span v-else>{{write_off.storage.name}}</span>
       </span>
       <span>
-        {{$t('Склад-получатель')}}: <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: transfer.to_storage.id}}">{{transfer.to_storage.name}}</router-link>
-            <span v-else>{{transfer.to_storage.name}}</span>
-      </span>
-      </div>
-      <div class="row-btw"><span>
-        {{$t('Дата трансфера')}}: {{transfer.created_at}}
-      </span>
-      <span>
-        {{$t('Оператор')}}: <router-link class="redirect_from_table" v-if="$can('User_show')" :to="{name: 'users_show', params: {id: transfer.transferred_by.id}}">{{transfer.transferred_by.name}}</router-link>
-            <span v-else>{{transfer.transferred_by.name}}</span>
+        {{$t('Оператор')}}: <router-link class="redirect_from_table" v-if="$can('User_show')" :to="{name: 'users_show', params: {id: write_off.user.id}}">{{write_off.user.name}}</router-link>
+            <span v-else>{{write_off.user.name}}</span>
+      </span></div>
+      <div class=""><span>
+        {{$t('Дата списания')}}: {{write_off.created_at}}
       </span>
     </div>
     <vue-good-table style="position: static;"
@@ -46,10 +41,9 @@ export default {
    ],
   data(){
     return {
-      transfer: [{
-        from_storage:[],
-        to_storage:[],
-        transferred_by:[],
+      write_off: [{
+        storage:[],
+        user:[],
       }],
       columns: [
         {
@@ -66,7 +60,7 @@ export default {
   },
   mounted(){
     this.render_list_items()
-  	document.title = this.$t('Просмотр трансфера');
+  	document.title = this.$t('Просмотр списания');
   },
   created(){
 
@@ -77,9 +71,9 @@ export default {
   		        canCancel: false,
   		        loader: 'dots',});
   		
-  		this.axios.get(`/api/transfers/${this.id}`).then((response) => {
-             this.transfer = response.data['data']
-  		       this.rows = this.transfer.product_types
+  		this.axios.get(`/api/write_offs/${this.id}`).then((response) => {
+             this.write_off = response.data['data']
+  		       this.rows = this.write_off.product_types
              console.log(this.rows)
   		       loader.hide()
 

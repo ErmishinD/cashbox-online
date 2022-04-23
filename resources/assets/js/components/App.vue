@@ -131,6 +131,7 @@
   			let sidebar_data = []
   			let sidebar_reports_child = []
   			let sidebar_settings_child = []
+        let sidebar_actions_child = []
 
   			sidebar_data.push({
 	            href: '/dashboard',
@@ -192,18 +193,34 @@
 		      /* end reports */
 
 		      if(this.$can('ProductPurchase_access')){
-	          	sidebar_data.push({
+	          	sidebar_actions_child.push({
 	            href: '/purchases',
 	            title: this.$t('Закупки'),
 	            icon: 'fas fa-shopping-cart',
 	          })
 	          }
 
-		      // sidebar_data.push({
-	       //        href: '/transfers',
-	       //        title: this.$t('Трансферы'),
-	       //        icon: 'fas fa-exchange-alt',
-		      // 	})
+          if(this.$can('WriteOff_access')){
+              sidebar_actions_child.push({
+              href: '/write_off',
+              title: this.$t('Списание'),
+              icon: 'fas fa-ban',
+            })
+            }
+
+          if(this.$can('Transfer_access')){
+              sidebar_actions_child.push({
+              href: '/transfers',
+              title: this.$t('Трансферы'),
+              icon: 'fas fa-exchange-alt',
+            })
+            }
+
+          sidebar_data.push({
+                title: this.$t('Действия'),
+                icon: 'fas fa-dolly',
+                child: sidebar_actions_child
+              })
 
 		      if(this.$can('Shop_access')){
 		      	sidebar_data.push({

@@ -646,6 +646,7 @@ select {
   min-width: 30px;
 }
 .basket_card__amount select {
+  width: 50px;
   font-size: 18px;
   margin-left: 5px;
 }

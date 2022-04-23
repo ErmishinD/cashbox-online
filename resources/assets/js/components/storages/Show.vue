@@ -10,7 +10,8 @@
 				<div class="card_img"  :style="{'background-image': `url(${product.photo})`}">
 					<div class="card_img_href" :id="'card_img_href_'+product.id">
 						<router-link v-if="this.$can('ProductType_show')" :to="{name: 'products_type_show', params: {id: product.id}}"><i class="fas fa-eye"></i></router-link>
-						<router-link v-if="this.$can('ProductPurchase_show')" :to="{name: 'purchases_index', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-cart-plus"></i></router-link>
+						<router-link v-if="this.$can('ProductPurchase_show')" :to="{name: 'purchases_create', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-cart-plus"></i></router-link>
+						<router-link v-if="this.$can('WriteOff_create')" :to="{name: 'write_off_create', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-ban"></i></router-link>
 					</div>
 				</div>
 

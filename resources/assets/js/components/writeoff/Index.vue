@@ -2,8 +2,8 @@
 
   <div>
     <div class="pull-right mb-10">
-      <router-link :to="{name: 'transfers_create'}">
-        <button v-if="$can('Transfer_create')" class="btn btn-success" >{{ $t('Добавить трансфер') }}</button>
+      <router-link :to="{name: 'write_off_create'}">
+        <button v-if="$can('WriteOff_create')" class="btn btn-success" >{{ $t('Добавить списание') }}</button>
       </router-link>
     </div>
 
@@ -28,22 +28,17 @@
           <span v-else>{{props.row.product_type.name}}</span>
         </span>
 
-        <span  v-if="props.column.field == 'transferred_by.name'">
-          <router-link class="redirect_from_table" v-if="$can('User_show')" :to="{name: 'users_show', params: {id: props.row.transferred_by.id}}">{{props.row.transferred_by.name}}</router-link>
-          <span v-else>{{props.row.transferred_by.name}}</span>
+        <span  v-if="props.column.field == 'user.name'">
+          <router-link class="redirect_from_table" v-if="$can('User_show')" :to="{name: 'users_show', params: {id: props.row.user.id}}">{{props.row.user.name}}</router-link>
+          <span v-else>{{props.row.user.name}}</span>
         </span>
 
-        <span  v-if="props.column.field == 'from_storage.name'">
-          <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: props.row.from_storage.id}}">{{props.row.from_storage.name}}</router-link>
-          <span v-else>{{props.row.from_storage.name}}</span>
+        <span  v-if="props.column.field == 'storage.name'">
+          <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: props.row.storage.id}}">{{props.row.storage.name}}</router-link>
+          <span v-else>{{props.row.storage_id.name}}</span>
         </span>
 
-        <span  v-if="props.column.field == 'to_storage.name'">
-          <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: props.row.to_storage.id}}">{{props.row.to_storage.name}}</router-link>
-          <span v-else>{{props.row.to_storage.name}}</span>
-        </span>
-
-        <span v-if="props.column.field == 'quantity'">{{props.row.product_type.quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
+        <span v-if="props.column.field == 'quantity'">{{props.row.quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
         </template>
     </vue-good-table>
   </div>
@@ -56,12 +51,12 @@ import { GDialog } from 'gitart-vue-dialog'
 import "gitart-vue-dialog/dist/style.css";
 
 export default {
-   components: {
+	 components: {
     GDialog,
   },
   data(){
     return {
-      transfers: null,
+      write_offs: null,
       totalRecords: 0,
       balance_modal_show: false,
       balance:null,
@@ -82,22 +77,18 @@ export default {
         },
         {
           label: this.$t("Оператор"),
-          field: 'transferred_by.name'
+          field: 'user.name'
         },
         {
-          label: this.$t("Передано"),
+          label: this.$t("Списано"),
           field: 'quantity'
         },
         {
-          label: this.$t("Склад-отправитель"),
-          field: 'from_storage.name'
+          label: this.$t("Склад"),
+          field: 'storage.name'
         },
         {
-          label: this.$t("Склад-получатель"),
-          field: 'to_storage.name'
-        },
-        {
-          label: this.$t("Дата трансфера"),
+          label: this.$t("Дата списания"),
           field: 'created_at'
         },
       ],
@@ -105,14 +96,14 @@ export default {
     };
   },
   mounted(){
-    this.render_list_items()
+  	this.render_list_items()
 
-    document.title = this.$t('Архив трансферов');
+  	document.title = this.$t('Архив списаний');
   },
   methods:{
-    render_list_items: function(){
-      this.loadItems()
-    },
+  	render_list_items: function(){
+  		this.loadItems()
+  	},
       updateParams(newProps) {
           this.serverParams = Object.assign({}, this.serverParams, newProps);
       },
@@ -128,7 +119,7 @@ export default {
       },
 
       onSortChange(params) {
-        let data = Object.assign({}, params)[0]
+  	    let data = Object.assign({}, params)[0]
 
           
           this.updateParams({
@@ -152,15 +143,15 @@ export default {
           var loader = this.$loading.show({
               canCancel: false,
               loader: 'dots',});
-          this.axios.post('/api/transfers/get_paginated', this.serverParams).then((response) => {
-              this.transfers = response.data['pagination']['data']
-              this.rows = this.transfers
+          this.axios.post('/api/write_offs/get_paginated', this.serverParams).then((response) => {
+              this.write_offs = response.data['pagination']['data']
+              this.rows = this.write_offs
               this.totalRecords = response.data['pagination']['total'];
               loader.hide()
 
           }).catch(function(error){
             if(error.response.status == 403){
-              loader.hide()
+            	loader.hide()
                 this.$router.push({ name: '403' })
             }
         })
