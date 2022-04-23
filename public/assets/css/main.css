@@ -106,6 +106,10 @@ a{
   margin-right: 10px;
 }
 
+.mr-5 {
+  margin-right: -5px;
+}
+
 .tal {
   text-align: left;
 }
@@ -700,6 +704,16 @@ select {
 .custom_notification_error {
   background: #e54d42;
   border-left: 5px solid #b82e24;
+}
+
+.custom_notification_success {
+  background: #68cd86;
+  border-left: 5px solid #42a85f;
+}
+
+.custom_notification_warn {
+  background: #ffb648;
+  border-left: 5px solid #f48a06;
 }
 
 .overlimited_items {

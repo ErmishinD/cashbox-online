@@ -5,6 +5,7 @@
 		{{storage.name}}
 		<small><router-link v-if="this.$can('Storage_edit')" :to="{name: 'storages_edit', params: {ids: storage.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
+	<div class="tac" style="font-size: 20px;">{{$t('Баланс')}}: {{balance.all_balance}}грн</div>
 		<div class="cards">
 			<div v-for="product in storage.product_types" class="card">
 				<div class="card_img"  :style="{'background-image': `url(${product.photo})`}">
@@ -42,6 +43,7 @@ export default{
 	data(){
 		return{
 			storage: [],
+			balance: [],
 		}
 	},
 	mounted(){
@@ -59,6 +61,10 @@ export default{
                 this.$router.push({ name: '403' })
             }
         })
+
+		 this.axios.post('/api/storages/get_balance', {storage_ids: [this.id]}).then(response => {
+		 	this.balance = response.data['data']
+		 })
 
 	},
 	created () {

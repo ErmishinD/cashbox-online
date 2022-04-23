@@ -49,6 +49,15 @@
 				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
 				<input type="number" min="1" max="999999.99" step="any" required class="form-control" name="price" v-model="formData.price">
 			</div>
+
+			<div class="custom_notification custom_notification_success form_item" v-show="cost_price">
+		      		{{$t('Себестоимость товара')}}: {{cost_price}} грн
+		  		</div>
+
+		  	<div class="custom_notification custom_notification_warn" v-show="products_without_cost.length">
+		      		<span>{{$t('Невозможно вычислить себестоимость таких товаров')}}:</span>
+		      		<span v-for="product in products_without_cost" class="mr-5">| {{product.name}} |</span>
+		  		</div>
 			
 			<button :disabled="!selected_contains.length" style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
@@ -106,11 +115,24 @@ export default{
 			formData: {
 				company_id: this.$userId,
 			},
+			cost_price: 0,
+			products_without_cost: [],
 			categories: {},
 			contains_for_multiselect: [],
 			selected_contains: [],
 			value: null,
 		} 
+	},
+	watch:{
+		selected_contains: {
+		    handler() {
+		      if(this.selected_contains.length){
+		      	this.calcCostPrice()
+		      }
+		      
+		    },
+		    deep: true
+		  },
 	},
 	mounted(){
 		
@@ -155,6 +177,22 @@ export default{
     	},
     	UnsetContain(contain){
     		this.selected_contains.splice(this.selected_contains.indexOf(this.selected_contains.find(item => item.id == contain.id)), 1)
+    	},
+    	calcCostPrice(){
+    		this.cost_price = 0
+    		this.products_without_cost = []
+    		this.selected_contains.forEach(item => {
+    			if(item.price_per_unit){
+    				if(item.amount && item.quantity){
+    					this.cost_price += item.amount * item.quantity * item.price_per_unit
+    				}
+    			}
+    			else{
+    				this.products_without_cost.push({id: item.id, name: item.name})
+    			}
+    		})
+    		console.log(this.cost_price)
+    		console.log(this.products_without_cost)
     	},
     	CreateProduct(e) {
     		e.preventDefault()

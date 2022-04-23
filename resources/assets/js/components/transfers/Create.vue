@@ -96,7 +96,7 @@
 	    </GDialog>
 
 	  <h1 class="tac content_title">
-		  {{ $t('Списание') }}
+		  {{ $t('Трансфер') }}
 		</h1>
 
 	<div class="dashboard_actions_row">
