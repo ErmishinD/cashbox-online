@@ -30,18 +30,16 @@ class IndexResource extends JsonResource
                 'id' => $this->to_storage->id,
                 'name' => $this->to_storage->name,
             ],
-            'product_purchase' => [
-                'id' => $this->product_purchase_id,
-                'quantity' => $this->product_purchase->quantity,
-                'product_type' => [
-                    'id' => $this->product_purchase->product_type->id,
-                    'name' => $this->product_purchase->product_type->name,
-                    'main_measure_type' => [
-                        'id' => $this->product_purchase->product_type->main_measure_type->id,
-                        'name' => $this->product_purchase->product_type->main_measure_type->name,
-                        'quantity' => $this->product_purchase->product_type->main_measure_type->quantity
-                    ]
+            'product_type' => [
+                'id' => $this->product_purchase->product_type->id,
+                'name' => $this->product_purchase->product_type->name,
+                'main_measure_type' => [
+                    'id' => $this->product_purchase->product_type->main_measure_type->id,
+                    'name' => $this->product_purchase->product_type->main_measure_type->name,
+                    'quantity' => $this->product_purchase->product_type->main_measure_type->quantity
                 ],
+                'product_purchase_id' => $this->product_purchase_id,
+                'quantity' => $this->product_purchase->quantity,
             ],
             'created_at' => $this->created_at->format('Y-m-d H:i')
         ];
