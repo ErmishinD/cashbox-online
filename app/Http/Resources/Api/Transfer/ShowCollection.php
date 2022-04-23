@@ -37,19 +37,17 @@ class ShowCollection extends ResourceCollection
             $transfer_amount = $transfer_data->sum('cost');
             $all_amount += $transfer_amount;
 
-            $result['product_purchases'][] = [
-                'id' => $transfer->product_purchase_id,
-                'quantity' => $transfer->product_purchase->quantity,
-                'product_type' => [
-                    'id' => $transfer->product_purchase->product_type->id,
-                    'name' => $transfer->product_purchase->product_type->name,
-                    'main_measure_type' => [
-                        'id' => $transfer->product_purchase->product_type->main_measure_type->id,
-                        'name' => $transfer->product_purchase->product_type->main_measure_type->name,
-                        'quantity' => $transfer->product_purchase->product_type->main_measure_type->quantity
-                    ]
+            $result['product_types'][] = [
+                'id' => $transfer->product_purchase->product_type->id,
+                'name' => $transfer->product_purchase->product_type->name,
+                'main_measure_type' => [
+                    'id' => $transfer->product_purchase->product_type->main_measure_type->id,
+                    'name' => $transfer->product_purchase->product_type->main_measure_type->name,
+                    'quantity' => $transfer->product_purchase->product_type->main_measure_type->quantity
                 ],
+                'quantity' => $transfer->product_purchase->quantity,
                 'amount' => $transfer_amount,
+                'product_purchase_id' => $transfer->product_purchase_id,
             ];
         }
         $request['all_amount'] = $all_amount;

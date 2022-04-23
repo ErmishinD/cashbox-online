@@ -118,6 +118,6 @@ class TransferControllerTest extends TestCase
 
         $response = $this->actingAs($this->admin)->get($this->base_route . $transfer1->id);
 
-        $response->assertStatus(200)->assertJsonCount(5, 'data.product_purchases');
+        $response->assertStatus(200)->assertJsonCount(5, 'data.product_types');
     }
 }
