@@ -35,7 +35,8 @@ class IndexResource extends JsonResource
                     'quantity' => $this->product_type->main_measure_type->quantity
                 ]
             ],
-            'quantity' => $this->quantity
+            'quantity' => $this->quantity,
+            'created_at' => $this->created_at->format('Y-m-d H:i')
         ];
     }
 }
