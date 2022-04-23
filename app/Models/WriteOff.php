@@ -51,7 +51,10 @@ class WriteOff extends Model implements SystemLoggable
 
     public function getVueRoute(string $action): ?string
     {
-        return '';
+        if ($action == SystemLog::ACTIONS['write_off']) {
+            return 'write_off_show';
+        }
+        return null;
     }
 
     public function getVueParams(string $action): array
