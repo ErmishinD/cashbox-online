@@ -540,6 +540,54 @@ class ProductTypeControllerTest extends TestCase
 
     }
 
+    public function test_can_get_quantity_grouped_by_storages()
+    {
+        $company = Company::factory()->create();
+        $this->admin->update(['company_id' => $company->id]);
+        $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        session()->put('shop_id', $shop->id);
+        $storage = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
+
+        $product_type = ProductType::factory()->create(['company_id' => $this->admin->company_id, 'type' => ProductType::TYPES['perishable']]);
+
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type->id,
+            'quantity' => 1000,
+            'current_quantity' => 1000,
+            'cost' => 100,
+            'current_cost' => 100,
+            'expiration_date' => now()->subWeek(),
+            'user_id' => $this->admin->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $product_type->id,
+            'quantity' => 1500,
+            'current_quantity' => 750,
+            'cost' => 200,
+            'current_cost' => 100,
+            'expiration_date' => now()->addWeek(),
+            'user_id' => $this->admin->id
+        ]);
+
+        $response = $this->actingAs($this->admin)->get($this->base_route . $product_type->id . '/get_storages_quantity');
+        $response->assertStatus(200)->assertJson([
+            'data' => [
+                [
+                    'id' => $storage->id,
+                    'name' => $storage->name,
+                    'current_quantity' => 750,
+                    'current_cost' => 100,
+                    'expired_current_quantity' => 1000,
+                    'expired_current_cost' => 100,
+                ]
+            ]
+        ]);
+    }
+
     // filter / sort tests
 
     public function test_can_filter_by_name()

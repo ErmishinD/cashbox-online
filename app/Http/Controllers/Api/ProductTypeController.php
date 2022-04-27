@@ -11,16 +11,21 @@ use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\ProductType\GetQuantityRequest;
 use App\Http\Requests\Api\ProductType\CreateRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
+use App\Http\Resources\Api\ProductType\CurrentQuantityByStorageResource;
 use App\Http\Resources\Api\ProductType\DashboardResource;
 use App\Http\Resources\Api\ProductType\DefaultResource;
 use App\Http\Resources\Api\ProductType\SelectForSellProductResource;
 use App\Http\Resources\Api\ProductType\ShowResource;
 use App\Http\Resources\Api\ProductType\WithMeasureTypesResource;
+use App\Models\ProductPurchase;
 use App\Models\ProductType;
+use App\Models\Storage;
 use App\Repositories\ProductTypeRepository;
 use App\Services\ProductTypeService;
+use App\Services\StorageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductTypeController extends Controller
 {
@@ -158,7 +163,7 @@ class ProductTypeController extends Controller
             'media',
             'base_measure_type',
             'main_measure_type',
-            'product_purchases' => function($query) {
+            'product_purchases' => function ($query) {
                 $query->orderBy('id')->take(1);
             }
         ]);
@@ -198,5 +203,11 @@ class ProductTypeController extends Controller
             ]);
         }
         return response()->json(['success' => true, 'data' => DashboardResource::collection($product_types)]);
+    }
+
+    public function getQuantityGroupedByStorage(int $id)
+    {
+        $storages = StorageService::get_storages_product_type_quantity($id);
+        return CurrentQuantityByStorageResource::collection($storages);
     }
 }

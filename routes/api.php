@@ -105,6 +105,7 @@ Route::middleware('auth')->group(function () {
         Route::get('get_for_select', [ProductTypeController::class, 'getForSelectForSellProduct']);
         Route::get('get_short_info/{product_type}', [ProductTypeController::class, 'getShortInfo']);
         Route::post('get_current_quantity', [ProductTypeController::class, 'getCurrentQuantity']);
+        Route::get('{id}/get_storages_quantity', [ProductTypeController::class, 'getQuantityGroupedByStorage']);
     });
     Route::apiResource('product_types', ProductTypeController::class);
 
