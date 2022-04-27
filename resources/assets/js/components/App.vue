@@ -6,7 +6,7 @@
 	        <div class="getting-started-example-styled__title">
 	        	{{ $t('Выберите магазин') }}:
 	        </div>
-	        <select name="select_storage_modal" class="def_select center-flex" v-model="current_shop" id="">
+	        <select class="def_select center-flex" v-model="current_shop_in_select" id="">
 	        		<option v-for="shop in shop_by_company_list" :value="shop.id">{{shop.name}}</option>
 	        </select>
 	      </div>
@@ -14,7 +14,7 @@
 
 	      <div class="getting-started-example-styled__actions">
 
-	      	<button @click="changeShop" id="set_shop" :disabled="!this.current_shop" class="btn btn-success">
+	      	<button @click="changeShop" :disabled="!this.current_shop_in_select" class="btn btn-success">
 	          {{ $t('Выбрать') }}
 	        </button>
 	      </div>
@@ -94,13 +94,13 @@
   			});
   		},
   		changeShop() {
-  			// if(this.current_shop_in_select){
-  			// 	this.current_shop = this.current_shop_in_select
-  			// }
+  			if(this.current_shop_in_select){
+  				this.current_shop = this.current_shop_in_select
+  			}
   			this.axios.post('/api/change_shop', {shop_id : this.current_shop}).then((response) => {
   				this.modal_show = false
   				this.$shopId = this.current_shop
-          // document.querySelector("meta[name='shop_id']").setAttribute('content', this.current_shop)
+          window.shop_id = this.current_shop
   			})
   		},
   		changeLanguage (locale) {
