@@ -12,6 +12,8 @@ import VueLoading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Notifications from '@kyvg/vue3-notification'
 import VueGoodTablePlugin from 'vue-good-table-next';
+import mitt from 'mitt';
+
 
 import "gitart-vue-dialog/dist/style.css";
 import { GDialog } from "gitart-vue-dialog";
@@ -452,12 +454,16 @@ const app = createApp({
     render: ()=>h(App)
 })
 
+const emitter = mitt();
+
 app.config.globalProperties.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 app.config.globalProperties.$companyId = document.querySelector("meta[name='company-id']").getAttribute('content');
 app.config.globalProperties.$userName = document.querySelector("meta[name='user_name']").getAttribute('content');
 app.config.globalProperties.$csrf = document.querySelector("meta[name='csrf-token']").getAttribute('content');
 app.config.globalProperties.$isAdmin = document.querySelector("meta[name='is_superadmin']").getAttribute('content');
 app.config.globalProperties.$shopId = document.querySelector("meta[name='shop_id']").getAttribute('content');
+app.config.globalProperties.emitter = emitter;
+
 
 app.use(VueSidebarMenu)
 app.use(router).use(i18n).use(store)

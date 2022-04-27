@@ -1,4 +1,4 @@
-<template >
+<template @change_shop="render_list_items(true)">
 	<notifications position="bottom right" />
 	<GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="700">
 	    <div class="getting-started-example-styled">
@@ -187,13 +187,16 @@
         watch:{
         	shop_id(){
         		this.resetData()
-        		this.render_list_items(true)
         	}
         },
         mounted(){
+            this.emitter.on("change_shop", res => {
+                  this.shop_id = res
+                  this.render_list_items(true)
+                });
         	 if(this.shop_id){
+                // console.log(document.addEventListener('change_shop', this.render_list_items(true)))
         	 	document.addEventListener('scroll', this.scrolltoGetMoreData)
-	        	 document.querySelector('select[name=select_storage]').addEventListener('change', this.changeShop)
 	  		     this.render_list_items(true)
         	 }
 
@@ -213,9 +216,6 @@
             }
           },
         methods: {
-        	changeShop(){
-        		this.shop_id = document.querySelector('select[name=select_storage]').value
-        	},
         	scrolltoGetMoreData(){
 
         		window.onscroll = () => {
@@ -288,7 +288,7 @@
 		            }
 		        })
 
-	  		     this.axios.post('/api/product_types/get_current_quantity', {shop_id : 1}).then((response) => {
+	  		     this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
 			       this.product_types_in_storages = response.data['data']
 
 			       loader.hide()

@@ -96,11 +96,12 @@
   		changeShop() {
   			if(this.current_shop_in_select){
   				this.current_shop = this.current_shop_in_select
+
   			}
   			this.axios.post('/api/change_shop', {shop_id : this.current_shop}).then((response) => {
+          this.emitter.emit("change_shop", this.current_shop);
   				this.modal_show = false
   				this.$shopId = this.current_shop
-          window.shop_id = this.current_shop
   			})
   		},
   		changeLanguage (locale) {
