@@ -191,11 +191,19 @@
         	}
         },
         mounted(){
-        	 if(this.shop_id){
-        	 	document.addEventListener('scroll', this.scrolltoGetMoreData)
-	        	 document.querySelector('select[name=select_storage]').addEventListener('change', this.changeShop)
-	  		     this.render_list_items(true)
-        	 }
+        	if(!this.$isAdmin){
+        		document.querySelector('select[name=select_storage]').addEventListener('change', this.changeShop)
+                document.addEventListener('scroll', this.scrolltoGetMoreData)
+                if(document.querySelector('button[id=set_shop]')){
+                   document.querySelector('button[id=set_shop]').addEventListener('click', this.changeShop) 
+                }
+                
+	        	 if(this.shop_id){
+	        	 	
+		  		     this.render_list_items(true)
+	        	 }
+        	}
+        	
 
         },
         unmounted(){
