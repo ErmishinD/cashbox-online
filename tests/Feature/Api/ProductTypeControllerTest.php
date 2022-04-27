@@ -396,6 +396,150 @@ class ProductTypeControllerTest extends TestCase
         $this->assertCount(10, $response['data']);
     }
 
+    public function test_can_get_current_quantity()
+    {
+        $company = Company::factory()->create();
+        $this->admin->update(['company_id' => $company->id]);
+        $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        session()->put('shop_id', $shop->id);
+        $storage = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
+
+        $imperishable_product_types = ProductType::factory()->count(2)->create(['company_id' => $this->admin->company_id, 'type' => ProductType::TYPES['imperishable']]);
+        $perishable_product_types = ProductType::factory()->count(2)->create(['company_id' => $this->admin->company_id, 'type' => ProductType::TYPES['perishable']]);
+
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $imperishable_product_types[0]->id,
+            'quantity' => 100,
+            'current_quantity' => 100,
+            'cost' => 100,
+            'current_cost' => 100,
+            'user_id' => $this->admin->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $imperishable_product_types[1]->id,
+            'quantity' => 200,
+            'current_quantity' => 200,
+            'cost' => 100,
+            'current_cost' => 100,
+            'user_id' => $this->admin->id
+        ]);
+
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $perishable_product_types[0]->id,
+            'quantity' => 150,
+            'current_quantity' => 150,
+            'cost' => 10,
+            'current_cost' => 10,
+            'expiration_date' => now()->subWeek(),
+            'user_id' => $this->admin->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $perishable_product_types[0]->id,
+            'quantity' => 100,
+            'current_quantity' => 100,
+            'cost' => 10,
+            'current_cost' => 10,
+            'expiration_date' => now()->addWeek(),
+            'user_id' => $this->admin->id
+        ]);
+
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $perishable_product_types[1]->id,
+            'quantity' => 1000,
+            'current_quantity' => 1000,
+            'cost' => 100,
+            'current_cost' => 100,
+            'expiration_date' => now()->subWeek(),
+            'user_id' => $this->admin->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id,
+            'storage_id' => $storage->id,
+            'product_type_id' => $perishable_product_types[1]->id,
+            'quantity' => 1500,
+            'current_quantity' => 1500,
+            'cost' => 200,
+            'current_cost' => 200,
+            'expiration_date' => now()->addWeek(),
+            'user_id' => $this->admin->id
+        ]);
+
+
+        // with pagination
+        $response = $this->actingAs($this->admin)->post($this->base_route . 'get_current_quantity', [
+            'storage_ids' => [$storage->id],
+            'page' => 1,
+            'per_page' => 1,
+        ]);
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    [
+                        'id' => $perishable_product_types->last()->id,
+                        'name' => $perishable_product_types->last()->name,
+                        'current_quantity' => 1500,
+                    ],
+                ]
+            ],
+        ]);
+
+        // without pagination
+        $response = $this->actingAs($this->admin)->post($this->base_route . 'get_current_quantity', [
+            'storage_ids' => [$storage->id]
+        ]);
+        $response->assertStatus(200)->assertJsonCount(ProductType::count(), 'data');
+
+        // without expired
+        $response = $this->actingAs($this->admin)->post($this->base_route . 'get_current_quantity', [
+            'storage_ids' => [$storage->id],
+            'with_expired' => false,
+            'page' => 1,
+            'per_page' => 1,
+        ]);
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    [
+                        'id' => $perishable_product_types->last()->id,
+                        'name' => $perishable_product_types->last()->name,
+                        'current_quantity' => 1500,
+                    ],
+                ]
+            ],
+        ]);
+
+        // with expired
+        $response = $this->actingAs($this->admin)->post($this->base_route . 'get_current_quantity', [
+            'storage_ids' => [$storage->id],
+            'with_expired' => true,
+            'page' => 1,
+            'per_page' => 1,
+        ]);
+        $response->assertStatus(200)->assertJson([
+            'pagination' => [
+                'data' => [
+                    [
+                        'id' => $perishable_product_types->last()->id,
+                        'name' => $perishable_product_types->last()->name,
+                        'current_quantity' => 1500,
+                        'expired_current_quantity' => 1000,
+                    ],
+                ]
+            ],
+        ]);
+
+    }
+
     // filter / sort tests
 
     public function test_can_filter_by_name()

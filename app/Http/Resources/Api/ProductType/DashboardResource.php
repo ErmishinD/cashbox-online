@@ -17,12 +17,21 @@ class DashboardResource extends JsonResource
     public function toArray($request)
     {
         /** @var ProductType $this */
-        return [
+        $result = [
             'id' => $this->id,
             'name' => $this->name,
             'main_to_base_equivalent' => $this->main_measure_type->quantity,
             'current_quantity' => $this->product_purchases_sum_current_quantity,
             'current_quantity_in_main_measure_type' => $this->product_purchases_sum_current_quantity / $this->main_measure_type->quantity,
         ];
+
+        if ($request->get('with_expired')) {
+            $result += [
+                'expired_current_quantity' => $this->product_purchases_expired_sum_current_quantity ?? null,
+                'expired_current_quantity_in_main_measure_type' => $this->product_purchases_expired_sum_current_quantity / $this->main_measure_type->quantity,
+            ];
+        }
+
+        return $result;
     }
 }

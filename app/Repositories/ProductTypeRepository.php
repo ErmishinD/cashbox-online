@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\Api\PaginateRequest;
 use App\Models\ProductType;
 use App\Models\Storage;
 use App\Services\EnumDbCol;
@@ -110,24 +111,17 @@ class ProductTypeRepository extends BaseRepository
         return $this->model->select('id', 'name')->get();
     }
 
-    public function get_current_quantity(int $shop_id, ?array $storage_ids)
+    public function get_current_quantity(int $shop_id, ?array $storage_ids, $with_expired = true, $paginate_params = [])
     {
         if (empty($storage_ids)) {
-            $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $shop_id)->pluck('id');
+            $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $shop_id)->pluck('id')->toArray();
         }
 
-        $product_types = ProductType::query()
-            ->with('main_measure_type')
-            ->withSum(['product_purchases' => function ($query) use ($storage_ids) {
-                $query
-                    ->whereIn('storage_id', $storage_ids)
-                    ->where(function ($q) {
-                        $q->whereNull('expiration_date')
-                            ->orWhere('expiration_date', '>', now(new \DateTimeZone('Europe/Kiev')));
-                    });
-            }], 'current_quantity')
-            ->orderByDesc('product_purchases_sum_current_quantity')
-            ->get();
+        $product_types = ProductTypeService::get_current_quantity(
+            $storage_ids,
+            with_expired: $with_expired,
+            paginate_params: $paginate_params
+        );
 
         return $product_types;
     }

@@ -21,7 +21,7 @@ class ShowResource extends JsonResource
             'id' => $this->id,
             'shop_id' => $this->shop_id,
             'name' => $this->name,
-            'product_types' => !empty($this->product_types) ? InStorageResource::collection($this->product_types) : null,
+//            'product_types' => !empty($this->product_types) ? InStorageResource::collection($this->product_types) : null,
         ];
     }
 }

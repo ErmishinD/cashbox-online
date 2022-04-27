@@ -142,52 +142,6 @@ class StorageControllerTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function test_admin_can_get_storage_with_product_purchase()
-    {
-        $company = Company::factory()->create();
-        $this->admin->update(['company_id' => $company->id]);
-        $shop = Shop::factory()->create(['company_id' => $company->id]);
-        $storage = Storage::factory()->create(['shop_id' => $shop->id]);
-
-        $main_measure_type = MeasureType::factory()->create(['base_measure_type_id' => $this->base_measure_type_volume->id]);
-        $measure_type = MeasureType::factory()->create(['base_measure_type_id' => $this->base_measure_type_volume->id]);
-        $product_type = ProductType::create([
-            'company_id' => $company->id,
-            'type' => '_imperishable',
-            'base_measure_type_id' => $this->base_measure_type_volume->id,
-            'main_measure_type_id' => $main_measure_type->id,
-            'name' => $this->faker->word,
-            'barcode' => $this->faker->numerify('##########')
-        ]);
-        $product_purchase = ProductPurchase::factory()->create([
-            'storage_id' => $storage->id, 'product_type_id' => $product_type->id
-        ]);
-
-        $current_quantity = $product_purchase->current_quantity / $main_measure_type->quantity;
-
-
-        $response = $this->actingAs($this->admin)->get($this->base_route . $storage->id);
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'success' => true,
-                'data' => [
-                    'id' => $storage->id,
-                    'shop_id' => $storage->shop_id,
-                    'name' => $storage->name,
-                    'product_types' => [
-                        [
-                            'id' => $product_type->id,
-                            'name' => $product_type->name,
-                            'type' => $product_type->type,
-                            'main_measure_type' => ['id' => $main_measure_type->id],
-                            'current_quantity_in_main_measure_type' => $current_quantity,
-                        ]
-                    ],
-                ]
-            ]);
-    }
-
     public function test_admin_can_edit_storage()
     {
         $company = Company::factory()->create();

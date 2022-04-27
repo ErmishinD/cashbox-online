@@ -57,11 +57,10 @@ class StorageController extends Controller
         return response()->json(['success' => true, 'data' => new DefaultResource($storage)], 201);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Storage $storage): JsonResponse
     {
         $this->authorize('Storage_show');
 
-        $storage = $this->storage->getWithProductTypes($id);
         return response()->json(['success' => true, 'data' => new ShowResource($storage)]);
     }
 

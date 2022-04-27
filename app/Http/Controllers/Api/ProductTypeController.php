@@ -8,7 +8,7 @@ use App\Events\ProductTypeEdited;
 use App\Filters\ProductTypeFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
-use App\Http\Requests\Api\ProductType\DashboardRequest;
+use App\Http\Requests\Api\ProductType\GetQuantityRequest;
 use App\Http\Requests\Api\ProductType\CreateRequest;
 use App\Http\Requests\Api\ProductType\UpdateRequest;
 use App\Http\Resources\Api\ProductType\DashboardResource;
@@ -166,12 +166,36 @@ class ProductTypeController extends Controller
         return response()->json(['success' => true, 'data' => new WithMeasureTypesResource($product_type)]);
     }
 
-    public function getCurrentQuantity(DashboardRequest $request)
+    public function getCurrentQuantity(GetQuantityRequest $request)
     {
         $data = $request->validated();
         $shop_id = $data['shop_id'];
         $storage_ids = !empty($data['storage_ids']) ? $data['storage_ids'] : null;
-        $product_types = $this->product_type->get_current_quantity($shop_id, $storage_ids);
+        if (!$data['per_page'] || !$data['page']) {
+            unset($data['per_page'], $data['page']);
+            $paginate_params = [];
+        } else {
+            $paginate_params = ['per_page' => $data['per_page'], 'page' => $data['page']];
+        }
+        $product_types = $this->product_type->get_current_quantity(
+            $shop_id,
+            $storage_ids,
+            $data['with_expired'],
+            $paginate_params
+        );
+
+        if (!empty($data['per_page'])) {
+            return response()->json([
+                'success' => true,
+                'pagination' => [
+                    'data' => DashboardResource::collection($product_types),
+                    'current_page' => $product_types->currentPage(),
+                    'last_page' => $product_types->lastPage(),
+                    'per_page' => $product_types->perPage(),
+                    'total' => $product_types->total(),
+                ]
+            ]);
+        }
         return response()->json(['success' => true, 'data' => DashboardResource::collection($product_types)]);
     }
 }
