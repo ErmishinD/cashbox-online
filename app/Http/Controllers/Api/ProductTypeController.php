@@ -166,7 +166,7 @@ class ProductTypeController extends Controller
         return response()->json(['success' => true, 'data' => new WithMeasureTypesResource($product_type)]);
     }
 
-    public function getCurrentQuantity(GetQuantityRequest $request)
+    public function getCurrentQuantity(GetQuantityRequest $request, ProductTypeFilter $filters)
     {
         $data = $request->validated();
         $shop_id = $data['shop_id'];
@@ -178,6 +178,7 @@ class ProductTypeController extends Controller
             $paginate_params = ['per_page' => $data['per_page'], 'page' => $data['page']];
         }
         $product_types = $this->product_type->get_current_quantity(
+            $filters,
             $shop_id,
             $storage_ids,
             $data['with_expired'],
