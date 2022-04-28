@@ -20,7 +20,14 @@ class DashboardResource extends JsonResource
         $result = [
             'id' => $this->id,
             'name' => $this->name,
-            'main_to_base_equivalent' => $this->main_measure_type->quantity,
+            'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty()
+                ? $this->media->where('collection_name', 'photo')->first()->getUrl()
+                : asset('images/default_card_img.png'),
+            'main_measure_type' => [
+                'id' => $this->main_measure_type->id,
+                'name' => $this->main_measure_type->name,
+                'quantity' => $this->main_measure_type->quantity
+            ],
             'current_quantity' => $this->product_purchases_sum_current_quantity,
             'current_quantity_in_main_measure_type' => $this->product_purchases_sum_current_quantity / $this->main_measure_type->quantity,
         ];
