@@ -17,6 +17,9 @@ class DefaultResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty()
+                ? $this->media->where('collection_name', 'photo')->first()->getUrl()
+                : asset('images/default_card_img.png'),
             'product_types_count' => $this->product_types_count ?? 0,
             'sell_products_count' => $this->sell_products_count ?? 0,
         ];

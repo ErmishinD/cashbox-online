@@ -8,6 +8,7 @@ use App\Http\Requests\Api\Category\UpdateRequest;
 use App\Http\Resources\Api\Category\DefaultResource;
 use App\Http\Resources\Api\Category\SelectResource;
 use App\Models\Category;
+use App\Services\UploadFileService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -24,7 +25,18 @@ class CategoryController extends Controller
     {
         $this->authorize('Category_create');
 
-        $category = Category::create($request->validated());
+        $data = $request->validated();
+
+        if (array_key_exists('photo', $data)) {
+            $photo = $data['photo'];
+            unset($data['photo']);
+        }
+
+        $category = Category::create($data);
+
+        if (!empty($photo)) {
+            UploadFileService::save_photo($photo, $category);
+        }
         return new DefaultResource($category);
     }
 
@@ -33,6 +45,7 @@ class CategoryController extends Controller
         $this->authorize('Category_show');
 
         $category->loadCount(['product_types', 'sell_products']);
+        $category->load('media');
 
         return new DefaultResource($category);
     }
@@ -41,9 +54,19 @@ class CategoryController extends Controller
     {
         $this->authorize('Category_edit');
 
+        $data = $request->validated();
+
+        if (array_key_exists('photo', $data)) {
+            if (!empty($data['photo'])) {
+                UploadFileService::save_photo($data['photo'], $category);
+            }
+            unset($data['photo']);
+        }
+
+        $category->update($data);
+
         $category->loadCount(['product_types', 'sell_products']);
 
-        $category->update($request->validated());
         return new DefaultResource($category);
     }
 

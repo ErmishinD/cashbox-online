@@ -30,7 +30,8 @@ class UpdateRequest extends FormRequest
                 Rule::unique('categories')->where(function ($query) {
                     return $query->where('company_id', session('company_id'));
                 })->ignore($this->id)
-            ]
+            ],
+            'photo' => ['nullable']
         ];
     }
 }

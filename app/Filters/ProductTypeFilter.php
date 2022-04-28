@@ -27,6 +27,8 @@ class ProductTypeFilter extends QueryFilter
     public function category_id($value)
     {
         if (!$value) {
+            return;
+        } elseif ($value == 'without_category') {
             $this->builder->whereNull('category_id');
             return;
         }

@@ -24,10 +24,10 @@ class CurrentQuantityByStorageResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'current_quantity' => $this->current_quantity,
-            'current_cost' => $this->current_cost,
-            'expired_current_quantity' => $this->expired_current_quantity,
-            'expired_current_cost' => $this->expired_current_cost,
+            'current_quantity' => $this->current_quantity ?? 0,
+            'current_cost' => $this->current_cost ?? 0,
+            'expired_current_quantity' => $this->expired_current_quantity ?? 0,
+            'expired_current_cost' => $this->expired_current_cost ?? 0,
         ];
     }
 }

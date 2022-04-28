@@ -31,7 +31,8 @@ class CreateRequest extends TenantRequest
                     return $query->where('company_id', session('company_id'));
                 })
             ],
-            'company_id' => ['required']
+            'company_id' => ['required'],
+            'photo' => ['nullable']
         ];
     }
 }
