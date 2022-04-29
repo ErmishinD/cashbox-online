@@ -7,6 +7,18 @@
 				<label for="name">{{ $t('Название') }}*:</label>
 				<input type="text" required class="form-control" name="name" v-model="formData.name">
 			</div>
+                <file-pond
+                    name="photo"
+                    ref="pond"
+                    v-bind:file="formData.photo"
+                    v-on:init="handleFilePondInit"
+                    :multiple="false"
+                    maxFiles='1'
+                    labelIdle="Фото категории: перетащите файлы вручную или <span class='filepond--label-action'> Навигация </span>"
+                    accept="image/png, image/jpeg, image/gif"
+                    :required="false"
+                /> 
+            
 
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
@@ -16,7 +28,42 @@
 </template>
 
 <script>
+// Import FilePond
+import vueFilePond, { setOptions } from 'vue-filepond';
+// Import the plugin code
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+
+// Import the plugin styles
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+// Import styles
+import 'filepond/dist/filepond.min.css';
+
+// Create FilePond component
+const FilePond = vueFilePond(FilePondPluginImagePreview);
+// FilePond.registerPlugin(FilePondPluginImagePreview);
+
+setOptions({
+    server: {
+        url: '/api/file_upload',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector("meta[name='csrf-token']").getAttribute('content')
+        },
+        process: {
+            onload: function (response) {
+                document.querySelector("input[type='file']").setAttribute('value', response)
+
+                return response
+            },
+        }
+    }
+});
+
+
 export default{
+    components: {
+        FilePond,
+    },
 	data(){
 		return{
 			formData: {},
@@ -39,6 +86,7 @@ export default{
 		        canCancel: false,
 		        loader: 'dots',});
     		console.log(this.formData)
+            this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
     		this.axios.post('/api/categories', this.formData ).then((response) => {
     			console.log(response.data.data.id)
     			Promise.resolve(this.$notify({
