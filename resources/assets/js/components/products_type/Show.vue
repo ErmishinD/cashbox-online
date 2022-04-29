@@ -36,6 +36,10 @@
           <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: props.row.id}}">{{props.row.name}}</router-link>
           <span v-else>{{props.row.name}}</span>
         </span>
+
+        <span  v-if="props.column.field == 'current_quantity'">
+        	{{props.row.current_quantity / product.main_measure_type.quantity}} {{product.main_measure_type.name}}
+        </span>
         </template>
     </vue-good-table>
 </template>
