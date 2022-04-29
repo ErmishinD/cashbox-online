@@ -3,6 +3,8 @@
 namespace App\Filters;
 
 
+use App\Models\Category;
+
 class SellProductFilter extends QueryFilter
 {
     public function name($value)
@@ -31,6 +33,22 @@ class SellProductFilter extends QueryFilter
         }
 
         $this->builder->where('category_id', $value);
+    }
+
+    public function category_name($value)
+    {
+        if (!$value) {
+            return;
+        } elseif ($value == 'without_category') {
+            $this->builder->whereNull('category_id');
+            return;
+        }
+
+        $category = Category::where('name', 'like', '%' . $value . '%')->first();
+        if (!$category) {
+            return;
+        }
+        $this->builder->where('category_id', $category->id);
     }
 
     public function sort_by_name($direction)
