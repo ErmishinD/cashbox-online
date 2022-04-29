@@ -83,6 +83,11 @@
 
 	<div class="dashboard_actions_row">
 		<input @change="search" :placeholder="$t('Поиск товара')" type="text">
+        <select @change="getByCategory" v-model="selected_category">
+            <option value="">{{$t('Все категории')}}</option>
+            <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+            <option value="without_category">{{$t('Без категорий')}}</option>
+        </select>
 		<button  :disabled="!(this.cards_for_sailing.length)" @click="openBasket" class="btn btn-success">
 			{{$t('Перейти к товарам')}}
 			<span class="counter_basket_circle"><span class="counter_basket">{{this.cards_for_sailing.length}}</span></span>
@@ -155,6 +160,8 @@
     	data(){
     		return{
     			cards: [],
+                categories: [],
+                selected_category: '',
     			cards_for_sailing: [],
     			selected_dropdown: [],
     			selected_cards: [],
@@ -200,6 +207,10 @@
 	  		     this.render_list_items(true)
         	 }
 
+             this.axios.get('/api/categories').then((response) => {
+                this.categories = response.data['data']
+             })
+
         },
         unmounted(){
 
@@ -216,6 +227,10 @@
             }
           },
         methods: {
+            getByCategory(){    
+                this.serverParams.columnFilters.category_id = this.selected_category
+                this.render_list_items(true)
+            },
         	scrolltoGetMoreData(){
 
         		window.onscroll = () => {
