@@ -37,7 +37,7 @@
       :rows="rows"
       :line-numbers="true">
       <template #table-row="props">
-        <span  v-if="props.column.field == 'category.name'">
+        <span  v-if="props.column.field == 'category_name'">
           <router-link class="redirect_from_table" v-if="$can('Category_edit') && props.row.category" :to="{name: 'settings_categories_edit', params: {id: props.row.category.id}}">{{props.row.category.name}}</router-link>
           <span v-else-if="props.row.category">{{props.row.category.name}}</span>
         </span>
@@ -69,6 +69,7 @@ export default {
       modal_show: false,
       current_name: null,
       current_id: null,
+      categories: [],
       totalRecords: 0,
       serverParams: {
         columnFilters: {
@@ -101,7 +102,12 @@ export default {
         },
         {
           label: this.$t('Категория'),
-          field: 'category.name',
+          field: 'category_name',
+          filterOptions: {
+              enabled: true,
+              placeholder: this.$t('Фильтрация'),
+              filterDropdownItems: [''],
+          },
         },
         {
           label: this.$t('Действия'),
@@ -116,6 +122,12 @@ export default {
   mounted(){
   	this.render_list_items()
   	document.title = this.$t('Типы товаров');
+    this.axios.get('/api/categories').then((response) => {
+      response.data['data'].forEach(item => {
+        this.categories.push(item.name)
+      })
+      this.columns[2].filterOptions.filterDropdownItems = this.categories
+     })
   },
   methods:{
   	onOpen(params){
@@ -146,6 +158,7 @@ export default {
   		this.loadItems()
   	},
       updateParams(newProps) {
+        console.log(newProps)
           this.serverParams = Object.assign({}, this.serverParams, newProps);
       },
 

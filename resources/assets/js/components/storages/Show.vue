@@ -6,42 +6,50 @@
 		<small><router-link v-if="this.$can('Storage_edit')" :to="{name: 'storages_edit', params: {ids: this.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
 	<div class="tac" style="font-size: 20px;">{{$t('Баланс')}}: {{balance.all_balance}}грн</div>
-		<div class="cards">
-			<div v-for="product in storage" class="card">
-				<div class="card_img"  :style="{'background-image': `url(${product.photo})`}">
-					<div class="card_img_href" :id="'card_img_href_'+product.id">
-						<router-link v-if="this.$can('ProductType_show')" :to="{name: 'products_type_show', params: {id: product.id}}"><i class="fas fa-eye"></i></router-link>
-						<router-link v-if="this.$can('ProductPurchase_show')" :to="{name: 'purchases_create', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-cart-plus"></i></router-link>
-						<router-link v-if="this.$can('WriteOff_create')" :to="{name: 'write_off_create', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-ban"></i></router-link>
-					</div>
+	<div class="dashboard_actions_row">
+		<input @change="search" :placeholder="$t('Поиск товара')" type="text">
+        <select @change="getByCategory" v-model="selected_category">
+            <option value="">{{$t('Все категории')}}</option>
+            <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+            <option value="without_category">{{$t('Без категорий')}}</option>
+        </select>
+	</div>	
+	<div class="cards">
+		<div v-for="product in storage" class="card">
+			<div class="card_img"  :style="{'background-image': `url(${product.photo})`}">
+				<div class="card_img_href" :id="'card_img_href_'+product.id">
+					<router-link v-if="this.$can('ProductType_show')" :to="{name: 'products_type_show', params: {id: product.id}}"><i class="fas fa-eye"></i></router-link>
+					<router-link v-if="this.$can('ProductPurchase_show')" :to="{name: 'purchases_create', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-cart-plus"></i></router-link>
+					<router-link v-if="this.$can('WriteOff_create')" :to="{name: 'write_off_create', params: {product_type_id: product.id, storage_id: this.id, product_name: product.name}}"><i class="fas fa-ban"></i></router-link>
 				</div>
+			</div>
 
-				<div class="card_content">
-					<div class="card_title tac">{{product.name}}</div>
-					<div class="card_items">
-						<div class="card_item">
-							<span>
-								{{ $t('Кол-во на складе') }}:
-							</span>
+			<div class="card_content">
+				<div class="card_title tac">{{product.name}}</div>
+				<div class="card_items">
+					<div class="card_item">
+						<span>
+							{{ $t('Кол-во на складе') }}:
+						</span>
 
-							<span style="word-break: break-all; text-align: end;">
-								{{product.current_quantity_in_main_measure_type}}{{product.main_measure_type.name}}
-							</span>
-						</div>
+						<span style="word-break: break-all; text-align: end;">
+							{{product.current_quantity_in_main_measure_type}}{{product.main_measure_type.name}}
+						</span>
+					</div>
 
-						<div v-if="product.expired_current_quantity_in_main_measure_type" class="card_item" style="border-top: 1px solid #000;">
-							<span>
-								{{ $t('Просрочено на складе') }}:
-							</span>
+					<div v-if="product.expired_current_quantity_in_main_measure_type" class="card_item" style="border-top: 1px solid #000;">
+						<span>
+							{{ $t('Просрочено на складе') }}:
+						</span>
 
-							<span style="word-break: break-all; text-align: end;">
-								{{product.expired_current_quantity_in_main_measure_type}}{{product.main_measure_type.name}}
-							</span>
-						</div>
+						<span style="word-break: break-all; text-align: end;">
+							{{product.expired_current_quantity_in_main_measure_type}}{{product.main_measure_type.name}}
+						</span>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 </template>
 
@@ -54,6 +62,7 @@ export default{
 		return{
 			storage: [],
 			balance: [],
+			selected_category: '',
 			unmounted: false,
 			all_data_is_loaded: false,
 			in_progress_loading_data: false,
@@ -73,6 +82,9 @@ export default{
 		}
 	},
 	mounted(){
+		this.axios.get('/api/categories').then((response) => {
+                this.categories = response.data['data']
+             })
 		this.render_list_items(true)
 		document.addEventListener('scroll', this.scrolltoGetMoreData)
 		 this.axios.post('/api/storages/get_balance', {storage_ids: [this.id]}).then(response => {
@@ -89,6 +101,14 @@ export default{
 
     },
     methods: {
+    	getByCategory(){    
+                this.serverParams.columnFilters.category_id = this.selected_category
+                this.render_list_items(true)
+            },
+        search(e){
+        		this.serverParams.columnFilters.name = e.target.value
+        		this.render_list_items(true)
+        	},
     	render_list_items(is_not_paginate=true){
     		this.in_progress_loading_data = true
     		var loader = this.$loading.show({
