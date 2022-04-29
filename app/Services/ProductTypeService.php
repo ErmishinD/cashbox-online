@@ -25,10 +25,11 @@ class ProductTypeService
     }
 
     public static function get_current_quantity(
-        array $storage_ids, bool $with_expired = false, array $paginate_params = []
+        $filters, array $storage_ids, bool $with_expired = false, array $paginate_params = []
     )
     {
         $product_types_query = ProductType::query()
+            ->filter($filters)
             ->with(['media', 'main_measure_type'])
             ->withSum(['product_purchases' => function ($query) use ($storage_ids) {
                 $query

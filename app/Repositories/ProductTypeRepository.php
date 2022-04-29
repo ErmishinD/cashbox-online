@@ -118,6 +118,7 @@ class ProductTypeRepository extends BaseRepository
         }
 
         $product_types = ProductTypeService::get_current_quantity(
+            $filters,
             $storage_ids,
             with_expired: $with_expired,
             paginate_params: $paginate_params
