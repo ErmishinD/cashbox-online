@@ -58,7 +58,7 @@
         </span>
 
         <span v-if="props.column.field == 'purchased'">{{props.row.quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
-        <span v-if="props.column.field == 'current_quantity'">{{props.row.current_quantity}} {{props.row.product_type.main_measure_type.name}}</span>
+        <span v-if="props.column.field == 'current_quantity'">{{props.row.current_quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
         </template>
     </vue-good-table>
   </div>

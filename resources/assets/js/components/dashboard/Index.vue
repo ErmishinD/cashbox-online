@@ -197,6 +197,16 @@
         	}
         },
         mounted(){
+            this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
+                   this.product_types_in_storages = response.data['data']
+
+                   loader.hide()
+                 }).catch(function(error){
+                    if(error.response.status == 403){
+                        loader.hide()
+                        this.$router.push({ name: '403' })
+                    }
+                })
             this.emitter.on("change_shop", res => {
                   this.shop_id = res
                   this.render_list_items(true)
@@ -303,16 +313,7 @@
 		            }
 		        })
 
-	  		     this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
-			       this.product_types_in_storages = response.data['data']
-
-			       loader.hide()
-			     }).catch(function(error){
-		            if(error.response.status == 403){
-		            	loader.hide()
-		                this.$router.push({ name: '403' })
-		            }
-		        })
+	  		     
 			 },
 
         	toggleClassForIcon(card_data) {
