@@ -84,56 +84,56 @@ class DummyDataSeeder extends Seeder
                         [
                             'name' => 'Сахар',
                             'type' => '_imperishable',
-                            'photo' => 'https://storage1a.censor.net/images/1/2/1/d/121d635e26009e78d7df3a9a4f676731/original.jpg',
+                            'photo' => storage_path('dummy_images/sugar.jpg'),
                             'base_measure_type_id' => 2,
                             'main_measure_type_id' => 2,
                         ],
                         [
                             'name' => 'Молоко',
                             'type' => '_perishable',
-                            'photo' => 'https://storage1a.censor.net/images/1/2/1/d/121d635e26009e78d7df3a9a4f676731/original.jpg',
+                            'photo' => storage_path('dummy_images/milk.jpeg'),
                             'base_measure_type_id' => 1,
                             'main_measure_type_id' => 1,
                         ],
                         [
                             'name' => 'Кофе',
                             'type' => '_imperishable',
-                            'photo' => 'https://espanarusa.com/files/autoupload/60/18/10/24zaxfgo453484.jpeg',
+                            'photo' => storage_path('dummy_images/coffee.jpeg'),
                             'base_measure_type_id' => 2,
                             'main_measure_type_id' => 2,
                         ],
                         [
                             'name' => 'Стаканчик',
                             'type' => '_imperishable',
-                            'photo' => 'https://png.pngtree.com/element_our/20200609/ourlarge/pngtree-coffee-paper-cup-image_2233052.jpg',
+                            'photo' => storage_path('dummy_images/cup.jpg'),
                             'base_measure_type_id' => 3,
                             'main_measure_type_id' => 3,
                         ],
                         [
                             'name' => 'Вода',
                             'type' => '_imperishable',
-                            'photo' => 'https://examsbook.co.in/img/post/large/0lBTMirror-and-Water-Image-Questions.jpg',
+                            'photo' => storage_path('dummy_images/water.png'),
                             'base_measure_type_id' => 1,
                             'main_measure_type_id' => 1,
                         ],
                         [
                             'name' => 'Сникерс',
                             'type' => '_imperishable',
-                            'photo' => 'https://www.papulya.com/wp-content/uploads/2020/11/shokoladnyy-batonchik-snickers-50-g.png',
+                            'photo' => storage_path('dummy_images/snickers.png'),
                             'base_measure_type_id' => 3,
                             'main_measure_type_id' => 3,
                         ],
                         [
                             'name' => 'Твикс',
                             'type' => '_imperishable',
-                            'photo' => 'https://i.imgur.com/9mCKTf0.jpg',
+                            'photo' => storage_path('dummy_images/twix.jpg'),
                             'base_measure_type_id' => 3,
                             'main_measure_type_id' => 3,
                         ],
                         [
                             'name' => 'Баунти',
                             'type' => '_imperishable',
-                            'photo' => 'https://cdn-irec.r-99.com/sites/default/files/imagecache/300o/product-images/4410/productimage-picture-00007026-101286_jpg_520x520_q85.jpg',
+                            'photo' => storage_path('dummy_images/bounty.jpg'),
                             'base_measure_type_id' => 3,
                             'main_measure_type_id' => 3,
                         ],
@@ -141,7 +141,7 @@ class DummyDataSeeder extends Seeder
                     'sell_products' => [
                         [
                             'name' => "Cappuccino",
-                            'photo' => 'https://coffeeatthree.com/wp-content/uploads/cappuccino-1a.jpg',
+                            'photo' => storage_path('dummy_images/cappuccino.jpg'),
                             'price' => 55,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -153,7 +153,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Americano",
-                            'photo' => 'https://chay-kava.com/uploads/posts/2021-03/1614596676_kofe-amerikano-v-domashnix-usoviyax-768x512.jpg',
+                            'photo' => storage_path('dummy_images/americano.jpg'),
                             'price' => 48.5,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -164,7 +164,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Latte",
-                            'photo' => 'https://westcupgroup.com/wp-content/uploads/2020/06/5148178-1.jpg',
+                            'photo' => storage_path('dummy_images/latte.jpg'),
                             'price' => 73.75,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -177,7 +177,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Snickers",
-                            'photo' => 'https://storage1a.censor.net/images/1/2/1/d/121d635e26009e78d7df3a9a4f676731/original.jpg',
+                            'photo' => storage_path('dummy_images/snickers.png'),
                             'price' => 20,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -186,7 +186,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Twix",
-                            'photo' => 'https://aquamarket.ua/80089-large_default/twix-50-g-batonchik-tviks.jpg',
+                            'photo' => storage_path('dummy_images/twix.jpg'),
                             'price' => 18,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -195,7 +195,7 @@ class DummyDataSeeder extends Seeder
                         ],
                         [
                             'name' => "Bounty",
-                            'photo' => 'https://st.depositphotos.com/2121815/4881/i/600/depositphotos_48816961-stock-photo-bounty-coconut-chocolate-bar-isolated.jpg',
+                            'photo' => storage_path('dummy_images/bounty.jpg'),
                             'price' => 33.33,
                             'has_discount' => false,
                             'consists_of_product_types' => [
@@ -207,7 +207,7 @@ class DummyDataSeeder extends Seeder
                     'sell_product_groups' => [
                         [
                             'name' => "Набор батончиков",
-                            'photo' => 'https://images.ua.prom.st/3235065367_w640_h640_konfety-mars-snickers.jpg',
+                            'photo' => storage_path('dummy_images/bars_collection.jpg'),
                             'has_discount' => false,
                             'consists_of_sell_products' => [
                                 ['sell_product_id' => 4, 'price' => 15],  // snickers
@@ -292,7 +292,7 @@ class DummyDataSeeder extends Seeder
                     $product_type = ProductType::factory()->create(array_merge($product_type_data, ['company_id' => $company->id]));
                     $product_types->push($product_type);
 
-                    $product_type->addMediaFromUrl($photo_url)->toMediaCollection('photo');
+                    $product_type->addMedia($photo_url)->preservingOriginal()->toMediaCollection('photo');
                 }
             }
 
@@ -313,7 +313,7 @@ class DummyDataSeeder extends Seeder
                     }
                     $sell_products->push($sell_product);
 
-                    $sell_product->addMediaFromUrl($photo_url)->toMediaCollection('photo');
+                    $sell_product->addMedia($photo_url)->preservingOriginal()->toMediaCollection('photo');
                 }
             }
 
@@ -333,7 +333,7 @@ class DummyDataSeeder extends Seeder
                         );
                     }
 
-                    $sell_product_group->addMediaFromUrl($photo_url)->toMediaCollection('photo');
+                    $sell_product_group->addMedia($photo_url)->preservingOriginal()->toMediaCollection('photo');
                 }
             }
 
