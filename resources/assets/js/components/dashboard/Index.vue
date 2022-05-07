@@ -223,7 +223,7 @@
 
         },
         unmounted(){
-
+            this.emitter.all.clear()
         	this.unmounted = true
         },
         computed: {
@@ -269,7 +269,6 @@
 	        	this.axios.post('/api/sell_products/get_paginated', this.serverParams).then((response) => {
 	        		let data = response.data
 	        		if(is_not_paginate){
-
 	        			Promise.resolve(this.cards = data.pagination.data).then(result => {
 	        				this.in_progress_loading_data = false
 	        				this.cards.forEach(el => {
@@ -292,7 +291,6 @@
 			        	Promise.resolve(Array.prototype.push.apply(this.cards, data.pagination.data)).then(result => {
 			        		this.in_progress_loading_data = false
 			        	})
-			        	// this.cards.concat(data.pagination.data)
 			        	console.log(this.cards)
 			        }
 
@@ -327,17 +325,13 @@
         		this.cards_for_sailing.forEach(function callback(el, index, array) {
         			console.log(index, array.length)
         			if(el.id == card_data.id){
-
-
         				index_for_removing.push(index)
         				let card = cards.find(el => el.id == card_data.id)
         				card.counter = 1
         				if(selected_cards.indexOf(card_data.id) != -1){
         					selected_cards.splice(selected_cards.indexOf(card_data.id), 1)
         				}
-
         				stop_function = 1
-
         				card_data.product_types.forEach(elem => {
         					if(product_types_in_basket.find(item => item.id === elem.id)){
 
@@ -346,16 +340,11 @@
 
 	    					}
         				})
-
-
-
         			}
         		})
-
         		index_for_removing.forEach(function callback(el, index, array) {
         			cards_for_sailing.splice(el-index, 1)
         		})
-
         		if(!stop_function){
         			console.log(card_data)
         			card_data.list_number_data = this.cards_for_sailing.length + 1
