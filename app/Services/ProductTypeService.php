@@ -15,7 +15,7 @@ class ProductTypeService
         $product_type->base_measure_type->description = '';
         $product_type->measure_types->push($product_type->base_measure_type);
 
-        $product_type->measure_types = $product_type->measure_types->unique('quantity')->sortByDesc('quantity');
+        $product_type->measure_types = $product_type->measure_types->unique('name')->sortByDesc('quantity');
         return $product_type;
     }
 

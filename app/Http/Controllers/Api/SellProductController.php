@@ -66,7 +66,7 @@ class SellProductController extends Controller
 
         $sell_product = $this->sell_product->create($data);
 
-        $sell_product->load(['category', 'media', 'product_types' => function($query) {
+        $sell_product->load(['category', 'media', 'product_types' => function ($query) {
             $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
         }]);
 
@@ -79,8 +79,13 @@ class SellProductController extends Controller
     {
         $this->authorize('SellProduct_show');
 
-        $sell_product->load(['category', 'media', 'product_types' => function($query) {
-            $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
+        $sell_product->load(['category', 'media', 'product_types' => function ($query) {
+            $query->with(['main_measure_type', 'measure_types', 'base_measure_type',
+                'product_purchases' => function ($q) {
+                    $q->where('current_quantity', '>', 0)
+                        ->orderBy('id')
+                        ->take(1);
+                }]);
         }]);
         foreach ($sell_product->product_types as $product_type) {
             $product_type = ProductTypeService::prepare_measure_types($product_type);
@@ -96,7 +101,7 @@ class SellProductController extends Controller
 
         $sell_product = $this->sell_product->update($sell_product, $data);
 
-        $sell_product->load(['category', 'media', 'product_types' => function($query) {
+        $sell_product->load(['category', 'media', 'product_types' => function ($query) {
             $query->with(['main_measure_type', 'measure_types', 'base_measure_type']);
         }]);
 

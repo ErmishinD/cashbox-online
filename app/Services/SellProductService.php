@@ -9,7 +9,7 @@ class SellProductService
     {
         $cost_price = 0;
         foreach ($sell_product->product_types as $product_type) {
-            $product_purchase = $product_type->product_purchases->sortBy('id')->first();
+            $product_purchase = $product_type->product_purchases->where('current_quantity', '>', 0)->sortBy('id')->first();
             if ($product_purchase) {
                 $cost_price += $product_type->pivot->quantity * ProductPurchaseService::get_price_per_unit($product_purchase);
             }

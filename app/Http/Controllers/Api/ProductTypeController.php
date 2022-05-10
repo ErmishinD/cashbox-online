@@ -164,7 +164,10 @@ class ProductTypeController extends Controller
             'base_measure_type',
             'main_measure_type',
             'product_purchases' => function ($query) {
-                $query->orderBy('id')->take(1);
+                $query
+                    ->where('current_quantity', '>', 0)
+                    ->orderBy('id')
+                    ->take(1);
             }
         ]);
         $product_type = ProductTypeService::prepare_measure_types($product_type);

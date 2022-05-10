@@ -54,7 +54,7 @@ class ProductPurchaseService
         if (!$purchase) {
             return null;
         }
-        return round($purchase->cost / $purchase->quantity, 2);
+        return $purchase->cost / $purchase->quantity;
     }
 }
 

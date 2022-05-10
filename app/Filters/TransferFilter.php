@@ -3,6 +3,9 @@
 namespace App\Filters;
 
 
+use App\Models\ProductPurchase;
+use App\Models\ProductType;
+
 class TransferFilter extends QueryFilter
 {
     public function transferred_by($value)
@@ -18,5 +21,17 @@ class TransferFilter extends QueryFilter
     public function to_storage_id($value)
     {
         $this->builder->where('to_storage_id', $value);
+    }
+
+    public function product_type_name($value)
+    {
+        $product_type = ProductType::where('name', $value)->first();
+        $product_purchases = ProductPurchase::where('product_type_id', $product_type->id)->pluck('id');
+        $this->builder->whereIn('product_purchase_id', $product_purchases);
+    }
+
+    public function sort_by_created_at($direction)
+    {
+        $this->builder->orderBy('created_at', $direction);
     }
 }
