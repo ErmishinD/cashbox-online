@@ -14,7 +14,7 @@
 				</select>
 			</div>
 			<div class="form_item">
-				<label class="tal" for="quantity">{{ $t('Кол-во в базовой е.д.') }}*:</label>
+				<label class="tal" for="quantity">{{ $t('Кол-во в базовой ед. изм.') }}*:</label>
 				<input type="number" min="1" required class="form-control" name="quantity" v-model="formData.quantity">
 			</div>
 			<button style="margin-inline:auto;" class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
