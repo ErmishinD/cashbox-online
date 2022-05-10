@@ -49,6 +49,15 @@
 				<label class="tal" for="price">{{ $t('Цена') }}*:</label>
 				<input type="number" min="1" max="999999.99" step="any" required class="form-control" name="price" v-model="formData.price">
 			</div>
+
+			<div class="custom_notification custom_notification_success form_item" v-show="cost_price">
+		      		{{$t('Себестоимость товара')}}: {{cost_price}} грн
+		  		</div>
+
+		  	<div class="custom_notification custom_notification_warn" v-show="products_without_cost.length">
+		      		<span>{{$t('Невозможно вычислить себестоимость таких товаров')}}:</span>
+		      		<span v-for="product in products_without_cost" class="mr-5">| {{product.name}} |</span>
+		  		</div>
 			
 			<button :disabled="!selected_contains.length" style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
@@ -111,8 +120,23 @@ export default{
 			contains_for_multiselect: [],
 			default_selected_contains: [],
 			selected_contains: [],
+			cost_price: 0,
+			products_without_cost: [],
 			contains: null,
 		} 
+	},
+	watch:{
+		selected_contains: {
+
+		    handler() {
+
+		      if(this.selected_contains.length){
+		      	this.calcCostPrice()
+		      }
+		      
+		    },
+		    deep: true
+		  },
 	},
 	mounted(){
 		
@@ -137,12 +161,13 @@ export default{
                 this.$router.push({ name: '403' })
             }
         })
-			console.log(this.selected_contains)
+			
+		})
+
 			this.axios.get('/api/product_types/get_for_select').then((response) => {
 				console.log(response.data.data)
 				this.contains_for_multiselect = response.data.data
 			})
-		})
 		
 		this.axios.get('/api/categories').then((response) => {
                 this.categories = response.data.data
@@ -157,12 +182,27 @@ export default{
 		
     },
     methods:{
+    	calcCostPrice(){
+    		this.cost_price = 0
+    		this.products_without_cost = []
+    		
+    		this.selected_contains.forEach(item => {
+    			if(item.price_per_unit){
+    				
+    				if(item.quantity_in_main_measure_type && item.quantity){
+    					this.cost_price += item.quantity_in_main_measure_type * item.quantity * item.price_per_unit
+    				}
+    			}
+    			else{
+    				this.products_without_cost.push({id: item.id, name: item.name})
+    			}
+    		})
+    	},
     	SetContain(contain) {
     		this.axios.get(`/api/product_types/get_short_info/${contain.id}`).then((response) => {
     			response.data.data.quantity_in_main_measure_type = 0
     			response.data.data.selected_measure_type = null
     			this.selected_contains.push(response.data.data)
-    			console.log(this.selected_contains)
     		})
     		
     	},
