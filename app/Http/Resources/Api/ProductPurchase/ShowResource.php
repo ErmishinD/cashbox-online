@@ -32,7 +32,8 @@ class ShowResource extends JsonResource
             ],
             'expiration_date' => $this->expiration_date,
             'quantity' => $this->quantity,
-            'cost' => $this->cost
+            'cost' => $this->cost,
+            'storage_id' => $this->storage_id,
         ];
     }
 }
