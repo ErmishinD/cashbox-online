@@ -19,6 +19,24 @@
   	    </div>
   	  </GDialog>
 
+      <GDialog style="z-index: 9999;" :persistent="false" v-model="collect_modal_show" max-width="500">
+        <div class="getting-started-example-styled">
+          <div class="getting-started-example-styled__content">
+            <div class="getting-started-example-styled__title">
+              {{ $t('Внимание') }}!
+            </div>
+
+            <p>{{ $t('Вы уверены, что хотите проинкассировать выбранные записи?') }}</p>
+          </div>
+
+          <div class="getting-started-example-styled__actions">
+            <button @click="makeCollection" class="btn btn-success">
+              {{ $t('Подтвердить') }}
+            </button>
+          </div>
+        </div>
+      </GDialog>
+
       <GDialog style="z-index: 9999;" :persistent="false" v-model="add_modal_show" max-width="500">
           <div class="getting-started-example-styled">
             <form class="" @submit="create_operation">
@@ -69,7 +87,7 @@
         </GDialog>
 
       <div style="display: flex; flex-wrap: wrap;">
-        <button v-if="this.$can('Cashbox_collect')" :disabled="!(this.collection_ids.length)" @click="makeCollection" class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
+        <button v-if="this.$can('Cashbox_collect')" :disabled="!(this.collection_ids.length)" @click="openAccessModal" class="btn btn-primary mb-10 mr-10" >{{ $t('Инкассация') }}</button>
         <router-link v-if="this.$can('Cashbox_history')" :to='{name: "reports_cashbox_collections"}'><button class="btn btn-info mb-10" >{{ $t('Архив инкассаций') }}</button></router-link>
         <button v-if="this.$can('Cashbox_create')" @click="addOperation" class="btn btn-success mar-left mb-10" >{{ $t('Добавить операцию') }}</button>
       </div>
@@ -203,6 +221,7 @@ export default {
       add_modal_show: false,
       current_id: null,
       shop_list: null,
+      collect_modal_show: false,
       formData: {},
       collection_ids: {},
       balance: {
@@ -278,6 +297,9 @@ export default {
   		this.current_id = params.id
   		console.log(params)
   	},
+    openAccessModal(){
+      this.collect_modal_show = true
+    },
   	delProduct(){
   		this.axios.delete(`/api/cashbox/${this.current_id}`, {
 
@@ -402,6 +424,7 @@ export default {
         this.balance.outcome.card = 0
         this.balance.sum.cash = 0
         this.balance.sum.card = 0
+        this.collect_modal_show = false
         this.render_list_items()
       })
     },
