@@ -89,7 +89,7 @@ class ProductPurchaseController extends Controller
         $storages = Storage::select('id', 'name')->get();
 
         $product_purchase->load([
-            'user', 'storage', 'product_type.main_measure_type', 'product_purchases.product_type.main_measure_type'
+            'user', 'storage', 'product_type.main_measure_type', 'product_type.measure_types'
         ]);
         return response()->json([
             'success' => true,
