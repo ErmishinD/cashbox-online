@@ -86,7 +86,7 @@ class ProductPurchaseController extends Controller
 
     public function edit(ProductPurchase $product_purchase): JsonResponse
     {
-        $storages = Storage::select('id', 'name')->all();
+        $storages = Storage::select('id', 'name')->get();
 
         $product_purchase->load([
             'user', 'storage', 'product_type.main_measure_type', 'product_purchases.product_type.main_measure_type'
