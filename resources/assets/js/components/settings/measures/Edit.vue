@@ -94,7 +94,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.form-control{
 		width: 50% !important;
 	}
