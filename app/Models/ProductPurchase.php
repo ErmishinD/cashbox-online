@@ -59,7 +59,7 @@ class ProductPurchase extends Model implements SystemLoggable
         if ($action == SystemLog::ACTIONS['purchased']) {
             return __('Закупка на сумму') . ': ' . ($data['sum'] ?? 0);
         } elseif (in_array($action, [SystemLog::ACTIONS['deleted'], SystemLog::ACTIONS['edited']])) {
-            return __('Закупка') . '#' . $this->id;
+            return __('Закупка') . ' #' . $this->id;
         }
         return '';
     }
