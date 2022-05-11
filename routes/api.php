@@ -115,6 +115,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('product_purchases')->group(function () {
         Route::post('mass_create', [ProductPurchaseController::class, 'mass_store']);
         Route::post('get_paginated', [ProductPurchaseController::class, 'get_paginated']);
+        Route::get('{product_purchase_id}/get_for_edit', [ProductPurchaseController::class, 'edit']);
     });
     Route::apiResource('product_purchases', ProductPurchaseController::class);
 

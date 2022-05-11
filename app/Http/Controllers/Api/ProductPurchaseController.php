@@ -13,8 +13,10 @@ use App\Http\Requests\Api\ProductPurchase\MassCreateRequest;
 use App\Http\Requests\Api\ProductPurchase\UpdateRequest;
 use App\Http\Resources\Api\ProductPurchase\DefaultResource;
 use App\Http\Resources\Api\ProductPurchase\ShowCollection;
+use App\Http\Resources\Api\ProductPurchase\ShowResource;
 use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
 use App\Models\ProductPurchase;
+use App\Models\Storage;
 use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -80,6 +82,20 @@ class ProductPurchaseController extends Controller
         ProductPurchaseMade::dispatch($product_purchases, Auth::user());
 
         return response()->json(['success' => true, 'data' => DefaultResource::collection($product_purchases)], 201);
+    }
+
+    public function edit(ProductPurchase $product_purchase): JsonResponse
+    {
+        $storages = Storage::select('id', 'name')->all();
+
+        $product_purchase->load([
+            'user', 'storage', 'product_type.main_measure_type', 'product_purchases.product_type.main_measure_type'
+        ]);
+        return response()->json([
+            'success' => true,
+            'data' => new ShowResource($product_purchase),
+            'storages' => \App\Http\Resources\Api\Storage\DefaultResource::collection($storages)
+        ]);
     }
 
     public function show(ProductPurchase $product_purchase): JsonResponse
