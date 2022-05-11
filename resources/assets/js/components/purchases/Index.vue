@@ -1,6 +1,24 @@
 <template>
 
   <div>
+    <GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
+        <div class="getting-started-example-styled">
+          <div class="getting-started-example-styled__content">
+            <div class="getting-started-example-styled__title">
+              {{ $t('Внимание') }}!
+            </div>
+
+            <p>{{ $t('Вы уверены, что хотите удалить') }} "{{current_name}}"?</p>
+          </div>
+
+          <div class="getting-started-example-styled__actions">
+            <button @click="delPurchase" class="btn btn-danger">
+              {{ $t('Удалить') }}
+            </button>
+          </div>
+        </div>
+      </GDialog>
+
     <div class="row-btw mb-10">
       <button @click="openBalance" class="btn btn-primary">
         {{ $t('Баланс складов') }}
@@ -59,6 +77,11 @@
 
         <span v-if="props.column.field == 'purchased'">{{props.row.quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
         <span v-if="props.column.field == 'current_quantity'">{{props.row.current_quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
+
+        <span class="table_actions" v-if="props.column.field == 'actions' && (props.row.quantity == props.row.current_quantity)">
+          <router-link v-if="$can('ProductPurchase_edit') " :to="{name: 'purchases_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
+            <a v-if="$can('ProductPurchase_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
+        </span>
         </template>
     </vue-good-table>
   </div>
@@ -77,9 +100,12 @@ export default {
   data(){
     return {
       purchases: null,
+      modal_show: false,
       totalRecords: 0,
       balance_modal_show: false,
       balance:null,
+      current_name: null,
+      current_id: null,
       serverParams: {
         columnFilters: {
         },
@@ -122,6 +148,12 @@ export default {
         {
           label: this.$t("Дата закупки"),
           field: 'created_at'
+        },
+        {
+          label: this.$t('Действия'),
+          field: 'actions',
+          sortable: false,
+          width: '65px',
         },
       ],
       rows: [],
@@ -181,6 +213,12 @@ export default {
           this.loadItems();
       },
 
+      onOpen(params){
+        this.modal_show = true
+        this.current_name = params.product_type.name
+        this.current_id = params.id
+      },
+
       // load items is what brings back the rows from server
       loadItems() {
           var loader = this.$loading.show({
@@ -215,7 +253,29 @@ export default {
         })
 
 
-      }
+      },
+      delPurchase(){
+      axios.delete(`/api/product_purchases/${this.current_id}`, {
+
+      }).then((response) => {
+        this.render_list_items()
+        this.$notify({
+            text: this.$t('Успешно!'),
+            type: 'success',
+          });
+      }).catch(error => {
+        if(error.response.status == 409){
+          this.$notify({
+            text: this.$t('Ошибка при удалении!'),
+            type: 'error',
+          });
+          
+        }
+      }).finally((result) => {
+        this.modal_show = false
+      })
+
+    },
   },
 };
 </script>

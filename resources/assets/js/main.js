@@ -49,6 +49,7 @@ import ProductsForSaleShow from './components/products_for_sale/Show'
 import PurchasesIndex from './components/purchases/Index'
 import PurchasesCreate from './components/purchases/Create'
 import PurchasesShow from './components/purchases/Show'
+import PurchasesEdit from './components/purchases/Edit'
 
 /* import reports */
 	/* import cashbox */
@@ -209,6 +210,12 @@ const router = createRouter({
 			path: '/purchases/purchase_detail/:id',
 			name: 'purchases_show',
 			component: PurchasesShow,
+			props: true
+		},
+		{
+			path: '/purchases/purchase/edit/:id',
+			name: 'purchases_edit',
+			component: PurchasesEdit,
 			props: true
 		},
 		{

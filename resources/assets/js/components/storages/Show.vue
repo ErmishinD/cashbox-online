@@ -63,6 +63,7 @@ export default{
 			storage: [],
 			balance: [],
 			selected_category: '',
+			shop_id: this.$shopId,
 			unmounted: false,
 			all_data_is_loaded: false,
 			in_progress_loading_data: false,
@@ -85,7 +86,14 @@ export default{
 		this.axios.get('/api/categories').then((response) => {
                 this.categories = response.data['data']
              })
-		this.render_list_items(true)
+		this.emitter.on("change_shop", res => {
+                  this.shop_id = res
+                  this.render_list_items(true)
+                });
+		if(this.shop_id){
+			this.render_list_items(true)
+			
+		}
 		document.addEventListener('scroll', this.scrolltoGetMoreData)
 		 this.axios.post('/api/storages/get_balance', {storage_ids: [this.id]}).then(response => {
 		 	this.balance = response.data['data']
@@ -96,6 +104,7 @@ export default{
 	},
 	unmounted(){
 		this.unmounted = true
+		this.emitter.all.clear()
 	},
 	created () {
 

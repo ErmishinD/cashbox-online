@@ -200,7 +200,6 @@
             this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
                    this.product_types_in_storages = response.data['data']
 
-                   loader.hide()
                  }).catch(function(error){
                     if(error.response.status == 403){
                         loader.hide()
@@ -443,7 +442,7 @@
 
         	clickCounter(card, action){
         		if(action == 'minus'){
-        			if(card.counter != 1){
+        			if(card.counter != 0){
         				card.product_types.forEach(el => {
         					let item = this.product_types_in_basket.find(item => item.id === el.id)
         					item.quantity = item.quantity - (el.quantity * card.counter) + (el.quantity * (card.counter - 1))
@@ -466,7 +465,10 @@
         			}
 
         			console.log(this.cards_for_sailing)
-        			card.counter == 1 ? card.counter = 1 : card.counter--
+        			card.counter == 0 ? card.counter = 0 : card.counter--
+                    if(card.counter == 0){
+                        this.selected_cards.splice(this.selected_cards.indexOf(card.id), 1)
+                    }
 
         		}
         		else{
