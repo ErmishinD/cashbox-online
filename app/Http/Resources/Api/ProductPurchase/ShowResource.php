@@ -30,7 +30,7 @@ class ShowResource extends JsonResource
                 ],
                 'measure_types' => ByProductTypeResource::collection($this->product_type->measure_types),
             ],
-            'expiration_date' => $this->expiration_date,
+            'expiration_date' => $this->expiration_date->format('Y-m-d'),
             'quantity' => $this->quantity,
             'cost' => $this->cost,
             'storage_id' => $this->storage_id,
