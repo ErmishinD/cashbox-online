@@ -174,13 +174,14 @@ class ProductPurchaseControllerTest extends TestCase
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
         $storage = Storage::factory()->create(['company_id' => $this->admin->company->id, 'shop_id' => $shop->id]);
         $product_purchase = ProductPurchase::factory()->create([
-            'quantity' => 111, 'cost' => 222, 'storage_id' => $storage->id, 'user_id' => $this->admin->id
+            'quantity' => 111, 'current_quantity' => 111, 'cost' => 222, 'storage_id' => $storage->id, 'user_id' => $this->admin->id
         ]);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $product_purchase->id, [
-            'cost' => 666
+            'cost' => 666,
+            'quantity' => 111,
+            'storage_id' => $storage->id
         ]);
-        $response
-            ->assertStatus(403);
+        $response->assertStatus(202);
     }
 
     public function test_admin_can_delete_product_purchase()

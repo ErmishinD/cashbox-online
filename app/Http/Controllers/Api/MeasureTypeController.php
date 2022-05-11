@@ -9,6 +9,7 @@ use App\Http\Requests\Api\MeasureType\UpdateRequest;
 use App\Http\Resources\Api\MeasureType\ByBaseMeasureTypeCollection;
 use App\Http\Resources\Api\MeasureType\DefaultResource;
 use App\Http\Resources\Api\MeasureType\IndexResource;
+use App\Http\Resources\Api\MeasureType\ShowResource;
 use App\Models\MeasureType;
 use App\Repositories\MeasureTypeRepository;
 use App\Services\MeasureTypeService;
@@ -49,7 +50,9 @@ class MeasureTypeController extends Controller
     {
         $this->authorize('MeasureType_show');
 
-        return response()->json(['success' => true, 'data' => new DefaultResource($measure_type)]);
+        $measure_type->load(['product_types', 'main_product_types']);
+
+        return response()->json(['success' => true, 'data' => new ShowResource($measure_type)]);
     }
 
     public function update(UpdateRequest $request, MeasureType $measure_type): JsonResponse
@@ -57,6 +60,15 @@ class MeasureTypeController extends Controller
         $this->authorize('MeasureType_edit');
 
         $data = $request->validated();
+
+        if ($data['base_measure_type_id'] != $measure_type->base_measure_type_id) {
+            if ($measure_type->product_types->isNotEmpty() || $measure_type->main_product_types->isNotEmpty()) {
+                return response()->json([
+                    'success' => false, 'message' => 'Someone has already used products from this purchase!'
+                ], 409);
+            }
+        }
+
         $measure_type->update($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($measure_type)], 202);
     }

@@ -33,6 +33,11 @@ class MeasureType extends Model
             'measure_type_id', 'product_type_id');
     }
 
+    public function main_product_types()
+    {
+        return $this->hasMany(ProductType::class, 'main_measure_type_id');
+    }
+
     public function base_measure_type()
     {
         return $this->belongsTo(BaseMeasureType::class);

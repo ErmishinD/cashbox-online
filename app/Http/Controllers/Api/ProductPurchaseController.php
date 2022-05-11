@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ProductPurchaseDeleted;
+use App\Events\ProductPurchaseEdited;
 use App\Events\ProductPurchaseMade;
 use App\Filters\ProductPurchaseFilter;
 use App\Http\Controllers\Controller;
@@ -101,8 +103,16 @@ class ProductPurchaseController extends Controller
     {
         $this->authorize('ProductPurchase_edit');
 
+        if ($product_purchase->quantity != $product_purchase->current_quantity) {
+            return response()->json([
+                'success' => false, 'message' => 'Someone has already used products from this purchase!'
+            ], 409);
+        }
+
         $data = $request->validated();
         $product_purchase->update($data);
+
+        ProductPurchaseEdited::dispatch($product_purchase, Auth::user());
 
         $product_purchase->load('user');
 
@@ -115,6 +125,7 @@ class ProductPurchaseController extends Controller
 
         if ($product_purchase->quantity == $product_purchase->current_quantity) {
             $product_purchase->delete();
+            ProductPurchaseDeleted::dispatch($product_purchase, Auth::user());
             return response()->json(['success' => true], 202);
         }
         return response()->json([

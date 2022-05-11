@@ -130,7 +130,8 @@ class MeasureTypeControllerTest extends TestCase
     {
         $measure_type = MeasureType::factory()->create(['name' => 'MeasureType name']);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $measure_type->id, [
-            'name' => 'NEW name', 'description' => 'some description', 'quantity' => $measure_type->quantity
+            'name' => 'NEW name', 'description' => 'some description', 'quantity' => $measure_type->quantity,
+            'base_measure_type_id' => $measure_type->base_measure_type_id
         ]);
         $response
             ->assertStatus(202)

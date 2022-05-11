@@ -57,14 +57,20 @@ class ProductPurchase extends Model implements SystemLoggable
     public function getTextForAudit(string $action, ?array $data): string
     {
         if ($action == SystemLog::ACTIONS['purchased']) {
-            return __('Закупка на сумму') . ': '. ($data['sum'] ?? 0);
+            return __('Закупка на сумму') . ': ' . ($data['sum'] ?? 0);
+        } elseif (in_array($action, [SystemLog::ACTIONS['deleted'], SystemLog::ACTIONS['edited']])) {
+            return __('Закупка') . '#' . $this->id;
         }
         return '';
     }
 
     public function getVueRoute(string $action): ?string
     {
-        if ($action == SystemLog::ACTIONS['purchased']) {
+        if ($this->deleted_at) {
+            return null;
+        }
+
+        if (in_array($action, [SystemLog::ACTIONS['purchased'], SystemLog::ACTIONS['edited']])) {
             return 'purchases_show';
         }
         return null;

@@ -24,6 +24,7 @@ class UpdateRequest extends FormRequest
             'description' => ['nullable'],
             'quantity' => ['required', 'numeric', 'min:0'],
             'is_common' => ['nullable', 'boolean'],
+            'base_measure_type_id' => ['required']
         ];
     }
 }
