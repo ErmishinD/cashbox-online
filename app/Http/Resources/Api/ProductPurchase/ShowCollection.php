@@ -29,6 +29,7 @@ class ShowCollection extends ResourceCollection
         ];
         foreach ($this->collection as $purchase) {
             $result['product_types'][] = [
+                'product_purchase_id' => $purchase->id,
                 'id' => $purchase->product_type->id,
                 'name' => $purchase->product_type->name,
                 'amount' => $purchase->cost,
