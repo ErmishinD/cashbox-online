@@ -213,7 +213,7 @@ const router = createRouter({
 			props: true
 		},
 		{
-			path: '/purchases/purchase/edit/:id',
+			path: '/purchases/edit/:id',
 			name: 'purchases_edit',
 			component: PurchasesEdit,
 			props: true
