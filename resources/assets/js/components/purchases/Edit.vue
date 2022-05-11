@@ -5,7 +5,7 @@
 		<div class="form_content">
 			<div class="form_item">
                 <label class="tal" for="cost">{{ $t('Цена') }}*:</label>
-                <input type="text" required class="form-control" name="cost" v-model="formData.cost">
+                <input type="number" required class="form-control" name="cost" v-model="formData.cost">
             </div>
             <div class="form_item">
                 <label class="tal" for="quantity">{{ $t('Кол-во') }}*:</label>
@@ -21,8 +21,8 @@
                 </select>
             </div>
             <div class="form_item" v-if="formData.expiration_date">
-                <label class="tal" for="cost">{{ $t('Срок годности') }}*:</label>
-                <input type="date" class="form-control" name="cost" v-model="formData.expiration_date">
+                <label class="tal" for="date">{{ $t('Срок годности') }}*:</label>
+                <input type="date" class="form-control" name="date" v-model="formData.expiration_date">
             </div>
 			<button style="margin-inline:auto;"  class="btn btn-success mt-10" type="submit">{{ $t('Сохранить') }}</button>
 		</div>
