@@ -89,6 +89,9 @@ class SellProductController extends Controller
         }]);
         foreach ($sell_product->product_types as $product_type) {
             $product_type = ProductTypeService::prepare_measure_types($product_type);
+            if ($product_type->product_purchases->isEmpty()) {
+                $product_type->product_purchases = $product_type->product_purchases()->orderByDesc('id')->take(1);
+            }
         }
         return response()->json(['success' => true, 'data' => new ShowResource($sell_product)]);
     }
