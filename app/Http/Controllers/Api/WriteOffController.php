@@ -19,7 +19,17 @@ class WriteOffController extends Controller
 
         $paginate_data = $request->validated();
         $write_offs = WriteOff::query()
-            ->with(['storage', 'product_type.main_measure_type', 'user'])
+            ->with([
+                'storage' => function ($query) {
+                    $query->withTrashed();
+                },
+                'user' => function ($query) {
+                    $query->withTrashed();
+                },
+                'product_type' => function ($query) {
+                    $query->with(['main_measure_type'])->withTrashed();
+                }
+            ])
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 
@@ -39,7 +49,22 @@ class WriteOffController extends Controller
     {
         $this->authorize('WriteOff_show');
 
-        $write_off->load(['storage', 'product_type.main_measure_type', 'user', 'write_offs.product_type.main_measure_type']);
+        $write_off->load([
+            'storage' => function ($query) {
+                $query->withTrashed();
+            },
+            'user' => function ($query) {
+                $query->withTrashed();
+            },
+            'product_type' => function ($query) {
+                $query->with(['main_measure_type'])->withTrashed();
+            },
+            'write_offs' => function ($query) {
+                $query->with(['product_type' => function ($q) {
+                    $q->with('main_measure_type')->withTrashed();
+                }]);
+            }
+        ]);
 
         $all_write_offs = collect([$write_off]);
         if ($write_off->write_offs->isNotEmpty()) {

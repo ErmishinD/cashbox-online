@@ -24,14 +24,20 @@ class SellProductRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         $sell_product_paginator = $this->model
-            ->with(['category', 'media', 'product_types' => function ($query) {
-                $query->with(['main_measure_type', 'measure_types',
-                    'product_purchases' => function ($q) {
-                        $q->where('current_quantity', '>', 0)
-                            ->orderBy('id')
-                            ->take(1);
-                    }]);
-            }])
+            ->with([
+                'media',
+                'category' => function ($query) {
+                    $query->withTrashed();
+                },
+                'product_types' => function ($query) {
+                    $query->with(['main_measure_type', 'measure_types',
+                        'product_purchases' => function ($q) {
+                            $q->where('current_quantity', '>', 0)
+                                ->orderBy('id')
+                                ->take(1);
+                        }]);
+                }
+            ])
             ->with(['category', 'media'])
             ->orderByDesc('created_at')
             ->filter($filters)

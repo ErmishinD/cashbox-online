@@ -103,7 +103,20 @@ class ProductPurchaseController extends Controller
         $this->authorize('ProductPurchase_show');
 
         $product_purchase->load([
-            'user', 'storage', 'product_type.main_measure_type', 'product_purchases.product_type.main_measure_type'
+            'user' => function ($query) {
+                $query->withTrashed();
+            },
+            'storage' => function ($query) {
+                $query->withTrashed();
+            },
+            'product_type' => function ($query) {
+                $query->with(['main_measure_type',])->withTrashed();
+            },
+            'product_purchases' => function ($query) {
+                $query->with(['product_type' => function ($q) {
+                    $q->with('main_measure_type')->withTrashed();
+                }]);
+            }
         ]);
 
         $all_product_purchases = collect();

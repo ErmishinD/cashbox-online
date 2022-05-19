@@ -18,7 +18,22 @@ class TransferController extends Controller
 
         $paginate_data = $request->validated();
         $transfers = Transfer::query()
-            ->with(['from_storage', 'to_storage', 'product_purchase.product_type.main_measure_type', 'transferred_by_user'])
+            ->with([
+                'from_storage' => function ($query) {
+                    $query->withTrashed();
+                },
+                'to_storage' => function ($query) {
+                    $query->withTrashed();
+                },
+                'product_purchase' => function ($query) {
+                    $query->with(['product_type' => function ($q) {
+                        $q->with('main_measure_type')->withTrashed();
+                    }]);
+                },
+                'transferred_by_user' => function ($query) {
+                    $query->withTrashed();
+                }
+            ])
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 
@@ -40,8 +55,27 @@ class TransferController extends Controller
         $this->authorize('Transfer_show');
 
         $transfer->load([
-            'from_storage', 'to_storage', 'product_purchase.product_type.main_measure_type',
-            'transferred_by_user', 'transfers.product_purchase.product_type.main_measure_type'
+            'from_storage' => function ($query) {
+                $query->withTrashed();
+            },
+            'to_storage' => function ($query) {
+                $query->withTrashed();
+            },
+            'product_purchase' => function ($query) {
+                $query->with(['product_type' => function ($q) {
+                    $q->with('main_measure_type')->withTrashed();
+                }]);
+            },
+            'transferred_by_user' => function ($query) {
+                $query->withTrashed();
+            },
+            'transfers' => function ($query) {
+                $query->with(['product_purchase' => function ($sub_query) {
+                    $sub_query->with(['product_type' => function ($q) {
+                        $q->with('main_measure_type')->withTrashed();
+                    }]);
+                }]);
+            }
         ]);
 
         $all_transfers = collect([$transfer]);

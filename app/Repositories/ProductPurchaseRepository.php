@@ -32,7 +32,7 @@ class ProductPurchaseRepository extends BaseRepository
             ->get()->groupBy('product_type.id');
 
         $empty_product_types = ProductType::select('id', 'name', 'main_measure_type_id')
-            ->with(['main_measure_type' => function($query) {
+            ->with(['main_measure_type' => function ($query) {
                 $query->select('id', 'quantity');
             }])
             ->whereNotIn('id', $product_purchases->keys())
@@ -76,7 +76,17 @@ class ProductPurchaseRepository extends BaseRepository
     public function get_paginated($paginate_data, $filters)
     {
         $result = $this->model
-            ->with(['product_type.main_measure_type', 'storage', 'user'])
+            ->with([
+                'storage' => function ($query) {
+                    $query->withTrashed();
+                },
+                'user' => function ($query) {
+                    $query->withTrashed();
+                },
+                'product_type' => function ($query) {
+                    $query->with(['main_measure_type'])->withTrashed();
+                }
+            ])
             ->orderByDesc('created_at')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);

@@ -79,14 +79,20 @@ class SellProductController extends Controller
     {
         $this->authorize('SellProduct_show');
 
-        $sell_product->load(['category', 'media', 'product_types' => function ($query) {
-            $query->with(['main_measure_type', 'measure_types', 'base_measure_type',
-                'product_purchases' => function ($q) {
-                    $q->where('current_quantity', '>', 0)
-                        ->orderBy('id')
-                        ->take(1);
-                }]);
-        }]);
+        $sell_product->load([
+            'media',
+            'category' => function ($query) {
+                $query->withTrashed();
+            },
+            'product_types' => function ($query) {
+                $query->with(['main_measure_type', 'measure_types', 'base_measure_type',
+                    'product_purchases' => function ($q) {
+                        $q->where('current_quantity', '>', 0)
+                            ->orderBy('id')
+                            ->take(1);
+                    }
+                ]);
+            }]);
         foreach ($sell_product->product_types as $product_type) {
             $product_type = ProductTypeService::prepare_measure_types($product_type);
             if ($product_type->product_purchases->isEmpty()) {
