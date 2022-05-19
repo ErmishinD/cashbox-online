@@ -196,6 +196,13 @@ export default{
     	},
     	CreateProduct(e) {
     		e.preventDefault()
+    		if(!this.selected_contains.length){
+    			this.$notify({
+	    				text: this.$t('Укажите состав!'),
+	    				type: 'error',
+	    			});
+    			return
+    		}
     		this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
     		let product_types = {}
     		this.selected_contains.forEach(item => {

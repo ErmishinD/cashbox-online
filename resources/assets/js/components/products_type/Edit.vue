@@ -14,12 +14,6 @@
 					<option value="_imperishable">{{$t('Непортящийся')}}</option>
 				</select>
 			</div>
-            <div class="form_item">
-                <label class="tal" for="type">{{ $t('Категория') }}:</label>
-                <select class="form-control" name="category" v-model="formData.category_id">
-                    <option v-for="category in categories" :value="category.id">{{category.name}}</option>
-                </select>
-            </div>
 			<div class="form_item" v-if="formData.main_measure_type">
 				<label class="tal" for="main_measure_type_id">{{ $t('Основная ед. изм.') }}*:</label>
 				<select @change="MeasureTypesForSetMeasureTypes" style="padding: 0;" class="form-control" name="main_measure_type_id" v-model="formData.main_measure_type.id">
@@ -100,7 +94,6 @@ export default{
             product: [],
             formData: {},
             measure_types: [],
-            categories: [],
             measure_types_by_main_select: [],
             selected_measure_types: [],
             updateData: {},
@@ -129,17 +122,6 @@ export default{
                 }
             })
             console.log(this.selected_measure_types)
-
-            this.axios.get('/api/categories').then((response) => {
-                this.categories = response.data.data
-                this.formData.category_id = this.formData.category.id
-                loader.hide()
-            }).catch(function(error){
-                if(error.response.status == 403){
-                    loader.hide()
-                    this.$router.push({ name: '403' })
-                }
-            })
             
             document.title = this.formData['name'];
             

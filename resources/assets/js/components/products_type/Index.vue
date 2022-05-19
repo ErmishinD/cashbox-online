@@ -69,7 +69,6 @@ export default {
       modal_show: false,
       current_name: null,
       current_id: null,
-      categories: [],
       totalRecords: 0,
       serverParams: {
         columnFilters: {
@@ -100,15 +99,7 @@ export default {
               filterDropdownItems: [this.$t('Портящийся'), this.$t('Непортящийся')],
           },
         },
-        {
-          label: this.$t('Категория'),
-          field: 'category_name',
-          filterOptions: {
-              enabled: true,
-              placeholder: this.$t('Фильтрация'),
-              filterDropdownItems: [''],
-          },
-        },
+
         {
           label: this.$t('Действия'),
           field: 'actions',
@@ -122,12 +113,7 @@ export default {
   mounted(){
   	this.render_list_items()
   	document.title = this.$t('Типы товаров');
-    this.axios.get('/api/categories').then((response) => {
-      response.data['data'].forEach(item => {
-        this.categories.push(item.name)
-      })
-      this.columns[2].filterOptions.filterDropdownItems = this.categories
-     })
+
   },
   methods:{
   	onOpen(params){

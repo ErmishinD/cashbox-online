@@ -14,12 +14,7 @@
 					<option value="_imperishable">{{$t('Непортящийся')}}</option>
 				</select>
 			</div>
-			<div class="form_item">
-				<label class="tal" for="type">{{ $t('Категория') }}:</label>
-				<select class="form-control" name="category" v-model="formData.category_id">
-					<option v-for="category in categories" :value="category.id">{{category.name}}</option>
-				</select>
-			</div>
+			
 			<div class="form_item">
 				<label class="tal" for="main_measure_type_id">{{ $t('Основная ед. изм.') }}*:</label>
 				<select @change="MeasureTypesForSetMeasureTypes" style="padding: 0;" class="form-control" name="main_measure_type_id" v-model="formData.main_measure_type_id">
@@ -117,9 +112,9 @@ export default{
 		return{
 			formData: {
 				company_id: this.$userId,
+				product_types:{},
 			},
 			measure_types: {},
-			categories: {},
 			measure_types_by_main_select: [],
 			measure_types_id_by_main_select: [],
 			measure_types_name_by_main_select: [],
@@ -145,15 +140,6 @@ export default{
             }
         })
 		
-		this.axios.get('/api/categories').then((response) => {
-			this.categories = response.data.data
-			loader.hide()
-		}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
 		
 
 	},
@@ -199,6 +185,7 @@ export default{
     		console.log(this.formData)
     		this.axios.post('/api/product_types', this.formData).then((response) => {
     			if(this.is_create_product_for_sale){
+    				this.formData.product_types[response.data.data.id] = {'quantity' : 1}
     				this.axios.post('/api/sell_products', this.formData)
     			}
     			this.$notify({
@@ -207,13 +194,6 @@ export default{
     			});
     			loader.hide()
     			this.$router.push({ name: 'products_type_show', params: {id: response.data.data.id}  })
-    		}).catch(err => {
-    			if(err.response.data.errors.name){
-    				this.$notify({
-	    				text: this.$t('Данное название уже существует!'),
-	    				type: 'error',
-	    			});
-    			}
     		})
     	},
     },

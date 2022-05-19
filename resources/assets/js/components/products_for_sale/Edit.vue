@@ -211,6 +211,13 @@ export default{
     	},
     	UpdateProduct(e) {
     		e.preventDefault()
+    		if(!this.selected_contains.length){
+    			this.$notify({
+	    				text: this.$t('Укажите состав!'),
+	    				type: 'error',
+	    			});
+    			return
+    		}
     		let photo = document.querySelector("input[type='file']").getAttribute('value')
     		if(photo){
     			this.formData.photo = photo

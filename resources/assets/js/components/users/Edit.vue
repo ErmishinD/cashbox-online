@@ -93,6 +93,13 @@ export default{
     methods:{
     	UpdateUser(e) {
     		e.preventDefault()
+    		if(!this.selected_roles.length){
+    			this.$notify({
+	    				text: this.$t('Укажите роли!'),
+	    				type: 'error',
+	    			});
+    			return
+    		}
     		var loader = this.$loading.show({
     		        canCancel: false,
     		        loader: 'dots',});
