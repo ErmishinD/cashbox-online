@@ -33,18 +33,12 @@ export default{
 	},
 	mounted(){
 		document.title = this.$t('Создание роли');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/permissions').then((response) => {
 			this.permissions = response.data.data
-		}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
-		loader.hide()
+			this.emitter.emit("isLoading", false);
+		})
+		
 	},
 	created () {
         
@@ -52,9 +46,7 @@ export default{
     methods:{
     	create_role: function(e){
     		e.preventDefault()
-    		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		console.log(this.formData)
     		this.formData.permissions = this.selected_permissions
     		this.axios.post('/api/roles', this.formData ).then((response) => {
@@ -66,7 +58,7 @@ export default{
     		}).catch(err => {
     			console.log()
     		})
-    		loader.hide()
+    		this.emitter.emit("isLoading", false);
     	},
     	togglePermissionList(permission_id){
     		if(this.selected_permissions.find(item => item == permission_id)){

@@ -51,9 +51,7 @@ export default{
         }
     },
     mounted(){
-        var loader = this.$loading.show({
-            canCancel: false,
-            loader: 'dots',});
+        this.emitter.emit("isLoading", true);
         this.axios.get('/api/product_purchases/'+this.id+'/get_for_edit').then((response) => {
             // this.product = response.data['data']
             this.formData = response.data['data']
@@ -63,12 +61,7 @@ export default{
             this.storage_list = response.data.storages
             document.title = this.$t('Редактирование закупки');
             
-            loader.hide()
-        }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
+            this.emitter.emit("isLoading", false);
         })
         
     },
@@ -86,9 +79,7 @@ export default{
 
     	UpdatePurchase(e) {
     		e.preventDefault()
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		this.updateData = Object.assign({}, this.formData)
             this.updateData.quantity = this.updateData.base_measure_quantity * this.updateData.measure_type_quantity
     		console.log(this.updateData)
@@ -97,7 +88,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     		}).catch(err => {
                 if(err.response.data.errors.name){
                     this.$notify({

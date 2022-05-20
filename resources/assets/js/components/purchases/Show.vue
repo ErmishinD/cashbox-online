@@ -79,22 +79,15 @@ export default {
   },
   methods:{
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
   		
   		this.axios.get(`/api/product_purchases/${this.id}`).then((response) => {
              this.purchases = response.data['data']
   		       this.rows = this.purchases.product_types
              console.log(this.rows)
-  		       loader.hide()
+  		      this.emitter.emit("isLoading", false);
 
-  		     }).catch(function(error){
-            if(error.response.status == 403){
-              loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+  		     })
   	},
   },
 };

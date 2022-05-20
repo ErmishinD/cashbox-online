@@ -71,19 +71,12 @@ data(){
 	} 
 },
 mounted(){
-	var loader = this.$loading.show({
-	        canCancel: false,
-	        loader: 'dots',});
+	this.emitter.emit("isLoading", true);
 	this.axios.get('/api/categories/'+this.id).then((response) => {
 	       this.formData = response.data['data']
 	       document.title = this.formData['name'];
-	       loader.hide()
-	     }).catch(function(error){
-        if(error.response.status == 403){
-        	loader.hide()
-            this.$router.push({ name: '403' })
-        }
-    })
+	       this.emitter.emit("isLoading", false);
+	     })
 	
 },
 created () {
@@ -92,9 +85,7 @@ created () {
 methods:{
 	update_category: function(e){
 		e.preventDefault()
-		var loader = this.$loading.show({
-	        canCancel: false,
-	        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		console.log(this.formData)
 		let photo = document.querySelector("input[type='file']").getAttribute('value')
     		if(photo){
@@ -121,7 +112,7 @@ methods:{
 				});
 			}
 		}).finally(result => {
-			loader.hide()
+			this.emitter.emit("isLoading", false);
 		})
 	}
 },

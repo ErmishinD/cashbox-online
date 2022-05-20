@@ -82,21 +82,14 @@ export default {
   },
   methods:{
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
   		
   		this.axios.get('/api/categories').then((response) => {
   		       this.categories = response.data['data']
   		       this.rows = this.categories
-  		       loader.hide()
+  		       this.emitter.emit("isLoading", false);
 
-  		     }).catch(function(error){
-            if(error.response.status == 403){
-              loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+  		     })
   	},
       onOpen(params){
         this.modal_show = true

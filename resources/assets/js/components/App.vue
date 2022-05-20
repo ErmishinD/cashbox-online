@@ -1,5 +1,9 @@
 <template>
 	<notifications position="bottom right" />
+  <loading v-model:active="isLoading"
+                 :can-cancel="false"
+                 :is-full-page="fullPage"
+                 loader="spinner"/>
 	<GDialog v-model="modal_show" style="z-index: 9999;" :persistent="true" max-width="700">
 	    <div class="getting-started-example-styled">
 	      <div class="getting-started-example-styled__content">
@@ -56,9 +60,13 @@
 	import { GDialog } from 'gitart-vue-dialog'
 	import "gitart-vue-dialog/dist/style.css";
 
+  import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.css';
+
   export default {
 	 components: {
     	GDialog,
+      Loading,
   	  },
   	data: {
 
@@ -76,6 +84,24 @@
   				this.modal_show = true
   			}
   		}
+      this.emitter.on("isLoading", res => {
+                  this.isLoading = res
+                });
+      this.axios.interceptors.response.use(
+          response => response,
+          error => {
+
+              if (error.response?.status == 404) {
+                this.emitter.emit("isLoading", false);
+                  this.$router.push({ name: '404' })
+              }
+              else if (error.response?.status == 403) {
+                this.emitter.emit("isLoading", false);
+                  this.$router.push({ name: '403' })
+              }
+              return Promise.reject(error)
+          }
+      )
 
   	},
   	methods:{
@@ -319,6 +345,7 @@
     data() {
       return {
       	width: 0,
+        isLoading:false,
       	isCollapsed: true,
       	selected: this.$cookies.get('lang'),
         menu: this.returnSidebarData(),

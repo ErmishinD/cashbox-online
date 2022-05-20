@@ -47,21 +47,14 @@ export default{
 		} 
 	},
 	mounted(){
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/shops/'+this.id).then((response) => {
 		       this.shop = response.data['data']
 		       this.shop_rows = this.shop['storages']
 		       document.title = this.shop['name'];
-		       loader.hide()
+		       this.emitter.emit("isLoading", false);
 		       console.table(this.shop)
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		     })
 		
 	},
 	created () {

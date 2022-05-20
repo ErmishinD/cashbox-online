@@ -37,10 +37,7 @@ export default{
 	},
 	mounted(){
 		document.title = this.$t('Создание магазина');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
-		loader.hide()
+		
 
 	},
 	created () {
@@ -49,6 +46,7 @@ export default{
     methods:{
     	create_shop: function(e){
     		e.preventDefault()
+    		this.emitter.emit("isLoading", true);
     		let storages = document.querySelectorAll('.storage_input_for_shop')
     		storages.forEach(storage => {
     			if(storage.value){
@@ -62,6 +60,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
+    			this.emitter.emit("isLoading", false);
     			this.$router.push({ name: 'shops_show', params: {id: response.data.data.id}  })
     		}).catch(err => {
     			console.log()
@@ -74,6 +73,7 @@ export default{
     					type: 'error',
     				});
     			}
+    			this.emitter.emit("isLoading", false);
     		})
     	},
     	createStorageInput: function(e){

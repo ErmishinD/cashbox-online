@@ -198,9 +198,7 @@ export default{
     methods: {
     	render_list_items(is_not_paginate=true){
     		this.in_progress_loading_data = true
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		if(is_not_paginate){
     			this.serverParams.page = 1
     		}
@@ -240,13 +238,8 @@ export default{
 	    				this.all_data_is_loaded = true
 	    			}
 
-	    			loader.hide()
-    			}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+	    			this.emitter.emit("isLoading", false);
+    			})
 
     	},
     	setStorage() {
@@ -308,9 +301,7 @@ export default{
     			this.error_while_saving = true
     		}
     		else{
-    			var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+    			this.emitter.emit("isLoading", true);
     			this.error_while_saving = false
     			purchase_data.storage_id = this.selected_storage
     			purchase_data.payment_type = '_cash'
@@ -329,7 +320,7 @@ export default{
     					text: this.$t('Успешно!'),
     					type: 'success',
     				});
-    				loader.hide()
+    				this.emitter.emit("isLoading", false);
     				this.basket_modal_show = false
     				this.selected_products = []
     			})

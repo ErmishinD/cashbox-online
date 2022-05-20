@@ -200,12 +200,7 @@
             this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
                    this.product_types_in_storages = response.data['data']
 
-                 }).catch(function(error){
-                    if(error.response.status == 403){
-                        loader.hide()
-                        this.$router.push({ name: '403' })
-                    }
-                })
+                 })
             this.emitter.on("change_shop", res => {
                   this.shop_id = res
                   this.render_list_items(true)
@@ -222,7 +217,7 @@
 
         },
         unmounted(){
-            this.emitter.all.clear()
+            this.emitter.off('change_shop')
         	this.unmounted = true
         },
         computed: {
@@ -259,9 +254,7 @@
         	render_list_items(is_not_paginate){
         		console.log(this.cards_for_sailing.find)
         		this.in_progress_loading_data = true
-        		var loader = this.$loading.show({
-			        canCancel: false,
-			        loader: 'dots',});
+        		this.emitter.emit("isLoading", true);
         		if(is_not_paginate){
         			this.serverParams.page = 1
         		}
@@ -302,13 +295,8 @@
 				       }
 
 
-			       loader.hide()
-			     }).catch(function(error){
-		            if(error.response.status == 403){
-		            	loader.hide()
-		                this.$router.push({ name: '403' })
-		            }
-		        })
+			       this.emitter.emit("isLoading", false);
+			     })
 
 	  		     
 			 },
@@ -395,9 +383,7 @@
         	},
 
         	FixSale(payment_type) {
-        		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+        		this.emitter.emit("isLoading", true);
         		let data_for_sailing = this.cards_for_sailing
 
         		data_for_sailing.forEach(el => {
@@ -422,7 +408,7 @@
         				text: this.$t('Успешно!'),
         				type: 'success',
         			});
-        			loader.hide()
+        			this.emitter.emit("isLoading", false);
         			this.resetData()
         			this.render_list_items(true)
         		})

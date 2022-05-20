@@ -39,19 +39,12 @@ export default{
 	mounted(){
 		
 		document.title = this.$t('Создание единицы измерения');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/base_measure_types').then((response) => {
 			console.log(response.data)
 		       this.base_measure_types_list = response.data['data']
-		       loader.hide()
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		       this.emitter.emit("isLoading", false);
+		     })
 		
 		
 	},
@@ -61,6 +54,7 @@ export default{
     methods:{
     	create_measure: function(e){
     		e.preventDefault()
+    		this.emitter.emit("isLoading", true);
     		console.log(this.formData)
     		this.axios.post('/api/measure_types', this.formData ).then((response) => {
     			console.log(response.data.data.id)
@@ -68,6 +62,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			})).then(result => {
+    				this.emitter.emit("isLoading", false);
     				this.$router.push({ name: 'settings_measures_index' })
     			})
     			
@@ -78,6 +73,8 @@ export default{
     					text: this.$t('Произошла ошибка!'),
     					type: 'error',
     				});
+
+    					this.emitter.emit("isLoading", false);
     			
     		})
     	}

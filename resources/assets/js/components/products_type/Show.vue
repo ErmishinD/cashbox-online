@@ -77,9 +77,7 @@ export default{
 		// console.log(this.product)
 	},
 	created () {
-        var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+        this.emitter.emit("isLoading", true);
 		this.axios.get('/api/product_types/'+this.id).then((response) => {
 		       this.product = response.data['data']
 		       if(this.product.type == '_perishable'){
@@ -98,13 +96,8 @@ export default{
 		       		this.balance = res.data['data']
 		       		this.rows = this.balance
 		       })
-		       loader.hide()
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		       this.emitter.emit("isLoading", false);
+		     })
     },
 }
 </script>

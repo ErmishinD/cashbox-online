@@ -101,9 +101,7 @@ export default{
         }
     },
     mounted(){
-        var loader = this.$loading.show({
-            canCancel: false,
-            loader: 'dots',});
+        this.emitter.emit("isLoading", true);
         this.axios.get('/api/product_types/'+this.id).then((response) => {
             // this.product = response.data['data']
             Promise.resolve(this.formData = response.data['data']).then(result => {
@@ -125,12 +123,7 @@ export default{
             
             document.title = this.formData['name'];
             
-            loader.hide()
-        }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
+            this.emitter.emit("isLoading", false);
         })
         
     },
@@ -148,9 +141,7 @@ export default{
 
     	UpdateProduct(e) {
     		e.preventDefault()
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		this.updateData = Object.assign({}, this.formData)
     		let photo = document.querySelector("input[type='file']").getAttribute('value')
     		if(photo){
@@ -167,7 +158,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     		}).catch(err => {
                 if(err.response.data.errors.name){
                     this.$notify({

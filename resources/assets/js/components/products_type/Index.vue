@@ -186,21 +186,14 @@ export default {
 
       // load items is what brings back the rows from server
       loadItems() {
-          var loader = this.$loading.show({
-              canCancel: false,
-              loader: 'dots',});
+          this.emitter.emit("isLoading", true);
           this.axios.post('/api/product_types/get_paginated', this.serverParams).then((response) => {
               this.products_type = response.data['pagination']['data']
               this.rows = this.products_type
               this.totalRecords = response.data['pagination']['total'];
-              loader.hide()
+              this.emitter.emit("isLoading", false);
 
-          }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+          })
       }
   },
 };

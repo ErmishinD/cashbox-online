@@ -164,22 +164,15 @@ export default {
           this.render_list_items();
       },
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
   		
   		this.axios.post('/api/sell_products/get_paginated', this.serverParams).then((response) => {
   		       this.products = response.data['pagination']['data']
   		       this.rows = this.products
              this.totalRecords = response.data['pagination']['total'];
-  		       loader.hide()
+  		       this.emitter.emit("isLoading", false);
 
-  		     }).catch(function(error){
-	            if(error.response.status == 403){
-	            	loader.hide()
-	                this.$router.push({ name: '403' })
-	            }
-	        })
+  		     })
   	},
   },
 };

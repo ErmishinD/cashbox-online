@@ -219,9 +219,7 @@ export default{
     methods: {
     	render_list_items(is_not_paginate=true){
     		this.in_progress_loading_data = true
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		if(is_not_paginate){
     			this.serverParams.page = 1
     		}
@@ -261,13 +259,8 @@ export default{
 	    				this.all_data_is_loaded = true
 	    			}
 
-	    			loader.hide()
-    			}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+	    			this.emitter.emit("isLoading", false);
+    			})
 
     	},
     	toggleClassForIcon(card_data) {
@@ -313,9 +306,7 @@ export default{
     	saveTransfer(){
     		let transfer_data = {}
     		console.log(this.selected_products)
-			var loader = this.$loading.show({
-	        canCancel: false,
-	        loader: 'dots',});
+			this.emitter.emit("isLoading", true);
 			transfer_data.from_storage_id = this.storage_from
 			transfer_data.to_storage_id = this.storage_to
 			transfer_data.product_types = this.selected_products
@@ -329,7 +320,7 @@ export default{
 					text: this.$t('Успешно!'),
 					type: 'success',
 				});
-				loader.hide()
+				this.emitter.emit("isLoading", false);
 				this.basket_modal_show = false
 				this.selected_products = []
 			})

@@ -67,22 +67,15 @@ export default {
   },
   methods:{
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
   		
   		this.axios.get(`/api/write_offs/${this.id}`).then((response) => {
              this.write_off = response.data['data']
   		       this.rows = this.write_off.product_types
              console.log(this.rows)
-  		       loader.hide()
+  		       this.emitter.emit("isLoading", false);
 
-  		     }).catch(function(error){
-            if(error.response.status == 403){
-              loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+  		     })
   	},
   },
 };

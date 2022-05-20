@@ -78,22 +78,15 @@ export default {
   },
   methods:{
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
   		
   		this.axios.get(`/api/cashbox/${this.id}`).then((response) => {
              this.cashbox = response.data['data']
   		       this.rows = this.cashbox.sell_products
              console.log(this.rows)
-  		       loader.hide()
+  		       this.emitter.emit("isLoading", false);
 
-  		     }).catch(function(error){
-            if(error.response.status == 403){
-              loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+  		     })
   	},
   },
 };

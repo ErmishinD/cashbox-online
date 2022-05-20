@@ -24,10 +24,7 @@ export default{
 	},
 	mounted(){
 		document.title = this.$t('Создание компании');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
-		loader.hide()
+
 	},
 	created () {
 
@@ -35,6 +32,7 @@ export default{
     methods:{
     	create_company: function(e){
     		e.preventDefault()
+    		this.emitter.emit("isLoading", true);
     		console.log(this.formData)
     		this.axios.post('/admin/companies', this.formData ).then((response) => {
     			console.log(response.data.data.id)
@@ -42,6 +40,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
+    			this.emitter.emit("isLoading", false);
     			this.$router.push({ name: 'settings_companies_show', params: {id: response.data.data.id} })
     			// window.location.href = `/settings/companies/${response.data.data.id}`
     		}).catch(err => {
@@ -52,6 +51,7 @@ export default{
     				type: 'error',
     			});
     			}
+    			this.emitter.emit("isLoading", false);
     		})
     	}
     },

@@ -37,19 +37,12 @@ export default{
 	},
 	mounted(){
 		
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get(`/api/users/${this.id}`).then((result) => {
 			this.formData = result.data.data
 			document.title = this.formData.name;
-			loader.hide()
-		}).catch(function(error){
-	            if(error.result.status == 403){
-	            	loader.hide()
-	                this.$router.push({ name: '403' })
-	            }
-	        })
+			this.emitter.emit("isLoading", false);
+		})
 	},
 	created () {
         

@@ -93,22 +93,15 @@ export default {
 
   	},
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
   		
   		this.axios.get('/api/users').then((response) => {
   		       this.users = response.data['data']
              console.log(this.users)
   		       this.rows = this.users
-  		       loader.hide()
+  		       this.emitter.emit("isLoading", false);
 
-  		     }).catch(function(error){
-            if(error.response.status == 403){
-              loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+  		     })
   	},
   },
 };

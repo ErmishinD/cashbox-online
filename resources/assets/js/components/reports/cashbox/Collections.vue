@@ -127,26 +127,19 @@ export default{
 		} 
 	},
 	mounted(){
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		document.title = this.$t('Архив инкассаций');
 		this.axios.get('/api/cashbox/collection_history').then((response) => {
 		       this.collections_rows = response.data.data
 		       console.log(this.collections_rows)
 		       // this.workers_rows = this.company['employees']
 		       // document.title = this.company['name'];
-		       loader.hide()
+		       this.emitter.emit("isLoading", false);
 		       if(this.collected_at){
 		       	this.showCollectionDetail(this.collected_at)
 		       }
 		       // console.table(this.company)
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		     })
 		
 	},
 	created () {
@@ -154,21 +147,14 @@ export default{
     },
     methods: {
     	showCollectionDetail(collected_at) {
-    		var loader = this.$loading.show({
-			        canCancel: false,
-			        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
 			this.axios.post('/api/cashbox/payments_from_history', {collected_at: collected_at}).then((response) => {
 			       this.collection_item_rows = response.data.data
 			       // this.workers_rows = this.company['employees']
 			       // document.title = this.company['name'];
-			       loader.hide()
+			       this.emitter.emit("isLoading", false);
 			       // console.table(this.company)
-			     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+			     })
 	    	}
     }
 }

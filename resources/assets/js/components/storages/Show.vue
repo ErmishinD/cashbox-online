@@ -120,9 +120,7 @@ export default{
         	},
     	render_list_items(is_not_paginate=true){
     		this.in_progress_loading_data = true
-    		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		if(is_not_paginate){
     			this.serverParams.page = 1
     		}
@@ -146,7 +144,7 @@ export default{
     				this.all_data_is_loaded = true
     			}
 		       
-		       loader.hide()
+		       this.emitter.emit("isLoading", false);
 		       
 		       console.table(this.storage)
 		     })

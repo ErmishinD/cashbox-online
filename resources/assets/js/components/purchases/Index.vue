@@ -221,21 +221,14 @@ export default {
 
       // load items is what brings back the rows from server
       loadItems() {
-          var loader = this.$loading.show({
-              canCancel: false,
-              loader: 'dots',});
+          this.emitter.emit("isLoading", true);
           this.axios.post('/api/product_purchases/get_paginated', this.serverParams).then((response) => {
               this.purchases = response.data['pagination']['data']
               this.rows = this.purchases
               this.totalRecords = response.data['pagination']['total'];
-              loader.hide()
+              this.emitter.emit("isLoading", false);
 
-          }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+          })
 
           this.axios.post('/api/storages/get_balance', {storage_ids:[]}).then((response) => {
 

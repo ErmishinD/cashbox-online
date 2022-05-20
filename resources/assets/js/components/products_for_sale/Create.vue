@@ -140,29 +140,17 @@ export default{
 	},
 	created () {
         document.title = this.$t('Создание товара для продажи');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/product_types/get_for_select').then((response) => {
 			console.log(response.data.data)
 			this.contains_for_multiselect = response.data.data
-			loader.hide()
-		}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+			this.emitter.emit("isLoading", false);
+		})
 
         this.axios.get('/api/categories').then((response) => {
 			this.categories = response.data.data
-			loader.hide()
-		}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+			this.emitter.emit("isLoading", false);
+		})
 		
 		
     },
@@ -209,15 +197,13 @@ export default{
     			product_types[item.id] = {'quantity' : item.amount * item.quantity}
     		})
     		this.formData.product_types = product_types
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		this.axios.post('/api/sell_products', this.formData).then((response) => {
     			this.$notify({
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     			this.$router.push({ name: 'products_for_sale_show', params: {id: response.data.data.id}  })
     		}).catch(err => {
     			if(err.response.data.errors.name){

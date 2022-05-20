@@ -228,9 +228,7 @@ export default{
     methods: {
     	render_list_items(is_not_paginate=true){
     		this.in_progress_loading_data = true
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		if(is_not_paginate){
     			this.serverParams.page = 1
     		}
@@ -270,13 +268,8 @@ export default{
 	    				this.all_data_is_loaded = true
 	    			}
 
-	    			loader.hide()
-    			}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+	    			this.emitter.emit("isLoading", false);
+    			})
 
     	},
     	toggleClassForIcon(card_data) {
@@ -323,9 +316,7 @@ export default{
     	saveWriteOff(){
     		let write_off_data = {}
     		console.log(this.selected_products)
-			var loader = this.$loading.show({
-	        canCancel: false,
-	        loader: 'dots',});
+			this.emitter.emit("isLoading", true);
 			write_off_data.storage_id = this.selected_storage
 			write_off_data.product_types = this.selected_products
 			write_off_data.product_types.forEach(el => {
@@ -338,7 +329,7 @@ export default{
 					text: this.$t('Успешно!'),
 					type: 'success',
 				});
-				loader.hide()
+				this.emitter.emit("isLoading", false);
 				this.basket_modal_show = false
 				this.selected_products = []
 			})

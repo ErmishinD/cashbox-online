@@ -144,9 +144,7 @@ export default{
 	},
 	created () {
         document.title = this.$t('Редактирование товара для продажи');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get(`/api/sell_products/${this.id}`).then((response) => {
 			this.formData = response.data.data
 			this.productData = response.data.data
@@ -154,13 +152,8 @@ export default{
 				item.quantity = item.main_measure_type.quantity
 				this.selected_contains.push(item)
 				this.default_selected_contains.push(item)
-				loader.hide()
-			}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+				this.emitter.emit("isLoading", false);
+			})
 			
 		})
 
@@ -172,12 +165,7 @@ export default{
 		this.axios.get('/api/categories').then((response) => {
                 this.categories = response.data.data
                 this.formData.category_id = this.formData.category.id
-                loader.hide()
-            }).catch(function(error){
-                if(error.response.status == 403){
-                    loader.hide()
-                    this.$router.push({ name: '403' })
-                }
+                this.emitter.emit("isLoading", false);
             })
 		
     },
@@ -229,15 +217,13 @@ export default{
     			product_types[item.id] = {'quantity' : item.quantity_in_main_measure_type * item.quantity}
     		})
     		this.formData.product_types = product_types
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		this.axios.put(`/api/sell_products/${this.id}`, this.formData).then((response) => {
     			this.$notify({
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     		}).catch(err => {
     			if(err.response.data.errors.name){
     				this.$notify({

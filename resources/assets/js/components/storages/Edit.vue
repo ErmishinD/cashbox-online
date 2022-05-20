@@ -25,19 +25,12 @@
 		} 
 	},
 	mounted(){
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/storages/'+this.id).then((response) => {
 		       this.formData = response.data['data']
 		       document.title = this.formData['name'];
-		       loader.hide()
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		       this.emitter.emit("isLoading", false);
+		     })
 		
 	},
 	created () {
@@ -46,6 +39,7 @@
     methods:{
     	update_storage: function(e){
     		e.preventDefault()
+    		this.emitter.emit("isLoading", true);
     		console.log(this.formData)
     		this.axios.put('/api/storages/'+this.id, this.formData ).then((response) => {
     			console.log(response.data.data.id)
@@ -53,6 +47,7 @@
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
+    			this.emitter.emit("isLoading", false);
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){
@@ -64,6 +59,7 @@
     					type: 'error',
     				});
     			}
+    			this.emitter.emit("isLoading", false);
     		})
     	}
     },

@@ -77,21 +77,13 @@ export default {
   },
   methods:{
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
   		
   		this.axios.get('/api/roles').then((response) => {
   		       this.roles = response.data['data']
   		       this.rows = this.roles
-  		       loader.hide()
-
-  		     }).catch(function(error){
-            if(error.response.status == 403){
-              loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+  		       this.emitter.emit("isLoading", false);
+  		     })
   	},
     onOpen(params){
       this.modal_show = true

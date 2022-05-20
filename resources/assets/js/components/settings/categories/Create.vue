@@ -71,10 +71,7 @@ export default{
 	},
 	mounted(){
 		document.title = this.$t('Создание категории');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
-		loader.hide()
+		
 	},
 	created () {
 
@@ -82,9 +79,7 @@ export default{
     methods:{
     	create_category: function(e){
     		e.preventDefault()
-    		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		console.log(this.formData)
             this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
     		this.axios.post('/api/categories', this.formData ).then((response) => {
@@ -105,7 +100,7 @@ export default{
     			});
     			}
     		}).finally(result => {
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     		})
     	}
     },

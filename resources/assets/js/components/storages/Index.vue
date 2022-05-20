@@ -112,22 +112,15 @@ export default {
 
     },
     render_list_items: function(){
-        var loader = this.$loading.show({
-                canCancel: false,
-                loader: 'dots',});
+        this.emitter.emit("isLoading", true);
         
         this.axios.post('/api/storages/get_balance', {storage_ids:[]}).then((response) => {
                 this.balance = response.data['data']
                this.storages = response.data['data'].storages
                this.rows = this.storages
-               loader.hide()
+               this.emitter.emit("isLoading", false);
 
-             }).catch(function(error){
-            if(error.response.status == 403){
-                loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+             })
     },
   },
 };

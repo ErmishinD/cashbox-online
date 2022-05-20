@@ -429,9 +429,7 @@ export default {
       })
     },
   	render_list_items: function(){
-  		var loader = this.$loading.show({
-  		        canCancel: false,
-  		        loader: 'dots',});
+  		this.emitter.emit("isLoading", true);
 
   		this.axios.get('/api/cashbox').then((response) => {
   		       this.products = response.data['data']
@@ -446,14 +444,9 @@ export default {
               item.vgtSelected = true
              })
              this.countBalance()
-  		       loader.hide()
+  		       this.emitter.emit("isLoading", false);
 
-  		     }).catch(function(error){
-            if(error.response.status == 403){
-              loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+  		     })
   	},
   },
 };

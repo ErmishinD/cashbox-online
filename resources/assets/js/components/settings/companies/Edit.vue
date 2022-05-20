@@ -27,23 +27,16 @@ export default{
 		} 
 	},
 	mounted(){
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/companies/'+this.id).then((response) => {
 		       this.company = response.data['data']
 		       document.title = this.company['name'];
 		       this.formData = {id: this.company.id,
 								name: this.company.name,
 							}
-		       loader.hide()
+		       this.emitter.emit("isLoading", false);
 
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		     })
 		// console.log(this.company)
 	},
 	created () {
@@ -51,6 +44,7 @@ export default{
     },
     methods:{
     	update_company_info: function(e){
+    		this.emitter.emit("isLoading", true);
     		e.preventDefault()
     		this.axios.put('/api/companies/'+this.id, this.formData).then((response) => {
     			console.log(response)
@@ -58,6 +52,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
+    			this.emitter.emit("isLoading", false);
     		}).catch(err => {
     			console.log()
     			if(err.response.data.errors.name){
@@ -66,6 +61,7 @@ export default{
     				type: 'error',
     			});
     			}
+    			this.emitter.emit("isLoading", false);
     		})
     	}
     },

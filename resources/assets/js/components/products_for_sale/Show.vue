@@ -44,13 +44,8 @@ export default{
 	},
 	mounted(){
 		
-
-	},
-	created () {
-        
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
+		
 		this.axios.get(`/api/sell_products/${this.id}`).then((response) => {
 			this.formData = response.data.data
 			document.title = this.formData.name
@@ -59,14 +54,12 @@ export default{
 				this.selected_contains.push(item)
 				this.default_selected_contains.push(item)
 			})
-				loader.hide()
-			}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+				this.emitter.emit("isLoading", false);
+			})
 			console.log(this.selected_contains)
+	},
+	created () {
+        
 		
 		
 		

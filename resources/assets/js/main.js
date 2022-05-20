@@ -446,6 +446,7 @@ const router = createRouter({
 		},
 		{
 			path: "/404",
+			name: '404',
 			component: PageNotFound 
 		},
 		{

@@ -63,18 +63,11 @@ export default{
 	},
 	mounted(){
 		document.title = this.$t('Создание пользователя');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/roles').then((response) => {
 			this.roles = response.data.data
-			loader.hide()
-		}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+			this.emitter.emit("isLoading", false);
+		})
 		
 		
 
@@ -85,6 +78,7 @@ export default{
     methods:{
     	CreateUser(e) {
     		e.preventDefault()
+
     		if(!this.selected_roles.length){
     			this.$notify({
 	    				text: this.$t('Укажите роли!'),
@@ -92,9 +86,8 @@ export default{
 	    			});
     			return
     		}
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
+    		
     		this.formData.roles = []
     		if(this.selected_roles.length){
     			this.selected_roles.forEach(item => {
@@ -108,7 +101,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     			this.$router.push({ name: 'users_show', params: {id: response.data.data.id}  })
     		}).catch(error => {
     			console.log(error.response.data.errors.username)
@@ -125,7 +118,7 @@ export default{
 	    				type: 'error',
     				});
     			}
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     		})
     	},
     },

@@ -63,9 +63,7 @@ export default{
 	},
 	mounted(){
 		document.title = this.$t('Редактирование пользователя');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get(`/api/users/${this.id}`).then((result) => {
 			this.formData = result.data.data
 			console.log(this.formData.roles)
@@ -74,14 +72,9 @@ export default{
 			})
 			this.axios.get('/api/roles').then((response) => {
 				this.roles = response.data.data
-				loader.hide()
+				this.emitter.emit("isLoading", false);
 			})
-		}).catch(function(error){
-	            if(error.result.status == 403){
-	            	loader.hide()
-	                this.$router.push({ name: '403' })
-	            }
-	        })
+		})
 		
 		
 		

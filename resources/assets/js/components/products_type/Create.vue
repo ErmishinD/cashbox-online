@@ -127,18 +127,11 @@ export default{
 	},
 	mounted(){
 		document.title = this.$t('Создание типа товара');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/measure_types/get_grouped_by_base').then((response) => {
 			this.measure_types = response.data.data
-			loader.hide()
-		}).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+			this.emitter.emit("isLoading", false);
+		})
 		
 		
 
@@ -177,9 +170,7 @@ export default{
     	},
     	CreateProduct(e) {
     		e.preventDefault()
-    		var loader = this.$loading.show({
-    		        canCancel: false,
-    		        loader: 'dots',});
+    		this.emitter.emit("isLoading", true);
     		this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
     		this.formData.measure_types = this.selected_measure_types
     		console.log(this.formData)
@@ -192,7 +183,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
-    			loader.hide()
+    			this.emitter.emit("isLoading", false);
     			this.$router.push({ name: 'products_type_show', params: {id: response.data.data.id}  })
     		})
     	},

@@ -75,22 +75,15 @@ export default{
 		}
 	},
 	mounted(){
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/companies/'+this.id).then((response) => {
 		       this.company = response.data['data']
 		       this.shops_rows = this.company['shops']
 		       this.workers_rows = this.company['employees']
 		       document.title = this.company['name'];
-		       loader.hide()
+		       this.emitter.emit("isLoading", false);
 		       console.table(this.company)
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		     })
 
 	},
 	created () {

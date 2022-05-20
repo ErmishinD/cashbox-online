@@ -35,19 +35,12 @@ export default{
 	mounted(){
 		
 		document.title = this.$t('Создание склада');
-		var loader = this.$loading.show({
-		        canCancel: false,
-		        loader: 'dots',});
+		this.emitter.emit("isLoading", true);
 		this.axios.post('/api/shops/get_by_company', {'company_id': this.$companyId}).then((response) => {
 			console.log(response.data)
 		       this.shop_list = response.data['data']
-		       loader.hide()
-		     }).catch(function(error){
-            if(error.response.status == 403){
-            	loader.hide()
-                this.$router.push({ name: '403' })
-            }
-        })
+		       this.emitter.emit("isLoading", false);
+		     })
 		
 		
 	},
@@ -57,6 +50,7 @@ export default{
     methods:{
     	create_storage: function(e){
     		e.preventDefault()
+    		this.emitter.emit("isLoading", true);
     		console.log(this.formData)
     		this.axios.post('/api/storages', this.formData ).then((response) => {
     			console.log(response.data.data.id)
@@ -64,6 +58,7 @@ export default{
     				text: this.$t('Успешно!'),
     				type: 'success',
     			});
+    			this.emitter.emit("isLoading", false);
     			this.$router.push({ name: 'storages_show', params: {id: response.data.data.id} })
     			// window.location.href = `/storages/${response.data.data.id}`
     		}).catch(err => {
@@ -77,6 +72,7 @@ export default{
     					type: 'error',
     				});
     			}
+    			this.emitter.emit("isLoading", false);
     		})
     	}
     },
