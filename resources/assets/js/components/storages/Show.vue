@@ -104,7 +104,7 @@ export default{
 	},
 	unmounted(){
 		this.unmounted = true
-		this.emitter.all.clear()
+		this.emitter.off('change_shop')
 	},
 	created () {
 
