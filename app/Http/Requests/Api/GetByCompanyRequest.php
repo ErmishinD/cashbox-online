@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Models\Company;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TenantRequest;
 
-class GetByCompanyRequest extends FormRequest
+class GetByCompanyRequest extends TenantRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,10 +28,4 @@ class GetByCompanyRequest extends FormRequest
         ];
     }
 
-    public function prepareForValidation()
-    {
-        $this->merge([
-            'company_id' => $this->company_id ?? Auth::user()->company_id
-        ]);
-    }
 }
