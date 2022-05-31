@@ -27,7 +27,7 @@ class SellProduct extends Model implements HasMedia, SystemLoggable
     use Filterable, BelongsToCompany;
 
     protected $fillable = [
-        'company_id', 'name', 'price', 'has_discount', 'photo', 'category_id'
+        'company_id', 'name', 'price', 'has_discount', 'photo', 'category_id', 'position'
     ];
 
     public function product_types() {

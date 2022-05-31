@@ -26,7 +26,8 @@ class UpdateRequest extends TenantRequest
             'product_types' => ['nullable', 'array'],
             'product_types.*.quantity' => ['numeric', 'min:0'],
             'photo' => ['nullable'],
-            'category_id' => ['nullable']
+            'category_id' => ['nullable'],
+            'position' => ['nullable', 'integer', 'gt:0']
         ];
     }
 }

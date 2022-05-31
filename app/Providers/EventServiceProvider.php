@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Listeners\LogEventsSubscriber;
 use App\Listeners\SetCompanyIdToSession;
+use App\Models\SellProduct;
+use App\Observers\SellProductObserver;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -37,6 +39,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        SellProduct::observe(SellProductObserver::class);
     }
 }
