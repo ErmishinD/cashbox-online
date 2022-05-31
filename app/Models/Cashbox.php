@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property int id
@@ -45,6 +46,15 @@ class Cashbox extends Model implements SystemLoggable
     protected $dates = ['collected_at'];
 
     protected $casts = ['data' => 'array'];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('onlyMySales', function (Builder $builder) {
+            if (Auth::user()->hasPermissionTo('Cashbox_viewOnlyMySales')) {
+                $builder->where('operator_id', Auth::id());
+            }
+        });
+    }
 
     public function shop()
     {
