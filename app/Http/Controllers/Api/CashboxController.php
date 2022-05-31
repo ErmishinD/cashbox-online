@@ -94,17 +94,16 @@ class CashboxController extends Controller
     {
         $this->authorize('Cashbox_delete');
 
-        if(!empty($cashbox->product_purchase_id)) {
-            //  удалить и саму закупку, только если с нее не было использовано продуктов
-            if ($cashbox->product_purchase->quantity == $cashbox->product_purchase->current_quantity) {
-                $cashbox->product_purchase->delete();
-                $cashbox->delete();
-                return response()->json(['success' => true], 202);
+        // before deleting payment - restore product types in storage
+        if (!empty($cashbox->data)) {
+            foreach (json_decode($cashbox->data, true) as $product_type_id => $purchases) {
+                foreach ($purchases as $purchase) {
+                    $product_purchase = \App\Models\ProductPurchase::find($purchase['id']);
+                    $product_purchase->current_quantity += $purchase['quantity'];
+                    $product_purchase->current_cost += $purchase['cost'];
+                    $product_purchase->save();
+                }
             }
-            return response()->json(['success' => false, 'Someone has already used products from this purchase'], 409);
-        }
-        elseif (!empty($cashbox->sell_product_id)) {
-            return response()->json(['success' => false, 'Can not delete this payment'], 409);
         }
 
         $cashbox->delete();

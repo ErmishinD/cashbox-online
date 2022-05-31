@@ -54,6 +54,7 @@ class RoleRepository extends BaseRepository
             'SellProduct_access', 'SellProduct_show',
             'SellProductGroup_access', 'SellProductGroup_show',
             'ProductPurchase_access', 'ProductPurchase_show',
+            'Category_access'
         ]);
 
         $accountant_role = $this->model->create([
@@ -67,6 +68,7 @@ class RoleRepository extends BaseRepository
             'SellProduct_access', 'SellProduct_show',
             'SellProductGroup_access', 'SellProductGroup_show',
             'ProductPurchase_access', 'ProductPurchase_show',
+            'Category_access'
         ]);
         $analyst_role = $this->model->create([
             'name' => 'analyst.' . $company_id, 'human_name' => 'Аналитик', 'company_id' => $company_id
@@ -80,6 +82,7 @@ class RoleRepository extends BaseRepository
             'SellProduct_access', 'SellProduct_show',
             'SellProductGroup_access', 'SellProductGroup_show',
             'ProductPurchase_access', 'ProductPurchase_show',
+            'Category_access'
         ]);
     }
 

@@ -44,6 +44,8 @@ class Cashbox extends Model implements SystemLoggable
 
     protected $dates = ['collected_at'];
 
+    protected $casts = ['data' => 'array'];
+
     public function shop()
     {
         return $this->belongsTo(Shop::class);

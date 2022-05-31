@@ -52,13 +52,13 @@ class CashboxRepository extends BaseRepository
                 }
                 $data['sell_product_id'] = $sell_product['sell_product_id'];
                 $data['amount'] = $sell_product['amount'];
-                $data['data'] = json_encode($sell_product['product_types']);
                 $data['parent_id'] = $parent_id;
+
+                $used_purchases = ProductPurchaseService::subtract_product_types($product_purchases, $sell_product);
+
+                $data['data'] = json_encode($used_purchases);
                 $payment = $this->model->create($data);
                 $payments->push($payment);
-
-                // отнять нужное кол-во продуктов со склада
-                ProductPurchaseService::subtract_product_types($product_purchases, $sell_product);
             }
         });
 
