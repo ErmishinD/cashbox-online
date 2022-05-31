@@ -13,6 +13,12 @@
 					<option v-for="category in categories" :value="category.id">{{category.name}}</option>
 				</select>
 			</div>
+
+			<div class="form_item">
+				<label class="tal" for="name">{{ $t('Приоритет') }}:</label>
+				<input type="number" min="1" class="form-control" v-model="formData.position">
+			</div>
+
 			<div class="form_item">
 				<VueMultiselect  
 					v-model="value"

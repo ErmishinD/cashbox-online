@@ -1,3 +1,5 @@
 <template>
-	403
+	<div class="tac content_title">
+		{{$t('Нет разрешения!')}}
+	</div>
 </template>
