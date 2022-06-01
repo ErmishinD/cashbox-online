@@ -9,8 +9,10 @@ class SellProductObserver
 
     public function creating(SellProduct $sellProduct)
     {
-        if (is_null($sellProduct->position)) {
-            $sellProduct->position = SellProduct::where('company_id', $sellProduct->company_id)->max('position') + 1;
+        $max_position = SellProduct::where('company_id', $sellProduct->company_id)->max('position') + 1;
+
+        if (is_null($sellProduct->position) || $sellProduct->position > $max_position) {
+            $sellProduct->position = $max_position;
             return;
         }
 
@@ -30,8 +32,10 @@ class SellProductObserver
             return;
         }
 
-        if (is_null($sellProduct->position)) {
-            $sellProduct->position = SellProduct::where('company_id', $sellProduct->company_id)->max('position');
+        $max_position = SellProduct::where('company_id', $sellProduct->company_id)->max('position');
+
+        if (is_null($sellProduct->position) || $sellProduct->position > $max_position) {
+            $sellProduct->position = $max_position;
         }
 
         if ($sellProduct->getOriginal('position') > $sellProduct->position) {
