@@ -197,12 +197,19 @@
         	}
         },
         mounted(){
-            this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
+        	if(this.shop_id){
+        		 this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
                    this.product_types_in_storages = response.data['data']
 
                  })
+        	}
+           
             this.emitter.on("change_shop", res => {
                   this.shop_id = res
+                  this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
+                   this.product_types_in_storages = response.data['data']
+
+                 })
                   this.render_list_items(true)
                 });
         	 if(this.shop_id){
@@ -564,7 +571,8 @@
 
         							if(el.id == this.product_types_in_basket[i].id){
         								el.overlimited_quantity = comparing
-        								el.overlimited_quantity_in_main_measure_type = parseFloat((comparing / product_types_in_storages[j].main_to_base_equivalent).toFixed(10))
+        								console.log(comparing, product_types_in_storages[j].main_measure_type.quantity)
+        								el.overlimited_quantity_in_main_measure_type = parseFloat((comparing / product_types_in_storages[j].main_measure_type.quantity).toFixed(10))
         								stop_comparing = true
         								return
         							}
@@ -576,7 +584,7 @@
         									'id' : copy_overlimited_product_types.id,
         									'name' : copy_overlimited_product_types.name,
         									'overlimited_quantity' : comparing,
-        									'overlimited_quantity_in_main_measure_type': parseFloat((comparing / product_types_in_storages[j].main_to_base_equivalent).toFixed(10)),
+        									'overlimited_quantity_in_main_measure_type': parseFloat((comparing / product_types_in_storages[j].main_measure_type.quantity).toFixed(10)),
         									'main_measure_type_name' : this.product_types_in_basket[i].name_measure_type
         								})
         							this.$notify({
