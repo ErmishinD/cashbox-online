@@ -150,7 +150,6 @@
         selectOnCheckboxOnly: true,
         disableSelectInfo: true,
       }"
-       :search-options="{ enabled: true }"
       :pagination-options="{
           enabled: true,
           mode: 'records',
