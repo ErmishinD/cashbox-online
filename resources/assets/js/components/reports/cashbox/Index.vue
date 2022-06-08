@@ -174,16 +174,20 @@
             <span v-else>{{props.row.operator.name}}</span>
           </span>
 
-          <span v-if="props.column.field == 'transaction_type'" v-bind:style="[props.row.transaction_type == '_in' ? {color: 'green'} : {color: 'red'}]">{{props.row.transaction_type == '_in' ? this.$t('поступление') : this.$t('расход')}}</span>
+          <span v-if="props.column.field == 'transaction_type'"
+                v-bind:style="[props.row.transaction_type_internal == '_in' ? {color: 'green'} : {color: 'red'}]">{{ props.row.transaction_type }}</span>
 
-          <span v-if="props.column.field == 'payment_type'">{{props.row.payment_type == '_card' ? this.$t('карта') : this.$t('наличные')}}</span>
+          <span v-if="props.column.field == 'payment_type'">{{ props.row.payment_type }}</span>
 
-          <span  v-if="props.column.field == 'sell_product_name'">
-            <router-link class="redirect_from_table" v-if="$can('SellProduct_show') && props.row.sell_product" :to="{name: 'products_for_sale_show', params: {id: props.row.sell_product.id}}">{{props.row.sell_product.name}}
+          <span v-if="props.column.field == 'sell_product.name'">
+            <router-link class="redirect_from_table" v-if="$can('SellProduct_show') && props.row.sell_product"
+                         :to="{name: 'products_for_sale_show', params: {id: props.row.sell_product.id}}">{{ props.row.sell_product.name }}
             </router-link>
-            <router-link class="redirect_from_table" v-else-if="$can('ProductType_show') && props.row.product_purchase" :to="{name: 'products_type_show', params: {id: props.row.product_purchase.product_type.id}}">{{props.row.product_purchase.product_type.name}}
+            <router-link class="redirect_from_table" v-else-if="$can('ProductType_show') && props.row.product_purchase"
+                         :to="{name: 'products_type_show', params: {id: props.row.product_purchase.product_type.id}}">{{ props.row.product_purchase.product_type.name }}
             </router-link>
-            <span v-else>{{props.row.sell_product ? props.row.sell_product.name : (props.row.product_purchase ? props.row.product_purchase.product_type.name : '')}}</span>
+            <span
+                v-else>{{ props.row.sell_product ? props.row.sell_product.name : (props.row.product_purchase ? props.row.product_purchase.product_type.name : '') }}</span>
           </span>
 
           <span v-if="props.column.field == 'shop.name'">
@@ -238,10 +242,15 @@ export default {
         }
       },
       columns: [
-        {
-          label: this.$t('Тип транзакции'),
-          field: 'transaction_type',
-        },
+          {
+              label: this.$t('Тип транзакции'),
+              field: 'transaction_type',
+              filterOptions: {
+                  enabled: true,
+                  placeholder: this.$t('Выбрать тип'),
+                  filterDropdownItems: [],
+              },
+          },
         {
           label: this.$t('Сумма'),
           field: 'amount',
@@ -255,18 +264,33 @@ export default {
               filterDropdownItems: [],
           },
         },
-        {
-          label: this.$t('Тип оплаты'),
-          field: 'payment_type',
-        },
-        {
-          label: this.$t('Продукт'),
-          field: 'sell_product_name',
-        },
-        {
-          label: this.$t('Магазин'),
-          field: 'shop.name',
-        },
+          {
+              label: this.$t('Тип оплаты'),
+              field: 'payment_type',
+              filterOptions: {
+                  enabled: true,
+                  placeholder: this.$t('Выбрать тип'),
+                  filterDropdownItems: [],
+              },
+          },
+          {
+              label: this.$t('Продукт'),
+              field: 'sell_product.name',
+              filterOptions: {
+                  enabled: true,
+                  placeholder: this.$t('Выбрать продукт'),
+                  filterDropdownItems: [],
+              },
+          },
+          {
+              label: this.$t('Магазин'),
+              field: 'shop.name',
+              filterOptions: {
+                  enabled: true,
+                  placeholder: this.$t('Выбрать магазин'),
+                  filterDropdownItems: [],
+              },
+          },
         {
           label: this.$t('Создано'),
           field: 'created_at',
@@ -314,7 +338,7 @@ export default {
             text: this.$t('Ошибка при удалении!'),
             type: 'error',
           });
-          
+
         }
       }).finally((result) => {
         this.del_modal_show = false
@@ -357,8 +381,8 @@ export default {
         },this)).then(result => {
           this.countBalance()
         })
-        
-        
+
+
     },
     countBalance() {
       this.balance.income.cash = 0
@@ -367,22 +391,19 @@ export default {
       this.balance.outcome.card = 0
       this.collection_ids = []
       this.rows.forEach(item => {
-        if(item.vgtSelected == true){
-          if(item.transaction_type == '_in'){
-            if(item.payment_type == '_cash'){
-              this.balance.income.cash = parseFloat(parseFloat(this.balance.income.cash) + parseFloat(item.amount)).toFixed(2)
-            }
-            else{
-              this.balance.income.card = parseFloat(parseFloat(this.balance.income.card) + parseFloat(item.amount)).toFixed(2)
-            }
-          }
-          else{
-            if(item.payment_type == '_cash'){
-              this.balance.outcome.cash = parseFloat(parseFloat(this.balance.outcome.cash) + parseFloat(item.amount)).toFixed(2)
-            }
-            else{
-              this.balance.outcome.card = parseFloat(parseFloat(this.balance.outcome.card) + parseFloat(item.amount)).toFixed(2)
-            }
+        if(item.vgtSelected == true) {
+            if (item.transaction_type_internal == '_in') {
+                if (item.payment_type_internal == '_cash') {
+                    this.balance.income.cash = parseFloat(parseFloat(this.balance.income.cash) + parseFloat(item.amount)).toFixed(2)
+                } else {
+                    this.balance.income.card = parseFloat(parseFloat(this.balance.income.card) + parseFloat(item.amount)).toFixed(2)
+                }
+            } else {
+                if (item.payment_type_internal == '_cash') {
+                    this.balance.outcome.cash = parseFloat(parseFloat(this.balance.outcome.cash) + parseFloat(item.amount)).toFixed(2)
+                } else {
+                    this.balance.outcome.card = parseFloat(parseFloat(this.balance.outcome.card) + parseFloat(item.amount)).toFixed(2)
+                }
           }
           this.collection_ids.push(item.id)
         }
@@ -392,23 +413,35 @@ export default {
       this.balance.sum.card = parseFloat(parseFloat(this.balance.income.card) - parseFloat(this.balance.outcome.card)).toFixed(2)
     },
     onColumnFilter(params){
-      let selected_name = params.columnFilters['operator.name']
-      if(selected_name){
         this.rows.forEach(item => {
-          if(item.operator.name == selected_name){
-            item.vgtSelected = true
-          }
-          else{
-            item.vgtSelected = false
-          }
+            let selected_options = [];
+            for (const [column, selected_name] of Object.entries(params.columnFilters)) {
+                let columns_array = column.split('.')
+
+                if (selected_name) {
+                    let item_value = item
+                    columns_array.forEach(column => {
+                        item_value = item_value[column]
+                    })
+
+                    if (this.$t(item_value) == selected_name) {
+                        selected_options.push(true)
+                    } else {
+                        selected_options.push(false)
+                    }
+                } else {
+                    selected_options.push(true)
+                }
+            }
+
+            if (selected_options.every(element => element === true)) {
+                item.vgtSelected = true
+            } else {
+                item.vgtSelected = false
+            }
         })
-      }
-      else{
-        this.rows.forEach(item => {
-            item.vgtSelected = true
-        })
-      }
-      this.countBalance()
+
+        this.countBalance()
     },
     makeCollection(){
       this.axios.post('/api/cashbox/collect', {ids : this.collection_ids}).then((response) => {
@@ -433,11 +466,29 @@ export default {
   		this.axios.get('/api/cashbox').then((response) => {
   		       this.products = response.data['data']
              this.products.forEach(item => {
-                if(!this.columns[2].filterOptions.filterDropdownItems.find(operator => operator == item.operator.name)){
-                   this.columns[2].filterOptions.filterDropdownItems.push(item.operator.name)
-                }
+                 item.payment_type_internal = item.payment_type
+                 item.transaction_type_internal = item.transaction_type
+                 item.payment_type = this.$t(item.payment_type)
+                 item.transaction_type = this.$t(item.transaction_type)
+
+                 if (!this.columns[0].filterOptions.filterDropdownItems.find(transaction_type => transaction_type == item.transaction_type)) {
+                     this.columns[0].filterOptions.filterDropdownItems.push(item.transaction_type)
+                 }
+                 if (!this.columns[2].filterOptions.filterDropdownItems.find(operator => operator == item.operator.name)) {
+                     this.columns[2].filterOptions.filterDropdownItems.push(item.operator.name)
+                 }
+                 if (!this.columns[3].filterOptions.filterDropdownItems.find(payment_type => payment_type == item.payment_type)) {
+                     this.columns[3].filterOptions.filterDropdownItems.push(item.payment_type)
+                 }
+                 if (!this.columns[4].filterOptions.filterDropdownItems.find(sell_product => sell_product == item.sell_product.name)) {
+                     this.columns[4].filterOptions.filterDropdownItems.push(item.sell_product.name)
+                 }
+                 if (!this.columns[5].filterOptions.filterDropdownItems.find(shop => shop == item.shop.name)) {
+                     this.columns[5].filterOptions.filterDropdownItems.push(item.shop.name)
+                 }
              })
-             console.log(this.operators)
+
+            console.log(this.operators)
   		       this.rows = this.products
              this.rows.forEach(item => {
               item.vgtSelected = true
