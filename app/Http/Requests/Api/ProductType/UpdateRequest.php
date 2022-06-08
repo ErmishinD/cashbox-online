@@ -27,7 +27,8 @@ class UpdateRequest extends TenantRequest
             'main_measure_type_id' => ['required', 'exists:measure_types,id'],
             'barcode' => ['nullable'],
             'measure_types' => ['nullable', 'array'],
-            'category_id' => ['nullable']
+            'category_id' => ['nullable'],
+            'warning_threshold' => ['nullable', 'integer', 'gte:0']
         ];
     }
 }

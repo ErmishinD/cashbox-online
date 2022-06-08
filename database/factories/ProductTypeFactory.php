@@ -33,6 +33,7 @@ class ProductTypeFactory extends Factory
             'main_measure_type_id' => $main_measure_type_id,
             'barcode' => $this->faker->numerify('##########'),
             'category_id' => $category_id,
+            'warning_threshold' => $this->faker->numberBetween(1, 1000),
         ];
     }
 }

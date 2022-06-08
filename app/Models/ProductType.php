@@ -32,7 +32,8 @@ class ProductType extends Model implements HasMedia, SystemLoggable
     public const TYPES = ['perishable' => '_perishable', 'imperishable' => '_imperishable'];
 
     protected $fillable = [
-        'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'main_measure_type_id', 'barcode', 'category_id'
+        'company_id', 'name', 'type', 'photo', 'base_measure_type_id', 'main_measure_type_id', 'barcode', 'category_id',
+        'warning_threshold'
     ];
 
     public function measure_types()

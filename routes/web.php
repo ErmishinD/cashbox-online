@@ -14,6 +14,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('test', function () {
+    $storages = \App\Models\Storage::get();
+    foreach ($storages as $storage) {
+        dump($storage->name);
+        $product_types_query = \App\Models\ProductType::query()
+            ->with(['media', 'main_measure_type'])
+            ->withSum(['product_purchases' => function ($query) use ($storage) {
+                $query
+                    ->where('storage_id', $storage->id)
+                    ->where(function ($q) {
+                        $q->whereNull('expiration_date')
+                            ->orWhere('expiration_date', '>', now());
+                    });
+            }], 'current_quantity')
+            ->havingRaw('((product_purchases_sum_current_quantity - product_types.warning_threshold) is NULL) OR (product_purchases_sum_current_quantity - product_types.warning_threshold) < 0')
+            ->orderByRaw('(product_purchases_sum_current_quantity - product_types.warning_threshold) ASC')
+            ->get()
+            ->dump();
+    }
+
+
+});
+
 require __DIR__ . '/admin.php';
 
 Route::get('login-from-mains', [UserController::class, 'authorizeMainsUser']);

@@ -33,6 +33,7 @@ class ShowResource extends JsonResource
             'measure_types' => MeasureTypeResource::collection($this->measure_types),
             'sell_products' => SellProductResource::collection($this->sell_products),
             'category' => new CategoryResource($this->category),
+            'warning_threshold' => $this->warning_threshold
         ];
     }
 }

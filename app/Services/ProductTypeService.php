@@ -54,9 +54,8 @@ class ProductTypeService
 
         if (!empty($paginate_params) && !empty($paginate_params['per_page'] && !empty($paginate_params['page']))) {
             return $product_types_query->paginate($paginate_params['per_page'], ['*'], 'page', $paginate_params['page']);
-        } else {
-            return $product_types_query->get();
         }
+        return $product_types_query->get();
     }
 }
 
