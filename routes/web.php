@@ -33,8 +33,25 @@ Route::get('test', function () {
             ->get()
             ->dump();
     }
+});
 
-
+Route::get('test-2', function () {
+    $transactions = \App\Models\Cashbox::query()
+        ->with('sell_product')
+        ->notCollected()
+        ->get()
+        ->each(function ($transaction) {
+            $self_cost = 0;
+            foreach (json_decode($transaction->data, true) as $product_type_id => $data) {
+                foreach ($data as $purchase) {
+                    $self_cost += $purchase['cost'];
+                }
+            }
+            $transaction->self_cost = $self_cost;
+            $transaction->profit = $transaction->amount - $self_cost;
+        })
+        ->sortByDesc('self_cost');
+    dd($transactions->first());
 });
 
 require __DIR__ . '/admin.php';
