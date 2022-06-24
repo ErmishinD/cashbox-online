@@ -64,6 +64,13 @@ class ReportController extends Controller
             ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
             ->get();
 
-        return ProfitByShopResource::collection($transactions);
+        return response()->json([
+            'data' => ProfitByShopResource::collection($transactions),
+            'sum_data' => [
+                'sum_amount' => $transactions->sum('sum_amount'),
+                'sum_self_cost' => $transactions->sum('sum_self_cost'),
+                'sum_profit' => $transactions->sum('sum_profit'),
+            ]
+        ]);
     }
 }
