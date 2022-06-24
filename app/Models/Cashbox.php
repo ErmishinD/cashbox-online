@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
  * @property int sell_product_id
  * @property array data
  * @property float amount
+ * @property float self_cost
+ * @property float profit
  * @property string payment_type
  * @property int operator_id
  * @property string description
@@ -40,7 +42,8 @@ class Cashbox extends Model implements SystemLoggable
 
     protected $fillable = [
         'shop_id', 'sell_product_id', 'data', 'transaction_type', 'payment_type', 'amount',
-        'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id'
+        'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id',
+        'self_cost', 'profit'
     ];
 
     protected $dates = ['collected_at'];
@@ -50,7 +53,7 @@ class Cashbox extends Model implements SystemLoggable
     protected static function booted()
     {
         static::addGlobalScope('onlyMySales', function (Builder $builder) {
-            if (Auth::user()->hasPermissionTo('Cashbox_viewOnlyMySales')) {
+            if (Auth::check() && Auth::user()->hasPermissionTo('Cashbox_viewOnlyMySales')) {
                 $builder->where('operator_id', Auth::id());
             }
         });

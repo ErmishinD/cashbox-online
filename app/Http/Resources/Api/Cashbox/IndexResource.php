@@ -24,6 +24,8 @@ class IndexResource extends JsonResource
             'id' => $this->id,
             'shop' => new ShopResource($this->shop),
             'amount' => $this->amount,
+            'self_cost' => $this->self_cost,
+            'profit' => $this->profit,
             'payment_type' => $this->payment_type,
             'transaction_type' => $this->transaction_type,
             'sell_product' => $this->sell_product_id ? new SellProductResource($this->sell_product) : null,

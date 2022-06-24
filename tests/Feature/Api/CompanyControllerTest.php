@@ -2,11 +2,13 @@
 
 namespace Tests\Feature\Api;
 
+use App\Models\BaseMeasureType;
 use App\Models\Company;
 use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
 use App\Repositories\RoleRepository;
+use Database\Seeders\BaseMeasureTypeSeeder;
 use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -38,6 +40,7 @@ class CompanyControllerTest extends TestCase
     {
         parent::setUp();
         $this->seed(RolesPermissionsSeeder::class);
+        $this->seed(BaseMeasureTypeSeeder::class);
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
         $this->role_repository = app(RoleRepository::class);

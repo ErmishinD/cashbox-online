@@ -23,7 +23,7 @@ class InCompanyScope implements Scope
     {
         $company_id = session()->get('company_id');
         if ($company_id) {
-            $builder->where('company_id', $company_id);
+            $builder->where($builder->getModel()->getTable() . '.company_id', $company_id);
         }
     }
 

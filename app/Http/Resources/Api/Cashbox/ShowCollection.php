@@ -22,6 +22,8 @@ class ShowCollection extends ResourceCollection
                 'name' => $first_payment->shop->name
             ],
             'all_amount' => round($this->collection->sum('amount'), 2),
+            'all_self_cost' => round($this->collection->sum('self_cost'), 2),
+            'all_profit' => round($this->collection->sum('profit'), 2),
             'transaction_type' => $first_payment->transaction_type,
             'payment_type' => $first_payment->payment_type,
             'operator' => [
@@ -39,6 +41,8 @@ class ShowCollection extends ResourceCollection
                 'id' => $payment->sell_product_id,
                 'name' => $payment->sell_product->name,
                 'amount' => $payment->amount,
+                'self_cost' => $payment->self_cost,
+                'profit' => $payment->profit,
                 'description' => $payment->description
             ];
         }

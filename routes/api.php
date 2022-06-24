@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\MeasureTypeController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ProductPurchaseController;
 use App\Http\Controllers\Api\ProductTypeController;
+use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\SellableController;
 use App\Http\Controllers\Api\SellProductController;
@@ -19,7 +20,6 @@ use App\Http\Controllers\Api\SystemLogController;
 use App\Http\Controllers\Api\TransferController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WriteOffController;
-use App\Http\Controllers\TestWebsocketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware('auth')->group(function () {
+Route::prefix('test')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
@@ -181,8 +181,11 @@ Route::middleware('auth')->group(function () {
         Route::post('get_paginated', [WriteOffController::class, 'get_paginated']);
         Route::get('/{write_off}', [WriteOffController::class, 'show']);
     });
+
+    Route::prefix('reports')->group(function () {
+        Route::get('warning_threshold', [ReportController::class, 'getWarningThresholdByStorages']);
+        Route::get('warning_threshold/{storage_id}', [ReportController::class, 'getWarningThresholdInStorage']);
+
+        Route::get('profit', [ReportController::class, 'getProfit']);
+    });
 });
-
-
-Route::post('/test', [TestWebsocketController::class, 'test']);
-

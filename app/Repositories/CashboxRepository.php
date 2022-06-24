@@ -56,6 +56,16 @@ class CashboxRepository extends BaseRepository
 
                 $used_purchases = ProductPurchaseService::subtract_product_types($product_purchases, $sell_product);
 
+                $data['self_cost'] = 0;
+
+                foreach ($used_purchases as $product_type_id => $purchases) {
+                    foreach ($purchases as $purchase) {
+                        $data['self_cost'] += $purchase['cost'];
+                    }
+                }
+
+                $data['profit'] = $data['amount'] - $data['self_cost'];
+
                 $data['data'] = json_encode($used_purchases);
                 $payment = $this->model->create($data);
                 $payments->push($payment);

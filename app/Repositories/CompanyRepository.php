@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\BaseMeasureType;
 use App\Models\Company;
 use App\Models\MeasureType;
 use App\Models\Shop;
@@ -54,21 +55,23 @@ class CompanyRepository extends BaseRepository
             'company_id' => $company->id
         ]);
 
+        $base_measure_type_ids = BaseMeasureType::pluck('id');
+
         // create default measure types
         MeasureType::create([
-            'base_measure_type_id' => 1,
+            'base_measure_type_id' => $base_measure_type_ids[0],
             'name' => 'л',
             'quantity' => 1000,
             'company_id' => $company->id,
         ]);
         MeasureType::create([
-            'base_measure_type_id' => 2,
+            'base_measure_type_id' => $base_measure_type_ids[1],
             'name' => 'кг',
             'quantity' => 1000,
             'company_id' => $company->id,
         ]);
         MeasureType::create([
-            'base_measure_type_id' => 3,
+            'base_measure_type_id' => $base_measure_type_ids[2],
             'name' => 'шт',
             'quantity' => 1,
             'company_id' => $company->id,
