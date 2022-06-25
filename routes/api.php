@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CashboxController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\FileUploadController;
+use App\Http\Controllers\Api\GetForSelectController;
 use App\Http\Controllers\Api\MeasureTypeController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ProductPurchaseController;
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('get_for_select', GetForSelectController::class);
 
     Route::post('change_shop', [UserController::class, 'changeShop']);
 

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Contracts\ShouldReturnGetForSelect;
 use App\Contracts\SystemLoggable;
 use App\Http\Traits\BelongsToCompany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed storages
  * @method static inRandomOrder()
  */
-class Shop extends Model implements SystemLoggable
+class Shop extends Model implements SystemLoggable, ShouldReturnGetForSelect
 {
     use HasFactory, SoftDeletes, BelongsToCompany;
 
@@ -47,5 +49,10 @@ class Shop extends Model implements SystemLoggable
     public function getVueParams(string $action): array
     {
         return ['id' => $this->id];
+    }
+
+    public function scopePrepareForSelect(Builder $builder)
+    {
+        return $builder->select('id', 'name', 'company_id');
     }
 }
