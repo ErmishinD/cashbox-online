@@ -17,6 +17,8 @@ class ReportController extends Controller
 {
     public function getWarningThresholdByStorages()
     {
+        $this->authorize('Report_warningThreshold');
+
         $purchases_by_storage = ProductPurchase::query()
             ->groupBy('storage_id', 'product_type_id')
             ->join('product_types', 'product_types.id', '=', 'product_purchases.product_type_id')
@@ -36,6 +38,8 @@ class ReportController extends Controller
 
     public function getWarningThresholdInStorage($storage_id)
     {
+        $this->authorize('Report_warningThreshold');
+
         $product_types = ProductType::query()
             ->with('main_measure_type')
             ->withSum(['product_purchases' => function ($query) use ($storage_id) {
@@ -54,6 +58,8 @@ class ReportController extends Controller
 
     public function getProfit(DateRangeRequest $request)
     {
+        $this->authorize('Report_profit');
+
         $data = $request->validated();
 
         $transactions = Cashbox::query()
