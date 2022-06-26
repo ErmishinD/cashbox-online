@@ -62,6 +62,12 @@ import PurchasesEdit from './components/purchases/Edit'
 	/* import purcsases */
 	import ReportsPurchasesIndex from './components/reports/purchases/Index'
 
+	/* import thresholds */
+	import ReportsThresholdsIndex from './components/reports/thresholds/Index'
+
+	/* import profits */
+	import ReportsProfitsIndex from './components/reports/profits/Index'
+
 /* import transfers */
 import TransfersIndex from './components/transfers/Index'
 import TransfersCreate from './components/transfers/Create'
@@ -244,6 +250,16 @@ const router = createRouter({
 			path: '/reports/finance',
 			name: 'reports_finance_index',
 			component: ReportsFinanceIndex
+		},
+		{
+			path: '/reports/thresholds',
+			name: 'reports_thresholds_index',
+			component: ReportsThresholdsIndex
+		},
+		{
+			path: '/reports/profits',
+			name: 'reports_profits_index',
+			component: ReportsProfitsIndex
 		},
 		{
 			path: '/transfers',

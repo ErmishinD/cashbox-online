@@ -23,6 +23,12 @@
 					</optgroup>
 				</select>
 			</div>
+
+			<div class="form_item">
+				<label class="tal" for="main_measure_type_id">{{ $t('Порог предупреждения') }}*:</label>
+				<input type="number" step="any" required class="form-control" name="name" v-model="warning_threshold">
+			</div>
+
 			<div class="form_item">
 				<VueMultiselect 
 					v-model="value" 
@@ -123,6 +129,8 @@ export default{
 			value: null,
 			isDisabled: true,
 			is_create_product_for_sale: false,
+			warning_threshold: 0,
+			main_measure_type: [],
 		} 
 	},
 	mounted(){
@@ -157,6 +165,7 @@ export default{
     		this.axios.post('/api/measure_types/get_by_base_measure_type', {base_measure_type_id : base_measure_type_id}).then((response) => {
     			console.log(response.data.data)
     			this.measure_types_by_main_select = response.data.data
+    			this.main_measure_type = this.measure_types_by_main_select.find(item => item.id == this.formData.main_measure_type_id)
     			this.measure_types_by_main_select.splice(this.measure_types_by_main_select.indexOf(this.measure_types_by_main_select.find(item => item.id == this.formData.main_measure_type_id)), 1)
     			this.isDisabled = false
 
@@ -171,6 +180,9 @@ export default{
     	CreateProduct(e) {
     		e.preventDefault()
     		this.emitter.emit("isLoading", true);
+    		
+    		this.formData.warning_threshold = this.main_measure_type.quantity * this.warning_threshold
+    	
     		this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
     		this.formData.measure_types = this.selected_measure_types
     		console.log(this.formData)
@@ -185,9 +197,26 @@ export default{
     			});
     			this.emitter.emit("isLoading", false);
     			this.$router.push({ name: 'products_type_show', params: {id: response.data.data.id}  })
+    		}).catch(error => {
+    			this.$notify({
+	    				text: error.response.data.message,
+	    				type: 'error',
+    				});
+    			this.emitter.emit("isLoading", false);
     		})
     	},
     },
 }
 </script>
 
+<style scoped>
+	.form{
+		width: 450px;
+	}
+	.form_item {
+	    justify-content: space-between;
+	}
+	.form_item input, .form_item select {
+	    width: 60%;
+	}
+</style>

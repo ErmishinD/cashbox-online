@@ -21,6 +21,10 @@
 				</select>
 			</div>
 			<div class="form_item">
+				<label class="tal" for="main_measure_type_id">{{ $t('Порог предупреждения') }}*:</label>
+				<input type="number" step="any" required class="form-control" name="name" v-model="warning_threshold">
+			</div>
+			<div class="form_item">
 				<VueMultiselect 
 					v-model="selected_measure_types" 
 					:options="measure_types_by_main_select"
@@ -98,6 +102,8 @@ export default{
             selected_measure_types: [],
             updateData: {},
             value: null,
+            warning_threshold: 0,
+            main_measure_type: [],
         }
     },
     mounted(){
@@ -105,6 +111,8 @@ export default{
         this.axios.get('/api/product_types/'+this.id).then((response) => {
             // this.product = response.data['data']
             Promise.resolve(this.formData = response.data['data']).then(result => {
+            	this.warning_threshold = this.formData.warning_threshold / this.formData.main_measure_type?.quantity
+            	this.main_measure_type = this.formData.main_measure_type
             	this.axios.post('/api/measure_types/get_by_base_measure_type', {base_measure_type_id: this.formData.base_measure_type_id}).then((response) => {
             		Promise.resolve(this.measure_types = response.data.data).then(result => {
             			this.MeasureTypesForSetMeasureTypes()
@@ -134,7 +142,7 @@ export default{
         MeasureTypesForSetMeasureTypes(e) {
         		let measure_types = Object.assign([], this.measure_types)
     			this.measure_types_by_main_select = measure_types
-
+    			this.main_measure_type = this.measure_types_by_main_select.find(item => item.id == this.formData.main_measure_type.id)
     			this.measure_types_by_main_select.splice(this.measure_types_by_main_select.indexOf(this.measure_types_by_main_select.find(item => item.id == this.formData.main_measure_type.id)), 1)
     			console.log(this.measure_types_by_main_select)
     	},
@@ -142,6 +150,9 @@ export default{
     	UpdateProduct(e) {
     		e.preventDefault()
     		this.emitter.emit("isLoading", true);
+
+    		this.formData.warning_threshold = this.main_measure_type.quantity * this.warning_threshold
+
     		this.updateData = Object.assign({}, this.formData)
     		let photo = document.querySelector("input[type='file']").getAttribute('value')
     		if(photo){
@@ -175,3 +186,15 @@ export default{
     },
 }
 </script>
+
+<style scoped>
+	.form{
+		width: 450px;
+	}
+	.form_item {
+	    justify-content: space-between;
+	}
+	.form_item input, .form_item select {
+	    width: 60%;
+	}
+</style>

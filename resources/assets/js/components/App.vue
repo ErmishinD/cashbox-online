@@ -1,4 +1,5 @@
 <template>
+
 	<notifications position="bottom right" />
   <loading v-model:active="isLoading"
                  :can-cancel="false"
@@ -50,6 +51,7 @@
 		<template  v-slot:toggle-icon><img v-bind:class="[isCollapsed ? '' : 'trans-180deg']" src="../../img/sidebar_arrow.svg" alt=""></template>
 	</sidebar-menu>
 	<div id="main_content" v-bind:class="[isCollapsed ? 'pl-75' : 'pl-300']">
+
 		<router-view></router-view>
 	</div>
 
@@ -190,6 +192,22 @@
 	            href: '/reports/cashbox',
 	            title: this.$t('Касса'),
 	            icon: 'fas fa-cash-register',
+	          })
+	          }
+
+	          if(this.$can('Report_warningThreshold')){
+	          	sidebar_reports_child.push({
+	            href: '/reports/thresholds',
+	            title: this.$t('Предупреждения'),
+	            icon: 'fas fa-circle-exclamation',
+	          })
+	          }
+
+	          if(this.$can('Report_profit')){
+	          	sidebar_reports_child.push({
+	            href: '/reports/profits',
+	            title: this.$t('Прибыль'),
+	            icon: 'fas fa-arrow-trend-up',
 	          })
 	          }
 
