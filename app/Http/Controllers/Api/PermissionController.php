@@ -7,6 +7,10 @@ use App\Http\Resources\Api\Permission\IndexCollection;
 use Illuminate\Http\JsonResponse;
 use Spatie\Permission\Models\Permission;
 
+/**
+ * @authenticated
+ * @group Permission management
+ */
 class PermissionController extends Controller
 {
     public function index(): JsonResponse

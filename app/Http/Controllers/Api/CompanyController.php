@@ -10,6 +10,10 @@ use App\Models\Company;
 use App\Repositories\CompanyRepository;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @authenticated
+ * @group Company management
+ */
 class CompanyController extends Controller
 {
     /**

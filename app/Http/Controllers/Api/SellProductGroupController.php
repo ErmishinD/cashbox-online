@@ -11,6 +11,10 @@ use App\Repositories\SellProductGroupRepository;
 use App\Services\UploadFileService;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @authenticated
+ * @group Sell Product Group management
+ */
 class SellProductGroupController extends Controller
 {
     /**

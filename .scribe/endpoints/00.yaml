@@ -1,0 +1,156 @@
+name: 'Base Measure Type management'
+description: ''
+endpoints:
+  - httpMethods:
+      - GET
+    uri: api/base_measure_types
+    metadata:
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: true
+      custom: [ ]
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: [ ]
+    queryParameters: [ ]
+    bodyParameters: [ ]
+    responses:
+      - status: 200
+        content: '{"success":true,"data":[{"id":1,"type":"_volume","name":"\u043c\u043b"},{"id":2,"type":"_weight","name":"\u0433"},{"id":3,"type":"_quantity","name":"\u0448\u0442"}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '53'
+          vary: Origin
+        description: null
+    responseFields: [ ]
+  - httpMethods:
+      - POST
+    uri: api/base_measure_types
+    metadata:
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: true
+      custom: [ ]
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: [ ]
+    queryParameters: [ ]
+    bodyParameters:
+      type:
+        name: type
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: [ ]
+      name:
+        name: name
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: [ ]
+    responses: [ ]
+    responseFields: [ ]
+  - httpMethods:
+      - GET
+    uri: 'api/base_measure_types/{id}'
+    metadata:
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: true
+      custom: [ ]
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the base measure type.'
+        required: true
+        example: consequatur
+        type: string
+        custom: [ ]
+    queryParameters: [ ]
+    bodyParameters: [ ]
+    responses:
+      - status: 200
+        content: '{"success":true,"data":{"id":1,"type":"_volume","name":"\u043c\u043b"}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '52'
+          vary: Origin
+        description: null
+    responseFields: [ ]
+  - httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/base_measure_types/{id}'
+    metadata:
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: true
+      custom: [ ]
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the base measure type.'
+        required: true
+        example: consequatur
+        type: string
+        custom: [ ]
+    queryParameters: [ ]
+    bodyParameters:
+      type:
+        name: type
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: [ ]
+      name:
+        name: name
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: [ ]
+    responses: [ ]
+    responseFields: [ ]
+  - httpMethods:
+      - DELETE
+    uri: 'api/base_measure_types/{id}'
+    metadata:
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: true
+      custom: [ ]
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the base measure type.'
+        required: true
+        example: consequatur
+        type: string
+        custom: [ ]
+    queryParameters: [ ]
+    bodyParameters: [ ]
+    responses: [ ]
+    responseFields: [ ]

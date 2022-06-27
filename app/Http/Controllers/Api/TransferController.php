@@ -10,6 +10,10 @@ use App\Http\Resources\Api\Transfer\IndexResource;
 use App\Http\Resources\Api\Transfer\ShowCollection;
 use App\Models\Transfer;
 
+/**
+ * @authenticated
+ * @group Transfer management
+ */
 class TransferController extends Controller
 {
     public function get_paginated(PaginateRequest $request, TransferFilter $filters)

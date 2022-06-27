@@ -8,6 +8,10 @@ use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Resources\Api\SystemLog\DefaultResource;
 use App\Models\SystemLog;
 
+/**
+ * @authenticated
+ * @group System Logs
+ */
 class SystemLogController extends Controller
 {
     public function get_paginated(PaginateRequest $request, SystemLogFilter $filters)

@@ -11,6 +11,10 @@ use App\Models\WriteOff;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * @authenticated
+ * @group Write Off management
+ */
 class WriteOffController extends Controller
 {
     public function get_paginated(PaginateRequest $request, WriteOffFilter $filters): JsonResponse

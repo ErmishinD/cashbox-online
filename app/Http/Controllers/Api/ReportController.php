@@ -13,6 +13,10 @@ use App\Models\ProductType;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 
+/**
+ * @authenticated
+ * @group Report endpoints
+ */
 class ReportController extends Controller
 {
     public function getWarningThresholdByStorages()

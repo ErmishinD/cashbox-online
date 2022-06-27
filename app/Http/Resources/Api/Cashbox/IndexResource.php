@@ -29,7 +29,6 @@ class IndexResource extends JsonResource
             'payment_type' => $this->payment_type,
             'transaction_type' => $this->transaction_type,
             'sell_product' => $this->sell_product_id ? new SellProductResource($this->sell_product) : null,
-            'product_purchase' => $this->product_purchase_id ? new ProductPurchaseResource($this->product_purchase) : null,
 //            'data' => $this->data,
             'operator' => new UserResource($this->operator),
             'description' => $this->description,

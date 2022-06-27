@@ -8,6 +8,10 @@ use App\Http\Requests\Api\BaseMeasureType\UpdateRequest;
 use App\Http\Resources\Api\BaseMeasureType\DefaultResource;
 use App\Repositories\BaseMeasureTypeRepository;
 
+/**
+ * @authenticated
+ * @group Base Measure Type management
+ */
 class BaseMeasureTypeController extends Controller
 {
     /**

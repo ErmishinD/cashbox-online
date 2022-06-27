@@ -19,6 +19,10 @@ use App\Services\ProductTypeService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @authenticated
+ * @group Sell Product management
+ */
 class SellProductController extends Controller
 {
     /**

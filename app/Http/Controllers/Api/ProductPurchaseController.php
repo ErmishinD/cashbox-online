@@ -21,6 +21,10 @@ use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @authenticated
+ * @group Product Purchase management
+ */
 class ProductPurchaseController extends Controller
 {
     /**

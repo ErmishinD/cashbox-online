@@ -11,6 +11,10 @@ use App\Models\Category;
 use App\Services\UploadFileService;
 use Illuminate\Http\Request;
 
+/**
+ * @authenticated
+ * @group Category management
+ */
 class CategoryController extends Controller
 {
     public function index()

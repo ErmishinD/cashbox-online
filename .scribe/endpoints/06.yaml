@@ -1,0 +1,28 @@
+name: 'Get for select'
+description: ''
+endpoints:
+  - httpMethods:
+      - POST
+    uri: api/get_for_select
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: [ ]
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: [ ]
+    queryParameters: [ ]
+    bodyParameters:
+      entities:
+        name: entities
+        description: 'Must be one of <code>Shop</code>, <code>Storage</code>, or <code>Category</code>.'
+        required: true
+        example:
+          - Shop
+        type: 'string[]'
+        custom: [ ]
+    responses: [ ]
+    responseFields: [ ]

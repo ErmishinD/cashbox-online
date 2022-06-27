@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 
+/**
+ * @authenticated
+ * @group File Upload endpoints
+ */
 class FileUploadController extends Controller
 {
     public function store(Request $request)

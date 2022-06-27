@@ -18,6 +18,10 @@ use App\Services\ShopService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @authenticated
+ * @group Shop management
+ */
 class ShopController extends Controller
 {
     /**

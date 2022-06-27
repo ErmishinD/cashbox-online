@@ -11,6 +11,10 @@ use App\Models\Role;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @authenticated
+ * @group Role management
+ */
 class RoleController extends Controller
 {
     private $role;

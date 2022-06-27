@@ -27,6 +27,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @authenticated
+ * @group Product Type management
+ */
 class ProductTypeController extends Controller
 {
     /**

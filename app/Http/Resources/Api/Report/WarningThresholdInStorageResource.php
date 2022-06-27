@@ -19,7 +19,7 @@ class WarningThresholdInStorageResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'warning_threshold' => $this->warning_threshold,
-            'current_quantity' => $this->product_purchases_sum_current_quantity ?? 0,
+            'current_quantity' => $this->product_purchases_sum_current_quantity / $this->main_measure_type->quantity ?? 0,
             'main_measure_type' => MainMeasureTypeResource::make($this->main_measure_type)
         ];
     }

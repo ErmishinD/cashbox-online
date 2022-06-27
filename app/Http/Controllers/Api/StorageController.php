@@ -25,6 +25,10 @@ use App\Services\StorageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @authenticated
+ * @group Storage management
+ */
 class StorageController extends Controller
 {
     /**

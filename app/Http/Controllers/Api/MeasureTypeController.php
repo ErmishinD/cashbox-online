@@ -15,6 +15,10 @@ use App\Repositories\MeasureTypeRepository;
 use App\Services\MeasureTypeService;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @authenticated
+ * @group Measure Type management
+ */
 class MeasureTypeController extends Controller
 {
     /**

@@ -11,6 +11,9 @@ use App\Models\SellProduct;
 use App\Models\SellProductGroup;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @hideFromAPIDocumentation
+ */
 class SellableController extends Controller
 {
     public function get_paginated(

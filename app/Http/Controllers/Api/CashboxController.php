@@ -20,6 +20,10 @@ use App\Repositories\CashboxRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @authenticated
+ * @group Cashbox management
+ */
 class CashboxController extends Controller
 {
     /**
