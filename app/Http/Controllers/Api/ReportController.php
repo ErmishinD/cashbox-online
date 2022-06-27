@@ -55,7 +55,7 @@ class ReportController extends Controller
                     });
             }], 'current_quantity')
             ->havingRaw('((product_purchases_sum_current_quantity - product_types.warning_threshold) is NULL) OR (product_purchases_sum_current_quantity - product_types.warning_threshold) < 0')
-            ->orderByRaw('(product_purchases_sum_current_quantity - product_types.warning_threshold) ASC')
+            ->orderByRaw('(product_purchases_sum_current_quantity * 100 / product_types.warning_threshold) DESC')
             ->get();
         return WarningThresholdInStorageResource::collection($product_types);
     }
