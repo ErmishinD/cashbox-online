@@ -77,9 +77,9 @@ class ReportController extends Controller
         return response()->json([
             'data' => ProfitByShopResource::collection($transactions),
             'sum_data' => [
-                'sum_amount' => $transactions->sum('sum_amount'),
-                'sum_self_cost' => $transactions->sum('sum_self_cost'),
-                'sum_profit' => $transactions->sum('sum_profit'),
+                'sum_amount' => round($transactions->sum('sum_amount'), 2),
+                'sum_self_cost' => round($transactions->sum('sum_self_cost'), 2),
+                'sum_profit' => round($transactions->sum('sum_profit'), 2),
             ]
         ]);
     }
