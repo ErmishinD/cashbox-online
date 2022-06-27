@@ -26,7 +26,8 @@ class DateRangeRequest extends FormRequest
     {
         return [
             'start_date' => ['required'],
-            'end_date' => ['required']
+            'end_date' => ['required'],
+            'shop_id' => ['nullable']
         ];
     }
 

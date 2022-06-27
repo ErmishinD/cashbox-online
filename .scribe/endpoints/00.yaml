@@ -1,23 +1,25 @@
 name: 'Base Measure Type management'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - GET
     uri: api/base_measure_types
     metadata:
       title: 'Display a listing of the resource.'
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"success":true,"data":[{"id":1,"type":"_volume","name":"\u043c\u043b"},{"id":2,"type":"_weight","name":"\u0433"},{"id":3,"type":"_quantity","name":"\u0448\u0442"}]}'
         headers:
           cache-control: 'no-cache, private'
@@ -26,21 +28,22 @@ endpoints:
           x-ratelimit-remaining: '53'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - POST
     uri: api/base_measure_types
     metadata:
       title: 'Store a newly created resource in storage.'
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       type:
         name: type
@@ -48,24 +51,25 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       name:
         name: name
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - GET
     uri: 'api/base_measure_types/{id}'
     metadata:
       title: 'Display the specified resource.'
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -77,11 +81,12 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"success":true,"data":{"id":1,"type":"_volume","name":"\u043c\u043b"}}'
         headers:
           cache-control: 'no-cache, private'
@@ -90,8 +95,9 @@ endpoints:
           x-ratelimit-remaining: '52'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - PUT
       - PATCH
     uri: 'api/base_measure_types/{id}'
@@ -99,7 +105,7 @@ endpoints:
       title: 'Update the specified resource in storage.'
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -111,8 +117,8 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
-    queryParameters: [ ]
+        custom: []
+    queryParameters: []
     bodyParameters:
       type:
         name: type
@@ -120,24 +126,25 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       name:
         name: name
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - DELETE
     uri: 'api/base_measure_types/{id}'
     metadata:
       title: 'Remove the specified resource from storage.'
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -149,8 +156,8 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
-    responses: [ ]
-    responseFields: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []

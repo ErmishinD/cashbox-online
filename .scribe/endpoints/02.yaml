@@ -1,23 +1,25 @@
 name: 'Category management'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - GET
     uri: api/categories/get_for_select
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"data":[{"id":1,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438"},{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"},{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c"},{"id":4,"name":"\u041a\u043e\u0441\u0442\u044e\u043c\u044b"},{"id":5,"name":"\u041a\u043e\u043a\u0442\u0435\u0439\u043b\u0438"},{"id":6,"name":"\u041d\u0430\u043f\u0438\u0442\u043a\u0438"},{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"},{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430"},{"id":9,"name":"\u041d\u0430\u043f\u0438\u0442\u043a\u0438"},{"id":10,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438"}]}'
         headers:
           cache-control: 'no-cache, private'
@@ -26,24 +28,26 @@ endpoints:
           x-ratelimit-remaining: '46'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - GET
     uri: api/categories
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"data":[{"id":1,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":0,"sell_products_count":2},{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":11,"sell_products_count":8},{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":5,"sell_products_count":5},{"id":4,"name":"\u041a\u043e\u0441\u0442\u044e\u043c\u044b","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":0,"sell_products_count":0},{"id":5,"name":"\u041a\u043e\u043a\u0442\u0435\u0439\u043b\u0438","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":5,"sell_products_count":3},{"id":6,"name":"\u041d\u0430\u043f\u0438\u0442\u043a\u0438","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":1,"sell_products_count":2},{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":5,"sell_products_count":7},{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":0,"sell_products_count":6},{"id":9,"name":"\u041d\u0430\u043f\u0438\u0442\u043a\u0438","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":0,"sell_products_count":1},{"id":10,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":0,"sell_products_count":1}]}'
         headers:
           cache-control: 'no-cache, private'
@@ -52,21 +56,22 @@ endpoints:
           x-ratelimit-remaining: '45'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - POST
     uri: api/categories
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       name:
         name: name
@@ -74,31 +79,32 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       company_id:
         name: company_id
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       photo:
         name: photo
         description: ''
         required: false
         example: null
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - GET
     uri: 'api/categories/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -110,11 +116,12 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"data":{"id":1,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438","photo":"https:\/\/cashbox-online.test\/images\/default_card_img.png","product_types_count":0,"sell_products_count":2}}'
         headers:
           cache-control: 'no-cache, private'
@@ -123,8 +130,9 @@ endpoints:
           x-ratelimit-remaining: '44'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - PUT
       - PATCH
     uri: 'api/categories/{id}'
@@ -132,7 +140,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -144,8 +152,8 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
+        custom: []
+    queryParameters: []
     bodyParameters:
       name:
         name: name
@@ -153,24 +161,25 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       photo:
         name: photo
         description: ''
         required: false
         example: null
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - DELETE
     uri: 'api/categories/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -182,8 +191,8 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
-    responses: [ ]
-    responseFields: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []

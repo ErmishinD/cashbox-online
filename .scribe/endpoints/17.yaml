@@ -1,20 +1,21 @@
 name: 'System Logs'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - POST
     uri: api/system_logs/get_paginated
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       per_page:
         name: per_page
@@ -22,13 +23,13 @@ endpoints:
         required: true
         example: 17
         type: integer
-        custom: [ ]
+        custom: []
       page:
         name: page
         description: ''
         required: true
         example: 17
         type: integer
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
+        custom: []
+    responses: []
+    responseFields: []

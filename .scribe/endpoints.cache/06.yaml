@@ -3,20 +3,21 @@
 name: 'Get for select'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - POST
     uri: api/get_for_select
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       entities:
         name: entities
@@ -25,6 +26,6 @@ endpoints:
         example:
           - Shop
         type: 'string[]'
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
+        custom: []
+    responses: []
+    responseFields: []

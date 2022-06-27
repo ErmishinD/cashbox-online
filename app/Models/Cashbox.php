@@ -84,12 +84,24 @@ class Cashbox extends Model implements SystemLoggable
         return $this->hasMany(Cashbox::class, 'parent_id');
     }
 
+    public function category()
+    {
+        return $this->hasOneThrough(
+            Category::class,
+            SellProduct::class,
+            'id',
+            'id',
+            'sell_product_id',
+            'category_id'
+        );
+    }
+
     public function scopeNotCollected(Builder $builder)
     {
         return $builder->whereNull('collected_at');
     }
 
-    public function scopeCollected(Builder $builder, $collected_at=null)
+    public function scopeCollected(Builder $builder, $collected_at = null)
     {
         if (is_null($collected_at))
             return $builder->whereNotNull('collected_at');

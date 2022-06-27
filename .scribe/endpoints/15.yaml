@@ -1,20 +1,21 @@
 name: 'Shop management'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - POST
     uri: api/shops/get_by_company
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       company_id:
         name: company_id
@@ -22,26 +23,28 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - GET
     uri: api/shops
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"success":true,"data":[{"id":1,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0413\u043e\u0433\u043e\u043b\u044f","address":"\u0443\u043b. \u0413\u043e\u0433\u043e\u043b\u044f, 155 \u0430"},{"id":2,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f","address":"\u0443\u043b. \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f, 46 \u0430"},{"id":3,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0438\u0439","address":"\u0443\u043b. \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0430\u044f, 14"},{"id":4,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e","address":"\u043f\u0440. \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e, 5\/35"},{"id":5,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d 1","address":"\u0443\u043b. \u041a\u0430\u043a\u0430\u044f-\u0442\u043e, \u0434. 123"}]}'
         headers:
           cache-control: 'no-cache, private'
@@ -50,21 +53,22 @@ endpoints:
           x-ratelimit-remaining: '57'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - POST
     uri: api/shops
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       name:
         name: name
@@ -72,14 +76,14 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       address:
         name: address
         description: ''
         required: false
         example: null
         type: string
-        custom: [ ]
+        custom: []
       storage_names:
         name: storage_names
         description: ''
@@ -87,24 +91,25 @@ endpoints:
         example:
           - consequatur
         type: 'string[]'
-        custom: [ ]
+        custom: []
       company_id:
         name: company_id
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - GET
     uri: 'api/shops/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -116,11 +121,12 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"success":true,"data":{"id":1,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0413\u043e\u0433\u043e\u043b\u044f","address":"\u0443\u043b. \u0413\u043e\u0433\u043e\u043b\u044f, 155 \u0430","storages":[{"id":1,"shop_id":1,"name":"\u0421\u043a\u043b\u0430\u0434 \u0413\u043e\u0433\u043e\u043b\u044f"}]}}'
         headers:
           cache-control: 'no-cache, private'
@@ -129,8 +135,9 @@ endpoints:
           x-ratelimit-remaining: '56'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - PUT
       - PATCH
     uri: 'api/shops/{id}'
@@ -138,7 +145,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -150,8 +157,8 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
+        custom: []
+    queryParameters: []
     bodyParameters:
       name:
         name: name
@@ -159,14 +166,14 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       address:
         name: address
         description: ''
         required: false
         example: null
         type: string
-        custom: [ ]
+        custom: []
       storage_names:
         name: storage_names
         description: ''
@@ -174,17 +181,18 @@ endpoints:
         example:
           - consequatur
         type: 'string[]'
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - DELETE
     uri: 'api/shops/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -196,8 +204,8 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
-    responses: [ ]
-    responseFields: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []

@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Report\DateRangeRequest;
+use App\Http\Resources\Api\Report\ProfitByCategoryCollection;
+use App\Http\Resources\Api\Report\ProfitByDayCollection;
 use App\Http\Resources\Api\Report\ProfitByShopResource;
 use App\Http\Resources\Api\Report\WarningThresholdByStoragesResource;
 use App\Http\Resources\Api\Report\WarningThresholdInStorageResource;
 use App\Models\Cashbox;
+use App\Models\Category;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
+use App\Models\SellProduct;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 
@@ -70,6 +74,9 @@ class ReportController extends Controller
             ->groupBy('shop_id')
             ->with('shop')
             ->selectRaw('shop_id, sum(amount) as sum_amount, sum(self_cost) as sum_self_cost, sum(profit) as sum_profit')
+            ->when($request->shop_id, function ($query) use ($request) {
+                $query->where('shop_id', $request->shop_id);
+            })
             ->whereBetween('created_at', [$data['start_date'], $data['end_date']])
             ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
             ->get();
@@ -82,5 +89,41 @@ class ReportController extends Controller
                 'sum_profit' => round($transactions->sum('sum_profit'), 2),
             ]
         ]);
+    }
+
+    public function getProfitByDay(DateRangeRequest $request)
+    {
+        $this->authorize('Report_profit');
+        $data = $request->validated();
+
+        $transactions = Cashbox::query()
+            ->groupByRaw('date(created_at)')
+            ->selectRaw('date(created_at) as date, sum(amount) as sum_amount, sum(self_cost) as sum_self_cost, sum(profit) as sum_profit')
+            ->when($request->shop_id, function ($query) use ($request) {
+                $query->where('shop_id', $request->shop_id);
+            })
+            ->whereBetween('created_at', [$data['start_date'], $data['end_date']])
+            ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
+            ->get();
+
+        return ProfitByDayCollection::make($transactions)->dateRange([$data['start_date'], $data['end_date']]);
+    }
+
+    public function getProfitByCategory(DateRangeRequest $request)
+    {
+        $this->authorize('Report_profit');
+        $data = $request->validated();
+
+        $categories = Category::get();
+
+        $transactions = Cashbox::query()
+            ->join('sell_products', 'cashboxes.sell_product_id', '=', 'sell_products.id')
+            ->groupByRaw('sell_products.category_id')
+            ->selectRaw('date(cashboxes.created_at) as date, sell_products.category_id, sum(amount) as sum_amount, sum(self_cost) as sum_self_cost, sum(profit) as sum_profit')
+            ->whereBetween('cashboxes.created_at', [$data['start_date'], $data['end_date']])
+            ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
+            ->get()->dump();
+
+        return ProfitByCategoryCollection::make($transactions)->categories($categories);
     }
 }

@@ -185,10 +185,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{write_off}', [WriteOffController::class, 'show']);
     });
 
+    /*
+     * Report
+     */
     Route::prefix('reports')->group(function () {
         Route::get('warning_threshold', [ReportController::class, 'getWarningThresholdByStorages']);
         Route::get('warning_threshold/{storage_id}', [ReportController::class, 'getWarningThresholdInStorage']);
 
         Route::get('profit', [ReportController::class, 'getProfit']);
+        Route::get('profit_by_day', [ReportController::class, 'getProfitByDay']);
+        Route::get('profit_by_category', [ReportController::class, 'getProfitByCategory']);
     });
 });

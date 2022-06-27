@@ -1,20 +1,21 @@
 name: 'File Upload endpoints'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - POST
     uri: api/file_upload
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
-    responses: [ ]
-    responseFields: [ ]
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []

@@ -1,23 +1,25 @@
 name: 'Role management'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - GET
     uri: api/roles
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 500
+      -
+        status: 500
         content: |-
           {
               "message": "Class name must be a valid object or a string",
@@ -692,21 +694,22 @@ endpoints:
           x-ratelimit-remaining: '24'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - POST
     uri: api/roles
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       name:
         name: name
@@ -714,21 +717,21 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       human_name:
         name: human_name
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       company_id:
         name: company_id
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       permissions:
         name: permissions
         description: ''
@@ -736,17 +739,18 @@ endpoints:
         example:
           - consequatur
         type: 'string[]'
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - GET
     uri: 'api/roles/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -758,11 +762,12 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"success":true,"data":{"id":1,"name":"Super Admin","human_name":"Super Administrator","permissions":[]}}'
         headers:
           cache-control: 'no-cache, private'
@@ -771,8 +776,9 @@ endpoints:
           x-ratelimit-remaining: '23'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - PUT
       - PATCH
     uri: 'api/roles/{id}'
@@ -780,7 +786,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -792,8 +798,8 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
+        custom: []
+    queryParameters: []
     bodyParameters:
       name:
         name: name
@@ -801,14 +807,14 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       human_name:
         name: human_name
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       permissions:
         name: permissions
         description: ''
@@ -816,17 +822,18 @@ endpoints:
         example:
           - consequatur
         type: 'string[]'
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - DELETE
     uri: 'api/roles/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -838,8 +845,8 @@ endpoints:
         required: true
         example: 1
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
-    responses: [ ]
-    responseFields: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []

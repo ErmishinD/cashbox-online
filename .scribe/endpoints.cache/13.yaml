@@ -3,23 +3,25 @@
 name: 'Sell Product Group management'
 description: ''
 endpoints:
-  - httpMethods:
+  -
+    httpMethods:
       - GET
     uri: api/sell_product_groups
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 200
+      -
+        status: 200
         content: '{"success":true,"data":[]}'
         headers:
           cache-control: 'no-cache, private'
@@ -28,21 +30,22 @@ endpoints:
           x-ratelimit-remaining: '32'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - POST
     uri: api/sell_product_groups
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: [ ]
-    queryParameters: [ ]
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
       company_id:
         name: company_id
@@ -50,21 +53,21 @@ endpoints:
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       name:
         name: name
         description: ''
         required: true
         example: consequatur
         type: string
-        custom: [ ]
+        custom: []
       has_discount:
         name: has_discount
         description: ''
         required: false
         example: false
         type: boolean
-        custom: [ ]
+        custom: []
       sell_products:
         name: sell_products
         description: ''
@@ -72,24 +75,25 @@ endpoints:
         example:
           - consequatur
         type: 'string[]'
-        custom: [ ]
+        custom: []
       photo:
         name: photo
         description: ''
         required: false
         example: null
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - GET
     uri: 'api/sell_product_groups/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -101,11 +105,12 @@ endpoints:
         required: true
         example: 17
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
     responses:
-      - status: 404
+      -
+        status: 404
         content: |-
           {
               "message": "No query results for model [App\\Models\\SellProductGroup] 1",
@@ -668,8 +673,9 @@ endpoints:
           x-ratelimit-remaining: '31'
           vary: Origin
         description: null
-    responseFields: [ ]
-  - httpMethods:
+    responseFields: []
+  -
+    httpMethods:
       - PUT
       - PATCH
     uri: 'api/sell_product_groups/{id}'
@@ -677,7 +683,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -689,8 +695,8 @@ endpoints:
         required: true
         example: 17
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
+        custom: []
+    queryParameters: []
     bodyParameters:
       company_id:
         name: company_id
@@ -698,21 +704,21 @@ endpoints:
         required: false
         example: null
         type: string
-        custom: [ ]
+        custom: []
       name:
         name: name
         description: ''
         required: false
         example: null
         type: string
-        custom: [ ]
+        custom: []
       has_discount:
         name: has_discount
         description: ''
         required: false
         example: true
         type: boolean
-        custom: [ ]
+        custom: []
       sell_products:
         name: sell_products
         description: ''
@@ -720,24 +726,25 @@ endpoints:
         example:
           - consequatur
         type: 'string[]'
-        custom: [ ]
+        custom: []
       photo:
         name: photo
         description: ''
         required: false
         example: null
         type: string
-        custom: [ ]
-    responses: [ ]
-    responseFields: [ ]
-  - httpMethods:
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
       - DELETE
     uri: 'api/sell_product_groups/{id}'
     metadata:
       title: ''
       description: ''
       authenticated: true
-      custom: [ ]
+      custom: []
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -749,8 +756,8 @@ endpoints:
         required: true
         example: 17
         type: integer
-        custom: [ ]
-    queryParameters: [ ]
-    bodyParameters: [ ]
-    responses: [ ]
-    responseFields: [ ]
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
