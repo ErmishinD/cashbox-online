@@ -5,6 +5,8 @@ namespace App\Filters;
 
 class ProductPurchaseFilter extends QueryFilter
 {
+    protected string $table_name = 'product_purchases';
+
     public function storage_id($value)
     {
         $this->builder->where('storage_id', $value);

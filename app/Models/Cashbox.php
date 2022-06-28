@@ -96,6 +96,11 @@ class Cashbox extends Model implements SystemLoggable
         );
     }
 
+    public function product_consumptions()
+    {
+        return $this->morphMany(ProductConsumption::class, 'consumable');
+    }
+
     public function scopeNotCollected(Builder $builder)
     {
         return $builder->whereNull('collected_at');

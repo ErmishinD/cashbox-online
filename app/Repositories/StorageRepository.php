@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Models\Cashbox;
+use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\Shop;
@@ -88,6 +90,20 @@ class StorageRepository extends BaseRepository
                     'parent_id' => $parent_id,
                     'data' => $used_purchases[$product_type['id']]
                 ]);
+
+                foreach ($used_purchases[$product_type['id']] as $purchase) {
+                    ProductConsumption::create([
+                        'company_id' => $data['company_id'],
+                        'product_purchase_id' => $purchase['id'],
+                        'consumable_type' => WriteOff::class,
+                        'consumable_id' => $write_off->id,
+                        'quantity' => $purchase['quantity'],
+                        'cost' => $purchase['cost'],
+                        'income' => 0,
+                        'profit' => -$purchase['cost'],
+                    ]);
+                }
+
                 $write_offs->push($write_off);
             }
         });

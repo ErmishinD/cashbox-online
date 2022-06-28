@@ -8,6 +8,8 @@ use App\Models\ProductType;
 
 class TransferFilter extends QueryFilter
 {
+    protected string $table_name = 'transfers';
+
     public function transferred_by($value)
     {
         $this->builder->where('transferred_by', $value);

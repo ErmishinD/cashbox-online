@@ -19,6 +19,7 @@ use App\Models\Cashbox;
 use App\Repositories\CashboxRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @authenticated
@@ -98,19 +99,23 @@ class CashboxController extends Controller
     {
         $this->authorize('Cashbox_delete');
 
-        // before deleting payment - restore product types in storage
-        if (!empty($cashbox->data)) {
-            foreach (json_decode($cashbox->data, true) as $product_type_id => $purchases) {
-                foreach ($purchases as $purchase) {
-                    $product_purchase = \App\Models\ProductPurchase::find($purchase['id']);
-                    $product_purchase->current_quantity += $purchase['quantity'];
-                    $product_purchase->current_cost += $purchase['cost'];
-                    $product_purchase->save();
+        DB::transaction(function () use ($cashbox) {
+            // before deleting payment - restore product types in storage
+            if (!empty($cashbox->data)) {
+                foreach (json_decode($cashbox->data, true) as $product_type_id => $purchases) {
+                    foreach ($purchases as $purchase) {
+                        $product_purchase = \App\Models\ProductPurchase::find($purchase['id']);
+                        $product_purchase->current_quantity += $purchase['quantity'];
+                        $product_purchase->current_cost += $purchase['cost'];
+                        $product_purchase->save();
+                    }
                 }
             }
-        }
 
-        $cashbox->delete();
+            $cashbox->product_consumptions()->delete();
+            $cashbox->delete();
+        });
+
         return response()->json(['success' => true], 202);
     }
 

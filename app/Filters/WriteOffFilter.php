@@ -5,6 +5,8 @@ namespace App\Filters;
 
 class WriteOffFilter extends QueryFilter
 {
+    protected string $table_name = 'write_offs';
+
     public function user_id($value)
     {
         $this->builder->where('user_id', $value);

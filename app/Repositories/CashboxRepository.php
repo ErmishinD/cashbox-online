@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Cashbox;
+use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\Shop;
@@ -68,6 +69,23 @@ class CashboxRepository extends BaseRepository
 
                 $data['data'] = json_encode($used_purchases);
                 $payment = $this->model->create($data);
+
+                foreach ($used_purchases as $product_type_id => $purchases) {
+                    foreach ($purchases as $purchase) {
+                        $percent = $purchase['cost'] / $payment->self_cost;
+                        ProductConsumption::create([
+                            'company_id' => $data['company_id'],
+                            'product_purchase_id' => $purchase['id'],
+                            'consumable_type' => Cashbox::class,
+                            'consumable_id' => $payment->id,
+                            'quantity' => $purchase['quantity'],
+                            'cost' => $purchase['cost'],
+                            'income' => $payment->amount * $percent,
+                            'profit' => $payment->profit * $percent,
+                        ]);
+                    }
+                }
+
                 $payments->push($payment);
             }
         });

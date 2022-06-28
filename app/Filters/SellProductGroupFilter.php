@@ -5,6 +5,8 @@ namespace App\Filters;
 
 class SellProductGroupFilter extends QueryFilter
 {
+    protected string $table_name = 'sell_product_groups';
+
     public function name($value)
     {
         $this->builder->where('name', 'like', "%$value%");

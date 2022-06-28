@@ -11,6 +11,7 @@ abstract class QueryFilter
 {
     protected $request;
     protected $builder;
+    protected string $table_name;
 
     public function __construct(Request $request)
     {
@@ -27,11 +28,17 @@ abstract class QueryFilter
             }
         }
 
+        $was_sorted = false;
         foreach ($this->sorting() as $sort) {
-            if ($sort && method_exists($this, "sort_by_".$sort['field']) && in_array($sort['type'], ['asc', 'desc'])) {
-                $sort_function = "sort_by_".$sort['field'];
+            if ($sort && method_exists($this, "sort_by_" . $sort['field']) && in_array($sort['type'], ['asc', 'desc'])) {
+                $sort_function = "sort_by_" . $sort['field'];
                 $this->$sort_function($sort['type']);
+                $was_sorted = true;
             }
+        }
+
+        if (!$was_sorted) {
+            $this->sort_by_created_at('desc');
         }
 
         return $this->builder;
@@ -45,5 +52,10 @@ abstract class QueryFilter
     public function sorting()
     {
         return $this->request->get('sort') ?? [];
+    }
+
+    protected function sort_by_created_at($direction)
+    {
+        $this->builder->orderBy($this->table_name . '.created_at', $direction);
     }
 }

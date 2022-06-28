@@ -643,11 +643,6 @@ class CashboxControllerTest extends TestCase
                                 'id' => $payment1->sell_product_id,
                             ]
                             : null,
-                        'product_purchase' => $payment1->product_purchase_id
-                            ? [
-                                'id' => $payment1->product_purchase_id,
-                            ]
-                            : null,
                         'operator' => [
                             'id' => $payment1->operator_id
                         ],
@@ -667,11 +662,6 @@ class CashboxControllerTest extends TestCase
                                 'id' => $payment2->sell_product_id,
                             ]
                             : null,
-                        'product_purchase' => $payment2->product_purchase_id
-                            ? [
-                                'id' => $payment2->product_purchase_id,
-                            ]
-                            : null,
                         'operator' => [
                             'id' => $payment2->operator_id
                         ],
@@ -689,11 +679,6 @@ class CashboxControllerTest extends TestCase
                         'sell_product' => $payment3->sell_product_id
                             ? [
                                 'id' => $payment3->sell_product_id,
-                            ]
-                            : null,
-                        'product_purchase' => $payment3->product_purchase_id
-                            ? [
-                                'id' => $payment3->product_purchase_id,
                             ]
                             : null,
                         'operator' => [

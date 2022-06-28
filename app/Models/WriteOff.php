@@ -40,6 +40,11 @@ class WriteOff extends Model implements SystemLoggable
         return $this->hasMany(WriteOff::class, 'parent_id');
     }
 
+    public function product_consumptions()
+    {
+        return $this->morphMany(ProductConsumption::class, 'consumable');
+    }
+
 
     public function getTextForAudit(string $action, ?array $data): string
     {

@@ -7,6 +7,8 @@ use App\Models\Category;
 
 class ProductTypeFilter extends QueryFilter
 {
+    protected string $table_name = 'product_types';
+
     public function name($value)
     {
         $this->builder->where('name', 'like', "%$value%");
