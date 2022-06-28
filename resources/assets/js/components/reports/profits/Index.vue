@@ -24,7 +24,7 @@
     {{$t('Прибыль по категориям')}}
   </div>
 
-  <PieChart :chartData="profitDataByCategory" :options="categoryOptions" />
+  <BarChart :chartData="profitDataByCategory" :options="categoryOptions" />
 
   
  
@@ -43,14 +43,14 @@
   import '@vuepic/vue-datepicker/dist/main.css'
 
   import { LineChart } from 'vue-chart-3';
-  import { PieChart } from 'vue-chart-3';
+  import { BarChart } from 'vue-chart-3';
   import { Chart, ChartData, ChartOptions, registerables } from "chart.js";
 
   Chart.register(...registerables);
 
 export default {
   components: { Datepicker,
-  LineChart, PieChart },
+  LineChart, BarChart },
   data(){
     return {
       date:'',
