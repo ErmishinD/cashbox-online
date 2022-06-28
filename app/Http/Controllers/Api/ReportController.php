@@ -122,7 +122,7 @@ class ReportController extends Controller
             ->selectRaw('date(cashboxes.created_at) as date, sell_products.category_id, sum(amount) as sum_amount, sum(self_cost) as sum_self_cost, sum(profit) as sum_profit')
             ->whereBetween('cashboxes.created_at', [$data['start_date'], $data['end_date']])
             ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
-            ->get()->dump();
+            ->get();
 
         return ProfitByCategoryCollection::make($transactions)->categories($categories);
     }
