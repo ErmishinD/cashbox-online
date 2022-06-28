@@ -120,6 +120,9 @@ class ReportController extends Controller
             ->join('sell_products', 'cashboxes.sell_product_id', '=', 'sell_products.id')
             ->groupByRaw('sell_products.category_id')
             ->selectRaw('date(cashboxes.created_at) as date, sell_products.category_id, sum(amount) as sum_amount, sum(self_cost) as sum_self_cost, sum(profit) as sum_profit')
+            ->when($request->shop_id, function ($query) use ($request) {
+                $query->where('shop_id', $request->shop_id);
+            })
             ->whereBetween('cashboxes.created_at', [$data['start_date'], $data['end_date']])
             ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
             ->get();
