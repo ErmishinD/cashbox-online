@@ -6,6 +6,7 @@ use App\Models\Cashbox;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\MeasureType;
+use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
@@ -14,6 +15,7 @@ use App\Models\Shop;
 use App\Models\Storage;
 use App\Models\User;
 use App\Repositories\RoleRepository;
+use App\Services\ProductPurchaseService;
 use Illuminate\Database\Seeder;
 
 class DummyDataSeeder extends Seeder
@@ -390,7 +392,7 @@ class DummyDataSeeder extends Seeder
         }
 
         // создать продукты для продажи
-        $sell_products = SellProduct::factory()->count(300)->create();
+        $sell_products = SellProduct::factory()->count(50)->create();
         foreach ($sell_products as $sell_product) {
             $allowed_product_types = $product_types->where('company_id', $sell_product->company_id)->pluck('id');
             if ($allowed_product_types->isNotEmpty()) {
@@ -404,22 +406,22 @@ class DummyDataSeeder extends Seeder
         }
 
         // создать группы товаров для продажи
-        $sell_groups = SellProductGroup::factory()->count(100)->create();
-        foreach ($sell_groups as $sell_group) {
-            $allowed_sell_products = $sell_products->where('company_id', $sell_group->company_id)->pluck('id');
-            if ($allowed_sell_products->isNotEmpty()) {
-                $products_amount = random_int(2, 5);
-                for ($i = 1; $i <= $products_amount; $i++) {
-                    $sell_group->sell_products()->attach(
-                        $allowed_sell_products->random(),
-                        ['price' => random_int(10, 1000)]
-                    );
-                }
-            }
-
-        }
+//        $sell_groups = SellProductGroup::factory()->count(100)->create();
+//        foreach ($sell_groups as $sell_group) {
+//            $allowed_sell_products = $sell_products->where('company_id', $sell_group->company_id)->pluck('id');
+//            if ($allowed_sell_products->isNotEmpty()) {
+//                $products_amount = random_int(2, 5);
+//                for ($i = 1; $i <= $products_amount; $i++) {
+//                    $sell_group->sell_products()->attach(
+//                        $allowed_sell_products->random(),
+//                        ['price' => random_int(10, 1000)]
+//                    );
+//                }
+//            }
+//        }
 
         // создание "закупок товаров"
+        $product_purchases = collect();
         foreach ($shops as $shop) {
             $company_id = $shop->company_id;
             $director = $directors->where('company_id', $company_id)->first();
@@ -451,6 +453,7 @@ class DummyDataSeeder extends Seeder
                                 'expiration_date' => $expiration_date,
                                 'user_id' => $director->id
                             ]);
+                            $product_purchases->push($product_purchase);
                         }
                     }
                 }
@@ -461,17 +464,54 @@ class DummyDataSeeder extends Seeder
 
             $allowed_sell_products = $sell_products->where('company_id', $company_id);
             $sell_products_were_sold = $allowed_sell_products->random(ceil($allowed_sell_products->count() / 3));
+            $sell_products_were_sold->load(['product_types']);
             foreach ($sell_products_were_sold as $sell_product) {
-                Cashbox::factory()->create([
+                $data = [
                     'company_id' => $company_id,
                     'shop_id' => $shop->id,
                     'sell_product_id' => $sell_product->id,
+                    'amount' => $sell_product->price,
                     'transaction_type' => Cashbox::TRANSACTION_TYPES['in'],
                     'payment_type' => $faker->randomElement(Cashbox::PAYMENT_TYPES),
                     'operator_id' => $operators->where('company_id', $company_id)->random()->id,
                     'collected_at' => null,
                     'collector_id' => null,
-                ]);
+                ];
+                $compound = ['product_types' => []];
+                foreach ($sell_product->product_types as $product_type) {
+                    $compound['product_types'][] = ['id' => $product_type->id, 'quantity' => $product_type->pivot->quantity];
+                }
+                $used_purchases = ProductPurchaseService::subtract_product_types($product_purchases->where('company_id', $company_id), $compound);
+
+                $data['self_cost'] = 0;
+
+                foreach ($used_purchases as $product_type_id => $purchases) {
+                    foreach ($purchases as $purchase) {
+                        $data['self_cost'] += $purchase['cost'];
+                    }
+                }
+
+                $data['profit'] = $data['amount'] - $data['self_cost'];
+
+                $data['data'] = json_encode($used_purchases);
+                $payment = Cashbox::factory()->create($data);
+
+                foreach ($used_purchases as $product_type_id => $purchases) {
+                    foreach ($purchases as $purchase) {
+                        $cost = $payment->self_cost == 0 ? 1 : $payment->self_cost;
+                        $percent = $purchase['cost'] / $cost;
+                        ProductConsumption::create([
+                            'company_id' => $data['company_id'],
+                            'product_purchase_id' => $purchase['id'],
+                            'consumable_type' => Cashbox::class,
+                            'consumable_id' => $payment->id,
+                            'quantity' => $purchase['quantity'],
+                            'cost' => $purchase['cost'],
+                            'income' => $payment->amount * $percent,
+                            'profit' => $payment->profit * $percent,
+                        ]);
+                    }
+                }
             }
         }
     }
