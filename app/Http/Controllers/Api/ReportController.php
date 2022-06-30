@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Report\DateRangeRequest;
+use App\Http\Resources\Api\Report\PopularSellProductResource;
 use App\Http\Resources\Api\Report\ProfitByCategoryCollection;
 use App\Http\Resources\Api\Report\ProfitByDayCollection;
 use App\Http\Resources\Api\Report\ProfitByShopResource;
@@ -128,5 +129,24 @@ class ReportController extends Controller
             ->get();
 
         return ProfitByCategoryCollection::make($transactions)->categories($categories);
+    }
+
+    public function getPopularSellProducts(DateRangeRequest $request)
+    {
+        $this->authorize('Report_profit');
+        $data = $request->validated();
+
+        $sell_products = SellProduct::query()
+            ->select(['id', 'name'])
+            ->withCount(['cashbox' => function ($query) use ($data) {
+                $query
+                    ->when(!empty($data['shop_id']), function ($query) use ($data) {
+                        $query->where('shop_id', $data['shop_id']);
+                    })
+                    ->whereBetween('created_at', [$data['start_date'], $data['end_date']]);
+            }])
+            ->orderByDesc('cashbox_count')
+            ->get();
+        return PopularSellProductResource::collection($sell_products);
     }
 }
