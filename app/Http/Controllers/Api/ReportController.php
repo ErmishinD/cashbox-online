@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\CashboxFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\Report\DateRangeRequest;
+use App\Http\Resources\Api\Report\CashboxTransactionResource;
 use App\Http\Resources\Api\Report\PopularSellProductResource;
 use App\Http\Resources\Api\Report\ProfitByCategoryCollection;
 use App\Http\Resources\Api\Report\ProfitByDayCollection;
@@ -16,7 +19,6 @@ use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\Storage;
-use Illuminate\Http\Request;
 
 /**
  * @authenticated
@@ -129,6 +131,33 @@ class ReportController extends Controller
             ->get();
 
         return ProfitByCategoryCollection::make($transactions)->categories($categories);
+    }
+
+    public function getPaginatedTransactions(DateRangeRequest $dateRangeRequest, PaginateRequest $paginateRequest, CashboxFilter $filters)
+    {
+        $this->authorize('Report_profit');
+        $report_filter_data = $dateRangeRequest->validated();
+        $paginate_data = $paginateRequest->validated();
+
+        $transactions = Cashbox::query()
+            ->with(['sell_product', 'operator', 'collector', 'sell_product'])
+            ->when($dateRangeRequest->shop_id, function ($query) use ($dateRangeRequest) {
+                $query->where('shop_id', $dateRangeRequest->shop_id);
+            })
+            ->whereBetween('cashboxes.created_at', [$report_filter_data['start_date'], $report_filter_data['end_date']])
+            ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
+            ->filter($filters)
+            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+
+        return response()->json([
+            'pagination' => [
+                'data' => CashboxTransactionResource::collection($transactions),
+                'current_page' => $transactions->currentPage(),
+                'last_page' => $transactions->lastPage(),
+                'per_page' => $transactions->perPage(),
+                'total' => $transactions->total(),
+            ]
+        ]);
     }
 
     public function getPopularSellProducts(DateRangeRequest $request)

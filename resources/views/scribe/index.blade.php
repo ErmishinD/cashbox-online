@@ -322,6 +322,12 @@
                                     <li class="tocify-item level-2" data-unique="report-endpoints-GETapi-reports-profit_by_category">
                         <a href="#report-endpoints-GETapi-reports-profit_by_category">GET api/reports/profit_by_category</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="report-endpoints-GETapi-reports-popular_sell_products">
+                        <a href="#report-endpoints-GETapi-reports-popular_sell_products">GET api/reports/popular_sell_products</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="report-endpoints-POSTapi-reports-get_paginated_transactions">
+                        <a href="#report-endpoints-POSTapi-reports-get_paginated_transactions">POST api/reports/get_paginated_transactions</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-14" class="tocify-header">
@@ -523,7 +529,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 27 2022</li>
+        <li>Last updated: June 30 2022</li>
     </ul>
 </div>
 
@@ -541,7 +547,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">https://cashbox-online.test</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -1309,9 +1315,9 @@ vary: Origin
     &quot;success&quot;: true,
     &quot;data&quot;: {
         &quot;in&quot;: {
-            &quot;sum&quot;: 730,
-            &quot;card&quot;: 70,
-            &quot;cash&quot;: 660
+            &quot;sum&quot;: 925,
+            &quot;card&quot;: 150,
+            &quot;cash&quot;: 775
         },
         &quot;out&quot;: {
             &quot;sum&quot;: 0,
@@ -1319,9 +1325,9 @@ vary: Origin
             &quot;cash&quot;: 0
         },
         &quot;all&quot;: {
-            &quot;sum&quot;: 730,
-            &quot;card&quot;: 70,
-            &quot;cash&quot;: 660
+            &quot;sum&quot;: 925,
+            &quot;card&quot;: 150,
+            &quot;cash&quot;: 775
         }
     }
 }</code>
@@ -1542,6 +1548,16 @@ vary: Origin
             }
         },
         {
+            &quot;collected_at&quot;: &quot;2022-06-24 12:29:02&quot;,
+            &quot;amount&quot;: 455,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            }
+        },
+        {
             &quot;collected_at&quot;: &quot;2022-06-23 13:16:22&quot;,
             &quot;amount&quot;: 205,
             &quot;collector&quot;: {
@@ -1564,6 +1580,16 @@ vary: Origin
         {
             &quot;collected_at&quot;: &quot;2022-06-23 10:50:44&quot;,
             &quot;amount&quot;: 330,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-24 12:28:21&quot;,
+            &quot;amount&quot;: 85,
             &quot;collector&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
@@ -1604,6 +1630,46 @@ vary: Origin
         {
             &quot;collected_at&quot;: &quot;2022-06-23 12:46:43&quot;,
             &quot;amount&quot;: 310,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-28 13:55:25&quot;,
+            &quot;amount&quot;: 480,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-27 12:53:32&quot;,
+            &quot;amount&quot;: 30,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-24 12:33:02&quot;,
+            &quot;amount&quot;: 30,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-29 12:18:17&quot;,
+            &quot;amount&quot;: 255,
             &quot;collector&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
@@ -1803,71 +1869,183 @@ vary: Origin
     &quot;success&quot;: true,
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 269,
+            &quot;id&quot;: 356,
             &quot;shop&quot;: {
                 &quot;id&quot;: 4,
                 &quot;name&quot;: &quot;Магазин Маяковского&quot;,
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
-                &quot;id&quot;: 16,
+                &quot;id&quot;: 28,
                 &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
                 &quot;has_discount&quot;: 0
             },
             &quot;operator&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Юрий Билов&quot;,
-                &quot;user&quot;: &quot;yurii_bilov&quot;,
-                &quot;email&quot;: &quot;yurii_bilov@admin.com&quot;
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 12:58&quot;
+            &quot;created_at&quot;: &quot;2022-06-30 15:01&quot;
         },
         {
-            &quot;id&quot;: 268,
+            &quot;id&quot;: 355,
             &quot;shop&quot;: {
                 &quot;id&quot;: 4,
                 &quot;name&quot;: &quot;Магазин Маяковского&quot;,
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 14:55&quot;
+        },
+        {
+            &quot;id&quot;: 354,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
-                &quot;id&quot;: 1,
+                &quot;id&quot;: 28,
                 &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Эспрессо&quot;,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 14:04&quot;
+        },
+        {
+            &quot;id&quot;: 353,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;10.51&quot;,
+            &quot;profit&quot;: &quot;9.49&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 5,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0
             },
             &quot;operator&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Юрий Билов&quot;,
-                &quot;user&quot;: &quot;yurii_bilov&quot;,
-                &quot;email&quot;: &quot;yurii_bilov@admin.com&quot;
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 12:56&quot;
+            &quot;created_at&quot;: &quot;2022-06-30 11:48&quot;
         },
         {
-            &quot;id&quot;: 266,
+            &quot;id&quot;: 352,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;14.21&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 09:57&quot;
+        },
+        {
+            &quot;id&quot;: 351,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;-0.79&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 09:31&quot;
+        },
+        {
+            &quot;id&quot;: 350,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
                 &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
             },
             &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;self_cost&quot;: &quot;11.08&quot;,
+            &quot;profit&quot;: &quot;8.92&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -1884,25 +2062,165 @@ vary: Origin
                 &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-24 10:40&quot;
+            &quot;created_at&quot;: &quot;2022-06-29 18:01&quot;
         },
         {
-            &quot;id&quot;: 265,
+            &quot;id&quot;: 349,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;12.26&quot;,
+            &quot;profit&quot;: &quot;17.74&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 3,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Лате&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 17:45&quot;
+        },
+        {
+            &quot;id&quot;: 348,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;15.00&quot;,
+            &quot;self_cost&quot;: &quot;9.00&quot;,
+            &quot;profit&quot;: &quot;6.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 25,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Батончик злаковый&quot;,
+                &quot;price&quot;: &quot;15.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 17:15&quot;
+        },
+        {
+            &quot;id&quot;: 347,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.01&quot;,
+            &quot;profit&quot;: &quot;-2.01&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 17:00&quot;
+        },
+        {
+            &quot;id&quot;: 346,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;10.67&quot;,
+            &quot;profit&quot;: &quot;9.33&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 17:00&quot;
+        },
+        {
+            &quot;id&quot;: 345,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 16:04&quot;
+        },
+        {
+            &quot;id&quot;: 344,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
                 &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
             },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.08&quot;,
+            &quot;profit&quot;: &quot;8.92&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
+                &quot;id&quot;: 4,
                 &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0
             },
             &quot;operator&quot;: {
@@ -1912,18 +2230,186 @@ vary: Origin
                 &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-24 10:37&quot;
+            &quot;created_at&quot;: &quot;2022-06-29 16:00&quot;
         },
         {
-            &quot;id&quot;: 264,
+            &quot;id&quot;: 343,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.08&quot;,
+            &quot;profit&quot;: &quot;8.92&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 15:18&quot;
+        },
+        {
+            &quot;id&quot;: 342,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.08&quot;,
+            &quot;profit&quot;: &quot;8.92&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 14:53&quot;
+        },
+        {
+            &quot;id&quot;: 341,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 14:44&quot;
+        },
+        {
+            &quot;id&quot;: 340,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 14:44&quot;
+        },
+        {
+            &quot;id&quot;: 339,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
                 &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;self_cost&quot;: &quot;7.04&quot;,
+            &quot;profit&quot;: &quot;2.96&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 32,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Чай ISLA English Breakfast для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 14:22&quot;
+        },
+        {
+            &quot;id&quot;: 338,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;98.24&quot;,
+            &quot;profit&quot;: &quot;-88.24&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 13:04&quot;
+        },
+        {
+            &quot;id&quot;: 337,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -1940,18 +2426,774 @@ vary: Origin
                 &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-24 08:52&quot;
+            &quot;created_at&quot;: &quot;2022-06-29 12:53&quot;
         },
         {
-            &quot;id&quot;: 263,
+            &quot;id&quot;: 336,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.08&quot;,
+            &quot;profit&quot;: &quot;-2.08&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 12:32&quot;
+        },
+        {
+            &quot;id&quot;: 335,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.08&quot;,
+            &quot;profit&quot;: &quot;-2.08&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 12:32&quot;
+        },
+        {
+            &quot;id&quot;: 331,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 12:10&quot;
+        },
+        {
+            &quot;id&quot;: 328,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;-0.43&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 10:19&quot;
+        },
+        {
+            &quot;id&quot;: 327,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;14.58&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29 10:19&quot;
+        },
+        {
+            &quot;id&quot;: 325,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
                 &quot;name&quot;: &quot;Магазин Чаривная&quot;,
                 &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
             },
             &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;self_cost&quot;: &quot;9.34&quot;,
+            &quot;profit&quot;: &quot;20.66&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 16,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 20:16&quot;
+        },
+        {
+            &quot;id&quot;: 326,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;9.34&quot;,
+            &quot;profit&quot;: &quot;20.66&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 16,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 20:16&quot;
+        },
+        {
+            &quot;id&quot;: 321,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;4.00&quot;,
+            &quot;profit&quot;: &quot;1.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 14,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 18:03&quot;
+        },
+        {
+            &quot;id&quot;: 320,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;8.37&quot;,
+            &quot;profit&quot;: &quot;11.64&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 20,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Чай ISLA Fruit Tea&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 17:30&quot;
+        },
+        {
+            &quot;id&quot;: 319,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;8.63&quot;,
+            &quot;profit&quot;: &quot;21.37&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 16,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 17:25&quot;
+        },
+        {
+            &quot;id&quot;: 318,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 16:08&quot;
+        },
+        {
+            &quot;id&quot;: 315,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 13:28&quot;
+        },
+        {
+            &quot;id&quot;: 314,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 13:28&quot;
+        },
+        {
+            &quot;id&quot;: 313,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;8.63&quot;,
+            &quot;profit&quot;: &quot;21.37&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 16,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 12:49&quot;
+        },
+        {
+            &quot;id&quot;: 311,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;-0.79&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28 09:38&quot;
+        },
+        {
+            &quot;id&quot;: 307,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;10.67&quot;,
+            &quot;profit&quot;: &quot;9.33&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 16:52&quot;
+        },
+        {
+            &quot;id&quot;: 305,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.08&quot;,
+            &quot;profit&quot;: &quot;-2.08&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 14:08&quot;
+        },
+        {
+            &quot;id&quot;: 304,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.08&quot;,
+            &quot;profit&quot;: &quot;-2.08&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 14:08&quot;
+        },
+        {
+            &quot;id&quot;: 303,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.08&quot;,
+            &quot;profit&quot;: &quot;-2.08&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 14:08&quot;
+        },
+        {
+            &quot;id&quot;: 302,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;160.00&quot;,
+            &quot;self_cost&quot;: &quot;81.00&quot;,
+            &quot;profit&quot;: &quot;79.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 7,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Лента для йоги&quot;,
+                &quot;price&quot;: &quot;160.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 14:07&quot;
+        },
+        {
+            &quot;id&quot;: 300,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;-0.79&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 11:15&quot;
+        },
+        {
+            &quot;id&quot;: 299,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;-0.79&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 11:15&quot;
+        },
+        {
+            &quot;id&quot;: 298,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.08&quot;,
+            &quot;profit&quot;: &quot;-2.08&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 11:01&quot;
+        },
+        {
+            &quot;id&quot;: 297,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;6.36&quot;,
+            &quot;profit&quot;: &quot;-1.36&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 11:01&quot;
+        },
+        {
+            &quot;id&quot;: 295,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27 10:03&quot;
+        },
+        {
+            &quot;id&quot;: 282,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;10.51&quot;,
+            &quot;profit&quot;: &quot;9.49&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 5,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-25 11:17&quot;
+        },
+        {
+            &quot;id&quot;: 281,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.81&quot;,
+            &quot;profit&quot;: &quot;14.19&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;,
+                &quot;user&quot;: &quot;Lidia_admin&quot;,
+                &quot;email&quot;: &quot;petrisaklidia@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-25 09:42&quot;
+        },
+        {
+            &quot;id&quot;: 280,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;12.26&quot;,
+            &quot;profit&quot;: &quot;17.74&quot;,
             &quot;payment_type&quot;: &quot;_card&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -1968,7 +3210,63 @@ vary: Origin
                 &quot;email&quot;: &quot;petrisaklidia@gmail.com&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-23 17:10&quot;
+            &quot;created_at&quot;: &quot;2022-06-25 09:42&quot;
+        },
+        {
+            &quot;id&quot;: 275,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;15.00&quot;,
+            &quot;self_cost&quot;: &quot;9.00&quot;,
+            &quot;profit&quot;: &quot;6.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 25,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Батончик злаковый&quot;,
+                &quot;price&quot;: &quot;15.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-24 17:14&quot;
+        },
+        {
+            &quot;id&quot;: 274,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;15.00&quot;,
+            &quot;self_cost&quot;: &quot;9.00&quot;,
+            &quot;profit&quot;: &quot;6.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 25,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Батончик злаковый&quot;,
+                &quot;price&quot;: &quot;15.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-24 17:14&quot;
         },
         {
             &quot;id&quot;: 261,
@@ -1978,8 +3276,8 @@ vary: Origin
                 &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
             },
             &quot;amount&quot;: &quot;25.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;self_cost&quot;: &quot;5.81&quot;,
+            &quot;profit&quot;: &quot;19.19&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -1999,62 +3297,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-23 16:23&quot;
         },
         {
-            &quot;id&quot;: 260,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
-                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_card&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 2,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-23 15:08&quot;
-        },
-        {
-            &quot;id&quot;: 259,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
-                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-23 13:24&quot;
-        },
-        {
             &quot;id&quot;: 258,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
@@ -2062,8 +3304,8 @@ vary: Origin
                 &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
             },
             &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;self_cost&quot;: &quot;5.81&quot;,
+            &quot;profit&quot;: &quot;-0.81&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2090,8 +3332,8 @@ vary: Origin
                 &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
             },
             &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
+            &quot;self_cost&quot;: &quot;5.81&quot;,
+            &quot;profit&quot;: &quot;-0.81&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2109,993 +3351,13 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-23 13:23&quot;
-        },
-        {
-            &quot;id&quot;: 248,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_card&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-22 16:54&quot;
-        },
-        {
-            &quot;id&quot;: 246,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
-                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 30,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Чай ISLA Herbal tea для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 8,
-                &quot;name&quot;: &quot;Зубенко Елена&quot;,
-                &quot;user&quot;: &quot;lena.admin&quot;,
-                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-22 15:00&quot;
-        },
-        {
-            &quot;id&quot;: 208,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;25.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 24,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Протеиновый коктейль на воде&quot;,
-                &quot;price&quot;: &quot;25.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-20 13:20&quot;
-        },
-        {
-            &quot;id&quot;: 199,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-17 15:19&quot;
-        },
-        {
-            &quot;id&quot;: 192,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 3,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Лате&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-17 11:28&quot;
-        },
-        {
-            &quot;id&quot;: 191,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 3,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Лате&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-17 11:28&quot;
-        },
-        {
-            &quot;id&quot;: 181,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-16 17:56&quot;
-        },
-        {
-            &quot;id&quot;: 178,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 2,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-16 16:48&quot;
-        },
-        {
-            &quot;id&quot;: 172,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-16 08:40&quot;
-        },
-        {
-            &quot;id&quot;: 163,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-15 12:48&quot;
-        },
-        {
-            &quot;id&quot;: 147,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 13,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 19:42&quot;
-        },
-        {
-            &quot;id&quot;: 148,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 13,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 19:42&quot;
-        },
-        {
-            &quot;id&quot;: 146,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 19:40&quot;
-        },
-        {
-            &quot;id&quot;: 139,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 2,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 16:43&quot;
-        },
-        {
-            &quot;id&quot;: 136,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 15:33&quot;
-        },
-        {
-            &quot;id&quot;: 135,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 15:33&quot;
-        },
-        {
-            &quot;id&quot;: 130,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 09:40&quot;
-        },
-        {
-            &quot;id&quot;: 129,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-14 09:40&quot;
-        },
-        {
-            &quot;id&quot;: 110,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-13 13:26&quot;
-        },
-        {
-            &quot;id&quot;: 105,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 32,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Чай ISLA English Breakfast для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-13 09:56&quot;
-        },
-        {
-            &quot;id&quot;: 104,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-13 09:56&quot;
-        },
-        {
-            &quot;id&quot;: 96,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-10 16:41&quot;
-        },
-        {
-            &quot;id&quot;: 91,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-10 11:41&quot;
-        },
-        {
-            &quot;id&quot;: 90,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-10 11:41&quot;
-        },
-        {
-            &quot;id&quot;: 89,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 25,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Батончик злаковый&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-10 11:39&quot;
-        },
-        {
-            &quot;id&quot;: 88,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 31,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Чай ISLA Green Tea для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-10 11:39&quot;
-        },
-        {
-            &quot;id&quot;: 82,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-09 19:21&quot;
-        },
-        {
-            &quot;id&quot;: 81,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 2,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-09 19:21&quot;
-        },
-        {
-            &quot;id&quot;: 58,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-08 16:43&quot;
-        },
-        {
-            &quot;id&quot;: 41,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 16,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-07 19:16&quot;
-        },
-        {
-            &quot;id&quot;: 40,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 16,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-07 19:16&quot;
-        },
-        {
-            &quot;id&quot;: 39,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 16,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-07 19:16&quot;
-        },
-        {
-            &quot;id&quot;: 35,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 2,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-07 16:56&quot;
-        },
-        {
-            &quot;id&quot;: 29,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-06 13:39&quot;
-        },
-        {
-            &quot;id&quot;: 28,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: null,
-            &quot;profit&quot;: null,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
-                &quot;user&quot;: &quot;Borzenkova1&quot;,
-                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-06 13:39&quot;
         }
     ],
     &quot;balance&quot;: {
         &quot;in&quot;: {
-            &quot;sum&quot;: 730,
-            &quot;card&quot;: 70,
-            &quot;cash&quot;: 660
+            &quot;sum&quot;: 925,
+            &quot;card&quot;: 150,
+            &quot;cash&quot;: 775
         },
         &quot;out&quot;: {
             &quot;sum&quot;: 0,
@@ -3103,9 +3365,9 @@ vary: Origin
             &quot;cash&quot;: 0
         },
         &quot;all&quot;: {
-            &quot;sum&quot;: 730,
-            &quot;card&quot;: 70,
-            &quot;cash&quot;: 660
+            &quot;sum&quot;: 925,
+            &quot;card&quot;: 150,
+            &quot;cash&quot;: 775
         }
     }
 }</code>
@@ -3897,7 +4159,7 @@ vary: Origin
             &quot;name&quot;: &quot;Инвентарь&quot;,
             &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 5,
-            &quot;sell_products_count&quot;: 5
+            &quot;sell_products_count&quot;: 6
         },
         {
             &quot;id&quot;: 4,
@@ -4623,6 +4885,32 @@ vary: Origin
                         &quot;human_name&quot;: &quot;Продавец&quot;
                     }
                 ]
+            },
+            {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;username&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;,
+                &quot;roles&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;salesman.1&quot;,
+                        &quot;human_name&quot;: &quot;Продавец&quot;
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;username&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;,
+                &quot;roles&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;salesman.1&quot;,
+                        &quot;human_name&quot;: &quot;Продавец&quot;
+                    }
+                ]
             }
         ]
     }
@@ -4850,7 +5138,7 @@ vary: Origin
     &quot;email&quot;: &quot;admin@admin.com&quot;,
     &quot;email_verified_at&quot;: null,
     &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-06-27T11:47:30.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-06-30T13:33:23.000000Z&quot;,
     &quot;deleted_at&quot;: null,
     &quot;company_id&quot;: 1
 }</code>
@@ -7029,7 +7317,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 439,
+            &quot;current_quantity&quot;: 91,
             &quot;cost&quot;: &quot;564.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7071,7 +7359,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 100,
-            &quot;current_quantity&quot;: 34,
+            &quot;current_quantity&quot;: 8,
             &quot;cost&quot;: &quot;134.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7155,7 +7443,7 @@ vary: Origin
             &quot;product_type_id&quot;: 14,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 800,
-            &quot;current_quantity&quot;: 800,
+            &quot;current_quantity&quot;: 775,
             &quot;cost&quot;: &quot;350.00&quot;,
             &quot;expiration_date&quot;: &quot;2023-05-31&quot;,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7183,7 +7471,7 @@ vary: Origin
             &quot;product_type_id&quot;: 16,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 3,
-            &quot;current_quantity&quot;: 3,
+            &quot;current_quantity&quot;: 2,
             &quot;cost&quot;: &quot;243.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7295,7 +7583,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 150,
-            &quot;current_quantity&quot;: 89,
+            &quot;current_quantity&quot;: 65,
             &quot;cost&quot;: &quot;6.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7309,7 +7597,7 @@ vary: Origin
             &quot;product_type_id&quot;: 26,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 50,
-            &quot;current_quantity&quot;: 50,
+            &quot;current_quantity&quot;: 49,
             &quot;cost&quot;: &quot;125.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7323,7 +7611,7 @@ vary: Origin
             &quot;product_type_id&quot;: 27,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 50,
-            &quot;current_quantity&quot;: 50,
+            &quot;current_quantity&quot;: 49,
             &quot;cost&quot;: &quot;11.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7337,7 +7625,7 @@ vary: Origin
             &quot;product_type_id&quot;: 28,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 50,
-            &quot;current_quantity&quot;: 50,
+            &quot;current_quantity&quot;: 49,
             &quot;cost&quot;: &quot;11.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7351,7 +7639,7 @@ vary: Origin
             &quot;product_type_id&quot;: 31,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 7,
-            &quot;current_quantity&quot;: 7,
+            &quot;current_quantity&quot;: 6,
             &quot;cost&quot;: &quot;63.00&quot;,
             &quot;expiration_date&quot;: &quot;2023-01-31&quot;,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7379,7 +7667,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 285,
+            &quot;current_quantity&quot;: 211,
             &quot;cost&quot;: &quot;150.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T07:06:41.000000Z&quot;,
@@ -7393,7 +7681,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 190,
-            &quot;current_quantity&quot;: 175,
+            &quot;current_quantity&quot;: 176,
             &quot;cost&quot;: &quot;94.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T07:20:14.000000Z&quot;,
@@ -7435,7 +7723,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 6000,
-            &quot;current_quantity&quot;: 4000,
+            &quot;current_quantity&quot;: 3500,
             &quot;cost&quot;: &quot;132.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-01T11:12:44.000000Z&quot;,
@@ -7477,7 +7765,7 @@ vary: Origin
             &quot;product_type_id&quot;: 23,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 6,
-            &quot;current_quantity&quot;: 6,
+            &quot;current_quantity&quot;: 5,
             &quot;cost&quot;: &quot;24.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7505,7 +7793,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 494,
+            &quot;current_quantity&quot;: 493,
             &quot;cost&quot;: &quot;15.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7603,7 +7891,7 @@ vary: Origin
             &quot;product_type_id&quot;: 12,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 3,
-            &quot;current_quantity&quot;: 3,
+            &quot;current_quantity&quot;: 2,
             &quot;cost&quot;: &quot;21.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7659,7 +7947,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 125,
-            &quot;current_quantity&quot;: 116,
+            &quot;current_quantity&quot;: 112,
             &quot;cost&quot;: &quot;168.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7673,7 +7961,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 4000,
-            &quot;current_quantity&quot;: 500,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;88.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7701,7 +7989,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 150,
+            &quot;current_quantity&quot;: 66,
             &quot;cost&quot;: &quot;188.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7715,7 +8003,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 125,
-            &quot;current_quantity&quot;: 107,
+            &quot;current_quantity&quot;: 104,
             &quot;cost&quot;: &quot;63.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7729,7 +8017,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 3000,
-            &quot;current_quantity&quot;: 2914,
+            &quot;current_quantity&quot;: 2877,
             &quot;cost&quot;: &quot;63.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7757,7 +8045,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 4000,
-            &quot;current_quantity&quot;: 3831,
+            &quot;current_quantity&quot;: 3752,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -7771,7 +8059,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 252,
-            &quot;current_quantity&quot;: 235,
+            &quot;current_quantity&quot;: 226,
             &quot;cost&quot;: &quot;126.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -7785,7 +8073,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 2000,
-            &quot;current_quantity&quot;: 1370,
+            &quot;current_quantity&quot;: 1062,
             &quot;cost&quot;: &quot;700.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -7827,7 +8115,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 129,
-            &quot;current_quantity&quot;: 97,
+            &quot;current_quantity&quot;: 83,
             &quot;cost&quot;: &quot;129.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -7869,7 +8157,7 @@ vary: Origin
             &quot;product_type_id&quot;: 11,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 12,
-            &quot;current_quantity&quot;: 11,
+            &quot;current_quantity&quot;: 10,
             &quot;cost&quot;: &quot;72.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -7911,7 +8199,7 @@ vary: Origin
             &quot;product_type_id&quot;: 14,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 1000,
-            &quot;current_quantity&quot;: 925,
+            &quot;current_quantity&quot;: 850,
             &quot;cost&quot;: &quot;350.00&quot;,
             &quot;expiration_date&quot;: &quot;2023-07-28&quot;,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8009,7 +8297,7 @@ vary: Origin
             &quot;product_type_id&quot;: 22,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 2,
-            &quot;current_quantity&quot;: 1,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;8.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8051,7 +8339,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 250,
-            &quot;current_quantity&quot;: 225,
+            &quot;current_quantity&quot;: 214,
             &quot;cost&quot;: &quot;10.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8065,7 +8353,7 @@ vary: Origin
             &quot;product_type_id&quot;: 26,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 21,
-            &quot;current_quantity&quot;: 17,
+            &quot;current_quantity&quot;: 14,
             &quot;cost&quot;: &quot;54.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8079,7 +8367,7 @@ vary: Origin
             &quot;product_type_id&quot;: 27,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 60,
-            &quot;current_quantity&quot;: 56,
+            &quot;current_quantity&quot;: 53,
             &quot;cost&quot;: &quot;14.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8093,7 +8381,7 @@ vary: Origin
             &quot;product_type_id&quot;: 28,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 200,
-            &quot;current_quantity&quot;: 196,
+            &quot;current_quantity&quot;: 193,
             &quot;cost&quot;: &quot;44.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8121,7 +8409,7 @@ vary: Origin
             &quot;product_type_id&quot;: 31,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 6,
-            &quot;current_quantity&quot;: 4,
+            &quot;current_quantity&quot;: 3,
             &quot;cost&quot;: &quot;54.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-08-30&quot;,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8233,7 +8521,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 67,
-            &quot;current_quantity&quot;: 45,
+            &quot;current_quantity&quot;: 40,
             &quot;cost&quot;: &quot;33.50&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8261,7 +8549,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 2500,
-            &quot;current_quantity&quot;: 1000,
+            &quot;current_quantity&quot;: 500,
             &quot;cost&quot;: &quot;55.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8275,7 +8563,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 100,
-            &quot;current_quantity&quot;: 98,
+            &quot;current_quantity&quot;: 96,
             &quot;cost&quot;: &quot;134.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8289,7 +8577,7 @@ vary: Origin
             &quot;product_type_id&quot;: 9,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 7,
-            &quot;current_quantity&quot;: 7,
+            &quot;current_quantity&quot;: 5,
             &quot;cost&quot;: &quot;63.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8429,7 +8717,7 @@ vary: Origin
             &quot;product_type_id&quot;: 31,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 6,
-            &quot;current_quantity&quot;: 3,
+            &quot;current_quantity&quot;: 1,
             &quot;cost&quot;: &quot;54.00&quot;,
             &quot;expiration_date&quot;: &quot;2023-03-09&quot;,
             &quot;created_at&quot;: &quot;2022-06-09T10:50:47.000000Z&quot;,
@@ -8555,7 +8843,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 1220,
+            &quot;current_quantity&quot;: 1150,
             &quot;cost&quot;: &quot;560.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-10T13:07:57.000000Z&quot;,
@@ -8569,7 +8857,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 1460,
+            &quot;current_quantity&quot;: 1440,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-10T13:09:47.000000Z&quot;,
@@ -8583,7 +8871,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 4500,
-            &quot;current_quantity&quot;: 1900,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;122.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-07-04&quot;,
             &quot;created_at&quot;: &quot;2022-06-13T09:01:54.000000Z&quot;,
@@ -8597,7 +8885,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 12000,
-            &quot;current_quantity&quot;: 4012,
+            &quot;current_quantity&quot;: 12,
             &quot;cost&quot;: &quot;266.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-13T09:01:54.000000Z&quot;,
@@ -8709,7 +8997,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 1800,
-            &quot;current_quantity&quot;: 1550,
+            &quot;current_quantity&quot;: 900,
             &quot;cost&quot;: &quot;64.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-07-06&quot;,
             &quot;created_at&quot;: &quot;2022-06-15T13:07:35.000000Z&quot;,
@@ -8737,7 +9025,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 3600,
-            &quot;current_quantity&quot;: 1500,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;116.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-08-22&quot;,
             &quot;created_at&quot;: &quot;2022-06-20T11:11:30.000000Z&quot;,
@@ -8776,16 +9064,268 @@ vary: Origin
         },
         {
             &quot;id&quot;: 146,
-            &quot;product_type_id&quot;: 2,
-            &quot;storage_id&quot;: 1,
-            &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 500,
-            &quot;cost&quot;: &quot;100.00&quot;,
+            &quot;product_type_id&quot;: 7,
+            &quot;storage_id&quot;: 2,
+            &quot;quantity&quot;: 4500,
+            &quot;current_quantity&quot;: 3500,
+            &quot;cost&quot;: &quot;96.00&quot;,
             &quot;expiration_date&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-25T11:24:16.000000Z&quot;,
+            &quot;created_at&quot;: &quot;2022-06-24T09:51:07.000000Z&quot;,
             &quot;user&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Юрий Билов&quot;
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 147,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 2,
+            &quot;quantity&quot;: 3600,
+            &quot;current_quantity&quot;: 3600,
+            &quot;cost&quot;: &quot;128.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-07-22&quot;,
+            &quot;created_at&quot;: &quot;2022-06-24T09:51:07.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 148,
+            &quot;product_type_id&quot;: 7,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 6000,
+            &quot;current_quantity&quot;: 6000,
+            &quot;cost&quot;: &quot;132.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27T09:52:23.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 149,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 3600,
+            &quot;current_quantity&quot;: 2400,
+            &quot;cost&quot;: &quot;116.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-08-15&quot;,
+            &quot;created_at&quot;: &quot;2022-06-27T09:52:23.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 150,
+            &quot;product_type_id&quot;: 31,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 11,
+            &quot;current_quantity&quot;: 11,
+            &quot;cost&quot;: &quot;90.00&quot;,
+            &quot;expiration_date&quot;: &quot;2023-03-28&quot;,
+            &quot;created_at&quot;: &quot;2022-06-27T09:52:23.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 151,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 1800,
+            &quot;current_quantity&quot;: 0,
+            &quot;cost&quot;: &quot;58.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-08-01&quot;,
+            &quot;created_at&quot;: &quot;2022-06-27T11:02:32.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 152,
+            &quot;product_type_id&quot;: 7,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 3000,
+            &quot;current_quantity&quot;: 3000,
+            &quot;cost&quot;: &quot;66.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-27T11:02:32.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 153,
+            &quot;product_type_id&quot;: 31,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;16.20&quot;,
+            &quot;expiration_date&quot;: &quot;2023-07-04&quot;,
+            &quot;created_at&quot;: &quot;2022-06-27T11:02:32.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 154,
+            &quot;product_type_id&quot;: 21,
+            &quot;storage_id&quot;: 1,
+            &quot;quantity&quot;: 3,
+            &quot;current_quantity&quot;: 3,
+            &quot;cost&quot;: &quot;30.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28T09:04:00.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 155,
+            &quot;product_type_id&quot;: 31,
+            &quot;storage_id&quot;: 1,
+            &quot;quantity&quot;: 8,
+            &quot;current_quantity&quot;: 8,
+            &quot;cost&quot;: &quot;81.00&quot;,
+            &quot;expiration_date&quot;: &quot;2023-04-25&quot;,
+            &quot;created_at&quot;: &quot;2022-06-28T09:04:00.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 156,
+            &quot;product_type_id&quot;: 38,
+            &quot;storage_id&quot;: 1,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;178.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28T09:11:59.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 157,
+            &quot;product_type_id&quot;: 18,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;178.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-28T10:04:23.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 158,
+            &quot;product_type_id&quot;: 14,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 1500,
+            &quot;current_quantity&quot;: 1500,
+            &quot;cost&quot;: &quot;525.00&quot;,
+            &quot;expiration_date&quot;: &quot;2024-07-02&quot;,
+            &quot;created_at&quot;: &quot;2022-06-28T10:04:23.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 159,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 3,
+            &quot;current_quantity&quot;: 0,
+            &quot;cost&quot;: &quot;91.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-10-05&quot;,
+            &quot;created_at&quot;: &quot;2022-06-29T09:54:09.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 160,
+            &quot;product_type_id&quot;: 32,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;22.00&quot;,
+            &quot;expiration_date&quot;: &quot;2024-01-03&quot;,
+            &quot;created_at&quot;: &quot;2022-06-29T09:54:09.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 161,
+            &quot;product_type_id&quot;: 1,
+            &quot;storage_id&quot;: 2,
+            &quot;quantity&quot;: 750,
+            &quot;current_quantity&quot;: 750,
+            &quot;cost&quot;: &quot;45.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-29T11:26:44.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 162,
+            &quot;product_type_id&quot;: 31,
+            &quot;storage_id&quot;: 2,
+            &quot;quantity&quot;: 3,
+            &quot;current_quantity&quot;: 3,
+            &quot;cost&quot;: &quot;26.00&quot;,
+            &quot;expiration_date&quot;: &quot;2023-06-06&quot;,
+            &quot;created_at&quot;: &quot;2022-06-29T11:26:44.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 163,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 2700,
+            &quot;current_quantity&quot;: 2400,
+            &quot;cost&quot;: &quot;0.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-11-29&quot;,
+            &quot;created_at&quot;: &quot;2022-06-30T11:47:03.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 164,
+            &quot;product_type_id&quot;: 7,
+            &quot;storage_id&quot;: 1,
+            &quot;quantity&quot;: 7500,
+            &quot;current_quantity&quot;: 7500,
+            &quot;cost&quot;: &quot;180.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30T11:48:16.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
             }
         }
     ]
@@ -8853,7 +9393,7 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-07-27\",
+    \"expiration_date\": \"2103-07-30\",
     \"user_id\": \"consequatur\"
 }"
 </code></pre></div>
@@ -8878,7 +9418,7 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-07-27",
+    "expiration_date": "2103-07-30",
     "user_id": "consequatur"
 };
 
@@ -9001,7 +9541,7 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="POSTapi-product_purchases"
-               value="2103-07-27"
+               value="2103-07-30"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
@@ -9698,7 +10238,7 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-07-27\"
+    \"expiration_date\": \"2103-07-30\"
 }"
 </code></pre></div>
 
@@ -9720,7 +10260,7 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-07-27"
+    "expiration_date": "2103-07-30"
 };
 
 fetch(url, {
@@ -9837,7 +10377,7 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="PUTapi-product_purchases--id-"
-               value="2103-07-27"
+               value="2103-07-30"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
@@ -10446,6 +10986,10 @@ vary: Origin
         {
             &quot;id&quot;: 37,
             &quot;name&quot;: &quot;Twix&quot;
+        },
+        {
+            &quot;id&quot;: 38,
+            &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;
         }
     ]
 }</code>
@@ -11954,7 +12498,7 @@ vary: Origin
             &quot;id&quot;: 2,
             &quot;name&quot;: &quot;Кофе/Чай&quot;
         },
-        &quot;warning_threshold&quot;: 500
+        &quot;warning_threshold&quot;: 0
     }
 }</code>
  </pre>
@@ -12364,7 +12908,7 @@ vary: Origin
         {
             &quot;id&quot;: 4,
             &quot;name&quot;: &quot;Склад Маяковского&quot;,
-            &quot;below_threshold_count&quot;: 2
+            &quot;below_threshold_count&quot;: 0
         },
         {
             &quot;id&quot;: 5,
@@ -12469,7 +13013,7 @@ vary: Origin
         {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Сахар&quot;,
-            &quot;warning_threshold&quot;: 500,
+            &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 1,
@@ -12511,7 +13055,7 @@ vary: Origin
         {
             &quot;id&quot;: 4,
             &quot;name&quot;: &quot;Кофе 1 кг&quot;,
-            &quot;warning_threshold&quot;: 1000,
+            &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 1,
@@ -12623,7 +13167,7 @@ vary: Origin
         {
             &quot;id&quot;: 13,
             &quot;name&quot;: &quot;Мороженное&quot;,
-            &quot;warning_threshold&quot;: 500,
+            &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 1,
@@ -12969,6 +13513,20 @@ vary: Origin
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
             }
+        },
+        {
+            &quot;id&quot;: 38,
+            &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
+            &quot;warning_threshold&quot;: 0,
+            &quot;current_quantity&quot;: 0,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
+            }
         }
     ]
 }</code>
@@ -13071,7 +13629,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-reports-profit">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -13086,41 +13644,677 @@ vary: Origin
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: [
+    &quot;message&quot;: &quot;Could not parse 'consequatur': DateTime::__construct(): Failed to parse time string (consequatur) at position 0 (c): The timezone could not be found in the database&quot;,
+    &quot;exception&quot;: &quot;Carbon\\Exceptions\\InvalidFormatException&quot;,
+    &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+    &quot;line&quot;: 190,
+    &quot;trace&quot;: [
         {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-            &quot;sum_amount&quot;: &quot;395.00&quot;,
-            &quot;sum_self_cost&quot;: &quot;876.54&quot;,
-            &quot;sum_profit&quot;: &quot;-481.54&quot;
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+            &quot;line&quot;: 216,
+            &quot;function&quot;: &quot;rawParse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
         },
         {
-            &quot;id&quot;: 2,
-            &quot;name&quot;: &quot;Магазин Чаривная&quot;,
-            &quot;sum_amount&quot;: &quot;605.00&quot;,
-            &quot;sum_self_cost&quot;: &quot;297.62&quot;,
-            &quot;sum_profit&quot;: &quot;307.38&quot;
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Http/Requests/Api/Report/DateRangeRequest.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;parse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
         },
         {
-            &quot;id&quot;: 3,
-            &quot;name&quot;: &quot;Магазин Бородинский&quot;,
-            &quot;sum_amount&quot;: &quot;3595.00&quot;,
-            &quot;sum_self_cost&quot;: &quot;2055.06&quot;,
-            &quot;sum_profit&quot;: &quot;1539.97&quot;
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Validation/ValidatesWhenResolvedTrait.php&quot;,
+            &quot;line&quot;: 17,
+            &quot;function&quot;: &quot;prepareForValidation&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Requests\\Api\\Report\\DateRangeRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
         },
         {
-            &quot;id&quot;: 4,
-            &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-            &quot;sum_amount&quot;: &quot;1225.00&quot;,
-            &quot;sum_self_cost&quot;: &quot;996.75&quot;,
-            &quot;sum_profit&quot;: &quot;228.25&quot;
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Providers/FormRequestServiceProvider.php&quot;,
+            &quot;line&quot;: 30,
+            &quot;function&quot;: &quot;validateResolved&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\FormRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1265,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Providers\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Providers\\FormRequestServiceProvider&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1230,
+            &quot;function&quot;: &quot;fireCallbackArray&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1215,
+            &quot;function&quot;: &quot;fireAfterResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 778,
+            &quot;function&quot;: &quot;fireResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 855,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 694,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 840,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 49,
+            &quot;function&quot;: &quot;transformDependency&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 29,
+            &quot;function&quot;: &quot;resolveMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;resolveClassMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 261,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 204,
+            &quot;function&quot;: &quot;runController&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 725,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 126,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;handleRequest&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php&quot;,
+            &quot;line&quot;: 44,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Auth\\Middleware\\Authenticate&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 33,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 727,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 702,
+            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 666,
+            &quot;function&quot;: &quot;runRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 655,
+            &quot;function&quot;: &quot;dispatchToRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 167,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php&quot;,
+            &quot;line&quot;: 60,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Barryvdh\\Debugbar\\Middleware\\InjectDebugbar&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
+            &quot;line&quot;: 40,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
+            &quot;line&quot;: 86,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/fruitcake/laravel-cors/src/HandleCors.php&quot;,
+            &quot;line&quot;: 52,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
+            &quot;line&quot;: 39,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 142,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 111,
+            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 287,
+            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 89,
+            &quot;function&quot;: &quot;makeApiCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;makeResponseCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 222,
+            &quot;function&quot;: &quot;__invoke&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 179,
+            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;fetchResponses&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 123,
+            &quot;function&quot;: &quot;processRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 56,
+            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
+            &quot;line&quot;: 55,
+            &quot;function&quot;: &quot;get&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 68,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 28,
+            &quot;function&quot;: &quot;runCommand&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Console/Commands/GenerateDocsCommand.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;App\\Console\\Commands\\GenerateDocsCommand&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 989,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;doRunCommand&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;doRun&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
+            &quot;line&quot;: 129,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/artisan&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
         }
-    ],
-    &quot;sum_data&quot;: {
-        &quot;sum_amount&quot;: 5820,
-        &quot;sum_self_cost&quot;: 4225.97,
-        &quot;sum_profit&quot;: 1594.06
-    }
+    ]
 }</code>
  </pre>
     </span>
@@ -13241,7 +14435,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-reports-profit_by_day">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -13256,140 +14450,677 @@ vary: Origin
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: {
-        &quot;date_list&quot;: [
-            &quot;05-28&quot;,
-            &quot;05-29&quot;,
-            &quot;05-30&quot;,
-            &quot;05-31&quot;,
-            &quot;06-01&quot;,
-            &quot;06-02&quot;,
-            &quot;06-03&quot;,
-            &quot;06-04&quot;,
-            &quot;06-05&quot;,
-            &quot;06-06&quot;,
-            &quot;06-07&quot;,
-            &quot;06-08&quot;,
-            &quot;06-09&quot;,
-            &quot;06-10&quot;,
-            &quot;06-11&quot;,
-            &quot;06-12&quot;,
-            &quot;06-13&quot;,
-            &quot;06-14&quot;,
-            &quot;06-15&quot;,
-            &quot;06-16&quot;,
-            &quot;06-17&quot;,
-            &quot;06-18&quot;,
-            &quot;06-19&quot;,
-            &quot;06-20&quot;,
-            &quot;06-21&quot;,
-            &quot;06-22&quot;,
-            &quot;06-23&quot;,
-            &quot;06-24&quot;,
-            &quot;06-25&quot;,
-            &quot;06-26&quot;,
-            &quot;06-27&quot;
-        ],
-        &quot;amount_list&quot;: [
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;60.00&quot;,
-            &quot;60.00&quot;,
-            &quot;0.00&quot;,
-            &quot;100.00&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;20.00&quot;,
-            &quot;255.00&quot;,
-            &quot;355.00&quot;,
-            &quot;195.00&quot;,
-            &quot;370.00&quot;,
-            &quot;75.00&quot;,
-            &quot;0.00&quot;,
-            &quot;2360.00&quot;,
-            &quot;265.00&quot;,
-            &quot;335.00&quot;,
-            &quot;200.00&quot;,
-            &quot;295.00&quot;,
-            &quot;80.00&quot;,
-            &quot;0.00&quot;,
-            &quot;185.00&quot;,
-            &quot;135.00&quot;,
-            &quot;195.00&quot;,
-            &quot;185.00&quot;,
-            &quot;45.00&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;50.00&quot;
-        ],
-        &quot;self_cost_list&quot;: [
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;12.07&quot;,
-            &quot;52.60&quot;,
-            &quot;0.00&quot;,
-            &quot;128.90&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;19.36&quot;,
-            &quot;119.30&quot;,
-            &quot;224.68&quot;,
-            &quot;816.95&quot;,
-            &quot;180.87&quot;,
-            &quot;56.19&quot;,
-            &quot;0.00&quot;,
-            &quot;1237.48&quot;,
-            &quot;149.97&quot;,
-            &quot;368.35&quot;,
-            &quot;93.63&quot;,
-            &quot;182.16&quot;,
-            &quot;53.73&quot;,
-            &quot;0.00&quot;,
-            &quot;83.79&quot;,
-            &quot;130.44&quot;,
-            &quot;143.40&quot;,
-            &quot;116.19&quot;,
-            &quot;38.62&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;17.29&quot;
-        ],
-        &quot;profit_list&quot;: [
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;47.93&quot;,
-            &quot;7.40&quot;,
-            &quot;0.00&quot;,
-            &quot;-28.90&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;0.64&quot;,
-            &quot;135.72&quot;,
-            &quot;130.32&quot;,
-            &quot;-621.95&quot;,
-            &quot;189.13&quot;,
-            &quot;18.81&quot;,
-            &quot;0.00&quot;,
-            &quot;1122.52&quot;,
-            &quot;115.03&quot;,
-            &quot;-33.35&quot;,
-            &quot;106.37&quot;,
-            &quot;112.84&quot;,
-            &quot;26.27&quot;,
-            &quot;0.00&quot;,
-            &quot;101.21&quot;,
-            &quot;4.56&quot;,
-            &quot;51.60&quot;,
-            &quot;68.82&quot;,
-            &quot;6.38&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;,
-            &quot;32.71&quot;
-        ]
-    }
+    &quot;message&quot;: &quot;Could not parse 'consequatur': DateTime::__construct(): Failed to parse time string (consequatur) at position 0 (c): The timezone could not be found in the database&quot;,
+    &quot;exception&quot;: &quot;Carbon\\Exceptions\\InvalidFormatException&quot;,
+    &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+    &quot;line&quot;: 190,
+    &quot;trace&quot;: [
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+            &quot;line&quot;: 216,
+            &quot;function&quot;: &quot;rawParse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Http/Requests/Api/Report/DateRangeRequest.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;parse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Validation/ValidatesWhenResolvedTrait.php&quot;,
+            &quot;line&quot;: 17,
+            &quot;function&quot;: &quot;prepareForValidation&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Requests\\Api\\Report\\DateRangeRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Providers/FormRequestServiceProvider.php&quot;,
+            &quot;line&quot;: 30,
+            &quot;function&quot;: &quot;validateResolved&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\FormRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1265,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Providers\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Providers\\FormRequestServiceProvider&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1230,
+            &quot;function&quot;: &quot;fireCallbackArray&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1215,
+            &quot;function&quot;: &quot;fireAfterResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 778,
+            &quot;function&quot;: &quot;fireResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 855,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 694,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 840,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 49,
+            &quot;function&quot;: &quot;transformDependency&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 29,
+            &quot;function&quot;: &quot;resolveMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;resolveClassMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 261,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 204,
+            &quot;function&quot;: &quot;runController&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 725,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 126,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;handleRequest&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php&quot;,
+            &quot;line&quot;: 44,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Auth\\Middleware\\Authenticate&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 33,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 727,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 702,
+            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 666,
+            &quot;function&quot;: &quot;runRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 655,
+            &quot;function&quot;: &quot;dispatchToRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 167,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php&quot;,
+            &quot;line&quot;: 60,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Barryvdh\\Debugbar\\Middleware\\InjectDebugbar&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
+            &quot;line&quot;: 40,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
+            &quot;line&quot;: 86,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/fruitcake/laravel-cors/src/HandleCors.php&quot;,
+            &quot;line&quot;: 52,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
+            &quot;line&quot;: 39,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 142,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 111,
+            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 287,
+            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 89,
+            &quot;function&quot;: &quot;makeApiCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;makeResponseCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 222,
+            &quot;function&quot;: &quot;__invoke&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 179,
+            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;fetchResponses&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 123,
+            &quot;function&quot;: &quot;processRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 56,
+            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
+            &quot;line&quot;: 55,
+            &quot;function&quot;: &quot;get&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 68,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 28,
+            &quot;function&quot;: &quot;runCommand&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Console/Commands/GenerateDocsCommand.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;App\\Console\\Commands\\GenerateDocsCommand&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 989,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;doRunCommand&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;doRun&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
+            &quot;line&quot;: 129,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/artisan&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        }
+    ]
 }</code>
  </pre>
     </span>
@@ -13510,7 +15241,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-reports-profit_by_category">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -13525,56 +15256,677 @@ vary: Origin
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: {
-        &quot;categories_list&quot;: [
-            &quot;Батончики&quot;,
-            &quot;Кофе/Чай&quot;,
-            &quot;Инвентарь&quot;,
-            &quot;Костюмы&quot;,
-            &quot;Коктейли&quot;,
-            &quot;Напитки&quot;,
-            &quot;Аксессуары&quot;,
-            &quot;Для персонала&quot;,
-            &quot;Напитки&quot;,
-            &quot;Батончики&quot;
-        ],
-        &quot;amount_list&quot;: [
-            &quot;90.00&quot;,
-            &quot;1070.00&quot;,
-            &quot;2240.00&quot;,
-            &quot;0.00&quot;,
-            &quot;130.00&quot;,
-            &quot;880.00&quot;,
-            &quot;240.00&quot;,
-            &quot;1170.00&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;
-        ],
-        &quot;self_cost_list&quot;: [
-            &quot;55.00&quot;,
-            &quot;375.03&quot;,
-            &quot;1075.00&quot;,
-            &quot;0.00&quot;,
-            &quot;68.09&quot;,
-            &quot;616.42&quot;,
-            &quot;82.00&quot;,
-            &quot;1954.43&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;
-        ],
-        &quot;profit_list&quot;: [
-            &quot;35.00&quot;,
-            &quot;694.99&quot;,
-            &quot;1165.00&quot;,
-            &quot;0.00&quot;,
-            &quot;61.91&quot;,
-            &quot;263.58&quot;,
-            &quot;158.00&quot;,
-            &quot;-784.42&quot;,
-            &quot;0.00&quot;,
-            &quot;0.00&quot;
-        ]
-    }
+    &quot;message&quot;: &quot;Could not parse 'consequatur': DateTime::__construct(): Failed to parse time string (consequatur) at position 0 (c): The timezone could not be found in the database&quot;,
+    &quot;exception&quot;: &quot;Carbon\\Exceptions\\InvalidFormatException&quot;,
+    &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+    &quot;line&quot;: 190,
+    &quot;trace&quot;: [
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+            &quot;line&quot;: 216,
+            &quot;function&quot;: &quot;rawParse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Http/Requests/Api/Report/DateRangeRequest.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;parse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Validation/ValidatesWhenResolvedTrait.php&quot;,
+            &quot;line&quot;: 17,
+            &quot;function&quot;: &quot;prepareForValidation&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Requests\\Api\\Report\\DateRangeRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Providers/FormRequestServiceProvider.php&quot;,
+            &quot;line&quot;: 30,
+            &quot;function&quot;: &quot;validateResolved&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\FormRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1265,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Providers\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Providers\\FormRequestServiceProvider&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1230,
+            &quot;function&quot;: &quot;fireCallbackArray&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1215,
+            &quot;function&quot;: &quot;fireAfterResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 778,
+            &quot;function&quot;: &quot;fireResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 855,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 694,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 840,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 49,
+            &quot;function&quot;: &quot;transformDependency&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 29,
+            &quot;function&quot;: &quot;resolveMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;resolveClassMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 261,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 204,
+            &quot;function&quot;: &quot;runController&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 725,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 126,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;handleRequest&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php&quot;,
+            &quot;line&quot;: 44,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Auth\\Middleware\\Authenticate&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 33,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 727,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 702,
+            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 666,
+            &quot;function&quot;: &quot;runRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 655,
+            &quot;function&quot;: &quot;dispatchToRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 167,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php&quot;,
+            &quot;line&quot;: 60,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Barryvdh\\Debugbar\\Middleware\\InjectDebugbar&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
+            &quot;line&quot;: 40,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
+            &quot;line&quot;: 86,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/fruitcake/laravel-cors/src/HandleCors.php&quot;,
+            &quot;line&quot;: 52,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
+            &quot;line&quot;: 39,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 142,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 111,
+            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 287,
+            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 89,
+            &quot;function&quot;: &quot;makeApiCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;makeResponseCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 222,
+            &quot;function&quot;: &quot;__invoke&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 179,
+            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;fetchResponses&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 123,
+            &quot;function&quot;: &quot;processRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 56,
+            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
+            &quot;line&quot;: 55,
+            &quot;function&quot;: &quot;get&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 68,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 28,
+            &quot;function&quot;: &quot;runCommand&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Console/Commands/GenerateDocsCommand.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;App\\Console\\Commands\\GenerateDocsCommand&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 989,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;doRunCommand&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;doRun&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
+            &quot;line&quot;: 129,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/artisan&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        }
+    ]
 }</code>
  </pre>
     </span>
@@ -13637,6 +15989,929 @@ vary: Origin
                 <input type="text"
                name="shop_id"
                data-endpoint="GETapi-reports-profit_by_category"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="report-endpoints-GETapi-reports-popular_sell_products">GET api/reports/popular_sell_products</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-reports-popular_sell_products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cashbox-online.test/api/reports/popular_sell_products" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"start_date\": \"consequatur\",
+    \"end_date\": \"consequatur\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/reports/popular_sell_products"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "start_date": "consequatur",
+    "end_date": "consequatur"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-reports-popular_sell_products">
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 16
+vary: Origin
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Could not parse 'consequatur': DateTime::__construct(): Failed to parse time string (consequatur) at position 0 (c): The timezone could not be found in the database&quot;,
+    &quot;exception&quot;: &quot;Carbon\\Exceptions\\InvalidFormatException&quot;,
+    &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+    &quot;line&quot;: 190,
+    &quot;trace&quot;: [
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php&quot;,
+            &quot;line&quot;: 216,
+            &quot;function&quot;: &quot;rawParse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Http/Requests/Api/Report/DateRangeRequest.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;parse&quot;,
+            &quot;class&quot;: &quot;Carbon\\Carbon&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Validation/ValidatesWhenResolvedTrait.php&quot;,
+            &quot;line&quot;: 17,
+            &quot;function&quot;: &quot;prepareForValidation&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Requests\\Api\\Report\\DateRangeRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Providers/FormRequestServiceProvider.php&quot;,
+            &quot;line&quot;: 30,
+            &quot;function&quot;: &quot;validateResolved&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\FormRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1265,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Providers\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Providers\\FormRequestServiceProvider&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1230,
+            &quot;function&quot;: &quot;fireCallbackArray&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 1215,
+            &quot;function&quot;: &quot;fireAfterResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 778,
+            &quot;function&quot;: &quot;fireResolvingCallbacks&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 855,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 694,
+            &quot;function&quot;: &quot;resolve&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Application.php&quot;,
+            &quot;line&quot;: 840,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;make&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 49,
+            &quot;function&quot;: &quot;transformDependency&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php&quot;,
+            &quot;line&quot;: 29,
+            &quot;function&quot;: &quot;resolveMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;resolveClassMethodDependencies&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 261,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 204,
+            &quot;function&quot;: &quot;runController&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 725,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 126,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;handleRequest&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php&quot;,
+            &quot;line&quot;: 44,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Auth\\Middleware\\Authenticate&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 33,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 727,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 702,
+            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 666,
+            &quot;function&quot;: &quot;runRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 655,
+            &quot;function&quot;: &quot;dispatchToRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 167,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php&quot;,
+            &quot;line&quot;: 60,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Barryvdh\\Debugbar\\Middleware\\InjectDebugbar&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
+            &quot;line&quot;: 40,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
+            &quot;line&quot;: 86,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/fruitcake/laravel-cors/src/HandleCors.php&quot;,
+            &quot;line&quot;: 52,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
+            &quot;line&quot;: 39,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 142,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 111,
+            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 287,
+            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 89,
+            &quot;function&quot;: &quot;makeApiCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;makeResponseCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 222,
+            &quot;function&quot;: &quot;__invoke&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 179,
+            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;fetchResponses&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 123,
+            &quot;function&quot;: &quot;processRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 56,
+            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
+            &quot;line&quot;: 55,
+            &quot;function&quot;: &quot;get&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 68,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
+            &quot;line&quot;: 28,
+            &quot;function&quot;: &quot;runCommand&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Console/Commands/GenerateDocsCommand.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;App\\Console\\Commands\\GenerateDocsCommand&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 653,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 156,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 989,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;doRunCommand&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;doRun&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
+            &quot;line&quot;: 129,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/artisan&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-reports-popular_sell_products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-reports-popular_sell_products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-reports-popular_sell_products"></code></pre>
+</span>
+<span id="execution-error-GETapi-reports-popular_sell_products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-reports-popular_sell_products"></code></pre>
+</span>
+<form id="form-GETapi-reports-popular_sell_products" data-method="GET"
+      data-path="api/reports/popular_sell_products"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-reports-popular_sell_products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/reports/popular_sell_products</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-reports-popular_sell_products" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-reports-popular_sell_products"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>start_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start_date"
+               data-endpoint="GETapi-reports-popular_sell_products"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>end_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end_date"
+               data-endpoint="GETapi-reports-popular_sell_products"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>shop_id</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="shop_id"
+               data-endpoint="GETapi-reports-popular_sell_products"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="report-endpoints-POSTapi-reports-get_paginated_transactions">POST api/reports/get_paginated_transactions</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-reports-get_paginated_transactions">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://cashbox-online.test/api/reports/get_paginated_transactions" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"start_date\": \"consequatur\",
+    \"end_date\": \"consequatur\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/reports/get_paginated_transactions"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "start_date": "consequatur",
+    "end_date": "consequatur"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-reports-get_paginated_transactions">
+</span>
+<span id="execution-results-POSTapi-reports-get_paginated_transactions" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-reports-get_paginated_transactions"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-reports-get_paginated_transactions"></code></pre>
+</span>
+<span id="execution-error-POSTapi-reports-get_paginated_transactions" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-reports-get_paginated_transactions"></code></pre>
+</span>
+<form id="form-POSTapi-reports-get_paginated_transactions" data-method="POST"
+      data-path="api/reports/get_paginated_transactions"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-reports-get_paginated_transactions', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/reports/get_paginated_transactions</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-reports-get_paginated_transactions" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-reports-get_paginated_transactions"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>start_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start_date"
+               data-endpoint="POSTapi-reports-get_paginated_transactions"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>end_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end_date"
+               data-endpoint="POSTapi-reports-get_paginated_transactions"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>shop_id</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="shop_id"
+               data-endpoint="POSTapi-reports-get_paginated_transactions"
                value=""
                data-component="body" hidden>
     <br>
@@ -17256,7 +20531,7 @@ vary: Origin
                             &quot;quantity&quot;: 1000
                         }
                     ],
-                    &quot;price_per_unit&quot;: 0.2
+                    &quot;price_per_unit&quot;: null
                 },
                 {
                     &quot;id&quot;: 14,
@@ -17919,6 +21194,34 @@ vary: Origin
             &quot;category&quot;: {
                 &quot;id&quot;: 6,
                 &quot;name&quot;: &quot;Напитки&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 36,
+            &quot;company_id&quot;: 1,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
+            &quot;price&quot;: &quot;160.00&quot;,
+            &quot;has_discount&quot;: 0,
+            &quot;position&quot;: 34,
+            &quot;product_types&quot;: [
+                {
+                    &quot;id&quot;: 38,
+                    &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;main_measure_type&quot;: {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;шт&quot;,
+                        &quot;quantity&quot;: 1
+                    },
+                    &quot;quantity_in_main_measure_type&quot;: 1,
+                    &quot;measure_types&quot;: [],
+                    &quot;price_per_unit&quot;: 89
+                }
+            ],
+            &quot;category&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Инвентарь&quot;
             }
         }
     ]
@@ -21575,6 +24878,32 @@ vary: Origin
             &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
             &quot;username&quot;: &quot;K_admin&quot;,
             &quot;email&quot;: &quot;solodkat@ua.fm&quot;,
+            &quot;roles&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;salesman.1&quot;,
+                    &quot;human_name&quot;: &quot;Продавец&quot;
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+            &quot;username&quot;: &quot;di_admin&quot;,
+            &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;,
+            &quot;roles&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;salesman.1&quot;,
+                    &quot;human_name&quot;: &quot;Продавец&quot;
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+            &quot;username&quot;: &quot;ira_admin&quot;,
+            &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;,
             &quot;roles&quot;: [
                 {
                     &quot;id&quot;: 3,

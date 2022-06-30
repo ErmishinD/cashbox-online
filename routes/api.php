@@ -196,6 +196,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('profit_by_day', [ReportController::class, 'getProfitByDay']);
         Route::get('profit_by_category', [ReportController::class, 'getProfitByCategory']);
 
+        Route::post('get_paginated_transactions', [ReportController::class, 'getPaginatedTransactions']);
+
         Route::get('popular_sell_products', [ReportController::class, 'getPopularSellProducts']);
     });
 });
