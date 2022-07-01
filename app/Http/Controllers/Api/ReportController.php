@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\Report\DateRangeRequest;
 use App\Http\Resources\Api\Report\CashboxTransactionResource;
-use App\Http\Resources\Api\Report\PopularSellProductResource;
+use App\Http\Resources\Api\Report\PopularSellProductcsCollection;
 use App\Http\Resources\Api\Report\ProfitByCategoryCollection;
 use App\Http\Resources\Api\Report\ProfitByDayCollection;
 use App\Http\Resources\Api\Report\ProfitByShopResource;
@@ -176,6 +176,6 @@ class ReportController extends Controller
             }])
             ->orderByDesc('cashbox_count')
             ->get();
-        return PopularSellProductResource::collection($sell_products);
+        return PopularSellProductcsCollection::make($sell_products);
     }
 }

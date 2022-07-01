@@ -25,17 +25,17 @@ class DateRangeRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_date' => ['required'],
-            'end_date' => ['required'],
-            'shop_id' => ['nullable']
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+            'shop_id' => ['nullable', 'integer']
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'start_date' => $this->start_date ? Carbon::parse($this->start_date)->startOfDay() : today()->subDays(30),
-            'end_date' => $this->end_date ? Carbon::parse($this->end_date)->endOfDay() : today()->addDay(),
+            'start_date' => !empty($this->start_date) ? Carbon::parse($this->start_date)->startOfDay() : today()->subDays(30),
+            'end_date' => !empty($this->end_date) ? Carbon::parse($this->end_date)->endOfDay() : today()->addDay(),
         ]);
     }
 }
