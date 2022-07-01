@@ -67,7 +67,6 @@ class CashboxRepository extends BaseRepository
 
                 $data['profit'] = $data['amount'] - $data['self_cost'];
 
-                $data['data'] = json_encode($used_purchases);
                 $payment = $this->model->create($data);
 
                 foreach ($used_purchases as $product_type_id => $purchases) {

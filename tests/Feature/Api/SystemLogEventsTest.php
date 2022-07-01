@@ -26,6 +26,7 @@ use App\Events\UserEdited;
 use App\Models\Cashbox;
 use App\Models\Company;
 use App\Models\MeasureType;
+use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
@@ -228,9 +229,16 @@ class SystemLogEventsTest extends TestCase
             'product_type_id' => $product_purchase1->product_type_id,
             'quantity' => 50,
             'user_id' => $this->user->id,
-            'data' => [
-                ['id' => $product_purchase1->id, 'quantity' => 50, 'cost' => 50]
-            ]
+        ]);
+        $product_consumption1 = ProductConsumption::create([
+            'company_id' => $this->user->company_id,
+            'product_purchase_id' => $product_purchase1->id,
+            'consumable_type' => WriteOff::class,
+            'consumable_id' => $write_off1->id,
+            'quantity' => 50,
+            'cost' => $product_purchase1->cost / 50,
+            'income' => 0,
+            'profit' => -($product_purchase1->cost / 50),
         ]);
         $write_off2 = WriteOff::factory()->create([
             'company_id' => $this->user->company_id,
@@ -238,10 +246,17 @@ class SystemLogEventsTest extends TestCase
             'product_type_id' => $product_purchase2->product_type_id,
             'quantity' => 100,
             'user_id' => $this->user->id,
-            'data' => [
-                ['id' => $product_purchase1->id, 'quantity' => 100, 'cost' => 50]
-            ],
             'parent_id' => $write_off1->parent_id
+        ]);
+        $product_consumption2 = ProductConsumption::create([
+            'company_id' => $this->user->company_id,
+            'product_purchase_id' => $product_purchase2->id,
+            'consumable_type' => WriteOff::class,
+            'consumable_id' => $write_off2->id,
+            'quantity' => 100,
+            'cost' => $product_purchase2->cost / 100,
+            'income' => 0,
+            'profit' => -($product_purchase2->cost / 100),
         ]);
         $write_offs = collect([$write_off1, $write_off2]);
 
@@ -250,7 +265,7 @@ class SystemLogEventsTest extends TestCase
         $this->assertSystemLogsHave(
             SystemLog::ACTIONS['write_off'],
             $write_offs->first(),
-            ['sum' => 100, 'storage_name' => $storage->name]
+            ['sum' => $product_consumption1->cost + $product_consumption2->cost, 'storage_name' => $storage->name]
         );
     }
 

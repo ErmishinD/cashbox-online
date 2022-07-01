@@ -58,6 +58,11 @@ class Transfer extends Model implements SystemLoggable
         return $this->hasMany(Transfer::class, 'parent_id');
     }
 
+    public function product_consumptions()
+    {
+        return $this->morphMany(ProductConsumption::class, 'consumable');
+    }
+
     public function getTextForAudit(string $action, ?array $data): string
     {
         if ($action == SystemLog::ACTIONS['transferred']) {

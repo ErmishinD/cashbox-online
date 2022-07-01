@@ -29,4 +29,9 @@ class ProductConsumption extends Model
         return $this->morphTo();
     }
 
+    public function product_purchase()
+    {
+        return $this->belongsTo(ProductPurchase::class);
+    }
+
 }

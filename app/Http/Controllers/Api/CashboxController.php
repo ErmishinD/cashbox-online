@@ -99,17 +99,14 @@ class CashboxController extends Controller
     {
         $this->authorize('Cashbox_delete');
 
+        $cashbox->load(['product_consumptions.product_purchase']);
+
         DB::transaction(function () use ($cashbox) {
             // before deleting payment - restore product types in storage
-            if (!empty($cashbox->data)) {
-                foreach (json_decode($cashbox->data, true) as $product_type_id => $purchases) {
-                    foreach ($purchases as $purchase) {
-                        $product_purchase = \App\Models\ProductPurchase::find($purchase['id']);
-                        $product_purchase->current_quantity += $purchase['quantity'];
-                        $product_purchase->current_cost += $purchase['cost'];
-                        $product_purchase->save();
-                    }
-                }
+            foreach ($cashbox->product_consumptions as $product_consumption) {
+                $product_consumption->product_purchase->current_quantity += $product_consumption->quantity;
+                $product_consumption->product_purchase->current_cost += $product_consumption->cost;
+                $product_consumption->product_purchase->save();
             }
 
             $cashbox->product_consumptions()->delete();

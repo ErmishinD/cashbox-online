@@ -280,38 +280,6 @@ class StorageControllerTest extends TestCase
             'current_cost' => 375
         ]);
 
-//        $write_off1_from_db = WriteOff::query()
-//            ->where('company_id', $company->id)
-//            ->where('storage_id', $storage->id)
-//            ->where('product_type_id', $product_type1->id)
-//            ->where('quantity', 50)
-//            ->get();
-//        $this->assertCount(1, $write_off1_from_db);
-//        $write_off1_from_db = $write_off1_from_db->first();
-//        $this->assertEquals($purchase1->id, $write_off1_from_db->data[0]['id']);
-//        $this->assertEquals(50, $write_off1_from_db->data[0]['quantity']);
-//        $this->assertEquals(50, $write_off1_from_db->data[0]['cost']);
-//        $purchase1_expiration_date = $purchase1->expiration_date
-//            ? $purchase1->expiration_date->format('Y-m-d')
-//            : null;
-//        $this->assertEquals($purchase1_expiration_date, $write_off1_from_db->data[0]['expiration_data']);
-//
-//        $write_off2_from_db = WriteOff::query()
-//            ->where('company_id', $company->id)
-//            ->where('storage_id', $storage->id)
-//            ->where('product_type_id', $product_type2->id)
-//            ->where('quantity', 250)
-//            ->get();
-//        $this->assertCount(1, $write_off2_from_db);
-//        $write_off2_from_db = $write_off2_from_db->first();
-//        $this->assertEquals($purchase2->id, $write_off2_from_db->data[0]['id']);
-//        $this->assertEquals(250, $write_off2_from_db->data[0]['quantity']);
-//        $this->assertEquals(125, $write_off2_from_db->data[0]['cost']);
-//        $purchase2_expiration_date = $purchase2->expiration_date
-//            ? $purchase2->expiration_date->format('Y-m-d')
-//            : null;
-//        $this->assertEquals($purchase2_expiration_date, $write_off2_from_db->data[0]['expiration_data']);
-
         $this->assertDatabaseHas('product_purchases', [
             'company_id' => $company->id,
             'storage_id' => $storage->id,
@@ -336,32 +304,12 @@ class StorageControllerTest extends TestCase
             'storage_id' => $storage->id,
             'product_type_id' => $product_type1->id,
             'quantity' => 50,
-            'data' => $this->castAsJson([
-                [
-                    'id' => $purchase1->id,
-                    'quantity' => 50,
-                    'cost' => 50,
-                    'expiration_date' => $purchase1->expiration_date
-                        ? $purchase1->expiration_date->format('Y-m-d')
-                        : null
-                ]
-            ])
         ]);
         $this->assertDatabaseHas('write_offs', [
             'company_id' => $company->id,
             'storage_id' => $storage->id,
             'product_type_id' => $product_type2->id,
             'quantity' => 250,
-            'data' => $this->castAsJson([
-                [
-                    'id' => $purchase2->id,
-                    'quantity' => 250,
-                    'cost' => 125,
-                    'expiration_date' => $purchase2->expiration_date
-                        ? $purchase2->expiration_date->format('Y-m-d')
-                        : null
-                ]
-            ])
         ]);
     }
 

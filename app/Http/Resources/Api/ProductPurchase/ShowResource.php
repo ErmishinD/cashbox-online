@@ -32,7 +32,9 @@ class ShowResource extends JsonResource
             ],
             'expiration_date' => $this->expiration_date ? $this->expiration_date->format('Y-m-d') : null,
             'quantity' => $this->quantity,
+            'current_quantity' => $this->current_quantity,
             'cost' => $this->cost,
+            'current_cost' => $this->current_cost,
             'storage_id' => $this->storage_id,
         ];
     }

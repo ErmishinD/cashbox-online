@@ -56,9 +56,7 @@ class ProductsWrittenOff implements SystemLoggableEvent
     {
         $sum = 0;
         foreach ($this->write_offs as $write_off) {
-            foreach ($write_off->data as $purchase_data) {
-                $sum += $purchase_data['cost'];
-            }
+            $sum += $write_off->product_consumptions->sum('cost');
         }
         return [
             'sum' => round($sum, 2),

@@ -32,8 +32,8 @@ class UpdateRequest extends TenantRequest
     {
         parent::prepareForValidation();
         $this->merge([
-            'current_quantity' => $this->quantity,
-            'current_cost' => $this->cost,
+            'current_quantity' => $this->current_quantity ?? $this->quantity,
+            'current_cost' => $this->current_cost ?? $this->cost,
         ]);
     }
 }

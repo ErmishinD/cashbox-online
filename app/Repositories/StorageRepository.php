@@ -88,11 +88,11 @@ class StorageRepository extends BaseRepository
                     'product_type_id' => $product_type['id'],
                     'quantity' => $product_type['quantity'],
                     'parent_id' => $parent_id,
-                    'data' => $used_purchases[$product_type['id']]
                 ]);
 
+                $write_off->product_consumptions = collect();
                 foreach ($used_purchases[$product_type['id']] as $purchase) {
-                    ProductConsumption::create([
+                    $product_consumption = ProductConsumption::create([
                         'company_id' => $data['company_id'],
                         'product_purchase_id' => $purchase['id'],
                         'consumable_type' => WriteOff::class,
@@ -102,6 +102,7 @@ class StorageRepository extends BaseRepository
                         'income' => 0,
                         'profit' => -$purchase['cost'],
                     ]);
+                    $write_off->product_consumptions->push($product_consumption);
                 }
 
                 $write_offs->push($write_off);
@@ -166,8 +167,21 @@ class StorageRepository extends BaseRepository
                             'transferred_by' => $data['transferred_by'],
                             'product_purchase_id' => $product_purchase->id,
                             'parent_id' => $transfer_parent_id,
-                            'data' => $current_used_purchase->toArray()
                         ]);
+
+                        $product_consumption = ProductConsumption::create([
+                            'company_id' => $data['company_id'],
+                            'product_purchase_id' => $current_used_purchase['id'],
+                            'consumable_type' => Transfer::class,
+                            'consumable_id' => $transfer->id,
+                            'quantity' => $current_used_purchase['quantity'],
+                            'cost' => 0,
+                            'income' => 0,
+                            'profit' => 0,
+                        ]);
+
+                        $transfer->product_consumptions = collect([$product_consumption]);
+
                         $transfers->push($transfer);
                     }
                 } else {
@@ -195,6 +209,23 @@ class StorageRepository extends BaseRepository
                         'parent_id' => $transfer_parent_id,
                         'data' => $used_purchases[$product_type['id']]
                     ]);
+
+                    $transfer->product_consumptions = collect();
+
+                    foreach ($current_used_purchases as $current_used_purchase) {
+                        $product_consumption = ProductConsumption::create([
+                            'company_id' => $data['company_id'],
+                            'product_purchase_id' => $current_used_purchase['id'],
+                            'consumable_type' => Transfer::class,
+                            'consumable_id' => $transfer->id,
+                            'quantity' => $current_used_purchase['quantity'],
+                            'cost' => 0,
+                            'income' => 0,
+                            'profit' => 0,
+                        ]);
+                        $transfer->product_consumptions->push($product_consumption);
+                    }
+
                     $transfers->push($transfer);
                 }
             }

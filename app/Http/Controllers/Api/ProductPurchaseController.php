@@ -15,11 +15,13 @@ use App\Http\Resources\Api\ProductPurchase\DefaultResource;
 use App\Http\Resources\Api\ProductPurchase\ShowCollection;
 use App\Http\Resources\Api\ProductPurchase\ShowResource;
 use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
+use App\Models\Cashbox;
 use App\Models\ProductPurchase;
 use App\Models\Storage;
 use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @authenticated
@@ -136,18 +138,41 @@ class ProductPurchaseController extends Controller
     {
         $this->authorize('ProductPurchase_edit');
 
-        if ($product_purchase->quantity != $product_purchase->current_quantity) {
-            return response()->json([
-                'success' => false, 'message' => 'Someone has already used products from this purchase!'
-            ], 409);
-        }
-
         $data = $request->validated();
-        $product_purchase->update($data);
+
+        $product_purchase->load(['product_consumptions.consumable', 'user']);
+
+        DB::transaction(function () use ($data, $product_purchase) {
+            if ($product_purchase->quantity != $product_purchase->current_quantity) {
+                unset($data['current_cost'], $data['storage_id']);
+            } else {
+                $data['current_quantity'] = $data['quantity'];
+            }
+
+            $data['current_cost'] = $data['current_quantity'] != 0 ? $data['cost'] / $data['current_quantity'] : 0; // update current_cost of this purchase
+
+            // new quantity
+            if ($product_purchase->quantity != $data['quantity'] || $product_purchase->cost != $data['cost']) {
+                // update cost and profit of product_consumptions
+                foreach ($product_purchase->product_consumptions as $product_consumption) {
+                    $cost_difference = $product_consumption->cost - $data['cost'] / $data['quantity'] * $product_consumption->quantity;
+                    $product_consumption->cost = $data['cost'] / $data['quantity'] * $product_consumption->quantity;
+                    $product_consumption->profit = $product_consumption->income - $product_consumption->cost;
+                    $product_consumption->save();
+
+                    // if product_consumption is cashbox => update self_cost and profit
+                    if ($product_consumption->consumable_type == Cashbox::class) {
+                        $product_consumption->consumable->self_cost -= $cost_difference;
+                        $product_consumption->consumable->profit = $product_consumption->consumable->amount - $product_consumption->consumable->self_cost;
+                        $product_consumption->consumable->save();
+                    }
+                }
+            }
+
+            $product_purchase->update($data);
+        });
 
         ProductPurchaseEdited::dispatch($product_purchase, Auth::user());
-
-        $product_purchase->load('user');
 
         return response()->json(['success' => true, 'data' => new DefaultResource($product_purchase)], 202);
     }

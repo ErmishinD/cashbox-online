@@ -54,6 +54,11 @@ class ProductPurchase extends Model implements SystemLoggable
         return $this->hasMany(ProductPurchase::class, 'parent_id');
     }
 
+    public function product_consumptions()
+    {
+        return $this->hasMany(ProductConsumption::class);
+    }
+
     public function getTextForAudit(string $action, ?array $data): string
     {
         if ($action == SystemLog::ACTIONS['purchased']) {
