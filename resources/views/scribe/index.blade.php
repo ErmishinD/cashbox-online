@@ -328,6 +328,9 @@
                                     <li class="tocify-item level-2" data-unique="report-endpoints-POSTapi-reports-get_paginated_transactions">
                         <a href="#report-endpoints-POSTapi-reports-get_paginated_transactions">POST api/reports/get_paginated_transactions</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="report-endpoints-GETapi-reports-purchase_recommendations">
+                        <a href="#report-endpoints-GETapi-reports-purchase_recommendations">GET api/reports/purchase_recommendations</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-14" class="tocify-header">
@@ -529,7 +532,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 1 2022</li>
+        <li>Last updated: July 2 2022</li>
     </ul>
 </div>
 
@@ -5138,7 +5141,7 @@ vary: Origin
     &quot;email&quot;: &quot;admin@admin.com&quot;,
     &quot;email_verified_at&quot;: null,
     &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-07-01T19:24:40.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-07-02T08:31:43.000000Z&quot;,
     &quot;deleted_at&quot;: null,
     &quot;company_id&quot;: 1
 }</code>
@@ -6733,6 +6736,10 @@ vary: Origin
             {
                 &quot;id&quot;: 70,
                 &quot;ability&quot;: &quot;profit&quot;
+            },
+            {
+                &quot;id&quot;: 71,
+                &quot;ability&quot;: &quot;purchaseRecommendations&quot;
             }
         ]
     }
@@ -9329,6 +9336,20 @@ vary: Origin
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;
             }
+        },
+        {
+            &quot;id&quot;: 165,
+            &quot;product_type_id&quot;: 39,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 4000,
+            &quot;current_quantity&quot;: 3500,
+            &quot;cost&quot;: &quot;400.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-02T07:59:10.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Юрий Билов&quot;
+            }
         }
     ]
 }</code>
@@ -10992,6 +11013,10 @@ vary: Origin
         {
             &quot;id&quot;: 38,
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;
+        },
+        {
+            &quot;id&quot;: 39,
+            &quot;name&quot;: &quot;Test&quot;
         }
     ]
 }</code>
@@ -13529,6 +13554,20 @@ vary: Origin
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
             }
+        },
+        {
+            &quot;id&quot;: 39,
+            &quot;name&quot;: &quot;Test&quot;,
+            &quot;warning_threshold&quot;: 1000,
+            &quot;current_quantity&quot;: 0,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 1,
+                &quot;base_measure_type_id&quot;: 2,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
+            }
         }
     ]
 }</code>
@@ -13599,8 +13638,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-01T22:24:45\",
-    \"end_date\": \"2022-07-01T22:24:45\",
+    \"start_date\": \"2022-07-02T11:31:45\",
+    \"end_date\": \"2022-07-02T11:31:45\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -13618,8 +13657,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-01T22:24:45",
-    "end_date": "2022-07-01T22:24:45",
+    "start_date": "2022-07-02T11:31:45",
+    "end_date": "2022-07-02T11:31:45",
     "shop_id": 17
 };
 
@@ -13642,7 +13681,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 19
+x-ratelimit-remaining: 18
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -13696,7 +13735,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13706,7 +13745,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13742,8 +13781,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-01T22:24:45\",
-    \"end_date\": \"2022-07-01T22:24:45\",
+    \"start_date\": \"2022-07-02T11:31:45\",
+    \"end_date\": \"2022-07-02T11:31:45\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -13761,8 +13800,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-01T22:24:45",
-    "end_date": "2022-07-01T22:24:45",
+    "start_date": "2022-07-02T11:31:45",
+    "end_date": "2022-07-02T11:31:45",
     "shop_id": 17
 };
 
@@ -13785,7 +13824,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 18
+x-ratelimit-remaining: 17
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -13793,7 +13832,7 @@ vary: Origin
 <code class="language-json">{
     &quot;data&quot;: {
         &quot;date_list&quot;: [
-            &quot;07-01&quot;
+            &quot;07-02&quot;
         ],
         &quot;amount_list&quot;: [
             &quot;0.00&quot;
@@ -13847,7 +13886,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13857,7 +13896,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13893,8 +13932,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-01T22:24:45\",
-    \"end_date\": \"2022-07-01T22:24:45\",
+    \"start_date\": \"2022-07-02T11:31:45\",
+    \"end_date\": \"2022-07-02T11:31:45\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -13912,8 +13951,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-01T22:24:45",
-    "end_date": "2022-07-01T22:24:45",
+    "start_date": "2022-07-02T11:31:45",
+    "end_date": "2022-07-02T11:31:45",
     "shop_id": 17
 };
 
@@ -13936,7 +13975,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 17
+x-ratelimit-remaining: 16
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -14034,7 +14073,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14044,7 +14083,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14080,8 +14119,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-01T22:24:45\",
-    \"end_date\": \"2022-07-01T22:24:45\",
+    \"start_date\": \"2022-07-02T11:31:45\",
+    \"end_date\": \"2022-07-02T11:31:45\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -14099,8 +14138,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-01T22:24:45",
-    "end_date": "2022-07-01T22:24:45",
+    "start_date": "2022-07-02T11:31:45",
+    "end_date": "2022-07-02T11:31:45",
     "shop_id": 17
 };
 
@@ -14123,7 +14162,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 16
+x-ratelimit-remaining: 15
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -14249,7 +14288,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14259,7 +14298,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14295,8 +14334,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-01T22:24:45\",
-    \"end_date\": \"2022-07-01T22:24:45\",
+    \"start_date\": \"2022-07-02T11:31:45\",
+    \"end_date\": \"2022-07-02T11:31:45\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -14314,8 +14353,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-01T22:24:45",
-    "end_date": "2022-07-01T22:24:45",
+    "start_date": "2022-07-02T11:31:45",
+    "end_date": "2022-07-02T11:31:45",
     "shop_id": 17
 };
 
@@ -14368,7 +14407,7 @@ fetch(url, {
                 <input type="text"
                name="start_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14378,7 +14417,7 @@ fetch(url, {
                 <input type="text"
                name="end_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-01T22:24:45"
+               value="2022-07-02T11:31:45"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14388,6 +14427,639 @@ fetch(url, {
                 <input type="number"
                name="shop_id"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
+               value="17"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="report-endpoints-GETapi-reports-purchase_recommendations">GET api/reports/purchase_recommendations</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-reports-purchase_recommendations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cashbox-online.test/api/reports/purchase_recommendations" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"start_date\": \"2022-07-02T11:31:45\",
+    \"end_date\": \"2022-07-02T11:31:45\",
+    \"shop_id\": 17
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/reports/purchase_recommendations"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "start_date": "2022-07-02T11:31:45",
+    "end_date": "2022-07-02T11:31:45",
+    "shop_id": 17
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-reports-purchase_recommendations">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 19
+vary: Origin
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Сахар&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Вода&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;л&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Стаканчик 250&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Кофе 1 кг&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;name&quot;: &quot;Молоко&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;л&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;ПЕТ 0,5&quot;,
+                &quot;quantity&quot;: 500
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;name&quot;: &quot;Стаканчик 400&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Пакетик&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;name&quot;: &quot;Чай ISLA Herbal tea&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Пакетик&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;name&quot;: &quot;Чай ISLA English Breakfast&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Пакетик&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;name&quot;: &quot;Чай ISLA Fruit Tea&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Пакетик&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 13,
+            &quot;name&quot;: &quot;Мороженное&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 14,
+            &quot;name&quot;: &quot;Протеин&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;name&quot;: &quot;Петли TRX&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 16,
+            &quot;name&quot;: &quot;Лента для йоги&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 17,
+            &quot;name&quot;: &quot;Резинка для стретчинга&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 18,
+            &quot;name&quot;: &quot;Блоки для стретчинга&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 19,
+            &quot;name&quot;: &quot;Гамак&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 20,
+            &quot;name&quot;: &quot;Носки (детские)&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 21,
+            &quot;name&quot;: &quot;Носки (взрослые)&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 22,
+            &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 23,
+            &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 24,
+            &quot;name&quot;: &quot;Резинка для волос (набор 10 шт. маленьких пружинок)&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 25,
+            &quot;name&quot;: &quot;Мешалки&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 26,
+            &quot;name&quot;: &quot;Стакан ПЛАСТИК 350 мл&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 27,
+            &quot;name&quot;: &quot;Крышка ПЛАСТИК&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 28,
+            &quot;name&quot;: &quot;Трубочка&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 29,
+            &quot;name&quot;: &quot;Резинка для волос безшовная большая&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 30,
+            &quot;name&quot;: &quot;Резинка МОРДОЧКА&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 31,
+            &quot;name&quot;: &quot;Батончик злаковый&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 32,
+            &quot;name&quot;: &quot;Батончик протеиновый&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 33,
+            &quot;name&quot;: &quot;Сахар&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 34,
+            &quot;name&quot;: &quot;Кофе&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 35,
+            &quot;name&quot;: &quot;Вода&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;л&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 36,
+            &quot;name&quot;: &quot;Стаканчик&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 37,
+            &quot;name&quot;: &quot;Twix&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 38,
+            &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;шт&quot;,
+                &quot;quantity&quot;: 1
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        },
+        {
+            &quot;id&quot;: 39,
+            &quot;name&quot;: &quot;Test&quot;,
+            &quot;main_measure_type&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;кг&quot;,
+                &quot;quantity&quot;: 1000
+            },
+            &quot;cashbox_sum_quantity&quot;: 0,
+            &quot;cashbox_sum_cost&quot;: 0,
+            &quot;write_off_sum_quantity&quot;: 0,
+            &quot;write_off_sum_cost&quot;: 0
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-reports-purchase_recommendations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-reports-purchase_recommendations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-reports-purchase_recommendations"></code></pre>
+</span>
+<span id="execution-error-GETapi-reports-purchase_recommendations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-reports-purchase_recommendations"></code></pre>
+</span>
+<form id="form-GETapi-reports-purchase_recommendations" data-method="GET"
+      data-path="api/reports/purchase_recommendations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-reports-purchase_recommendations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/reports/purchase_recommendations</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-reports-purchase_recommendations" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-reports-purchase_recommendations"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>start_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start_date"
+               data-endpoint="GETapi-reports-purchase_recommendations"
+               value="2022-07-02T11:31:45"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>end_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end_date"
+               data-endpoint="GETapi-reports-purchase_recommendations"
+               value="2022-07-02T11:31:45"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>shop_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="shop_id"
+               data-endpoint="GETapi-reports-purchase_recommendations"
                value="17"
                data-component="body" hidden>
     <br>

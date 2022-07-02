@@ -69,6 +69,11 @@ class ProductType extends Model implements HasMedia, SystemLoggable
         return $this->belongsTo(Category::class);
     }
 
+    public function product_consumptions()
+    {
+        return $this->hasManyThrough(ProductConsumption::class, ProductPurchase::class);
+    }
+
     public function system_logs()
     {
         return $this->morphMany(SystemLog::class, 'loggable');

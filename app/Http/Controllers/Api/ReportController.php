@@ -8,6 +8,7 @@ use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\Report\DateRangeRequest;
 use App\Http\Resources\Api\Report\CashboxTransactionResource;
 use App\Http\Resources\Api\Report\PopularSellProductcsCollection;
+use App\Http\Resources\Api\Report\ProductPurchaseRecommendationResource;
 use App\Http\Resources\Api\Report\ProfitByCategoryCollection;
 use App\Http\Resources\Api\Report\ProfitByDayCollection;
 use App\Http\Resources\Api\Report\ProfitByShopResource;
@@ -19,6 +20,7 @@ use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\Storage;
+use App\Models\WriteOff;
 
 /**
  * @authenticated
@@ -177,5 +179,63 @@ class ReportController extends Controller
             ->orderByDesc('cashbox_count')
             ->get();
         return PopularSellProductcsCollection::make($sell_products);
+    }
+
+    public function getProductPurchaseRecommendations(DateRangeRequest $request)
+    {
+        $this->authorize('Report_purchaseRecommendations');
+        $data = $request->validated();
+
+        $product_types = ProductType::query()
+            ->select(['id', 'name', 'main_measure_type_id'])
+            ->with('main_measure_type')
+            ->withSum(['product_consumptions as consumption_cashbox_sum_quantity' => function ($query) use ($data) {
+                $query
+                    ->where('consumable_type', Cashbox::class)
+                    ->when(!empty($data['shop_id']), function ($query) use ($data) {
+                        $query
+                            ->join('storages', 'storages.id', '=', 'product_purchases.storage_id')
+                            ->join('shops', 'shops.id', '=', 'storages.shop_id')
+                            ->where('shops.id', $data['shop_id']);
+                    })
+                    ->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']]);
+            }], 'quantity')
+            ->withSum(['product_consumptions as consumption_cashbox_sum_cost' => function ($query) use ($data) {
+                $query
+                    ->where('consumable_type', Cashbox::class)
+                    ->when(!empty($data['shop_id']), function ($query) use ($data) {
+                        $query
+                            ->join('storages', 'storages.id', '=', 'product_purchases.storage_id')
+                            ->join('shops', 'shops.id', '=', 'storages.shop_id')
+                            ->where('shops.id', $data['shop_id']);
+                    })
+                    ->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']]);
+            }], 'cost')
+            ->withSum(['product_consumptions as consumption_write_off_sum_quantity' => function ($query) use ($data) {
+                $query
+                    ->where('consumable_type', WriteOff::class)
+                    ->when(!empty($data['shop_id']), function ($query) use ($data) {
+                        $query
+                            ->join('storages', 'storages.id', '=', 'product_purchases.storage_id')
+                            ->join('shops', 'shops.id', '=', 'storages.shop_id')
+                            ->where('shops.id', $data['shop_id']);
+                    })
+                    ->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']]);
+            }], 'quantity')
+            ->withSum(['product_consumptions as consumption_write_off_sum_cost' => function ($query) use ($data) {
+                $query
+                    ->where('consumable_type', WriteOff::class)
+                    ->when(!empty($data['shop_id']), function ($query) use ($data) {
+                        $query
+                            ->join('storages', 'storages.id', '=', 'product_purchases.storage_id')
+                            ->join('shops', 'shops.id', '=', 'storages.shop_id')
+                            ->where('shops.id', $data['shop_id']);
+                    })
+                    ->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']]);
+            }], 'cost')
+            ->orderByDesc('consumption_cashbox_sum_cost')
+            ->get();
+
+        return ProductPurchaseRecommendationResource::collection($product_types);
     }
 }
