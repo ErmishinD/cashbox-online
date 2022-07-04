@@ -12,6 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
         // create permissions
         $permissions = ['Report_purchaseRecommendations'];
         foreach ($permissions as $permission) {

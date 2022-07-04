@@ -12,6 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
         \Spatie\Permission\Models\Permission::create([
             'name' => 'Cashbox_viewOnlyMySales'
         ]);
