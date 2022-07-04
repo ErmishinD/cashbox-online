@@ -9,8 +9,15 @@
             </div>
             <div class="form_item">
                 <label class="tal" for="quantity">{{ $t('Кол-во') }}*:</label>
-                <input style="width: 125px;" type="number" required class="form-control" name="quantity" v-model="formData.base_measure_quantity">
+                <input step="any" style="width: 125px;" type="number" required class="form-control" name="quantity" v-model="formData.base_measure_quantity">
                 <select required style="width: 125px;" class="form-control" v-model="formData.measure_type_quantity" name="" id="">
+                    <option v-for="measure in formData.product_type.measure_types" :value="measure.quantity">{{measure.name}}</option>
+                </select>
+            </div>
+            <div class="form_item">
+                <label class="tal" for="quantity">{{ $t('Текущее кол-во') }}*:</label>
+                <input step="any" style="width: 125px;" type="number" required class="form-control" name="quantity" v-model="formData.base_measure_current_quantity">
+                <select required style="width: 125px;" class="form-control" v-model="formData.current_measure_type_quantity" name="" id="">
                     <option v-for="measure in formData.product_type.measure_types" :value="measure.quantity">{{measure.name}}</option>
                 </select>
             </div>
@@ -57,7 +64,9 @@ export default{
             this.formData = response.data['data']
 
             this.formData.base_measure_quantity = this.formData.quantity / this.formData.product_type.main_measure_type.quantity
+            this.formData.base_measure_current_quantity = this.formData.current_quantity / this.formData.product_type.main_measure_type.quantity
             this.formData.measure_type_quantity = this.formData.product_type.main_measure_type.quantity
+            this.formData.current_measure_type_quantity = this.formData.product_type.main_measure_type.quantity
             this.storage_list = response.data.storages
             document.title = this.$t('Редактирование закупки');
             
@@ -79,9 +88,18 @@ export default{
 
     	UpdatePurchase(e) {
     		e.preventDefault()
-    		this.emitter.emit("isLoading", true);
+    		
     		this.updateData = Object.assign({}, this.formData)
             this.updateData.quantity = this.updateData.base_measure_quantity * this.updateData.measure_type_quantity
+            this.updateData.current_quantity = this.updateData.base_measure_current_quantity * this.updateData.current_measure_type_quantity
+            if(this.updateData.current_quantity > this.updateData.quantity){
+                this.$notify({
+                    text: this.$t('Текущее кол-во не может превышать кол-во закупки!'),
+                    type: 'error',
+                });
+                return
+            }
+            this.emitter.emit("isLoading", true);
     		console.log(this.updateData)
     		this.axios.put('/api/product_purchases/' + this.id, this.updateData).then((response) => {
     			this.$notify({

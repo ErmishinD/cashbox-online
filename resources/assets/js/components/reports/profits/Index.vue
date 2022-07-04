@@ -9,16 +9,17 @@
     <i v-bind:class="is_common_data_hidden ? 'fa-plus' : 'fa-minus'" @click="is_common_data_hidden = !is_common_data_hidden" class="fas toggle_icon"></i>
     </div>
     <div v-show="!is_common_data_hidden">
-      <div v-for="shop in common_data">
-        <div class="tac content_title">
-          {{shop.name}}
-        </div>
-        <div class="row-btw">
-          <span>{{$t('Доходы')}}: {{shop.sum_amount}}</span>
-          <span>{{$t('Расходы')}}: {{shop.sum_self_cost}}</span>
-          <span>{{$t('Прибыль')}}: {{shop.sum_profit}}</span>
-        </div>
-      </div>
+      <vue-good-table style="position: static;"
+          :columns="common_data_columns"
+          :rows="common_data_rows"
+          :line-numbers="true">
+          <template #table-row="props">
+            <span  v-if="props.column.field == 'name'">
+              <router-link class="redirect_from_table" v-if="$can('Shop_show')" :to="{name: 'shops_show', params: {id: props.row.id}}">{{props.row.name}}</router-link>
+              <span v-else="">{{props.row.name}}</span>
+            </span>
+          </template>
+        </vue-good-table>
     </div>
     
 
@@ -205,6 +206,25 @@ export default {
         // },
       ],
       transaction_rows: [],
+      common_data_columns:[
+        {
+          label: this.$t('Магазин'),
+          field: 'name',
+        },
+        {
+          label: this.$t('Доходы'),
+          field: 'sum_amount',
+        },
+        {
+          label: this.$t('Расходы'),
+          field: 'sum_self_cost',
+        },
+        {
+          label: this.$t('Прибыль'),
+          field: 'sum_profit',
+        },
+      ],
+      common_data_rows: [],
     };
   },
   watch:{
@@ -229,7 +249,7 @@ export default {
       getDataByDate(startDate, endDate){
         this.emitter.emit("isLoading", true);
         this.axios.get('/api/reports/profit', {params: {start_date: startDate, end_date:endDate}}).then((response) => {
-            this.common_data = response.data['data']
+            this.common_data_rows = response.data['data']
             this.sum_data = response.data['sum_data']
         })
         this.axios.get(`/api/reports/profit_by_day/`, {params: {start_date: startDate, end_date:endDate, shop_id: this.current_shop}}).then((response) => {
