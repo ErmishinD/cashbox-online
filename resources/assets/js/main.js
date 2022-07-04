@@ -68,6 +68,9 @@ import PurchasesEdit from './components/purchases/Edit'
 	/* import profits */
 	import ReportsProfitsIndex from './components/reports/profits/Index'
 
+	/* import recommendations */
+	import ReportsRecommendationsIndex from './components/reports/recommendations/Index'
+
 /* import transfers */
 import TransfersIndex from './components/transfers/Index'
 import TransfersCreate from './components/transfers/Create'
@@ -260,6 +263,11 @@ const router = createRouter({
 			path: '/reports/profits',
 			name: 'reports_profits_index',
 			component: ReportsProfitsIndex
+		},
+		{
+			path: '/reports/recommendations',
+			name: 'reports_recommendations_index',
+			component: ReportsRecommendationsIndex
 		},
 		{
 			path: '/transfers',

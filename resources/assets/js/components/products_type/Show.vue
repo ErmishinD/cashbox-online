@@ -11,18 +11,18 @@
 		<div class="product_card_CRUD__content">
 			<div class="product_card_CRUD__content_row">
 				<span class="product_card_CRUD__content_item">
-					{{$t('Основная ед. изм.')}}: {{product.main_measure_type.name}}
+					{{$t('Основная ед. изм.')}}: {{product.main_measure_type?.name}}
 				</span>
 					
 				<span class="product_card_CRUD__content_item">
 					{{$t('Тип')}}: {{product.type == '_imperishable' ? $t('Непортящийся') : $t('Портящийся')}}
 				</span>
 			</div>
-			<div class="product_card_CRUD__content_item" v-if="product.measure_types.length">
-				{{$t('Доступные ед. изм.')}}: <span class="" v-for="measure_type in product.measure_types">{{measure_type.name}}  &nbsp; &nbsp;</span>
+			<div class="product_card_CRUD__content_item" v-if="product.measure_types?.length">
+				{{$t('Доступные ед. изм.')}}: <span class="" v-for="measure_type in product.measure_types">{{measure_type?.name}}  &nbsp; &nbsp;</span>
 			</div>
-			<div class="product_card_CRUD__content_item" v-if="product.sell_products.length">
-				{{$t('Входит в товары')}}: <span class="" v-for="sell_product in product.sell_products"><router-link :to="{name: 'products_for_sale_show', params: {id: sell_product.id}}">{{sell_product.name}}  &nbsp; &nbsp;</router-link></span>
+			<div class="product_card_CRUD__content_item" v-if="product.sell_products?.length">
+				{{$t('Входит в товары')}}: <span class="" v-for="sell_product in product.sell_products"><router-link :to="{name: 'products_for_sale_show', params: {id: sell_product.id}}">{{sell_product?.name}}  &nbsp; &nbsp;</router-link></span>
 			</div>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
         </span>
 
         <span  v-if="props.column.field == 'current_quantity'">
-        	{{props.row.current_quantity / product.main_measure_type.quantity}} {{product.main_measure_type.name}}
+        	{{props.row.current_quantity / product.main_measure_type?.quantity}} {{product.main_measure_type?.name}}
         </span>
         </template>
     </vue-good-table>
@@ -73,11 +73,7 @@ export default{
 		} 
 	},
 	mounted(){
-		
-		// console.log(this.product)
-	},
-	created () {
-        this.emitter.emit("isLoading", true);
+		this.emitter.emit("isLoading", true);
 		this.axios.get('/api/product_types/'+this.id).then((response) => {
 		       this.product = response.data['data']
 		       if(this.product.type == '_perishable'){
@@ -95,9 +91,15 @@ export default{
 		       this.axios.get(`/api/product_types/${this.id}/get_storages_quantity`).then(res => {
 		       		this.balance = res.data['data']
 		       		this.rows = this.balance
+		       		this.emitter.emit("isLoading", false);
 		       })
-		       this.emitter.emit("isLoading", false);
+		       
 		     })
+		
+		// console.log(this.product)
+	},
+	created () {
+
     },
 }
 </script>

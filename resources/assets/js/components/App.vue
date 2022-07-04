@@ -203,6 +203,14 @@
 	          })
 	          }
 
+	          if(this.$can('Report_purchaseRecommendations')){
+	          	sidebar_reports_child.push({
+	            href: '/reports/recommendations',
+	            title: this.$t('Рекомендации'),
+	            icon: 'fas fa-circle-check',
+	          })
+	          }
+
 	          if(this.$can('Report_profit')){
 	          	sidebar_reports_child.push({
 	            href: '/reports/profits',
