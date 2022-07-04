@@ -76,50 +76,6 @@ export default {
 
   },
   methods:{
-  	render_list_items: function(){
-  		this.loadItems()
-  	},
-      updateParams(newProps) {
-        console.log(newProps)
-          this.serverParams = Object.assign({}, this.serverParams, newProps);
-      },
-
-      onPageChange(params) {
-          this.updateParams({page: params.currentPage});
-          this.loadItems();
-      },
-
-      onPerPageChange(params) {
-          this.updateParams({perPage: params.currentPerPage, page: 1});
-          this.loadItems();
-      },
-
-      onSortChange(params) {
-  	    let data = Object.assign({}, params)[0]
-
-          
-          this.updateParams({
-              sort: [{
-                  type: data.type,
-                  field: data.field,
-              }],
-              page: 1
-          });
-          this.loadItems();
-      },
-
-      onColumnFilter(params) {
-        console.log(params.columnFilters.type)
-        if(params.columnFilters.type == this.$t('Портящийся')){
-          params.columnFilters.type = '_perishable'
-        }
-        else if(params.columnFilters.type == this.$t('Непортящийся')){
-          params.columnFilters.type = '_imperishable'
-        }
-          this.updateParams(params);
-          this.loadItems();
-      },
-
       // load items is what brings back the rows from server
       loadItems() {
           this.emitter.emit("isLoading", true);

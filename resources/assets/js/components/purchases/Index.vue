@@ -78,7 +78,7 @@
         <span v-if="props.column.field == 'purchased'">{{props.row.quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
         <span v-if="props.column.field == 'current_quantity'">{{props.row.current_quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
 
-        <span class="table_actions" v-if="props.column.field == 'actions' && (props.row.quantity == props.row.current_quantity)">
+        <span class="table_actions" v-if="props.column.field == 'actions'">
           <router-link v-if="$can('ProductPurchase_edit') " :to="{name: 'purchases_edit', params: {id: props.row.id}}"><i class="fas fa-edit"></i></router-link>
             <a v-if="$can('ProductPurchase_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
         </span>
