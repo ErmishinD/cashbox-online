@@ -324,7 +324,7 @@ export default {
             this.categoryOptions = {
                 plugins: {
                   legend: {
-                    position: 'bottom'
+                    display: false,
                   },
                 },
               }
