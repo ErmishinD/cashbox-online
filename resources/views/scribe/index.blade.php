@@ -532,7 +532,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 2 2022</li>
+        <li>Last updated: July 5 2022</li>
     </ul>
 </div>
 
@@ -1318,9 +1318,9 @@ vary: Origin
     &quot;success&quot;: true,
     &quot;data&quot;: {
         &quot;in&quot;: {
-            &quot;sum&quot;: 925,
-            &quot;card&quot;: 150,
-            &quot;cash&quot;: 775
+            &quot;sum&quot;: 1455,
+            &quot;card&quot;: 265,
+            &quot;cash&quot;: 1190
         },
         &quot;out&quot;: {
             &quot;sum&quot;: 0,
@@ -1328,9 +1328,9 @@ vary: Origin
             &quot;cash&quot;: 0
         },
         &quot;all&quot;: {
-            &quot;sum&quot;: 925,
-            &quot;card&quot;: 150,
-            &quot;cash&quot;: 775
+            &quot;sum&quot;: 1455,
+            &quot;card&quot;: 265,
+            &quot;cash&quot;: 1190
         }
     }
 }</code>
@@ -1671,6 +1671,16 @@ vary: Origin
             }
         },
         {
+            &quot;collected_at&quot;: &quot;2022-07-01 13:20:47&quot;,
+            &quot;amount&quot;: 285,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            }
+        },
+        {
             &quot;collected_at&quot;: &quot;2022-06-29 12:18:17&quot;,
             &quot;amount&quot;: 255,
             &quot;collector&quot;: {
@@ -1871,6 +1881,1322 @@ vary: Origin
 <code class="language-json">{
     &quot;success&quot;: true,
     &quot;data&quot;: [
+        {
+            &quot;id&quot;: 405,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;10.00&quot;,
+            &quot;profit&quot;: &quot;20.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 12,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Носки (взрослые)&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 19:14&quot;
+        },
+        {
+            &quot;id&quot;: 404,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;7.06&quot;,
+            &quot;profit&quot;: &quot;12.94&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 5,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 18:13&quot;
+        },
+        {
+            &quot;id&quot;: 403,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 17:46&quot;
+        },
+        {
+            &quot;id&quot;: 402,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;10.00&quot;,
+            &quot;profit&quot;: &quot;20.00&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 12,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Носки (взрослые)&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 16:15&quot;
+        },
+        {
+            &quot;id&quot;: 401,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;25.00&quot;,
+            &quot;self_cost&quot;: &quot;10.00&quot;,
+            &quot;profit&quot;: &quot;15.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 11,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Носки (детские)&quot;,
+                &quot;price&quot;: &quot;25.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 16:15&quot;
+        },
+        {
+            &quot;id&quot;: 400,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 15:29&quot;
+        },
+        {
+            &quot;id&quot;: 399,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 14:56&quot;
+        },
+        {
+            &quot;id&quot;: 398,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 14:56&quot;
+        },
+        {
+            &quot;id&quot;: 397,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 14:54&quot;
+        },
+        {
+            &quot;id&quot;: 396,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;35.00&quot;,
+            &quot;self_cost&quot;: &quot;19.83&quot;,
+            &quot;profit&quot;: &quot;15.17&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 23,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Протеиновый коктейль на молоке&quot;,
+                &quot;price&quot;: &quot;35.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 14:47&quot;
+        },
+        {
+            &quot;id&quot;: 395,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 14:20&quot;
+        },
+        {
+            &quot;id&quot;: 394,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 12:58&quot;
+        },
+        {
+            &quot;id&quot;: 393,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 10:45&quot;
+        },
+        {
+            &quot;id&quot;: 392,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 09:54&quot;
+        },
+        {
+            &quot;id&quot;: 391,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;-0.43&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 09:25&quot;
+        },
+        {
+            &quot;id&quot;: 390,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 09:25&quot;
+        },
+        {
+            &quot;id&quot;: 389,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 09:25&quot;
+        },
+        {
+            &quot;id&quot;: 388,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;-0.79&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04 09:10&quot;
+        },
+        {
+            &quot;id&quot;: 387,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-02 16:41&quot;
+        },
+        {
+            &quot;id&quot;: 386,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-02 16:41&quot;
+        },
+        {
+            &quot;id&quot;: 385,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.24&quot;,
+            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-02 13:57&quot;
+        },
+        {
+            &quot;id&quot;: 384,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-02 11:38&quot;
+        },
+        {
+            &quot;id&quot;: 383,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-02 11:11&quot;
+        },
+        {
+            &quot;id&quot;: 382,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;14.58&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-02 10:20&quot;
+        },
+        {
+            &quot;id&quot;: 381,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 19:08&quot;
+        },
+        {
+            &quot;id&quot;: 380,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;11.10&quot;,
+            &quot;profit&quot;: &quot;18.90&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 3,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Лате&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 19:02&quot;
+        },
+        {
+            &quot;id&quot;: 379,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 18:57&quot;
+        },
+        {
+            &quot;id&quot;: 378,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 18:53&quot;
+        },
+        {
+            &quot;id&quot;: 377,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 18:14&quot;
+        },
+        {
+            &quot;id&quot;: 376,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 16:57&quot;
+        },
+        {
+            &quot;id&quot;: 375,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 16:56&quot;
+        },
+        {
+            &quot;id&quot;: 374,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 16:10&quot;
+        },
+        {
+            &quot;id&quot;: 373,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 14:56&quot;
+        },
+        {
+            &quot;id&quot;: 372,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;25.00&quot;,
+            &quot;self_cost&quot;: &quot;10.00&quot;,
+            &quot;profit&quot;: &quot;15.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 11,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Носки (детские)&quot;,
+                &quot;price&quot;: &quot;25.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 14:53&quot;
+        },
+        {
+            &quot;id&quot;: 369,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;-0.43&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 10:17&quot;
+        },
+        {
+            &quot;id&quot;: 368,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.07&quot;,
+            &quot;profit&quot;: &quot;8.93&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-01 09:57&quot;
+        },
+        {
+            &quot;id&quot;: 367,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;,
+                &quot;user&quot;: &quot;Vi_admin&quot;,
+                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 20:36&quot;
+        },
+        {
+            &quot;id&quot;: 366,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 19:30&quot;
+        },
+        {
+            &quot;id&quot;: 365,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 19:30&quot;
+        },
+        {
+            &quot;id&quot;: 364,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;14.21&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 19:13&quot;
+        },
+        {
+            &quot;id&quot;: 363,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;8.63&quot;,
+            &quot;profit&quot;: &quot;21.37&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 16,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 18:55&quot;
+        },
+        {
+            &quot;id&quot;: 362,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;12.26&quot;,
+            &quot;profit&quot;: &quot;17.74&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 3,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Лате&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;,
+                &quot;user&quot;: &quot;Lidia_admin&quot;,
+                &quot;email&quot;: &quot;petrisaklidia@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 17:22&quot;
+        },
+        {
+            &quot;id&quot;: 361,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;12.01&quot;,
+            &quot;profit&quot;: &quot;-2.01&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;,
+                &quot;user&quot;: &quot;Lidia_admin&quot;,
+                &quot;email&quot;: &quot;petrisaklidia@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 17:20&quot;
+        },
+        {
+            &quot;id&quot;: 360,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.79&quot;,
+            &quot;profit&quot;: &quot;-0.79&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 17:19&quot;
+        },
+        {
+            &quot;id&quot;: 359,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;8.63&quot;,
+            &quot;profit&quot;: &quot;21.37&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 16,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 17:14&quot;
+        },
+        {
+            &quot;id&quot;: 358,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;15.00&quot;,
+            &quot;self_cost&quot;: &quot;10.13&quot;,
+            &quot;profit&quot;: &quot;4.88&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 25,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Батончик злаковый&quot;,
+                &quot;price&quot;: &quot;15.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 16:04&quot;
+        },
+        {
+            &quot;id&quot;: 357,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;15.00&quot;,
+            &quot;self_cost&quot;: &quot;9.00&quot;,
+            &quot;profit&quot;: &quot;6.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 25,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Батончик злаковый&quot;,
+                &quot;price&quot;: &quot;15.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
+                &quot;user&quot;: &quot;sadmin&quot;,
+                &quot;email&quot;: &quot;admin@example.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-06-30 16:04&quot;
+        },
         {
             &quot;id&quot;: 356,
             &quot;shop&quot;: {
@@ -2180,34 +3506,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-29 17:00&quot;
         },
         {
-            &quot;id&quot;: 345,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: &quot;11.00&quot;,
-            &quot;profit&quot;: &quot;9.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-29 16:04&quot;
-        },
-        {
             &quot;id&quot;: 344,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
@@ -2383,8 +3681,8 @@ vary: Origin
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.33&quot;,
-            &quot;profit&quot;: &quot;2.67&quot;,
+            &quot;self_cost&quot;: &quot;98.24&quot;,
+            &quot;profit&quot;: &quot;-88.24&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2572,7 +3870,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-29 10:19&quot;
         },
         {
-            &quot;id&quot;: 325,
+            &quot;id&quot;: 326,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
                 &quot;name&quot;: &quot;Магазин Чаривная&quot;,
@@ -2600,7 +3898,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-28 20:16&quot;
         },
         {
-            &quot;id&quot;: 326,
+            &quot;id&quot;: 325,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
                 &quot;name&quot;: &quot;Магазин Чаривная&quot;,
@@ -2880,118 +4178,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-27 16:52&quot;
         },
         {
-            &quot;id&quot;: 305,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;12.08&quot;,
-            &quot;profit&quot;: &quot;-2.08&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 14:08&quot;
-        },
-        {
-            &quot;id&quot;: 304,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;12.08&quot;,
-            &quot;profit&quot;: &quot;-2.08&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 14:08&quot;
-        },
-        {
-            &quot;id&quot;: 303,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;12.08&quot;,
-            &quot;profit&quot;: &quot;-2.08&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 14:08&quot;
-        },
-        {
-            &quot;id&quot;: 302,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;160.00&quot;,
-            &quot;self_cost&quot;: &quot;81.00&quot;,
-            &quot;profit&quot;: &quot;79.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 7,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Лента для йоги&quot;,
-                &quot;price&quot;: &quot;160.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 14:07&quot;
-        },
-        {
             &quot;id&quot;: 300,
             &quot;shop&quot;: {
                 &quot;id&quot;: 1,
@@ -3048,62 +4234,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-27 11:15&quot;
         },
         {
-            &quot;id&quot;: 298,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;12.08&quot;,
-            &quot;profit&quot;: &quot;-2.08&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 11:01&quot;
-        },
-        {
-            &quot;id&quot;: 297,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;6.36&quot;,
-            &quot;profit&quot;: &quot;-1.36&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 11:01&quot;
-        },
-        {
             &quot;id&quot;: 295,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
@@ -3130,34 +4260,6 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-27 10:03&quot;
-        },
-        {
-            &quot;id&quot;: 282,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: &quot;10.51&quot;,
-            &quot;profit&quot;: &quot;9.49&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 5,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-25 11:17&quot;
         },
         {
             &quot;id&quot;: 281,
@@ -3214,62 +4316,6 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-25 09:42&quot;
-        },
-        {
-            &quot;id&quot;: 275,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: &quot;9.00&quot;,
-            &quot;profit&quot;: &quot;6.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 25,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Батончик злаковый&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-24 17:14&quot;
-        },
-        {
-            &quot;id&quot;: 274,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: &quot;9.00&quot;,
-            &quot;profit&quot;: &quot;6.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 25,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Батончик злаковый&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
-                &quot;user&quot;: &quot;K_admin&quot;,
-                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-24 17:14&quot;
         },
         {
             &quot;id&quot;: 261,
@@ -3358,9 +4404,9 @@ vary: Origin
     ],
     &quot;balance&quot;: {
         &quot;in&quot;: {
-            &quot;sum&quot;: 925,
-            &quot;card&quot;: 150,
-            &quot;cash&quot;: 775
+            &quot;sum&quot;: 1455,
+            &quot;card&quot;: 265,
+            &quot;cash&quot;: 1190
         },
         &quot;out&quot;: {
             &quot;sum&quot;: 0,
@@ -3368,9 +4414,9 @@ vary: Origin
             &quot;cash&quot;: 0
         },
         &quot;all&quot;: {
-            &quot;sum&quot;: 925,
-            &quot;card&quot;: 150,
-            &quot;cash&quot;: 775
+            &quot;sum&quot;: 1455,
+            &quot;card&quot;: 265,
+            &quot;cash&quot;: 1190
         }
     }
 }</code>
@@ -5141,7 +6187,7 @@ vary: Origin
     &quot;email&quot;: &quot;admin@admin.com&quot;,
     &quot;email_verified_at&quot;: null,
     &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-07-02T08:31:43.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-07-05T16:35:30.000000Z&quot;,
     &quot;deleted_at&quot;: null,
     &quot;company_id&quot;: 1
 }</code>
@@ -7326,7 +8372,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 91,
+            &quot;current_quantity&quot;: 7,
             &quot;cost&quot;: &quot;564.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7368,7 +8414,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 100,
-            &quot;current_quantity&quot;: 8,
+            &quot;current_quantity&quot;: 2,
             &quot;cost&quot;: &quot;134.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7522,7 +8568,7 @@ vary: Origin
             &quot;product_type_id&quot;: 20,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 5,
-            &quot;current_quantity&quot;: 4,
+            &quot;current_quantity&quot;: 2,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7592,7 +8638,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 150,
-            &quot;current_quantity&quot;: 65,
+            &quot;current_quantity&quot;: 60,
             &quot;cost&quot;: &quot;6.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -7676,7 +8722,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 211,
+            &quot;current_quantity&quot;: 186,
             &quot;cost&quot;: &quot;150.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T07:06:41.000000Z&quot;,
@@ -7732,7 +8778,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 6000,
-            &quot;current_quantity&quot;: 3500,
+            &quot;current_quantity&quot;: 3000,
             &quot;cost&quot;: &quot;132.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-01T11:12:44.000000Z&quot;,
@@ -7802,7 +8848,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 493,
+            &quot;current_quantity&quot;: 492,
             &quot;cost&quot;: &quot;15.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7956,7 +9002,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 125,
-            &quot;current_quantity&quot;: 112,
+            &quot;current_quantity&quot;: 110,
             &quot;cost&quot;: &quot;168.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -7998,7 +9044,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 66,
+            &quot;current_quantity&quot;: 38,
             &quot;cost&quot;: &quot;188.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -8026,7 +9072,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 3000,
-            &quot;current_quantity&quot;: 2877,
+            &quot;current_quantity&quot;: 2860,
             &quot;cost&quot;: &quot;63.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -8054,7 +9100,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 4000,
-            &quot;current_quantity&quot;: 3752,
+            &quot;current_quantity&quot;: 3721,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8068,7 +9114,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 252,
-            &quot;current_quantity&quot;: 226,
+            &quot;current_quantity&quot;: 221,
             &quot;cost&quot;: &quot;126.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8082,7 +9128,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 2000,
-            &quot;current_quantity&quot;: 1062,
+            &quot;current_quantity&quot;: 866,
             &quot;cost&quot;: &quot;700.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8124,7 +9170,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 129,
-            &quot;current_quantity&quot;: 83,
+            &quot;current_quantity&quot;: 73,
             &quot;cost&quot;: &quot;129.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8138,7 +9184,7 @@ vary: Origin
             &quot;product_type_id&quot;: 9,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 7,
-            &quot;current_quantity&quot;: 6,
+            &quot;current_quantity&quot;: 5,
             &quot;cost&quot;: &quot;42.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8208,7 +9254,7 @@ vary: Origin
             &quot;product_type_id&quot;: 14,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 1000,
-            &quot;current_quantity&quot;: 850,
+            &quot;current_quantity&quot;: 825,
             &quot;cost&quot;: &quot;350.00&quot;,
             &quot;expiration_date&quot;: &quot;2023-07-28&quot;,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8278,7 +9324,7 @@ vary: Origin
             &quot;product_type_id&quot;: 20,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 6,
-            &quot;current_quantity&quot;: 4,
+            &quot;current_quantity&quot;: 3,
             &quot;cost&quot;: &quot;60.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8348,7 +9394,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 250,
-            &quot;current_quantity&quot;: 214,
+            &quot;current_quantity&quot;: 205,
             &quot;cost&quot;: &quot;10.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8362,7 +9408,7 @@ vary: Origin
             &quot;product_type_id&quot;: 26,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 21,
-            &quot;current_quantity&quot;: 14,
+            &quot;current_quantity&quot;: 13,
             &quot;cost&quot;: &quot;54.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8376,7 +9422,7 @@ vary: Origin
             &quot;product_type_id&quot;: 27,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 60,
-            &quot;current_quantity&quot;: 53,
+            &quot;current_quantity&quot;: 52,
             &quot;cost&quot;: &quot;14.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8390,7 +9436,7 @@ vary: Origin
             &quot;product_type_id&quot;: 28,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 200,
-            &quot;current_quantity&quot;: 193,
+            &quot;current_quantity&quot;: 192,
             &quot;cost&quot;: &quot;44.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -8530,7 +9576,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 67,
-            &quot;current_quantity&quot;: 40,
+            &quot;current_quantity&quot;: 35,
             &quot;cost&quot;: &quot;33.50&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8558,7 +9604,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 2500,
-            &quot;current_quantity&quot;: 500,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;55.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8698,7 +9744,7 @@ vary: Origin
             &quot;product_type_id&quot;: 20,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 3,
-            &quot;current_quantity&quot;: 2,
+            &quot;current_quantity&quot;: 1,
             &quot;cost&quot;: &quot;30.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8712,7 +9758,7 @@ vary: Origin
             &quot;product_type_id&quot;: 21,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 3,
-            &quot;current_quantity&quot;: 3,
+            &quot;current_quantity&quot;: 1,
             &quot;cost&quot;: &quot;30.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -8726,7 +9772,7 @@ vary: Origin
             &quot;product_type_id&quot;: 31,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 6,
-            &quot;current_quantity&quot;: 1,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;54.00&quot;,
             &quot;expiration_date&quot;: &quot;2023-03-09&quot;,
             &quot;created_at&quot;: &quot;2022-06-09T10:50:47.000000Z&quot;,
@@ -8852,7 +9898,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 1150,
+            &quot;current_quantity&quot;: 1080,
             &quot;cost&quot;: &quot;560.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-10T13:07:57.000000Z&quot;,
@@ -8866,7 +9912,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 1440,
+            &quot;current_quantity&quot;: 1430,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-10T13:09:47.000000Z&quot;,
@@ -8894,7 +9940,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 12000,
-            &quot;current_quantity&quot;: 12,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;266.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-13T09:01:54.000000Z&quot;,
@@ -8964,7 +10010,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 5000,
-            &quot;current_quantity&quot;: 5000,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;110.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-15T08:44:28.000000Z&quot;,
@@ -9006,7 +10052,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 1800,
-            &quot;current_quantity&quot;: 900,
+            &quot;current_quantity&quot;: 600,
             &quot;cost&quot;: &quot;64.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-07-06&quot;,
             &quot;created_at&quot;: &quot;2022-06-15T13:07:35.000000Z&quot;,
@@ -9104,7 +10150,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 6000,
-            &quot;current_quantity&quot;: 6000,
+            &quot;current_quantity&quot;: 5012,
             &quot;cost&quot;: &quot;132.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-27T09:52:23.000000Z&quot;,
@@ -9118,7 +10164,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 3600,
-            &quot;current_quantity&quot;: 2400,
+            &quot;current_quantity&quot;: 600,
             &quot;cost&quot;: &quot;116.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-08-15&quot;,
             &quot;created_at&quot;: &quot;2022-06-27T09:52:23.000000Z&quot;,
@@ -9202,7 +10248,7 @@ vary: Origin
             &quot;product_type_id&quot;: 31,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 8,
-            &quot;current_quantity&quot;: 8,
+            &quot;current_quantity&quot;: 7,
             &quot;cost&quot;: &quot;81.00&quot;,
             &quot;expiration_date&quot;: &quot;2023-04-25&quot;,
             &quot;created_at&quot;: &quot;2022-06-28T09:04:00.000000Z&quot;,
@@ -9257,7 +10303,7 @@ vary: Origin
             &quot;id&quot;: 159,
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 4,
-            &quot;quantity&quot;: 3000,
+            &quot;quantity&quot;: 3,
             &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;91.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-10-05&quot;,
@@ -9314,7 +10360,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 2700,
-            &quot;current_quantity&quot;: 2400,
+            &quot;current_quantity&quot;: 1500,
             &quot;cost&quot;: &quot;0.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-11-29&quot;,
             &quot;created_at&quot;: &quot;2022-06-30T11:47:03.000000Z&quot;,
@@ -9339,16 +10385,58 @@ vary: Origin
         },
         {
             &quot;id&quot;: 165,
-            &quot;product_type_id&quot;: 39,
-            &quot;storage_id&quot;: 4,
-            &quot;quantity&quot;: 4000,
-            &quot;current_quantity&quot;: 3500,
-            &quot;cost&quot;: &quot;400.00&quot;,
-            &quot;expiration_date&quot;: null,
-            &quot;created_at&quot;: &quot;2022-07-02T07:59:10.000000Z&quot;,
+            &quot;product_type_id&quot;: 32,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;22.00&quot;,
+            &quot;expiration_date&quot;: &quot;2023-05-30&quot;,
+            &quot;created_at&quot;: &quot;2022-07-01T08:58:00.000000Z&quot;,
             &quot;user&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Юрий Билов&quot;
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 166,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 1800,
+            &quot;current_quantity&quot;: 1800,
+            &quot;cost&quot;: &quot;60.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-08-30&quot;,
+            &quot;created_at&quot;: &quot;2022-07-04T12:28:46.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 167,
+            &quot;product_type_id&quot;: 32,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;22.00&quot;,
+            &quot;expiration_date&quot;: &quot;2023-09-05&quot;,
+            &quot;created_at&quot;: &quot;2022-07-04T12:29:22.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 168,
+            &quot;product_type_id&quot;: 20,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;20.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-04T12:31:09.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
             }
         }
     ]
@@ -9416,7 +10504,7 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-07-31\",
+    \"expiration_date\": \"2103-08-04\",
     \"user_id\": \"consequatur\"
 }"
 </code></pre></div>
@@ -9441,7 +10529,7 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-07-31",
+    "expiration_date": "2103-08-04",
     "user_id": "consequatur"
 };
 
@@ -9564,7 +10652,7 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="POSTapi-product_purchases"
-               value="2103-07-31"
+               value="2103-08-04"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
@@ -10261,7 +11349,7 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-07-31\"
+    \"expiration_date\": \"2103-08-04\"
 }"
 </code></pre></div>
 
@@ -10283,7 +11371,7 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-07-31"
+    "expiration_date": "2103-08-04"
 };
 
 fetch(url, {
@@ -10400,7 +11488,7 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="PUTapi-product_purchases--id-"
-               value="2103-07-31"
+               value="2103-08-04"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
@@ -11013,10 +12101,6 @@ vary: Origin
         {
             &quot;id&quot;: 38,
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;
-        },
-        {
-            &quot;id&quot;: 39,
-            &quot;name&quot;: &quot;Test&quot;
         }
     ]
 }</code>
@@ -13040,6 +14124,8 @@ vary: Origin
         {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Сахар&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/1/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13049,11 +14135,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 2,
             &quot;name&quot;: &quot;Вода&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/2/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13063,11 +14169,47 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;ПЕТ 1л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 4,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;ПЕТ 0,5&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 500,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 3,
             &quot;name&quot;: &quot;Стаканчик 250&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/3/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13077,11 +14219,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 4,
             &quot;name&quot;: &quot;Кофе 1 кг&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13091,11 +14245,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Молоко&quot;,
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13105,11 +14279,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 7,
             &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13119,11 +14313,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 500,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;ПЕТ 0,5&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 500,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 8,
             &quot;name&quot;: &quot;Стаканчик 400&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13133,11 +14347,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 9,
             &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13147,11 +14373,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 10,
             &quot;name&quot;: &quot;Чай ISLA Herbal tea&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13161,11 +14407,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 11,
             &quot;name&quot;: &quot;Чай ISLA English Breakfast&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13175,11 +14441,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 12,
             &quot;name&quot;: &quot;Чай ISLA Fruit Tea&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13189,11 +14475,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 13,
             &quot;name&quot;: &quot;Мороженное&quot;,
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13203,11 +14509,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 14,
             &quot;name&quot;: &quot;Протеин&quot;,
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13217,11 +14543,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 15,
             &quot;name&quot;: &quot;Петли TRX&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13231,11 +14577,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 16,
             &quot;name&quot;: &quot;Лента для йоги&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13245,11 +14603,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 17,
             &quot;name&quot;: &quot;Резинка для стретчинга&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13259,11 +14629,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 18,
             &quot;name&quot;: &quot;Блоки для стретчинга&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13273,11 +14655,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 19,
             &quot;name&quot;: &quot;Гамак&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13287,11 +14681,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 20,
             &quot;name&quot;: &quot;Носки (детские)&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13301,11 +14707,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 21,
             &quot;name&quot;: &quot;Носки (взрослые)&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13315,11 +14733,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 22,
             &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13329,11 +14759,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 23,
             &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13343,11 +14785,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 24,
             &quot;name&quot;: &quot;Резинка для волос (набор 10 шт. маленьких пружинок)&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13357,11 +14811,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 25,
             &quot;name&quot;: &quot;Мешалки&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13371,11 +14837,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 26,
             &quot;name&quot;: &quot;Стакан ПЛАСТИК 350 мл&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13385,11 +14863,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 27,
             &quot;name&quot;: &quot;Крышка ПЛАСТИК&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13399,11 +14889,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 28,
             &quot;name&quot;: &quot;Трубочка&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13413,11 +14915,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 29,
             &quot;name&quot;: &quot;Резинка для волос безшовная большая&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/29/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13427,11 +14941,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 30,
             &quot;name&quot;: &quot;Резинка МОРДОЧКА&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13441,11 +14967,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 31,
             &quot;name&quot;: &quot;Батончик злаковый&quot;,
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13455,11 +14993,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 32,
             &quot;name&quot;: &quot;Батончик протеиновый&quot;,
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13469,11 +15019,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 33,
             &quot;name&quot;: &quot;Сахар&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/45/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13483,11 +15045,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 9,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 34,
             &quot;name&quot;: &quot;Кофе&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/51/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13497,11 +15079,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 9,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 35,
             &quot;name&quot;: &quot;Вода&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/46/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13511,11 +15113,31 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1000,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 8,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ]
         },
         {
             &quot;id&quot;: 36,
             &quot;name&quot;: &quot;Стаканчик&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/47/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13525,11 +15147,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 10,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 37,
             &quot;name&quot;: &quot;Twix&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/49/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13539,11 +15173,23 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 10,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         },
         {
             &quot;id&quot;: 38,
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -13553,21 +15199,17 @@ vary: Origin
                 &quot;description&quot;: null,
                 &quot;quantity&quot;: 1,
                 &quot;is_common&quot;: 0
-            }
-        },
-        {
-            &quot;id&quot;: 39,
-            &quot;name&quot;: &quot;Test&quot;,
-            &quot;warning_threshold&quot;: 1000,
-            &quot;current_quantity&quot;: 0,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 1,
-                &quot;base_measure_type_id&quot;: 2,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;description&quot;: null,
-                &quot;quantity&quot;: 1000,
-                &quot;is_common&quot;: 0
-            }
+            },
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ]
         }
     ]
 }</code>
@@ -13638,8 +15280,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-02T11:31:45\",
-    \"end_date\": \"2022-07-02T11:31:45\",
+    \"start_date\": \"2022-07-05T19:35:35\",
+    \"end_date\": \"2022-07-05T19:35:35\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -13657,8 +15299,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-02T11:31:45",
-    "end_date": "2022-07-02T11:31:45",
+    "start_date": "2022-07-05T19:35:35",
+    "end_date": "2022-07-05T19:35:35",
     "shop_id": 17
 };
 
@@ -13735,7 +15377,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13745,7 +15387,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13781,8 +15423,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-02T11:31:45\",
-    \"end_date\": \"2022-07-02T11:31:45\",
+    \"start_date\": \"2022-07-05T19:35:35\",
+    \"end_date\": \"2022-07-05T19:35:35\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -13800,8 +15442,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-02T11:31:45",
-    "end_date": "2022-07-02T11:31:45",
+    "start_date": "2022-07-05T19:35:35",
+    "end_date": "2022-07-05T19:35:35",
     "shop_id": 17
 };
 
@@ -13832,7 +15474,7 @@ vary: Origin
 <code class="language-json">{
     &quot;data&quot;: {
         &quot;date_list&quot;: [
-            &quot;07-02&quot;
+            &quot;07-05&quot;
         ],
         &quot;amount_list&quot;: [
             &quot;0.00&quot;
@@ -13886,7 +15528,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13896,7 +15538,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -13932,8 +15574,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-02T11:31:45\",
-    \"end_date\": \"2022-07-02T11:31:45\",
+    \"start_date\": \"2022-07-05T19:35:35\",
+    \"end_date\": \"2022-07-05T19:35:35\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -13951,8 +15593,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-02T11:31:45",
-    "end_date": "2022-07-02T11:31:45",
+    "start_date": "2022-07-05T19:35:35",
+    "end_date": "2022-07-05T19:35:35",
     "shop_id": 17
 };
 
@@ -14073,7 +15715,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14083,7 +15725,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14119,8 +15761,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-02T11:31:45\",
-    \"end_date\": \"2022-07-02T11:31:45\",
+    \"start_date\": \"2022-07-05T19:35:35\",
+    \"end_date\": \"2022-07-05T19:35:35\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -14138,8 +15780,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-02T11:31:45",
-    "end_date": "2022-07-02T11:31:45",
+    "start_date": "2022-07-05T19:35:35",
+    "end_date": "2022-07-05T19:35:35",
     "shop_id": 17
 };
 
@@ -14288,7 +15930,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14298,7 +15940,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14334,8 +15976,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-02T11:31:45\",
-    \"end_date\": \"2022-07-02T11:31:45\",
+    \"start_date\": \"2022-07-05T19:35:35\",
+    \"end_date\": \"2022-07-05T19:35:35\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -14353,8 +15995,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-02T11:31:45",
-    "end_date": "2022-07-02T11:31:45",
+    "start_date": "2022-07-05T19:35:35",
+    "end_date": "2022-07-05T19:35:35",
     "shop_id": 17
 };
 
@@ -14407,7 +16049,7 @@ fetch(url, {
                 <input type="text"
                name="start_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14417,7 +16059,7 @@ fetch(url, {
                 <input type="text"
                name="end_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -14453,8 +16095,8 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-02T11:31:45\",
-    \"end_date\": \"2022-07-02T11:31:45\",
+    \"start_date\": \"2022-07-05T19:35:35\",
+    \"end_date\": \"2022-07-05T19:35:35\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -14472,8 +16114,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-02T11:31:45",
-    "end_date": "2022-07-02T11:31:45",
+    "start_date": "2022-07-05T19:35:35",
+    "end_date": "2022-07-05T19:35:35",
     "shop_id": 17
 };
 
@@ -14508,9 +16150,32 @@ vary: Origin
             &quot;name&quot;: &quot;Сахар&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 1,
+                &quot;base_measure_type_id&quot;: 2,
                 &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/1/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14521,9 +16186,48 @@ vary: Origin
             &quot;name&quot;: &quot;Вода&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 2,
+                &quot;base_measure_type_id&quot;: 1,
                 &quot;name&quot;: &quot;л&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/2/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;ПЕТ 1л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 4,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;ПЕТ 0,5&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 500,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14534,9 +16238,24 @@ vary: Origin
             &quot;name&quot;: &quot;Стаканчик 250&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/3/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14547,9 +16266,32 @@ vary: Origin
             &quot;name&quot;: &quot;Кофе 1 кг&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 1,
+                &quot;base_measure_type_id&quot;: 2,
                 &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14560,9 +16302,32 @@ vary: Origin
             &quot;name&quot;: &quot;Молоко&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 2,
+                &quot;base_measure_type_id&quot;: 1,
                 &quot;name&quot;: &quot;л&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14573,9 +16338,32 @@ vary: Origin
             &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 4,
+                &quot;base_measure_type_id&quot;: 1,
                 &quot;name&quot;: &quot;ПЕТ 0,5&quot;,
-                &quot;quantity&quot;: 500
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 500,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 4,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;ПЕТ 0,5&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 500,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14586,9 +16374,24 @@ vary: Origin
             &quot;name&quot;: &quot;Стаканчик 400&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14599,9 +16402,32 @@ vary: Origin
             &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 7,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14612,9 +16438,32 @@ vary: Origin
             &quot;name&quot;: &quot;Чай ISLA Herbal tea&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 7,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14625,9 +16474,32 @@ vary: Origin
             &quot;name&quot;: &quot;Чай ISLA English Breakfast&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 7,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14638,9 +16510,32 @@ vary: Origin
             &quot;name&quot;: &quot;Чай ISLA Fruit Tea&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 7,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 7,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;Пакетик&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14651,9 +16546,32 @@ vary: Origin
             &quot;name&quot;: &quot;Мороженное&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 1,
+                &quot;base_measure_type_id&quot;: 2,
                 &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14664,9 +16582,32 @@ vary: Origin
             &quot;name&quot;: &quot;Протеин&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 1,
+                &quot;base_measure_type_id&quot;: 2,
                 &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14677,9 +16618,24 @@ vary: Origin
             &quot;name&quot;: &quot;Петли TRX&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14690,9 +16646,24 @@ vary: Origin
             &quot;name&quot;: &quot;Лента для йоги&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14703,9 +16674,24 @@ vary: Origin
             &quot;name&quot;: &quot;Резинка для стретчинга&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14716,9 +16702,24 @@ vary: Origin
             &quot;name&quot;: &quot;Блоки для стретчинга&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14729,9 +16730,24 @@ vary: Origin
             &quot;name&quot;: &quot;Гамак&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14742,9 +16758,24 @@ vary: Origin
             &quot;name&quot;: &quot;Носки (детские)&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14755,9 +16786,24 @@ vary: Origin
             &quot;name&quot;: &quot;Носки (взрослые)&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14768,9 +16814,24 @@ vary: Origin
             &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14781,9 +16842,24 @@ vary: Origin
             &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14794,9 +16870,24 @@ vary: Origin
             &quot;name&quot;: &quot;Резинка для волос (набор 10 шт. маленьких пружинок)&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14807,9 +16898,24 @@ vary: Origin
             &quot;name&quot;: &quot;Мешалки&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14820,9 +16926,24 @@ vary: Origin
             &quot;name&quot;: &quot;Стакан ПЛАСТИК 350 мл&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14833,9 +16954,24 @@ vary: Origin
             &quot;name&quot;: &quot;Крышка ПЛАСТИК&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14846,9 +16982,24 @@ vary: Origin
             &quot;name&quot;: &quot;Трубочка&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14859,9 +17010,24 @@ vary: Origin
             &quot;name&quot;: &quot;Резинка для волос безшовная большая&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/29/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14872,9 +17038,24 @@ vary: Origin
             &quot;name&quot;: &quot;Резинка МОРДОЧКА&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14885,9 +17066,24 @@ vary: Origin
             &quot;name&quot;: &quot;Батончик злаковый&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14898,9 +17094,24 @@ vary: Origin
             &quot;name&quot;: &quot;Батончик протеиновый&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_perishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14911,9 +17122,32 @@ vary: Origin
             &quot;name&quot;: &quot;Сахар&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 9,
+                &quot;base_measure_type_id&quot;: 2,
                 &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/45/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 9,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14924,9 +17158,32 @@ vary: Origin
             &quot;name&quot;: &quot;Кофе&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 9,
+                &quot;base_measure_type_id&quot;: 2,
                 &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/51/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 9,
+                    &quot;base_measure_type_id&quot;: 2,
+                    &quot;name&quot;: &quot;кг&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;г&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14937,9 +17194,32 @@ vary: Origin
             &quot;name&quot;: &quot;Вода&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 8,
+                &quot;base_measure_type_id&quot;: 1,
                 &quot;name&quot;: &quot;л&quot;,
-                &quot;quantity&quot;: 1000
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1000,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/46/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 8,
+                    &quot;base_measure_type_id&quot;: 1,
+                    &quot;name&quot;: &quot;л&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1000,
+                    &quot;is_common&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;base_measure_type_id&quot;: null,
+                    &quot;name&quot;: &quot;мл&quot;,
+                    &quot;description&quot;: &quot;&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: null
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14950,9 +17230,24 @@ vary: Origin
             &quot;name&quot;: &quot;Стаканчик&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 10,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/47/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 10,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14963,9 +17258,24 @@ vary: Origin
             &quot;name&quot;: &quot;Twix&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 10,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/49/image.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 10,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -14976,22 +17286,24 @@ vary: Origin
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
             &quot;main_measure_type&quot;: {
                 &quot;id&quot;: 3,
+                &quot;base_measure_type_id&quot;: 3,
                 &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
+                &quot;description&quot;: null,
+                &quot;quantity&quot;: 1,
+                &quot;is_common&quot;: 0
             },
-            &quot;cashbox_sum_quantity&quot;: 0,
-            &quot;cashbox_sum_cost&quot;: 0,
-            &quot;write_off_sum_quantity&quot;: 0,
-            &quot;write_off_sum_cost&quot;: 0
-        },
-        {
-            &quot;id&quot;: 39,
-            &quot;name&quot;: &quot;Test&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
-            },
+            &quot;type&quot;: &quot;_imperishable&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;measure_types&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;base_measure_type_id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;description&quot;: null,
+                    &quot;quantity&quot;: 1,
+                    &quot;is_common&quot;: 0
+                }
+            ],
             &quot;cashbox_sum_quantity&quot;: 0,
             &quot;cashbox_sum_cost&quot;: 0,
             &quot;write_off_sum_quantity&quot;: 0,
@@ -15040,7 +17352,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15050,7 +17362,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-02T11:31:45"
+               value="2022-07-05T19:35:35"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -19347,7 +21659,7 @@ vary: Origin
         {
             &quot;id&quot;: 36,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/54/2671198337_blok-dlya-jogi.webp&quot;,
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
             &quot;price&quot;: &quot;160.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -22106,7 +24418,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/transfers/17" \
+    --get "https://cashbox-online.test/api/transfers/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -22114,7 +24426,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/transfers/17"
+    "https://cashbox-online.test/api/transfers/1"
 );
 
 const headers = {
@@ -22132,7 +24444,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-transfers--transfer-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -22147,558 +24459,35 @@ vary: Origin
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\Transfer] 17&quot;,
-    &quot;exception&quot;: &quot;Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException&quot;,
-    &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php&quot;,
-    &quot;line&quot;: 355,
-    &quot;trace&quot;: [
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php&quot;,
-            &quot;line&quot;: 331,
-            &quot;function&quot;: &quot;prepareException&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Exceptions\\Handler&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;render&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Exceptions\\Handler&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php&quot;,
-            &quot;line&quot;: 51,
-            &quot;function&quot;: &quot;render&quot;,
-            &quot;class&quot;: &quot;NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 185,
-            &quot;function&quot;: &quot;handleException&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
-            &quot;line&quot;: 126,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
-            &quot;line&quot;: 102,
-            &quot;function&quot;: &quot;handleRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php&quot;,
-            &quot;line&quot;: 44,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Auth\\Middleware\\Authenticate&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
-            &quot;line&quot;: 33,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
-            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
-            &quot;line&quot;: 34,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 727,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 702,
-            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 666,
-            &quot;function&quot;: &quot;runRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 655,
-            &quot;function&quot;: &quot;dispatchToRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php&quot;,
-            &quot;line&quot;: 60,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Barryvdh\\Debugbar\\Middleware\\InjectDebugbar&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
-            &quot;line&quot;: 31,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
-            &quot;line&quot;: 27,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/fruitcake/laravel-cors/src/HandleCors.php&quot;,
-            &quot;line&quot;: 52,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
-            &quot;line&quot;: 39,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
-            &quot;line&quot;: 142,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
-            &quot;line&quot;: 111,
-            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 287,
-            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 89,
-            &quot;function&quot;: &quot;makeApiCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;makeResponseCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 35,
-            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
-            &quot;line&quot;: 222,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
-            &quot;line&quot;: 179,
-            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;fetchResponses&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 123,
-            &quot;function&quot;: &quot;processRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 80,
-            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 56,
-            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
-            &quot;line&quot;: 55,
-            &quot;function&quot;: &quot;get&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
-            &quot;line&quot;: 41,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
-            &quot;line&quot;: 653,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
-            &quot;line&quot;: 171,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
-            &quot;line&quot;: 291,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
-            &quot;line&quot;: 156,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
-            &quot;line&quot;: 68,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php&quot;,
-            &quot;line&quot;: 28,
-            &quot;function&quot;: &quot;runCommand&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/app/Console/Commands/GenerateDocsCommand.php&quot;,
-            &quot;line&quot;: 35,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;App\\Console\\Commands\\GenerateDocsCommand&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
-            &quot;line&quot;: 41,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
-            &quot;line&quot;: 653,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
-            &quot;line&quot;: 171,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Command/Command.php&quot;,
-            &quot;line&quot;: 291,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
-            &quot;line&quot;: 156,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
-            &quot;line&quot;: 989,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;doRunCommand&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/symfony/console/Application.php&quot;,
-            &quot;line&quot;: 171,
-            &quot;function&quot;: &quot;doRun&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
-            &quot;line&quot;: 102,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
-            &quot;line&quot;: 129,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/ermishind/Documents/Проекты/cashbox-online/artisan&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        }
-    ]
+    &quot;data&quot;: {
+        &quot;from_storage&quot;: {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Склад Маяковского&quot;
+        },
+        &quot;to_storage&quot;: {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Склад Бородинский&quot;
+        },
+        &quot;transferred_by&quot;: {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+        },
+        &quot;created_at&quot;: &quot;2022-07-04 15:31&quot;,
+        &quot;product_types&quot;: [
+            {
+                &quot;id&quot;: 20,
+                &quot;name&quot;: &quot;Носки (детские)&quot;,
+                &quot;main_measure_type&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;шт&quot;,
+                    &quot;quantity&quot;: 1
+                },
+                &quot;quantity&quot;: 2,
+                &quot;amount&quot;: 20,
+                &quot;product_purchase_id&quot;: 168
+            }
+        ]
+    }
 }</code>
  </pre>
     </span>
@@ -22741,7 +24530,7 @@ vary: Origin
                 <input type="number"
                name="transfer"
                data-endpoint="GETapi-transfers--transfer-"
-               value="17"
+               value="1"
                data-component="url" hidden>
     <br>
 

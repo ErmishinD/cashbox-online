@@ -21,6 +21,7 @@ use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\Storage;
 use App\Models\WriteOff;
+use App\Services\ProductTypeService;
 
 /**
  * @authenticated
@@ -54,7 +55,7 @@ class ReportController extends Controller
         $this->authorize('Report_warningThreshold');
 
         $product_types = ProductType::query()
-            ->with('main_measure_type')
+            ->with(['main_measure_type', 'measure_types', 'media'])
             ->withSum(['product_purchases' => function ($query) use ($storage_id) {
                 $query
                     ->where('storage_id', $storage_id)
@@ -65,7 +66,10 @@ class ReportController extends Controller
             }], 'current_quantity')
             ->havingRaw('((product_purchases_sum_current_quantity - product_types.warning_threshold) is NULL) OR (product_purchases_sum_current_quantity - product_types.warning_threshold) < 0')
             ->orderByRaw('(product_purchases_sum_current_quantity * 100 / product_types.warning_threshold) DESC')
-            ->get();
+            ->get()
+            ->each(function ($product_type) {
+                $product_type = ProductTypeService::prepare_measure_types($product_type);
+            });
         return WarningThresholdInStorageResource::collection($product_types);
     }
 
@@ -187,8 +191,7 @@ class ReportController extends Controller
         $data = $request->validated();
 
         $product_types = ProductType::query()
-            ->select(['id', 'name', 'main_measure_type_id'])
-            ->with('main_measure_type')
+            ->with(['main_measure_type', 'measure_types', 'media'])
             ->withSum(['product_consumptions as consumption_cashbox_sum_quantity' => function ($query) use ($data) {
                 $query
                     ->where('consumable_type', Cashbox::class)
@@ -234,7 +237,10 @@ class ReportController extends Controller
                     ->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']]);
             }], 'cost')
             ->orderByDesc('consumption_cashbox_sum_cost')
-            ->get();
+            ->get()
+            ->each(function ($product_type) {
+                $product_type = ProductTypeService::prepare_measure_types($product_type);
+            });
 
         return ProductPurchaseRecommendationResource::collection($product_types);
     }
