@@ -138,7 +138,9 @@ export default{
 	props: [
 		'product_type_id',
 		'storage_id',
-		'product_name'
+		'product_name',
+		'products_from_recommendations',
+		'products_from_thresholds'
 	],
 	data(){
 		return{
@@ -166,12 +168,19 @@ export default{
 			  page: 1,
 			  perPage: 20
 			},
+			products_from_recommendations_parse: '',
+			products_from_thresholds_parse: '',
 		}
 	},
 	mounted(){
 		document.title = this.$t('Закупки');
 		document.addEventListener('scroll', this.scrolltoGetMoreData)
-		console.log(this.product_type_id, this.storage_id)
+		if(this.products_from_recommendations){
+			this.products_from_recommendations_parse = JSON.parse(this.products_from_recommendations)			
+		}
+		else if(this.products_from_thresholds){
+			this.products_from_thresholds_parse = JSON.parse(this.products_from_thresholds)	
+		}
 		this.axios.post('/api/storages/get_for_purchase', {company_id:1}).then(response => {
 			this.storage_list = response.data.data
 			console.log(this.storage_list)
@@ -222,6 +231,44 @@ export default{
 	    					let selected_out_card = this.cards.find(item => item.id == this.product_type_id)
 	    					this.selected_products.push(selected_out_card)
 	    					this.is_search_from_other_page = true
+	    				}
+	    				else if(this.products_from_recommendations_parse){
+	    					this.products_from_recommendations_parse.forEach(i => {
+	    						i.amount = i.cashbox_sum_quantity
+	    						i.current_price = i.cashbox_sum_cost
+
+	    						let selected_out_card = this.cards.find(item => item.id == i.id)
+	    						if(selected_out_card){
+	    							selected_out_card.amount = i.cashbox_sum_quantity
+	    							selected_out_card.current_price = i.cashbox_sum_cost
+	    							this.selected_products.push(selected_out_card)
+	    						}
+	    						else{
+	    							i.expiration = 0;
+	    							i.quantity = 1
+	    							this.selected_products.push(i)
+	    						}
+	    						
+	    					})
+	    				}
+	    				else if(this.products_from_thresholds_parse){
+	    					this.products_from_thresholds_parse.forEach(i => {
+	    						console.log(i)
+	    						i.amount = (i.warning_threshold - i.current_quantity * i.main_measure_type.quantity).toFixed(2) 
+	    						console.log(i.amount)
+
+	    						let selected_out_card = this.cards.find(item => item.id == i.id)
+	    						if(selected_out_card){
+	    							selected_out_card.amount = i.amount
+	    							this.selected_products.push(selected_out_card)
+	    						}
+	    						else{
+	    							i.expiration = 0;
+	    							i.quantity = 1
+	    							this.selected_products.push(i)
+	    						}
+	    						
+	    					})
 	    				}
 	    			}
 	    			else{

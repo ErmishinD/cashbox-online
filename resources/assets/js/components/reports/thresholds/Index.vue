@@ -1,6 +1,7 @@
 <template>
 
   <div>
+
     <div class="">
       {{$t('Кол-во заканчивающихся товаров')}}:
       <span v-for="storage in all_products_thresholds">&nbsp;{{storage.name}} - {{storage.below_threshold_count}} |</span>
@@ -10,6 +11,7 @@
       <select class="form-control" style="margin-left: 5px;" @change="changeStorage" v-model="current_storage">
         <option v-for="storage in storages" :value="storage.id">{{storage.name}}</option>
       </select>
+      <button v-if="this.$can('ProductPurchase_create')" @click="goToPurchases" class="btn btn-success mar-left" >{{ $t('Перейти к закупкам') }}</button>
     </div>
     <vue-good-table style="position: static;"
       
@@ -18,6 +20,13 @@
       :pagination-options="{
         enabled: true,
       }"
+      :select-options="{
+        enabled: true,
+        selectOnCheckboxOnly: true,
+        disableSelectInfo: true,
+      }"
+      v-on:row-click="rowClick"
+      v-on:select-all="selectAll"
       v-on:column-filter="onColumnFilter"
       :line-numbers="true">
       <template #table-row="props">
@@ -41,6 +50,7 @@ export default {
       products_thresholds: null,
       current_storage:'',
       storages: '',
+      all_checked: false,
       columns: [
         {
           label: this.$t('Название'),
@@ -85,7 +95,30 @@ export default {
               this.emitter.emit("isLoading", false);
 
           })
+      },
+
+      rowClick(props) {
+      console.log(props.row.vgtSelected)
+      if(props.selected == false){
+        this.all_checked = false
       }
+      // props.row.vgtSelected = props.selected
+      this.rows.find(item => item.id == props.row.id).vgtSelected = props.selected
+      
+    },
+    selectAll(props){
+        this.all_checked = !this.all_checked
+        this.rows.forEach(item => {
+            item.vgtSelected = this.all_checked
+        })
+
+
+    },
+
+    goToPurchases(){
+      let selected_rows = JSON.stringify(this.rows.filter(item => item.vgtSelected))
+      this.$router.push({ name: 'purchases_create', params: {products_from_thresholds: selected_rows, storage_id: this.current_storage}})
+    },
   },
 };
 </script>

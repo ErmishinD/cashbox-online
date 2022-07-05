@@ -1,8 +1,9 @@
 <template>
 
   <div>
-    <div class="tac content_title">
-      {{$t('Рекомендации для закупок')}}
+    <div class="tac content_title" style="display: flex;">
+      <span style="margin-inline:auto;">{{$t('Рекомендации для закупок')}}</span>
+      <button v-if="this.$can('ProductPurchase_create')" @click="goToPurchases" class="btn pos-ab btn-success mar-left" >{{ $t('Перейти к закупкам') }}</button>
     </div>
 
     <div class="tac content_title">
@@ -24,6 +25,13 @@
       :pagination-options="{
         enabled: true,
       }"
+      :select-options="{
+        enabled: true,
+        selectOnCheckboxOnly: true,
+        disableSelectInfo: true,
+      }"
+      v-on:row-click="rowClick"
+      v-on:select-all="selectAll"
       :line-numbers="true">
       <template #table-row="props">
 
@@ -63,6 +71,7 @@ export default {
       shops: '',
       start_date: '',
       end_date: '',
+      all_checked: false,
       columns: [
         {
           label: this.$t('Название'),
@@ -167,6 +176,29 @@ export default {
 
       
      },
+
+     rowClick(props) {
+      console.log(props.row.vgtSelected)
+      if(props.selected == false){
+        this.all_checked = false
+      }
+      // props.row.vgtSelected = props.selected
+      this.rows.find(item => item.id == props.row.id).vgtSelected = props.selected
+      
+    },
+    selectAll(props){
+        this.all_checked = !this.all_checked
+        this.rows.forEach(item => {
+            item.vgtSelected = this.all_checked
+        })
+
+
+    },
+
+    goToPurchases(){
+      let selected_rows = JSON.stringify(this.rows.filter(item => item.vgtSelected))
+      this.$router.push({ name: 'purchases_create', params: {products_from_recommendations: selected_rows}})
+    },
   },
 };
 </script>
