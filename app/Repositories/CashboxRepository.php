@@ -137,9 +137,16 @@ class CashboxRepository extends BaseRepository
     public function get_collection_history(): Collection
     {
         return $this->model
-            ->with(['collector' => function ($query) {
-                $query->withTrashed();
-            }])
+            ->with([
+                'collector' => function ($query) {
+                    $query->withTrashed();
+                },
+                'shop' => function ($query) {
+                    $query->withTrashed();
+                },
+                'operator' => function ($query) {
+                    $query->withTrashed();
+                }])
             ->collected()
             ->get()
             ->each(function ($payment) {

@@ -16,12 +16,14 @@ use App\Http\Resources\Api\Report\WarningThresholdByStoragesResource;
 use App\Http\Resources\Api\Report\WarningThresholdInStorageResource;
 use App\Models\Cashbox;
 use App\Models\Category;
+use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\Storage;
 use App\Models\WriteOff;
 use App\Services\ProductTypeService;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @authenticated
@@ -82,7 +84,14 @@ class ReportController extends Controller
         $transactions = Cashbox::query()
             ->groupBy('shop_id')
             ->with('shop')
-            ->selectRaw('shop_id, sum(amount) as sum_amount, sum(self_cost) as sum_self_cost, sum(profit) as sum_profit')
+            ->select([
+                'shop_id',
+                DB::raw('sum(amount) as sum_amount'),
+                DB::raw('sum(self_cost) as sum_self_cost'),
+                DB::raw('sum(profit) as sum_profit'),
+                DB::raw('sum(case when payment_type="' . Cashbox::PAYMENT_TYPES['cash'] . '" then amount else 0 end) as sum_amount_cash'),
+                DB::raw('sum(case when payment_type="' . Cashbox::PAYMENT_TYPES['card'] . '" then amount else 0 end) as sum_amount_card'),
+            ])
             ->when($request->shop_id, function ($query) use ($request) {
                 $query->where('shop_id', $request->shop_id);
             })

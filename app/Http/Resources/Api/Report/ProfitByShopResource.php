@@ -20,6 +20,8 @@ class ProfitByShopResource extends JsonResource
             'sum_amount' => $this->sum_amount,
             'sum_self_cost' => $this->sum_self_cost,
             'sum_profit' => $this->sum_profit,
+            'sum_amount_card' => $this->sum_amount_card,
+            'sum_amount_cash' => $this->sum_amount_cash,
         ];
     }
 }

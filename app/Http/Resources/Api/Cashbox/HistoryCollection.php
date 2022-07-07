@@ -18,13 +18,21 @@ class HistoryCollection extends ResourceCollection
     {
         $result = collect();
         foreach ($this->collection as $collected_at => $data) {
-            $result->push([
+            $unique_shop_ids = $data->pluck('shop_id')->unique();
+            $shop = $unique_shop_ids->count() == 1 ? $data->first()->shop : null;
+
+            $unique_operator_ids = $data->pluck('operator_id')->unique();
+            $operator = $unique_operator_ids->count() == 1 ? $data->first()->operator : null;
+
+            $result->push(array(
                 'collected_at' => $collected_at,
                 'amount' => round(
                     $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('amount') - $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('amount'),
                     2),
                 'collector' => new UserResource($data->first()->collector),
-            ]);
+                'shop' => $shop ? ['id' => $shop->id, 'name' => $shop->name] : null,
+                'operator' => $operator ? ['id' => $operator->id, 'name' => $operator->name] : null,
+            ));
         }
         return $result->toArray();
     }
