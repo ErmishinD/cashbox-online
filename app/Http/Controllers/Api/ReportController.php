@@ -105,6 +105,8 @@ class ReportController extends Controller
                 'sum_amount' => round($transactions->sum('sum_amount'), 2),
                 'sum_self_cost' => round($transactions->sum('sum_self_cost'), 2),
                 'sum_profit' => round($transactions->sum('sum_profit'), 2),
+                'sum_amount_cash' => round($transactions->sum('sum_amount_cash'), 2),
+                'sum_amount_card' => round($transactions->sum('sum_amount_card'), 2),
             ]
         ]);
     }
