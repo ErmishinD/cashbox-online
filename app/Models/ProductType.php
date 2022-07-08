@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Contracts\ShouldReturnGetForSelect;
 use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
 use App\Contracts\SystemLoggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,7 +26,7 @@ use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
  * @method static inRandomOrder()
  * @method static filter(\App\Filters\ProductTypeFilter $filters)
  */
-class ProductType extends Model implements HasMedia, SystemLoggable
+class ProductType extends Model implements HasMedia, SystemLoggable, ShouldReturnGetForSelect
 {
     use HasFactory, SoftDeletes, InteractsWithMedia, HasEagerLimit;
     use Filterable, BelongsToCompany;
@@ -100,5 +102,10 @@ class ProductType extends Model implements HasMedia, SystemLoggable
     public function getVueParams(string $action): array
     {
         return ['id' => $this->id];
+    }
+
+    public function scopePrepareForSelect(Builder $builder)
+    {
+        return $builder->select('id', 'name');
     }
 }

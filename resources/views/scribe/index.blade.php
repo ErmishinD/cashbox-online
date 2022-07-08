@@ -331,6 +331,9 @@
                                     <li class="tocify-item level-2" data-unique="report-endpoints-GETapi-reports-purchase_recommendations">
                         <a href="#report-endpoints-GETapi-reports-purchase_recommendations">GET api/reports/purchase_recommendations</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="report-endpoints-GETapi-reports-product_consumptions_by_category--product_type_id-">
+                        <a href="#report-endpoints-GETapi-reports-product_consumptions_by_category--product_type_id-">GET api/reports/product_consumptions_by_category/{product_type_id}</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-14" class="tocify-header">
@@ -532,7 +535,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 5 2022</li>
+        <li>Last updated: July 8 2022</li>
     </ul>
 </div>
 
@@ -550,7 +553,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">https://cashbox-online.test</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -1318,19 +1321,19 @@ vary: Origin
     &quot;success&quot;: true,
     &quot;data&quot;: {
         &quot;in&quot;: {
-            &quot;sum&quot;: 1455,
-            &quot;card&quot;: 265,
-            &quot;cash&quot;: 1190
+            &quot;sum&quot;: 1595,
+            &quot;card&quot;: 295,
+            &quot;cash&quot;: 1300
         },
         &quot;out&quot;: {
-            &quot;sum&quot;: 0,
+            &quot;sum&quot;: 3900,
             &quot;card&quot;: 0,
-            &quot;cash&quot;: 0
+            &quot;cash&quot;: 3900
         },
         &quot;all&quot;: {
-            &quot;sum&quot;: 1455,
-            &quot;card&quot;: 265,
-            &quot;cash&quot;: 1190
+            &quot;sum&quot;: -2305,
+            &quot;card&quot;: 295,
+            &quot;cash&quot;: -2600
         }
     }
 }</code>
@@ -1538,7 +1541,9 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            }
+            },
+            &quot;shop&quot;: null,
+            &quot;operator&quot;: null
         },
         {
             &quot;collected_at&quot;: &quot;2022-06-24 10:53:00&quot;,
@@ -1548,6 +1553,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;
             }
         },
         {
@@ -1558,6 +1571,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;
             }
         },
         {
@@ -1568,6 +1589,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;
             }
         },
         {
@@ -1578,6 +1607,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;
             }
         },
         {
@@ -1588,6 +1625,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;
             }
         },
         {
@@ -1598,6 +1643,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
             }
         },
         {
@@ -1608,6 +1661,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
             }
         },
         {
@@ -1618,6 +1679,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
             }
         },
         {
@@ -1628,6 +1697,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
             }
         },
         {
@@ -1638,6 +1715,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;
             }
         },
         {
@@ -1648,6 +1733,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;
             }
         },
         {
@@ -1658,6 +1751,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
             }
         },
         {
@@ -1668,6 +1769,14 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;
             }
         },
         {
@@ -1678,6 +1787,11 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: null,
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
             }
         },
         {
@@ -1688,6 +1802,50 @@ vary: Origin
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
                 &quot;user&quot;: &quot;Nadmin&quot;,
                 &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-07-07 15:55:42&quot;,
+            &quot;amount&quot;: 270,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 9,
+                &quot;name&quot;: &quot;Бараниченко Светлана&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-07-07 15:24:17&quot;,
+            &quot;amount&quot;: 735,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;
             }
         }
     ]
@@ -1882,32 +2040,978 @@ vary: Origin
     &quot;success&quot;: true,
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 405,
+            &quot;id&quot;: 464,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.35&quot;,
+            &quot;profit&quot;: &quot;-0.35&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;,
+                &quot;user&quot;: &quot;Lidia_admin&quot;,
+                &quot;email&quot;: &quot;petrisaklidia@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07 20:00&quot;
+        },
+        {
+            &quot;id&quot;: 463,
             &quot;shop&quot;: {
                 &quot;id&quot;: 1,
                 &quot;name&quot;: &quot;Магазин Гоголя&quot;,
                 &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
             },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: &quot;10.00&quot;,
-            &quot;profit&quot;: &quot;20.00&quot;,
+            &quot;amount&quot;: &quot;0.00&quot;,
+            &quot;self_cost&quot;: &quot;11.66&quot;,
+            &quot;profit&quot;: &quot;-11.66&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
-                &quot;id&quot;: 12,
+                &quot;id&quot;: 28,
                 &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Носки (взрослые)&quot;,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07 18:39&quot;
+        },
+        {
+            &quot;id&quot;: 462,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;3900.00&quot;,
+            &quot;self_cost&quot;: &quot;0.00&quot;,
+            &quot;profit&quot;: &quot;0.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_out&quot;,
+            &quot;sell_product&quot;: null,
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;description&quot;: &quot;ремонт кофе-машины&quot;,
+            &quot;created_at&quot;: &quot;2022-07-07 18:33&quot;
+        },
+        {
+            &quot;id&quot;: 461,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07 18:15&quot;
+        },
+        {
+            &quot;id&quot;: 460,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;11.22&quot;,
+            &quot;profit&quot;: &quot;-1.22&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07 15:33&quot;
+        },
+        {
+            &quot;id&quot;: 447,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.35&quot;,
+            &quot;profit&quot;: &quot;14.65&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;,
+                &quot;user&quot;: &quot;Lidia_admin&quot;,
+                &quot;email&quot;: &quot;petrisaklidia@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07 10:24&quot;
+        },
+        {
+            &quot;id&quot;: 446,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.35&quot;,
+            &quot;profit&quot;: &quot;14.65&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;,
+                &quot;user&quot;: &quot;Lidia_admin&quot;,
+                &quot;email&quot;: &quot;petrisaklidia@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07 10:24&quot;
+        },
+        {
+            &quot;id&quot;: 445,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;11.34&quot;,
+            &quot;profit&quot;: &quot;18.66&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 3,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Лате&quot;,
                 &quot;price&quot;: &quot;30.00&quot;,
                 &quot;has_discount&quot;: 0
             },
             &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-07-04 19:14&quot;
+            &quot;created_at&quot;: &quot;2022-07-06 19:31&quot;
+        },
+        {
+            &quot;id&quot;: 444,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 18:57&quot;
+        },
+        {
+            &quot;id&quot;: 443,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 18:48&quot;
+        },
+        {
+            &quot;id&quot;: 442,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;11.34&quot;,
+            &quot;profit&quot;: &quot;18.66&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 3,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Лате&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 18:17&quot;
+        },
+        {
+            &quot;id&quot;: 441,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;8.37&quot;,
+            &quot;profit&quot;: &quot;1.63&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 30,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Чай ISLA Herbal tea для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 17:48&quot;
+        },
+        {
+            &quot;id&quot;: 440,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 16:39&quot;
+        },
+        {
+            &quot;id&quot;: 438,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 16:32&quot;
+        },
+        {
+            &quot;id&quot;: 439,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;11.25&quot;,
+            &quot;profit&quot;: &quot;-1.25&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 16:32&quot;
+        },
+        {
+            &quot;id&quot;: 437,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;15.00&quot;,
+            &quot;self_cost&quot;: &quot;10.00&quot;,
+            &quot;profit&quot;: &quot;5.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 25,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Батончик злаковый&quot;,
+                &quot;price&quot;: &quot;15.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 15:57&quot;
+        },
+        {
+            &quot;id&quot;: 434,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;15.93&quot;,
+            &quot;profit&quot;: &quot;-5.93&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 15:35&quot;
+        },
+        {
+            &quot;id&quot;: 435,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;15.93&quot;,
+            &quot;profit&quot;: &quot;-5.93&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 15:35&quot;
+        },
+        {
+            &quot;id&quot;: 436,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;15.93&quot;,
+            &quot;profit&quot;: &quot;-5.93&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 15:35&quot;
+        },
+        {
+            &quot;id&quot;: 433,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_card&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 15:06&quot;
+        },
+        {
+            &quot;id&quot;: 432,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 14:53&quot;
+        },
+        {
+            &quot;id&quot;: 431,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;7.04&quot;,
+            &quot;profit&quot;: &quot;2.96&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 32,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Чай ISLA English Breakfast для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 12:55&quot;
+        },
+        {
+            &quot;id&quot;: 430,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 12:17&quot;
+        },
+        {
+            &quot;id&quot;: 429,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
+                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;5.64&quot;,
+            &quot;profit&quot;: &quot;4.36&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 12,
+                &quot;name&quot;: &quot;Майорова Ирина Владиславовна&quot;,
+                &quot;user&quot;: &quot;ira_admin&quot;,
+                &quot;email&quot;: &quot;iramayorova558@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 11:52&quot;
+        },
+        {
+            &quot;id&quot;: 420,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;11.00&quot;,
+            &quot;profit&quot;: &quot;9.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 4,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 10:01&quot;
+        },
+        {
+            &quot;id&quot;: 418,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;-0.43&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 09:17&quot;
+        },
+        {
+            &quot;id&quot;: 419,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;-0.43&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 09:17&quot;
+        },
+        {
+            &quot;id&quot;: 417,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
+                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;4.00&quot;,
+            &quot;profit&quot;: &quot;1.00&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 14,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;,
+                &quot;user&quot;: &quot;K_admin&quot;,
+                &quot;email&quot;: &quot;solodkat@ua.fm&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 08:59&quot;
+        },
+        {
+            &quot;id&quot;: 416,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;-0.43&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;,
+                &quot;user&quot;: &quot;lena.admin&quot;,
+                &quot;email&quot;: &quot;lena.zubenko.94@ukr.net&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06 08:48&quot;
+        },
+        {
+            &quot;id&quot;: 414,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.35&quot;,
+            &quot;profit&quot;: &quot;14.65&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-05 19:52&quot;
+        },
+        {
+            &quot;id&quot;: 415,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.35&quot;,
+            &quot;profit&quot;: &quot;-0.35&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-05 19:52&quot;
+        },
+        {
+            &quot;id&quot;: 410,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;30.00&quot;,
+            &quot;self_cost&quot;: &quot;12.18&quot;,
+            &quot;profit&quot;: &quot;17.82&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 3,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Лате&quot;,
+                &quot;price&quot;: &quot;30.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-05 16:34&quot;
+        },
+        {
+            &quot;id&quot;: 409,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
+            },
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 28,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-05 16:11&quot;
+        },
+        {
+            &quot;id&quot;: 406,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;20.00&quot;,
+            &quot;self_cost&quot;: &quot;5.81&quot;,
+            &quot;profit&quot;: &quot;14.19&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 2,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо&quot;,
+                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-05 14:18&quot;
+        },
+        {
+            &quot;id&quot;: 407,
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;,
+                &quot;address&quot;: &quot;ул. Чаривная, 46 а&quot;
+            },
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.81&quot;,
+            &quot;profit&quot;: &quot;-0.81&quot;,
+            &quot;payment_type&quot;: &quot;_cash&quot;,
+            &quot;transaction_type&quot;: &quot;_in&quot;,
+            &quot;sell_product&quot;: {
+                &quot;id&quot;: 27,
+                &quot;company_id&quot;: 1,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;has_discount&quot;: 0
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;,
+                &quot;user&quot;: &quot;Borzenkova1&quot;,
+                &quot;email&quot;: &quot;jeniborzenkova123ap@gmail.com&quot;
+            },
+            &quot;description&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-05 14:18&quot;
         },
         {
             &quot;id&quot;: 404,
@@ -1966,62 +3070,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-04 17:46&quot;
         },
         {
-            &quot;id&quot;: 402,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: &quot;10.00&quot;,
-            &quot;profit&quot;: &quot;20.00&quot;,
-            &quot;payment_type&quot;: &quot;_card&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 12,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Носки (взрослые)&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-07-04 16:15&quot;
-        },
-        {
-            &quot;id&quot;: 401,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;25.00&quot;,
-            &quot;self_cost&quot;: &quot;10.00&quot;,
-            &quot;profit&quot;: &quot;15.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 11,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Носки (детские)&quot;,
-                &quot;price&quot;: &quot;25.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-07-04 16:15&quot;
-        },
-        {
             &quot;id&quot;: 400,
             &quot;shop&quot;: {
                 &quot;id&quot;: 4,
@@ -2029,8 +3077,8 @@ vary: Origin
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;self_cost&quot;: &quot;12.24&quot;,
+            &quot;profit&quot;: &quot;-2.24&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2050,7 +3098,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-04 15:29&quot;
         },
         {
-            &quot;id&quot;: 399,
+            &quot;id&quot;: 398,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
@@ -2078,7 +3126,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-04 14:56&quot;
         },
         {
-            &quot;id&quot;: 398,
+            &quot;id&quot;: 399,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
@@ -2225,8 +3273,8 @@ vary: Origin
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;self_cost&quot;: &quot;12.24&quot;,
+            &quot;profit&quot;: &quot;-2.24&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2274,22 +3322,22 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-04 09:54&quot;
         },
         {
-            &quot;id&quot;: 391,
+            &quot;id&quot;: 389,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
                 &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
             },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;5.43&quot;,
-            &quot;profit&quot;: &quot;-0.43&quot;,
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
+                &quot;id&quot;: 28,
                 &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
                 &quot;has_discount&quot;: 0
             },
             &quot;operator&quot;: {
@@ -2330,22 +3378,22 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-04 09:25&quot;
         },
         {
-            &quot;id&quot;: 389,
+            &quot;id&quot;: 391,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
                 &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
             },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;10.80&quot;,
-            &quot;profit&quot;: &quot;-0.80&quot;,
+            &quot;amount&quot;: &quot;5.00&quot;,
+            &quot;self_cost&quot;: &quot;5.43&quot;,
+            &quot;profit&quot;: &quot;-0.43&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
+                &quot;id&quot;: 27,
                 &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
+                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
+                &quot;price&quot;: &quot;5.00&quot;,
                 &quot;has_discount&quot;: 0
             },
             &quot;operator&quot;: {
@@ -2358,43 +3406,15 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-04 09:25&quot;
         },
         {
-            &quot;id&quot;: 388,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;-0.79&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-07-04 09:10&quot;
-        },
-        {
-            &quot;id&quot;: 387,
+            &quot;id&quot;: 386,
             &quot;shop&quot;: {
                 &quot;id&quot;: 4,
                 &quot;name&quot;: &quot;Магазин Маяковского&quot;,
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;self_cost&quot;: &quot;12.24&quot;,
+            &quot;profit&quot;: &quot;-2.24&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2414,15 +3434,15 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-02 16:41&quot;
         },
         {
-            &quot;id&quot;: 386,
+            &quot;id&quot;: 387,
             &quot;shop&quot;: {
                 &quot;id&quot;: 4,
                 &quot;name&quot;: &quot;Магазин Маяковского&quot;,
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;self_cost&quot;: &quot;12.24&quot;,
+            &quot;profit&quot;: &quot;-2.24&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2449,8 +3469,8 @@ vary: Origin
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;self_cost&quot;: &quot;12.24&quot;,
+            &quot;profit&quot;: &quot;-2.24&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -2580,34 +3600,6 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-07-01 19:08&quot;
-        },
-        {
-            &quot;id&quot;: 380,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;30.00&quot;,
-            &quot;self_cost&quot;: &quot;11.10&quot;,
-            &quot;profit&quot;: &quot;18.90&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 3,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Лате&quot;,
-                &quot;price&quot;: &quot;30.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-07-01 19:02&quot;
         },
         {
             &quot;id&quot;: 379,
@@ -2890,62 +3882,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-07-01 09:57&quot;
         },
         {
-            &quot;id&quot;: 367,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: &quot;11.00&quot;,
-            &quot;profit&quot;: &quot;9.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 4,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 20:36&quot;
-        },
-        {
-            &quot;id&quot;: 366,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
-                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;10.80&quot;,
-            &quot;profit&quot;: &quot;-0.80&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 11,
-                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
-                &quot;user&quot;: &quot;di_admin&quot;,
-                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 19:30&quot;
-        },
-        {
             &quot;id&quot;: 365,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
@@ -2974,32 +3910,32 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-30 19:30&quot;
         },
         {
-            &quot;id&quot;: 364,
+            &quot;id&quot;: 366,
             &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;,
+                &quot;address&quot;: &quot;ул. Бородинская, 14&quot;
             },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;14.21&quot;,
+            &quot;amount&quot;: &quot;10.00&quot;,
+            &quot;self_cost&quot;: &quot;10.80&quot;,
+            &quot;profit&quot;: &quot;-0.80&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
-                &quot;id&quot;: 2,
+                &quot;id&quot;: 28,
                 &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
+                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
+                &quot;price&quot;: &quot;10.00&quot;,
                 &quot;has_discount&quot;: 0
             },
             &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Ивашина Диана Дмитриевна&quot;,
+                &quot;user&quot;: &quot;di_admin&quot;,
+                &quot;email&quot;: &quot;diana13.09.2017@gmail.com&quot;
             },
             &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 19:13&quot;
+            &quot;created_at&quot;: &quot;2022-06-30 19:30&quot;
         },
         {
             &quot;id&quot;: 363,
@@ -3086,34 +4022,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-30 17:20&quot;
         },
         {
-            &quot;id&quot;: 360,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;-0.79&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 17:19&quot;
-        },
-        {
             &quot;id&quot;: 359,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
@@ -3142,62 +4050,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-30 17:14&quot;
         },
         {
-            &quot;id&quot;: 358,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: &quot;10.13&quot;,
-            &quot;profit&quot;: &quot;4.88&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 25,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Батончик злаковый&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 16:04&quot;
-        },
-        {
-            &quot;id&quot;: 357,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: &quot;9.00&quot;,
-            &quot;profit&quot;: &quot;6.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 25,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Батончик злаковый&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 16:04&quot;
-        },
-        {
             &quot;id&quot;: 356,
             &quot;shop&quot;: {
                 &quot;id&quot;: 4,
@@ -3205,8 +4057,8 @@ vary: Origin
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;self_cost&quot;: &quot;12.24&quot;,
+            &quot;profit&quot;: &quot;-2.24&quot;,
             &quot;payment_type&quot;: &quot;_cash&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -3233,8 +4085,8 @@ vary: Origin
                 &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
             },
             &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
+            &quot;self_cost&quot;: &quot;12.24&quot;,
+            &quot;profit&quot;: &quot;-2.24&quot;,
             &quot;payment_type&quot;: &quot;_card&quot;,
             &quot;transaction_type&quot;: &quot;_in&quot;,
             &quot;sell_product&quot;: {
@@ -3280,90 +4132,6 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-30 14:04&quot;
-        },
-        {
-            &quot;id&quot;: 353,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: &quot;10.51&quot;,
-            &quot;profit&quot;: &quot;9.49&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 5,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Чай ISLA green tea&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 11:48&quot;
-        },
-        {
-            &quot;id&quot;: 352,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;20.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;14.21&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 2,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо&quot;,
-                &quot;price&quot;: &quot;20.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 09:57&quot;
-        },
-        {
-            &quot;id&quot;: 351,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;-0.79&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-30 09:31&quot;
         },
         {
             &quot;id&quot;: 350,
@@ -3420,34 +4188,6 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-29 17:45&quot;
-        },
-        {
-            &quot;id&quot;: 348,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;15.00&quot;,
-            &quot;self_cost&quot;: &quot;9.00&quot;,
-            &quot;profit&quot;: &quot;6.00&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 25,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Батончик злаковый&quot;,
-                &quot;price&quot;: &quot;15.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-29 17:15&quot;
         },
         {
             &quot;id&quot;: 347,
@@ -3590,62 +4330,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-29 14:53&quot;
         },
         {
-            &quot;id&quot;: 341,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-29 14:44&quot;
-        },
-        {
-            &quot;id&quot;: 340,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;7.24&quot;,
-            &quot;profit&quot;: &quot;2.76&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-29 14:44&quot;
-        },
-        {
             &quot;id&quot;: 339,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
@@ -3674,34 +4358,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-29 14:22&quot;
         },
         {
-            &quot;id&quot;: 338,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;98.24&quot;,
-            &quot;profit&quot;: &quot;-88.24&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-29 13:04&quot;
-        },
-        {
             &quot;id&quot;: 337,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
@@ -3728,62 +4384,6 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-29 12:53&quot;
-        },
-        {
-            &quot;id&quot;: 336,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;12.08&quot;,
-            &quot;profit&quot;: &quot;-2.08&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-29 12:32&quot;
-        },
-        {
-            &quot;id&quot;: 335,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;,
-                &quot;address&quot;: &quot;пр. Маяковского, 5/35&quot;
-            },
-            &quot;amount&quot;: &quot;10.00&quot;,
-            &quot;self_cost&quot;: &quot;12.08&quot;,
-            &quot;profit&quot;: &quot;-2.08&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 28,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
-                &quot;price&quot;: &quot;10.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;,
-                &quot;user&quot;: &quot;Vi_admin&quot;,
-                &quot;email&quot;: &quot;vika.bidnyk12@gmail.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-29 12:32&quot;
         },
         {
             &quot;id&quot;: 331,
@@ -3870,7 +4470,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-29 10:19&quot;
         },
         {
-            &quot;id&quot;: 326,
+            &quot;id&quot;: 325,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
                 &quot;name&quot;: &quot;Магазин Чаривная&quot;,
@@ -3898,7 +4498,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-28 20:16&quot;
         },
         {
-            &quot;id&quot;: 325,
+            &quot;id&quot;: 326,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
                 &quot;name&quot;: &quot;Магазин Чаривная&quot;,
@@ -4038,7 +4638,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-28 16:08&quot;
         },
         {
-            &quot;id&quot;: 315,
+            &quot;id&quot;: 314,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
@@ -4066,7 +4666,7 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-28 13:28&quot;
         },
         {
-            &quot;id&quot;: 314,
+            &quot;id&quot;: 315,
             &quot;shop&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Магазин Бородинский&quot;,
@@ -4122,34 +4722,6 @@ vary: Origin
             &quot;created_at&quot;: &quot;2022-06-28 12:49&quot;
         },
         {
-            &quot;id&quot;: 311,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;-0.79&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-28 09:38&quot;
-        },
-        {
             &quot;id&quot;: 307,
             &quot;shop&quot;: {
                 &quot;id&quot;: 2,
@@ -4176,62 +4748,6 @@ vary: Origin
             },
             &quot;description&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-27 16:52&quot;
-        },
-        {
-            &quot;id&quot;: 300,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;-0.79&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 11:15&quot;
-        },
-        {
-            &quot;id&quot;: 299,
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;,
-                &quot;address&quot;: &quot;ул. Гоголя, 155 а&quot;
-            },
-            &quot;amount&quot;: &quot;5.00&quot;,
-            &quot;self_cost&quot;: &quot;5.79&quot;,
-            &quot;profit&quot;: &quot;-0.79&quot;,
-            &quot;payment_type&quot;: &quot;_cash&quot;,
-            &quot;transaction_type&quot;: &quot;_in&quot;,
-            &quot;sell_product&quot;: {
-                &quot;id&quot;: 27,
-                &quot;company_id&quot;: 1,
-                &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
-                &quot;price&quot;: &quot;5.00&quot;,
-                &quot;has_discount&quot;: 0
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;Бараниченко Светлана&quot;,
-                &quot;user&quot;: &quot;sadmin&quot;,
-                &quot;email&quot;: &quot;admin@example.com&quot;
-            },
-            &quot;description&quot;: null,
-            &quot;created_at&quot;: &quot;2022-06-27 11:15&quot;
         },
         {
             &quot;id&quot;: 295,
@@ -4404,19 +4920,19 @@ vary: Origin
     ],
     &quot;balance&quot;: {
         &quot;in&quot;: {
-            &quot;sum&quot;: 1455,
-            &quot;card&quot;: 265,
-            &quot;cash&quot;: 1190
+            &quot;sum&quot;: 1595,
+            &quot;card&quot;: 295,
+            &quot;cash&quot;: 1300
         },
         &quot;out&quot;: {
-            &quot;sum&quot;: 0,
+            &quot;sum&quot;: 3900,
             &quot;card&quot;: 0,
-            &quot;cash&quot;: 0
+            &quot;cash&quot;: 3900
         },
         &quot;all&quot;: {
-            &quot;sum&quot;: 1455,
-            &quot;card&quot;: 265,
-            &quot;cash&quot;: 1190
+            &quot;sum&quot;: -2305,
+            &quot;card&quot;: 295,
+            &quot;cash&quot;: -2600
         }
     }
 }</code>
@@ -6187,7 +6703,7 @@ vary: Origin
     &quot;email&quot;: &quot;admin@admin.com&quot;,
     &quot;email_verified_at&quot;: null,
     &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-07-05T16:35:30.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-07-08T07:38:34.000000Z&quot;,
     &quot;deleted_at&quot;: null,
     &quot;company_id&quot;: 1
 }</code>
@@ -6331,7 +6847,7 @@ fetch(url, {
     --header "Accept: application/json" \
     --data "{
     \"entities\": [
-        \"Shop\"
+        \"ProductType\"
     ]
 }"
 </code></pre></div>
@@ -6350,7 +6866,7 @@ const headers = {
 
 let body = {
     "entities": [
-        "Shop"
+        "ProductType"
     ]
 };
 
@@ -6409,7 +6925,7 @@ fetch(url, {
                data-endpoint="POSTapi-get_for_select"
                data-component="body" hidden>
     <br>
-<p>Must be one of <code>Shop</code>, <code>Storage</code>, or <code>Category</code>.</p>
+<p>Must be one of <code>Shop</code>, <code>Storage</code>, <code>Category</code>, or <code>ProductType</code>.</p>
         </p>
         </form>
 
@@ -8372,7 +8888,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 7,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;564.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8414,7 +8930,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 100,
-            &quot;current_quantity&quot;: 2,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;134.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8484,7 +9000,7 @@ vary: Origin
             &quot;product_type_id&quot;: 13,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 2000,
-            &quot;current_quantity&quot;: 2000,
+            &quot;current_quantity&quot;: 1700,
             &quot;cost&quot;: &quot;102.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-11-30&quot;,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8568,7 +9084,7 @@ vary: Origin
             &quot;product_type_id&quot;: 20,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 5,
-            &quot;current_quantity&quot;: 2,
+            &quot;current_quantity&quot;: 1,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8596,7 +9112,7 @@ vary: Origin
             &quot;product_type_id&quot;: 22,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 4,
-            &quot;current_quantity&quot;: 4,
+            &quot;current_quantity&quot;: 3,
             &quot;cost&quot;: &quot;16.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8624,7 +9140,7 @@ vary: Origin
             &quot;product_type_id&quot;: 24,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 4,
-            &quot;current_quantity&quot;: 4,
+            &quot;current_quantity&quot;: 2,
             &quot;cost&quot;: &quot;40.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8638,7 +9154,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 150,
-            &quot;current_quantity&quot;: 60,
+            &quot;current_quantity&quot;: 46,
             &quot;cost&quot;: &quot;6.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8652,7 +9168,7 @@ vary: Origin
             &quot;product_type_id&quot;: 26,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 50,
-            &quot;current_quantity&quot;: 49,
+            &quot;current_quantity&quot;: 47,
             &quot;cost&quot;: &quot;125.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8666,7 +9182,7 @@ vary: Origin
             &quot;product_type_id&quot;: 27,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 50,
-            &quot;current_quantity&quot;: 49,
+            &quot;current_quantity&quot;: 47,
             &quot;cost&quot;: &quot;11.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8680,7 +9196,7 @@ vary: Origin
             &quot;product_type_id&quot;: 28,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 50,
-            &quot;current_quantity&quot;: 49,
+            &quot;current_quantity&quot;: 47,
             &quot;cost&quot;: &quot;11.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T06:57:05.000000Z&quot;,
@@ -8722,7 +9238,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 186,
+            &quot;current_quantity&quot;: 157,
             &quot;cost&quot;: &quot;150.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T07:06:41.000000Z&quot;,
@@ -8736,7 +9252,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 190,
-            &quot;current_quantity&quot;: 176,
+            &quot;current_quantity&quot;: 175,
             &quot;cost&quot;: &quot;94.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-05-31T07:20:14.000000Z&quot;,
@@ -8778,7 +9294,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 6000,
-            &quot;current_quantity&quot;: 3000,
+            &quot;current_quantity&quot;: 2500,
             &quot;cost&quot;: &quot;132.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-01T11:12:44.000000Z&quot;,
@@ -8848,7 +9364,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 492,
+            &quot;current_quantity&quot;: 491,
             &quot;cost&quot;: &quot;15.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -8904,7 +9420,7 @@ vary: Origin
             &quot;product_type_id&quot;: 31,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 4,
-            &quot;current_quantity&quot;: 3,
+            &quot;current_quantity&quot;: 2,
             &quot;cost&quot;: &quot;40.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-12-06&quot;,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -8974,7 +9490,7 @@ vary: Origin
             &quot;product_type_id&quot;: 10,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 3,
-            &quot;current_quantity&quot;: 3,
+            &quot;current_quantity&quot;: 2,
             &quot;cost&quot;: &quot;21.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -9002,7 +9518,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 125,
-            &quot;current_quantity&quot;: 110,
+            &quot;current_quantity&quot;: 108,
             &quot;cost&quot;: &quot;168.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -9044,7 +9560,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 500,
-            &quot;current_quantity&quot;: 38,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;188.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -9058,7 +9574,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 125,
-            &quot;current_quantity&quot;: 104,
+            &quot;current_quantity&quot;: 97,
             &quot;cost&quot;: &quot;63.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -9072,7 +9588,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 3000,
-            &quot;current_quantity&quot;: 2860,
+            &quot;current_quantity&quot;: 2831,
             &quot;cost&quot;: &quot;63.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-06T10:38:46.000000Z&quot;,
@@ -9100,7 +9616,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 4000,
-            &quot;current_quantity&quot;: 3721,
+            &quot;current_quantity&quot;: 3673,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -9114,7 +9630,7 @@ vary: Origin
             &quot;product_type_id&quot;: 3,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 252,
-            &quot;current_quantity&quot;: 221,
+            &quot;current_quantity&quot;: 218,
             &quot;cost&quot;: &quot;126.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -9128,7 +9644,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 2000,
-            &quot;current_quantity&quot;: 866,
+            &quot;current_quantity&quot;: 712,
             &quot;cost&quot;: &quot;700.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -9170,7 +9686,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 129,
-            &quot;current_quantity&quot;: 73,
+            &quot;current_quantity&quot;: 64,
             &quot;cost&quot;: &quot;129.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -9212,7 +9728,7 @@ vary: Origin
             &quot;product_type_id&quot;: 11,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 12,
-            &quot;current_quantity&quot;: 10,
+            &quot;current_quantity&quot;: 9,
             &quot;cost&quot;: &quot;72.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -9394,7 +9910,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 250,
-            &quot;current_quantity&quot;: 205,
+            &quot;current_quantity&quot;: 198,
             &quot;cost&quot;: &quot;10.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-07T10:07:48.000000Z&quot;,
@@ -9591,7 +10107,7 @@ vary: Origin
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 2,
             &quot;current_quantity&quot;: 0,
-            &quot;cost&quot;: &quot;576.00&quot;,
+            &quot;cost&quot;: &quot;1.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
             &quot;user&quot;: {
@@ -9618,7 +10134,7 @@ vary: Origin
             &quot;product_type_id&quot;: 8,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 100,
-            &quot;current_quantity&quot;: 96,
+            &quot;current_quantity&quot;: 85,
             &quot;cost&quot;: &quot;134.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -9758,7 +10274,7 @@ vary: Origin
             &quot;product_type_id&quot;: 21,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 3,
-            &quot;current_quantity&quot;: 1,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;30.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:44:42.000000Z&quot;,
@@ -9786,7 +10302,7 @@ vary: Origin
             &quot;product_type_id&quot;: 25,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 1000,
-            &quot;current_quantity&quot;: 998,
+            &quot;current_quantity&quot;: 997,
             &quot;cost&quot;: &quot;30.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:50:47.000000Z&quot;,
@@ -9842,7 +10358,7 @@ vary: Origin
             &quot;product_type_id&quot;: 22,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 3,
-            &quot;current_quantity&quot;: 1,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;12.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:50:47.000000Z&quot;,
@@ -9856,7 +10372,7 @@ vary: Origin
             &quot;product_type_id&quot;: 23,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 7,
-            &quot;current_quantity&quot;: 4,
+            &quot;current_quantity&quot;: 3,
             &quot;cost&quot;: &quot;28.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-09T10:50:47.000000Z&quot;,
@@ -9898,7 +10414,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 1080,
+            &quot;current_quantity&quot;: 1066,
             &quot;cost&quot;: &quot;560.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-10T13:07:57.000000Z&quot;,
@@ -9912,7 +10428,7 @@ vary: Origin
             &quot;product_type_id&quot;: 1,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 1500,
-            &quot;current_quantity&quot;: 1430,
+            &quot;current_quantity&quot;: 1428,
             &quot;cost&quot;: &quot;50.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-10T13:09:47.000000Z&quot;,
@@ -10024,7 +10540,7 @@ vary: Origin
             &quot;product_type_id&quot;: 4,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 1000,
-            &quot;current_quantity&quot;: 1000,
+            &quot;current_quantity&quot;: 926,
             &quot;cost&quot;: &quot;343.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-15T12:03:56.000000Z&quot;,
@@ -10052,7 +10568,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 2,
             &quot;quantity&quot;: 1800,
-            &quot;current_quantity&quot;: 600,
+            &quot;current_quantity&quot;: 450,
             &quot;cost&quot;: &quot;64.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-07-06&quot;,
             &quot;created_at&quot;: &quot;2022-06-15T13:07:35.000000Z&quot;,
@@ -10150,7 +10666,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 6000,
-            &quot;current_quantity&quot;: 5012,
+            &quot;current_quantity&quot;: 2012,
             &quot;cost&quot;: &quot;132.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-27T09:52:23.000000Z&quot;,
@@ -10164,7 +10680,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 3,
             &quot;quantity&quot;: 3600,
-            &quot;current_quantity&quot;: 600,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;116.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-08-15&quot;,
             &quot;created_at&quot;: &quot;2022-06-27T09:52:23.000000Z&quot;,
@@ -10262,7 +10778,7 @@ vary: Origin
             &quot;product_type_id&quot;: 38,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 2,
-            &quot;current_quantity&quot;: 2,
+            &quot;current_quantity&quot;: 0,
             &quot;cost&quot;: &quot;178.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-28T09:11:59.000000Z&quot;,
@@ -10360,8 +10876,8 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 2700,
-            &quot;current_quantity&quot;: 1500,
-            &quot;cost&quot;: &quot;0.00&quot;,
+            &quot;current_quantity&quot;: 0,
+            &quot;cost&quot;: &quot;90.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-11-29&quot;,
             &quot;created_at&quot;: &quot;2022-06-30T11:47:03.000000Z&quot;,
             &quot;user&quot;: {
@@ -10374,7 +10890,7 @@ vary: Origin
             &quot;product_type_id&quot;: 7,
             &quot;storage_id&quot;: 1,
             &quot;quantity&quot;: 7500,
-            &quot;current_quantity&quot;: 7500,
+            &quot;current_quantity&quot;: 7000,
             &quot;cost&quot;: &quot;180.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-06-30T11:48:16.000000Z&quot;,
@@ -10402,7 +10918,7 @@ vary: Origin
             &quot;product_type_id&quot;: 6,
             &quot;storage_id&quot;: 4,
             &quot;quantity&quot;: 1800,
-            &quot;current_quantity&quot;: 1800,
+            &quot;current_quantity&quot;: 700,
             &quot;cost&quot;: &quot;60.00&quot;,
             &quot;expiration_date&quot;: &quot;2022-08-30&quot;,
             &quot;created_at&quot;: &quot;2022-07-04T12:28:46.000000Z&quot;,
@@ -10434,6 +10950,160 @@ vary: Origin
             &quot;cost&quot;: &quot;20.00&quot;,
             &quot;expiration_date&quot;: null,
             &quot;created_at&quot;: &quot;2022-07-04T12:31:09.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 169,
+            &quot;product_type_id&quot;: 21,
+            &quot;storage_id&quot;: 1,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 2,
+            &quot;cost&quot;: &quot;20.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-05T09:02:53.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 170,
+            &quot;product_type_id&quot;: 14,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 400,
+            &quot;current_quantity&quot;: 400,
+            &quot;cost&quot;: &quot;175.00&quot;,
+            &quot;expiration_date&quot;: &quot;2024-02-28&quot;,
+            &quot;created_at&quot;: &quot;2022-07-06T11:05:08.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 171,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 3600,
+            &quot;current_quantity&quot;: 3000,
+            &quot;cost&quot;: &quot;126.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-11-29&quot;,
+            &quot;created_at&quot;: &quot;2022-07-06T11:32:58.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 172,
+            &quot;product_type_id&quot;: 7,
+            &quot;storage_id&quot;: 3,
+            &quot;quantity&quot;: 12000,
+            &quot;current_quantity&quot;: 12000,
+            &quot;cost&quot;: &quot;257.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06T11:32:58.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 173,
+            &quot;product_type_id&quot;: 4,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 1100,
+            &quot;current_quantity&quot;: 1030,
+            &quot;cost&quot;: &quot;350.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06T12:33:03.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 174,
+            &quot;product_type_id&quot;: 8,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 6,
+            &quot;current_quantity&quot;: 1,
+            &quot;cost&quot;: &quot;35.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-06T12:33:59.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 175,
+            &quot;product_type_id&quot;: 6,
+            &quot;storage_id&quot;: 1,
+            &quot;quantity&quot;: 900,
+            &quot;current_quantity&quot;: 750,
+            &quot;cost&quot;: &quot;30.00&quot;,
+            &quot;expiration_date&quot;: &quot;2022-08-04&quot;,
+            &quot;created_at&quot;: &quot;2022-07-07T09:04:20.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 176,
+            &quot;product_type_id&quot;: 8,
+            &quot;storage_id&quot;: 2,
+            &quot;quantity&quot;: 10,
+            &quot;current_quantity&quot;: 10,
+            &quot;cost&quot;: &quot;13.40&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07T09:04:56.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 177,
+            &quot;product_type_id&quot;: 38,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 2,
+            &quot;current_quantity&quot;: 0,
+            &quot;cost&quot;: &quot;178.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07T09:05:13.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 178,
+            &quot;product_type_id&quot;: 4,
+            &quot;storage_id&quot;: 4,
+            &quot;quantity&quot;: 1000,
+            &quot;current_quantity&quot;: 1000,
+            &quot;cost&quot;: &quot;343.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07T12:27:22.000000Z&quot;,
+            &quot;user&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 179,
+            &quot;product_type_id&quot;: 4,
+            &quot;storage_id&quot;: 1,
+            &quot;quantity&quot;: 1000,
+            &quot;current_quantity&quot;: 1000,
+            &quot;cost&quot;: &quot;343.00&quot;,
+            &quot;expiration_date&quot;: null,
+            &quot;created_at&quot;: &quot;2022-07-07T12:54:00.000000Z&quot;,
             &quot;user&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;
@@ -10504,7 +11174,7 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-08-04\",
+    \"expiration_date\": \"2103-08-06\",
     \"user_id\": \"consequatur\"
 }"
 </code></pre></div>
@@ -10529,7 +11199,7 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-08-04",
+    "expiration_date": "2103-08-06",
     "user_id": "consequatur"
 };
 
@@ -10652,7 +11322,7 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="POSTapi-product_purchases"
-               value="2103-08-04"
+               value="2103-08-06"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
@@ -11349,7 +12019,7 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-08-04\"
+    \"expiration_date\": \"2103-08-06\"
 }"
 </code></pre></div>
 
@@ -11371,7 +12041,7 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-08-04"
+    "expiration_date": "2103-08-06"
 };
 
 fetch(url, {
@@ -11488,7 +12158,7 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="PUTapi-product_purchases--id-"
-               value="2103-08-04"
+               value="2103-08-06"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
@@ -15280,8 +15950,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-05T19:35:35\",
-    \"end_date\": \"2022-07-05T19:35:35\",
+    \"start_date\": \"2022-07-08T10:38:40\",
+    \"end_date\": \"2022-07-08T10:38:40\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -15299,8 +15969,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-05T19:35:35",
-    "end_date": "2022-07-05T19:35:35",
+    "start_date": "2022-07-08T10:38:40",
+    "end_date": "2022-07-08T10:38:40",
     "shop_id": 17
 };
 
@@ -15333,7 +16003,9 @@ vary: Origin
     &quot;sum_data&quot;: {
         &quot;sum_amount&quot;: 0,
         &quot;sum_self_cost&quot;: 0,
-        &quot;sum_profit&quot;: 0
+        &quot;sum_profit&quot;: 0,
+        &quot;sum_amount_cash&quot;: 0,
+        &quot;sum_amount_card&quot;: 0
     }
 }</code>
  </pre>
@@ -15377,7 +16049,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15387,7 +16059,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15423,8 +16095,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-05T19:35:35\",
-    \"end_date\": \"2022-07-05T19:35:35\",
+    \"start_date\": \"2022-07-08T10:38:40\",
+    \"end_date\": \"2022-07-08T10:38:40\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -15442,8 +16114,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-05T19:35:35",
-    "end_date": "2022-07-05T19:35:35",
+    "start_date": "2022-07-08T10:38:40",
+    "end_date": "2022-07-08T10:38:40",
     "shop_id": 17
 };
 
@@ -15474,15 +16146,19 @@ vary: Origin
 <code class="language-json">{
     &quot;data&quot;: {
         &quot;date_list&quot;: [
-            &quot;07-05&quot;
+            &quot;07-08&quot;,
+            &quot;07-09&quot;
         ],
         &quot;amount_list&quot;: [
+            &quot;0.00&quot;,
             &quot;0.00&quot;
         ],
         &quot;self_cost_list&quot;: [
+            &quot;0.00&quot;,
             &quot;0.00&quot;
         ],
         &quot;profit_list&quot;: [
+            &quot;0.00&quot;,
             &quot;0.00&quot;
         ]
     }
@@ -15528,7 +16204,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15538,7 +16214,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15574,8 +16250,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-05T19:35:35\",
-    \"end_date\": \"2022-07-05T19:35:35\",
+    \"start_date\": \"2022-07-08T10:38:40\",
+    \"end_date\": \"2022-07-08T10:38:40\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -15593,8 +16269,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-05T19:35:35",
-    "end_date": "2022-07-05T19:35:35",
+    "start_date": "2022-07-08T10:38:40",
+    "end_date": "2022-07-08T10:38:40",
     "shop_id": 17
 };
 
@@ -15715,7 +16391,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15725,7 +16401,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15761,8 +16437,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-05T19:35:35\",
-    \"end_date\": \"2022-07-05T19:35:35\",
+    \"start_date\": \"2022-07-08T10:38:40\",
+    \"end_date\": \"2022-07-08T10:38:40\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -15780,8 +16456,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-05T19:35:35",
-    "end_date": "2022-07-05T19:35:35",
+    "start_date": "2022-07-08T10:38:40",
+    "end_date": "2022-07-08T10:38:40",
     "shop_id": 17
 };
 
@@ -15930,7 +16606,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15940,7 +16616,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -15976,8 +16652,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-05T19:35:35\",
-    \"end_date\": \"2022-07-05T19:35:35\",
+    \"start_date\": \"2022-07-08T10:38:40\",
+    \"end_date\": \"2022-07-08T10:38:40\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -15995,8 +16671,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-05T19:35:35",
-    "end_date": "2022-07-05T19:35:35",
+    "start_date": "2022-07-08T10:38:40",
+    "end_date": "2022-07-08T10:38:40",
     "shop_id": 17
 };
 
@@ -16049,7 +16725,7 @@ fetch(url, {
                 <input type="text"
                name="start_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16059,7 +16735,7 @@ fetch(url, {
                 <input type="text"
                name="end_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:40"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16095,8 +16771,8 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-05T19:35:35\",
-    \"end_date\": \"2022-07-05T19:35:35\",
+    \"start_date\": \"2022-07-08T10:38:39\",
+    \"end_date\": \"2022-07-08T10:38:39\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16114,8 +16790,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-05T19:35:35",
-    "end_date": "2022-07-05T19:35:35",
+    "start_date": "2022-07-08T10:38:39",
+    "end_date": "2022-07-08T10:38:39",
     "shop_id": 17
 };
 
@@ -17352,7 +18028,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:39"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17362,7 +18038,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-05T19:35:35"
+               value="2022-07-08T10:38:39"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17372,6 +18048,158 @@ vary: Origin
                 <input type="number"
                name="shop_id"
                data-endpoint="GETapi-reports-purchase_recommendations"
+               value="17"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="report-endpoints-GETapi-reports-product_consumptions_by_category--product_type_id-">GET api/reports/product_consumptions_by_category/{product_type_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-reports-product_consumptions_by_category--product_type_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cashbox-online.test/api/reports/product_consumptions_by_category/consequatur" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"start_date\": \"2022-07-08T10:38:40\",
+    \"end_date\": \"2022-07-08T10:38:40\",
+    \"shop_id\": 17
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/reports/product_consumptions_by_category/consequatur"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "start_date": "2022-07-08T10:38:40",
+    "end_date": "2022-07-08T10:38:40",
+    "shop_id": 17
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-reports-product_consumptions_by_category--product_type_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 14
+vary: Origin
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;categories_list&quot;: [],
+        &quot;values_list&quot;: []
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-reports-product_consumptions_by_category--product_type_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-reports-product_consumptions_by_category--product_type_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-reports-product_consumptions_by_category--product_type_id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-reports-product_consumptions_by_category--product_type_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-reports-product_consumptions_by_category--product_type_id-"></code></pre>
+</span>
+<form id="form-GETapi-reports-product_consumptions_by_category--product_type_id-" data-method="GET"
+      data-path="api/reports/product_consumptions_by_category/{product_type_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-reports-product_consumptions_by_category--product_type_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/reports/product_consumptions_by_category/{product_type_id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-reports-product_consumptions_by_category--product_type_id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>product_type_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="product_type_id"
+               data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
+               value="consequatur"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the product.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>start_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start_date"
+               data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
+               value="2022-07-08T10:38:40"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>end_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end_date"
+               data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
+               value="2022-07-08T10:38:40"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>shop_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="shop_id"
+               data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
                value="17"
                data-component="body" hidden>
     <br>
@@ -22056,7 +22884,7 @@ vary: Origin
                         &quot;quantity&quot;: 1
                     }
                 ],
-                &quot;price_per_unit&quot;: 0.376
+                &quot;price_per_unit&quot;: 0.35
             }
         ],
         &quot;category&quot;: {

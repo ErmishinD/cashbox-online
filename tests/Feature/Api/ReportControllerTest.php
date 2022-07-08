@@ -3,13 +3,17 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Company;
+use App\Models\ProductType;
 use App\Models\Shop;
 use App\Models\Storage;
 use App\Models\User;
+use App\Repositories\CompanyRepository;
 use App\Repositories\RoleRepository;
+use Database\Seeders\BaseMeasureTypeSeeder;
 use Database\Seeders\RolesPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class ReportControllerTest extends TestCase
@@ -23,11 +27,9 @@ class ReportControllerTest extends TestCase
         parent::setUp();
 
         $this->seed(RolesPermissionsSeeder::class);
+        $this->seed(BaseMeasureTypeSeeder::class);
 
-        $company = Company::factory()->create();
-
-        $role_repository = app(RoleRepository::class);
-        $role_repository->createDefaultCompanyRoles($company->id);
+        $company = (new CompanyRepository())->create(['name' => 'Test name']);
 
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Super Admin');
@@ -91,6 +93,14 @@ class ReportControllerTest extends TestCase
     public function test_get_popular_sell_products()
     {
         $response = $this->get('/api/reports/popular_sell_products');
+
+        $response->assertOk();
+    }
+
+    public function test_get_consumptions_by_category()
+    {
+        $product_type = ProductType::factory()->create(['company_id' => $this->admin->company_id]);
+        $response = $this->get('/api/reports/product_consumptions_by_category/' . $product_type->id);
 
         $response->assertOk();
     }

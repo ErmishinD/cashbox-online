@@ -201,5 +201,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('get_paginated_transactions', [ReportController::class, 'getPaginatedTransactions']);
 
         Route::get('popular_sell_products', [ReportController::class, 'getPopularSellProducts']);
+
+        Route::get('product_consumptions_by_category/{product_type_id}', [ReportController::class, 'getConsumptionsByCategory']);
     });
 });

@@ -35,7 +35,7 @@ class DateRangeRequest extends FormRequest
     {
         $this->merge([
             'start_date' => !empty($this->start_date) ? Carbon::parse($this->start_date)->startOfDay() : today()->subDays(30),
-            'end_date' => !empty($this->end_date) ? Carbon::parse($this->end_date)->endOfDay() : today()->addDay(),
+            'end_date' => !empty($this->end_date) ? Carbon::parse($this->end_date)->addDay() : today()->addDay(),
         ]);
     }
 }

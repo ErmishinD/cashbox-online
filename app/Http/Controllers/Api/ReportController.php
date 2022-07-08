@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\Report\DateRangeRequest;
 use App\Http\Resources\Api\Report\CashboxTransactionResource;
+use App\Http\Resources\Api\Report\ConsumptionByCategoryCollection;
 use App\Http\Resources\Api\Report\PopularSellProductcsCollection;
 use App\Http\Resources\Api\Report\ProductPurchaseRecommendationResource;
 use App\Http\Resources\Api\Report\ProfitByCategoryCollection;
@@ -254,5 +255,30 @@ class ReportController extends Controller
             });
 
         return ProductPurchaseRecommendationResource::collection($product_types);
+    }
+
+    public function getConsumptionsByCategory($product_type_id, DateRangeRequest $request)
+    {
+        $data = $request->validated();
+
+        $consumptions = ProductConsumption::query()
+            ->where('product_types.id', $product_type_id)
+            ->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])
+            ->where('consumable_type', Cashbox::class)
+            ->selectRaw('sum(product_consumptions.quantity) as quantity_sum, categories.name as category_name')
+            ->join('product_purchases', 'product_purchases.id', '=', 'product_consumptions.product_purchase_id')
+            ->join('product_types', 'product_types.id', '=', 'product_purchases.product_type_id')
+            ->join('cashboxes', function ($join) use ($request) {
+                $join->on('cashboxes.id', '=', 'consumable_id')
+                    ->when($request->shop_id, function ($query) use ($request) {
+                        $query->where('cashboxes.shop_id', $request->shop_id);
+                    });
+            })
+            ->join('sell_products', 'sell_products.id', '=', 'cashboxes.sell_product_id')
+            ->join('categories', 'categories.id', '=', 'sell_products.category_id')
+            ->groupBy('sell_products.category_id')
+            ->get();
+
+        return ConsumptionByCategoryCollection::make($consumptions);
     }
 }
