@@ -99,6 +99,24 @@ export default{
 			    label: this.$t('Инкассатор'),
 			    field: 'collector.name',
 			  },
+			  {
+			    label: this.$t('Продавец'),
+			    field: 'operator.name',
+			    filterOptions: {
+			        enabled: true,
+			        placeholder: this.$t('Выбрать продавца'),
+			        filterDropdownItems: [],
+			    },
+			  },
+			  {
+			    label: this.$t('Магазин'),
+			    field: 'shop.name',
+			    filterOptions: {
+			        enabled: true,
+			        placeholder: this.$t('Выбрать магазин'),
+			        filterDropdownItems: [],
+			    },
+			  },
 			],
 			collections_rows: [],
 			collection_item_columns: [
@@ -116,7 +134,7 @@ export default{
 			  },
 			  {
 			    label: this.$t('Описание'),
-			    field: 'data',
+			    field: 'description',
 			  },
 			  {
 			    label: this.$t('Время'),
@@ -132,7 +150,17 @@ export default{
 		this.axios.get('/api/cashbox/collection_history').then((response) => {
 		       this.collections_rows = response.data.data
 		       console.log(this.collections_rows)
-		       // this.workers_rows = this.company['employees']
+		       this.collections_rows.forEach(item => {
+                 let operator_column = this.collections_columns.find(i => i.field == 'operator.name')
+                 let shop_column = this.collections_columns.find(i => i.field == 'shop.name')
+
+                 if (item.operator && !operator_column.filterOptions.filterDropdownItems.find(operator => operator == item.operator.name)) {
+                     operator_column.filterOptions.filterDropdownItems.push(item.operator.name)
+                 }
+                 if (item.shop && !shop_column.filterOptions.filterDropdownItems.find(shop => shop == item.shop.name)) {
+                     shop_column.filterOptions.filterDropdownItems.push(item.shop.name)
+                 }
+             })		       // this.workers_rows = this.company['employees']
 		       // document.title = this.company['name'];
 		       this.emitter.emit("isLoading", false);
 		       if(this.collected_at){

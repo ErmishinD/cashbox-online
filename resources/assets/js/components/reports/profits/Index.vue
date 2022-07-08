@@ -54,6 +54,25 @@
   <PieChart :chartData="popularProductsData" :options="popularProductsOptions" />
 
   <div class="tac content_title">
+    {{$t('Доля продажи товара по категориям')}}
+  </div>
+
+  <div class="tac content_title" style="    display: flex;
+    justify-content: center;
+    align-items: center;">
+    <label for="">{{$t('Товар')}}:</label>
+    <select class="form-control" name="" id="" v-model="current_product_type">
+      <option v-for="product_type in product_types" :value="product_type.id">{{product_type.name}}</option>
+    </select>
+  </div>
+
+  <PieChart v-show="productConsumptionData.labels?.length" style="width: 400px;" class="mar-inl-auto" :chartData="productConsumptionData" :options="productConsumptionOptions" />
+
+  <div v-show="!productConsumptionData.labels?.length" class="tac content_title" style="opacity: 0.5;">
+    {{$t('Нет данных')}}!
+  </div>
+
+  <div class="tac content_title">
     {{$t('Все операции в кассе')}}
   </div>
 
@@ -216,6 +235,14 @@ export default {
           field: 'sum_amount',
         },
         {
+          label: this.$t('Доходы картой'),
+          field: 'sum_amount_card',
+        },
+        {
+          label: this.$t('Доходы наличными'),
+          field: 'sum_amount_cash',
+        },
+        {
           label: this.$t('Расходы'),
           field: 'sum_self_cost',
         },
@@ -225,6 +252,10 @@ export default {
         },
       ],
       common_data_rows: [],
+      product_types: '',
+      current_product_type: '',
+      productConsumptionData: '',
+      productConsumptionOptions: '',
     };
   },
   watch:{
@@ -233,13 +264,22 @@ export default {
         this.getDataByDate()
       },
       deep: true
+    },
+    current_product_type:{
+      handler(){
+        this.getProductConsumptions()
+      }
     }
   },
   mounted(){
-    this.axios.post('/api/get_for_select/', {entities: ['Shop']}).then(response => {
-      this.shops = response.data.Shop
-    })
+    
     this.getDataByDate()
+
+    this.axios.post('/api/get_for_select/', {entities: ['Shop', 'ProductType']}).then(response => {
+      this.shops = response.data.Shop
+      this.product_types = response.data.ProductType
+      this.current_product_type = this.product_types[0].id
+    })
     
 
   	document.title = this.$t('Прибыль');
@@ -346,7 +386,7 @@ export default {
                 ],
             }
 
-            this.categoryOptions = {
+            this.popularProductsOptions = {
                 plugins: {
                   legend: {
                     position: 'bottom'
@@ -357,6 +397,8 @@ export default {
             
           })
         })
+
+        this.getProductConsumptions()
 
         this.getTransactions()
       },
@@ -457,6 +499,41 @@ export default {
           this.updateParams(params);
           this.getTransactions();
       },
+
+      getProductConsumptions(){
+        this.emitter.emit("isLoading", true);
+        this.axios.get(`/api/reports/product_consumptions_by_category/${this.current_product_type}`, {params: {start_date:this.start_date, end_date:this.end_date, shop_id: this.current_shop}}).then(response => {
+          let consumption_product_data
+          Promise.resolve(consumption_product_data = response.data['data']).then(() => {
+            if(!consumption_product_data){
+              consumption_product_data = {}
+              consumption_product_data.categories_list = []
+              consumption_product_data.values_list = []
+            }
+            this.productConsumptionData = {
+              labels: consumption_product_data.categories_list,
+                datasets: [
+                  {
+                    data: consumption_product_data.values_list,
+                    backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
+                  },
+                  
+                ],
+            }
+
+            this.productConsumptionOptions = {
+                plugins: {
+                  legend: {
+                    position: 'bottom'
+                  },
+                },
+              }
+
+            
+          })
+          this.emitter.emit("isLoading", false);
+        })
+      }
   },
 };
 </script>
