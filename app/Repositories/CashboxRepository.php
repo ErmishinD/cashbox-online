@@ -148,6 +148,7 @@ class CashboxRepository extends BaseRepository
                     $query->withTrashed();
                 }])
             ->collected()
+            ->orderByDesc('created_at')
             ->get()
             ->each(function ($payment) {
                 $payment->collected_at_string = $payment->collected_at->format('Y-m-d H:i:s');
