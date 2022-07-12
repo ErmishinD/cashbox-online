@@ -39,6 +39,13 @@ endpoints:
         example: consequatur
         type: string
         custom: []
+      counterparty_id:
+        name: counterparty_id
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
     responses: []
     responseFields: []
   -
@@ -99,7 +106,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"data":{"id":14,"product_type":{"id":33,"name":"\u0421\u0430\u0445\u0430\u0440","main_measure_type":{"id":9,"name":"\u043a\u0433","quantity":1000},"measure_types":[{"id":9,"name":"\u043a\u0433","quantity":1000},{"id":2,"name":"\u0433","quantity":1}]},"expiration_date":null,"quantity":3000,"current_quantity":3000,"cost":"100.00","current_cost":"100.00","storage_id":5},"storages":[{"id":1,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u0413\u043e\u0433\u043e\u043b\u044f"},{"id":2,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f"},{"id":3,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0438\u0439"},{"id":4,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e"},{"id":5,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434"}]}'
+        content: '{"success":true,"data":{"id":14,"product_type":{"id":33,"name":"\u0421\u0430\u0445\u0430\u0440","main_measure_type":{"id":9,"name":"\u043a\u0433","quantity":1000},"measure_types":[{"id":9,"name":"\u043a\u0433","quantity":1000},{"id":2,"name":"\u0433","quantity":1}]},"expiration_date":null,"quantity":3000,"current_quantity":3000,"cost":"100.00","current_cost":"100.00","storage_id":5},"storages":[{"id":1,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u0413\u043e\u0433\u043e\u043b\u044f"},{"id":2,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f"},{"id":3,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0438\u0439"},{"id":4,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434 \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e"},{"id":5,"shop_id":null,"name":"\u0421\u043a\u043b\u0430\u0434"}],"counterparties":[{"id":1,"name":"#main_stretch"},{"id":2,"name":"SomeCompany"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -205,11 +212,18 @@ endpoints:
         name: expiration_date
         description: 'Must be a valid date. Must be a date after <code>today</code>.'
         required: false
-        example: '2103-08-06'
+        example: '2103-08-11'
         type: string
         custom: []
       user_id:
         name: user_id
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      counterparty_id:
+        name: counterparty_id
         description: ''
         required: true
         example: consequatur
@@ -869,7 +883,14 @@ endpoints:
         name: expiration_date
         description: 'Must be a valid date. Must be a date after <code>today</code>.'
         required: false
-        example: '2103-08-06'
+        example: '2103-08-11'
+        type: string
+        custom: []
+      counterparty_id:
+        name: counterparty_id
+        description: ''
+        required: true
+        example: consequatur
         type: string
         custom: []
     responses: []

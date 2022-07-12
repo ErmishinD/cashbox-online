@@ -21,10 +21,10 @@ endpoints:
     bodyParameters:
       entities:
         name: entities
-        description: 'Must be one of <code>Shop</code>, <code>Storage</code>, <code>Category</code>, or <code>ProductType</code>.'
+        description: 'Must be one of <code>Shop</code>, <code>Storage</code>, <code>Category</code>, <code>ProductType</code>, or <code>Counterparty</code>.'
         required: true
         example:
-          - ProductType
+          - Storage
         type: 'string[]'
         custom: []
     responses: []

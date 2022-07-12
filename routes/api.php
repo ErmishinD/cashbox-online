@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\BaseMeasureTypeController;
 use App\Http\Controllers\Api\CashboxController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\CounterpartyController;
 use App\Http\Controllers\Api\FileUploadController;
 use App\Http\Controllers\Api\GetForSelectController;
 use App\Http\Controllers\Api\MeasureTypeController;
@@ -184,6 +185,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('get_paginated', [WriteOffController::class, 'get_paginated']);
         Route::get('/{write_off}', [WriteOffController::class, 'show']);
     });
+
+    /*
+     * Counterparty
+     */
+    Route::apiResource('counterparties', CounterpartyController::class);
 
     /*
      * Report

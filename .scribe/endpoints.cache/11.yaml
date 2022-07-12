@@ -27,7 +27,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '21'
+          x-ratelimit-remaining: '19'
           vary: Origin
         description: null
     responseFields: []
@@ -62,7 +62,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '20'
+          x-ratelimit-remaining: '18'
           vary: Origin
         description: null
     responseFields: []
@@ -86,14 +86,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       shop_id:
@@ -111,7 +111,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '18'
+          x-ratelimit-remaining: '16'
           vary: Origin
         description: null
     responseFields: []
@@ -135,14 +135,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       shop_id:
@@ -155,12 +155,12 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"date_list":["07-08","07-09"],"amount_list":["0.00","0.00"],"self_cost_list":["0.00","0.00"],"profit_list":["0.00","0.00"]}}'
+        content: '{"data":{"date_list":["07-12","07-13"],"amount_list":["0.00","0.00"],"self_cost_list":["0.00","0.00"],"profit_list":["0.00","0.00"]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '17'
+          x-ratelimit-remaining: '15'
           vary: Origin
         description: null
     responseFields: []
@@ -184,14 +184,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       shop_id:
@@ -209,7 +209,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '16'
+          x-ratelimit-remaining: '14'
           vary: Origin
         description: null
     responseFields: []
@@ -233,14 +233,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       shop_id:
@@ -258,7 +258,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '15'
+          x-ratelimit-remaining: '13'
           vary: Origin
         description: null
     responseFields: []
@@ -282,14 +282,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       shop_id:
@@ -321,14 +321,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:39'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:39'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       shop_id:
@@ -346,7 +346,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '19'
+          x-ratelimit-remaining: '17'
           vary: Origin
         description: null
     responseFields: []
@@ -377,14 +377,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-08T10:38:40'
+        example: '2022-07-12T12:56:28'
         type: string
         custom: []
       shop_id:
@@ -402,7 +402,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '14'
+          x-ratelimit-remaining: '12'
           vary: Origin
         description: null
     responseFields: []

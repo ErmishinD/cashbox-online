@@ -168,6 +168,21 @@
                                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
                         <a href="#endpoints-GETapi-user">GET api/user</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-counterparties">
+                        <a href="#endpoints-GETapi-counterparties">GET api/counterparties</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-counterparties">
+                        <a href="#endpoints-POSTapi-counterparties">POST api/counterparties</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-counterparties--id-">
+                        <a href="#endpoints-GETapi-counterparties--id-">GET api/counterparties/{id}</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-counterparties--id-">
+                        <a href="#endpoints-PUTapi-counterparties--id-">PUT api/counterparties/{id}</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-counterparties--id-">
+                        <a href="#endpoints-DELETEapi-counterparties--id-">DELETE api/counterparties/{id}</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-7" class="tocify-header">
@@ -535,7 +550,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 8 2022</li>
+        <li>Last updated: July 12 2022</li>
     </ul>
 </div>
 
@@ -553,7 +568,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">https://cashbox-online.test</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -1534,20 +1549,8 @@ vary: Origin
     &quot;success&quot;: true,
     &quot;data&quot;: [
         {
-            &quot;collected_at&quot;: &quot;2022-05-11 11:22:00&quot;,
-            &quot;amount&quot;: 130,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: null,
-            &quot;operator&quot;: null
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-24 10:53:00&quot;,
-            &quot;amount&quot;: 1025,
+            &quot;collected_at&quot;: &quot;2022-07-07 15:24:17&quot;,
+            &quot;amount&quot;: 735,
             &quot;collector&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
@@ -1564,62 +1567,8 @@ vary: Origin
             }
         },
         {
-            &quot;collected_at&quot;: &quot;2022-06-24 12:29:02&quot;,
-            &quot;amount&quot;: 455,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 6,
-                &quot;name&quot;: &quot;Борзенкова Евгения&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-23 13:16:22&quot;,
-            &quot;amount&quot;: 205,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;Шаповал Лидия&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-17 14:44:43&quot;,
-            &quot;amount&quot;: 3005,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 8,
-                &quot;name&quot;: &quot;Зубенко Елена&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-23 10:50:44&quot;,
-            &quot;amount&quot;: 330,
+            &quot;collected_at&quot;: &quot;2022-07-07 15:55:42&quot;,
+            &quot;amount&quot;: 270,
             &quot;collector&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
@@ -1633,150 +1582,6 @@ vary: Origin
             &quot;operator&quot;: {
                 &quot;id&quot;: 9,
                 &quot;name&quot;: &quot;Бараниченко Светлана&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-24 12:28:21&quot;,
-            &quot;amount&quot;: 85,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-23 10:51:24&quot;,
-            &quot;amount&quot;: 65,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Магазин Гоголя&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-23 13:16:41&quot;,
-            &quot;amount&quot;: 0,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-24 10:51:18&quot;,
-            &quot;amount&quot;: 150,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;Магазин Маяковского&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-23 12:46:43&quot;,
-            &quot;amount&quot;: 310,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 8,
-                &quot;name&quot;: &quot;Зубенко Елена&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-28 13:55:25&quot;,
-            &quot;amount&quot;: 480,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 8,
-                &quot;name&quot;: &quot;Зубенко Елена&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-27 12:53:32&quot;,
-            &quot;amount&quot;: 30,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Магазин Бородинский&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
-            }
-        },
-        {
-            &quot;collected_at&quot;: &quot;2022-06-24 12:33:02&quot;,
-            &quot;amount&quot;: 30,
-            &quot;collector&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
-                &quot;user&quot;: &quot;Nadmin&quot;,
-                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
-            },
-            &quot;shop&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Магазин Чаривная&quot;
-            },
-            &quot;operator&quot;: {
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;Шаповал Лидия&quot;
             }
         },
         {
@@ -1813,8 +1618,80 @@ vary: Origin
             }
         },
         {
-            &quot;collected_at&quot;: &quot;2022-07-07 15:55:42&quot;,
-            &quot;amount&quot;: 270,
+            &quot;collected_at&quot;: &quot;2022-06-28 13:55:25&quot;,
+            &quot;amount&quot;: 480,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-24 10:53:00&quot;,
+            &quot;amount&quot;: 1025,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Магазин Маяковского&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;Биднык Виктория&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-24 12:33:02&quot;,
+            &quot;amount&quot;: 30,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-27 12:53:32&quot;,
+            &quot;amount&quot;: 30,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-23 10:50:44&quot;,
+            &quot;amount&quot;: 330,
             &quot;collector&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
@@ -1831,8 +1708,80 @@ vary: Origin
             }
         },
         {
-            &quot;collected_at&quot;: &quot;2022-07-07 15:24:17&quot;,
-            &quot;amount&quot;: 735,
+            &quot;collected_at&quot;: &quot;2022-06-23 12:46:43&quot;,
+            &quot;amount&quot;: 310,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-24 12:29:02&quot;,
+            &quot;amount&quot;: 455,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 6,
+                &quot;name&quot;: &quot;Борзенкова Евгения&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-23 10:51:24&quot;,
+            &quot;amount&quot;: 65,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Магазин Гоголя&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-23 13:16:22&quot;,
+            &quot;amount&quot;: 205,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;Шаповал Лидия&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-24 10:51:18&quot;,
+            &quot;amount&quot;: 150,
             &quot;collector&quot;: {
                 &quot;id&quot;: 3,
                 &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
@@ -1844,9 +1793,75 @@ vary: Origin
                 &quot;name&quot;: &quot;Магазин Маяковского&quot;
             },
             &quot;operator&quot;: {
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;Биднык Виктория&quot;
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
             }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-17 14:44:43&quot;,
+            &quot;amount&quot;: 3005,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 8,
+                &quot;name&quot;: &quot;Зубенко Елена&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-24 12:28:21&quot;,
+            &quot;amount&quot;: 85,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Магазин Чаривная&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Солодовник Екатерина&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-06-23 13:16:41&quot;,
+            &quot;amount&quot;: 0,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Магазин Бородинский&quot;
+            },
+            &quot;operator&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;
+            }
+        },
+        {
+            &quot;collected_at&quot;: &quot;2022-05-11 11:22:00&quot;,
+            &quot;amount&quot;: 130,
+            &quot;collector&quot;: {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Максимцова Анастасия&quot;,
+                &quot;user&quot;: &quot;Nadmin&quot;,
+                &quot;email&quot;: &quot;maksimtsova.anastasiya@gmail.com&quot;
+            },
+            &quot;shop&quot;: null,
+            &quot;operator&quot;: null
         }
     ]
 }</code>
@@ -6703,7 +6718,7 @@ vary: Origin
     &quot;email&quot;: &quot;admin@admin.com&quot;,
     &quot;email_verified_at&quot;: null,
     &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-07-08T07:38:34.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-07-12T09:56:22.000000Z&quot;,
     &quot;deleted_at&quot;: null,
     &quot;company_id&quot;: 1
 }</code>
@@ -6743,6 +6758,532 @@ vary: Origin
                                                                 data-component="header"></label>
         </p>
                 </form>
+
+            <h2 id="endpoints-GETapi-counterparties">GET api/counterparties</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-counterparties">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cashbox-online.test/api/counterparties" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/counterparties"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-counterparties">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 21
+vary: Origin
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;#main_stretch&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;SomeCompany&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-counterparties" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-counterparties"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-counterparties"></code></pre>
+</span>
+<span id="execution-error-GETapi-counterparties" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-counterparties"></code></pre>
+</span>
+<form id="form-GETapi-counterparties" data-method="GET"
+      data-path="api/counterparties"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-counterparties', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/counterparties</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-counterparties" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-counterparties"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="endpoints-POSTapi-counterparties">POST api/counterparties</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-counterparties">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://cashbox-online.test/api/counterparties" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"company_id\": \"consequatur\",
+    \"name\": \"consequatur\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/counterparties"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "company_id": "consequatur",
+    "name": "consequatur"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-counterparties">
+</span>
+<span id="execution-results-POSTapi-counterparties" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-counterparties"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-counterparties"></code></pre>
+</span>
+<span id="execution-error-POSTapi-counterparties" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-counterparties"></code></pre>
+</span>
+<form id="form-POSTapi-counterparties" data-method="POST"
+      data-path="api/counterparties"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-counterparties', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/counterparties</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-counterparties" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-counterparties"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>company_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="company_id"
+               data-endpoint="POSTapi-counterparties"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-counterparties"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="endpoints-GETapi-counterparties--id-">GET api/counterparties/{id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-counterparties--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cashbox-online.test/api/counterparties/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/counterparties/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-counterparties--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 20
+vary: Origin
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;#main_stretch&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-counterparties--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-counterparties--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-counterparties--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-counterparties--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-counterparties--id-"></code></pre>
+</span>
+<form id="form-GETapi-counterparties--id-" data-method="GET"
+      data-path="api/counterparties/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-counterparties--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/counterparties/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-counterparties--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-counterparties--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-counterparties--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the counterparty.</p>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-PUTapi-counterparties--id-">PUT api/counterparties/{id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-counterparties--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "https://cashbox-online.test/api/counterparties/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"company_id\": \"consequatur\",
+    \"name\": \"consequatur\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/counterparties/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "company_id": "consequatur",
+    "name": "consequatur"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-counterparties--id-">
+</span>
+<span id="execution-results-PUTapi-counterparties--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-counterparties--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-counterparties--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-counterparties--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-counterparties--id-"></code></pre>
+</span>
+<form id="form-PUTapi-counterparties--id-" data-method="PUT"
+      data-path="api/counterparties/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-counterparties--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/counterparties/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/counterparties/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-counterparties--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-counterparties--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-counterparties--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the counterparty.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>company_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="company_id"
+               data-endpoint="PUTapi-counterparties--id-"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTapi-counterparties--id-"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="endpoints-DELETEapi-counterparties--id-">DELETE api/counterparties/{id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-counterparties--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "https://cashbox-online.test/api/counterparties/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/counterparties/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-counterparties--id-">
+</span>
+<span id="execution-results-DELETEapi-counterparties--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-counterparties--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-counterparties--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-counterparties--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-counterparties--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-counterparties--id-" data-method="DELETE"
+      data-path="api/counterparties/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-counterparties--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/counterparties/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-counterparties--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-counterparties--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="DELETEapi-counterparties--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the counterparty.</p>
+            </p>
+                    </form>
 
         <h1 id="file-upload-endpoints">File Upload endpoints</h1>
 
@@ -6847,7 +7388,7 @@ fetch(url, {
     --header "Accept: application/json" \
     --data "{
     \"entities\": [
-        \"ProductType\"
+        \"Storage\"
     ]
 }"
 </code></pre></div>
@@ -6866,7 +7407,7 @@ const headers = {
 
 let body = {
     "entities": [
-        "ProductType"
+        "Storage"
     ]
 };
 
@@ -6925,7 +7466,7 @@ fetch(url, {
                data-endpoint="POSTapi-get_for_select"
                data-component="body" hidden>
     <br>
-<p>Must be one of <code>Shop</code>, <code>Storage</code>, <code>Category</code>, or <code>ProductType</code>.</p>
+<p>Must be one of <code>Shop</code>, <code>Storage</code>, <code>Category</code>, <code>ProductType</code>, or <code>Counterparty</code>.</p>
         </p>
         </form>
 
@@ -8303,6 +8844,28 @@ vary: Origin
                 &quot;id&quot;: 71,
                 &quot;ability&quot;: &quot;purchaseRecommendations&quot;
             }
+        ],
+        &quot;Counterparty&quot;: [
+            {
+                &quot;id&quot;: 72,
+                &quot;ability&quot;: &quot;access&quot;
+            },
+            {
+                &quot;id&quot;: 73,
+                &quot;ability&quot;: &quot;create&quot;
+            },
+            {
+                &quot;id&quot;: 74,
+                &quot;ability&quot;: &quot;show&quot;
+            },
+            {
+                &quot;id&quot;: 75,
+                &quot;ability&quot;: &quot;edit&quot;
+            },
+            {
+                &quot;id&quot;: 76,
+                &quot;ability&quot;: &quot;delete&quot;
+            }
         ]
     }
 }</code>
@@ -8370,7 +8933,8 @@ vary: Origin
     \"product_types\": [
         \"consequatur\"
     ],
-    \"user_id\": \"consequatur\"
+    \"user_id\": \"consequatur\",
+    \"counterparty_id\": \"consequatur\"
 }"
 </code></pre></div>
 
@@ -8391,7 +8955,8 @@ let body = {
     "product_types": [
         "consequatur"
     ],
-    "user_id": "consequatur"
+    "user_id": "consequatur",
+    "counterparty_id": "consequatur"
 };
 
 fetch(url, {
@@ -8465,6 +9030,16 @@ fetch(url, {
             <b><code>user_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="user_id"
+               data-endpoint="POSTapi-product_purchases-mass_create"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>counterparty_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="counterparty_id"
                data-endpoint="POSTapi-product_purchases-mass_create"
                value="consequatur"
                data-component="body" hidden>
@@ -8691,6 +9266,16 @@ vary: Origin
             &quot;id&quot;: 5,
             &quot;shop_id&quot;: null,
             &quot;name&quot;: &quot;Склад&quot;
+        }
+    ],
+    &quot;counterparties&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;#main_stretch&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;SomeCompany&quot;
         }
     ]
 }</code>
@@ -11174,8 +11759,9 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-08-06\",
-    \"user_id\": \"consequatur\"
+    \"expiration_date\": \"2103-08-11\",
+    \"user_id\": \"consequatur\",
+    \"counterparty_id\": \"consequatur\"
 }"
 </code></pre></div>
 
@@ -11199,8 +11785,9 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-08-06",
-    "user_id": "consequatur"
+    "expiration_date": "2103-08-11",
+    "user_id": "consequatur",
+    "counterparty_id": "consequatur"
 };
 
 fetch(url, {
@@ -11322,7 +11909,7 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="POSTapi-product_purchases"
-               value="2103-08-06"
+               value="2103-08-11"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
@@ -11331,6 +11918,16 @@ fetch(url, {
             <b><code>user_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="user_id"
+               data-endpoint="POSTapi-product_purchases"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>counterparty_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="counterparty_id"
                data-endpoint="POSTapi-product_purchases"
                value="consequatur"
                data-component="body" hidden>
@@ -12019,7 +12616,8 @@ vary: Origin
     \"current_quantity\": \"consequatur\",
     \"cost\": 0,
     \"current_cost\": 0,
-    \"expiration_date\": \"2103-08-06\"
+    \"expiration_date\": \"2103-08-11\",
+    \"counterparty_id\": \"consequatur\"
 }"
 </code></pre></div>
 
@@ -12041,7 +12639,8 @@ let body = {
     "current_quantity": "consequatur",
     "cost": 0,
     "current_cost": 0,
-    "expiration_date": "2103-08-06"
+    "expiration_date": "2103-08-11",
+    "counterparty_id": "consequatur"
 };
 
 fetch(url, {
@@ -12158,10 +12757,20 @@ fetch(url, {
                 <input type="text"
                name="expiration_date"
                data-endpoint="PUTapi-product_purchases--id-"
-               value="2103-08-06"
+               value="2103-08-11"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date. Must be a date after <code>today</code>.</p>
+        </p>
+                <p>
+            <b><code>counterparty_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="counterparty_id"
+               data-endpoint="PUTapi-product_purchases--id-"
+               value="consequatur"
+               data-component="body" hidden>
+    <br>
+
         </p>
         </form>
 
@@ -14664,7 +15273,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 21
+x-ratelimit-remaining: 19
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -14784,7 +15393,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 20
+x-ratelimit-remaining: 18
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -15950,8 +16559,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-08T10:38:40\",
-    \"end_date\": \"2022-07-08T10:38:40\",
+    \"start_date\": \"2022-07-12T12:56:28\",
+    \"end_date\": \"2022-07-12T12:56:28\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -15969,8 +16578,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-08T10:38:40",
-    "end_date": "2022-07-08T10:38:40",
+    "start_date": "2022-07-12T12:56:28",
+    "end_date": "2022-07-12T12:56:28",
     "shop_id": 17
 };
 
@@ -15993,7 +16602,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 18
+x-ratelimit-remaining: 16
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -16049,7 +16658,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16059,7 +16668,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16095,8 +16704,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-08T10:38:40\",
-    \"end_date\": \"2022-07-08T10:38:40\",
+    \"start_date\": \"2022-07-12T12:56:28\",
+    \"end_date\": \"2022-07-12T12:56:28\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16114,8 +16723,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-08T10:38:40",
-    "end_date": "2022-07-08T10:38:40",
+    "start_date": "2022-07-12T12:56:28",
+    "end_date": "2022-07-12T12:56:28",
     "shop_id": 17
 };
 
@@ -16138,7 +16747,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 17
+x-ratelimit-remaining: 15
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -16146,8 +16755,8 @@ vary: Origin
 <code class="language-json">{
     &quot;data&quot;: {
         &quot;date_list&quot;: [
-            &quot;07-08&quot;,
-            &quot;07-09&quot;
+            &quot;07-12&quot;,
+            &quot;07-13&quot;
         ],
         &quot;amount_list&quot;: [
             &quot;0.00&quot;,
@@ -16204,7 +16813,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16214,7 +16823,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16250,8 +16859,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-08T10:38:40\",
-    \"end_date\": \"2022-07-08T10:38:40\",
+    \"start_date\": \"2022-07-12T12:56:28\",
+    \"end_date\": \"2022-07-12T12:56:28\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16269,8 +16878,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-08T10:38:40",
-    "end_date": "2022-07-08T10:38:40",
+    "start_date": "2022-07-12T12:56:28",
+    "end_date": "2022-07-12T12:56:28",
     "shop_id": 17
 };
 
@@ -16293,7 +16902,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 16
+x-ratelimit-remaining: 14
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -16391,7 +17000,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16401,7 +17010,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16437,8 +17046,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-08T10:38:40\",
-    \"end_date\": \"2022-07-08T10:38:40\",
+    \"start_date\": \"2022-07-12T12:56:28\",
+    \"end_date\": \"2022-07-12T12:56:28\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16456,8 +17065,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-08T10:38:40",
-    "end_date": "2022-07-08T10:38:40",
+    "start_date": "2022-07-12T12:56:28",
+    "end_date": "2022-07-12T12:56:28",
     "shop_id": 17
 };
 
@@ -16480,7 +17089,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 15
+x-ratelimit-remaining: 13
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -16606,7 +17215,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16616,7 +17225,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16652,8 +17261,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-08T10:38:40\",
-    \"end_date\": \"2022-07-08T10:38:40\",
+    \"start_date\": \"2022-07-12T12:56:28\",
+    \"end_date\": \"2022-07-12T12:56:28\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16671,8 +17280,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-08T10:38:40",
-    "end_date": "2022-07-08T10:38:40",
+    "start_date": "2022-07-12T12:56:28",
+    "end_date": "2022-07-12T12:56:28",
     "shop_id": 17
 };
 
@@ -16725,7 +17334,7 @@ fetch(url, {
                 <input type="text"
                name="start_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16735,7 +17344,7 @@ fetch(url, {
                 <input type="text"
                name="end_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16771,8 +17380,8 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-08T10:38:39\",
-    \"end_date\": \"2022-07-08T10:38:39\",
+    \"start_date\": \"2022-07-12T12:56:28\",
+    \"end_date\": \"2022-07-12T12:56:28\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16790,8 +17399,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-08T10:38:39",
-    "end_date": "2022-07-08T10:38:39",
+    "start_date": "2022-07-12T12:56:28",
+    "end_date": "2022-07-12T12:56:28",
     "shop_id": 17
 };
 
@@ -16814,7 +17423,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 19
+x-ratelimit-remaining: 17
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -18028,7 +18637,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-08T10:38:39"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18038,7 +18647,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-08T10:38:39"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18074,8 +18683,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-08T10:38:40\",
-    \"end_date\": \"2022-07-08T10:38:40\",
+    \"start_date\": \"2022-07-12T12:56:28\",
+    \"end_date\": \"2022-07-12T12:56:28\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -18093,8 +18702,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-08T10:38:40",
-    "end_date": "2022-07-08T10:38:40",
+    "start_date": "2022-07-12T12:56:28",
+    "end_date": "2022-07-12T12:56:28",
     "shop_id": 17
 };
 
@@ -18117,7 +18726,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 14
+x-ratelimit-remaining: 12
 vary: Origin
  </code></pre>
         </details>         <pre>
@@ -18180,7 +18789,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18190,7 +18799,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2022-07-08T10:38:40"
+               value="2022-07-12T12:56:28"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
