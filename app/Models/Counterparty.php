@@ -20,4 +20,14 @@ class Counterparty extends Model implements ShouldReturnGetForSelect
     {
         $builder->select('id', 'name');
     }
+
+    public function product_purchases()
+    {
+        return $this->hasMany(ProductPurchase::class);
+    }
+
+    public function product_consumptions()
+    {
+        return $this->hasManyThrough(ProductConsumption::class, ProductPurchase::class);
+    }
 }

@@ -1,42 +1,10 @@
-name: 'Sell Product management'
+name: 'Role management'
 description: ''
 endpoints:
   -
     httpMethods:
-      - POST
-    uri: api/sell_products/get_paginated
-    metadata:
-      title: ''
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters:
-      per_page:
-        name: per_page
-        description: ''
-        required: true
-        example: 17
-        type: integer
-        custom: []
-      page:
-        name: page
-        description: ''
-        required: true
-        example: 17
-        type: integer
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
       - GET
-    uri: api/sell_products
+    uri: api/roles
     metadata:
       title: ''
       description: ''
@@ -51,20 +19,686 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"success":true,"data":[{"id":1,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/25\/782497750-dvojnoj-espresso-600x600.jpeg","name":"\u042d\u0441\u043f\u0440\u0435\u0441\u0441\u043e","price":"20.00","has_discount":0,"position":2,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":5,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.005,"measure_types":[],"price_per_unit":0.3},{"id":3,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 250","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.49},{"id":4,"name":"\u041a\u043e\u0444\u0435 1 \u043a\u0433","quantity":16,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.016,"measure_types":[],"price_per_unit":0.376}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":2,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/22\/\u0410\u043c\u0435\u0440\u0438\u043a\u0430\u043d\u043e.jpeg","name":"\u0410\u043c\u0435\u0440\u0438\u043a\u0430\u043d\u043e","price":"20.00","has_discount":0,"position":1,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":2,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.002,"measure_types":[],"price_per_unit":0.3},{"id":3,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 250","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.49},{"id":4,"name":"\u041a\u043e\u0444\u0435 1 \u043a\u0433","quantity":14,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.014,"measure_types":[],"price_per_unit":0.376}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":3,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/23\/latte_macchiato_2000x1400px.jpeg","name":"\u041b\u0430\u0442\u0435","price":"30.00","has_discount":0,"position":3,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":15,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.015,"measure_types":[],"price_per_unit":0.3},{"id":4,"name":"\u041a\u043e\u0444\u0435 1 \u043a\u0433","quantity":14,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.014,"measure_types":[],"price_per_unit":0.376},{"id":6,"name":"\u041c\u043e\u043b\u043e\u043a\u043e","quantity":150,"main_measure_type":{"id":2,"name":"\u043b","quantity":1000},"quantity_in_main_measure_type":0.15,"measure_types":[],"price_per_unit":0.03},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":4,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/21\/\u0421\u043d\u0438\u043c\u043e\u043a-\u044d\u043a\u0440\u0430\u043d\u0430-2022-05-24-\u0432-17.32.47.png","name":"\u0412\u043e\u0434\u0430 \u041c\u043e\u0440\u0448\u0438\u043d\u0441\u043a\u0430\u044f 0,5","price":"20.00","has_discount":0,"position":5,"product_types":[{"id":7,"name":"\u0412\u043e\u0434\u0430 \u041c\u043e\u0440\u0448\u0438\u043d\u0441\u043a\u0430\u044f 0,5","quantity":500,"main_measure_type":{"id":4,"name":"\u041f\u0415\u0422 0,5","quantity":500},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.0214}],"category":{"id":6,"name":"\u041d\u0430\u043f\u0438\u0442\u043a\u0438"}},{"id":5,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/18\/isla-tea-jasmine-05.jpeg","name":"\u0427\u0430\u0439 ISLA green tea","price":"20.00","has_discount":0,"position":11,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":5,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.005,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":9,"name":"\u0427\u0430\u0439 ISLA green tea","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":6}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":6,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/13\/trx_s_burn-081.jpeg","name":"\u041f\u0435\u0442\u043b\u0438 TRX","price":"1600.00","has_discount":0,"position":16,"product_types":[{"id":15,"name":"\u041f\u0435\u0442\u043b\u0438 TRX","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":800}],"category":{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c"}},{"id":7,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/12\/pic_ed9813ade29c489_1024x3000.webp","name":"\u041b\u0435\u043d\u0442\u0430 \u0434\u043b\u044f \u0439\u043e\u0433\u0438","price":"160.00","has_discount":0,"position":15,"product_types":[{"id":16,"name":"\u041b\u0435\u043d\u0442\u0430 \u0434\u043b\u044f \u0439\u043e\u0433\u0438","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":81}],"category":{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c"}},{"id":8,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/11\/3112003758_w640_h640_nabor-tkanevyh-fitnes.webp","name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0441\u0442\u0440\u0435\u0442\u0447\u0438\u043d\u0433\u0430","price":"300.00","has_discount":0,"position":17,"product_types":[{"id":17,"name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0441\u0442\u0440\u0435\u0442\u0447\u0438\u043d\u0433\u0430","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":null}],"category":{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c"}},{"id":9,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/10\/Blok-dlya-jogi-EasyFit-EVA-CHernyj.webp","name":"\u0411\u043b\u043e\u043a\u0438 \u0434\u043b\u044f \u0441\u0442\u0440\u0435\u0442\u0447\u0438\u043d\u0433\u0430","price":"120.00","has_discount":0,"position":33,"product_types":[{"id":18,"name":"\u0411\u043b\u043e\u043a\u0438 \u0434\u043b\u044f \u0441\u0442\u0440\u0435\u0442\u0447\u0438\u043d\u0433\u0430","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":75}],"category":{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c"}},{"id":10,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/9\/e1a2a0c7-8d77-4065-be93-b6e01c1dcb36.jpeg","name":"\u0413\u0430\u043c\u0430\u043a","price":"2000.00","has_discount":0,"position":18,"product_types":[{"id":19,"name":"\u0413\u0430\u043c\u0430\u043a","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1000}],"category":{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c"}},{"id":11,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/17\/10055-228x228.jpeg","name":"\u041d\u043e\u0441\u043a\u0438 (\u0434\u0435\u0442\u0441\u043a\u0438\u0435)","price":"25.00","has_discount":0,"position":32,"product_types":[{"id":20,"name":"\u041d\u043e\u0441\u043a\u0438 (\u0434\u0435\u0442\u0441\u043a\u0438\u0435)","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":10}],"category":{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"}},{"id":12,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/16\/images.jpeg","name":"\u041d\u043e\u0441\u043a\u0438 (\u0432\u0437\u0440\u043e\u0441\u043b\u044b\u0435)","price":"30.00","has_discount":0,"position":31,"product_types":[{"id":21,"name":"\u041d\u043e\u0441\u043a\u0438 (\u0432\u0437\u0440\u043e\u0441\u043b\u044b\u0435)","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":10}],"category":{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"}},{"id":13,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/28\/\u0421\u043d\u0438\u043c\u043e\u043a-\u044d\u043a\u0440\u0430\u043d\u0430-2022-05-24-\u0432-17.48.24.png","name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 (\u043f\u0440\u0443\u0436\u0438\u043d\u043a\u0430)","price":"15.00","has_discount":0,"position":30,"product_types":[{"id":22,"name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 (\u043f\u0440\u0443\u0436\u0438\u043d\u043a\u0430)","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":4}],"category":{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"}},{"id":14,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/27\/\u0421\u043d\u0438\u043c\u043e\u043a-\u044d\u043a\u0440\u0430\u043d\u0430-2022-05-24-\u0432-17.48.16.png","name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 \u0431\u0435\u0437\u0448\u043e\u0432\u043d\u0430\u044f \u043c\u0430\u043b\u0435\u043d\u044c\u043a\u0430\u044f","price":"5.00","has_discount":0,"position":29,"product_types":[{"id":23,"name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 \u0431\u0435\u0437\u0448\u043e\u0432\u043d\u0430\u044f \u043c\u0430\u043b\u0435\u043d\u044c\u043a\u0430\u044f","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":4}],"category":{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"}},{"id":15,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/26\/\u0421\u043d\u0438\u043c\u043e\u043a-\u044d\u043a\u0440\u0430\u043d\u0430-2022-05-24-\u0432-17.47.50.png","name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 (\u043d\u0430\u0431\u043e\u0440 10 \u0448\u0442. \u043c\u0430\u043b\u0435\u043d\u044c\u043a\u0438\u0445 \u043f\u0440\u0443\u0436\u0438\u043d\u043e\u043a)","price":"15.00","has_discount":0,"position":28,"product_types":[{"id":24,"name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 (\u043d\u0430\u0431\u043e\u0440 10 \u0448\u0442. \u043c\u0430\u043b\u0435\u043d\u044c\u043a\u0438\u0445 \u043f\u0440\u0443\u0436\u0438\u043d\u043e\u043a)","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":10}],"category":{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"}},{"id":16,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/8\/cappuccino_2000x1400px.jpeg","name":"\u041a\u0430\u043f\u0443\u0447\u0438\u043d\u043e","price":"30.00","has_discount":0,"position":4,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":1,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.001,"measure_types":[],"price_per_unit":0.3},{"id":3,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 250","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.49},{"id":4,"name":"\u041a\u043e\u0444\u0435 1 \u043a\u0433","quantity":14,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.014,"measure_types":[],"price_per_unit":0.376},{"id":6,"name":"\u041c\u043e\u043b\u043e\u043a\u043e","quantity":100,"main_measure_type":{"id":2,"name":"\u043b","quantity":1000},"quantity_in_main_measure_type":0.1,"measure_types":[],"price_per_unit":0.03}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":17,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/14\/isla-tea-breakfast-01-458x523.jpeg","name":"\u0427\u0430\u0439 ISLA English Breakfast","price":"20.00","has_discount":0,"position":10,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":1,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.001,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":11,"name":"\u0427\u0430\u0439 ISLA English Breakfast","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":6}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":18,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/30\/\u0421\u043d\u0438\u043c\u043e\u043a-\u044d\u043a\u0440\u0430\u043d\u0430-2022-05-24-\u0432-17.48.01.png","name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 \u0431\u0435\u0437\u0448\u043e\u0432\u043d\u0430\u044f \u0431\u043e\u043b\u044c\u0448\u0430\u044f","price":"10.00","has_discount":0,"position":27,"product_types":[{"id":29,"name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0432\u043e\u043b\u043e\u0441 \u0431\u0435\u0437\u0448\u043e\u0432\u043d\u0430\u044f \u0431\u043e\u043b\u044c\u0448\u0430\u044f","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":null}],"category":{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"}},{"id":19,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/31\/\u0421\u043d\u0438\u043c\u043e\u043a-\u044d\u043a\u0440\u0430\u043d\u0430-2022-05-24-\u0432-17.58.08.png","name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u041c\u041e\u0420\u0414\u041e\u0427\u041a\u0410","price":"15.00","has_discount":0,"position":26,"product_types":[{"id":30,"name":"\u0420\u0435\u0437\u0438\u043d\u043a\u0430 \u041c\u041e\u0420\u0414\u041e\u0427\u041a\u0410","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":4}],"category":{"id":7,"name":"\u0410\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b"}},{"id":20,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/32\/isla-tea-fruit-2-g-01_390x415.370x370.jpg","name":"\u0427\u0430\u0439 ISLA Fruit Tea","price":"20.00","has_discount":0,"position":9,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":1,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.001,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":12,"name":"\u0427\u0430\u0439 ISLA Fruit Tea","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":6}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":21,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/33\/31438689.png","name":"\u0427\u0430\u0439 ISLA Herbal tea","price":"20.00","has_discount":0,"position":8,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":1,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.001,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":10,"name":"\u0427\u0430\u0439 ISLA Herbal tea","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":4.625}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}},{"id":22,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/34\/50520802_958877007645473_470777998541895421_n.webp","name":"\u041c\u043e\u043b\u043e\u0447\u043d\u044b\u0439 \u043a\u043e\u043a\u0442\u0435\u0439\u043b\u044c","price":"35.00","has_discount":0,"position":12,"product_types":[{"id":6,"name":"\u041c\u043e\u043b\u043e\u043a\u043e","quantity":200,"main_measure_type":{"id":2,"name":"\u043b","quantity":1000},"quantity_in_main_measure_type":0.2,"measure_types":[],"price_per_unit":0.03},{"id":13,"name":"\u041c\u043e\u0440\u043e\u0436\u0435\u043d\u043d\u043e\u0435","quantity":150,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.15,"measure_types":[],"price_per_unit":0.051},{"id":26,"name":"\u0421\u0442\u0430\u043a\u0430\u043d \u041f\u041b\u0410\u0421\u0422\u0418\u041a 350 \u043c\u043b","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":2.5},{"id":27,"name":"\u041a\u0440\u044b\u0448\u043a\u0430 \u041f\u041b\u0410\u0421\u0422\u0418\u041a","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.22},{"id":28,"name":"\u0422\u0440\u0443\u0431\u043e\u0447\u043a\u0430","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.22}],"category":{"id":5,"name":"\u041a\u043e\u043a\u0442\u0435\u0439\u043b\u0438"}},{"id":23,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/35\/images.jpeg","name":"\u041f\u0440\u043e\u0442\u0435\u0438\u043d\u043e\u0432\u044b\u0439 \u043a\u043e\u043a\u0442\u0435\u0439\u043b\u044c \u043d\u0430 \u043c\u043e\u043b\u043e\u043a\u0435","price":"35.00","has_discount":0,"position":7,"product_types":[{"id":6,"name":"\u041c\u043e\u043b\u043e\u043a\u043e","quantity":250,"main_measure_type":{"id":2,"name":"\u043b","quantity":1000},"quantity_in_main_measure_type":0.25,"measure_types":[],"price_per_unit":0.03},{"id":14,"name":"\u041f\u0440\u043e\u0442\u0435\u0438\u043d","quantity":25,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.025,"measure_types":[],"price_per_unit":0.4375},{"id":26,"name":"\u0421\u0442\u0430\u043a\u0430\u043d \u041f\u041b\u0410\u0421\u0422\u0418\u041a 350 \u043c\u043b","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":2.5},{"id":27,"name":"\u041a\u0440\u044b\u0448\u043a\u0430 \u041f\u041b\u0410\u0421\u0422\u0418\u041a","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.22},{"id":28,"name":"\u0422\u0440\u0443\u0431\u043e\u0447\u043a\u0430","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.22}],"category":{"id":5,"name":"\u041a\u043e\u043a\u0442\u0435\u0439\u043b\u0438"}},{"id":24,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/36\/protein_cocktail_5_1273.jpeg","name":"\u041f\u0440\u043e\u0442\u0435\u0438\u043d\u043e\u0432\u044b\u0439 \u043a\u043e\u043a\u0442\u0435\u0439\u043b\u044c \u043d\u0430 \u0432\u043e\u0434\u0435","price":"25.00","has_discount":0,"position":6,"product_types":[{"id":2,"name":"\u0412\u043e\u0434\u0430","quantity":0,"main_measure_type":{"id":2,"name":"\u043b","quantity":1000},"quantity_in_main_measure_type":0,"measure_types":[{"id":4,"name":"\u041f\u0415\u0422 0,5","quantity":500},{"id":5,"name":"\u041f\u0415\u0422 1\u043b","quantity":1000}],"price_per_unit":null},{"id":14,"name":"\u041f\u0440\u043e\u0442\u0435\u0438\u043d","quantity":0,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0,"measure_types":[],"price_per_unit":0.4375},{"id":26,"name":"\u0421\u0442\u0430\u043a\u0430\u043d \u041f\u041b\u0410\u0421\u0422\u0418\u041a 350 \u043c\u043b","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":2.5},{"id":27,"name":"\u041a\u0440\u044b\u0448\u043a\u0430 \u041f\u041b\u0410\u0421\u0422\u0418\u041a","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.22},{"id":28,"name":"\u0422\u0440\u0443\u0431\u043e\u0447\u043a\u0430","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.22}],"category":{"id":5,"name":"\u041a\u043e\u043a\u0442\u0435\u0439\u043b\u0438"}},{"id":25,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/37\/76721_1.jpeg","name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a \u0437\u043b\u0430\u043a\u043e\u0432\u044b\u0439","price":"15.00","has_discount":0,"position":13,"product_types":[{"id":31,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a \u0437\u043b\u0430\u043a\u043e\u0432\u044b\u0439","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":9}],"category":{"id":1,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438"}},{"id":26,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/38\/20190702.1562168528.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.webp","name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a \u043f\u0440\u043e\u0442\u0435\u0438\u043d\u043e\u0432\u044b\u0439","price":"35.00","has_discount":0,"position":14,"product_types":[{"id":32,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a \u043f\u0440\u043e\u0442\u0435\u0438\u043d\u043e\u0432\u044b\u0439","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":24}],"category":{"id":1,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438"}},{"id":27,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/39\/2-655_1.jpeg","name":"\u0410\u043c\u0435\u0440\u0438\u043a\u0430\u043d\u043e\/\u042d\u0441\u043f\u0440\u0435\u0441\u0441\u043e \u0434\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430","price":"5.00","has_discount":0,"position":25,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":2,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.002,"measure_types":[],"price_per_unit":0.3},{"id":3,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 250","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.49},{"id":4,"name":"\u041a\u043e\u0444\u0435 1 \u043a\u0433","quantity":14,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.014,"measure_types":[],"price_per_unit":0.376}],"category":{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430"}},{"id":28,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/40\/2.png","name":"\u041a\u0430\u043f\u0443\u0447\u0438\u043d\u043e\/\u041b\u0430\u0442\u0442\u0435 \u0434\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430","price":"10.00","has_discount":0,"position":24,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":2,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.002,"measure_types":[],"price_per_unit":0.3},{"id":4,"name":"\u041a\u043e\u0444\u0435 1 \u043a\u0433","quantity":14,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.014,"measure_types":[],"price_per_unit":0.376},{"id":6,"name":"\u041c\u043e\u043b\u043e\u043a\u043e","quantity":150,"main_measure_type":{"id":2,"name":"\u043b","quantity":1000},"quantity_in_main_measure_type":0.15,"measure_types":[],"price_per_unit":0.03},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":25,"name":"\u041c\u0435\u0448\u0430\u043b\u043a\u0438","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.04}],"category":{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430"}},{"id":29,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/41\/isla-tea-fruit-2-g-01_390x415.370x370.jpg","name":"\u0427\u0430\u0439 ISLA Fruit Tea \u0434\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430","price":"10.00","has_discount":0,"position":23,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":0,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":12,"name":"\u0427\u0430\u0439 ISLA Fruit Tea","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":6},{"id":25,"name":"\u041c\u0435\u0448\u0430\u043b\u043a\u0438","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.04}],"category":{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430"}},{"id":30,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/42\/31438689.png","name":"\u0427\u0430\u0439 ISLA Herbal tea \u0434\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430","price":"10.00","has_discount":0,"position":22,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":0,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":10,"name":"\u0427\u0430\u0439 ISLA Herbal tea","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":4.625},{"id":25,"name":"\u041c\u0435\u0448\u0430\u043b\u043a\u0438","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.04}],"category":{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430"}},{"id":31,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/43\/isla-tea-jasmine-05.jpeg","name":"\u0427\u0430\u0439 ISLA Green Tea \u0434\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430","price":"10.00","has_discount":0,"position":21,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":0,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":9,"name":"\u0427\u0430\u0439 ISLA green tea","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":6},{"id":25,"name":"\u041c\u0435\u0448\u0430\u043b\u043a\u0438","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.04}],"category":{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430"}},{"id":32,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/44\/31438967.png","name":"\u0427\u0430\u0439 ISLA English Breakfast \u0434\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430","price":"10.00","has_discount":0,"position":19,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":0,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0,"measure_types":[],"price_per_unit":0.3},{"id":8,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 400","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":1.34},{"id":11,"name":"\u0427\u0430\u0439 ISLA English Breakfast","quantity":1,"main_measure_type":{"id":7,"name":"\u041f\u0430\u043a\u0435\u0442\u0438\u043a","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":6},{"id":25,"name":"\u041c\u0435\u0448\u0430\u043b\u043a\u0438","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.04}],"category":{"id":8,"name":"\u0414\u043b\u044f \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430"}},{"id":33,"company_id":2,"photo":"https:\/\/cashbox-online.test\/storage\/48\/image.png","name":"\u0410\u043c\u0435\u0440\u0438\u043a\u0430\u043d\u043e","price":"40.00","has_discount":0,"position":2,"product_types":[{"id":33,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":15,"main_measure_type":{"id":9,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.015,"measure_types":[],"price_per_unit":0.03333333333333333},{"id":34,"name":"\u041a\u043e\u0444\u0435","quantity":20,"main_measure_type":{"id":9,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.02,"measure_types":[],"price_per_unit":0.12},{"id":35,"name":"\u0412\u043e\u0434\u0430","quantity":150,"main_measure_type":{"id":8,"name":"\u043b","quantity":1000},"quantity_in_main_measure_type":0.15,"measure_types":[],"price_per_unit":0.007},{"id":36,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a","quantity":1,"main_measure_type":{"id":10,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.5}],"category":{"id":9,"name":"\u041d\u0430\u043f\u0438\u0442\u043a\u0438"}},{"id":34,"company_id":2,"photo":"https:\/\/cashbox-online.test\/storage\/50\/image.png","name":"Twix","price":"30.00","has_discount":0,"position":1,"product_types":[{"id":37,"name":"Twix","quantity":1,"main_measure_type":{"id":10,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":20}],"category":{"id":10,"name":"\u0411\u0430\u0442\u043e\u043d\u0447\u0438\u043a\u0438"}},{"id":35,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/52\/2793190762_w640_h640_stakan-340ml-bumazhnyj.webp","name":"\u0421\u0442\u0430\u043a\u0430\u043d \u0434\u043b\u044f \u0432\u043e\u0434\u044b","price":"1.00","has_discount":0,"position":20,"product_types":[{"id":3,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 250","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":0.49}],"category":{"id":6,"name":"\u041d\u0430\u043f\u0438\u0442\u043a\u0438"}},{"id":36,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/54\/2671198337_blok-dlya-jogi.webp","name":"\u0411\u043b\u043e\u043a \u0434\u043b\u044f \u0441\u0442\u0440\u0435\u0442\u0447\u0438\u043d\u0433\u0430 NEW","price":"160.00","has_discount":0,"position":34,"product_types":[{"id":38,"name":"\u0411\u043b\u043e\u043a \u0434\u043b\u044f \u0441\u0442\u0440\u0435\u0442\u0447\u0438\u043d\u0433\u0430 NEW","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[],"price_per_unit":89}],"category":{"id":3,"name":"\u0418\u043d\u0432\u0435\u043d\u0442\u0430\u0440\u044c"}}]}'
+        status: 500
+        content: |-
+          {
+              "message": "Class name must be a valid object or a string",
+              "exception": "Error",
+              "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
+              "line": 755,
+              "trace": [
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
+                      "line": 551,
+                      "function": "newRelatedInstance",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
+                      "line": 622,
+                      "function": "morphToMany",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/spatie/laravel-permission/src/Models/Role.php",
+                      "line": 79,
+                      "function": "morphedByMany",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 743,
+                      "function": "users",
+                      "class": "Spatie\\Permission\\Models\\Role",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Relation.php",
+                      "line": 104,
+                      "function": "Illuminate\\Database\\Eloquent\\Concerns\\{closure}",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 744,
+                      "function": "noConstraints",
+                      "class": "Illuminate\\Database\\Eloquent\\Relations\\Relation",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 543,
+                      "function": "getRelationWithoutConstraints",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 612,
+                      "function": "withAggregate",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php",
+                      "line": 23,
+                      "function": "withCount",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
+                      "line": 2133,
+                      "function": "forwardCallTo",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/app/Repositories/RoleRepository.php",
+                      "line": 92,
+                      "function": "__call",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/app/Http/Controllers/Api/RoleController.php",
+                      "line": 31,
+                      "function": "getWithUsersCount",
+                      "class": "App\\Repositories\\RoleRepository",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Controller.php",
+                      "line": 54,
+                      "function": "index",
+                      "class": "App\\Http\\Controllers\\Api\\RoleController",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+                      "line": 45,
+                      "function": "callAction",
+                      "class": "Illuminate\\Routing\\Controller",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                      "line": 261,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\ControllerDispatcher",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                      "line": 204,
+                      "function": "runController",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 725,
+                      "function": "run",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 141,
+                      "function": "Illuminate\\Routing\\{closure}",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php",
+                      "line": 50,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php",
+                      "line": 126,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php",
+                      "line": 102,
+                      "function": "handleRequest",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php",
+                      "line": 54,
+                      "function": "handleRequestUsingNamedLimiter",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php",
+                      "line": 44,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Auth\\Middleware\\Authenticate",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php",
+                      "line": 33,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 141,
+                      "function": "Laravel\\Sanctum\\Http\\Middleware\\{closure}",
+                      "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 116,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php",
+                      "line": 34,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 116,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 727,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 702,
+                      "function": "runRouteWithinStack",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 666,
+                      "function": "runRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 655,
+                      "function": "dispatchToRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "line": 167,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 141,
+                      "function": "Illuminate\\Foundation\\Http\\{closure}",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php",
+                      "line": 60,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Barryvdh\\Debugbar\\Middleware\\InjectDebugbar",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+                      "line": 31,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+                      "line": 40,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+                      "line": 27,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+                      "line": 86,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/fruitcake/laravel-cors/src/HandleCors.php",
+                      "line": 52,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Fruitcake\\Cors\\HandleCors",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+                      "line": 39,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Http\\Middleware\\TrustProxies",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 116,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "line": 142,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "line": 111,
+                      "function": "sendRequestThroughRouter",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 299,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 287,
+                      "function": "callLaravelOrLumenRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 89,
+                      "function": "makeApiCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 45,
+                      "function": "makeResponseCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "line": 35,
+                      "function": "makeResponseCallIfConditionsPass",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
+                      "line": 222,
+                      "function": "__invoke",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
+                      "line": 179,
+                      "function": "iterateThroughStrategies",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
+                      "line": 116,
+                      "function": "fetchResponses",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
+                      "line": 123,
+                      "function": "processRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
+                      "line": 80,
+                      "function": "extractEndpointsInfoFromLaravelApp",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
+                      "line": 56,
+                      "function": "extractEndpointsInfoAndWriteToDisk",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php",
+                      "line": 55,
+                      "function": "get",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 36,
+                      "function": "handle",
+                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php",
+                      "line": 41,
+                      "function": "Illuminate\\Container\\{closure}",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 93,
+                      "function": "unwrapIfClosure",
+                      "class": "Illuminate\\Container\\Util",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 37,
+                      "function": "callBoundMethod",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php",
+                      "line": 653,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                      "line": 171,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\Container",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Command/Command.php",
+                      "line": 291,
+                      "function": "execute",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                      "line": 156,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Command\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php",
+                      "line": 68,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php",
+                      "line": 28,
+                      "function": "runCommand",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/app/Console/Commands/GenerateDocsCommand.php",
+                      "line": 35,
+                      "function": "call",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 36,
+                      "function": "handle",
+                      "class": "App\\Console\\Commands\\GenerateDocsCommand",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Util.php",
+                      "line": 41,
+                      "function": "Illuminate\\Container\\{closure}",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 93,
+                      "function": "unwrapIfClosure",
+                      "class": "Illuminate\\Container\\Util",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "line": 37,
+                      "function": "callBoundMethod",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php",
+                      "line": 653,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                      "line": 171,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\Container",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Command/Command.php",
+                      "line": 291,
+                      "function": "execute",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                      "line": 156,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Command\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Application.php",
+                      "line": 989,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Application.php",
+                      "line": 299,
+                      "function": "doRunCommand",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Application.php",
+                      "line": 171,
+                      "function": "doRun",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Application.php",
+                      "line": 102,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php",
+                      "line": 129,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/artisan",
+                      "line": 37,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Console\\Kernel",
+                      "type": "->"
+                  }
+              ]
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '34'
+          x-ratelimit-remaining: '24'
           vary: Origin
         description: null
     responseFields: []
   -
     httpMethods:
       - POST
-    uri: api/sell_products
+    uri: api/roles
     metadata:
       title: ''
       description: ''
@@ -77,6 +711,20 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      human_name:
+        name: human_name
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
       company_id:
         name: company_id
         description: ''
@@ -84,69 +732,20 @@ endpoints:
         example: consequatur
         type: string
         custom: []
-      name:
-        name: name
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
-      price:
-        name: price
-        description: 'Must be at least 0.'
-        required: true
-        example: 0
-        type: number
-        custom: []
-      has_discount:
-        name: has_discount
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        custom: []
-      product_types:
-        name: product_types
+      permissions:
+        name: permissions
         description: ''
         required: false
         example:
-          - []
-        type: 'object[]'
-        custom: []
-      photo:
-        name: photo
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      category_id:
-        name: category_id
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      position:
-        name: position
-        description: ''
-        required: false
-        example: 17
-        type: integer
-        custom: []
-      'product_types[].quantity':
-        name: 'product_types[].quantity'
-        description: 'Must be at least 0.'
-        required: false
-        example: 0
-        type: number
+          - consequatur
+        type: 'string[]'
         custom: []
     responses: []
     responseFields: []
   -
     httpMethods:
       - GET
-    uri: 'api/sell_products/{id}'
+    uri: 'api/roles/{id}'
     metadata:
       title: ''
       description: ''
@@ -159,7 +758,7 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the sell product.'
+        description: 'The ID of the role.'
         required: true
         example: 1
         type: integer
@@ -169,12 +768,12 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"data":{"id":1,"company_id":1,"photo":"https:\/\/cashbox-online.test\/storage\/25\/782497750-dvojnoj-espresso-600x600.jpeg","name":"\u042d\u0441\u043f\u0440\u0435\u0441\u0441\u043e","price":"20.00","has_discount":0,"position":2,"product_types":[{"id":1,"name":"\u0421\u0430\u0445\u0430\u0440","quantity":5,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.005,"measure_types":[{"id":1,"name":"\u043a\u0433","quantity":1000},{"id":2,"name":"\u0433","quantity":1}],"price_per_unit":0.3},{"id":3,"name":"\u0421\u0442\u0430\u043a\u0430\u043d\u0447\u0438\u043a 250","quantity":1,"main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity_in_main_measure_type":1,"measure_types":[{"id":3,"name":"\u0448\u0442","quantity":1}],"price_per_unit":0.49473684210526314},{"id":4,"name":"\u041a\u043e\u0444\u0435 1 \u043a\u0433","quantity":16,"main_measure_type":{"id":1,"name":"\u043a\u0433","quantity":1000},"quantity_in_main_measure_type":0.016,"measure_types":[{"id":1,"name":"\u043a\u0433","quantity":1000},{"id":2,"name":"\u0433","quantity":1}],"price_per_unit":0.35}],"category":{"id":2,"name":"\u041a\u043e\u0444\u0435\/\u0427\u0430\u0439"}}}'
+        content: '{"success":true,"data":{"id":1,"name":"Super Admin","human_name":"Super Administrator","permissions":[]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '33'
+          x-ratelimit-remaining: '23'
           vary: Origin
         description: null
     responseFields: []
@@ -182,7 +781,7 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/sell_products/{id}'
+    uri: 'api/roles/{id}'
     metadata:
       title: ''
       description: ''
@@ -195,7 +794,7 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the sell product.'
+        description: 'The ID of the role.'
         required: true
         example: 1
         type: integer
@@ -209,62 +808,27 @@ endpoints:
         example: consequatur
         type: string
         custom: []
-      price:
-        name: price
-        description: 'Must be at least 0.'
-        required: true
-        example: 0
-        type: number
-        custom: []
-      has_discount:
-        name: has_discount
+      human_name:
+        name: human_name
         description: ''
-        required: false
-        example: true
-        type: boolean
+        required: true
+        example: consequatur
+        type: string
         custom: []
-      product_types:
-        name: product_types
+      permissions:
+        name: permissions
         description: ''
         required: false
         example:
-          - []
-        type: 'object[]'
-        custom: []
-      photo:
-        name: photo
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      category_id:
-        name: category_id
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      position:
-        name: position
-        description: ''
-        required: false
-        example: 17
-        type: integer
-        custom: []
-      'product_types[].quantity':
-        name: 'product_types[].quantity'
-        description: 'Must be at least 0.'
-        required: false
-        example: 0
-        type: number
+          - consequatur
+        type: 'string[]'
         custom: []
     responses: []
     responseFields: []
   -
     httpMethods:
       - DELETE
-    uri: 'api/sell_products/{id}'
+    uri: 'api/roles/{id}'
     metadata:
       title: ''
       description: ''
@@ -277,7 +841,7 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the sell product.'
+        description: 'The ID of the role.'
         required: true
         example: 1
         type: integer

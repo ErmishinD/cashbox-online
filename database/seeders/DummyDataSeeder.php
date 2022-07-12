@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cashbox;
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\MeasureType;
 use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
@@ -266,8 +267,11 @@ class DummyDataSeeder extends Seeder
         $measure_types = collect();
         $product_types = collect();
         $sell_products = collect();
+        $counterparties = collect();
         foreach ($data['companies'] as $company_data) {
             $company = Company::factory()->create(['name' => $company_data['name']]);
+            $counterparty = Counterparty::factory()->create(['name' => $company->name, 'company_id' => $company->id]);
+            $counterparties->push($counterparty);
             foreach ($company_data['shops'] as $shop_data) {
                 $shop = Shop::factory()->create(['name' => $shop_data['name'], 'company_id' => $company->id]);
                 foreach ($shop_data['storages'] as $storage_data) {
@@ -451,7 +455,8 @@ class DummyDataSeeder extends Seeder
                                 'cost' => $cost,
                                 'current_cost' => $current_cost,
                                 'expiration_date' => $expiration_date,
-                                'user_id' => $director->id
+                                'user_id' => $director->id,
+                                'counterparty_id' => $counterparties->where('company_id', $company_id)->first()->id,
                             ]);
                             $product_purchases->push($product_purchase);
                         }

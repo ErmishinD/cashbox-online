@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\FileUploadController;
 use App\Http\Controllers\Api\GetForSelectController;
 use App\Http\Controllers\Api\MeasureTypeController;
 use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\ProductConsumptionController;
 use App\Http\Controllers\Api\ProductPurchaseController;
 use App\Http\Controllers\Api\ProductTypeController;
 use App\Http\Controllers\Api\ReportController;
@@ -184,6 +185,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('write_offs')->group(function () {
         Route::post('get_paginated', [WriteOffController::class, 'get_paginated']);
         Route::get('/{write_off}', [WriteOffController::class, 'show']);
+    });
+
+    /*
+     * ProductConsumption
+     */
+    Route::prefix('product_consumptions')->group(function () {
+        Route::post('get_paginated', [ProductConsumptionController::class, 'get_paginated']);
     });
 
     /*

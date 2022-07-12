@@ -161,6 +161,28 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="counterparty-management">
+                    <a href="#counterparty-management">Counterparty management</a>
+                </li>
+                                    <ul id="tocify-subheader-counterparty-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="counterparty-management-GETapi-counterparties">
+                        <a href="#counterparty-management-GETapi-counterparties">GET api/counterparties</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="counterparty-management-POSTapi-counterparties">
+                        <a href="#counterparty-management-POSTapi-counterparties">POST api/counterparties</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="counterparty-management-GETapi-counterparties--id-">
+                        <a href="#counterparty-management-GETapi-counterparties--id-">GET api/counterparties/{id}</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="counterparty-management-PUTapi-counterparties--id-">
+                        <a href="#counterparty-management-PUTapi-counterparties--id-">PUT api/counterparties/{id}</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="counterparty-management-DELETEapi-counterparties--id-">
+                        <a href="#counterparty-management-DELETEapi-counterparties--id-">DELETE api/counterparties/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-7" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="endpoints">
                     <a href="#endpoints">Endpoints</a>
                 </li>
@@ -168,24 +190,9 @@
                                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
                         <a href="#endpoints-GETapi-user">GET api/user</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-counterparties">
-                        <a href="#endpoints-GETapi-counterparties">GET api/counterparties</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-counterparties">
-                        <a href="#endpoints-POSTapi-counterparties">POST api/counterparties</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-counterparties--id-">
-                        <a href="#endpoints-GETapi-counterparties--id-">GET api/counterparties/{id}</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-counterparties--id-">
-                        <a href="#endpoints-PUTapi-counterparties--id-">PUT api/counterparties/{id}</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-counterparties--id-">
-                        <a href="#endpoints-DELETEapi-counterparties--id-">DELETE api/counterparties/{id}</a>
-                    </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-7" class="tocify-header">
+                    <ul id="tocify-header-8" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="file-upload-endpoints">
                     <a href="#file-upload-endpoints">File Upload endpoints</a>
                 </li>
@@ -195,7 +202,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-8" class="tocify-header">
+                    <ul id="tocify-header-9" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="get-for-select">
                     <a href="#get-for-select">Get for select</a>
                 </li>
@@ -205,7 +212,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-9" class="tocify-header">
+                    <ul id="tocify-header-10" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="measure-type-management">
                     <a href="#measure-type-management">Measure Type management</a>
                 </li>
@@ -233,7 +240,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-10" class="tocify-header">
+                    <ul id="tocify-header-11" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="permission-management">
                     <a href="#permission-management">Permission management</a>
                 </li>
@@ -243,7 +250,17 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-11" class="tocify-header">
+                    <ul id="tocify-header-12" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="productconsumption-management">
+                    <a href="#productconsumption-management">ProductConsumption management</a>
+                </li>
+                                    <ul id="tocify-subheader-productconsumption-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="productconsumption-management-POSTapi-product_consumptions-get_paginated">
+                        <a href="#productconsumption-management-POSTapi-product_consumptions-get_paginated">POST api/product_consumptions/get_paginated</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-13" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="product-purchase-management">
                     <a href="#product-purchase-management">Product Purchase management</a>
                 </li>
@@ -274,7 +291,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-12" class="tocify-header">
+                    <ul id="tocify-header-14" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="product-type-management">
                     <a href="#product-type-management">Product Type management</a>
                 </li>
@@ -317,7 +334,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-13" class="tocify-header">
+                    <ul id="tocify-header-15" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="report-endpoints">
                     <a href="#report-endpoints">Report endpoints</a>
                 </li>
@@ -351,7 +368,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-14" class="tocify-header">
+                    <ul id="tocify-header-16" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="role-management">
                     <a href="#role-management">Role management</a>
                 </li>
@@ -373,7 +390,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-15" class="tocify-header">
+                    <ul id="tocify-header-17" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="sell-product-group-management">
                     <a href="#sell-product-group-management">Sell Product Group management</a>
                 </li>
@@ -395,7 +412,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-16" class="tocify-header">
+                    <ul id="tocify-header-18" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="sell-product-management">
                     <a href="#sell-product-management">Sell Product management</a>
                 </li>
@@ -420,7 +437,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-17" class="tocify-header">
+                    <ul id="tocify-header-19" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="shop-management">
                     <a href="#shop-management">Shop management</a>
                 </li>
@@ -445,7 +462,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-18" class="tocify-header">
+                    <ul id="tocify-header-20" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="storage-management">
                     <a href="#storage-management">Storage management</a>
                 </li>
@@ -479,7 +496,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-19" class="tocify-header">
+                    <ul id="tocify-header-21" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="system-logs">
                     <a href="#system-logs">System Logs</a>
                 </li>
@@ -489,7 +506,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-20" class="tocify-header">
+                    <ul id="tocify-header-22" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="transfer-management">
                     <a href="#transfer-management">Transfer management</a>
                 </li>
@@ -502,7 +519,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-21" class="tocify-header">
+                    <ul id="tocify-header-23" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="user-management">
                     <a href="#user-management">User management</a>
                 </li>
@@ -527,7 +544,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-22" class="tocify-header">
+                    <ul id="tocify-header-24" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="write-off-management">
                     <a href="#write-off-management">Write Off management</a>
                 </li>
@@ -6653,113 +6670,11 @@ fetch(url, {
         </p>
         </form>
 
-        <h1 id="endpoints">Endpoints</h1>
+        <h1 id="counterparty-management">Counterparty management</h1>
 
     
 
-            <h2 id="endpoints-GETapi-user">GET api/user</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-user">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/user" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/user"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-user">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-vary: Origin
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;id&quot;: 1,
-    &quot;name&quot;: &quot;Administrator&quot;,
-    &quot;username&quot;: &quot;admin&quot;,
-    &quot;email&quot;: &quot;admin@admin.com&quot;,
-    &quot;email_verified_at&quot;: null,
-    &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-07-12T09:56:22.000000Z&quot;,
-    &quot;deleted_at&quot;: null,
-    &quot;company_id&quot;: 1
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-user" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-user"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user"></code></pre>
-</span>
-<span id="execution-error-GETapi-user" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user"></code></pre>
-</span>
-<form id="form-GETapi-user" data-method="GET"
-      data-path="api/user"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/user</code></b>
-        </p>
-                <p>
-            <label id="auth-GETapi-user" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="GETapi-user"
-                                                                data-component="header"></label>
-        </p>
-                </form>
-
-            <h2 id="endpoints-GETapi-counterparties">GET api/counterparties</h2>
+            <h2 id="counterparty-management-GETapi-counterparties">GET api/counterparties</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -6862,7 +6777,7 @@ vary: Origin
         </p>
                 </form>
 
-            <h2 id="endpoints-POSTapi-counterparties">POST api/counterparties</h2>
+            <h2 id="counterparty-management-POSTapi-counterparties">POST api/counterparties</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -6969,7 +6884,7 @@ fetch(url, {
         </p>
         </form>
 
-            <h2 id="endpoints-GETapi-counterparties--id-">GET api/counterparties/{id}</h2>
+            <h2 id="counterparty-management-GETapi-counterparties--id-">GET api/counterparties/{id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -6983,7 +6898,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/counterparties/1" \
+    --get "https://cashbox-online.test/api/counterparties/17" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6991,7 +6906,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/counterparties/1"
+    "https://cashbox-online.test/api/counterparties/17"
 );
 
 const headers = {
@@ -7026,7 +6941,14 @@ vary: Origin
 <code class="language-json">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;#main_stretch&quot;
+        &quot;name&quot;: &quot;#main_stretch&quot;,
+        &quot;purchase_sum_cost&quot;: &quot;22440.49&quot;,
+        &quot;purchase_sum_current_cost&quot;: &quot;16335.08&quot;,
+        &quot;cashbox_consumptions_sum_cost&quot;: &quot;5893.81&quot;,
+        &quot;cashbox_consumptions_sum_income&quot;: &quot;9140.46&quot;,
+        &quot;cashbox_consumptions_sum_profit&quot;: &quot;3246.59&quot;,
+        &quot;write_off_consumptions_sum_cost&quot;: &quot;0.00&quot;,
+        &quot;transfer_consumptions_sum_cost&quot;: &quot;0.00&quot;
     }
 }</code>
  </pre>
@@ -7070,14 +6992,14 @@ vary: Origin
                 <input type="number"
                name="id"
                data-endpoint="GETapi-counterparties--id-"
-               value="1"
+               value="17"
                data-component="url" hidden>
     <br>
 <p>The ID of the counterparty.</p>
             </p>
                     </form>
 
-            <h2 id="endpoints-PUTapi-counterparties--id-">PUT api/counterparties/{id}</h2>
+            <h2 id="counterparty-management-PUTapi-counterparties--id-">PUT api/counterparties/{id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -7199,7 +7121,7 @@ fetch(url, {
         </p>
         </form>
 
-            <h2 id="endpoints-DELETEapi-counterparties--id-">DELETE api/counterparties/{id}</h2>
+            <h2 id="counterparty-management-DELETEapi-counterparties--id-">DELETE api/counterparties/{id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -7284,6 +7206,112 @@ fetch(url, {
 <p>The ID of the counterparty.</p>
             </p>
                     </form>
+
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+            <h2 id="endpoints-GETapi-user">GET api/user</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cashbox-online.test/api/user" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/user"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-user">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+vary: Origin
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Administrator&quot;,
+    &quot;username&quot;: &quot;admin&quot;,
+    &quot;email&quot;: &quot;admin@admin.com&quot;,
+    &quot;email_verified_at&quot;: null,
+    &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-07-12T20:29:02.000000Z&quot;,
+    &quot;deleted_at&quot;: null,
+    &quot;company_id&quot;: 1
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user"></code></pre>
+</span>
+<span id="execution-error-GETapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user"></code></pre>
+</span>
+<form id="form-GETapi-user" data-method="GET"
+      data-path="api/user"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/user</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-user" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-user"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
         <h1 id="file-upload-endpoints">File Upload endpoints</h1>
 
@@ -8905,6 +8933,117 @@ vary: Origin
                                                                 data-component="header"></label>
         </p>
                 </form>
+
+        <h1 id="productconsumption-management">ProductConsumption management</h1>
+
+    
+
+            <h2 id="productconsumption-management-POSTapi-product_consumptions-get_paginated">POST api/product_consumptions/get_paginated</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-product_consumptions-get_paginated">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://cashbox-online.test/api/product_consumptions/get_paginated" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"per_page\": 17,
+    \"page\": 17
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cashbox-online.test/api/product_consumptions/get_paginated"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "per_page": 17,
+    "page": 17
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-product_consumptions-get_paginated">
+</span>
+<span id="execution-results-POSTapi-product_consumptions-get_paginated" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-product_consumptions-get_paginated"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-product_consumptions-get_paginated"></code></pre>
+</span>
+<span id="execution-error-POSTapi-product_consumptions-get_paginated" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-product_consumptions-get_paginated"></code></pre>
+</span>
+<form id="form-POSTapi-product_consumptions-get_paginated" data-method="POST"
+      data-path="api/product_consumptions/get_paginated"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-product_consumptions-get_paginated', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/product_consumptions/get_paginated</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-product_consumptions-get_paginated" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-product_consumptions-get_paginated"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>per_page</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="per_page"
+               data-endpoint="POSTapi-product_consumptions-get_paginated"
+               value="17"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="POSTapi-product_consumptions-get_paginated"
+               value="17"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
 
         <h1 id="product-purchase-management">Product Purchase management</h1>
 
@@ -16559,8 +16698,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-12T12:56:28\",
-    \"end_date\": \"2022-07-12T12:56:28\",
+    \"start_date\": \"2022-07-12T23:29:05\",
+    \"end_date\": \"2022-07-12T23:29:05\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16578,8 +16717,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-12T12:56:28",
-    "end_date": "2022-07-12T12:56:28",
+    "start_date": "2022-07-12T23:29:05",
+    "end_date": "2022-07-12T23:29:05",
     "shop_id": 17
 };
 
@@ -16658,7 +16797,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16668,7 +16807,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16704,8 +16843,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-12T12:56:28\",
-    \"end_date\": \"2022-07-12T12:56:28\",
+    \"start_date\": \"2022-07-12T23:29:05\",
+    \"end_date\": \"2022-07-12T23:29:05\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16723,8 +16862,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-12T12:56:28",
-    "end_date": "2022-07-12T12:56:28",
+    "start_date": "2022-07-12T23:29:05",
+    "end_date": "2022-07-12T23:29:05",
     "shop_id": 17
 };
 
@@ -16813,7 +16952,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16823,7 +16962,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16859,8 +16998,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-12T12:56:28\",
-    \"end_date\": \"2022-07-12T12:56:28\",
+    \"start_date\": \"2022-07-12T23:29:05\",
+    \"end_date\": \"2022-07-12T23:29:05\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16878,8 +17017,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-12T12:56:28",
-    "end_date": "2022-07-12T12:56:28",
+    "start_date": "2022-07-12T23:29:05",
+    "end_date": "2022-07-12T23:29:05",
     "shop_id": 17
 };
 
@@ -17000,7 +17139,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17010,7 +17149,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17046,8 +17185,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-12T12:56:28\",
-    \"end_date\": \"2022-07-12T12:56:28\",
+    \"start_date\": \"2022-07-12T23:29:05\",
+    \"end_date\": \"2022-07-12T23:29:05\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -17065,8 +17204,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-12T12:56:28",
-    "end_date": "2022-07-12T12:56:28",
+    "start_date": "2022-07-12T23:29:05",
+    "end_date": "2022-07-12T23:29:05",
     "shop_id": 17
 };
 
@@ -17215,7 +17354,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17225,7 +17364,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17261,8 +17400,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-12T12:56:28\",
-    \"end_date\": \"2022-07-12T12:56:28\",
+    \"start_date\": \"2022-07-12T23:29:05\",
+    \"end_date\": \"2022-07-12T23:29:05\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -17280,8 +17419,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-12T12:56:28",
-    "end_date": "2022-07-12T12:56:28",
+    "start_date": "2022-07-12T23:29:05",
+    "end_date": "2022-07-12T23:29:05",
     "shop_id": 17
 };
 
@@ -17334,7 +17473,7 @@ fetch(url, {
                 <input type="text"
                name="start_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17344,7 +17483,7 @@ fetch(url, {
                 <input type="text"
                name="end_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17380,8 +17519,8 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-12T12:56:28\",
-    \"end_date\": \"2022-07-12T12:56:28\",
+    \"start_date\": \"2022-07-12T23:29:05\",
+    \"end_date\": \"2022-07-12T23:29:05\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -17399,8 +17538,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-12T12:56:28",
-    "end_date": "2022-07-12T12:56:28",
+    "start_date": "2022-07-12T23:29:05",
+    "end_date": "2022-07-12T23:29:05",
     "shop_id": 17
 };
 
@@ -18637,7 +18776,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18647,7 +18786,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18683,8 +18822,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-12T12:56:28\",
-    \"end_date\": \"2022-07-12T12:56:28\",
+    \"start_date\": \"2022-07-12T23:29:05\",
+    \"end_date\": \"2022-07-12T23:29:05\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -18702,8 +18841,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-12T12:56:28",
-    "end_date": "2022-07-12T12:56:28",
+    "start_date": "2022-07-12T23:29:05",
+    "end_date": "2022-07-12T23:29:05",
     "shop_id": 17
 };
 
@@ -18789,7 +18928,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18799,7 +18938,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2022-07-12T12:56:28"
+               value="2022-07-12T23:29:05"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
