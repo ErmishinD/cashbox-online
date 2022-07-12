@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\BaseMeasureType;
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\MeasureType;
 use App\Models\Shop;
 use App\Models\Storage;
@@ -75,6 +76,12 @@ class CompanyRepository extends BaseRepository
             'name' => 'шт',
             'quantity' => 1,
             'company_id' => $company->id,
+        ]);
+
+        // create counterparty
+        Counterparty::create([
+            'name' => $company->name,
+            'company_id' => $company->id
         ]);
 
         return $company;

@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\Shop;
@@ -45,11 +46,14 @@ class TransferControllerTest extends TestCase
     public function test_can_get_first_page()
     {
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage1 = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
         $storage2 = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
         ProductType::factory()->count(5)->create(['company_id' => $this->admin->company_id]);
 
-        $product_purchase = ProductPurchase::factory()->create(['company_id' => $this->admin->company_id, 'storage_id' => $storage2->id]);
+        $product_purchase = ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id, 'storage_id' => $storage2->id, 'counterparty_id' => $counterparty->id
+        ]);
 
         Transfer::factory()->create([
             'company_id' => $this->admin->company_id,
@@ -69,11 +73,14 @@ class TransferControllerTest extends TestCase
     public function test_can_get_second_page()
     {
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage1 = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
         $storage2 = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
         ProductType::factory()->count(5)->create(['company_id' => $this->admin->company_id]);
 
-        $product_purchase = ProductPurchase::factory()->create(['company_id' => $this->admin->company_id, 'storage_id' => $storage2->id]);
+        $product_purchase = ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id, 'storage_id' => $storage2->id, 'counterparty_id' => $counterparty->id
+        ]);
 
         Transfer::factory()->count(5)->create([
             'company_id' => $this->admin->company_id,
@@ -93,11 +100,14 @@ class TransferControllerTest extends TestCase
     public function test_can_get_transfer()
     {
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage1 = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
         $storage2 = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
         ProductType::factory()->count(5)->create(['company_id' => $this->admin->company_id]);
 
-        $product_purchase = ProductPurchase::factory()->create(['company_id' => $this->admin->company_id, 'storage_id' => $storage2->id]);
+        $product_purchase = ProductPurchase::factory()->create([
+            'company_id' => $this->admin->company_id, 'storage_id' => $storage2->id, 'counterparty_id' => $counterparty->id
+        ]);
 
         $transfer1 = Transfer::factory()->create([
             'company_id' => $this->admin->company_id,

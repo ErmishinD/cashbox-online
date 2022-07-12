@@ -3,6 +3,7 @@
 namespace Tests\Feature\Services;
 
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
@@ -32,6 +33,7 @@ class SellProductServiceTest extends TestCase
 
         $this->company = Company::factory()->create();
         $this->shop = Shop::factory()->create(['company_id' => $this->company->id]);
+        $this->counterparty = Counterparty::factory()->create(['company_id' => $this->company->id]);
         $this->storage = Storage::factory()->create(['company_id' => $this->company->id, 'shop_id' => $this->shop->id]);
         $this->user = User::factory()->create(['company_id' => $this->company->id]);
         $this->product_types = ProductType::factory()->count(5)->create(['company_id' => $this->company->id]);
@@ -44,14 +46,16 @@ class SellProductServiceTest extends TestCase
             'storage_id' => $this->storage->id,
             'product_type_id' => $this->product_types[0],
             'quantity' => 100,
-            'cost' => 100
+            'cost' => 100,
+            'counterparty_id' => $this->counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $this->company->id,
             'storage_id' => $this->storage->id,
             'product_type_id' => $this->product_types[0],
             'quantity' => 1000,
-            'cost' => 100
+            'cost' => 100,
+            'counterparty_id' => $this->counterparty->id
         ]);
 
         $purchase2 = ProductPurchase::factory()->create([
@@ -59,14 +63,16 @@ class SellProductServiceTest extends TestCase
             'storage_id' => $this->storage->id,
             'product_type_id' => $this->product_types[1],
             'quantity' => 200,
-            'cost' => 10
+            'cost' => 10,
+            'counterparty_id' => $this->counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $this->company->id,
             'storage_id' => $this->storage->id,
             'product_type_id' => $this->product_types[1],
             'quantity' => 1000,
-            'cost' => 100
+            'cost' => 100,
+            'counterparty_id' => $this->counterparty->id
         ]);
 
 

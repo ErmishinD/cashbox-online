@@ -30,7 +30,7 @@ class ProductPurchase extends Model implements SystemLoggable
 
     protected $fillable = [
         'storage_id', 'product_type_id', 'quantity', 'current_quantity', 'cost', 'expiration_date', 'company_id',
-        'user_id', 'parent_id', 'current_cost'
+        'user_id', 'parent_id', 'current_cost', 'counterparty_id'
     ];
 
     protected $dates = ['expiration_date'];
@@ -57,6 +57,11 @@ class ProductPurchase extends Model implements SystemLoggable
     public function product_consumptions()
     {
         return $this->hasMany(ProductConsumption::class);
+    }
+
+    public function counterparty()
+    {
+        return $this->belongsTo(Counterparty::class);
     }
 
     public function getTextForAudit(string $action, ?array $data): string

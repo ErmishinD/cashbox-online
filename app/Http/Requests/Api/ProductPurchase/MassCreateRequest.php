@@ -19,7 +19,8 @@ class MassCreateRequest extends TenantRequest
         return [
             'storage_id' => ['required'],
             'product_types' => ['required', 'array'],
-            'user_id' => ['required']
+            'user_id' => ['required'],
+            'counterparty_id' => ['required'],
         ];
     }
 

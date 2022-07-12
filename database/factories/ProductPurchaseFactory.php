@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\ProductType;
 use App\Models\Storage;
 use App\Models\User;
@@ -22,6 +23,8 @@ class ProductPurchaseFactory extends Factory
         $storage_id = (isset($attribues['storage_id'])) ?: $this->faker->randomElement(Storage::where('company_id', $company_id)->pluck('id'));
 
         $user_id = (isset($attribues['user_id'])) ?: (Auth::id() ?? $this->faker->randomElement(User::where('company_id', $company_id)->pluck('id')));
+
+        $counterparty_id = (isset($attribues['counterparty_id'])) ?: $this->faker->randomElement(Counterparty::where('company_id', $company_id)->pluck('id'));
 
         $quantity = $this->faker->randomElement([1, 5, 10, 20, 50, 100, 1000, 1500, 2000]);
 
@@ -53,6 +56,7 @@ class ProductPurchaseFactory extends Factory
             'current_cost' => $cost,
             'expiration_date' => $expiration_date,
             'user_id' => $user_id,
+            'counterparty_id' => $counterparty_id
         ];
     }
 }

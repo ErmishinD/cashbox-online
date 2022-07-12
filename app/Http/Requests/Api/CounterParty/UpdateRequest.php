@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api\CounterParty;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class GetForSelectRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,8 @@ class GetForSelectRequest extends FormRequest
     public function rules()
     {
         return [
-            'entities' => ['required', 'array'],
-            'entities.*' => [
-                'required',
-                'string',
-                Rule::in([
-                    'Shop', 'Storage', 'Category', 'ProductType', 'Counterparty'
-                ])
-            ],
+            'company_id' => ['required'],
+            'name' => ['required', Rule::unique('counterparties', 'name')->ignore($this->counterparty)->withoutTrashed()]
         ];
     }
 }

@@ -157,6 +157,7 @@ class StorageRepository extends BaseRepository
                             'expiration_date' => $current_used_purchases['expiration_date'],
                             'user_id' => $data['transferred_by'],
                             'parent_id' => $purchase_parent_id,
+                            'counterparty_id' => $current_used_purchase['counterparty_id'],
                         ]);
                         $new_purchases->push($product_purchase);
 
@@ -197,6 +198,7 @@ class StorageRepository extends BaseRepository
                         'expiration_date' => $current_used_purchases->unique('expiration_date')->first()['expiration_date'],
                         'user_id' => $data['transferred_by'],
                         'parent_id' => $purchase_parent_id,
+                        'counterparty_id' => $current_used_purchases->unique('counterparty_id')->first()['counterparty_id'],
                     ]);
                     $new_purchases->push($product_purchase);
 

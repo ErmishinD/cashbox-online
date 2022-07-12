@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use App\Models\BaseMeasureType;
 use App\Models\Cashbox;
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
@@ -93,6 +94,7 @@ class ProductPurchaseControllerTest extends TestCase
     public function test_admin_can_get_all_product_purchases()
     {
         $company = Company::factory()->create();
+        $counterparty = Counterparty::factory()->create(['company_id' => $company->id]);
         $shop = Shop::factory()->create(['company_id' => $company->id]);
         $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
         $main_measure_type = MeasureType::factory()->create(['company_id' => $company->id, 'base_measure_type_id' => $this->base_measure_type_volume->id]);
@@ -106,7 +108,8 @@ class ProductPurchaseControllerTest extends TestCase
         ]);
 
         ProductPurchase::factory(5)->create([
-            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $this->admin->id
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->get($this->base_route);
@@ -121,12 +124,14 @@ class ProductPurchaseControllerTest extends TestCase
     public function test_admin_can_create_product_purchase()
     {
         $storage = Storage::inRandomOrder()->first();
+        $counterparty = Counterparty::factory()->create(['company_id' => $storage->company_id]);
         $product_type = ProductType::inRandomOrder()->first();
         $response = $this->actingAs($this->admin)->postJson($this->base_route, [
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
             'quantity' => 100,
             'cost' => 1000,
+            'counterparty_id' => $counterparty->id
         ]);
         $response
             ->assertStatus(201)
@@ -146,15 +151,18 @@ class ProductPurchaseControllerTest extends TestCase
             'quantity' => 100,
             'current_quantity' => 100,
             'cost' => 1000,
+            'counterparty_id' => $counterparty->id
         ]);
     }
 
     public function test_admin_can_get_product_purchase()
     {
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
         $product_purchase = ProductPurchase::factory()->create([
-            'storage_id' => $storage->id, 'quantity' => 111, 'cost' => 333, 'user_id' => $this->admin->id
+            'storage_id' => $storage->id, 'quantity' => 111, 'cost' => 333, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $response = $this->actingAs($this->admin)->get($this->base_route . $product_purchase->id);
         $response
@@ -172,14 +180,17 @@ class ProductPurchaseControllerTest extends TestCase
         $company = Company::factory()->create();
         $this->admin->update(['company_id' => $company->id]);
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $this->admin->company->id, 'shop_id' => $shop->id]);
         $product_purchase = ProductPurchase::factory()->create([
-            'quantity' => 111, 'current_quantity' => 111, 'cost' => 222, 'storage_id' => $storage->id, 'user_id' => $this->admin->id
+            'quantity' => 111, 'current_quantity' => 111, 'cost' => 222, 'storage_id' => $storage->id, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $response = $this->actingAs($this->admin)->patchJson($this->base_route . $product_purchase->id, [
             'cost' => 666,
             'quantity' => 111,
-            'storage_id' => $storage->id
+            'storage_id' => $storage->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $response->assertStatus(202);
     }
@@ -188,10 +199,12 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
         ProductType::factory()->create(['company_id' => $company->id]);
         $product_purchase = ProductPurchase::factory()->create([
-            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $this->admin->id
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $response = $this->actingAs($this->admin)->deleteJson($this->base_route . $product_purchase->id);
         $response
@@ -206,6 +219,7 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
 
         $product_type1 = ProductType::factory()->create(['company_id' => $company->id, 'type' => ProductType::TYPES['perishable']]);
@@ -213,6 +227,7 @@ class ProductPurchaseControllerTest extends TestCase
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'mass_create', [
             'storage_id' => $storage->id,
+            'counterparty_id' => $counterparty->id,
             'payment_type' => Cashbox::PAYMENT_TYPES['cash'],
             'product_types' => [
                 [
@@ -279,12 +294,13 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage1 = Storage::factory()->create(['shop_id' => $shop->id, 'company_id' => $company->id]);
         $storage2 = Storage::factory()->create(['shop_id' => $shop->id, 'company_id' => $company->id]);
 
-        ProductPurchase::factory()->create(['storage_id' => $storage1->id, 'company_id' => $company->id, 'user_id' => $this->admin->id]);
-        ProductPurchase::factory()->create(['storage_id' => $storage1->id, 'company_id' => $company->id, 'user_id' => $this->admin->id]);
-        ProductPurchase::factory()->create(['storage_id' => $storage2->id, 'company_id' => $company->id, 'user_id' => $this->admin->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage1->id, 'company_id' => $company->id, 'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage1->id, 'company_id' => $company->id, 'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id]);
+        ProductPurchase::factory()->create(['storage_id' => $storage2->id, 'company_id' => $company->id, 'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
             'columnFilters' => ['storage_id' => $storage1->id]
@@ -298,6 +314,7 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
         $this->admin->update(['company_id' => $company->id]);
 
@@ -306,15 +323,15 @@ class ProductPurchaseControllerTest extends TestCase
 
         ProductPurchase::factory()->create([
             'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type2->id,
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
@@ -329,6 +346,7 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
         $this->admin->update(['company_id' => $company->id]);
 
@@ -336,13 +354,16 @@ class ProductPurchaseControllerTest extends TestCase
         $user2 = User::factory()->create(['company_id' => $this->admin->company_id]);
 
         ProductPurchase::factory()->create([
-            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $user1->id
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $user1->id,
+            'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
-            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $user1->id
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $user1->id,
+            'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
-            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $user2->id
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'user_id' => $user2->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
@@ -357,17 +378,21 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $this->admin->update(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
 
         $purchase1 = ProductPurchase::factory()->create([
-            'company_id' => $shop->company_id, 'storage_id' => $storage->id,'cost' => 100, 'user_id' => $this->admin->id
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id, 'cost' => 100, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $purchase2 = ProductPurchase::factory()->create([
-            'company_id' => $shop->company_id, 'storage_id' => $storage->id,'cost' => 200, 'user_id' => $this->admin->id
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id, 'cost' => 200, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $purchase3 = ProductPurchase::factory()->create([
-            'company_id' => $shop->company_id, 'storage_id' => $storage->id,'cost' => 300, 'user_id' => $this->admin->id
+            'company_id' => $shop->company_id, 'storage_id' => $storage->id, 'cost' => 300, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
@@ -389,6 +414,7 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $this->admin->update(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
         $product_type = ProductType::factory()->create([
@@ -397,15 +423,18 @@ class ProductPurchaseControllerTest extends TestCase
 
         $purchase1 = ProductPurchase::factory()->create([
             'company_id' => $shop->company_id, 'storage_id' => $storage->id,
-            'expiration_date' => '2022-02-23', 'product_type_id' => $product_type->id, 'user_id' => $this->admin->id
+            'expiration_date' => '2022-02-23', 'product_type_id' => $product_type->id, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $purchase2 = ProductPurchase::factory()->create([
             'company_id' => $shop->company_id, 'storage_id' => $storage->id,
-            'expiration_date' => '2022-02-22', 'product_type_id' => $product_type->id, 'user_id' => $this->admin->id
+            'expiration_date' => '2022-02-22', 'product_type_id' => $product_type->id, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         $purchase3 = ProductPurchase::factory()->create([
             'company_id' => $shop->company_id, 'storage_id' => $storage->id,
-            'expiration_date' => '2022-02-24', 'product_type_id' => $product_type->id, 'user_id' => $this->admin->id
+            'expiration_date' => '2022-02-24', 'product_type_id' => $product_type->id, 'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
@@ -427,21 +456,22 @@ class ProductPurchaseControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $this->admin->update(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $shop->company_id, 'shop_id' => $shop->id]);
 
         $purchase1 = ProductPurchase::factory()->create(['company_id' => $shop->company_id, 'storage_id' => $storage->id,
-            'user_id' => $this->admin->id]);
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id]);
         $purchase1->created_at = '2022-02-01 18:00';
         $purchase1->save();
 
         $purchase2 = ProductPurchase::factory()->create(['company_id' => $shop->company_id, 'storage_id' => $storage->id,
-            'user_id' => $this->admin->id]);
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id]);
         $purchase2->created_at = '2022-02-01 19:00';
         $purchase2->save();
 
         $purchase3 = ProductPurchase::factory()->create(['company_id' => $shop->company_id, 'storage_id' => $storage->id,
-            'user_id' => $this->admin->id]);
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id]);
         $purchase3->created_at = '2022-01-31 10:00';
         $purchase3->save();
 

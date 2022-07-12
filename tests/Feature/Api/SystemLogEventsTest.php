@@ -25,6 +25,7 @@ use App\Events\UserDeleted;
 use App\Events\UserEdited;
 use App\Models\Cashbox;
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\MeasureType;
 use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
@@ -180,10 +181,12 @@ class SystemLogEventsTest extends TestCase
     public function test_product_purchase_made_event_is_working()
     {
         $shop = Shop::factory()->create(['company_id' => $this->user->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $this->user->company_id, 'shop_id' => $shop->id]);
 
         $purchases = ProductPurchase::factory()->count(5)->create([
             'company_id' => $this->user->company_id, 'storage_id' => $storage->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $sum = round($purchases->sum('cost'), 2);
@@ -208,6 +211,7 @@ class SystemLogEventsTest extends TestCase
     public function test_products_written_off_event_is_working()
     {
         $shop = Shop::factory()->create(['company_id' => $this->user->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $this->user->company_id, 'shop_id' => $shop->id]);
 
         $main_measure_type = MeasureType::factory()->create(['company_id' => $this->user->company_id]);
@@ -216,11 +220,11 @@ class SystemLogEventsTest extends TestCase
         ]);
         $product_purchase1 = ProductPurchase::factory()->create([
             'company_id' => $this->user->company_id, 'storage_id' => $storage->id,
-            'product_type_id' => $product_types->first()->id,
+            'product_type_id' => $product_types->first()->id, 'counterparty_id' => $counterparty->id
         ]);
         $product_purchase2 = ProductPurchase::factory()->create([
             'company_id' => $this->user->company_id, 'storage_id' => $storage->id,
-            'product_type_id' => $product_types->last()->id
+            'product_type_id' => $product_types->last()->id, 'counterparty_id' => $counterparty->id
         ]);
 
         $write_off1 = WriteOff::factory()->create([
@@ -272,6 +276,7 @@ class SystemLogEventsTest extends TestCase
     public function test_products_transferred_event_is_working()
     {
         $shop = Shop::factory()->create(['company_id' => $this->user->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage1 = Storage::factory()->create(['company_id' => $this->user->company_id, 'shop_id' => $shop->id]);
         $storage2 = Storage::factory()->create(['company_id' => $this->user->company_id, 'shop_id' => $shop->id]);
 
@@ -281,11 +286,11 @@ class SystemLogEventsTest extends TestCase
         ]);
         $product_purchase1 = ProductPurchase::factory()->create([
             'company_id' => $this->user->company_id, 'storage_id' => $storage2->id,
-            'product_type_id' => $product_types->first()->id,
+            'product_type_id' => $product_types->first()->id, 'counterparty_id' => $counterparty->id
         ]);
         $product_purchase2 = ProductPurchase::factory()->create([
             'company_id' => $this->user->company_id, 'storage_id' => $storage2->id,
-            'product_type_id' => $product_types->last()->id
+            'product_type_id' => $product_types->last()->id, 'counterparty_id' => $counterparty->id
         ]);
 
         $transfer1 = Transfer::factory()->create([

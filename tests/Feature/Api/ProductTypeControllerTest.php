@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use App\Models\BaseMeasureType;
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
@@ -324,6 +325,7 @@ class ProductTypeControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
         $this->admin->company_id = $company->id;
         $this->admin->save();
@@ -348,7 +350,8 @@ class ProductTypeControllerTest extends TestCase
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
             'cost' => 100,
-            'quantity' => 100
+            'quantity' => 100,
+            'counterparty_id' => $counterparty->id
         ]);
 
         ProductPurchase::factory()->create([
@@ -357,7 +360,8 @@ class ProductTypeControllerTest extends TestCase
             'storage_id' => $storage->id,
             'product_type_id' => $product_type->id,
             'cost' => 100,
-            'quantity' => 200
+            'quantity' => 200,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->get($this->base_route . 'get_short_info/' . $product_type->id);
@@ -401,6 +405,7 @@ class ProductTypeControllerTest extends TestCase
         $company = Company::factory()->create();
         $this->admin->update(['company_id' => $company->id]);
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         session()->put('shop_id', $shop->id);
         $storage = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
 
@@ -415,7 +420,8 @@ class ProductTypeControllerTest extends TestCase
             'current_quantity' => 100,
             'cost' => 100,
             'current_cost' => 100,
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $this->admin->company_id,
@@ -425,7 +431,8 @@ class ProductTypeControllerTest extends TestCase
             'current_quantity' => 200,
             'cost' => 100,
             'current_cost' => 100,
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         ProductPurchase::factory()->create([
@@ -437,7 +444,8 @@ class ProductTypeControllerTest extends TestCase
             'cost' => 10,
             'current_cost' => 10,
             'expiration_date' => now()->subWeek(),
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $this->admin->company_id,
@@ -448,7 +456,8 @@ class ProductTypeControllerTest extends TestCase
             'cost' => 10,
             'current_cost' => 10,
             'expiration_date' => now()->addWeek(),
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         ProductPurchase::factory()->create([
@@ -460,7 +469,8 @@ class ProductTypeControllerTest extends TestCase
             'cost' => 100,
             'current_cost' => 100,
             'expiration_date' => now()->subWeek(),
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $this->admin->company_id,
@@ -471,7 +481,8 @@ class ProductTypeControllerTest extends TestCase
             'cost' => 200,
             'current_cost' => 200,
             'expiration_date' => now()->addWeek(),
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
 
@@ -545,6 +556,7 @@ class ProductTypeControllerTest extends TestCase
         $company = Company::factory()->create();
         $this->admin->update(['company_id' => $company->id]);
         $shop = Shop::factory()->create(['company_id' => $this->admin->company_id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         session()->put('shop_id', $shop->id);
         $storage = Storage::factory()->create(['company_id' => $this->admin->company_id, 'shop_id' => $shop->id]);
 
@@ -559,7 +571,8 @@ class ProductTypeControllerTest extends TestCase
             'cost' => 100,
             'current_cost' => 100,
             'expiration_date' => now()->subWeek(),
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
         ProductPurchase::factory()->create([
             'company_id' => $this->admin->company_id,
@@ -570,7 +583,8 @@ class ProductTypeControllerTest extends TestCase
             'cost' => 200,
             'current_cost' => 100,
             'expiration_date' => now()->addWeek(),
-            'user_id' => $this->admin->id
+            'user_id' => $this->admin->id,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->get($this->base_route . $product_type->id . '/get_storages_quantity');

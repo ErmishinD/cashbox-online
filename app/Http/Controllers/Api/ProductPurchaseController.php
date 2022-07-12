@@ -16,6 +16,7 @@ use App\Http\Resources\Api\ProductPurchase\ShowCollection;
 use App\Http\Resources\Api\ProductPurchase\ShowResource;
 use App\Http\Resources\Api\ProductPurchase\WithProductTypeResource;
 use App\Models\Cashbox;
+use App\Models\Counterparty;
 use App\Models\ProductPurchase;
 use App\Models\Storage;
 use App\Repositories\ProductPurchaseRepository;
@@ -93,14 +94,16 @@ class ProductPurchaseController extends Controller
     public function edit(ProductPurchase $product_purchase): JsonResponse
     {
         $storages = Storage::select('id', 'name')->get();
+        $counterparties = Counterparty::select('id', 'name')->get();
 
         $product_purchase->load([
-            'user', 'storage', 'product_type.main_measure_type', 'product_type.measure_types'
+            'user', 'storage', 'product_type.main_measure_type', 'product_type.measure_types', 'counterparty'
         ]);
         return response()->json([
             'success' => true,
             'data' => new ShowResource($product_purchase),
-            'storages' => \App\Http\Resources\Api\Storage\DefaultResource::collection($storages)
+            'storages' => \App\Http\Resources\Api\Storage\DefaultResource::collection($storages),
+            'counterparties' => \App\Http\Resources\Api\Counterparty\DefaultResource::collection($counterparties)
         ]);
     }
 
@@ -122,7 +125,10 @@ class ProductPurchaseController extends Controller
                 $query->with(['product_type' => function ($q) {
                     $q->with('main_measure_type')->withTrashed();
                 }]);
-            }
+            },
+            'counterparty' => function ($query) {
+                $query->withTrashed();
+            },
         ]);
 
         $all_product_purchases = collect();

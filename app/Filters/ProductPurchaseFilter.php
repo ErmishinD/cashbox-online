@@ -22,6 +22,12 @@ class ProductPurchaseFilter extends QueryFilter
         $this->builder->where('user_id', $value);
     }
 
+    public function counterparty_id($value)
+    {
+        if (!$value) return;
+        $this->builder->where('counterparty_id', $value);
+    }
+
 
     public function sort_by_cost($direction)
     {

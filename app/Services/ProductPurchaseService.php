@@ -21,6 +21,7 @@ class ProductPurchaseService
                         'expiration_date' => $product_purchase->expiration_date
                             ? $product_purchase->expiration_date->format('Y-m-d')
                             : null,
+                        'counterparty_id' => $product_purchase->counterparty_id
                     ];
 
                     $product_purchase->current_quantity -= $product_type['quantity'];
@@ -38,6 +39,7 @@ class ProductPurchaseService
                     'expiration_date' => $product_purchase->expiration_date
                         ? $product_purchase->expiration_date->format('Y-m-d')
                         : null,
+                    'counterparty_id' => $product_purchase->counterparty_id
                 ];
 
                 $product_purchase->current_quantity = 0;

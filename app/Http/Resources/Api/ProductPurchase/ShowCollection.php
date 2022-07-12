@@ -26,6 +26,10 @@ class ShowCollection extends ResourceCollection
                 'id' => $first_purchase->user->id,
                 'name' => $first_purchase->user->name,
             ],
+            'counterparty' => [
+                'id' => $first_purchase->counterparty->id,
+                'name' => $first_purchase->counterparty->name,
+            ],
         ];
         foreach ($this->collection as $purchase) {
             $result['product_types'][] = [

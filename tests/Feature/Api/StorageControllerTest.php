@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use App\Models\BaseMeasureType;
 use App\Models\Cashbox;
 use App\Models\Company;
+use App\Models\Counterparty;
 use App\Models\MeasureType;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
@@ -201,12 +202,15 @@ class StorageControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
         $this->admin->update(['company_id' => $company->id]);
 
-        $purchase1 = ProductPurchase::factory()->create(['company_id' => $company->id, 'storage_id' => $storage->id]);
+        $purchase1 = ProductPurchase::factory()->create(['company_id' => $company->id, 'storage_id' => $storage->id,
+            'counterparty_id' => $counterparty->id]);
         $purchase1->update(['cost' => 100, 'current_cost' => 75]);
-        $purchase2 = ProductPurchase::factory()->create(['company_id' => $company->id, 'storage_id' => $storage->id]);
+        $purchase2 = ProductPurchase::factory()->create(['company_id' => $company->id, 'storage_id' => $storage->id,
+            'counterparty_id' => $counterparty->id]);
 
         $response = $this->actingAs($this->admin)->post($this->base_route . 'get_balance', ['storage_ids' => []]);
         $response
@@ -229,6 +233,7 @@ class StorageControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
         $this->admin->update(['company_id' => $company->id]);
 
@@ -237,11 +242,13 @@ class StorageControllerTest extends TestCase
 
         $purchase1 = ProductPurchase::factory()->create([
             'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
-            'quantity' => 100, 'current_quantity' => 100, 'cost' => 100, 'current_cost' => 100
+            'quantity' => 100, 'current_quantity' => 100, 'cost' => 100, 'current_cost' => 100,
+            'counterparty_id' => $counterparty->id
         ]);
         $purchase2 = ProductPurchase::factory()->create([
             'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type2->id,
-            'quantity' => 1000, 'current_quantity' => 1000, 'cost' => 500, 'current_cost' => 500
+            'quantity' => 1000, 'current_quantity' => 1000, 'cost' => 500, 'current_cost' => 500,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'write_off', [
@@ -317,6 +324,7 @@ class StorageControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
         $storage = Storage::factory()->create(['shop_id' => $shop->id]);
         $storage2 = Storage::factory()->create(['shop_id' => $shop->id]);
         $this->admin->update(['company_id' => $company->id]);
@@ -326,11 +334,13 @@ class StorageControllerTest extends TestCase
 
         $purchase1 = ProductPurchase::factory()->create([
             'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
-            'quantity' => 100, 'current_quantity' => 100, 'cost' => 100, 'current_cost' => 100
+            'quantity' => 100, 'current_quantity' => 100, 'cost' => 100, 'current_cost' => 100,
+            'counterparty_id' => $counterparty->id
         ]);
         $purchase2 = ProductPurchase::factory()->create([
             'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type2->id,
-            'quantity' => 1000, 'current_quantity' => 1000, 'cost' => 500, 'current_cost' => 500
+            'quantity' => 1000, 'current_quantity' => 1000, 'cost' => 500, 'current_cost' => 500,
+            'counterparty_id' => $counterparty->id
         ]);
 
         $response = $this->actingAs($this->admin)->postJson($this->base_route . 'transfer', [
@@ -401,7 +411,8 @@ class StorageControllerTest extends TestCase
                     'cost' => 50,
                     'expiration_date' => $purchase1->expiration_date
                         ? $purchase1->expiration_date->format('Y-m-d')
-                        : null
+                        : null,
+                    'counterparty_id' => $counterparty->id,
                 ]
             ])
         ]);
@@ -417,7 +428,8 @@ class StorageControllerTest extends TestCase
                     'cost' => 125,
                     'expiration_date' => $purchase2->expiration_date
                         ? $purchase2->expiration_date->format('Y-m-d')
-                        : null
+                        : null,
+                    'counterparty_id' => $counterparty->id,
                 ]
             ])
         ]);

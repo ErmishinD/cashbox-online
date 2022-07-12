@@ -64,6 +64,7 @@ class ProductPurchaseRepository extends BaseRepository
                 'current_cost' => $product_type['cost'],
                 'expiration_date' => $product_type['expiration_date'] ?? null,
                 'user_id' => $data['user_id'],
+                'counterparty_id' => $data['counterparty_id'],
                 'parent_id' => $parent_id
             ];
             $product_purchase = $this->model->create($product_purchase_data);
@@ -85,6 +86,9 @@ class ProductPurchaseRepository extends BaseRepository
                 },
                 'product_type' => function ($query) {
                     $query->with(['main_measure_type'])->withTrashed();
+                },
+                'counterparty' => function ($query) {
+                    $query->withTrashed();
                 }
             ])
             ->orderByDesc('created_at')

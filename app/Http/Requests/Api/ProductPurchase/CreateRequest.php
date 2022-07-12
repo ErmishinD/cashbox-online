@@ -23,7 +23,8 @@ class CreateRequest extends TenantRequest
             'cost' => ['required', 'numeric', 'min:0'],
             'current_cost' => ['required', 'numeric', 'min:0'],
             'expiration_date' => ['nullable', 'date', 'after:today'],
-            'user_id' => ['required']
+            'user_id' => ['required'],
+            'counterparty_id' => ['required'],
         ];
     }
 

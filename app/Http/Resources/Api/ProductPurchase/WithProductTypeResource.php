@@ -30,11 +30,15 @@ class WithProductTypeResource extends JsonResource
             'current_quantity' => $this->current_quantity,
             'cost' => $this->cost,
             'current_cost' => $this->current_cost,
-            'expiration_date' => $this->expiration_date ? $this->expiration_date->format('Y-m-d') : null,
+            'expiration_date' => $this->expiration_date?->format('Y-m-d'),
             'created_at' => $this->created_at->format('Y-m-d H:i'),
             'user' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
+            ],
+            'counterparty' => [
+                'id' => $this->counterparty->id,
+                'name' => $this->counterparty->name,
             ]
         ];
     }
