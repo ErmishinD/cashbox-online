@@ -37,6 +37,13 @@
 	          	</select>
 	          	</div>
 
+	          	<div class="select_storage">
+	          		<span>{{ $t('Выберите контрагента') }}:</span>
+		          	<select v-model="selected_counterparty" class="def_select" name="select_storage" id="">
+		          		<option v-for="counterparty in counterparties" :value="counterparty.id">{{counterparty.name}}</option>
+		          	</select>
+	          	</div>
+
 	          </div>
 
 	          <div v-for="card in selected_products" class="basket_card">
@@ -170,6 +177,8 @@ export default{
 			},
 			products_from_recommendations_parse: '',
 			products_from_thresholds_parse: '',
+			counterparties: '',
+			selected_counterparty: null,
 		}
 	},
 	mounted(){
@@ -194,6 +203,11 @@ export default{
 		})
 
 		this.render_list_items(true)
+
+		this.axios.post('/api/get_for_select/', {entities: ['Counterparty']}).then(response => {
+		  this.counterparties = response.data.Counterparty
+		  this.selected_counterparty = this.counterparties[0].id
+		})
 
 
 	},
@@ -351,6 +365,7 @@ export default{
     			this.emitter.emit("isLoading", true);
     			this.error_while_saving = false
     			purchase_data.storage_id = this.selected_storage
+    			purchase_data.counterparty_id = this.selected_counterparty
     			purchase_data.payment_type = '_cash'
     			purchase_data.product_types = this.selected_products
     			purchase_data.product_types.forEach(el => {

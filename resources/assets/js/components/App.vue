@@ -291,6 +291,14 @@
 		      	})
 		      }
 
+		      if(this.$can('Counterparty_access')){
+		      	sidebar_data.push({
+	              	href: '/counterparty',
+		            title: this.$t('Контрагенты'),
+		            icon: 'fas fa-id-card-clip',
+		      	})
+		      }
+
 		      if(this.$can('User_access')){
 		      	sidebar_data.push({
 	              	href: '/users',

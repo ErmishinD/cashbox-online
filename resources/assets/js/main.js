@@ -33,6 +33,12 @@ import App from './components/App'
 import DashboardIndex from './components/dashboard/Index'
 import DashboardShow from './components/dashboard/Show'
 
+/* import counterparties */
+import CounterpartyIndex from './components/counterparties/Index'
+import CounterpartyCreate from './components/counterparties/Create'
+import CounterpartyEdit from './components/counterparties/Edit'
+import CounterpartyShow from './components/counterparties/Show'
+
 /* import products_type */
 import ProductsTypeIndex from './components/products_type/Index'
 import ProductsTypeCreate from './components/products_type/Create'
@@ -163,6 +169,28 @@ const router = createRouter({
 			path: '/sale_detail/:id',
 			name: 'sale_detail',
 			component: DashboardShow,
+			props: true
+		},
+		{
+			path: '/counterparty',
+			name: 'counterparties_index',
+			component: CounterpartyIndex
+		},
+		{
+			path: '/counterparty/create',
+			name: 'counterparties_create',
+			component: CounterpartyCreate
+		},
+		{
+			path: '/counterparty/edit/:id',
+			name: 'counterparties_edit',
+			component: CounterpartyEdit,
+			props: true
+		},
+		{
+			path: '/counterparty/:id',
+			name: 'counterparties_show',
+			component: CounterpartyShow,
 			props: true
 		},
 		{
