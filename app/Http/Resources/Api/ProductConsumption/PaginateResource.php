@@ -20,9 +20,18 @@ class PaginateResource extends JsonResource
      */
     public function toArray($request)
     {
+        $consumable_type = '';
+        if ($this->consumable_type == Cashbox::class) {
+            $consumable_type = 'sell';
+        } elseif ($this->consumable_type == WriteOff::class) {
+            $consumable_type = 'writeoff';
+        } elseif ($this->consumable_type == Transfer::class) {
+            $consumable_type = 'transfer';
+        }
+
         return [
             'id' => $this->id,
-            'consumable_type' => $this->consumable_type,
+            'consumable_type' => $consumable_type,
             'cashbox' => $this->when($this->consumable_type == Cashbox::class, function () {
                 return CashboxResource::make($this->consumable);
             }),

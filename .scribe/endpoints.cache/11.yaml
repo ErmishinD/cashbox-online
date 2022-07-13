@@ -214,7 +214,7 @@ endpoints:
         name: expiration_date
         description: 'Must be a valid date. Must be a date after <code>today</code>.'
         required: false
-        example: '2103-08-11'
+        example: '2103-08-12'
         type: string
         custom: []
       user_id:
@@ -885,7 +885,7 @@ endpoints:
         name: expiration_date
         description: 'Must be a valid date. Must be a date after <code>today</code>.'
         required: false
-        example: '2103-08-11'
+        example: '2103-08-12'
         type: string
         custom: []
       counterparty_id:
