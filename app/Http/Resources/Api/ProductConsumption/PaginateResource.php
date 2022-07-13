@@ -25,21 +25,21 @@ class PaginateResource extends JsonResource
         if ($this->consumable_type == Cashbox::class) {
             $consumable_type = 'sell';
             $consumable = [
-                'id' => $this->consumable->id,
+                'id' => $this->consumable->sell_product->id,
                 'name' => $this->consumable->sell_product->name,
                 'route' => 'products_for_sale_show',
             ];
         } elseif ($this->consumable_type == WriteOff::class) {
             $consumable_type = 'writeoff';
             $consumable = [
-                'id' => $this->consumable->id,
+                'id' => $this->consumable->storage->id,
                 'name' => $this->consumable->storage->name,
                 'route' => 'storages_show',
             ];
         } elseif ($this->consumable_type == Transfer::class) {
             $consumable_type = 'transfer';
             $consumable = [
-                'id' => $this->consumable->id,
+                'id' => $this->consumable->from_storage->id,
                 'name' => $this->consumable->from_storage->name,
                 'route' => '',
             ];
