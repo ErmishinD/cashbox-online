@@ -36,6 +36,7 @@ class ShowResource extends JsonResource
             'cost' => $this->cost,
             'current_cost' => $this->current_cost,
             'storage_id' => $this->storage_id,
+            'counterparty_id' => $this->counterparty_id
         ];
     }
 }
