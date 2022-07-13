@@ -70,6 +70,11 @@
           <span v-else>{{props.row.user.name}}</span>
         </span>
 
+        <span  v-if="props.column.field == 'counterparty.name'">
+          <router-link class="redirect_from_table" v-if="$can('Counterparty_show')" :to="{name: 'counterparties_show', params: {id: props.row.counterparty.id}}">{{props.row.counterparty.name}}</router-link>
+          <span v-else>{{props.row.counterparty.name}}</span>
+        </span>
+
         <span  v-if="props.column.field == 'storage_id.name'">
           <router-link class="redirect_from_table" v-if="$can('Storage_show')" :to="{name: 'storages_show', params: {id: props.row.storage_id.id}}">{{props.row.storage_id.name}}</router-link>
           <span v-else>{{props.row.storage_id.name}}</span>
@@ -124,6 +129,10 @@ export default {
         {
           label: this.$t("Оператор"),
           field: 'user.name'
+        },
+        {
+          label: this.$t("Контрагент"),
+          field: 'counterparty.name'
         },
         {
           label: this.$t("Закуплено"),

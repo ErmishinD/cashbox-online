@@ -5,6 +5,19 @@
 		<small><router-link v-if="this.$can('Counterparty_edit')" :to="{name: 'counterparties_edit', params: {ids: counterparty.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
 
+	<div class="row-btw">
+		<span>{{$t('Сумма закупок')}}: {{counterparty.purchase_sum_cost}}</span>
+		<span>{{$t('Текущий баланс')}}: {{counterparty.purchase_sum_current_cost}}</span>
+	</div>
+	<div class="row-btw">
+		<span>{{$t('Использовано продукта на продажи (в грн)')}}: {{counterparty.cashbox_consumptions_sum_cost}}</span>
+		<span>{{$t('Получено денег от продаж')}}: {{counterparty.cashbox_consumptions_sum_income}}</span>
+	</div>
+	<div class="row-btw">
+		<span>{{$t('Прибыль')}}: {{counterparty.cashbox_consumptions_sum_profit}}</span>
+		<span>{{$t('Сумма списаний (в грн)')}}: {{counterparty.write_off_consumptions_sum_cost}}</span>
+	</div>
+
 	<div class="details col-12">
 		<div class="col-6 detail">
 			<div class="detail__title">

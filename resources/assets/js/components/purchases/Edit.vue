@@ -3,6 +3,12 @@
 	<h1 class="tac"><button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>{{ $t('Редактирование') }} {{formData.product_type.name}}</h1>
 	<form class="tac form" @submit="UpdatePurchase">
 		<div class="form_content">
+            <div class="form_item">
+                <label>{{ $t('Контрагент') }}*:</label>
+                <select v-model="formData.counterparty_id" class="form-control" name="select_storage" id="">
+                    <option v-for="counterparty in counterparties" :value="counterparty.id">{{counterparty.name}}</option>
+                </select>
+            </div>
 			<div class="form_item">
                 <label class="tal" for="cost">{{ $t('Цена') }}*:</label>
                 <input type="number" required class="form-control" name="cost" v-model="formData.cost">
@@ -47,6 +53,7 @@ export default{
     data(){
         return{
             product: [],
+            counterparties: '',
             formData: {
                 product_type:{main_measure_type:{}},
             },
@@ -69,6 +76,8 @@ export default{
             this.formData.current_measure_type_quantity = this.formData.product_type.main_measure_type.quantity
             this.storage_list = response.data.storages
             document.title = this.$t('Редактирование закупки');
+
+            this.counterparties = response.data.counterparties
             
             this.emitter.emit("isLoading", false);
         })
