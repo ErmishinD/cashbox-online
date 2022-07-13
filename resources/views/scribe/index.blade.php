@@ -7272,7 +7272,7 @@ vary: Origin
     &quot;email&quot;: &quot;admin@admin.com&quot;,
     &quot;email_verified_at&quot;: null,
     &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2022-07-13T12:31:25.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2022-07-13T17:00:06.000000Z&quot;,
     &quot;deleted_at&quot;: null,
     &quot;company_id&quot;: 1
 }</code>
@@ -16698,8 +16698,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-13T15:31:31\",
-    \"end_date\": \"2022-07-13T15:31:31\",
+    \"start_date\": \"2022-07-13T20:00:09\",
+    \"end_date\": \"2022-07-13T20:00:09\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16717,8 +16717,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-13T15:31:31",
-    "end_date": "2022-07-13T15:31:31",
+    "start_date": "2022-07-13T20:00:09",
+    "end_date": "2022-07-13T20:00:09",
     "shop_id": 17
 };
 
@@ -16797,7 +16797,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16807,7 +16807,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16843,8 +16843,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-13T15:31:31\",
-    \"end_date\": \"2022-07-13T15:31:31\",
+    \"start_date\": \"2022-07-13T20:00:09\",
+    \"end_date\": \"2022-07-13T20:00:09\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -16862,8 +16862,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-13T15:31:31",
-    "end_date": "2022-07-13T15:31:31",
+    "start_date": "2022-07-13T20:00:09",
+    "end_date": "2022-07-13T20:00:09",
     "shop_id": 17
 };
 
@@ -16952,7 +16952,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16962,7 +16962,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -16998,8 +16998,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-13T15:31:31\",
-    \"end_date\": \"2022-07-13T15:31:31\",
+    \"start_date\": \"2022-07-13T20:00:09\",
+    \"end_date\": \"2022-07-13T20:00:09\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -17017,8 +17017,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-13T15:31:31",
-    "end_date": "2022-07-13T15:31:31",
+    "start_date": "2022-07-13T20:00:09",
+    "end_date": "2022-07-13T20:00:09",
     "shop_id": 17
 };
 
@@ -17139,7 +17139,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17149,7 +17149,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17185,8 +17185,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-13T15:31:31\",
-    \"end_date\": \"2022-07-13T15:31:31\",
+    \"start_date\": \"2022-07-13T20:00:09\",
+    \"end_date\": \"2022-07-13T20:00:09\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -17204,8 +17204,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-13T15:31:31",
-    "end_date": "2022-07-13T15:31:31",
+    "start_date": "2022-07-13T20:00:09",
+    "end_date": "2022-07-13T20:00:09",
     "shop_id": 17
 };
 
@@ -17354,7 +17354,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17364,7 +17364,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17400,8 +17400,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-13T15:31:31\",
-    \"end_date\": \"2022-07-13T15:31:31\",
+    \"start_date\": \"2022-07-13T20:00:09\",
+    \"end_date\": \"2022-07-13T20:00:09\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -17419,8 +17419,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-13T15:31:31",
-    "end_date": "2022-07-13T15:31:31",
+    "start_date": "2022-07-13T20:00:09",
+    "end_date": "2022-07-13T20:00:09",
     "shop_id": 17
 };
 
@@ -17473,7 +17473,7 @@ fetch(url, {
                 <input type="text"
                name="start_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17483,7 +17483,7 @@ fetch(url, {
                 <input type="text"
                name="end_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -17519,8 +17519,8 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-13T15:31:30\",
-    \"end_date\": \"2022-07-13T15:31:30\",
+    \"start_date\": \"2022-07-13T20:00:08\",
+    \"end_date\": \"2022-07-13T20:00:08\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -17538,8 +17538,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-13T15:31:30",
-    "end_date": "2022-07-13T15:31:30",
+    "start_date": "2022-07-13T20:00:08",
+    "end_date": "2022-07-13T20:00:08",
     "shop_id": 17
 };
 
@@ -18776,7 +18776,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-13T15:31:30"
+               value="2022-07-13T20:00:08"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18786,7 +18786,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2022-07-13T15:31:30"
+               value="2022-07-13T20:00:08"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18822,8 +18822,8 @@ vary: Origin
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2022-07-13T15:31:31\",
-    \"end_date\": \"2022-07-13T15:31:31\",
+    \"start_date\": \"2022-07-13T20:00:09\",
+    \"end_date\": \"2022-07-13T20:00:09\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -18841,8 +18841,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2022-07-13T15:31:31",
-    "end_date": "2022-07-13T15:31:31",
+    "start_date": "2022-07-13T20:00:09",
+    "end_date": "2022-07-13T20:00:09",
     "shop_id": 17
 };
 
@@ -18928,7 +18928,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -18938,7 +18938,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2022-07-13T15:31:31"
+               value="2022-07-13T20:00:09"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>

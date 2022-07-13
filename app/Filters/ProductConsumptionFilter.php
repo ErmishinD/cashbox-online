@@ -3,6 +3,10 @@
 namespace App\Filters;
 
 
+use App\Models\Cashbox;
+use App\Models\Transfer;
+use App\Models\WriteOff;
+
 class ProductConsumptionFilter extends QueryFilter
 {
     protected string $table_name = 'product_consumptions';
@@ -15,6 +19,14 @@ class ProductConsumptionFilter extends QueryFilter
     public function consumable_type($value)
     {
         if (!$value) return;
+
+        if ($value == 'sell') {
+            $value = Cashbox::class;
+        } elseif ($value == 'writeoff') {
+            $value = WriteOff::class;
+        } elseif ($value == 'transfer') {
+            $value = Transfer::class;
+        }
 
         $this->builder->where('consumable_type', $value);
     }

@@ -84,14 +84,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       shop_id:
@@ -133,14 +133,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       shop_id:
@@ -182,14 +182,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       shop_id:
@@ -231,14 +231,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       shop_id:
@@ -280,14 +280,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       shop_id:
@@ -319,14 +319,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:30'
+        example: '2022-07-13T20:00:08'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:30'
+        example: '2022-07-13T20:00:08'
         type: string
         custom: []
       shop_id:
@@ -375,14 +375,14 @@ endpoints:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2022-07-13T15:31:31'
+        example: '2022-07-13T20:00:09'
         type: string
         custom: []
       shop_id:

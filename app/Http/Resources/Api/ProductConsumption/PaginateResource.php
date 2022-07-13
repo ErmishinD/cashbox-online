@@ -21,31 +21,48 @@ class PaginateResource extends JsonResource
     public function toArray($request)
     {
         $consumable_type = '';
+        $consumable = [];
         if ($this->consumable_type == Cashbox::class) {
             $consumable_type = 'sell';
+            $consumable = [
+                'id' => $this->consumable->id,
+                'name' => $this->consumable->sell_product->name,
+                'route' => 'products_for_sale_show',
+            ];
         } elseif ($this->consumable_type == WriteOff::class) {
             $consumable_type = 'writeoff';
+            $consumable = [
+                'id' => $this->consumable->id,
+                'name' => $this->consumable->storage->name,
+                'route' => 'storages_show',
+            ];
         } elseif ($this->consumable_type == Transfer::class) {
             $consumable_type = 'transfer';
+            $consumable = [
+                'id' => $this->consumable->id,
+                'name' => $this->consumable->from_storage->name,
+                'route' => '',
+            ];
         }
 
         return [
             'id' => $this->id,
             'consumable_type' => $consumable_type,
-            'cashbox' => $this->when($this->consumable_type == Cashbox::class, function () {
-                return CashboxResource::make($this->consumable);
-            }),
-            'write_off' => $this->when($this->consumable_type == WriteOff::class, function () {
-                return WriteOffResource::make($this->consumable);
-            }),
-            'transfer' => $this->when($this->consumable_type == Transfer::class, function () {
-                return TransferResource::make($this->consumable);
-            }),
+            'consumable' => $consumable,
+//            'cashbox' => $this->when($this->consumable_type == Cashbox::class, function () {
+//                return CashboxResource::make($this->consumable);
+//            }),
+//            'write_off' => $this->when($this->consumable_type == WriteOff::class, function () {
+//                return WriteOffResource::make($this->consumable);
+//            }),
+//            'transfer' => $this->when($this->consumable_type == Transfer::class, function () {
+//                return TransferResource::make($this->consumable);
+//            }),
             'quantity' => $this->quantity,
             'cost' => $this->cost,
             'income' => $this->income,
             'profit' => $this->profit,
-            'created_at' => $this->created_at->format('Y-m-d'),
+            'created_at' => $this->created_at->format('Y-m-d H:i'),
         ];
     }
 }
