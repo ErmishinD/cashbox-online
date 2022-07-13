@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Api\CounterParty;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\TenantRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends TenantRequest
 {
     /**
      * Determine if the user is authorized to make this request.
