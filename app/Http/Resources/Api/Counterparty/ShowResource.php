@@ -17,7 +17,7 @@ class ShowResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'purchase_sum_cost' => $this->product_purchases_sum_cost ?? '0.00',
+            'purchase_sum_cost' => $this->product_purchases_sum_cost - $this->transfer_consumptions_sum_cost ?? '0.00',
             'purchase_sum_current_cost' => $this->product_purchases_sum_current_cost ?? '0.00',
             'cashbox_consumptions_sum_cost' => $this->cashbox_consumptions_sum_cost ?? '0.00',
             'cashbox_consumptions_sum_income' => $this->cashbox_consumptions_sum_income ?? '0.00',

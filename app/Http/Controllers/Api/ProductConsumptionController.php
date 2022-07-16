@@ -24,12 +24,11 @@ class ProductConsumptionController extends Controller
         $product_consumptions = ProductConsumption::query()
             ->with(['consumable' => function ($query) {
                 $query->morphWith([
-                    Cashbox::class => ['sell_product'], // , 'shop', 'operator'
-//                    Transfer::class => ['from_storage', 'to_storage', 'transferred_by_user', 'product_type.main_measure_type'],
-                    WriteOff::class => ['storage'], // 'user', 'product_type.main_measure_type'
+                    Cashbox::class => ['sell_product', 'shop', 'operator'],
+                    Transfer::class => ['from_storage', 'to_storage', 'transferred_by_user', 'product_purchase.product_type.main_measure_type'],
+                    WriteOff::class => ['storage', 'user', 'product_type.main_measure_type'],
                 ]);
             }])
-            ->where('consumable_type', '!=', Transfer::class)
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'consumption-page', $paginate_data['page']);
 

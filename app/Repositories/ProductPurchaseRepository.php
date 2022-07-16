@@ -89,9 +89,11 @@ class ProductPurchaseRepository extends BaseRepository
                 },
                 'counterparty' => function ($query) {
                     $query->withTrashed();
+                },
+                'transfer' => function ($query) {
+                    $query->select('id', 'product_purchase_id');
                 }
             ])
-            ->orderByDesc('created_at')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
         return $result;

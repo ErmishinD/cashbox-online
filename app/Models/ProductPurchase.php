@@ -64,6 +64,11 @@ class ProductPurchase extends Model implements SystemLoggable
         return $this->belongsTo(Counterparty::class);
     }
 
+    public function transfer()
+    {
+        return $this->hasOne(Transfer::class);
+    }
+
     public function getTextForAudit(string $action, ?array $data): string
     {
         if ($action == SystemLog::ACTIONS['purchased']) {

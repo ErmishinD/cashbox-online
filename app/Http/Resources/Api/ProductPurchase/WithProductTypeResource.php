@@ -39,7 +39,10 @@ class WithProductTypeResource extends JsonResource
             'counterparty' => [
                 'id' => $this->counterparty->id,
                 'name' => $this->counterparty->name,
-            ]
+            ],
+            'transfer_id' => $this->whenLoaded('transfer', function () {
+                return $this->transfer ? $this->transfer->id : null;
+            })
         ];
     }
 }

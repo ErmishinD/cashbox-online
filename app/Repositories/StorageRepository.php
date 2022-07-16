@@ -137,7 +137,7 @@ class StorageRepository extends BaseRepository
 
                 $current_used_purchases = collect($used_purchases[$product_type['id']]);
 
-                if ($current_used_purchases->unique('expiration_date')->count() > 1) {
+                if ($current_used_purchases->unique('expiration_date')->count() > 1 || $current_used_purchases->unique('counterparty_id')->count() > 1) {
                     foreach ($current_used_purchases as $current_used_purchase) {
                         if ($transfers->isNotEmpty()) {
                             $transfer_parent_id = $transfers->first()->id;
@@ -176,7 +176,7 @@ class StorageRepository extends BaseRepository
                             'consumable_type' => Transfer::class,
                             'consumable_id' => $transfer->id,
                             'quantity' => $current_used_purchase['quantity'],
-                            'cost' => 0,
+                            'cost' => $current_used_purchase['cost'],
                             'income' => 0,
                             'profit' => 0,
                         ]);
@@ -221,7 +221,7 @@ class StorageRepository extends BaseRepository
                             'consumable_type' => Transfer::class,
                             'consumable_id' => $transfer->id,
                             'quantity' => $current_used_purchase['quantity'],
-                            'cost' => 0,
+                            'cost' => $current_used_purchase['cost'],
                             'income' => 0,
                             'profit' => 0,
                         ]);
