@@ -38,7 +38,8 @@ class RoleRepository extends BaseRepository
             'ProductPurchase_access', 'ProductPurchase_create', 'ProductPurchase_show', 'ProductPurchase_edit', 'ProductPurchase_delete',
             'Cashbox_access', 'Cashbox_create', 'Cashbox_show', 'Cashbox_edit', 'Cashbox_delete', 'Cashbox_collect', 'Cashbox_history',
             'User_access', 'User_create', 'User_show', 'User_edit', 'User_delete',
-            'Report_access', 'Report_warningThreshold', 'Report_profit',
+            'Counterparty_access', 'Counterparty_create', 'Counterparty_show', 'Counterparty_edit', 'Counterparty_delete',
+            'Report_access', 'Report_warningThreshold', 'Report_profit', 'Report_purchaseRecommendations',
             'Audit_access',
             'WriteOff_access', 'WriteOff_create', 'WriteOff_show',
             'Transfer_access', 'Transfer_create', 'Transfer_show',
@@ -75,7 +76,7 @@ class RoleRepository extends BaseRepository
         ]);
         $analyst_role->syncPermissions([
             'Cashbox_access', 'Cashbox_show',
-            'Report_access', 'Report_warningThreshold', 'Report_profit',
+            'Report_access', 'Report_warningThreshold', 'Report_profit', 'Report_purchaseRecommendations',
             'Shop_access', 'Shop_show',
             'Storage_access', 'Storage_show',
             'ProductType_access', 'ProductType_show',
