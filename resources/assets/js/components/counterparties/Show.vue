@@ -1,4 +1,101 @@
 <template>
+	<GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
+		<div v-if="current_detail.consumable_type == 'sell'">
+			<div class="getting-started-example-styled">
+			  <div class="getting-started-example-styled__content">
+			    <div class="getting-started-example-styled__title">
+			      {{ $t('Просмотр продажи') }}
+			    </div>
+
+			    <div class="row-btw">
+			    	<span>{{$t('Доход')}}: {{current_detail.income}}</span>
+			    	<span>{{$t('Расход')}}: {{current_detail.cost}}</span>
+			    	<span>{{$t('Прибыль')}}: {{current_detail.profit}}</span>
+			    </div>
+
+			    <div>
+			    	{{$t('Тип транзакции')}}: {{current_detail.consumable.payment_type == '_cash' ? $t('Наличные') : $t('Карта')}}
+			    </div>
+
+			    <div>
+			    	{{$t('Проданный товар')}}: 
+			    	<router-link class="redirect_from_table"
+      	      	                 :to="{name: 'products_for_sale_show', params: {id: current_detail.consumable.sell_product.id}}">{{ current_detail.consumable.sell_product.name }}
+      	      	    </router-link> 
+			    </div>
+
+			    <div>
+			    	{{$t('Магазин')}}: 
+			    	<router-link class="redirect_from_table"
+      	      	                 :to="{name: 'shops_show', params: {id: current_detail.consumable.shop.id}}">{{ current_detail.consumable.shop.name }}
+      	      	    </router-link> 
+			    </div>
+
+			    <div>
+			    	{{$t('Продавец')}}: 
+			    	<router-link class="redirect_from_table"
+      	      	                 :to="{name: 'users_show', params: {id: current_detail.consumable.operator.id}}">{{ current_detail.consumable.operator.name }}
+      	      	    </router-link> 
+			    </div>
+			  </div>
+
+			</div>
+		</div>
+
+		<div v-else-if="current_detail.consumable_type == 'writeoff'">
+			<div class="getting-started-example-styled">
+			  <div class="getting-started-example-styled__content">
+			    <div class="getting-started-example-styled__title">
+			      {{ $t('Просмотр списания') }}
+			    </div>
+
+			    <div>
+			    	{{$t('Списано на сумму')}}: {{current_detail.cost}}
+			    </div>
+
+			    <div>
+			    	{{$t('Списал(а)')}}: 
+			    	<router-link class="redirect_from_table"
+      	      	                 :to="{name: 'users_show', params: {id: current_detail.consumable.user.id}}">{{ current_detail.consumable.user.name }}
+      	      	    </router-link>
+			    </div>
+			  </div>
+
+			</div>
+		</div>
+
+		<div v-else-if="current_detail.consumable_type == 'transfer'">
+			<div class="getting-started-example-styled">
+			  <div class="getting-started-example-styled__content">
+			    <div class="getting-started-example-styled__title">
+			      {{ $t('Просмотр трансфера') }}
+			    </div>
+
+			    <div>
+			    	{{$t('Путь трансфера')}}: 
+			    	<router-link class="redirect_from_table"
+      	      	                 :to="{name: 'storages_show', params: {id: current_detail.consumable.from_storage.id}}">{{ current_detail.consumable.from_storage.name }}
+      	      	    </router-link>  
+      	      	    &#8594; 
+      	      	    <router-link class="redirect_from_table"
+      	      	                 :to="{name: 'storages_show', params: {id: current_detail.consumable.to_storage.id}}">{{ current_detail.consumable.to_storage.name }}
+      	      	    </router-link>
+			    </div>
+
+			    <div>
+			    	{{$t('Отправил(а)')}}: 
+			    	<router-link class="redirect_from_table"
+      	      	                 :to="{name: 'users_show', params: {id: current_detail.consumable.transferred_by.id}}">{{ current_detail.consumable.transferred_by.name }}
+      	      	    </router-link>
+			    </div>
+			  </div>
+
+			</div>
+		</div>
+  	    
+  	  </GDialog>
+
+
 	<div class="tac content_title">
 		<button class="btn btn-primary pull-left pos-ab" onclick="javascript:history.back()"><i class="fas fa-arrow-left mr-10"></i>{{$t('Назад')}}</button>
 		{{counterparty.name}}
@@ -23,6 +120,9 @@
 			<div class="detail__title">
 				<span>{{ $t('Закупки') }}</span>
 			</div>
+			<div class="notice_for_table">
+				<div class="notice_example">{{$t('Товар')}}</div> - {{$t('Трансфер')}}
+			</div>
 			<vue-good-table style="position: static;"
 		      :columns="counterparty_purchases_columns"
 		      :rows="counterparty_purchases_rows"
@@ -37,9 +137,9 @@
 	              enabled: true,
 	            }"
 		      >
-		      <template #table-row="props">
+		      <template #table-row="props" >
 
-		      	<span  v-if="props.column.field == 'product_type.name'">
+		      	<span v-bind:style="[props.row.transfer_id  ? {background: '#dadada'} : '']" v-if="props.column.field == 'product_type.name'">
       	      	    <router-link class="redirect_from_table"
       	      	                 :to="{name: 'products_type_show', params: {id: props.row.product_type.id}}">{{ props.row.product_type.name }}
       	      	    </router-link>
@@ -62,7 +162,25 @@
 		</div>
 		<div class="col-6 detail">
 			<div class="detail__title">
-				<span>{{ $t('Детали закупки') }}</span>
+				<span>{{ $t('Использование закупки') }}</span>
+			</div>
+			<div v-if="current_purchase" class="short_info_for_details">
+				<div class="row-btw">
+					<span>
+						{{$t('Склад')}} - <router-link class="redirect_from_table"
+      	      	                 :to="{name: 'storages_show', params: {id: current_purchase.storage_id?.id}}">{{current_purchase.storage_id?.name}}
+      	      	    					  </router-link>
+					</span>
+					<span>
+						{{$t('Оператор')}} - <router-link class="redirect_from_table"
+      	      	                 :to="{name: 'users_show', params: {id: current_purchase.user?.id}}">{{current_purchase.user?.name}}
+      	      	    					  </router-link>
+					</span>
+				</div>
+				<div class="row-btw">
+					<span style="margin-inline: auto;">{{$t('Текущее кол-во (грн)')}} - {{current_purchase.current_cost}}</span>
+				</div>
+				
 			</div>
 			<vue-good-table style="position: static;"
 		      :columns="counterparty_consumptions_columns"
@@ -87,13 +205,12 @@
       	      	  <span  v-if="props.column.field == 'consumable_type'">
       	      	    <span v-if="props.row.consumable_type == 'sell'">{{$t('Продажа')}}</span>
       	      	    <span v-else-if="props.row.consumable_type == 'writeoff'">{{$t('Списание')}}</span>
+      	      	    <span v-else-if="props.row.consumable_type == 'transfer'">{{$t('Трансфер')}}</span>
       	      	  </span>
 
-      	      	  <span  v-if="props.column.field == 'description'">
-      	      	    <router-link class="redirect_from_table"
-      	      	                 :to="{name: props.row.consumable.route, params: {id: props.row.consumable.id}}">{{ props.row.consumable.name }}
-      	      	    </router-link>
-      	      	  </span>
+      	      	  <span class="table_actions" v-if="props.column.field == 'details'">
+		      	    <i @click="clickToGetDetails(props.row)" class="fas fa-eye"></i>
+		      	  </span>
 
 		      	 
 		        </template>
@@ -104,10 +221,17 @@
 </template>
 
 <script>
+import { GDialog } from 'gitart-vue-dialog'
+import "gitart-vue-dialog/dist/style.css"
+
+
 export default{
 	props: [
 		'id'
 	],
+	 components: {
+    	GDialog,
+	  },
 	data(){
 		return{
 			counterparty: [],
@@ -151,16 +275,12 @@ export default{
 			    field: 'quantity',
 			  },
 			  {
-			    label: this.$t('Прибыль'),
-			    field: 'profit',
-			  },
-			  {
 			    label: this.$t('Дата создания'),
 			    field: 'created_at',
 			  },
 			  {
-			    label: this.$t('Описание'),
-			    field: 'description',
+			    label: this.$t('Детали'),
+			    field: 'details',
 			  },
 			],
 			counterparty_consumptions_rows: [],
@@ -188,6 +308,9 @@ export default{
 			  perPage: 10
 			},
 			current_product_type: '',
+			current_purchase: '',
+			current_detail: '',
+			modal_show: false,
 		} 
 	},
 	mounted(){
@@ -289,8 +412,14 @@ export default{
 
       clickToGetConsumption(purchase){
       	this.serverParamsConsumptions.columnFilters.product_purchase_id = purchase.id
+      	this.current_purchase = purchase
       	this.current_product_type = purchase.product_type
       	this.getConsumptionData()
+      },
+
+      clickToGetDetails(details){
+      	this.current_detail = details
+      	this.modal_show = true
       },
 
       getConsumptionData(){

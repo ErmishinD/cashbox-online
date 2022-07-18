@@ -11,7 +11,7 @@
             </div>
 			<div class="form_item">
                 <label class="tal" for="cost">{{ $t('Цена') }}*:</label>
-                <input type="number" required class="form-control" name="cost" v-model="formData.cost">
+                <input type="number" step="any" required class="form-control" name="cost" v-model="formData.cost">
             </div>
             <div class="form_item">
                 <label class="tal" for="quantity">{{ $t('Кол-во') }}*:</label>

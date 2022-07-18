@@ -173,9 +173,8 @@ export default{
 			// при изменении склада меняется баланс товаров
         	storage_from(){
         		if(this.storage_from){
-        			this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.storage_from]}).then(response => {
-        				this.storage_balance = response.data.data
-        			})
+        			this.getCurrentQuantity()
+        			
         		}
         		
         	},
@@ -263,6 +262,11 @@ export default{
     			})
 
     	},
+    	getCurrentQuantity(){
+    		this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.storage_from]}).then(response => {
+    			this.storage_balance = response.data.data
+    		})
+    	},
     	toggleClassForIcon(card_data) {
     		let stop_function = 0
     		let cards = this.cards
@@ -295,9 +299,11 @@ export default{
     		this.overlimited_product_types = []
     		this.selected_products.forEach(item => {
     			let product_in_storage = this.storage_balance.find(product => product.id == item.id)
+    			console.log(product_in_storage)
+    			console.log(item)
     			let item_quantity = item.amount * item.quantity
     			if(item_quantity > product_in_storage.current_quantity){
-    				item.overlimited_quantity_in_main_measure_type = ((item.quantity * item.amount) - product_in_storage.current_quantity) / product_in_storage.main_to_base_equivalent
+    				item.overlimited_quantity_in_main_measure_type = ((item.quantity * item.amount) - product_in_storage.current_quantity) / product_in_storage.main_measure_type.quantity
     				this.overlimited_product_types.push(item)
     			}
     		})
@@ -320,6 +326,7 @@ export default{
 					text: this.$t('Успешно!'),
 					type: 'success',
 				});
+				this.getCurrentQuantity()
 				this.emitter.emit("isLoading", false);
 				this.basket_modal_show = false
 				this.selected_products = []

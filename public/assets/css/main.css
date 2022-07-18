@@ -830,6 +830,17 @@ select {
   cursor: pointer;
 }
 
+.notice_for_table {
+  margin-block: 3px;
+  font-size: 10px;
+}
+
+.notice_example {
+  background-color: #dadada;
+  color: #3c8dbc;
+  display: inline-block;
+}
+
 @media (max-width: 992px){
   .col-6 {
     width: 100%;

@@ -172,19 +172,8 @@ export default{
 			// при изменении склада меняется баланс товаров
         	selected_storage(){
         		if(this.selected_storage){
-        			this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.selected_storage]}).then(response => {
-        			this.storage_balance = response.data.data
-        			this.storage_balance.forEach(item => {
-        				let product = this.cards.find(prod => prod.id == item.id)
-        				if(product){
-        					
-        					let new_product = Object.assign(product, item)
-        					product = new_product
-        				}
-        				
-        			})
-        			console.log(this.cards)
-        		})
+        			this.getCurrentQuantity()
+        			
         		}
         		
         	},
@@ -313,6 +302,23 @@ export default{
     		})
     		
     	},
+
+    	getCurrentQuantity(){
+			this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.selected_storage]}).then(response => {
+				this.storage_balance = response.data.data
+				this.storage_balance.forEach(item => {
+					let product = this.cards.find(prod => prod.id == item.id)
+					if(product){
+						
+						let new_product = Object.assign(product, item)
+						product = new_product
+					}
+					
+				})
+				console.log(this.cards)
+			})
+    	},
+
     	saveWriteOff(){
     		let write_off_data = {}
     		console.log(this.selected_products)
@@ -329,6 +335,7 @@ export default{
 					text: this.$t('Успешно!'),
 					type: 'success',
 				});
+				this.getCurrentQuantity()
 				this.emitter.emit("isLoading", false);
 				this.basket_modal_show = false
 				this.selected_products = []
