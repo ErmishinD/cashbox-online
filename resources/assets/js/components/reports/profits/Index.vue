@@ -21,7 +21,7 @@
           </template>
         </vue-good-table>
     </div>
-    
+
 
 
 
@@ -102,10 +102,6 @@
         </template>
     </vue-good-table>
 
-  
- 
-
- 
 
 </template>
 
@@ -272,7 +268,7 @@ export default {
     }
   },
   mounted(){
-    
+
     this.getDataByDate()
 
     this.axios.post('/api/get_for_select/', {entities: ['Shop', 'ProductType']}).then(response => {
@@ -280,44 +276,60 @@ export default {
       this.product_types = response.data.ProductType
       this.current_product_type = this.product_types[0].id
     })
-    
 
-  	document.title = this.$t('Прибыль');
+
+      document.title = this.$t('Прибыль');
 
   },
-  methods:{
-      getDataByDate(startDate, endDate){
-        this.emitter.emit("isLoading", true);
-        this.axios.get('/api/reports/profit', {params: {start_date: startDate, end_date:endDate}}).then((response) => {
-            this.common_data_rows = response.data['data']
-            this.sum_data = response.data['sum_data']
-        })
-        this.axios.get(`/api/reports/profit_by_day/`, {params: {start_date: startDate, end_date:endDate, shop_id: this.current_shop}}).then((response) => {
-            Promise.resolve(this.data = response.data['data']).then(() => {
-              this.amountData = {
-                labels: this.data.date_list,
-                datasets: [
-                  {
-                    label: this.$t('Доходы'),
-                    data: this.data.amount_list,
-                    fill: true,
-                    borderColor: "#ffc107",
-                  },
-                  
-                ],
-              }
+  methods: {
+      getDataByDate(startDate, endDate) {
+          this.emitter.emit("isLoading", true);
 
-              this.expenseData = {
-                labels: this.data.date_list,
-                datasets: [
-                  {
-                    label: this.$t('Расходы'),
-                    data: this.data.self_cost_list,
-                    fill: true,
-                    borderColor: "#dc3545",
+          let start_date = startDate ? startDate : this.start_date
+          let end_date = endDate ? endDate : this.end_date
+
+          this.axios.get('/api/reports/profit', {
+              params: {
+                  start_date: start_date,
+                  end_date: end_date,
+                  shop_id: this.current_shop
+              }
+          }).then((response) => {
+              this.common_data_rows = response.data['data']
+              this.sum_data = response.data['sum_data']
+          })
+          this.axios.get(`/api/reports/profit_by_day/`, {
+              params: {
+                  start_date: start_date,
+                  end_date: end_date,
+                  shop_id: this.current_shop
+              }
+          }).then((response) => {
+              Promise.resolve(this.data = response.data['data']).then(() => {
+                  this.amountData = {
+                      labels: this.data.date_list,
+                      datasets: [
+                          {
+                              label: this.$t('Доходы'),
+                              data: this.data.amount_list,
+                              fill: true,
+                              borderColor: "#ffc107",
+                          },
+
+                      ],
+                  }
+
+                  this.expenseData = {
+                      labels: this.data.date_list,
+                      datasets: [
+                          {
+                              label: this.$t('Расходы'),
+                              data: this.data.self_cost_list,
+                              fill: true,
+                              borderColor: "#dc3545",
                   },
-                  
-                ],
+
+                      ],
               }
 
               this.profitData = {
@@ -330,72 +342,84 @@ export default {
                     borderColor: "#198754",
                   },
 
-                  
+
                 ],
               }
 
 
-              this.options = {
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                },
-              }
-            })
-            
-            
-        })
+                  this.options = {
+                      plugins: {
+                          legend: {
+                              display: false,
+                          },
+                      },
+                  }
+              })
 
-        this.axios.get('/api/reports/profit_by_category/', {params: {start_date: startDate, end_date:endDate, shop_id: this.current_shop}}).then((response) => {
-          let category_data
-          Promise.resolve(category_data = response.data['data']).then(() => {
-            this.profitDataByCategory = {
-              labels: category_data.categories_list,
-                datasets: [
-                  {
-                    data: category_data.profit_list,
-                    backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
-                  },
-                  
-                ],
-            }
-
-            this.categoryOptions = {
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                },
-              }
 
           })
-        })
 
-        this.axios.get('/api/reports/popular_sell_products/', {params: {start_date: startDate, end_date:endDate, shop_id: this.current_shop}}).then((response) => {
-          let popular_products_data
-          Promise.resolve(popular_products_data = response.data['data']).then(() => {
-            this.popularProductsData = {
-              labels: popular_products_data.sell_products_list,
-                datasets: [
-                  {
-                    data: popular_products_data.count_list,
-                    backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
-                  },
-                  
-                ],
-            }
-
-            this.popularProductsOptions = {
-                plugins: {
-                  legend: {
-                    position: 'bottom'
-                  },
-                },
+          this.axios.get('/api/reports/profit_by_category/', {
+              params: {
+                  start_date: start_date,
+                  end_date: end_date,
+                  shop_id: this.current_shop
               }
+          }).then((response) => {
+              let category_data
+              Promise.resolve(category_data = response.data['data']).then(() => {
+                  this.profitDataByCategory = {
+                      labels: category_data.categories_list,
+                      datasets: [
+                          {
+                              data: category_data.profit_list,
+                              backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
+                          },
 
-            
+                      ],
+                  }
+
+                  this.categoryOptions = {
+                      plugins: {
+                          legend: {
+                              display: false,
+                          },
+                      },
+                  }
+
+              })
           })
+
+          this.axios.get('/api/reports/popular_sell_products/', {
+              params: {
+                  start_date: start_date,
+                  end_date: end_date,
+                  shop_id: this.current_shop
+              }
+          }).then((response) => {
+              let popular_products_data
+              Promise.resolve(popular_products_data = response.data['data']).then(() => {
+                  this.popularProductsData = {
+                      labels: popular_products_data.sell_products_list,
+                      datasets: [
+                          {
+                              data: popular_products_data.count_list,
+                              backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
+                          },
+
+                      ],
+                  }
+
+                  this.popularProductsOptions = {
+                      plugins: {
+                          legend: {
+                              position: 'bottom'
+                          },
+                      },
+                  }
+
+
+              })
         })
 
         this.getProductConsumptions()
@@ -412,9 +436,9 @@ export default {
         return `${startDate} - ${endDate}`
       }
       else{
-        
+
       }
-      
+
      },
      getFormatDate(date){
       const day = date.getDate();
@@ -457,7 +481,7 @@ export default {
         this.getDataByDate()
       }
 
-      
+
      },
      updateParams(newProps) {
         console.log(newProps)
@@ -477,7 +501,7 @@ export default {
       onSortChange(params) {
         let data = Object.assign({}, params)[0]
 
-          
+
           this.updateParams({
               sort: [{
                   type: data.type,
@@ -517,7 +541,7 @@ export default {
                     data: consumption_product_data.values_list,
                     backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
                   },
-                  
+
                 ],
             }
 
@@ -529,7 +553,7 @@ export default {
                 },
               }
 
-            
+
           })
           this.emitter.emit("isLoading", false);
         })
