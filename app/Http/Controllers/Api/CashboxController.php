@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\CashboxDeleted;
 use App\Events\MoneyCollected;
 use App\Events\OrderSold;
 use App\Http\Controllers\Controller;
@@ -112,6 +113,8 @@ class CashboxController extends Controller
             $cashbox->product_consumptions()->delete();
             $cashbox->delete();
         });
+
+        CashboxDeleted::dispatch($cashbox, Auth::user());
 
         return response()->json(['success' => true], 202);
     }

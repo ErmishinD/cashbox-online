@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\CashboxDeleted;
 use App\Events\MoneyCollected;
 use App\Events\OrderSold;
 use App\Events\ProductPurchaseDeleted;
@@ -71,6 +72,7 @@ class LogEventsSubscriber
 
             MoneyCollected::class => 'handle',
             OrderSold::class => 'handle',
+            CashboxDeleted::class => 'handle',
 
             ProductPurchaseMade::class => 'handle',
             ProductPurchaseEdited::class => 'handle',

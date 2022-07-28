@@ -117,10 +117,12 @@ class Cashbox extends Model implements SystemLoggable
     {
         if ($action == SystemLog::ACTIONS['collected']) {
             return __('Операции на сумму') . ': ' . ($data['sum'] ?? 0);
-        }
-        elseif ($action == SystemLog::ACTIONS['sold']) {
+        } elseif ($action == SystemLog::ACTIONS['sold']) {
             return __('Заказ на сумму') . ': ' . ($data['sum'] ?? 0);
+        } elseif ($action == SystemLog::ACTIONS['deleted']) {
+            return __('Оплата на сумму') . ' ' . ($this->amount ?? 0) . ' ' . __('грн') . ' (' . ($this->sell_product_id ? $this->sell_product()->withTrashed()->first()?->name : $this->description) . ')';
         }
+
         return '';
     }
 
