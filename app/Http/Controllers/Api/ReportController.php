@@ -6,6 +6,7 @@ use App\Filters\CashboxFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\Report\DateRangeRequest;
+use App\Http\Resources\Api\Cashbox\ProfitByShopCollection;
 use App\Http\Resources\Api\Report\CashboxTransactionResource;
 use App\Http\Resources\Api\Report\ConsumptionByCategoryCollection;
 use App\Http\Resources\Api\Report\PopularSellProductcsCollection;
@@ -83,10 +84,11 @@ class ReportController extends Controller
         $data = $request->validated();
 
         $transactions = Cashbox::query()
-            ->groupBy('shop_id')
+            ->groupBy('transaction_type', 'shop_id')
             ->with('shop')
             ->select([
                 'shop_id',
+                'transaction_type',
                 DB::raw('sum(amount) as sum_amount'),
                 DB::raw('sum(self_cost) as sum_self_cost'),
                 DB::raw('sum(profit) as sum_profit'),
@@ -97,17 +99,19 @@ class ReportController extends Controller
                 $query->where('shop_id', $request->shop_id);
             })
             ->whereBetween('created_at', [$data['start_date'], $data['end_date']])
-            ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
             ->get();
 
         return response()->json([
-            'data' => ProfitByShopResource::collection($transactions),
+            'data' => ProfitByShopCollection::make($transactions->groupBy('shop_id')),
             'sum_data' => [
-                'sum_amount' => round($transactions->sum('sum_amount'), 2),
-                'sum_self_cost' => round($transactions->sum('sum_self_cost'), 2),
-                'sum_profit' => round($transactions->sum('sum_profit'), 2),
-                'sum_amount_cash' => round($transactions->sum('sum_amount_cash'), 2),
-                'sum_amount_card' => round($transactions->sum('sum_amount_card'), 2),
+                'sum_amount' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('sum_amount'), 2),
+                'sum_self_cost' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('sum_self_cost'), 2),
+                'sum_profit' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('sum_profit'), 2),
+                'sum_amount_cash' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('sum_amount_cash'), 2),
+                'sum_amount_card' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('sum_amount_card'), 2),
+                'sum_out_amount' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('sum_amount'), 2),
+                'sum_out_amount_card' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('sum_amount_card'), 2),
+                'sum_out_amount_cash' => round($transactions->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('sum_amount_cash'), 2),
             ]
         ]);
     }
