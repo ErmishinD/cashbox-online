@@ -5,9 +5,11 @@
   <Datepicker class="datepicker" v-model="date" range multiCalendars :format="format"  @update:modelValue="handleInternal"></Datepicker>
 
    <div class="tac content_title">
+       {{ $t('Суммарный вал') }}: {{ sum_data.sum_amount }}<br>
        {{ $t('Суммарная прибыль') }}: {{ sum_data.sum_profit - sum_data.sum_out_amount }}
-       <i v-bind:class="is_common_data_hidden ? 'fa-plus' : 'fa-minus'" @click="is_common_data_hidden = !is_common_data_hidden" class="fas toggle_icon"></i>
-    </div>
+       <i v-bind:class="is_common_data_hidden ? 'fa-plus' : 'fa-minus'"
+          @click="is_common_data_hidden = !is_common_data_hidden" class="fas toggle_icon"></i>
+   </div>
     <div v-show="!is_common_data_hidden">
       <vue-good-table style="position: static;"
           :columns="common_data_columns"

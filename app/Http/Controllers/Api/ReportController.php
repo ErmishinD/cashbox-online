@@ -162,12 +162,15 @@ class ReportController extends Controller
         $paginate_data = $paginateRequest->validated();
 
         $transactions = Cashbox::query()
-            ->with(['sell_product', 'operator', 'collector', 'sell_product'])
+            ->with(['sell_product' => function ($query) {
+                $query->withTrashed();
+            }, 'operator', 'collector'])
             ->when($dateRangeRequest->shop_id, function ($query) use ($dateRangeRequest) {
                 $query->where('shop_id', $dateRangeRequest->shop_id);
             })
             ->whereBetween('cashboxes.created_at', [$report_filter_data['start_date'], $report_filter_data['end_date']])
             ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
+            ->whereNotNull('sell_product_id')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 
