@@ -5,9 +5,11 @@
   <Datepicker class="datepicker" v-model="date" range multiCalendars :format="format"  @update:modelValue="handleInternal"></Datepicker>
 
    <div class="tac content_title">
-    {{$t('Суммарная прибыль')}}: {{sum_data.sum_profit}}
-    <i v-bind:class="is_common_data_hidden ? 'fa-plus' : 'fa-minus'" @click="is_common_data_hidden = !is_common_data_hidden" class="fas toggle_icon"></i>
-    </div>
+       {{ $t('Суммарный вал') }}: {{ sum_data.sum_amount }}<br>
+       {{ $t('Суммарная прибыль') }}: {{ sum_data.sum_profit - sum_data.sum_out_amount }}
+       <i v-bind:class="is_common_data_hidden ? 'fa-plus' : 'fa-minus'"
+          @click="is_common_data_hidden = !is_common_data_hidden" class="fas toggle_icon"></i>
+   </div>
     <div v-show="!is_common_data_hidden">
       <vue-good-table style="position: static;"
           :columns="common_data_columns"
@@ -73,7 +75,7 @@
   </div>
 
   <div class="tac content_title">
-    {{$t('Все операции в кассе')}}
+      {{ $t('Все продажи в кассе') }}
   </div>
 
   <vue-good-table style="position: static;"
@@ -231,21 +233,25 @@ export default {
           field: 'sum_amount',
         },
         {
-          label: this.$t('Доходы картой'),
-          field: 'sum_amount_card',
+            label: this.$t('Доходы картой'),
+            field: 'sum_amount_card',
         },
-        {
-          label: this.$t('Доходы наличными'),
-          field: 'sum_amount_cash',
-        },
-        {
-          label: this.$t('Расходы'),
-          field: 'sum_self_cost',
-        },
-        {
-          label: this.$t('Прибыль'),
-          field: 'sum_profit',
-        },
+          {
+              label: this.$t('Доходы наличными'),
+              field: 'sum_amount_cash',
+          },
+          {
+              label: this.$t('Себестоимость'),
+              field: 'sum_self_cost',
+          },
+          {
+              label: this.$t('Расходы'),
+              field: 'sum_out_amount',
+          },
+          {
+              label: this.$t('Прибыль'),
+              field: 'sum_profit',
+          },
       ],
       common_data_rows: [],
       product_types: '',
