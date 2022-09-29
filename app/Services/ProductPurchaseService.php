@@ -17,7 +17,7 @@ class ProductPurchaseService
                     $used_purchases[$product_type['id']][] = [
                         'id' => $product_purchase->id,
                         'quantity' => $product_type['quantity'],
-                        'cost' => $cost_difference,
+                        'cost' => round($cost_difference, 2),
                         'expiration_date' => $product_purchase->expiration_date
                             ? $product_purchase->expiration_date->format('Y-m-d')
                             : null,
@@ -25,7 +25,7 @@ class ProductPurchaseService
                     ];
 
                     $product_purchase->current_quantity -= $product_type['quantity'];
-                    $product_purchase->current_cost -= $cost_difference;
+                    $product_purchase->current_cost -= round($cost_difference, 2);
                     $product_purchase->save();
                     break;
                 }

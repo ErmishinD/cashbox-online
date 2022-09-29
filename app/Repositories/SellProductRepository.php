@@ -38,7 +38,6 @@ class SellProductRepository extends BaseRepository
                         }]);
                 }
             ])
-            ->with(['category', 'media'])
             ->orderBy('position')
             ->filter($filters)
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);

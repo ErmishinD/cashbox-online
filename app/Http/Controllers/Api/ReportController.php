@@ -23,6 +23,7 @@ use App\Models\ProductPurchase;
 use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Models\Storage;
+use App\Models\Transfer;
 use App\Models\WriteOff;
 use App\Services\ProductTypeService;
 use Illuminate\Support\Facades\DB;
