@@ -23,7 +23,7 @@ class TenantRequest extends FormRequest
     {
         $this->merge([
             'company_id' => session('company_id') ?? (Auth::user()->company_id ?? optional(Company::first())->id),
-            'shop_id' => session('shop_id'),
+            'shop_id' => session('shop_id') ?? $this->shop_id,
         ]);
     }
 }

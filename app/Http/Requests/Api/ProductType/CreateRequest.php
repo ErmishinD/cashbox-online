@@ -21,7 +21,7 @@ class CreateRequest extends TenantRequest
                 'required',
                 Rule::unique('product_types')->where(function ($query) {
                     return $query->where('company_id', session('company_id'));
-                })->ignore($this->product_type)
+                })->ignore($this->product_type)->withoutTrashed()
             ],
             'type' => ['required', Rule::in(array_values(ProductType::TYPES))],
             'photo' => ['nullable'],

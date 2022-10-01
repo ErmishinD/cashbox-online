@@ -1,10 +1,10 @@
-name: 'ProductConsumption management'
+name: 'Permission management'
 description: ''
 endpoints:
   -
     httpMethods:
-      - POST
-    uri: api/product_consumptions/get_paginated
+      - GET
+    uri: api/permissions
     metadata:
       title: ''
       description: ''
@@ -16,20 +16,16 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters:
-      per_page:
-        name: per_page
-        description: ''
-        required: true
-        example: 17
-        type: integer
-        custom: []
-      page:
-        name: page
-        description: ''
-        required: true
-        example: 17
-        type: integer
-        custom: []
-    responses: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":{"Category":[{"id":1,"ability":"access"},{"id":2,"ability":"create"},{"id":3,"ability":"show"},{"id":4,"ability":"edit"},{"id":5,"ability":"delete"}],"Audit":[{"id":6,"ability":"access"}],"WriteOff":[{"id":7,"ability":"access"},{"id":8,"ability":"create"},{"id":9,"ability":"show"}],"Transfer":[{"id":10,"ability":"access"},{"id":11,"ability":"create"},{"id":12,"ability":"show"}],"Role":[{"id":13,"ability":"access"},{"id":14,"ability":"create"},{"id":15,"ability":"show"},{"id":16,"ability":"edit"},{"id":17,"ability":"delete"}],"Company":[{"id":18,"ability":"show"},{"id":19,"ability":"edit"}],"Shop":[{"id":20,"ability":"access"},{"id":21,"ability":"create"},{"id":22,"ability":"show"},{"id":23,"ability":"edit"},{"id":24,"ability":"delete"}],"Storage":[{"id":25,"ability":"access"},{"id":26,"ability":"create"},{"id":27,"ability":"show"},{"id":28,"ability":"edit"},{"id":29,"ability":"delete"}],"ProductType":[{"id":30,"ability":"access"},{"id":31,"ability":"create"},{"id":32,"ability":"show"},{"id":33,"ability":"edit"},{"id":34,"ability":"delete"}],"MeasureType":[{"id":35,"ability":"access"},{"id":36,"ability":"create"},{"id":37,"ability":"show"},{"id":38,"ability":"edit"},{"id":39,"ability":"delete"}],"SellProduct":[{"id":40,"ability":"access"},{"id":41,"ability":"create"},{"id":42,"ability":"show"},{"id":43,"ability":"edit"},{"id":44,"ability":"delete"}],"SellProductGroup":[{"id":45,"ability":"access"},{"id":46,"ability":"create"},{"id":47,"ability":"show"},{"id":48,"ability":"edit"},{"id":49,"ability":"delete"}],"ProductPurchase":[{"id":50,"ability":"access"},{"id":51,"ability":"create"},{"id":52,"ability":"show"},{"id":53,"ability":"edit"},{"id":54,"ability":"delete"}],"Cashbox":[{"id":55,"ability":"access"},{"id":56,"ability":"create"},{"id":57,"ability":"show"},{"id":58,"ability":"edit"},{"id":59,"ability":"delete"},{"id":60,"ability":"collect"},{"id":61,"ability":"history"},{"id":68,"ability":"viewOnlyMySales"}],"User":[{"id":62,"ability":"access"},{"id":63,"ability":"create"},{"id":64,"ability":"show"},{"id":65,"ability":"edit"},{"id":66,"ability":"delete"}],"Report":[{"id":67,"ability":"access"},{"id":69,"ability":"warningThreshold"},{"id":70,"ability":"profit"},{"id":71,"ability":"purchaseRecommendations"}],"Counterparty":[{"id":77,"ability":"access"},{"id":78,"ability":"create"},{"id":79,"ability":"show"},{"id":80,"ability":"edit"},{"id":81,"ability":"delete"}],"ExternalSale":[{"id":82,"ability":"access"},{"id":83,"ability":"confirm"}]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '25'
+          vary: Origin
+        description: null
     responseFields: []

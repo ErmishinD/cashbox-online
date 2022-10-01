@@ -1,10 +1,10 @@
-name: 'File Upload endpoints'
+name: 'External Sale management'
 description: ''
 endpoints:
   -
     httpMethods:
       - POST
-    uri: api/file_upload
+    uri: api/external_sales/get_paginated
     metadata:
       title: ''
       description: ''
@@ -16,6 +16,130 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters: []
+    bodyParameters:
+      per_page:
+        name: per_page
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        custom: []
+      page:
+        name: page
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/external_sales/{externalSale}'
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      externalSale:
+        name: externalSale
+        description: ''
+        required: true
+        example: 3
+        type: integer
+        custom: []
+    queryParameters: []
     bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/external_sales/{externalSale}/confirm'
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      externalSale:
+        name: externalSale
+        description: ''
+        required: true
+        example: 3
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/external/sale
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      company_id:
+        name: company_id
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      shop_id:
+        name: shop_id
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      amount:
+        name: amount
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      sell_product_id:
+        name: sell_product_id
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      payment_type:
+        name: payment_type
+        description: 'Must be one of <code>_card</code> or <code>_cash</code>.'
+        required: true
+        example: _cash
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
     responses: []
     responseFields: []
