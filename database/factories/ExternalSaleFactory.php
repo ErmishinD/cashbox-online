@@ -29,6 +29,7 @@ class ExternalSaleFactory extends Factory
             'amount' => $this->faker->randomFloat(2, 50, 1000),
             'sell_product_id' => $sell_product_id,
             'payment_type' => $this->faker->randomElement(['_cash', '_card']),
+            'description' => 'Admin отметил(а), что Воруй Ирина посетил(а) массаж (2022-10-01)'
         ];
     }
 }
