@@ -98,7 +98,12 @@ class ExternalSaleControllerTest extends TestCase
         $response->assertJson([
             'pagination' => [
                 'data' => [
-                    ['id' => $external_sale->id]
+                    [
+                        'id' => $external_sale->id,
+                        'sell_product' => [
+                            'id' => $external_sale->sell_product_id
+                        ]
+                    ]
                 ]
             ]
         ]);

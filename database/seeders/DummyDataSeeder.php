@@ -521,7 +521,13 @@ class DummyDataSeeder extends Seeder
             }
 
             // создать внешние продажи (которые надо подтвердить)
-            ExternalSale::factory()->count(20)->create(['company_id' => $company_id]);
+            for ($i = 0; $i < 20; $i++) {
+                ExternalSale::factory()->create([
+                    'company_id' => $company_id,
+                    'shop_id' => $shop->id,
+                    'sell_product_id' => $allowed_sell_products->random()
+                ]);
+            }
         }
     }
 }
