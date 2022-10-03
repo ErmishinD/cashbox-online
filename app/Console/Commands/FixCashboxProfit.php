@@ -25,6 +25,9 @@ class FixCashboxProfit extends Command
      */
     protected $description = 'Fix profit column of cashboxes table';
 
+    protected float $remaining_profit_error = 0;
+    protected float $remaining_income_error = 0;
+
     /**
      * Execute the console command.
      *
@@ -59,11 +62,10 @@ class FixCashboxProfit extends Command
         $this->info('Recalculating profit for all sales and their product consumptions');
         Cashbox::whereNotNull('sell_product_id')
             ->with('product_consumptions')
-            ->get()
-            ->each(function ($transaction) {
+            ->get()->each(function ($transaction) {
                 // recalculate profit of all sales (profit = round(amount - self_cost))
-                $transaction->profit = round($transaction->amount - $transaction->self_cost, 2);
                 $transaction->save();
+                $transaction->profit = round($transaction->amount - $transaction->self_cost, 2);
 
                 // recalculate profit of product consumptions
                 $error = round($transaction->amount - $transaction->product_consumptions->sum('income'), 2);
@@ -71,9 +73,13 @@ class FixCashboxProfit extends Command
                     $this->error($transaction->id . ' -- income -- ' . $error);
 
                     $first_consumption = $transaction->product_consumptions->where('income', '>', 0)->first();
-                    $first_consumption->income = round($first_consumption->income + $error, 2);
-                    $first_consumption->profit = round($first_consumption->income - $first_consumption->cost, 2);
-                    $first_consumption->save();
+                    if ($first_consumption) {
+                        $first_consumption->income = round($first_consumption->income + $error, 2);
+                        $first_consumption->profit = round($first_consumption->income - $first_consumption->cost, 2);
+                        $first_consumption->save();
+                    } else {
+                        $this->remaining_profit_error += $error;
+                    }
                 }
 
                 $error = round($transaction->profit - $transaction->product_consumptions->sum('profit'), 2);
@@ -81,10 +87,23 @@ class FixCashboxProfit extends Command
                     $this->error($transaction->id . ' -- profit -- ' . $error);
 
                     $first_consumption = $transaction->product_consumptions->first();
-                    $first_consumption->profit = round($first_consumption->profit + $error, 2);
-                    $first_consumption->save();
+                    if ($first_consumption) {
+                        $first_consumption->profit = round($first_consumption->profit + $error, 2);
+                        $first_consumption->save();
+                    } else {
+                        $this->remaining_income_error += $error;
+                    }
                 }
             });
+
+
+        if ($this->remaining_profit_error > 0) {
+            $this->error('Remaining profit error = ' . $this->remaining_profit_error);
+        }
+
+        if ($this->remaining_income_error > 0) {
+            $this->error('Remaining income error = ' . $this->remaining_income_error);
+        }
 
         return 0;
     }
