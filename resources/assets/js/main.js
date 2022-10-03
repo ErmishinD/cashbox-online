@@ -132,6 +132,9 @@ import WriteOffIndex from './components/writeoff/Index'
 import WriteOffShow from './components/writeoff/Show'
 import WriteOffCreate from './components/writeoff/Create'
 
+/* import external sales */
+import ExternalSalesIndex from './components/external_sales/Index'
+
 /* import 404 */
 import PageNotFound from './components/404'
 
@@ -486,6 +489,12 @@ const router = createRouter({
 			name: 'write_off_show',
 			component: WriteOffShow,
 			props: true
+		},
+		{
+			path: '/external_sales',
+			name: 'external_sales_index',
+			component: ExternalSalesIndex,
+			props: true,
 		},
 		{
 			path: '/logout',
