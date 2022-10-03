@@ -6,6 +6,7 @@ use App\Models\Cashbox;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Counterparty;
+use App\Models\ExternalSale;
 use App\Models\MeasureType;
 use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
@@ -517,6 +518,15 @@ class DummyDataSeeder extends Seeder
                         ]);
                     }
                 }
+            }
+
+            // создать внешние продажи (которые надо подтвердить)
+            for ($i = 0; $i < 20; $i++) {
+                ExternalSale::factory()->create([
+                    'company_id' => $company_id,
+                    'shop_id' => $shop->id,
+                    'sell_product_id' => $allowed_sell_products->random()
+                ]);
             }
         }
     }

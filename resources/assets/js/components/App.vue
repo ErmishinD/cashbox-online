@@ -184,6 +184,14 @@
 	          })
   			}
 
+  			if(this.$can('ExternalSale_access')){
+  				sidebar_data.push({
+	          	href: '/external_sales',
+	            title: this.$t('Предпродажи'),
+	            icon: 'fas fa-clipboard-question',
+	          })
+  			}
+
 
 	          /* reports */
 

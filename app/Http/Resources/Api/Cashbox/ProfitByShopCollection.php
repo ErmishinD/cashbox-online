@@ -25,7 +25,7 @@ class ProfitByShopCollection extends ResourceCollection
                 'name' => optional($in)->shop->name,
                 'sum_amount' => optional($in)->sum_amount ?? 0,
                 'sum_self_cost' => optional($in)->sum_self_cost ?? 0,
-                'sum_profit' => (optional($in)->sum_profit ?? 0) - (optional($out)->sum_amount ?? 0),
+                'sum_profit' => (optional($in)->sum_profit ?? 0),
                 'sum_amount_card' => optional($in)->sum_amount_card ?? 0,
                 'sum_amount_cash' => optional($in)->sum_amount_cash ?? 0,
                 'sum_out_amount' => optional($out)->sum_amount ?? 0,

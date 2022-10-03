@@ -64,8 +64,9 @@ class CashboxRepository extends BaseRepository
                         $data['self_cost'] += $purchase['cost'];
                     }
                 }
+                $data['self_cost'] = round($data['self_cost'], 2);
 
-                $data['profit'] = $data['amount'] - $data['self_cost'];
+                $data['profit'] = round($data['amount'] - $data['self_cost'], 2);
 
                 $payment = $this->model->create($data);
 

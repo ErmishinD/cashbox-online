@@ -278,13 +278,7 @@
 
 	        				})
 	        			})
-	        			this.cards.forEach(el => {
-	        					el.counter = 1;
-	        					el.current_price = el.price
-	        					el.product_types.forEach(elem => {
-	        						elem.current_quantity = elem.quantity_in_main_measure_type
-	        					})
-	        			})
+	        			
 	        		}
 			        else{
 			        	Promise.resolve(Array.prototype.push.apply(this.cards, data.pagination.data)).then(result => {
@@ -292,6 +286,17 @@
 			        	})
 			        	console.log(this.cards)
 			        }
+
+			        this.cards.forEach(el => {
+			        		if(!el.counter){
+			        			el.counter = 1;
+			        		}
+			        		
+			        		el.current_price = el.price
+			        		el.product_types.forEach(elem => {
+			        			elem.current_quantity = elem.quantity_in_main_measure_type
+			        		})
+			        })
 
 				       if(data.pagination.last_page != data.pagination.current_page){
 				       	 this.serverParams.page = data.pagination.current_page+1

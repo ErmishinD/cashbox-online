@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class CompanyFactory extends Factory
 {
@@ -15,6 +16,7 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->company(),
+            'token' => Str::random(),
         ];
     }
 }

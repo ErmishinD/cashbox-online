@@ -1,10 +1,10 @@
-name: 'Get for select'
+name: 'File Upload endpoints'
 description: ''
 endpoints:
   -
     httpMethods:
       - POST
-    uri: api/get_for_select
+    uri: api/file_upload
     metadata:
       title: ''
       description: ''
@@ -16,14 +16,6 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters:
-      entities:
-        name: entities
-        description: 'Must be one of <code>Shop</code>, <code>Storage</code>, <code>Category</code>, <code>ProductType</code>, or <code>Counterparty</code>.'
-        required: true
-        example:
-          - Storage
-        type: 'string[]'
-        custom: []
+    bodyParameters: []
     responses: []
     responseFields: []

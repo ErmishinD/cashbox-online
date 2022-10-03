@@ -1,10 +1,10 @@
-name: 'Sell Product Group management'
+name: 'Role management'
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/sell_product_groups
+    uri: api/roles
     metadata:
       title: ''
       description: ''
@@ -19,129 +19,152 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"success":true,"data":[]}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '32'
-          vary: Origin
-        description: null
-    responseFields: []
-  -
-    httpMethods:
-      - POST
-    uri: api/sell_product_groups
-    metadata:
-      title: ''
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters:
-      company_id:
-        name: company_id
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
-      name:
-        name: name
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
-      has_discount:
-        name: has_discount
-        description: ''
-        required: false
-        example: false
-        type: boolean
-        custom: []
-      sell_products:
-        name: sell_products
-        description: ''
-        required: true
-        example:
-          - consequatur
-        type: 'string[]'
-        custom: []
-      photo:
-        name: photo
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/sell_product_groups/{id}'
-    metadata:
-      title: ''
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the sell product group.'
-        required: true
-        example: 17
-        type: integer
-        custom: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 404
+        status: 500
         content: |-
           {
-              "message": "No query results for model [App\\Models\\SellProductGroup] 1",
-              "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
-              "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php",
-              "line": 355,
+              "message": "Class name must be a valid object or a string",
+              "exception": "Error",
+              "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
+              "line": 755,
               "trace": [
                   {
-                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php",
-                      "line": 331,
-                      "function": "prepareException",
-                      "class": "Illuminate\\Foundation\\Exceptions\\Handler",
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
+                      "line": 551,
+                      "function": "newRelatedInstance",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
                       "type": "->"
                   },
                   {
-                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php",
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
+                      "line": 622,
+                      "function": "morphToMany",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/spatie/laravel-permission/src/Models/Role.php",
+                      "line": 79,
+                      "function": "morphedByMany",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 743,
+                      "function": "users",
+                      "class": "Spatie\\Permission\\Models\\Role",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Relation.php",
+                      "line": 104,
+                      "function": "Illuminate\\Database\\Eloquent\\Concerns\\{closure}",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 744,
+                      "function": "noConstraints",
+                      "class": "Illuminate\\Database\\Eloquent\\Relations\\Relation",
+                      "type": "::"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 543,
+                      "function": "getRelationWithoutConstraints",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
+                      "line": 612,
+                      "function": "withAggregate",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php",
+                      "line": 23,
+                      "function": "withCount",
+                      "class": "Illuminate\\Database\\Eloquent\\Builder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
+                      "line": 2133,
+                      "function": "forwardCallTo",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/app/Repositories/RoleRepository.php",
+                      "line": 93,
+                      "function": "__call",
+                      "class": "Illuminate\\Database\\Eloquent\\Model",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/app/Http/Controllers/Api/RoleController.php",
+                      "line": 31,
+                      "function": "getWithUsersCount",
+                      "class": "App\\Repositories\\RoleRepository",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Controller.php",
                       "line": 54,
-                      "function": "render",
-                      "class": "Illuminate\\Foundation\\Exceptions\\Handler",
+                      "function": "index",
+                      "class": "App\\Http\\Controllers\\Api\\RoleController",
                       "type": "->"
                   },
                   {
-                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
-                      "line": 51,
-                      "function": "render",
-                      "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+                      "line": 45,
+                      "function": "callAction",
+                      "class": "Illuminate\\Routing\\Controller",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                      "line": 261,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\ControllerDispatcher",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                      "line": 204,
+                      "function": "runController",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                      "line": 725,
+                      "function": "run",
+                      "class": "Illuminate\\Routing\\Route",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 185,
-                      "function": "handleException",
-                      "class": "Illuminate\\Routing\\Pipeline",
+                      "line": 141,
+                      "function": "Illuminate\\Routing\\{closure}",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php",
+                      "line": 50,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
                       "type": "->"
                   },
                   {
@@ -668,7 +691,89 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '31'
+          x-ratelimit-remaining: '24'
+          vary: Origin
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/roles
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      human_name:
+        name: human_name
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      company_id:
+        name: company_id
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      permissions:
+        name: permissions
+        description: ''
+        required: false
+        example:
+          - consequatur
+        type: 'string[]'
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/roles/{id}'
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the role.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"success":true,"data":{"id":1,"name":"Super Admin","human_name":"Super Administrator","permissions":[]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '23'
           vary: Origin
         description: null
     responseFields: []
@@ -676,7 +781,7 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/sell_product_groups/{id}'
+    uri: 'api/roles/{id}'
     metadata:
       title: ''
       description: ''
@@ -689,55 +794,41 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the sell product group.'
+        description: 'The ID of the role.'
         required: true
-        example: 17
+        example: 1
         type: integer
         custom: []
     queryParameters: []
     bodyParameters:
-      company_id:
-        name: company_id
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
       name:
         name: name
         description: ''
-        required: false
-        example: null
+        required: true
+        example: consequatur
         type: string
         custom: []
-      has_discount:
-        name: has_discount
+      human_name:
+        name: human_name
         description: ''
-        required: false
-        example: true
-        type: boolean
+        required: true
+        example: consequatur
+        type: string
         custom: []
-      sell_products:
-        name: sell_products
+      permissions:
+        name: permissions
         description: ''
         required: false
         example:
           - consequatur
         type: 'string[]'
         custom: []
-      photo:
-        name: photo
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
     responses: []
     responseFields: []
   -
     httpMethods:
       - DELETE
-    uri: 'api/sell_product_groups/{id}'
+    uri: 'api/roles/{id}'
     metadata:
       title: ''
       description: ''
@@ -750,9 +841,9 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the sell product group.'
+        description: 'The ID of the role.'
         required: true
-        example: 17
+        example: 1
         type: integer
         custom: []
     queryParameters: []

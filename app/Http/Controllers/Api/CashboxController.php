@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\CashboxDeleted;
 use App\Events\MoneyCollected;
 use App\Events\OrderSold;
 use App\Http\Controllers\Controller;
@@ -54,6 +55,14 @@ class CashboxController extends Controller
         $this->authorize('Cashbox_create');
 
         $data = $request->validated();
+
+        if ($data['transaction_type'] == Cashbox::TRANSACTION_TYPES['in']) {
+            $data['self_cost'] = 0;
+            $data['profit'] = $data['amount'];
+        } else {
+            $data['self_cost'] = $data['amount'];
+            $data['profit'] = 0 - $data['amount'];
+        }
         $payment = $this->cashbox->create($data);
         return response()->json(['success' => true, 'data' => new DefaultResource($payment)], 201);
     }
@@ -112,6 +121,8 @@ class CashboxController extends Controller
             $cashbox->product_consumptions()->delete();
             $cashbox->delete();
         });
+
+        CashboxDeleted::dispatch($cashbox, Auth::user());
 
         return response()->json(['success' => true], 202);
     }

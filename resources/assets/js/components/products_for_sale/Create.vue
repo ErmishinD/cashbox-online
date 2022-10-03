@@ -146,7 +146,7 @@ export default{
 	},
 	created () {
         document.title = this.$t('Создание товара для продажи');
-		this.emitter.emit("isLoading", true);
+		this.emitter.emit("isLoading", true)
 		this.axios.get('/api/product_types/get_for_select').then((response) => {
 			console.log(response.data.data)
 			this.contains_for_multiselect = response.data.data

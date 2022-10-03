@@ -6,7 +6,7 @@
 
    <div class="tac content_title">
        {{ $t('Суммарный вал') }}: {{ sum_data.sum_amount }}<br>
-       {{ $t('Суммарная прибыль') }}: {{ sum_data.sum_profit - sum_data.sum_out_amount }}
+       {{ $t('Суммарная прибыль') }}: {{ sum_data.sum_profit }}
        <i v-bind:class="is_common_data_hidden ? 'fa-plus' : 'fa-minus'"
           @click="is_common_data_hidden = !is_common_data_hidden" class="fas toggle_icon"></i>
    </div>

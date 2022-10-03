@@ -18,24 +18,27 @@
 			    </div>
 
 			    <div>
-			    	{{$t('Проданный товар')}}: 
-			    	<router-link class="redirect_from_table"
-      	      	                 :to="{name: 'products_for_sale_show', params: {id: current_detail.consumable.sell_product.id}}">{{ current_detail.consumable.sell_product.name }}
-      	      	    </router-link> 
+                    {{ $t('Проданный товар') }}:
+                    <router-link class="redirect_from_table"
+                                 :to="{name: 'products_for_sale_show', params: {id: current_detail.consumable.sell_product.id}}">
+                        {{ current_detail.consumable.sell_product.name }}
+                    </router-link>
 			    </div>
 
 			    <div>
-			    	{{$t('Магазин')}}: 
-			    	<router-link class="redirect_from_table"
-      	      	                 :to="{name: 'shops_show', params: {id: current_detail.consumable.shop.id}}">{{ current_detail.consumable.shop.name }}
-      	      	    </router-link> 
+                    {{ $t('Магазин') }}:
+                    <router-link class="redirect_from_table"
+                                 :to="{name: 'shops_show', params: {id: current_detail.consumable.shop.id}}">
+                        {{ current_detail.consumable.shop.name }}
+                    </router-link>
 			    </div>
 
 			    <div>
-			    	{{$t('Продавец')}}: 
-			    	<router-link class="redirect_from_table"
-      	      	                 :to="{name: 'users_show', params: {id: current_detail.consumable.operator.id}}">{{ current_detail.consumable.operator.name }}
-      	      	    </router-link> 
+                    {{ $t('Продавец') }}:
+                    <router-link class="redirect_from_table"
+                                 :to="{name: 'users_show', params: {id: current_detail.consumable.operator.id}}">
+                        {{ current_detail.consumable.operator.name }}
+                    </router-link>
 			    </div>
 			  </div>
 
@@ -54,7 +57,7 @@
 			    </div>
 
 			    <div>
-			    	{{$t('Списал(а)')}}: 
+                    {{ $t('Списал(а)') }}:
 			    	<router-link class="redirect_from_table"
       	      	                 :to="{name: 'users_show', params: {id: current_detail.consumable.user.id}}">{{ current_detail.consumable.user.name }}
       	      	    </router-link>
@@ -71,19 +74,21 @@
 			      {{ $t('Просмотр трансфера') }}
 			    </div>
 
-			    <div>
-			    	{{$t('Путь трансфера')}}: 
-			    	<router-link class="redirect_from_table"
-      	      	                 :to="{name: 'storages_show', params: {id: current_detail.consumable.from_storage.id}}">{{ current_detail.consumable.from_storage.name }}
-      	      	    </router-link>  
-      	      	    &#8594; 
-      	      	    <router-link class="redirect_from_table"
-      	      	                 :to="{name: 'storages_show', params: {id: current_detail.consumable.to_storage.id}}">{{ current_detail.consumable.to_storage.name }}
-      	      	    </router-link>
-			    </div>
+                  <div>
+                      {{ $t('Путь трансфера') }}:
+                      <router-link class="redirect_from_table"
+                                   :to="{name: 'storages_show', params: {id: current_detail.consumable.from_storage.id}}">
+                          {{ current_detail.consumable.from_storage.name }}
+                      </router-link>
+                      &#8594;
+                      <router-link class="redirect_from_table"
+                                   :to="{name: 'storages_show', params: {id: current_detail.consumable.to_storage.id}}">
+                          {{ current_detail.consumable.to_storage.name }}
+                      </router-link>
+                  </div>
 
 			    <div>
-			    	{{$t('Отправил(а)')}}: 
+                    {{ $t('Отправил(а)') }}:
 			    	<router-link class="redirect_from_table"
       	      	                 :to="{name: 'users_show', params: {id: current_detail.consumable.transferred_by.id}}">{{ current_detail.consumable.transferred_by.name }}
       	      	    </router-link>
@@ -92,7 +97,7 @@
 
 			</div>
 		</div>
-  	    
+
   	  </GDialog>
 
 
@@ -111,7 +116,7 @@
 		<span>{{$t('Получено денег от продаж')}}: {{counterparty.cashbox_consumptions_sum_income}}</span>
 	</div>
 	<div class="row-btw">
-		<span>{{$t('Прибыль')}}: {{counterparty.cashbox_consumptions_sum_profit}}</span>
+        <span>{{ $t('Прибыль от продаж') }}: {{ counterparty.cashbox_consumptions_sum_profit }}</span>
 		<span>{{$t('Сумма списаний (в грн)')}}: {{counterparty.write_off_consumptions_sum_cost}}</span>
 	</div>
 
@@ -152,7 +157,7 @@
       	      	  <span  v-if="props.column.field == 'current_quantity'">
       	      	    {{props.row.current_quantity / props.row.product_type.main_measure_type.quantity}}{{props.row.product_type.main_measure_type.name}}
       	      	  </span>
-		      	
+
 			      <span class="table_actions" v-if="props.column.field == 'actions'">
 		      	    <i @click="clickToGetConsumption(props.row)" class="fas fa-eye"></i>
 		      	  </span>
@@ -180,8 +185,8 @@
 				<div class="row-btw">
 					<span style="margin-inline: auto;">{{$t('Текущее кол-во (грн)')}} - {{current_purchase.current_cost}}</span>
 				</div>
-				
-			</div>
+
+            </div>
 			<vue-good-table style="position: static;"
 		      :columns="counterparty_consumptions_columns"
 		      :rows="counterparty_consumptions_rows"
@@ -197,7 +202,7 @@
 	            }"
 		     >
 		      <template #table-row="props">
-		      	
+
 		      	<span  v-if="props.column.field == 'quantity'">
       	      	    {{props.row.quantity / this.current_product_type.main_measure_type.quantity}}{{this.current_product_type.main_measure_type.name}}
       	      	  </span>
@@ -212,12 +217,12 @@
 		      	    <i @click="clickToGetDetails(props.row)" class="fas fa-eye"></i>
 		      	  </span>
 
-		      	 
-		        </template>
+
+              </template>
 		    </vue-good-table>
 		</div>
 	</div>
-	
+
 </template>
 
 <script>
@@ -311,7 +316,7 @@ export default{
 			current_purchase: '',
 			current_detail: '',
 			modal_show: false,
-		} 
+        }
 	},
 	mounted(){
 		this.emitter.emit("isLoading", true);
@@ -321,13 +326,10 @@ export default{
 	       this.getPurchaseData()
 	     })
 
-		
 
-		
-		
-	},
+    },
 	created () {
-        
+
     },
     methods: {
     	updateParamsPurchases(newProps) {
@@ -348,7 +350,7 @@ export default{
       onSortChangePurchases(params) {
   	    let data = Object.assign({}, params)[0]
 
-          
+
           this.updateParamsPurchases({
               sort: [{
                   type: data.type,
@@ -364,9 +366,9 @@ export default{
           this.updateParamsPurchases(params);
           this.getPurchaseData();
       },
-    
 
-    updateParamsConsumptions(newProps) {
+
+        updateParamsConsumptions(newProps) {
         console.log(newProps)
           this.serverParamsConsumptions = Object.assign({}, this.serverParamsConsumptions, newProps);
       },
@@ -384,7 +386,7 @@ export default{
       onSortChangeConsumptions(params) {
   	    let data = Object.assign({}, params)[0]
 
-          
+
           this.updateParamsConsumptions({
               sort: [{
                   type: data.type,

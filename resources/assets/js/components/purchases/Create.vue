@@ -235,12 +235,7 @@ export default{
 	    				Promise.resolve(this.cards = response.data.pagination.data).then(result => {
 	    					this.in_progress_loading_data = false
 	    				})
-	    				this.cards.forEach(el => {
-	    					el.amount = 0
-	    					el.expiration = 0;
-	    					el.quantity = 1
-	    					el.current_price = 0
-	    				})
+	    				
 	    				if(this.product_type_id && !this.is_search_from_other_page){
 	    					let selected_out_card = this.cards.find(item => item.id == this.product_type_id)
 	    					this.selected_products.push(selected_out_card)
@@ -290,6 +285,13 @@ export default{
 	    					this.in_progress_loading_data = false
 	    				})
 	    			}
+
+	    			this.cards.forEach(el => {
+	    					el.amount = 0
+	    					el.expiration = 0;
+	    					el.quantity = 1
+	    					el.current_price = 0
+	    				})
 
 	    			if(data.pagination.last_page != data.pagination.current_page){
 	    				 this.serverParams.page = data.pagination.current_page+1

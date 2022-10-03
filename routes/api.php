@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CashboxController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CounterpartyController;
+use App\Http\Controllers\Api\ExternalSaleController;
 use App\Http\Controllers\Api\FileUploadController;
 use App\Http\Controllers\Api\GetForSelectController;
 use App\Http\Controllers\Api\MeasureTypeController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Api\SystemLogController;
 use App\Http\Controllers\Api\TransferController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WriteOffController;
+use App\Http\Middleware\VerifyExternalRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -157,6 +159,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('cashbox', CashboxController::class);
 
     /*
+     * External Sales
+     */
+    Route::post('external_sales/get_paginated', [ExternalSaleController::class, 'get_paginated']);
+    Route::post('external_sales/{externalSale}/confirm', [ExternalSaleController::class, 'confirm']);
+    Route::delete('external_sales/{externalSale}', [ExternalSaleController::class, 'destroy']);
+
+    /*
      * Transfer
      */
     Route::prefix('transfers')->group(function () {
@@ -218,4 +227,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::get('product_consumptions_by_category/{product_type_id}', [ReportController::class, 'getConsumptionsByCategory']);
     });
+});
+
+Route::prefix('external')->middleware(VerifyExternalRequest::class)->group(function () {
+    Route::post('sale', [ExternalSaleController::class, 'store']);
 });
