@@ -305,8 +305,8 @@ export default{
     		this.selected_products.forEach(item => {
     			let product_in_storage = this.storage_balance.find(product => product.id == item.id)
     			let item_quantity = item.amount * item.quantity
-    			if(item_quantity > parseInt(product_in_storage.current_quantity) + parseInt(product_in_storage.expired_current_quantity)){
-    				item.overlimited_quantity_in_main_measure_type = ((item.quantity * item.amount) - (parseInt(item.current_quantity) + parseInt(item.expired_current_quantity))) / item.main_measure_type.quantity
+    			if(item_quantity > parseInt(product_in_storage.current_quantity ? product_in_storage.current_quantity : 0) + parseInt(product_in_storage.expired_current_quantity ? product_in_storage.expired_current_quantity : 0)){
+    				item.overlimited_quantity_in_main_measure_type = ((item.quantity * item.amount) - (parseInt(item.current_quantity ? item.current_quantity : 0) + parseInt(item.expired_current_quantity ? item.expired_current_quantity : 0))) / item.main_measure_type.quantity
     				this.overlimited_product_types.push(item)
     			}
     		})
