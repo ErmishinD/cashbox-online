@@ -259,6 +259,8 @@ export default{
 	    					el.quantity = 1
 	    					el.current_price = 0
 	    				})
+					
+					this.assignCurrentQuantity()
 
 	    			if(data.pagination.last_page != data.pagination.current_page){
 	    				 this.serverParams.page = data.pagination.current_page+1
@@ -316,18 +318,21 @@ export default{
     	getCurrentQuantity(){
 			this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.selected_storage], with_expired:1}).then(response => {
 				this.storage_balance = response.data.data
-				this.storage_balance.forEach(item => {
-					let product = this.cards.find(prod => prod.id == item.id)
-					if(product){
-						
-						let new_product = Object.assign(product, item)
-						product = new_product
-					}
-					
-				})
-				console.log(this.cards)
+				this.assignCurrentQuantity()
 			})
     	},
+
+		assignCurrentQuantity() {
+			this.storage_balance.forEach(item => {
+				let product = this.cards.find(prod => prod.id == item.id)
+				if(product){
+					let new_product = Object.assign(product, item)
+					product = new_product
+				}
+				
+			})
+			console.log(this.cards)
+		},
 
     	saveWriteOff(){
     		let write_off_data = {}

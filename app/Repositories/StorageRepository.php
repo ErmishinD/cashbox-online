@@ -69,7 +69,8 @@ class StorageRepository extends BaseRepository
         $product_purchases = ProductPurchase::query()
             ->where('storage_id', $data['storage_id'])
             ->where('current_quantity', '>', 0)
-            ->orderBy('created_at')
+            ->orderBy('expiration_date')
+            ->orderBy('id')
             ->get();
 
         $write_offs = collect();
