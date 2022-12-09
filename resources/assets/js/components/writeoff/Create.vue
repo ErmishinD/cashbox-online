@@ -116,6 +116,15 @@
 							{{card.current_quantity_in_main_measure_type}}{{card.main_measure_type.name}}
 						</span>
 					</div>
+					<div v-if="card.expired_current_quantity_in_main_measure_type" class="card_item" style="border-top: 1px solid #000;">
+						<span>
+							{{ $t('Просрочено на складе') }}:
+						</span>
+
+						<span style="word-break: break-all; text-align: end;">
+							{{card.expired_current_quantity_in_main_measure_type}}{{card.main_measure_type.name}}
+						</span>
+					</div>
 				
 			</div>
 			</div>
@@ -296,9 +305,8 @@ export default{
     		this.selected_products.forEach(item => {
     			let product_in_storage = this.storage_balance.find(product => product.id == item.id)
     			let item_quantity = item.amount * item.quantity
-    			if(item_quantity > product_in_storage.current_quantity){
-    				console.log(item)
-    				item.overlimited_quantity_in_main_measure_type = ((item.quantity * item.amount) - item.current_quantity) / item.main_measure_type.quantity
+    			if(item_quantity > parseInt(product_in_storage.current_quantity) + parseInt(product_in_storage.expired_current_quantity)){
+    				item.overlimited_quantity_in_main_measure_type = ((item.quantity * item.amount) - (parseInt(item.current_quantity) + parseInt(item.expired_current_quantity))) / item.main_measure_type.quantity
     				this.overlimited_product_types.push(item)
     			}
     		})
@@ -306,7 +314,7 @@ export default{
     	},
 
     	getCurrentQuantity(){
-			this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.selected_storage]}).then(response => {
+			this.axios.post('/api/product_types/get_current_quantity', {storage_ids:[this.selected_storage], with_expired:1}).then(response => {
 				this.storage_balance = response.data.data
 				this.storage_balance.forEach(item => {
 					let product = this.cards.find(prod => prod.id == item.id)
