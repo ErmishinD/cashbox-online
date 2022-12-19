@@ -194,10 +194,12 @@ export default{
     	
     		this.formData.photo = document.querySelector("input[type='file']").getAttribute('value')
     		this.formData.measure_types = this.selected_measure_types
-    		console.log(this.formData)
     		this.axios.post('/api/product_types', this.formData).then((response) => {
     			if(this.is_create_product_for_sale){
     				this.formData.product_types[response.data.data.id] = {'quantity' : 1}
+    				this.formData.created_from_product_type = true
+
+					console.log(this.formData)
     				this.axios.post('/api/sell_products', this.formData)
     			}
     			this.$notify({
