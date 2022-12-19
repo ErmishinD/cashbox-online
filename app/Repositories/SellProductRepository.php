@@ -78,11 +78,10 @@ class SellProductRepository extends BaseRepository
             UploadFileService::save_photo($photo, $sell_product);
         }
         if (!empty($copy_photo_from_product_type)) {
-            info('I\'m trying to copy file');
             $product_type_id = $sell_product->product_types->pluck('id')->first();
             $product_type = ProductType::find($product_type_id);
-            $mediaItem = $product_type->getMedia()->first();
-            $mediaItem->copy($sell_product);
+            $mediaItem = $product_type->media->where('collection_name', 'photo')->first();
+            $mediaItem->copy($sell_product, 'photo');
         }
         return $sell_product;
     }
