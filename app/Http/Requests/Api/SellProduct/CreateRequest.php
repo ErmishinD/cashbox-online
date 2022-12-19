@@ -28,7 +28,8 @@ class CreateRequest extends TenantRequest
             'product_types.*.quantity' => ['numeric', 'min:0'],
             'photo' => ['nullable'],
             'category_id' => ['nullable'],
-            'position' => ['nullable', 'integer', 'gt:0']
+            'position' => ['nullable', 'integer', 'gt:0'],
+            'created_from_product_type' => ['nullable', 'boolean']
         ];
     }
 }

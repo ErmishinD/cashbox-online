@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\ProductType;
 use App\Models\SellProduct;
 use App\Services\UploadFileService;
 use Illuminate\Support\Facades\DB;
@@ -64,12 +65,24 @@ class SellProductRepository extends BaseRepository
             unset($data['photo']);
         }
 
+        if (array_key_exists('created_from_product_type', $data)) {
+            $copy_photo_from_product_type = $data['created_from_product_type'];
+            unset($data['created_from_product_type']);
+        }
+
         $sell_product = parent::create($data);
         if (!empty($data['product_types'])) {
             $sell_product->product_types()->attach($data['product_types']);
         }
         if (!empty($photo)) {
             UploadFileService::save_photo($photo, $sell_product);
+        }
+        if (!empty($copy_photo_from_product_type)) {
+            info('I\'m trying to copy file');
+            $product_type_id = $sell_product->product_types->pluck('id')->first();
+            $product_type = ProductType::find($product_type_id);
+            $mediaItem = $product_type->getMedia()->first();
+            $mediaItem->copy($sell_product);
         }
         return $sell_product;
     }
