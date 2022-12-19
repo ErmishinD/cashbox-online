@@ -10,7 +10,7 @@
 		<input @change="search" :placeholder="$t('Поиск товара')" type="text">
         <select @change="getByCategory" v-model="selected_category">
             <option value="">{{$t('Все категории')}}</option>
-            <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+            <option v-for="category in categories" :value="category.id" :key="category.id">{{category.name}}</option>
             <option value="without_category">{{$t('Без категорий')}}</option>
         </select>
 	</div>	
@@ -62,6 +62,7 @@ export default{
 		return{
 			storage: [],
 			balance: [],
+			categories: [],
 			selected_category: '',
 			shop_id: this.$shopId,
 			unmounted: false,
@@ -146,8 +147,7 @@ export default{
 		       
 		       this.emitter.emit("isLoading", false);
 		       
-		       console.table(this.storage)
-		     })
+			 })
     	},
     	scrolltoGetMoreData(){
 

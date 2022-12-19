@@ -17,6 +17,10 @@
 				<span class="product_card_CRUD__content_item">
 					{{$t('Тип')}}: {{product.type == '_imperishable' ? $t('Непортящийся') : $t('Портящийся')}}
 				</span>
+
+				<span class="product_card_CRUD__content_item">
+					{{$t('Категория')}}: {{ product.category ? product.category.name : $t('Без категории')}}
+				</span>
 			</div>
 			<div class="product_card_CRUD__content_item" v-if="product.measure_types?.length">
 				{{$t('Доступные ед. изм.')}}: <span class="" v-for="measure_type in product.measure_types">{{measure_type?.name}}  &nbsp; &nbsp;</span>

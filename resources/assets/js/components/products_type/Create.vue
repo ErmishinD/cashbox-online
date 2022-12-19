@@ -14,6 +14,13 @@
 					<option value="_imperishable">{{$t('Непортящийся')}}</option>
 				</select>
 			</div>
+
+			<div class="form_item">
+				<label class="tal" for="type">{{ $t('Категория') }}:</label>
+				<select class="form-control" name="category" v-model="formData.category_id">
+					<option v-for="category in categories" :value="category.id" :key="category.id">{{category.name}}</option>
+				</select>
+			</div>
 			
 			<div class="form_item">
 				<label class="tal" for="main_measure_type_id">{{ $t('Основная ед. изм.') }}*:</label>
@@ -120,6 +127,7 @@ export default{
 				company_id: this.$userId,
 				product_types:{},
 			},
+			categories: [],
 			measure_types: {},
 			measure_types_by_main_select: [],
 			measure_types_id_by_main_select: [],
@@ -140,9 +148,10 @@ export default{
 			this.measure_types = response.data.data
 			this.emitter.emit("isLoading", false);
 		})
-		
-		
 
+		this.axios.get('/api/categories').then((response) => {
+			this.categories = response.data.data
+		})
 	},
 	created () {
         
