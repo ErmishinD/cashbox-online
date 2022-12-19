@@ -20,7 +20,7 @@
 	        		</div> -->
 	        		<div class="basket_card__price">
 	        			<label for="price">{{ $t('Цена') }}:</label>
-	        			<input type="number" min="1" name="price" v-model="card.current_price">
+	        			<input type="number" :disabled="!$can('Cashbox_edit')" min="1" name="price" v-model="card.current_price">
 	        		</div>
 	        		<div class="basket_card__actions">
 	        			<button class="btn btn-primary" @click="cloneBasketItem(card)"><i class="fas fa-clone"></i></button>
