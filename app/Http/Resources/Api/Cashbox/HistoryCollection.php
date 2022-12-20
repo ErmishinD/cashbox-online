@@ -41,6 +41,6 @@ class HistoryCollection extends ResourceCollection
                 'operator' => $operator ? ['id' => $operator->id, 'name' => $operator->name] : null,
             ));
         }
-        return $result->toArray();
+        return $result->sortByDesc('collected_at')->toArray();
     }
 }

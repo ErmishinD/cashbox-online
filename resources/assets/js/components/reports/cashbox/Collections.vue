@@ -30,9 +30,6 @@
 		      	  <router-link class="redirect_from_table" v-if="$can('User_show')" :to="{name: 'users_show', params: {id: props.row.collector.id}}">{{props.row.collector.name}}</router-link>
 		      	  <span v-else>{{props.row.collector.name}}</span>
 		      	</span>
-				  <span  v-if="props.column.field == 'amount'">
-					{{ props.row.amount }} ({{ this.$t("Карта") }}: {{ props.row.amount_card }}, {{ this.$t("Наличные") }}: {{ props.row.amount_cash }})
-		      	</span>
 			      <span class="table_actions" v-if="props.column.field == 'actions'">
 		      	    <i @click="showCollectionDetail(props.row.collected_at)" class="fas fa-eye"></i>
 		      	  </span>
@@ -140,10 +137,6 @@ export default{
 			  {
 			    label: this.$t('Оператор'),
 			    field: 'operator.name',
-			  },
-			  {
-			    label: this.$t('Описание'),
-			    field: 'description',
 			  },
 			  {
 			    label: this.$t('Время'),
