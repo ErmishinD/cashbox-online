@@ -119,7 +119,7 @@
 
 	<div class="cards">
 		<div v-for="card in cards" class="card">
-			<div class="card_img"  :style="{'background-image': `url(${card.photo})`}">
+			<div class="card_img"  :style="{'background-image': $getBackgroundImage(card.photo)}">
 				<div class="card_img_href" :id="'card_img_href_'+card.id">
 					<i class="fas " :class="selected_products.find(item => item.id == card.id) ? 'fa-trash' : 'fa-plus'"  @click="toggleClassForIcon(card)"></i>
 				</div>

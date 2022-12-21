@@ -25,6 +25,7 @@ import i18n from './i18n'
 
 
 import Permissions from './mixins/Permissions';
+import GetBackgroundImage from './mixins/GetBackgroundImage';
 
 /* import app */
 import App from './components/App'
@@ -548,7 +549,7 @@ app.use(VueAxios, axios).use(VueGoodTablePlugin);
 app.use(VueLoading)
 app.use(GDialog).use(Notifications)
 
-app.mixin(Permissions)
+app.mixin(Permissions).mixin(GetBackgroundImage)
 
 
 
