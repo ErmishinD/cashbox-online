@@ -29,11 +29,18 @@ class HistoryCollection extends ResourceCollection
                 'amount' => round(
                     $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->sum('amount') - $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->sum('amount'),
                     2),
+                'amount_cash' => round(
+                    $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->where('payment_type', Cashbox::PAYMENT_TYPES['cash'])->sum('amount') - $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->where('payment_type', Cashbox::PAYMENT_TYPES['cash'])->sum('amount'),
+                    2),
+                
+                'amount_card' => round(
+                    $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])->where('payment_type', Cashbox::PAYMENT_TYPES['card'])->sum('amount') - $data->where('transaction_type', Cashbox::TRANSACTION_TYPES['out'])->where('payment_type', Cashbox::PAYMENT_TYPES['card'])->sum('amount'),
+                    2),
                 'collector' => new UserResource($data->first()->collector),
                 'shop' => $shop ? ['id' => $shop->id, 'name' => $shop->name] : null,
                 'operator' => $operator ? ['id' => $operator->id, 'name' => $operator->name] : null,
             ));
         }
-        return $result->toArray();
+        return $result->sortByDesc('collected_at')->toArray();
     }
 }

@@ -67,6 +67,7 @@
 
 		      	 <span v-if="props.column.field == 'transaction_type'" v-bind:style="[props.row.transaction_type == '_in' ? {color: 'green'} : {color: 'red'}]">{{props.row.transaction_type == '_in' ? this.$t('поступление') : this.$t('расход')}}
 		      	 </span>
+
 		        </template>
 		    </vue-good-table>
 		</div>
@@ -129,12 +130,13 @@ export default{
 			    field: 'amount',
 			  },
 			  {
-			    label: this.$t('Оператор'),
-			    field: 'operator.name',
+			    label: this.$t('Тип'),
+			    field: 'payment_type',
+				formatFn: (value) => value == '_card' ? this.$t('Карта') : this.$t('Наличные')
 			  },
 			  {
-			    label: this.$t('Описание'),
-			    field: 'description',
+			    label: this.$t('Оператор'),
+			    field: 'operator.name',
 			  },
 			  {
 			    label: this.$t('Время'),
