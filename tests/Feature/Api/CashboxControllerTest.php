@@ -574,16 +574,16 @@ class CashboxControllerTest extends TestCase
                 'success' => true,
                 'data' => [
                     [
-                        'collected_at' => $collected_time1->format('Y-m-d H:i:s'),
-                        'amount' => 200,
+                        'collected_at' => $collected_time2->format('Y-m-d H:i:s'),
+                        'amount' => 400,
                         'collector' => [
                             'id' => $this->admin->id,
                             'name' => $this->admin->name,
                         ]
                     ],
                     [
-                        'collected_at' => $collected_time2->format('Y-m-d H:i:s'),
-                        'amount' => 400,
+                        'collected_at' => $collected_time1->format('Y-m-d H:i:s'),
+                        'amount' => 200,
                         'collector' => [
                             'id' => $this->admin->id,
                             'name' => $this->admin->name,

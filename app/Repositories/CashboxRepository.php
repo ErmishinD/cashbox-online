@@ -71,8 +71,9 @@ class CashboxRepository extends BaseRepository
                 $payment = $this->model->create($data);
 
                 foreach ($used_purchases as $product_type_id => $purchases) {
+                    $purchases_sum_quantity = collect($purchases)->sum('quantity');
                     foreach ($purchases as $purchase) {
-                        $percent = $purchase['cost'] / $payment->self_cost;
+                        $percent = $purchase['quantity'] / $purchases_sum_quantity;
                         ProductConsumption::create([
                             'company_id' => $data['company_id'],
                             'product_purchase_id' => $purchase['id'],
