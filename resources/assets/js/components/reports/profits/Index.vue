@@ -119,7 +119,7 @@
   import { LineChart } from 'vue-chart-3';
   import { BarChart } from 'vue-chart-3';
   import { PieChart } from 'vue-chart-3';
-  import { Chart, ChartData, ChartOptions, registerables } from "chart.js";
+  import { Chart, registerables } from "chart.js";
 
   Chart.register(...registerables);
 
