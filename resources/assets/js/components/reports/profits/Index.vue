@@ -104,6 +104,20 @@
         </template>
     </vue-good-table>
 
+    <div class="tac content_title">
+        {{ $t('Статистика по типам товаров') }}
+    </div>
+
+    <vue-good-table
+      :columns="product_types_statistic_columns"
+      :rows="product_types_statistic_rows"
+      :pagination-options="{
+        enabled: true,
+      }"
+    >
+
+    </vue-good-table>
+
 
 </template>
 
@@ -258,6 +272,66 @@ export default {
       current_product_type: '',
       productConsumptionData: '',
       productConsumptionOptions: '',
+      product_types_statistic_columns: [
+        {
+          label: this.$t('Название товара'),
+          field: 'name',
+          filterOptions: {
+            enabled: true, // enable filter for this column
+            placeholder: this.$t('Фильтрация'), // placeholder for filter input
+            trigger: 'key-up', //only trigger on enter not on keyup
+          },
+        },
+        {
+          label: this.$t('Кол-во закупок'),
+          field: 'product_purchases.count',
+        },
+        {
+          label: this.$t('Закупили (шт)'),
+          field: 'product_purchases.sum_quantity',
+        },
+        {
+          label: this.$t('Осталось'),
+          field: 'product_purchases.sum_current_quantity',
+        },
+        {
+          label: this.$t('Сумма закупок'),
+          field: 'product_purchases.sum_cost',
+        },
+        {
+          label: this.$t('Сумма остатка'),
+          field: 'product_purchases.sum_cost',
+        },
+        {
+          label: this.$t('Кол-во продаж с товаром'),
+          field: 'sales.count',
+        },
+        {
+          label: this.$t('Кол-во проданного'),
+          field: 'sales.sum_quantity',
+        },
+        {
+          label: this.$t('Сумма продаж'),
+          field: 'sales.sum_income',
+        },
+        {
+          label: this.$t('Сумма прибыли'),
+          field: 'sales.sum_profit',
+        },
+        {
+          label: this.$t('Кол-во списаний (шт)'),
+          field: 'write_offs.count',
+        },
+        {
+          label: this.$t('Кол-во списанного товара'),
+          field: 'write_offs.sum_quantity',
+        },
+        {
+          label: this.$t('Сумма списаний'),
+          field: 'write_offs.sum_cost',
+        },
+      ],
+      product_types_statistic_rows: [],
     };
   },
   watch:{
@@ -426,6 +500,16 @@ export default {
 
 
               })
+        })
+
+        this.axios.get('/api/reports/product_types_statistic', {
+            params: {
+                start_date: start_date,
+                end_date: end_date,
+                shop_id: this.current_shop
+            }
+        }).then((response) => {
+            this.product_types_statistic_rows = response.data.data
         })
 
         this.getProductConsumptions()
