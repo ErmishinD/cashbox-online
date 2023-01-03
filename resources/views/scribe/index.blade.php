@@ -604,10 +604,10 @@ You can switch the language used with the tabs at the top right (or from the nav
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">https://cashbox-online.test</code></pre>
+<pre><code class="language-yaml">http://cashbox-online.test</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -629,7 +629,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/base_measure_types" \
+    --get "http://cashbox-online.test/api/base_measure_types" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -637,7 +637,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/base_measure_types"
+    "http://cashbox-online.test/api/base_measure_types"
 );
 
 const headers = {
@@ -740,7 +740,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/base_measure_types" \
+    "http://cashbox-online.test/api/base_measure_types" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -753,7 +753,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/base_measure_types"
+    "http://cashbox-online.test/api/base_measure_types"
 );
 
 const headers = {
@@ -847,7 +847,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/base_measure_types/1" \
+    --get "http://cashbox-online.test/api/base_measure_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -855,7 +855,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/base_measure_types/1"
+    "http://cashbox-online.test/api/base_measure_types/1"
 );
 
 const headers = {
@@ -957,7 +957,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/base_measure_types/1" \
+    "http://cashbox-online.test/api/base_measure_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -970,7 +970,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/base_measure_types/1"
+    "http://cashbox-online.test/api/base_measure_types/1"
 );
 
 const headers = {
@@ -1079,7 +1079,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/base_measure_types/1" \
+    "http://cashbox-online.test/api/base_measure_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1087,7 +1087,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/base_measure_types/1"
+    "http://cashbox-online.test/api/base_measure_types/1"
 );
 
 const headers = {
@@ -1169,7 +1169,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/cashbox/mass_create" \
+    "http://cashbox-online.test/api/cashbox/mass_create" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1188,7 +1188,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/mass_create"
+    "http://cashbox-online.test/api/cashbox/mass_create"
 );
 
 const headers = {
@@ -1331,7 +1331,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/cashbox/get_current_balance" \
+    --get "http://cashbox-online.test/api/cashbox/get_current_balance" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1339,7 +1339,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/get_current_balance"
+    "http://cashbox-online.test/api/cashbox/get_current_balance"
 );
 
 const headers = {
@@ -1442,7 +1442,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/cashbox/collect" \
+    "http://cashbox-online.test/api/cashbox/collect" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1456,7 +1456,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/collect"
+    "http://cashbox-online.test/api/cashbox/collect"
 );
 
 const headers = {
@@ -1544,7 +1544,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/cashbox/collection_history" \
+    --get "http://cashbox-online.test/api/cashbox/collection_history" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1552,7 +1552,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/collection_history"
+    "http://cashbox-online.test/api/cashbox/collection_history"
 );
 
 const headers = {
@@ -4790,7 +4790,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/cashbox/payments_from_history" \
+    "http://cashbox-online.test/api/cashbox/payments_from_history" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4802,7 +4802,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/payments_from_history"
+    "http://cashbox-online.test/api/cashbox/payments_from_history"
 );
 
 const headers = {
@@ -4885,7 +4885,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/cashbox" \
+    --get "http://cashbox-online.test/api/cashbox" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4893,7 +4893,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox"
+    "http://cashbox-online.test/api/cashbox"
 );
 
 const headers = {
@@ -10402,7 +10402,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/cashbox" \
+    "http://cashbox-online.test/api/cashbox" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10419,7 +10419,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox"
+    "http://cashbox-online.test/api/cashbox"
 );
 
 const headers = {
@@ -10597,7 +10597,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/cashbox/10" \
+    --get "http://cashbox-online.test/api/cashbox/10" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10605,7 +10605,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/10"
+    "http://cashbox-online.test/api/cashbox/10"
 );
 
 const headers = {
@@ -11253,7 +11253,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/cashbox/10" \
+    "http://cashbox-online.test/api/cashbox/10" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11265,7 +11265,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/10"
+    "http://cashbox-online.test/api/cashbox/10"
 );
 
 const headers = {
@@ -11373,7 +11373,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/cashbox/10" \
+    "http://cashbox-online.test/api/cashbox/10" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11381,7 +11381,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/cashbox/10"
+    "http://cashbox-online.test/api/cashbox/10"
 );
 
 const headers = {
@@ -11463,7 +11463,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/categories/get_for_select" \
+    --get "http://cashbox-online.test/api/categories/get_for_select" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11471,7 +11471,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/categories/get_for_select"
+    "http://cashbox-online.test/api/categories/get_for_select"
 );
 
 const headers = {
@@ -11598,7 +11598,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/categories" \
+    --get "http://cashbox-online.test/api/categories" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11606,7 +11606,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/categories"
+    "http://cashbox-online.test/api/categories"
 );
 
 const headers = {
@@ -11643,70 +11643,70 @@ vary: Origin
         {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Батончики&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 0,
             &quot;sell_products_count&quot;: 3
         },
         {
             &quot;id&quot;: 2,
             &quot;name&quot;: &quot;Кофе/Чай&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 12,
             &quot;sell_products_count&quot;: 10
         },
         {
             &quot;id&quot;: 3,
             &quot;name&quot;: &quot;Инвентарь&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 5,
             &quot;sell_products_count&quot;: 11
         },
         {
             &quot;id&quot;: 4,
             &quot;name&quot;: &quot;Костюмы&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 32,
             &quot;sell_products_count&quot;: 34
         },
         {
             &quot;id&quot;: 5,
             &quot;name&quot;: &quot;Коктейли&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 5,
             &quot;sell_products_count&quot;: 3
         },
         {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Напитки&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 1,
             &quot;sell_products_count&quot;: 3
         },
         {
             &quot;id&quot;: 7,
             &quot;name&quot;: &quot;Аксессуары&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 5,
             &quot;sell_products_count&quot;: 18
         },
         {
             &quot;id&quot;: 8,
             &quot;name&quot;: &quot;Для персонала&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 0,
             &quot;sell_products_count&quot;: 6
         },
         {
             &quot;id&quot;: 9,
             &quot;name&quot;: &quot;Напитки&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 0,
             &quot;sell_products_count&quot;: 1
         },
         {
             &quot;id&quot;: 10,
             &quot;name&quot;: &quot;Батончики&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;product_types_count&quot;: 0,
             &quot;sell_products_count&quot;: 1
         }
@@ -11763,7 +11763,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/categories" \
+    "http://cashbox-online.test/api/categories" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11776,7 +11776,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/categories"
+    "http://cashbox-online.test/api/categories"
 );
 
 const headers = {
@@ -11880,7 +11880,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/categories/1" \
+    --get "http://cashbox-online.test/api/categories/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11888,7 +11888,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/categories/1"
+    "http://cashbox-online.test/api/categories/1"
 );
 
 const headers = {
@@ -11924,7 +11924,7 @@ vary: Origin
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;name&quot;: &quot;Батончики&quot;,
-        &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+        &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
         &quot;product_types_count&quot;: 0,
         &quot;sell_products_count&quot;: 3
     }
@@ -11991,7 +11991,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/categories/1" \
+    "http://cashbox-online.test/api/categories/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12003,7 +12003,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/categories/1"
+    "http://cashbox-online.test/api/categories/1"
 );
 
 const headers = {
@@ -12111,7 +12111,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/categories/1" \
+    "http://cashbox-online.test/api/categories/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12119,7 +12119,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/categories/1"
+    "http://cashbox-online.test/api/categories/1"
 );
 
 const headers = {
@@ -12201,7 +12201,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/companies/1" \
+    --get "http://cashbox-online.test/api/companies/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12209,7 +12209,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/companies/1"
+    "http://cashbox-online.test/api/companies/1"
 );
 
 const headers = {
@@ -12534,7 +12534,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/companies/1" \
+    "http://cashbox-online.test/api/companies/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12546,7 +12546,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/companies/1"
+    "http://cashbox-online.test/api/companies/1"
 );
 
 const headers = {
@@ -12648,7 +12648,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/counterparties" \
+    --get "http://cashbox-online.test/api/counterparties" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12656,7 +12656,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/counterparties"
+    "http://cashbox-online.test/api/counterparties"
 );
 
 const headers = {
@@ -12755,7 +12755,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/counterparties" \
+    "http://cashbox-online.test/api/counterparties" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12768,7 +12768,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/counterparties"
+    "http://cashbox-online.test/api/counterparties"
 );
 
 const headers = {
@@ -12862,7 +12862,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/counterparties/1" \
+    --get "http://cashbox-online.test/api/counterparties/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12870,7 +12870,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/counterparties/1"
+    "http://cashbox-online.test/api/counterparties/1"
 );
 
 const headers = {
@@ -12977,7 +12977,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/counterparties/1" \
+    "http://cashbox-online.test/api/counterparties/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12990,7 +12990,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/counterparties/1"
+    "http://cashbox-online.test/api/counterparties/1"
 );
 
 const headers = {
@@ -13099,7 +13099,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/counterparties/1" \
+    "http://cashbox-online.test/api/counterparties/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -13107,7 +13107,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/counterparties/1"
+    "http://cashbox-online.test/api/counterparties/1"
 );
 
 const headers = {
@@ -13189,7 +13189,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/user" \
+    --get "http://cashbox-online.test/api/user" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -13197,7 +13197,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/user"
+    "http://cashbox-online.test/api/user"
 );
 
 const headers = {
@@ -13236,7 +13236,7 @@ vary: Origin
     &quot;email&quot;: &quot;admin@admin.com&quot;,
     &quot;email_verified_at&quot;: null,
     &quot;created_at&quot;: &quot;2022-04-29T19:00:53.000000Z&quot;,
-    &quot;updated_at&quot;: &quot;2023-01-03T12:32:22.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2023-01-03T17:16:21.000000Z&quot;,
     &quot;deleted_at&quot;: null,
     &quot;company_id&quot;: 1
 }</code>
@@ -13295,7 +13295,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/external_sales/get_paginated" \
+    "http://cashbox-online.test/api/external_sales/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13308,7 +13308,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/external_sales/get_paginated"
+    "http://cashbox-online.test/api/external_sales/get_paginated"
 );
 
 const headers = {
@@ -13402,7 +13402,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/external/sale" \
+    "http://cashbox-online.test/api/external/sale" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13419,7 +13419,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/external/sale"
+    "http://cashbox-online.test/api/external/sale"
 );
 
 const headers = {
@@ -13557,7 +13557,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/external_sales/17/confirm" \
+    "http://cashbox-online.test/api/external_sales/17/confirm" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -13565,7 +13565,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/external_sales/17/confirm"
+    "http://cashbox-online.test/api/external_sales/17/confirm"
 );
 
 const headers = {
@@ -13643,7 +13643,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/external_sales/17" \
+    "http://cashbox-online.test/api/external_sales/17" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -13651,7 +13651,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/external_sales/17"
+    "http://cashbox-online.test/api/external_sales/17"
 );
 
 const headers = {
@@ -13733,7 +13733,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/file_upload" \
+    "http://cashbox-online.test/api/file_upload" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -13741,7 +13741,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/file_upload"
+    "http://cashbox-online.test/api/file_upload"
 );
 
 const headers = {
@@ -13812,7 +13812,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/get_for_select" \
+    "http://cashbox-online.test/api/get_for_select" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13826,7 +13826,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/get_for_select"
+    "http://cashbox-online.test/api/get_for_select"
 );
 
 const headers = {
@@ -13918,7 +13918,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/measure_types/get_by_base_measure_type" \
+    "http://cashbox-online.test/api/measure_types/get_by_base_measure_type" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13930,7 +13930,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/measure_types/get_by_base_measure_type"
+    "http://cashbox-online.test/api/measure_types/get_by_base_measure_type"
 );
 
 const headers = {
@@ -14013,7 +14013,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/measure_types/get_grouped_by_base" \
+    --get "http://cashbox-online.test/api/measure_types/get_grouped_by_base" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14021,7 +14021,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/measure_types/get_grouped_by_base"
+    "http://cashbox-online.test/api/measure_types/get_grouped_by_base"
 );
 
 const headers = {
@@ -14219,7 +14219,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/measure_types" \
+    --get "http://cashbox-online.test/api/measure_types" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14227,7 +14227,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/measure_types"
+    "http://cashbox-online.test/api/measure_types"
 );
 
 const headers = {
@@ -14432,7 +14432,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/measure_types" \
+    "http://cashbox-online.test/api/measure_types" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14448,7 +14448,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/measure_types"
+    "http://cashbox-online.test/api/measure_types"
 );
 
 const headers = {
@@ -14596,7 +14596,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/measure_types/1" \
+    --get "http://cashbox-online.test/api/measure_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14604,7 +14604,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/measure_types/1"
+    "http://cashbox-online.test/api/measure_types/1"
 );
 
 const headers = {
@@ -14710,7 +14710,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/measure_types/1" \
+    "http://cashbox-online.test/api/measure_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14725,7 +14725,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/measure_types/1"
+    "http://cashbox-online.test/api/measure_types/1"
 );
 
 const headers = {
@@ -14877,7 +14877,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/measure_types/1" \
+    "http://cashbox-online.test/api/measure_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14885,7 +14885,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/measure_types/1"
+    "http://cashbox-online.test/api/measure_types/1"
 );
 
 const headers = {
@@ -14967,7 +14967,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/permissions" \
+    --get "http://cashbox-online.test/api/permissions" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14975,7 +14975,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/permissions"
+    "http://cashbox-online.test/api/permissions"
 );
 
 const headers = {
@@ -15415,7 +15415,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_consumptions/get_paginated" \
+    "http://cashbox-online.test/api/product_consumptions/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15428,7 +15428,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_consumptions/get_paginated"
+    "http://cashbox-online.test/api/product_consumptions/get_paginated"
 );
 
 const headers = {
@@ -15526,7 +15526,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_purchases/mass_create" \
+    "http://cashbox-online.test/api/product_purchases/mass_create" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15543,7 +15543,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases/mass_create"
+    "http://cashbox-online.test/api/product_purchases/mass_create"
 );
 
 const headers = {
@@ -15664,7 +15664,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_purchases/get_paginated" \
+    "http://cashbox-online.test/api/product_purchases/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15677,7 +15677,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases/get_paginated"
+    "http://cashbox-online.test/api/product_purchases/get_paginated"
 );
 
 const headers = {
@@ -15771,7 +15771,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_purchases" \
+    --get "http://cashbox-online.test/api/product_purchases" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -15779,7 +15779,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases"
+    "http://cashbox-online.test/api/product_purchases"
 );
 
 const headers = {
@@ -16548,7 +16548,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_purchases" \
+    "http://cashbox-online.test/api/product_purchases" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16569,7 +16569,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases"
+    "http://cashbox-online.test/api/product_purchases"
 );
 
 const headers = {
@@ -16751,7 +16751,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_purchases/14" \
+    --get "http://cashbox-online.test/api/product_purchases/14" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -16759,7 +16759,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases/14"
+    "http://cashbox-online.test/api/product_purchases/14"
 );
 
 const headers = {
@@ -17407,7 +17407,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/product_purchases/14" \
+    "http://cashbox-online.test/api/product_purchases/14" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17425,7 +17425,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases/14"
+    "http://cashbox-online.test/api/product_purchases/14"
 );
 
 const headers = {
@@ -17589,7 +17589,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/product_purchases/14" \
+    "http://cashbox-online.test/api/product_purchases/14" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -17597,7 +17597,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases/14"
+    "http://cashbox-online.test/api/product_purchases/14"
 );
 
 const headers = {
@@ -17675,7 +17675,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_purchases/14/get_for_edit" \
+    --get "http://cashbox-online.test/api/product_purchases/14/get_for_edit" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -17683,7 +17683,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_purchases/14/get_for_edit"
+    "http://cashbox-online.test/api/product_purchases/14/get_for_edit"
 );
 
 const headers = {
@@ -18335,7 +18335,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_types/get_paginated" \
+    "http://cashbox-online.test/api/product_types/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18348,7 +18348,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/get_paginated"
+    "http://cashbox-online.test/api/product_types/get_paginated"
 );
 
 const headers = {
@@ -18442,7 +18442,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_types/get_for_purchase" \
+    "http://cashbox-online.test/api/product_types/get_for_purchase" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18455,7 +18455,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/get_for_purchase"
+    "http://cashbox-online.test/api/product_types/get_for_purchase"
 );
 
 const headers = {
@@ -18549,7 +18549,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_types/get_types" \
+    --get "http://cashbox-online.test/api/product_types/get_types" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -18557,7 +18557,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/get_types"
+    "http://cashbox-online.test/api/product_types/get_types"
 );
 
 const headers = {
@@ -18647,7 +18647,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_types/get_for_select" \
+    --get "http://cashbox-online.test/api/product_types/get_for_select" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -18655,7 +18655,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/get_for_select"
+    "http://cashbox-online.test/api/product_types/get_for_select"
 );
 
 const headers = {
@@ -19107,7 +19107,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_types/get_current_quantity" \
+    "http://cashbox-online.test/api/product_types/get_current_quantity" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19123,7 +19123,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/get_current_quantity"
+    "http://cashbox-online.test/api/product_types/get_current_quantity"
 );
 
 const headers = {
@@ -19253,7 +19253,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_types/1/get_storages_quantity" \
+    --get "http://cashbox-online.test/api/product_types/1/get_storages_quantity" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -19261,7 +19261,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/1/get_storages_quantity"
+    "http://cashbox-online.test/api/product_types/1/get_storages_quantity"
 );
 
 const headers = {
@@ -19415,7 +19415,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_types" \
+    --get "http://cashbox-online.test/api/product_types" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -19423,7 +19423,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types"
+    "http://cashbox-online.test/api/product_types"
 );
 
 const headers = {
@@ -19510,7 +19510,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/product_types" \
+    "http://cashbox-online.test/api/product_types" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19530,7 +19530,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types"
+    "http://cashbox-online.test/api/product_types"
 );
 
 const headers = {
@@ -19714,7 +19714,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_types/1" \
+    --get "http://cashbox-online.test/api/product_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -19722,7 +19722,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/1"
+    "http://cashbox-online.test/api/product_types/1"
 );
 
 const headers = {
@@ -19761,7 +19761,7 @@ vary: Origin
         &quot;company_id&quot;: 1,
         &quot;name&quot;: &quot;Сахар&quot;,
         &quot;type&quot;: &quot;_imperishable&quot;,
-        &quot;photo&quot;: &quot;https://cashbox-online.test/storage/1/image.png&quot;,
+        &quot;photo&quot;: &quot;http://cashbox-online.test/storage/1/image.png&quot;,
         &quot;base_measure_type_id&quot;: 2,
         &quot;barcode&quot;: null,
         &quot;base_measure_type&quot;: {
@@ -19782,7 +19782,7 @@ vary: Origin
             {
                 &quot;id&quot;: 1,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/25/782497750-dvojnoj-espresso-600x600.jpeg&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/25/782497750-dvojnoj-espresso-600x600.jpeg&quot;,
                 &quot;name&quot;: &quot;Эспрессо&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19791,7 +19791,7 @@ vary: Origin
             {
                 &quot;id&quot;: 2,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/22/Американо.jpeg&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/22/Американо.jpeg&quot;,
                 &quot;name&quot;: &quot;Американо&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19800,7 +19800,7 @@ vary: Origin
             {
                 &quot;id&quot;: 3,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/23/latte_macchiato_2000x1400px.jpeg&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/23/latte_macchiato_2000x1400px.jpeg&quot;,
                 &quot;name&quot;: &quot;Лате&quot;,
                 &quot;price&quot;: &quot;30.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19809,7 +19809,7 @@ vary: Origin
             {
                 &quot;id&quot;: 5,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/63/зеленый.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/63/зеленый.png&quot;,
                 &quot;name&quot;: &quot;Чай Palmira зеленый&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19818,7 +19818,7 @@ vary: Origin
             {
                 &quot;id&quot;: 16,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/8/cappuccino_2000x1400px.jpeg&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/8/cappuccino_2000x1400px.jpeg&quot;,
                 &quot;name&quot;: &quot;Капучино&quot;,
                 &quot;price&quot;: &quot;30.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19827,7 +19827,7 @@ vary: Origin
             {
                 &quot;id&quot;: 17,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/62/черный.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/62/черный.png&quot;,
                 &quot;name&quot;: &quot;Чай Palmira черный&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19836,7 +19836,7 @@ vary: Origin
             {
                 &quot;id&quot;: 20,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/61/фрукт.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/61/фрукт.png&quot;,
                 &quot;name&quot;: &quot;Чай Palmira Fruit&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19845,7 +19845,7 @@ vary: Origin
             {
                 &quot;id&quot;: 21,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/60/альпи-луг.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/60/альпи-луг.png&quot;,
                 &quot;name&quot;: &quot;Чай Palmira Альпийский луг&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19854,7 +19854,7 @@ vary: Origin
             {
                 &quot;id&quot;: 27,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/39/2-655_1.jpeg&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/39/2-655_1.jpeg&quot;,
                 &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
                 &quot;price&quot;: &quot;8.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19863,7 +19863,7 @@ vary: Origin
             {
                 &quot;id&quot;: 28,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/40/2.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/40/2.png&quot;,
                 &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
                 &quot;price&quot;: &quot;15.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19872,7 +19872,7 @@ vary: Origin
             {
                 &quot;id&quot;: 29,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/41/isla-tea-fruit-2-g-01_390x415.370x370.jpg&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/41/isla-tea-fruit-2-g-01_390x415.370x370.jpg&quot;,
                 &quot;name&quot;: &quot;Чай ISLA Fruit Tea для персонала&quot;,
                 &quot;price&quot;: &quot;15.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19881,7 +19881,7 @@ vary: Origin
             {
                 &quot;id&quot;: 30,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/42/31438689.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/42/31438689.png&quot;,
                 &quot;name&quot;: &quot;Чай ISLA Herbal tea для персонала&quot;,
                 &quot;price&quot;: &quot;15.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19890,7 +19890,7 @@ vary: Origin
             {
                 &quot;id&quot;: 31,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/43/isla-tea-jasmine-05.jpeg&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/43/isla-tea-jasmine-05.jpeg&quot;,
                 &quot;name&quot;: &quot;Чай ISLA Green Tea для персонала&quot;,
                 &quot;price&quot;: &quot;15.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19899,7 +19899,7 @@ vary: Origin
             {
                 &quot;id&quot;: 32,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/44/31438967.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/44/31438967.png&quot;,
                 &quot;name&quot;: &quot;Чай ISLA English Breakfast для персонала&quot;,
                 &quot;price&quot;: &quot;15.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19908,7 +19908,7 @@ vary: Origin
             {
                 &quot;id&quot;: 40,
                 &quot;company_id&quot;: 1,
-                &quot;photo&quot;: &quot;https://cashbox-online.test/storage/69/жасмин.png&quot;,
+                &quot;photo&quot;: &quot;http://cashbox-online.test/storage/69/жасмин.png&quot;,
                 &quot;name&quot;: &quot;Чай Palmira зеленый жасмин&quot;,
                 &quot;price&quot;: &quot;20.00&quot;,
                 &quot;has_discount&quot;: 0,
@@ -19984,7 +19984,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/product_types/1" \
+    "http://cashbox-online.test/api/product_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20002,7 +20002,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/1"
+    "http://cashbox-online.test/api/product_types/1"
 );
 
 const headers = {
@@ -20179,7 +20179,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/product_types/1" \
+    "http://cashbox-online.test/api/product_types/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -20187,7 +20187,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/1"
+    "http://cashbox-online.test/api/product_types/1"
 );
 
 const headers = {
@@ -20265,7 +20265,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/product_types/get_short_info/1" \
+    --get "http://cashbox-online.test/api/product_types/get_short_info/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -20273,7 +20273,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/product_types/get_short_info/1"
+    "http://cashbox-online.test/api/product_types/get_short_info/1"
 );
 
 const headers = {
@@ -20310,7 +20310,7 @@ vary: Origin
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;name&quot;: &quot;Сахар&quot;,
-        &quot;photo&quot;: &quot;https://cashbox-online.test/storage/1/image.png&quot;,
+        &quot;photo&quot;: &quot;http://cashbox-online.test/storage/1/image.png&quot;,
         &quot;type&quot;: &quot;_imperishable&quot;,
         &quot;measure_types&quot;: [
             {
@@ -20398,7 +20398,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/warning_threshold" \
+    --get "http://cashbox-online.test/api/reports/warning_threshold" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -20406,7 +20406,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/warning_threshold"
+    "http://cashbox-online.test/api/reports/warning_threshold"
 );
 
 const headers = {
@@ -20528,7 +20528,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/warning_threshold/consequatur" \
+    --get "http://cashbox-online.test/api/reports/warning_threshold/consequatur" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -20536,7 +20536,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/warning_threshold/consequatur"
+    "http://cashbox-online.test/api/reports/warning_threshold/consequatur"
 );
 
 const headers = {
@@ -20574,7 +20574,7 @@ vary: Origin
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Сахар&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/1/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/1/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20608,7 +20608,7 @@ vary: Origin
             &quot;id&quot;: 2,
             &quot;name&quot;: &quot;Вода&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/2/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/2/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20658,7 +20658,7 @@ vary: Origin
             &quot;id&quot;: 3,
             &quot;name&quot;: &quot;Стаканчик 250&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/3/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/3/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20684,7 +20684,7 @@ vary: Origin
             &quot;id&quot;: 4,
             &quot;name&quot;: &quot;Кофе 1 кг&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20718,7 +20718,7 @@ vary: Origin
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Молоко&quot;,
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20752,7 +20752,7 @@ vary: Origin
             &quot;id&quot;: 7,
             &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20786,7 +20786,7 @@ vary: Origin
             &quot;id&quot;: 8,
             &quot;name&quot;: &quot;Стаканчик 400&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20812,7 +20812,7 @@ vary: Origin
             &quot;id&quot;: 9,
             &quot;name&quot;: &quot;Чай Palmira зеленый&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/67/зеленый.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/67/зеленый.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20846,7 +20846,7 @@ vary: Origin
             &quot;id&quot;: 10,
             &quot;name&quot;: &quot;Чай Palmira Альпийский луг&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/66/альпи-луг.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/66/альпи-луг.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20880,7 +20880,7 @@ vary: Origin
             &quot;id&quot;: 11,
             &quot;name&quot;: &quot;Чай Palmira черный&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/65/черный.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/65/черный.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20914,7 +20914,7 @@ vary: Origin
             &quot;id&quot;: 12,
             &quot;name&quot;: &quot;Чай Palmira Fruit&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/64/фрукт.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/64/фрукт.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20948,7 +20948,7 @@ vary: Origin
             &quot;id&quot;: 13,
             &quot;name&quot;: &quot;Мороженное&quot;,
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -20982,7 +20982,7 @@ vary: Origin
             &quot;id&quot;: 14,
             &quot;name&quot;: &quot;Протеин&quot;,
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21016,7 +21016,7 @@ vary: Origin
             &quot;id&quot;: 15,
             &quot;name&quot;: &quot;Петли TRX&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/59/Петли.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/59/Петли.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21042,7 +21042,7 @@ vary: Origin
             &quot;id&quot;: 16,
             &quot;name&quot;: &quot;Лента для йоги&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/112/ремень-для-йоги.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/112/ремень-для-йоги.webp&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21068,7 +21068,7 @@ vary: Origin
             &quot;id&quot;: 17,
             &quot;name&quot;: &quot;Резинка для стретчинга&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21094,7 +21094,7 @@ vary: Origin
             &quot;id&quot;: 18,
             &quot;name&quot;: &quot;Блоки для стретчинга&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21120,7 +21120,7 @@ vary: Origin
             &quot;id&quot;: 19,
             &quot;name&quot;: &quot;Гамак&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21146,7 +21146,7 @@ vary: Origin
             &quot;id&quot;: 20,
             &quot;name&quot;: &quot;Носки (детские)&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21172,7 +21172,7 @@ vary: Origin
             &quot;id&quot;: 21,
             &quot;name&quot;: &quot;Носки (взрослые)&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/77/носки-взрос30.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/77/носки-взрос30.jpeg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21198,7 +21198,7 @@ vary: Origin
             &quot;id&quot;: 22,
             &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21224,7 +21224,7 @@ vary: Origin
             &quot;id&quot;: 23,
             &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21250,7 +21250,7 @@ vary: Origin
             &quot;id&quot;: 24,
             &quot;name&quot;: &quot;Резинка для волос (набор 10 шт. маленьких пружинок)&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21276,7 +21276,7 @@ vary: Origin
             &quot;id&quot;: 25,
             &quot;name&quot;: &quot;Мешалки&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21302,7 +21302,7 @@ vary: Origin
             &quot;id&quot;: 26,
             &quot;name&quot;: &quot;Стакан ПЛАСТИК 350 мл&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21328,7 +21328,7 @@ vary: Origin
             &quot;id&quot;: 27,
             &quot;name&quot;: &quot;Крышка ПЛАСТИК&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21354,7 +21354,7 @@ vary: Origin
             &quot;id&quot;: 28,
             &quot;name&quot;: &quot;Трубочка&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21380,7 +21380,7 @@ vary: Origin
             &quot;id&quot;: 29,
             &quot;name&quot;: &quot;Резинка для волос безшовная большая&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/29/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/29/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21406,7 +21406,7 @@ vary: Origin
             &quot;id&quot;: 30,
             &quot;name&quot;: &quot;Резинка МОРДОЧКА&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21432,7 +21432,7 @@ vary: Origin
             &quot;id&quot;: 31,
             &quot;name&quot;: &quot;Батончик злаковый&quot;,
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21458,7 +21458,7 @@ vary: Origin
             &quot;id&quot;: 32,
             &quot;name&quot;: &quot;Батончик протеиновый&quot;,
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21484,7 +21484,7 @@ vary: Origin
             &quot;id&quot;: 33,
             &quot;name&quot;: &quot;Сахар&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/45/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/45/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21518,7 +21518,7 @@ vary: Origin
             &quot;id&quot;: 34,
             &quot;name&quot;: &quot;Кофе&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/51/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/51/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21552,7 +21552,7 @@ vary: Origin
             &quot;id&quot;: 35,
             &quot;name&quot;: &quot;Вода&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/46/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/46/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21586,7 +21586,7 @@ vary: Origin
             &quot;id&quot;: 36,
             &quot;name&quot;: &quot;Стаканчик&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/47/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/47/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21612,7 +21612,7 @@ vary: Origin
             &quot;id&quot;: 37,
             &quot;name&quot;: &quot;Twix&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/49/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/49/image.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21638,7 +21638,7 @@ vary: Origin
             &quot;id&quot;: 38,
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/107/блок-для-стреч.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/107/блок-для-стреч.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21664,7 +21664,7 @@ vary: Origin
             &quot;id&quot;: 39,
             &quot;name&quot;: &quot;Носки NEW&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/71/носки70.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/71/носки70.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21690,7 +21690,7 @@ vary: Origin
             &quot;id&quot;: 40,
             &quot;name&quot;: &quot;APELSIN&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21716,7 +21716,7 @@ vary: Origin
             &quot;id&quot;: 41,
             &quot;name&quot;: &quot;БЕЗЕ&quot;,
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21742,7 +21742,7 @@ vary: Origin
             &quot;id&quot;: 42,
             &quot;name&quot;: &quot;Чай Palmira зеленый жасмин&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/68/жасмин.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/68/жасмин.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21776,7 +21776,7 @@ vary: Origin
             &quot;id&quot;: 43,
             &quot;name&quot;: &quot;Браслет #main_stretch&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/70/unnamed.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/70/unnamed.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21802,7 +21802,7 @@ vary: Origin
             &quot;id&quot;: 44,
             &quot;name&quot;: &quot;Сумка #main_stretch&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/93/сумка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/93/сумка.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21828,7 +21828,7 @@ vary: Origin
             &quot;id&quot;: 45,
             &quot;name&quot;: &quot;Носки следики мордочки&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/74/носки50.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/74/носки50.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21854,7 +21854,7 @@ vary: Origin
             &quot;id&quot;: 46,
             &quot;name&quot;: &quot;Носки следики белые&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/78/носки30.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/78/носки30.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21880,7 +21880,7 @@ vary: Origin
             &quot;id&quot;: 47,
             &quot;name&quot;: &quot;Носки теплые&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/83/носки-теплые.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/83/носки-теплые.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21906,7 +21906,7 @@ vary: Origin
             &quot;id&quot;: 48,
             &quot;name&quot;: &quot;Носки Симпсоны&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/82/носки-симпосны.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/82/носки-симпосны.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21932,7 +21932,7 @@ vary: Origin
             &quot;id&quot;: 49,
             &quot;name&quot;: &quot;Шар (дождевик)&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/91/шар-дождевик.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/91/шар-дождевик.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21958,7 +21958,7 @@ vary: Origin
             &quot;id&quot;: 50,
             &quot;name&quot;: &quot;Носки Йога цветные&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/89/носки-йога-цвет.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/89/носки-йога-цвет.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -21984,7 +21984,7 @@ vary: Origin
             &quot;id&quot;: 51,
             &quot;name&quot;: &quot;Носки йога черный&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/87/носки-йога-черн.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/87/носки-йога-черн.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22010,7 +22010,7 @@ vary: Origin
             &quot;id&quot;: 52,
             &quot;name&quot;: &quot;Резинка для фитнеса латекс&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/106/резинка-фитнес-латекс.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/106/резинка-фитнес-латекс.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22036,7 +22036,7 @@ vary: Origin
             &quot;id&quot;: 53,
             &quot;name&quot;: &quot;Кольцо для фитнес стретчинга&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/105/кольцо-фитнем.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/105/кольцо-фитнем.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22062,7 +22062,7 @@ vary: Origin
             &quot;id&quot;: 54,
             &quot;name&quot;: &quot;Ручка&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/110/ручка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/110/ручка.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22088,7 +22088,7 @@ vary: Origin
             &quot;id&quot;: 55,
             &quot;name&quot;: &quot;Мяч массажный&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/90/мяч.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/90/мяч.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22114,7 +22114,7 @@ vary: Origin
             &quot;id&quot;: 56,
             &quot;name&quot;: &quot;Легинсы серые, бордовые&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/185/лег-серые.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/185/лег-серые.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22140,7 +22140,7 @@ vary: Origin
             &quot;id&quot;: 57,
             &quot;name&quot;: &quot;Гиря 2 кг&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/113/гиря.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/113/гиря.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22166,7 +22166,7 @@ vary: Origin
             &quot;id&quot;: 58,
             &quot;name&quot;: &quot;Коврик для йоги&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/115/коврик.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/115/коврик.png&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22192,7 +22192,7 @@ vary: Origin
             &quot;id&quot;: 59,
             &quot;name&quot;: &quot;Костюм двойка&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/217/костюм-1200-двойка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/217/костюм-1200-двойка.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22218,7 +22218,7 @@ vary: Origin
             &quot;id&quot;: 60,
             &quot;name&quot;: &quot;Леггинсы черные&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/149/лег-черные350.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/149/лег-черные350.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22244,7 +22244,7 @@ vary: Origin
             &quot;id&quot;: 61,
             &quot;name&quot;: &quot;Леггинсы сетка&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/183/легин--сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/183/легин--сетка.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22270,7 +22270,7 @@ vary: Origin
             &quot;id&quot;: 62,
             &quot;name&quot;: &quot;Леггинсы с полосами красные, черные 250&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/181/лег-с-полосами-красн-черн.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/181/лег-с-полосами-красн-черн.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22296,7 +22296,7 @@ vary: Origin
             &quot;id&quot;: 63,
             &quot;name&quot;: &quot;Леггинсы с кармашком черн, роз, гол&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/179/лег-с-кармаш.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/179/лег-с-кармаш.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22322,7 +22322,7 @@ vary: Origin
             &quot;id&quot;: 66,
             &quot;name&quot;: &quot;Леггинсы комиксы&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/173/лег-комиксы-280.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/173/лег-комиксы-280.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22348,7 +22348,7 @@ vary: Origin
             &quot;id&quot;: 67,
             &quot;name&quot;: &quot;Леггинсы роспись черн, сер, красн&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/177/лег-подписи.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/177/лег-подписи.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22374,7 +22374,7 @@ vary: Origin
             &quot;id&quot;: 68,
             &quot;name&quot;: &quot;Топ беж, черный&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/127/топ-190.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/127/топ-190.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22400,7 +22400,7 @@ vary: Origin
             &quot;id&quot;: 69,
             &quot;name&quot;: &quot;Топ 490&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/128/топ-490.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/128/топ-490.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22426,7 +22426,7 @@ vary: Origin
             &quot;id&quot;: 70,
             &quot;name&quot;: &quot;Топ спинка крест&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/159/топ-220-гол.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/159/топ-220-гол.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22452,7 +22452,7 @@ vary: Origin
             &quot;id&quot;: 71,
             &quot;name&quot;: &quot;Топ бюстгальтер&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/161/топ-майка-210.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/161/топ-майка-210.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22478,7 +22478,7 @@ vary: Origin
             &quot;id&quot;: 72,
             &quot;name&quot;: &quot;Комбинезон&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/131/комбез.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/131/комбез.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22504,7 +22504,7 @@ vary: Origin
             &quot;id&quot;: 73,
             &quot;name&quot;: &quot;Чай Palmira Манго медовый&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/144/чай-манго.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/144/чай-манго.webp&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22530,7 +22530,7 @@ vary: Origin
             &quot;id&quot;: 74,
             &quot;name&quot;: &quot;Леггинсы бантик&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/151/лег-бантик-350.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/151/лег-бантик-350.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22556,7 +22556,7 @@ vary: Origin
             &quot;id&quot;: 75,
             &quot;name&quot;: &quot;Леггинсы черно-белые буквы&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/163/лег-чер-б-буквы.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/163/лег-чер-б-буквы.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22582,7 +22582,7 @@ vary: Origin
             &quot;id&quot;: 76,
             &quot;name&quot;: &quot;Леггинсы Boom&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/165/леггинсы-бум-400.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/165/леггинсы-бум-400.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22608,7 +22608,7 @@ vary: Origin
             &quot;id&quot;: 77,
             &quot;name&quot;: &quot;Леггинсы полосы под попой&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/171/лег-под-попой-340.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/171/лег-под-попой-340.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22634,7 +22634,7 @@ vary: Origin
             &quot;id&quot;: 78,
             &quot;name&quot;: &quot;Леггинсы цветные надписи&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/167/леггинсы-цветные-надписи-400.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/167/леггинсы-цветные-надписи-400.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22660,7 +22660,7 @@ vary: Origin
             &quot;id&quot;: 79,
             &quot;name&quot;: &quot;Леггинсы WOW&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/169/лег-разноц-400-(2).jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/169/лег-разноц-400-(2).jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22686,7 +22686,7 @@ vary: Origin
             &quot;id&quot;: 80,
             &quot;name&quot;: &quot;Леггинсы губы&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/175/лег-губы-280.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/175/лег-губы-280.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22712,7 +22712,7 @@ vary: Origin
             &quot;id&quot;: 81,
             &quot;name&quot;: &quot;Костюм голубой сетка&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/187/костюм-голубой-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/187/костюм-голубой-сетка.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22738,7 +22738,7 @@ vary: Origin
             &quot;id&quot;: 82,
             &quot;name&quot;: &quot;Костюм череп&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/189/костюм-цветной-650.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/189/костюм-цветной-650.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22764,7 +22764,7 @@ vary: Origin
             &quot;id&quot;: 83,
             &quot;name&quot;: &quot;Комбинезон с вырезами&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/191/комбез-вырезы.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/191/комбез-вырезы.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22790,7 +22790,7 @@ vary: Origin
             &quot;id&quot;: 84,
             &quot;name&quot;: &quot;Комбинезон сетка черный, бордо&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/193/комбез-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/193/комбез-сетка.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22816,7 +22816,7 @@ vary: Origin
             &quot;id&quot;: 85,
             &quot;name&quot;: &quot;Топ на тонких брителях&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/195/топ-на-тонких.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/195/топ-на-тонких.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22842,7 +22842,7 @@ vary: Origin
             &quot;id&quot;: 86,
             &quot;name&quot;: &quot;Леггинсы сердце&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/197/лег-серце.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/197/лег-серце.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22868,7 +22868,7 @@ vary: Origin
             &quot;id&quot;: 87,
             &quot;name&quot;: &quot;Кофта короткая&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/199/кофта-кор.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/199/кофта-кор.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22894,7 +22894,7 @@ vary: Origin
             &quot;id&quot;: 88,
             &quot;name&quot;: &quot;Кофта длинная&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/201/кофта-длин.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/201/кофта-длин.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22920,7 +22920,7 @@ vary: Origin
             &quot;id&quot;: 89,
             &quot;name&quot;: &quot;Лосины зеленые&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/222/лосиныз.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/222/лосиныз.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22946,7 +22946,7 @@ vary: Origin
             &quot;id&quot;: 90,
             &quot;name&quot;: &quot;Костюм с длинным рукавом&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/205/костюм-с-длин-рукав.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/205/костюм-с-длин-рукав.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22972,7 +22972,7 @@ vary: Origin
             &quot;id&quot;: 91,
             &quot;name&quot;: &quot;Комбинезон с открытой спиной&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/207/комбез-открыт-спина.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/207/комбез-открыт-спина.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -22998,7 +22998,7 @@ vary: Origin
             &quot;id&quot;: 92,
             &quot;name&quot;: &quot;Комбинезон с молнией&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/209/комбез-спина-молния.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/209/комбез-спина-молния.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -23024,7 +23024,7 @@ vary: Origin
             &quot;id&quot;: 93,
             &quot;name&quot;: &quot;Топик сетка&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/211/топ-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/211/топ-сетка.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -23050,7 +23050,7 @@ vary: Origin
             &quot;id&quot;: 94,
             &quot;name&quot;: &quot;Костюм тройка&quot;,
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/215/костюм-3.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/215/костюм-3.jpg&quot;,
             &quot;warning_threshold&quot;: 0,
             &quot;current_quantity&quot;: 0,
             &quot;main_measure_type&quot;: {
@@ -23136,13 +23136,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/profit" \
+    --get "http://cashbox-online.test/api/reports/profit" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -23150,7 +23150,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/profit"
+    "http://cashbox-online.test/api/reports/profit"
 );
 
 const headers = {
@@ -23160,8 +23160,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -23243,7 +23243,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23253,7 +23253,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23284,13 +23284,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/profit_by_day" \
+    --get "http://cashbox-online.test/api/reports/profit_by_day" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -23298,7 +23298,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/profit_by_day"
+    "http://cashbox-online.test/api/reports/profit_by_day"
 );
 
 const headers = {
@@ -23308,8 +23308,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -23398,7 +23398,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23408,7 +23408,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_day"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23439,13 +23439,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/profit_by_category" \
+    --get "http://cashbox-online.test/api/reports/profit_by_category" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -23453,7 +23453,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/profit_by_category"
+    "http://cashbox-online.test/api/reports/profit_by_category"
 );
 
 const headers = {
@@ -23463,8 +23463,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -23585,7 +23585,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23595,7 +23595,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-profit_by_category"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23626,13 +23626,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/popular_sell_products" \
+    --get "http://cashbox-online.test/api/reports/popular_sell_products" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -23640,7 +23640,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/popular_sell_products"
+    "http://cashbox-online.test/api/reports/popular_sell_products"
 );
 
 const headers = {
@@ -23650,8 +23650,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -23908,7 +23908,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23918,7 +23918,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-popular_sell_products"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -23949,13 +23949,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/reports/get_paginated_transactions" \
+    "http://cashbox-online.test/api/reports/get_paginated_transactions" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -23963,7 +23963,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/get_paginated_transactions"
+    "http://cashbox-online.test/api/reports/get_paginated_transactions"
 );
 
 const headers = {
@@ -23973,8 +23973,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -24027,7 +24027,7 @@ fetch(url, {
                 <input type="text"
                name="start_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -24037,7 +24037,7 @@ fetch(url, {
                 <input type="text"
                name="end_date"
                data-endpoint="POSTapi-reports-get_paginated_transactions"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -24068,13 +24068,13 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/purchase_recommendations" \
+    --get "http://cashbox-online.test/api/reports/purchase_recommendations" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -24082,7 +24082,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/purchase_recommendations"
+    "http://cashbox-online.test/api/reports/purchase_recommendations"
 );
 
 const headers = {
@@ -24092,8 +24092,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -24135,7 +24135,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/1/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/1/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 1,
@@ -24171,7 +24171,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/2/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/2/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 2,
@@ -24223,7 +24223,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/3/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/3/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24251,7 +24251,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 1,
@@ -24287,7 +24287,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 2,
@@ -24323,7 +24323,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 4,
@@ -24359,7 +24359,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24387,7 +24387,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/67/зеленый.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/67/зеленый.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 7,
@@ -24423,7 +24423,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/66/альпи-луг.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/66/альпи-луг.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 7,
@@ -24459,7 +24459,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/65/черный.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/65/черный.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 7,
@@ -24495,7 +24495,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/64/фрукт.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/64/фрукт.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 7,
@@ -24531,7 +24531,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 1,
@@ -24567,7 +24567,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 1,
@@ -24603,7 +24603,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/59/Петли.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/59/Петли.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24631,7 +24631,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/112/ремень-для-йоги.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/112/ремень-для-йоги.webp&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24659,7 +24659,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24687,7 +24687,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24715,7 +24715,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24743,7 +24743,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24771,7 +24771,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/77/носки-взрос30.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/77/носки-взрос30.jpeg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24799,7 +24799,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24827,7 +24827,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24855,7 +24855,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24883,7 +24883,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24911,7 +24911,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24939,7 +24939,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24967,7 +24967,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -24995,7 +24995,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/29/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/29/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25023,7 +25023,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25051,7 +25051,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25079,7 +25079,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25107,7 +25107,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/45/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/45/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 9,
@@ -25143,7 +25143,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/51/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/51/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 9,
@@ -25179,7 +25179,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/46/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/46/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 8,
@@ -25215,7 +25215,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/47/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/47/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 10,
@@ -25243,7 +25243,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/49/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/49/image.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 10,
@@ -25271,7 +25271,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/107/блок-для-стреч.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/107/блок-для-стреч.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25299,7 +25299,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/71/носки70.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/71/носки70.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25327,7 +25327,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25355,7 +25355,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_perishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/images/default_card_img.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/images/default_card_img.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25383,7 +25383,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/68/жасмин.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/68/жасмин.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 7,
@@ -25419,7 +25419,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/70/unnamed.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/70/unnamed.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25447,7 +25447,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/93/сумка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/93/сумка.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25475,7 +25475,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/74/носки50.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/74/носки50.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25503,7 +25503,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/78/носки30.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/78/носки30.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25531,7 +25531,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/83/носки-теплые.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/83/носки-теплые.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25559,7 +25559,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/82/носки-симпосны.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/82/носки-симпосны.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25587,7 +25587,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/91/шар-дождевик.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/91/шар-дождевик.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25615,7 +25615,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/89/носки-йога-цвет.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/89/носки-йога-цвет.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25643,7 +25643,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/87/носки-йога-черн.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/87/носки-йога-черн.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25671,7 +25671,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/106/резинка-фитнес-латекс.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/106/резинка-фитнес-латекс.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25699,7 +25699,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/105/кольцо-фитнем.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/105/кольцо-фитнем.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25727,7 +25727,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/110/ручка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/110/ручка.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25755,7 +25755,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/90/мяч.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/90/мяч.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25783,7 +25783,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/185/лег-серые.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/185/лег-серые.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25811,7 +25811,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/113/гиря.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/113/гиря.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25839,7 +25839,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/115/коврик.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/115/коврик.png&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25867,7 +25867,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/217/костюм-1200-двойка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/217/костюм-1200-двойка.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25895,7 +25895,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/149/лег-черные350.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/149/лег-черные350.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25923,7 +25923,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/183/легин--сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/183/легин--сетка.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25951,7 +25951,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/181/лег-с-полосами-красн-черн.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/181/лег-с-полосами-красн-черн.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -25979,7 +25979,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/179/лег-с-кармаш.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/179/лег-с-кармаш.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26007,7 +26007,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/173/лег-комиксы-280.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/173/лег-комиксы-280.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26035,7 +26035,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/177/лег-подписи.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/177/лег-подписи.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26063,7 +26063,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/127/топ-190.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/127/топ-190.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26091,7 +26091,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/128/топ-490.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/128/топ-490.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26119,7 +26119,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/159/топ-220-гол.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/159/топ-220-гол.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26147,7 +26147,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/161/топ-майка-210.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/161/топ-майка-210.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26175,7 +26175,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/131/комбез.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/131/комбез.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26203,7 +26203,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/144/чай-манго.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/144/чай-манго.webp&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26231,7 +26231,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/151/лег-бантик-350.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/151/лег-бантик-350.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26259,7 +26259,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/163/лег-чер-б-буквы.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/163/лег-чер-б-буквы.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26287,7 +26287,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/165/леггинсы-бум-400.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/165/леггинсы-бум-400.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26315,7 +26315,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/171/лег-под-попой-340.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/171/лег-под-попой-340.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26343,7 +26343,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/167/леггинсы-цветные-надписи-400.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/167/леггинсы-цветные-надписи-400.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26371,7 +26371,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/169/лег-разноц-400-(2).jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/169/лег-разноц-400-(2).jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26399,7 +26399,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/175/лег-губы-280.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/175/лег-губы-280.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26427,7 +26427,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/187/костюм-голубой-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/187/костюм-голубой-сетка.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26455,7 +26455,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/189/костюм-цветной-650.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/189/костюм-цветной-650.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26483,7 +26483,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/191/комбез-вырезы.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/191/комбез-вырезы.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26511,7 +26511,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/193/комбез-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/193/комбез-сетка.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26539,7 +26539,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/195/топ-на-тонких.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/195/топ-на-тонких.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26567,7 +26567,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/197/лег-серце.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/197/лег-серце.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26595,7 +26595,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/199/кофта-кор.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/199/кофта-кор.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26623,7 +26623,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/201/кофта-длин.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/201/кофта-длин.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26651,7 +26651,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/222/лосиныз.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/222/лосиныз.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26679,7 +26679,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/205/костюм-с-длин-рукав.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/205/костюм-с-длин-рукав.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26707,7 +26707,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/207/комбез-открыт-спина.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/207/комбез-открыт-спина.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26735,7 +26735,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/209/комбез-спина-молния.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/209/комбез-спина-молния.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26763,7 +26763,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/211/топ-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/211/топ-сетка.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26791,7 +26791,7 @@ vary: Origin
                 &quot;is_common&quot;: 0
             },
             &quot;type&quot;: &quot;_imperishable&quot;,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/215/костюм-3.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/215/костюм-3.jpg&quot;,
             &quot;measure_types&quot;: [
                 {
                     &quot;id&quot;: 3,
@@ -26850,7 +26850,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -26860,7 +26860,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-purchase_recommendations"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -26891,13 +26891,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/product_consumptions_by_category/consequatur" \
+    --get "http://cashbox-online.test/api/reports/product_consumptions_by_category/consequatur" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -26905,7 +26905,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/product_consumptions_by_category/consequatur"
+    "http://cashbox-online.test/api/reports/product_consumptions_by_category/consequatur"
 );
 
 const headers = {
@@ -26915,8 +26915,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -27002,7 +27002,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -27012,7 +27012,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-product_consumptions_by_category--product_type_id-"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -27043,13 +27043,13 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/reports/product_types_statistic" \
+    --get "http://cashbox-online.test/api/reports/product_types_statistic" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"start_date\": \"2023-01-03T14:32:24\",
-    \"end_date\": \"2023-01-03T14:32:24\",
+    \"start_date\": \"2023-01-03T19:16:22\",
+    \"end_date\": \"2023-01-03T19:16:22\",
     \"shop_id\": 17
 }"
 </code></pre></div>
@@ -27057,7 +27057,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/reports/product_types_statistic"
+    "http://cashbox-online.test/api/reports/product_types_statistic"
 );
 
 const headers = {
@@ -27067,8 +27067,8 @@ const headers = {
 };
 
 let body = {
-    "start_date": "2023-01-03T14:32:24",
-    "end_date": "2023-01-03T14:32:24",
+    "start_date": "2023-01-03T19:16:22",
+    "end_date": "2023-01-03T19:16:22",
     "shop_id": 17
 };
 
@@ -27101,27 +27101,23 @@ vary: Origin
         {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Сахар&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27130,27 +27126,23 @@ vary: Origin
         {
             &quot;id&quot;: 2,
             &quot;name&quot;: &quot;Вода&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;л&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 л&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27159,27 +27151,23 @@ vary: Origin
         {
             &quot;id&quot;: 3,
             &quot;name&quot;: &quot;Стаканчик 250&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27188,27 +27176,23 @@ vary: Origin
         {
             &quot;id&quot;: 4,
             &quot;name&quot;: &quot;Кофе 1 кг&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27217,27 +27201,23 @@ vary: Origin
         {
             &quot;id&quot;: 6,
             &quot;name&quot;: &quot;Молоко&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;л&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 л&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27246,27 +27226,23 @@ vary: Origin
         {
             &quot;id&quot;: 7,
             &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 4,
-                &quot;name&quot;: &quot;ПЕТ 0,5&quot;,
-                &quot;quantity&quot;: 500
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 ПЕТ 0,5&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 ПЕТ 0,5&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 ПЕТ 0,5&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 ПЕТ 0,5&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27275,27 +27251,23 @@ vary: Origin
         {
             &quot;id&quot;: 8,
             &quot;name&quot;: &quot;Стаканчик 400&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27304,27 +27276,23 @@ vary: Origin
         {
             &quot;id&quot;: 9,
             &quot;name&quot;: &quot;Чай Palmira зеленый&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27333,27 +27301,23 @@ vary: Origin
         {
             &quot;id&quot;: 10,
             &quot;name&quot;: &quot;Чай Palmira Альпийский луг&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27362,27 +27326,23 @@ vary: Origin
         {
             &quot;id&quot;: 11,
             &quot;name&quot;: &quot;Чай Palmira черный&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27391,27 +27351,23 @@ vary: Origin
         {
             &quot;id&quot;: 12,
             &quot;name&quot;: &quot;Чай Palmira Fruit&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27420,27 +27376,23 @@ vary: Origin
         {
             &quot;id&quot;: 13,
             &quot;name&quot;: &quot;Мороженное&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27449,27 +27401,23 @@ vary: Origin
         {
             &quot;id&quot;: 14,
             &quot;name&quot;: &quot;Протеин&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27478,27 +27426,23 @@ vary: Origin
         {
             &quot;id&quot;: 15,
             &quot;name&quot;: &quot;Петли TRX&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27507,27 +27451,23 @@ vary: Origin
         {
             &quot;id&quot;: 16,
             &quot;name&quot;: &quot;Лента для йоги&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27536,27 +27476,23 @@ vary: Origin
         {
             &quot;id&quot;: 17,
             &quot;name&quot;: &quot;Резинка для стретчинга&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27565,27 +27501,23 @@ vary: Origin
         {
             &quot;id&quot;: 18,
             &quot;name&quot;: &quot;Блоки для стретчинга&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27594,27 +27526,23 @@ vary: Origin
         {
             &quot;id&quot;: 19,
             &quot;name&quot;: &quot;Гамак&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27623,27 +27551,23 @@ vary: Origin
         {
             &quot;id&quot;: 20,
             &quot;name&quot;: &quot;Носки (детские)&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27652,27 +27576,23 @@ vary: Origin
         {
             &quot;id&quot;: 21,
             &quot;name&quot;: &quot;Носки (взрослые)&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27681,27 +27601,23 @@ vary: Origin
         {
             &quot;id&quot;: 22,
             &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27710,27 +27626,23 @@ vary: Origin
         {
             &quot;id&quot;: 23,
             &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27739,27 +27651,23 @@ vary: Origin
         {
             &quot;id&quot;: 24,
             &quot;name&quot;: &quot;Резинка для волос (набор 10 шт. маленьких пружинок)&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27768,27 +27676,23 @@ vary: Origin
         {
             &quot;id&quot;: 25,
             &quot;name&quot;: &quot;Мешалки&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27797,27 +27701,23 @@ vary: Origin
         {
             &quot;id&quot;: 26,
             &quot;name&quot;: &quot;Стакан ПЛАСТИК 350 мл&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27826,27 +27726,23 @@ vary: Origin
         {
             &quot;id&quot;: 27,
             &quot;name&quot;: &quot;Крышка ПЛАСТИК&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27855,27 +27751,23 @@ vary: Origin
         {
             &quot;id&quot;: 28,
             &quot;name&quot;: &quot;Трубочка&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27884,27 +27776,23 @@ vary: Origin
         {
             &quot;id&quot;: 29,
             &quot;name&quot;: &quot;Резинка для волос безшовная большая&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27913,27 +27801,23 @@ vary: Origin
         {
             &quot;id&quot;: 30,
             &quot;name&quot;: &quot;Резинка МОРДОЧКА&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27942,27 +27826,23 @@ vary: Origin
         {
             &quot;id&quot;: 31,
             &quot;name&quot;: &quot;Батончик злаковый&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -27971,27 +27851,23 @@ vary: Origin
         {
             &quot;id&quot;: 32,
             &quot;name&quot;: &quot;Батончик протеиновый&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28000,27 +27876,23 @@ vary: Origin
         {
             &quot;id&quot;: 33,
             &quot;name&quot;: &quot;Сахар&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28029,27 +27901,23 @@ vary: Origin
         {
             &quot;id&quot;: 34,
             &quot;name&quot;: &quot;Кофе&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 9,
-                &quot;name&quot;: &quot;кг&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 кг&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 кг&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28058,27 +27926,23 @@ vary: Origin
         {
             &quot;id&quot;: 35,
             &quot;name&quot;: &quot;Вода&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 8,
-                &quot;name&quot;: &quot;л&quot;,
-                &quot;quantity&quot;: 1000
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 л&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 л&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28087,27 +27951,23 @@ vary: Origin
         {
             &quot;id&quot;: 36,
             &quot;name&quot;: &quot;Стаканчик&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28116,27 +27976,23 @@ vary: Origin
         {
             &quot;id&quot;: 37,
             &quot;name&quot;: &quot;Twix&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 10,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28145,27 +28001,23 @@ vary: Origin
         {
             &quot;id&quot;: 38,
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28174,27 +28026,23 @@ vary: Origin
         {
             &quot;id&quot;: 39,
             &quot;name&quot;: &quot;Носки NEW&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28203,27 +28051,23 @@ vary: Origin
         {
             &quot;id&quot;: 40,
             &quot;name&quot;: &quot;APELSIN&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28232,27 +28076,23 @@ vary: Origin
         {
             &quot;id&quot;: 41,
             &quot;name&quot;: &quot;БЕЗЕ&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28261,27 +28101,23 @@ vary: Origin
         {
             &quot;id&quot;: 42,
             &quot;name&quot;: &quot;Чай Palmira зеленый жасмин&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;Пакетик&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 Пакетик&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 Пакетик&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28290,27 +28126,23 @@ vary: Origin
         {
             &quot;id&quot;: 43,
             &quot;name&quot;: &quot;Браслет #main_stretch&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28319,27 +28151,23 @@ vary: Origin
         {
             &quot;id&quot;: 44,
             &quot;name&quot;: &quot;Сумка #main_stretch&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28348,27 +28176,23 @@ vary: Origin
         {
             &quot;id&quot;: 45,
             &quot;name&quot;: &quot;Носки следики мордочки&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28377,27 +28201,23 @@ vary: Origin
         {
             &quot;id&quot;: 46,
             &quot;name&quot;: &quot;Носки следики белые&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28406,27 +28226,23 @@ vary: Origin
         {
             &quot;id&quot;: 47,
             &quot;name&quot;: &quot;Носки теплые&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28435,27 +28251,23 @@ vary: Origin
         {
             &quot;id&quot;: 48,
             &quot;name&quot;: &quot;Носки Симпсоны&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28464,27 +28276,23 @@ vary: Origin
         {
             &quot;id&quot;: 49,
             &quot;name&quot;: &quot;Шар (дождевик)&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28493,27 +28301,23 @@ vary: Origin
         {
             &quot;id&quot;: 50,
             &quot;name&quot;: &quot;Носки Йога цветные&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28522,27 +28326,23 @@ vary: Origin
         {
             &quot;id&quot;: 51,
             &quot;name&quot;: &quot;Носки йога черный&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28551,27 +28351,23 @@ vary: Origin
         {
             &quot;id&quot;: 52,
             &quot;name&quot;: &quot;Резинка для фитнеса латекс&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28580,27 +28376,23 @@ vary: Origin
         {
             &quot;id&quot;: 53,
             &quot;name&quot;: &quot;Кольцо для фитнес стретчинга&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28609,27 +28401,23 @@ vary: Origin
         {
             &quot;id&quot;: 54,
             &quot;name&quot;: &quot;Ручка&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28638,27 +28426,23 @@ vary: Origin
         {
             &quot;id&quot;: 55,
             &quot;name&quot;: &quot;Мяч массажный&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28667,27 +28451,23 @@ vary: Origin
         {
             &quot;id&quot;: 56,
             &quot;name&quot;: &quot;Легинсы серые, бордовые&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28696,27 +28476,23 @@ vary: Origin
         {
             &quot;id&quot;: 57,
             &quot;name&quot;: &quot;Гиря 2 кг&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28725,27 +28501,23 @@ vary: Origin
         {
             &quot;id&quot;: 58,
             &quot;name&quot;: &quot;Коврик для йоги&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28754,27 +28526,23 @@ vary: Origin
         {
             &quot;id&quot;: 59,
             &quot;name&quot;: &quot;Костюм двойка&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28783,27 +28551,23 @@ vary: Origin
         {
             &quot;id&quot;: 60,
             &quot;name&quot;: &quot;Леггинсы черные&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28812,27 +28576,23 @@ vary: Origin
         {
             &quot;id&quot;: 61,
             &quot;name&quot;: &quot;Леггинсы сетка&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28841,27 +28601,23 @@ vary: Origin
         {
             &quot;id&quot;: 62,
             &quot;name&quot;: &quot;Леггинсы с полосами красные, черные 250&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28870,27 +28626,23 @@ vary: Origin
         {
             &quot;id&quot;: 63,
             &quot;name&quot;: &quot;Леггинсы с кармашком черн, роз, гол&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28899,27 +28651,23 @@ vary: Origin
         {
             &quot;id&quot;: 66,
             &quot;name&quot;: &quot;Леггинсы комиксы&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28928,27 +28676,23 @@ vary: Origin
         {
             &quot;id&quot;: 67,
             &quot;name&quot;: &quot;Леггинсы роспись черн, сер, красн&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28957,27 +28701,23 @@ vary: Origin
         {
             &quot;id&quot;: 68,
             &quot;name&quot;: &quot;Топ беж, черный&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -28986,27 +28726,23 @@ vary: Origin
         {
             &quot;id&quot;: 69,
             &quot;name&quot;: &quot;Топ 490&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29015,27 +28751,23 @@ vary: Origin
         {
             &quot;id&quot;: 70,
             &quot;name&quot;: &quot;Топ спинка крест&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29044,27 +28776,23 @@ vary: Origin
         {
             &quot;id&quot;: 71,
             &quot;name&quot;: &quot;Топ бюстгальтер&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29073,27 +28801,23 @@ vary: Origin
         {
             &quot;id&quot;: 72,
             &quot;name&quot;: &quot;Комбинезон&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29102,27 +28826,23 @@ vary: Origin
         {
             &quot;id&quot;: 73,
             &quot;name&quot;: &quot;Чай Palmira Манго медовый&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29131,27 +28851,23 @@ vary: Origin
         {
             &quot;id&quot;: 74,
             &quot;name&quot;: &quot;Леггинсы бантик&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29160,27 +28876,23 @@ vary: Origin
         {
             &quot;id&quot;: 75,
             &quot;name&quot;: &quot;Леггинсы черно-белые буквы&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29189,27 +28901,23 @@ vary: Origin
         {
             &quot;id&quot;: 76,
             &quot;name&quot;: &quot;Леггинсы Boom&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29218,27 +28926,23 @@ vary: Origin
         {
             &quot;id&quot;: 77,
             &quot;name&quot;: &quot;Леггинсы полосы под попой&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29247,27 +28951,23 @@ vary: Origin
         {
             &quot;id&quot;: 78,
             &quot;name&quot;: &quot;Леггинсы цветные надписи&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29276,27 +28976,23 @@ vary: Origin
         {
             &quot;id&quot;: 79,
             &quot;name&quot;: &quot;Леггинсы WOW&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29305,27 +29001,23 @@ vary: Origin
         {
             &quot;id&quot;: 80,
             &quot;name&quot;: &quot;Леггинсы губы&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29334,27 +29026,23 @@ vary: Origin
         {
             &quot;id&quot;: 81,
             &quot;name&quot;: &quot;Костюм голубой сетка&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29363,27 +29051,23 @@ vary: Origin
         {
             &quot;id&quot;: 82,
             &quot;name&quot;: &quot;Костюм череп&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29392,27 +29076,23 @@ vary: Origin
         {
             &quot;id&quot;: 83,
             &quot;name&quot;: &quot;Комбинезон с вырезами&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29421,27 +29101,23 @@ vary: Origin
         {
             &quot;id&quot;: 84,
             &quot;name&quot;: &quot;Комбинезон сетка черный, бордо&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29450,27 +29126,23 @@ vary: Origin
         {
             &quot;id&quot;: 85,
             &quot;name&quot;: &quot;Топ на тонких брителях&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29479,27 +29151,23 @@ vary: Origin
         {
             &quot;id&quot;: 86,
             &quot;name&quot;: &quot;Леггинсы сердце&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29508,27 +29176,23 @@ vary: Origin
         {
             &quot;id&quot;: 87,
             &quot;name&quot;: &quot;Кофта короткая&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29537,27 +29201,23 @@ vary: Origin
         {
             &quot;id&quot;: 88,
             &quot;name&quot;: &quot;Кофта длинная&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29566,27 +29226,23 @@ vary: Origin
         {
             &quot;id&quot;: 89,
             &quot;name&quot;: &quot;Лосины зеленые&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29595,27 +29251,23 @@ vary: Origin
         {
             &quot;id&quot;: 90,
             &quot;name&quot;: &quot;Костюм с длинным рукавом&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29624,27 +29276,23 @@ vary: Origin
         {
             &quot;id&quot;: 91,
             &quot;name&quot;: &quot;Комбинезон с открытой спиной&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29653,27 +29301,23 @@ vary: Origin
         {
             &quot;id&quot;: 92,
             &quot;name&quot;: &quot;Комбинезон с молнией&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29682,27 +29326,23 @@ vary: Origin
         {
             &quot;id&quot;: 93,
             &quot;name&quot;: &quot;Топик сетка&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29711,27 +29351,23 @@ vary: Origin
         {
             &quot;id&quot;: 94,
             &quot;name&quot;: &quot;Костюм тройка&quot;,
-            &quot;main_measure_type&quot;: {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;шт&quot;,
-                &quot;quantity&quot;: 1
-            },
             &quot;product_purchases&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
-                &quot;sum_current_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_current_quantity&quot;: &quot;0 шт&quot;,
+                &quot;sum_cost&quot;: 0,
                 &quot;sum_current_cost&quot;: 0
             },
             &quot;sales&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
             },
             &quot;write_offs&quot;: {
                 &quot;count&quot;: 0,
-                &quot;sum_quantity&quot;: 0,
+                &quot;sum_quantity&quot;: &quot;0 шт&quot;,
                 &quot;sum_income&quot;: 0,
                 &quot;sum_cost&quot;: 0,
                 &quot;sum_profit&quot;: 0
@@ -29780,7 +29416,7 @@ vary: Origin
                 <input type="text"
                name="start_date"
                data-endpoint="GETapi-reports-product_types_statistic"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -29790,7 +29426,7 @@ vary: Origin
                 <input type="text"
                name="end_date"
                data-endpoint="GETapi-reports-product_types_statistic"
-               value="2023-01-03T14:32:24"
+               value="2023-01-03T19:16:22"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -29825,7 +29461,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/roles" \
+    --get "http://cashbox-online.test/api/roles" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -29833,7 +29469,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/roles"
+    "http://cashbox-online.test/api/roles"
 );
 
 const headers = {
@@ -30582,7 +30218,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/roles" \
+    "http://cashbox-online.test/api/roles" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -30599,7 +30235,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/roles"
+    "http://cashbox-online.test/api/roles"
 );
 
 const headers = {
@@ -30720,7 +30356,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/roles/1" \
+    --get "http://cashbox-online.test/api/roles/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -30728,7 +30364,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/roles/1"
+    "http://cashbox-online.test/api/roles/1"
 );
 
 const headers = {
@@ -30831,7 +30467,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/roles/1" \
+    "http://cashbox-online.test/api/roles/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -30847,7 +30483,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/roles/1"
+    "http://cashbox-online.test/api/roles/1"
 );
 
 const headers = {
@@ -30972,7 +30608,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/roles/1" \
+    "http://cashbox-online.test/api/roles/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -30980,7 +30616,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/roles/1"
+    "http://cashbox-online.test/api/roles/1"
 );
 
 const headers = {
@@ -31062,7 +30698,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/sell_product_groups" \
+    --get "http://cashbox-online.test/api/sell_product_groups" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -31070,7 +30706,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_product_groups"
+    "http://cashbox-online.test/api/sell_product_groups"
 );
 
 const headers = {
@@ -31157,7 +30793,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/sell_product_groups" \
+    "http://cashbox-online.test/api/sell_product_groups" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -31174,7 +30810,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_product_groups"
+    "http://cashbox-online.test/api/sell_product_groups"
 );
 
 const headers = {
@@ -31316,7 +30952,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/sell_product_groups/17" \
+    --get "http://cashbox-online.test/api/sell_product_groups/17" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -31324,7 +30960,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_product_groups/17"
+    "http://cashbox-online.test/api/sell_product_groups/17"
 );
 
 const headers = {
@@ -31972,7 +31608,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/sell_product_groups/17" \
+    "http://cashbox-online.test/api/sell_product_groups/17" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -31987,7 +31623,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_product_groups/17"
+    "http://cashbox-online.test/api/sell_product_groups/17"
 );
 
 const headers = {
@@ -32142,7 +31778,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/sell_product_groups/17" \
+    "http://cashbox-online.test/api/sell_product_groups/17" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -32150,7 +31786,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_product_groups/17"
+    "http://cashbox-online.test/api/sell_product_groups/17"
 );
 
 const headers = {
@@ -32232,7 +31868,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/sell_products/get_paginated" \
+    "http://cashbox-online.test/api/sell_products/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -32245,7 +31881,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_products/get_paginated"
+    "http://cashbox-online.test/api/sell_products/get_paginated"
 );
 
 const headers = {
@@ -32339,7 +31975,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/sell_products" \
+    --get "http://cashbox-online.test/api/sell_products" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -32347,7 +31983,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_products"
+    "http://cashbox-online.test/api/sell_products"
 );
 
 const headers = {
@@ -32385,7 +32021,7 @@ vary: Origin
         {
             &quot;id&quot;: 1,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/25/782497750-dvojnoj-espresso-600x600.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/25/782497750-dvojnoj-espresso-600x600.jpeg&quot;,
             &quot;name&quot;: &quot;Эспрессо&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32439,7 +32075,7 @@ vary: Origin
         {
             &quot;id&quot;: 2,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/22/Американо.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/22/Американо.jpeg&quot;,
             &quot;name&quot;: &quot;Американо&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32493,7 +32129,7 @@ vary: Origin
         {
             &quot;id&quot;: 3,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/23/latte_macchiato_2000x1400px.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/23/latte_macchiato_2000x1400px.jpeg&quot;,
             &quot;name&quot;: &quot;Лате&quot;,
             &quot;price&quot;: &quot;30.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32560,7 +32196,7 @@ vary: Origin
         {
             &quot;id&quot;: 4,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/21/Снимок-экрана-2022-05-24-в-17.32.47.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/21/Снимок-экрана-2022-05-24-в-17.32.47.png&quot;,
             &quot;name&quot;: &quot;Вода Моршинская 0,5&quot;,
             &quot;price&quot;: &quot;25.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32588,7 +32224,7 @@ vary: Origin
         {
             &quot;id&quot;: 5,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/63/зеленый.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/63/зеленый.png&quot;,
             &quot;name&quot;: &quot;Чай Palmira зеленый&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32648,7 +32284,7 @@ vary: Origin
         {
             &quot;id&quot;: 6,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/13/trx_s_burn-081.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/13/trx_s_burn-081.jpeg&quot;,
             &quot;name&quot;: &quot;Петли TRX&quot;,
             &quot;price&quot;: &quot;2000.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32676,7 +32312,7 @@ vary: Origin
         {
             &quot;id&quot;: 7,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/12/pic_ed9813ade29c489_1024x3000.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/12/pic_ed9813ade29c489_1024x3000.webp&quot;,
             &quot;name&quot;: &quot;Лента для йоги&quot;,
             &quot;price&quot;: &quot;160.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32704,7 +32340,7 @@ vary: Origin
         {
             &quot;id&quot;: 8,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/11/3112003758_w640_h640_nabor-tkanevyh-fitnes.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/11/3112003758_w640_h640_nabor-tkanevyh-fitnes.webp&quot;,
             &quot;name&quot;: &quot;Резинка для стретчинга&quot;,
             &quot;price&quot;: &quot;300.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32732,7 +32368,7 @@ vary: Origin
         {
             &quot;id&quot;: 9,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/10/Blok-dlya-jogi-EasyFit-EVA-CHernyj.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/10/Blok-dlya-jogi-EasyFit-EVA-CHernyj.webp&quot;,
             &quot;name&quot;: &quot;Блоки для стретчинга&quot;,
             &quot;price&quot;: &quot;120.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32760,7 +32396,7 @@ vary: Origin
         {
             &quot;id&quot;: 10,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/9/e1a2a0c7-8d77-4065-be93-b6e01c1dcb36.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/9/e1a2a0c7-8d77-4065-be93-b6e01c1dcb36.jpeg&quot;,
             &quot;name&quot;: &quot;Гамак&quot;,
             &quot;price&quot;: &quot;2000.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32788,7 +32424,7 @@ vary: Origin
         {
             &quot;id&quot;: 11,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/17/10055-228x228.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/17/10055-228x228.jpeg&quot;,
             &quot;name&quot;: &quot;Носки (детские)&quot;,
             &quot;price&quot;: &quot;25.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32816,7 +32452,7 @@ vary: Origin
         {
             &quot;id&quot;: 12,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/16/images.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/16/images.jpeg&quot;,
             &quot;name&quot;: &quot;Носки (взрослые)&quot;,
             &quot;price&quot;: &quot;30.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32844,7 +32480,7 @@ vary: Origin
         {
             &quot;id&quot;: 13,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/28/Снимок-экрана-2022-05-24-в-17.48.24.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/28/Снимок-экрана-2022-05-24-в-17.48.24.png&quot;,
             &quot;name&quot;: &quot;Резинка для волос (пружинка)&quot;,
             &quot;price&quot;: &quot;35.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32872,7 +32508,7 @@ vary: Origin
         {
             &quot;id&quot;: 14,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/27/Снимок-экрана-2022-05-24-в-17.48.16.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/27/Снимок-экрана-2022-05-24-в-17.48.16.png&quot;,
             &quot;name&quot;: &quot;Резинка для волос безшовная маленькая&quot;,
             &quot;price&quot;: &quot;5.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32900,7 +32536,7 @@ vary: Origin
         {
             &quot;id&quot;: 15,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/26/Снимок-экрана-2022-05-24-в-17.47.50.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/26/Снимок-экрана-2022-05-24-в-17.47.50.png&quot;,
             &quot;name&quot;: &quot;Резинка для волос (набор 10 шт. маленьких пружинок)&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32928,7 +32564,7 @@ vary: Origin
         {
             &quot;id&quot;: 16,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/8/cappuccino_2000x1400px.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/8/cappuccino_2000x1400px.jpeg&quot;,
             &quot;name&quot;: &quot;Капучино&quot;,
             &quot;price&quot;: &quot;30.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -32995,7 +32631,7 @@ vary: Origin
         {
             &quot;id&quot;: 17,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/62/черный.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/62/черный.png&quot;,
             &quot;name&quot;: &quot;Чай Palmira черный&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33055,7 +32691,7 @@ vary: Origin
         {
             &quot;id&quot;: 18,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/30/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/30/Снимок-экрана-2022-05-24-в-17.48.01.png&quot;,
             &quot;name&quot;: &quot;Резинка для волос безшовная большая&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33083,7 +32719,7 @@ vary: Origin
         {
             &quot;id&quot;: 19,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/31/Снимок-экрана-2022-05-24-в-17.58.08.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/31/Снимок-экрана-2022-05-24-в-17.58.08.png&quot;,
             &quot;name&quot;: &quot;Резинка МОРДОЧКА&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33111,7 +32747,7 @@ vary: Origin
         {
             &quot;id&quot;: 20,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/61/фрукт.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/61/фрукт.png&quot;,
             &quot;name&quot;: &quot;Чай Palmira Fruit&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33171,7 +32807,7 @@ vary: Origin
         {
             &quot;id&quot;: 21,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/60/альпи-луг.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/60/альпи-луг.png&quot;,
             &quot;name&quot;: &quot;Чай Palmira Альпийский луг&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33231,7 +32867,7 @@ vary: Origin
         {
             &quot;id&quot;: 22,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/34/50520802_958877007645473_470777998541895421_n.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/34/50520802_958877007645473_470777998541895421_n.webp&quot;,
             &quot;name&quot;: &quot;Молочный коктейль&quot;,
             &quot;price&quot;: &quot;35.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33311,7 +32947,7 @@ vary: Origin
         {
             &quot;id&quot;: 23,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/35/images.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/35/images.jpeg&quot;,
             &quot;name&quot;: &quot;Протеиновый коктейль на молоке&quot;,
             &quot;price&quot;: &quot;35.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33391,7 +33027,7 @@ vary: Origin
         {
             &quot;id&quot;: 24,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/36/protein_cocktail_5_1273.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/36/protein_cocktail_5_1273.jpeg&quot;,
             &quot;name&quot;: &quot;Протеиновый коктейль на воде&quot;,
             &quot;price&quot;: &quot;25.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33482,7 +33118,7 @@ vary: Origin
         {
             &quot;id&quot;: 25,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/37/76721_1.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/37/76721_1.jpeg&quot;,
             &quot;name&quot;: &quot;Батончик злаковый&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33510,7 +33146,7 @@ vary: Origin
         {
             &quot;id&quot;: 26,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/38/20190702.1562168528.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/38/20190702.1562168528.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.webp&quot;,
             &quot;name&quot;: &quot;Батончик протеиновый&quot;,
             &quot;price&quot;: &quot;35.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33538,7 +33174,7 @@ vary: Origin
         {
             &quot;id&quot;: 27,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/39/2-655_1.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/39/2-655_1.jpeg&quot;,
             &quot;name&quot;: &quot;Американо/Эспрессо для персонала&quot;,
             &quot;price&quot;: &quot;8.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33605,7 +33241,7 @@ vary: Origin
         {
             &quot;id&quot;: 28,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/40/2.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/40/2.png&quot;,
             &quot;name&quot;: &quot;Капучино/Латте для персонала&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33685,7 +33321,7 @@ vary: Origin
         {
             &quot;id&quot;: 29,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/41/isla-tea-fruit-2-g-01_390x415.370x370.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/41/isla-tea-fruit-2-g-01_390x415.370x370.jpg&quot;,
             &quot;name&quot;: &quot;Чай ISLA Fruit Tea для персонала&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33758,7 +33394,7 @@ vary: Origin
         {
             &quot;id&quot;: 30,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/42/31438689.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/42/31438689.png&quot;,
             &quot;name&quot;: &quot;Чай ISLA Herbal tea для персонала&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33831,7 +33467,7 @@ vary: Origin
         {
             &quot;id&quot;: 31,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/43/isla-tea-jasmine-05.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/43/isla-tea-jasmine-05.jpeg&quot;,
             &quot;name&quot;: &quot;Чай ISLA Green Tea для персонала&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33904,7 +33540,7 @@ vary: Origin
         {
             &quot;id&quot;: 32,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/44/31438967.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/44/31438967.png&quot;,
             &quot;name&quot;: &quot;Чай ISLA English Breakfast для персонала&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -33977,7 +33613,7 @@ vary: Origin
         {
             &quot;id&quot;: 33,
             &quot;company_id&quot;: 2,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/48/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/48/image.png&quot;,
             &quot;name&quot;: &quot;Американо&quot;,
             &quot;price&quot;: &quot;40.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34044,7 +33680,7 @@ vary: Origin
         {
             &quot;id&quot;: 34,
             &quot;company_id&quot;: 2,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/50/image.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/50/image.png&quot;,
             &quot;name&quot;: &quot;Twix&quot;,
             &quot;price&quot;: &quot;30.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34072,7 +33708,7 @@ vary: Origin
         {
             &quot;id&quot;: 35,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/52/2793190762_w640_h640_stakan-340ml-bumazhnyj.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/52/2793190762_w640_h640_stakan-340ml-bumazhnyj.webp&quot;,
             &quot;name&quot;: &quot;Стакан для воды&quot;,
             &quot;price&quot;: &quot;1.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34100,7 +33736,7 @@ vary: Origin
         {
             &quot;id&quot;: 36,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/54/2671198337_blok-dlya-jogi.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/54/2671198337_blok-dlya-jogi.webp&quot;,
             &quot;name&quot;: &quot;Блок для стретчинга NEW&quot;,
             &quot;price&quot;: &quot;160.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34128,7 +33764,7 @@ vary: Origin
         {
             &quot;id&quot;: 37,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/72/носки70.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/72/носки70.png&quot;,
             &quot;name&quot;: &quot;Носки NEW&quot;,
             &quot;price&quot;: &quot;70.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34156,7 +33792,7 @@ vary: Origin
         {
             &quot;id&quot;: 38,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/58/245511119.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/58/245511119.jpeg&quot;,
             &quot;name&quot;: &quot;APELSIN&quot;,
             &quot;price&quot;: &quot;50.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34184,7 +33820,7 @@ vary: Origin
         {
             &quot;id&quot;: 39,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/57/загружено.jpeg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/57/загружено.jpeg&quot;,
             &quot;name&quot;: &quot;БЕЗЕ&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34212,7 +33848,7 @@ vary: Origin
         {
             &quot;id&quot;: 40,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/69/жасмин.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/69/жасмин.png&quot;,
             &quot;name&quot;: &quot;Чай Palmira зеленый жасмин&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34272,7 +33908,7 @@ vary: Origin
         {
             &quot;id&quot;: 41,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/95/telegram-cloud-photo-size-2-5247235707179746723-y.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/95/telegram-cloud-photo-size-2-5247235707179746723-y.jpg&quot;,
             &quot;name&quot;: &quot;Браслет #main_stretch&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34300,7 +33936,7 @@ vary: Origin
         {
             &quot;id&quot;: 42,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/94/сумка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/94/сумка.jpg&quot;,
             &quot;name&quot;: &quot;Сумка #main_stretch&quot;,
             &quot;price&quot;: &quot;100.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34328,7 +33964,7 @@ vary: Origin
         {
             &quot;id&quot;: 43,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/76/носки50.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/76/носки50.png&quot;,
             &quot;name&quot;: &quot;Носки следики мордочки&quot;,
             &quot;price&quot;: &quot;50.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34356,7 +33992,7 @@ vary: Origin
         {
             &quot;id&quot;: 44,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/104/носки30.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/104/носки30.png&quot;,
             &quot;name&quot;: &quot;Носки следики белые&quot;,
             &quot;price&quot;: &quot;35.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34384,7 +34020,7 @@ vary: Origin
         {
             &quot;id&quot;: 45,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/102/носки-теплые.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/102/носки-теплые.png&quot;,
             &quot;name&quot;: &quot;Носки теплые&quot;,
             &quot;price&quot;: &quot;450.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34412,7 +34048,7 @@ vary: Origin
         {
             &quot;id&quot;: 46,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/103/носки-симпосны.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/103/носки-симпосны.png&quot;,
             &quot;name&quot;: &quot;Носки Симпсоны&quot;,
             &quot;price&quot;: &quot;120.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34440,7 +34076,7 @@ vary: Origin
         {
             &quot;id&quot;: 47,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/101/шар-дождевик.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/101/шар-дождевик.jpg&quot;,
             &quot;name&quot;: &quot;Шар (дождевик)&quot;,
             &quot;price&quot;: &quot;55.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34468,7 +34104,7 @@ vary: Origin
         {
             &quot;id&quot;: 48,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/100/носки-йога-цвет.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/100/носки-йога-цвет.png&quot;,
             &quot;name&quot;: &quot;Носки Йога цветные&quot;,
             &quot;price&quot;: &quot;100.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34496,7 +34132,7 @@ vary: Origin
         {
             &quot;id&quot;: 49,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/99/носки-йога-черн.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/99/носки-йога-черн.png&quot;,
             &quot;name&quot;: &quot;Носки йога черный&quot;,
             &quot;price&quot;: &quot;170.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34524,7 +34160,7 @@ vary: Origin
         {
             &quot;id&quot;: 50,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/98/резинка-фитнес-латекс.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/98/резинка-фитнес-латекс.png&quot;,
             &quot;name&quot;: &quot;Резинка для фитнеса латекс&quot;,
             &quot;price&quot;: &quot;140.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34552,7 +34188,7 @@ vary: Origin
         {
             &quot;id&quot;: 51,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/97/кольцо-фитнем.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/97/кольцо-фитнем.png&quot;,
             &quot;name&quot;: &quot;Кольцо для фитнес стретчинга&quot;,
             &quot;price&quot;: &quot;350.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34580,7 +34216,7 @@ vary: Origin
         {
             &quot;id&quot;: 52,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/111/ручка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/111/ручка.jpg&quot;,
             &quot;name&quot;: &quot;Ручка&quot;,
             &quot;price&quot;: &quot;15.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34608,7 +34244,7 @@ vary: Origin
         {
             &quot;id&quot;: 53,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/96/мяч-массаж.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/96/мяч-массаж.png&quot;,
             &quot;name&quot;: &quot;Мяч массажный&quot;,
             &quot;price&quot;: &quot;270.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34636,7 +34272,7 @@ vary: Origin
         {
             &quot;id&quot;: 54,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/186/лег-серые.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/186/лег-серые.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы серые, бордовые&quot;,
             &quot;price&quot;: &quot;470.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34664,7 +34300,7 @@ vary: Origin
         {
             &quot;id&quot;: 55,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/114/гиря.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/114/гиря.png&quot;,
             &quot;name&quot;: &quot;Гиря 2 кг&quot;,
             &quot;price&quot;: &quot;650.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34692,7 +34328,7 @@ vary: Origin
         {
             &quot;id&quot;: 56,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/116/коврик.png&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/116/коврик.png&quot;,
             &quot;name&quot;: &quot;Коврик для йоги&quot;,
             &quot;price&quot;: &quot;1600.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34720,7 +34356,7 @@ vary: Origin
         {
             &quot;id&quot;: 57,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/218/костюм-1200-двойка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/218/костюм-1200-двойка.jpg&quot;,
             &quot;name&quot;: &quot;Костюм двойка&quot;,
             &quot;price&quot;: &quot;1200.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34748,7 +34384,7 @@ vary: Origin
         {
             &quot;id&quot;: 58,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/150/лег-черные350.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/150/лег-черные350.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы черные&quot;,
             &quot;price&quot;: &quot;350.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34776,7 +34412,7 @@ vary: Origin
         {
             &quot;id&quot;: 59,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/184/легин--сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/184/легин--сетка.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы сетка&quot;,
             &quot;price&quot;: &quot;670.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34804,7 +34440,7 @@ vary: Origin
         {
             &quot;id&quot;: 60,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/182/лег-с-полосами-красн-черн.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/182/лег-с-полосами-красн-черн.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы с полосами красные, черные 250&quot;,
             &quot;price&quot;: &quot;250.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34832,7 +34468,7 @@ vary: Origin
         {
             &quot;id&quot;: 61,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/219/лег-с-карм.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/219/лег-с-карм.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы с кармашком черн, роз, гол&quot;,
             &quot;price&quot;: &quot;400.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34860,7 +34496,7 @@ vary: Origin
         {
             &quot;id&quot;: 64,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/174/лег-комиксы-280.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/174/лег-комиксы-280.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы комиксы&quot;,
             &quot;price&quot;: &quot;280.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34888,7 +34524,7 @@ vary: Origin
         {
             &quot;id&quot;: 65,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/178/лег-подписи.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/178/лег-подписи.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы роспись черн, сер, красн&quot;,
             &quot;price&quot;: &quot;340.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34916,7 +34552,7 @@ vary: Origin
         {
             &quot;id&quot;: 66,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/133/топ-190.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/133/топ-190.jpg&quot;,
             &quot;name&quot;: &quot;Топ беж, черный&quot;,
             &quot;price&quot;: &quot;190.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34944,7 +34580,7 @@ vary: Origin
         {
             &quot;id&quot;: 67,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/132/топ-490.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/132/топ-490.jpg&quot;,
             &quot;name&quot;: &quot;Топ 490&quot;,
             &quot;price&quot;: &quot;490.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -34972,7 +34608,7 @@ vary: Origin
         {
             &quot;id&quot;: 68,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/160/топ-220-гол.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/160/топ-220-гол.jpg&quot;,
             &quot;name&quot;: &quot;Топ спинка крест&quot;,
             &quot;price&quot;: &quot;220.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35000,7 +34636,7 @@ vary: Origin
         {
             &quot;id&quot;: 69,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/162/топ-майка-210.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/162/топ-майка-210.jpg&quot;,
             &quot;name&quot;: &quot;Топ бюстгальтер&quot;,
             &quot;price&quot;: &quot;210.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35028,7 +34664,7 @@ vary: Origin
         {
             &quot;id&quot;: 70,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/136/комбез.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/136/комбез.jpg&quot;,
             &quot;name&quot;: &quot;Комбинезон&quot;,
             &quot;price&quot;: &quot;850.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35056,7 +34692,7 @@ vary: Origin
         {
             &quot;id&quot;: 71,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/145/чай-манго.webp&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/145/чай-манго.webp&quot;,
             &quot;name&quot;: &quot;Чай Palmira Манго медовый&quot;,
             &quot;price&quot;: &quot;20.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35084,7 +34720,7 @@ vary: Origin
         {
             &quot;id&quot;: 75,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/152/лег-бантик-350.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/152/лег-бантик-350.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы бантик&quot;,
             &quot;price&quot;: &quot;350.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35112,7 +34748,7 @@ vary: Origin
         {
             &quot;id&quot;: 76,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/164/лег-чер-б-буквы.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/164/лег-чер-б-буквы.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы черно-белые буквы&quot;,
             &quot;price&quot;: &quot;350.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35140,7 +34776,7 @@ vary: Origin
         {
             &quot;id&quot;: 77,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/166/леггинсы-бум-400.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/166/леггинсы-бум-400.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы Boom&quot;,
             &quot;price&quot;: &quot;400.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35168,7 +34804,7 @@ vary: Origin
         {
             &quot;id&quot;: 78,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/172/лег-под-попой-340.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/172/лег-под-попой-340.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы полосы под попой&quot;,
             &quot;price&quot;: &quot;340.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35196,7 +34832,7 @@ vary: Origin
         {
             &quot;id&quot;: 79,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/168/леггинсы-цветные-надписи-400.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/168/леггинсы-цветные-надписи-400.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы цветные надписи&quot;,
             &quot;price&quot;: &quot;400.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35224,7 +34860,7 @@ vary: Origin
         {
             &quot;id&quot;: 80,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/170/лег-разноц-400-(2).jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/170/лег-разноц-400-(2).jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы WOW&quot;,
             &quot;price&quot;: &quot;400.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35252,7 +34888,7 @@ vary: Origin
         {
             &quot;id&quot;: 81,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/176/лег-губы-280.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/176/лег-губы-280.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы губы&quot;,
             &quot;price&quot;: &quot;280.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35280,7 +34916,7 @@ vary: Origin
         {
             &quot;id&quot;: 82,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/188/костюм-голубой-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/188/костюм-голубой-сетка.jpg&quot;,
             &quot;name&quot;: &quot;Костюм голубой сетка&quot;,
             &quot;price&quot;: &quot;1650.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35308,7 +34944,7 @@ vary: Origin
         {
             &quot;id&quot;: 83,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/190/костюм-цветной-650.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/190/костюм-цветной-650.jpg&quot;,
             &quot;name&quot;: &quot;Костюм череп&quot;,
             &quot;price&quot;: &quot;650.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35336,7 +34972,7 @@ vary: Origin
         {
             &quot;id&quot;: 84,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/192/комбез-вырезы.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/192/комбез-вырезы.jpg&quot;,
             &quot;name&quot;: &quot;Комбинезон с вырезами&quot;,
             &quot;price&quot;: &quot;2200.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35364,7 +35000,7 @@ vary: Origin
         {
             &quot;id&quot;: 85,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/194/комбез-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/194/комбез-сетка.jpg&quot;,
             &quot;name&quot;: &quot;Комбинезон сетка черный, бордо&quot;,
             &quot;price&quot;: &quot;1950.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35392,7 +35028,7 @@ vary: Origin
         {
             &quot;id&quot;: 86,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/196/топ-на-тонких.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/196/топ-на-тонких.jpg&quot;,
             &quot;name&quot;: &quot;Топ на тонких брителях&quot;,
             &quot;price&quot;: &quot;450.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35420,7 +35056,7 @@ vary: Origin
         {
             &quot;id&quot;: 87,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/198/лег-серце.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/198/лег-серце.jpg&quot;,
             &quot;name&quot;: &quot;Леггинсы сердце&quot;,
             &quot;price&quot;: &quot;470.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35448,7 +35084,7 @@ vary: Origin
         {
             &quot;id&quot;: 88,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/200/кофта-кор.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/200/кофта-кор.jpg&quot;,
             &quot;name&quot;: &quot;Кофта короткая&quot;,
             &quot;price&quot;: &quot;940.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35476,7 +35112,7 @@ vary: Origin
         {
             &quot;id&quot;: 89,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/202/кофта-длин.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/202/кофта-длин.jpg&quot;,
             &quot;name&quot;: &quot;Кофта длинная&quot;,
             &quot;price&quot;: &quot;1040.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35504,7 +35140,7 @@ vary: Origin
         {
             &quot;id&quot;: 90,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/220/лосиныз.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/220/лосиныз.jpg&quot;,
             &quot;name&quot;: &quot;Лосины зеленые&quot;,
             &quot;price&quot;: &quot;1200.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35532,7 +35168,7 @@ vary: Origin
         {
             &quot;id&quot;: 91,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/221/photo_2022-12-21_20-34-48.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/221/photo_2022-12-21_20-34-48.jpg&quot;,
             &quot;name&quot;: &quot;Костюм с длинным рукавом&quot;,
             &quot;price&quot;: &quot;2750.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35560,7 +35196,7 @@ vary: Origin
         {
             &quot;id&quot;: 92,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/208/комбез-открыт-спина.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/208/комбез-открыт-спина.jpg&quot;,
             &quot;name&quot;: &quot;Комбинезон с открытой спиной&quot;,
             &quot;price&quot;: &quot;1750.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35588,7 +35224,7 @@ vary: Origin
         {
             &quot;id&quot;: 93,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/210/комбез-спина-молния.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/210/комбез-спина-молния.jpg&quot;,
             &quot;name&quot;: &quot;Комбинезон с молнией&quot;,
             &quot;price&quot;: &quot;1750.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35616,7 +35252,7 @@ vary: Origin
         {
             &quot;id&quot;: 94,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/212/топ-сетка.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/212/топ-сетка.jpg&quot;,
             &quot;name&quot;: &quot;Топик сетка&quot;,
             &quot;price&quot;: &quot;400.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35644,7 +35280,7 @@ vary: Origin
         {
             &quot;id&quot;: 95,
             &quot;company_id&quot;: 1,
-            &quot;photo&quot;: &quot;https://cashbox-online.test/storage/216/костюм-3.jpg&quot;,
+            &quot;photo&quot;: &quot;http://cashbox-online.test/storage/216/костюм-3.jpg&quot;,
             &quot;name&quot;: &quot;Костюм тройка&quot;,
             &quot;price&quot;: &quot;1600.00&quot;,
             &quot;has_discount&quot;: 0,
@@ -35722,7 +35358,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/sell_products" \
+    "http://cashbox-online.test/api/sell_products" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -35744,7 +35380,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_products"
+    "http://cashbox-online.test/api/sell_products"
 );
 
 const headers = {
@@ -35948,7 +35584,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/sell_products/1" \
+    --get "http://cashbox-online.test/api/sell_products/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -35956,7 +35592,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_products/1"
+    "http://cashbox-online.test/api/sell_products/1"
 );
 
 const headers = {
@@ -35993,7 +35629,7 @@ vary: Origin
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;company_id&quot;: 1,
-        &quot;photo&quot;: &quot;https://cashbox-online.test/storage/25/782497750-dvojnoj-espresso-600x600.jpeg&quot;,
+        &quot;photo&quot;: &quot;http://cashbox-online.test/storage/25/782497750-dvojnoj-espresso-600x600.jpeg&quot;,
         &quot;name&quot;: &quot;Эспрессо&quot;,
         &quot;price&quot;: &quot;20.00&quot;,
         &quot;has_discount&quot;: 0,
@@ -36135,7 +35771,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/sell_products/1" \
+    "http://cashbox-online.test/api/sell_products/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -36155,7 +35791,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_products/1"
+    "http://cashbox-online.test/api/sell_products/1"
 );
 
 const headers = {
@@ -36341,7 +35977,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/sell_products/1" \
+    "http://cashbox-online.test/api/sell_products/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -36349,7 +35985,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/sell_products/1"
+    "http://cashbox-online.test/api/sell_products/1"
 );
 
 const headers = {
@@ -36431,7 +36067,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/shops/get_by_company" \
+    "http://cashbox-online.test/api/shops/get_by_company" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -36443,7 +36079,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/shops/get_by_company"
+    "http://cashbox-online.test/api/shops/get_by_company"
 );
 
 const headers = {
@@ -36526,7 +36162,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/shops" \
+    --get "http://cashbox-online.test/api/shops" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -36534,7 +36170,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/shops"
+    "http://cashbox-online.test/api/shops"
 );
 
 const headers = {
@@ -36657,7 +36293,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/shops" \
+    "http://cashbox-online.test/api/shops" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -36673,7 +36309,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/shops"
+    "http://cashbox-online.test/api/shops"
 );
 
 const headers = {
@@ -36793,7 +36429,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/shops/1" \
+    --get "http://cashbox-online.test/api/shops/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -36801,7 +36437,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/shops/1"
+    "http://cashbox-online.test/api/shops/1"
 );
 
 const headers = {
@@ -36910,7 +36546,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/shops/1" \
+    "http://cashbox-online.test/api/shops/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -36925,7 +36561,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/shops/1"
+    "http://cashbox-online.test/api/shops/1"
 );
 
 const headers = {
@@ -37049,7 +36685,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/shops/1" \
+    "http://cashbox-online.test/api/shops/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -37057,7 +36693,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/shops/1"
+    "http://cashbox-online.test/api/shops/1"
 );
 
 const headers = {
@@ -37139,7 +36775,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/storages/get_for_purchase" \
+    "http://cashbox-online.test/api/storages/get_for_purchase" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -37151,7 +36787,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages/get_for_purchase"
+    "http://cashbox-online.test/api/storages/get_for_purchase"
 );
 
 const headers = {
@@ -37234,7 +36870,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/storages/get_balance" \
+    "http://cashbox-online.test/api/storages/get_balance" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -37248,7 +36884,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages/get_balance"
+    "http://cashbox-online.test/api/storages/get_balance"
 );
 
 const headers = {
@@ -37336,7 +36972,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/storages/write_off" \
+    "http://cashbox-online.test/api/storages/write_off" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -37356,7 +36992,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages/write_off"
+    "http://cashbox-online.test/api/storages/write_off"
 );
 
 const headers = {
@@ -37496,7 +37132,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/storages/transfer" \
+    "http://cashbox-online.test/api/storages/transfer" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -37517,7 +37153,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages/transfer"
+    "http://cashbox-online.test/api/storages/transfer"
 );
 
 const headers = {
@@ -37668,7 +37304,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/storages" \
+    --get "http://cashbox-online.test/api/storages" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -37676,7 +37312,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages"
+    "http://cashbox-online.test/api/storages"
 );
 
 const headers = {
@@ -37799,7 +37435,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/storages" \
+    "http://cashbox-online.test/api/storages" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -37813,7 +37449,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages"
+    "http://cashbox-online.test/api/storages"
 );
 
 const headers = {
@@ -37918,7 +37554,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/storages/1" \
+    --get "http://cashbox-online.test/api/storages/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -37926,7 +37562,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages/1"
+    "http://cashbox-online.test/api/storages/1"
 );
 
 const headers = {
@@ -38028,7 +37664,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/storages/1" \
+    "http://cashbox-online.test/api/storages/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -38040,7 +37676,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages/1"
+    "http://cashbox-online.test/api/storages/1"
 );
 
 const headers = {
@@ -38138,7 +37774,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/storages/1" \
+    "http://cashbox-online.test/api/storages/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -38146,7 +37782,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/storages/1"
+    "http://cashbox-online.test/api/storages/1"
 );
 
 const headers = {
@@ -38228,7 +37864,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/system_logs/get_paginated" \
+    "http://cashbox-online.test/api/system_logs/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -38241,7 +37877,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/system_logs/get_paginated"
+    "http://cashbox-online.test/api/system_logs/get_paginated"
 );
 
 const headers = {
@@ -38339,7 +37975,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/transfers/get_paginated" \
+    "http://cashbox-online.test/api/transfers/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -38352,7 +37988,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/transfers/get_paginated"
+    "http://cashbox-online.test/api/transfers/get_paginated"
 );
 
 const headers = {
@@ -38446,7 +38082,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/transfers/1" \
+    --get "http://cashbox-online.test/api/transfers/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -38454,7 +38090,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/transfers/1"
+    "http://cashbox-online.test/api/transfers/1"
 );
 
 const headers = {
@@ -38583,7 +38219,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/change_shop" \
+    "http://cashbox-online.test/api/change_shop" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -38595,7 +38231,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/change_shop"
+    "http://cashbox-online.test/api/change_shop"
 );
 
 const headers = {
@@ -38678,7 +38314,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/users" \
+    --get "http://cashbox-online.test/api/users" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -38686,7 +38322,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/users"
+    "http://cashbox-online.test/api/users"
 );
 
 const headers = {
@@ -38995,7 +38631,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/users" \
+    "http://cashbox-online.test/api/users" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -39014,7 +38650,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/users"
+    "http://cashbox-online.test/api/users"
 );
 
 const headers = {
@@ -39157,7 +38793,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/users/1" \
+    --get "http://cashbox-online.test/api/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -39165,7 +38801,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/users/1"
+    "http://cashbox-online.test/api/users/1"
 );
 
 const headers = {
@@ -39275,7 +38911,7 @@ vary: Origin
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://cashbox-online.test/api/users/1" \
+    "http://cashbox-online.test/api/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -39292,7 +38928,7 @@ vary: Origin
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/users/1"
+    "http://cashbox-online.test/api/users/1"
 );
 
 const headers = {
@@ -39438,7 +39074,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://cashbox-online.test/api/users/1" \
+    "http://cashbox-online.test/api/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -39446,7 +39082,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/users/1"
+    "http://cashbox-online.test/api/users/1"
 );
 
 const headers = {
@@ -39528,7 +39164,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://cashbox-online.test/api/write_offs/get_paginated" \
+    "http://cashbox-online.test/api/write_offs/get_paginated" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -39541,7 +39177,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/write_offs/get_paginated"
+    "http://cashbox-online.test/api/write_offs/get_paginated"
 );
 
 const headers = {
@@ -39635,7 +39271,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://cashbox-online.test/api/write_offs/1" \
+    --get "http://cashbox-online.test/api/write_offs/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -39643,7 +39279,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://cashbox-online.test/api/write_offs/1"
+    "http://cashbox-online.test/api/write_offs/1"
 );
 
 const headers = {
