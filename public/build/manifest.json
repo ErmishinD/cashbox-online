@@ -1,0 +1,26 @@
+{
+  "resources/assets/img/sidebar_arrow.svg": {
+    "file": "assets/sidebar_arrow-2e0b02da.svg",
+    "src": "resources/assets/img/sidebar_arrow.svg"
+  },
+  "resources/assets/scss/main.scss": {
+    "file": "assets/main-d31106c8.css",
+    "src": "resources/assets/scss/main.scss",
+    "isEntry": true
+  },
+  "resources/assets/js/main.css": {
+    "file": "assets/main-01106dda.css",
+    "src": "resources/assets/js/main.css"
+  },
+  "resources/assets/js/main.js": {
+    "file": "assets/main-45f2558f.js",
+    "src": "resources/assets/js/main.js",
+    "isEntry": true,
+    "css": [
+      "assets/main-01106dda.css"
+    ],
+    "assets": [
+      "assets/sidebar_arrow-2e0b02da.svg"
+    ]
+  }
+}

@@ -32,8 +32,8 @@ import ua from './locales/ua.json'
 import ru from './locales/ru.json'
 
 
-import Permissions from './mixins/Permissions';
-import GetBackgroundImage from './mixins/GetBackgroundImage';
+import Permissions from './mixins/Permissions.vue';
+import GetBackgroundImage from './mixins/GetBackgroundImage.vue';
 
 /* import app */
 import App from './components/App.vue'
