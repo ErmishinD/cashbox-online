@@ -300,7 +300,7 @@ export default {
         },
         {
           label: this.$t('Сумма остатка'),
-          field: 'product_purchases.sum_cost',
+          field: 'product_purchases.sum_current_cost',
         },
         {
           label: this.$t('Кол-во продаж с товаром'),
