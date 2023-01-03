@@ -31,6 +31,7 @@
             window.Permissions = [];
         @endauth
     </script>
+    @vite(['resources/assets/scss/main.scss', 'resources/assets/js/main.js'])
 </head>
 
 <body>
@@ -47,6 +48,5 @@
 
 </body>
 
-@vite(['resources/assets/scss/main.scss', 'resources/assets/js/main.js'])
 
 </html>
