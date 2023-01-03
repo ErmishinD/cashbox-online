@@ -134,8 +134,7 @@
   		},
   		changeLanguage (locale) {
   		  this.$root.$i18n.locale = locale
-  		  this.$cookies.set('lang', locale);
-  		  this.$root.selectedLanguage = locale
+  		  this.$cookies.set('lang', locale)
   		  this.isDropdownOpened = false
   		  this.menu = this.returnSidebarData()
   		},

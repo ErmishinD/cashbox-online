@@ -1,4 +1,8 @@
-require('./bootstrap');
+// require('./bootstrap');
+
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 import { createApp, h } from 'vue';
 import { createStore } from 'vuex'
@@ -13,6 +17,8 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import Notifications from '@kyvg/vue3-notification'
 import VueGoodTablePlugin from 'vue-good-table-next';
 import mitt from 'mitt';
+import Chart from 'chart.js/auto';
+import { createI18n } from 'vue-i18n'
 
 
 import "gitart-vue-dialog/dist/style.css";
@@ -21,143 +27,145 @@ import { GDialog } from "gitart-vue-dialog";
 // import the styles
 import 'vue-good-table-next/dist/vue-good-table-next.css'
 
-import i18n from './i18n'
+import en from './locales/en.json'
+import ua from './locales/ua.json'
+import ru from './locales/ru.json'
 
 
 import Permissions from './mixins/Permissions';
 import GetBackgroundImage from './mixins/GetBackgroundImage';
 
 /* import app */
-import App from './components/App'
+import App from './components/App.vue'
 
 /* import dashboard */
-import DashboardIndex from './components/dashboard/Index'
-import DashboardShow from './components/dashboard/Show'
+import DashboardIndex from './components/dashboard/Index.vue'
+import DashboardShow from './components/dashboard/Show.vue'
 
 /* import counterparties */
-import CounterpartyIndex from './components/counterparties/Index'
-import CounterpartyCreate from './components/counterparties/Create'
-import CounterpartyEdit from './components/counterparties/Edit'
-import CounterpartyShow from './components/counterparties/Show'
+import CounterpartyIndex from './components/counterparties/Index.vue'
+import CounterpartyCreate from './components/counterparties/Create.vue'
+import CounterpartyEdit from './components/counterparties/Edit.vue'
+import CounterpartyShow from './components/counterparties/Show.vue'
 
 /* import products_type */
-import ProductsTypeIndex from './components/products_type/Index'
-import ProductsTypeCreate from './components/products_type/Create'
-import ProductsTypeEdit from './components/products_type/Edit'
-import ProductsTypeShow from './components/products_type/Show'
+import ProductsTypeIndex from './components/products_type/Index.vue'
+import ProductsTypeCreate from './components/products_type/Create.vue'
+import ProductsTypeEdit from './components/products_type/Edit.vue'
+import ProductsTypeShow from './components/products_type/Show.vue'
 
 /* import products_for_sale */
-import ProductsForSaleIndex from './components/products_for_sale/Index'
-import ProductsForSaleCreate from './components/products_for_sale/Create'
-import ProductsForSaleEdit from './components/products_for_sale/Edit'
-import ProductsForSaleShow from './components/products_for_sale/Show'
+import ProductsForSaleIndex from './components/products_for_sale/Index.vue'
+import ProductsForSaleCreate from './components/products_for_sale/Create.vue'
+import ProductsForSaleEdit from './components/products_for_sale/Edit.vue'
+import ProductsForSaleShow from './components/products_for_sale/Show.vue'
 
 /* import purchases */
-import PurchasesIndex from './components/purchases/Index'
-import PurchasesCreate from './components/purchases/Create'
-import PurchasesShow from './components/purchases/Show'
-import PurchasesEdit from './components/purchases/Edit'
+import PurchasesIndex from './components/purchases/Index.vue'
+import PurchasesCreate from './components/purchases/Create.vue'
+import PurchasesShow from './components/purchases/Show.vue'
+import PurchasesEdit from './components/purchases/Edit.vue'
 
 /* import reports */
 	/* import cashbox */
-	import ReportsCashboxIndex from './components/reports/cashbox/Index'
-	import ReportsCashboxCollections from './components/reports/cashbox/Collections'
+	import ReportsCashboxIndex from './components/reports/cashbox/Index.vue'
+	import ReportsCashboxCollections from './components/reports/cashbox/Collections.vue'
 
 	/* import finance */
-	import ReportsFinanceIndex from './components/reports/finance/Index'
+	import ReportsFinanceIndex from './components/reports/finance/Index.vue'
 
 	/* import purcsases */
-	import ReportsPurchasesIndex from './components/reports/purchases/Index'
+	import ReportsPurchasesIndex from './components/reports/purchases/Index.vue'
 
 	/* import thresholds */
-	import ReportsThresholdsIndex from './components/reports/thresholds/Index'
+	import ReportsThresholdsIndex from './components/reports/thresholds/Index.vue'
 
 	/* import profits */
-	import ReportsProfitsIndex from './components/reports/profits/Index'
+	import ReportsProfitsIndex from './components/reports/profits/Index.vue'
 
 	/* import recommendations */
-	import ReportsRecommendationsIndex from './components/reports/recommendations/Index'
+	import ReportsRecommendationsIndex from './components/reports/recommendations/Index.vue'
 
 /* import transfers */
-import TransfersIndex from './components/transfers/Index'
-import TransfersCreate from './components/transfers/Create'
-import TransfersConfirm from './components/transfers/Confirm'
-import TransfersShow from './components/transfers/Show'
+import TransfersIndex from './components/transfers/Index.vue'
+import TransfersCreate from './components/transfers/Create.vue'
+import TransfersConfirm from './components/transfers/Confirm.vue'
+import TransfersShow from './components/transfers/Show.vue'
 
 /* import shops */
-import ShopsIndex from './components/shops/Index'
-import ShopsCreate from './components/shops/Create'
-import ShopsEdit from './components/shops/Edit'
-import ShopsShow from './components/shops/Show'
+import ShopsIndex from './components/shops/Index.vue'
+import ShopsCreate from './components/shops/Create.vue'
+import ShopsEdit from './components/shops/Edit.vue'
+import ShopsShow from './components/shops/Show.vue'
 
 /* import storages */
-import StoragesIndex from './components/storages/Index'
-import StoragesCreate from './components/storages/Create'
-import StoragesEdit from './components/storages/Edit'
-import StoragesShow from './components/storages/Show'
+import StoragesIndex from './components/storages/Index.vue'
+import StoragesCreate from './components/storages/Create.vue'
+import StoragesEdit from './components/storages/Edit.vue'
+import StoragesShow from './components/storages/Show.vue'
 
 /* import users */
-import UsersIndex from './components/users/Index'
-import UsersCreate from './components/users/Create'
-import UsersEdit from './components/users/Edit'
-import UsersShow from './components/users/Show'
+import UsersIndex from './components/users/Index.vue'
+import UsersCreate from './components/users/Create.vue'
+import UsersEdit from './components/users/Edit.vue'
+import UsersShow from './components/users/Show.vue'
 
 /* import settings */
-import SettingsTranslates from './components/settings/Translates'
-import SettingsPermissions from './components/settings/Permissions'
+import SettingsTranslates from './components/settings/Translates.vue'
+import SettingsPermissions from './components/settings/Permissions.vue'
 	/* import roles */
-	import SettingsRolesIndex from './components/settings/roles/Index'
-	import SettingsRolesCreate from './components/settings/roles/Create'
-	import SettingsRolesEdit from './components/settings/roles/Edit'
+	import SettingsRolesIndex from './components/settings/roles/Index.vue'
+	import SettingsRolesCreate from './components/settings/roles/Create.vue'
+	import SettingsRolesEdit from './components/settings/roles/Edit.vue'
 	/* import measures */
-	import SettingsMeasuresIndex from './components/settings/measures/Index'
-	import SettingsMeasuresCreate from './components/settings/measures/Create'
-	import SettingsMeasuresEdit from './components/settings/measures/Edit'
+	import SettingsMeasuresIndex from './components/settings/measures/Index.vue'
+	import SettingsMeasuresCreate from './components/settings/measures/Create.vue'
+	import SettingsMeasuresEdit from './components/settings/measures/Edit.vue'
 
 	/* import companies */
-	import SettingsCompaniesIndex from './components/settings/companies/Index'
-	import SettingsCompaniesCreate from './components/settings/companies/Create'
-	import SettingsCompaniesEdit from './components/settings/companies/Edit'
-	import SettingsCompaniesShow from './components/settings/companies/Show'
+	import SettingsCompaniesIndex from './components/settings/companies/Index.vue'
+	import SettingsCompaniesCreate from './components/settings/companies/Create.vue'
+	import SettingsCompaniesEdit from './components/settings/companies/Edit.vue'
+	import SettingsCompaniesShow from './components/settings/companies/Show.vue'
 
 	/* import categories */
-	import SettingsCategoriesIndex from './components/settings/categories/Index'
-	import SettingsCategoriesCreate from './components/settings/categories/Create'
-	import SettingsCategoriesEdit from './components/settings/categories/Edit'
+	import SettingsCategoriesIndex from './components/settings/categories/Index.vue'
+	import SettingsCategoriesCreate from './components/settings/categories/Create.vue'
+	import SettingsCategoriesEdit from './components/settings/categories/Edit.vue'
 
 	/* import audites */
-	import SettingsAuditesIndex from './components/settings/audites/Index'
+	import SettingsAuditesIndex from './components/settings/audites/Index.vue'
 
 /* import write-off */
-import WriteOffIndex from './components/writeoff/Index'
-import WriteOffShow from './components/writeoff/Show'
-import WriteOffCreate from './components/writeoff/Create'
+import WriteOffIndex from './components/writeoff/Index.vue'
+import WriteOffShow from './components/writeoff/Show.vue'
+import WriteOffCreate from './components/writeoff/Create.vue'
 
 /* import external sales */
-import ExternalSalesIndex from './components/external_sales/Index'
+import ExternalSalesIndex from './components/external_sales/Index.vue'
 
 /* import 404 */
-import PageNotFound from './components/404'
+import PageNotFound from './components/404.vue'
 
 /* import 403 */
-import BadPermissions from './components/403'
+import BadPermissions from './components/403.vue'
 
 
 // Create a new store instance.
-const store = createStore({
-  state() {
-      appLanguage: localStorage.getItem("appLanguage") || process.env.VUE_APP_I18N_LOCALE || 'ru'
-    },
-    getters() {
-      getAppLanguage: (state) => state.appLanguage
-    },
-    mutations: {
-      setAppLanguage (state, language) {
-        state.appLanguage = language;
-        localStorage.setItem("language", language); // Whenever we change the appLanguage we save it to the localStorage
-      }
-    }
-})
+// const store = createStore({
+//   state() {
+//       appLanguage: localStorage.getItem("appLanguage") || process.env.VUE_APP_I18N_LOCALE || 'ru'
+//     },
+//     getters() {
+//       getAppLanguage: (state) => state.appLanguage
+//     },
+//     mutations: {
+//       setAppLanguage (state, language) {
+//         state.appLanguage = language;
+//         localStorage.setItem("language", language); // Whenever we change the appLanguage we save it to the localStorage
+//       }
+//     }
+// })
 
 
 // Create a new router instance.
@@ -524,6 +532,15 @@ const app = createApp({
     render: ()=>h(App)
 })
 
+const i18n = createI18n({
+  locale: 'ru',
+  messages: {
+    en,
+    ua,
+    ru
+  }
+})
+
 const emitter = mitt();
 
 app.config.globalProperties.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
@@ -536,7 +553,7 @@ app.config.globalProperties.emitter = emitter;
 
 
 app.use(VueSidebarMenu)
-app.use(router).use(i18n).use(store)
+app.use(router).use(i18n)
 
 app.use(VueCookies, {
     expireTimes: "30d",

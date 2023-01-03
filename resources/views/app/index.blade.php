@@ -47,3 +47,6 @@
 
 </body>
 
+@vite(['resources/assets/scss/main.scss', 'resources/assets/js/main.js'])
+
+</html>
