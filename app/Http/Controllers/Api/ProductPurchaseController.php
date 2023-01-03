@@ -155,7 +155,7 @@ class ProductPurchaseController extends Controller
                 $data['current_quantity'] = $data['quantity'];
             }
 
-            $data['current_cost'] = $data['current_quantity'] != 0 ? $data['cost'] / $data['current_quantity'] : 0; // update current_cost of this purchase
+            $data['current_cost'] = $data['current_quantity'] != 0 ? $data['cost'] / $data['quantity'] * $data['current_quantity'] : 0; // update current_cost of this purchase
 
             // new quantity
             if ($product_purchase->quantity != $data['quantity'] || $product_purchase->cost != $data['cost']) {

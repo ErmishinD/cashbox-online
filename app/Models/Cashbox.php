@@ -140,7 +140,7 @@ class Cashbox extends Model implements SystemLoggable
     public function getVueParams(string $action): array
     {
         if ($action == SystemLog::ACTIONS['collected']) {
-            return ['collected_at' => $this->collected_at->format('Y-m-d H:i:s')];
+            return ['collected_at' => $this->collected_at ? $this->collected_at->format('Y-m-d H:i:s') : 'null'];
         }
         elseif ($action == SystemLog::ACTIONS['sold']) {
             return ['id' => $this->id];

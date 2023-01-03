@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\Api\Report\DateRangeRequest;
 use App\Http\Resources\Api\Cashbox\ProfitByShopCollection;
+use App\Http\Resources\Api\ProductType\StatsResource;
 use App\Http\Resources\Api\Report\CashboxTransactionResource;
 use App\Http\Resources\Api\Report\ConsumptionByCategoryCollection;
 use App\Http\Resources\Api\Report\PopularSellProductcsCollection;
@@ -288,5 +289,131 @@ class ReportController extends Controller
             ->get();
 
         return ConsumptionByCategoryCollection::make($consumptions);
+    }
+
+    public function statsByProductType(DateRangeRequest $request)
+    {
+        $data = $request->validated();
+
+        $storage_ids = [];
+        $product_purchase_ids = [];
+
+        if (!empty($data['shop_id'])) {
+            $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $data['shop_id'])->pluck('id');
+            $product_purchase_ids = ProductPurchase::select('id')->whereIn('storage_id', $storage_ids)->pluck('id');
+        }
+
+        $product_types = ProductType::query()
+            ->with('main_measure_type')
+            ->withCount([
+                'product_purchases' => function ($query) use ($data, $product_purchase_ids) {
+                    $query->whereBetween('created_at', [$data['start_date'], $data['end_date']])
+                        ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('id', $product_purchase_ids);
+                                }
+                        );
+                }
+            ])
+            ->withSum([
+                'product_purchases' => function ($query) use ($data, $product_purchase_ids) {
+                    $query->whereBetween('created_at', [$data['start_date'], $data['end_date']])
+                        ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('id', $product_purchase_ids);
+                                }
+                        );
+                }
+            ], 'quantity')
+            ->withSum([
+                'product_purchases' => function ($query) use ($data, $product_purchase_ids) {
+                    $query->whereBetween('created_at', [$data['start_date'], $data['end_date']])
+                        ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('id', $product_purchase_ids);
+                                }
+                        );
+                }
+            ], 'current_quantity')
+            ->withSum([
+                'product_purchases' => function ($query) use ($data, $product_purchase_ids) {
+                    $query->whereBetween('created_at', [$data['start_date'], $data['end_date']])
+                        ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('id', $product_purchase_ids);
+                                }
+                        );
+                }
+            ], 'cost')
+            ->withSum([
+                'product_purchases' => function ($query) use ($data, $product_purchase_ids) {
+                    $query->whereBetween('created_at', [$data['start_date'], $data['end_date']])
+                        ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('id', $product_purchase_ids);
+                                }
+                        );
+                }
+            ], 'current_cost')
+            ->withCount([
+                'product_consumptions as product_consumptions_count_sales' => function ($query) use ($data, $product_purchase_ids) {
+                    $query->where('consumable_type', Cashbox::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])
+                        ->distinct('consumable_id')->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ])
+        ->withSum(['product_consumptions as product_consumptions_sum_quantity_sales' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', Cashbox::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'quantity')
+        ->withSum(['product_consumptions as product_consumptions_sum_income_sales' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', Cashbox::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'income')
+        ->withSum(['product_consumptions as product_consumptions_sum_cost_sales' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', Cashbox::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'cost')
+        ->withSum(['product_consumptions as product_consumptions_sum_profit_sales' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', Cashbox::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'profit')
+        ->withCount(['product_consumptions as product_consumptions_count_write_offs' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', WriteOff::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])
+                    ->distinct('consumable_id')->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ])
+        ->withSum(['product_consumptions as product_consumptions_sum_quantity_write_offs' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', WriteOff::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'quantity')
+        ->withSum(['product_consumptions as product_consumptions_sum_income_write_offs' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', WriteOff::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'income')
+        ->withSum(['product_consumptions as product_consumptions_sum_cost_write_offs' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', WriteOff::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'cost')
+        ->withSum(['product_consumptions as product_consumptions_sum_profit_write_offs' => function ($query) use ($data, $product_purchase_ids) {
+                $query->where('consumable_type', WriteOff::class)->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                    $sub_query->whereIn('product_purchase_id', $product_purchase_ids);
+                    });
+            }
+        ], 'profit')
+        ->get();
+        return StatsResource::collection($product_types);
     }
 }

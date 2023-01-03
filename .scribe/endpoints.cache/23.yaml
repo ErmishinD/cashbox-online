@@ -38,7 +38,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/write_offs/{write_off}'
+    uri: 'api/write_offs/{write_off_id}'
     metadata:
       title: ''
       description: ''
@@ -49,9 +49,9 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      write_off:
-        name: write_off
-        description: ''
+      write_off_id:
+        name: write_off_id
+        description: 'The ID of the write off.'
         required: true
         example: 1
         type: integer

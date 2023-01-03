@@ -20,7 +20,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":1,"name":"#main_stretch"},{"id":2,"name":"SomeCompany"},{"id":4,"name":"Main body\/beauty"}]}'
+        content: '{"data":[{"id":1,"name":"#main_stretch"},{"id":2,"name":"SomeCompany"},{"id":4,"name":"Main Body\/Beauty"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -79,7 +79,7 @@ endpoints:
         name: id
         description: 'The ID of the counterparty.'
         required: true
-        example: 17
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -87,7 +87,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":1,"name":"#main_stretch","purchase_sum_cost":53038.79,"purchase_sum_current_cost":"25025.65","cashbox_consumptions_sum_cost":"20087.19","cashbox_consumptions_sum_income":"34172.00","cashbox_consumptions_sum_profit":"14082.74","write_off_consumptions_sum_cost":"7411.87","transfer_consumptions_sum_cost":"3347.28"}}'
+        content: '{"data":{"id":1,"name":"#main_stretch","purchase_sum_cost":165703.13,"purchase_sum_current_cost":"104986.46","cashbox_consumptions_sum_cost":"33606.68","cashbox_consumptions_sum_income":"61065.91","cashbox_consumptions_sum_profit":"25534.52","write_off_consumptions_sum_cost":"26661.32","transfer_consumptions_sum_cost":"4592.53"}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

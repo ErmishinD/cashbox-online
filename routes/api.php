@@ -226,6 +226,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('popular_sell_products', [ReportController::class, 'getPopularSellProducts']);
 
         Route::get('product_consumptions_by_category/{product_type_id}', [ReportController::class, 'getConsumptionsByCategory']);
+
+        Route::get('product_types_statistic', [ReportController::class, 'statsByProductType']);
     });
 });
 

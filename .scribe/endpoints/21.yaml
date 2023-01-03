@@ -36,7 +36,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/transfers/{transfer}'
+    uri: 'api/transfers/{transfer_id}'
     metadata:
       title: ''
       description: ''
@@ -47,9 +47,9 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      transfer:
-        name: transfer
-        description: ''
+      transfer_id:
+        name: transfer_id
+        description: 'The ID of the transfer.'
         required: true
         example: 1
         type: integer

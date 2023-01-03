@@ -79,8 +79,8 @@ endpoints:
         name: id
         description: 'The ID of the base measure type.'
         required: true
-        example: consequatur
-        type: string
+        example: 1
+        type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
@@ -115,8 +115,8 @@ endpoints:
         name: id
         description: 'The ID of the base measure type.'
         required: true
-        example: consequatur
-        type: string
+        example: 1
+        type: integer
         custom: []
     queryParameters: []
     bodyParameters:
@@ -154,8 +154,8 @@ endpoints:
         name: id
         description: 'The ID of the base measure type.'
         required: true
-        example: consequatur
-        type: string
+        example: 1
+        type: integer
         custom: []
     queryParameters: []
     bodyParameters: []

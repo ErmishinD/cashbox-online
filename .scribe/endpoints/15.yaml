@@ -25,18 +25,18 @@ endpoints:
               "message": "Class name must be a valid object or a string",
               "exception": "Error",
               "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
-              "line": 755,
+              "line": 775,
               "trace": [
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
-                      "line": 551,
+                      "line": 571,
                       "function": "newRelatedInstance",
                       "class": "Illuminate\\Database\\Eloquent\\Model",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasRelationships.php",
-                      "line": 622,
+                      "line": 642,
                       "function": "morphToMany",
                       "class": "Illuminate\\Database\\Eloquent\\Model",
                       "type": "->"
@@ -50,7 +50,7 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
-                      "line": 743,
+                      "line": 864,
                       "function": "users",
                       "class": "Spatie\\Permission\\Models\\Role",
                       "type": "->"
@@ -64,21 +64,21 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
-                      "line": 744,
+                      "line": 865,
                       "function": "noConstraints",
                       "class": "Illuminate\\Database\\Eloquent\\Relations\\Relation",
                       "type": "::"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
-                      "line": 543,
+                      "line": 622,
                       "function": "getRelationWithoutConstraints",
                       "class": "Illuminate\\Database\\Eloquent\\Builder",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php",
-                      "line": 612,
+                      "line": 707,
                       "function": "withAggregate",
                       "class": "Illuminate\\Database\\Eloquent\\Builder",
                       "type": "->"
@@ -92,7 +92,7 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
-                      "line": 2133,
+                      "line": 2321,
                       "function": "forwardCallTo",
                       "class": "Illuminate\\Database\\Eloquent\\Model",
                       "type": "->"
@@ -120,28 +120,28 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
-                      "line": 45,
+                      "line": 43,
                       "function": "callAction",
                       "class": "Illuminate\\Routing\\Controller",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
-                      "line": 261,
+                      "line": 260,
                       "function": "dispatch",
                       "class": "Illuminate\\Routing\\ControllerDispatcher",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
-                      "line": 204,
+                      "line": 205,
                       "function": "runController",
                       "class": "Illuminate\\Routing\\Route",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 725,
+                      "line": 798,
                       "function": "run",
                       "class": "Illuminate\\Routing\\Route",
                       "type": "->"
@@ -253,35 +253,35 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 727,
+                      "line": 799,
                       "function": "then",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 702,
+                      "line": 776,
                       "function": "runRouteWithinStack",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 666,
+                      "line": 740,
                       "function": "runRoute",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 655,
+                      "line": 729,
                       "function": "dispatchToRoute",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 167,
+                      "line": 190,
                       "function": "dispatch",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
@@ -295,7 +295,7 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php",
-                      "line": 60,
+                      "line": 59,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
@@ -414,14 +414,14 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 142,
+                      "line": 165,
                       "function": "then",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 111,
+                      "line": 134,
                       "function": "sendRequestThroughRouter",
                       "class": "Illuminate\\Foundation\\Http\\Kernel",
                       "type": "->"
@@ -540,28 +540,28 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php",
-                      "line": 653,
+                      "line": 651,
                       "function": "call",
                       "class": "Illuminate\\Container\\BoundMethod",
                       "type": "::"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 171,
+                      "line": 182,
                       "function": "call",
                       "class": "Illuminate\\Container\\Container",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Command/Command.php",
-                      "line": 291,
+                      "line": 312,
                       "function": "execute",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 156,
+                      "line": 152,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Command\\Command",
                       "type": "->"
@@ -617,49 +617,49 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Container/Container.php",
-                      "line": 653,
+                      "line": 651,
                       "function": "call",
                       "class": "Illuminate\\Container\\BoundMethod",
                       "type": "::"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 171,
+                      "line": 182,
                       "function": "call",
                       "class": "Illuminate\\Container\\Container",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Command/Command.php",
-                      "line": 291,
+                      "line": 312,
                       "function": "execute",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 156,
+                      "line": 152,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Command\\Command",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Application.php",
-                      "line": 989,
+                      "line": 1022,
                       "function": "run",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Application.php",
-                      "line": 299,
+                      "line": 314,
                       "function": "doRunCommand",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/symfony/console/Application.php",
-                      "line": 171,
+                      "line": 168,
                       "function": "doRun",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
@@ -673,7 +673,7 @@ endpoints:
                   },
                   {
                       "file": "/Users/ermishind/Documents/\u041f\u0440\u043e\u0435\u043a\u0442\u044b/cashbox-online/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php",
-                      "line": 129,
+                      "line": 155,
                       "function": "run",
                       "class": "Illuminate\\Console\\Application",
                       "type": "->"
