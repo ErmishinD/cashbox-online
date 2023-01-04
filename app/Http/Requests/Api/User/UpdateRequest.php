@@ -27,8 +27,8 @@ class UpdateRequest extends TenantRequest
     {
         return [
             'name' => ['required'],
-            'username' => ['required', Rule::unique('users')->ignore($this->user)],
-            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)],
+            'username' => ['required', Rule::unique('users')->ignore($this->user)->withoutTrashed()],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)->withoutTrashed()],
             'password' => ['nullable'],
             'roles' => ['nullable', 'array'],
             'roles.*' => [Rule::in(Role::pluck('id'))]
