@@ -25,7 +25,7 @@ class ProductTypeService
     }
 
     public static function get_current_quantity(
-        $filters, array $storage_ids, bool $with_expired = false, array $paginate_params = []
+        $filters, array $storage_ids, bool $with_expired = false, array $paginate_params = [], bool $hide_zero_values = false
     )
     {
         $product_types_query = ProductType::query()
@@ -50,6 +50,10 @@ class ProductTypeService
                             });
                     }], 'current_quantity');
             })
+            ->when($hide_zero_values, function($query) {
+                $query->having('product_purchases_sum_current_quantity', '>', 0);
+            })
+            ->orderByDesc('category_id')
             ->orderByDesc('product_purchases_sum_current_quantity');
 
         if (!empty($paginate_params) && !empty($paginate_params['per_page'] && !empty($paginate_params['page']))) {

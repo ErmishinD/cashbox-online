@@ -111,7 +111,7 @@ class ProductTypeRepository extends BaseRepository
         return $this->model->select('id', 'name')->get();
     }
 
-    public function get_current_quantity($filters, int $shop_id, ?array $storage_ids, $with_expired = true, $paginate_params = [])
+    public function get_current_quantity($filters, int $shop_id, ?array $storage_ids, $with_expired = true, $paginate_params = [], $hide_zero_values = false)
     {
         if (empty($storage_ids)) {
             $storage_ids = Storage::select('id', 'shop_id')->where('shop_id', $shop_id)->pluck('id')->toArray();
@@ -121,7 +121,8 @@ class ProductTypeRepository extends BaseRepository
             $filters,
             $storage_ids,
             with_expired: $with_expired,
-            paginate_params: $paginate_params
+            paginate_params: $paginate_params,
+            hide_zero_values: $hide_zero_values,
         );
 
         return $product_types;

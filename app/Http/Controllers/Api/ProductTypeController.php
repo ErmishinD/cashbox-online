@@ -189,15 +189,18 @@ class ProductTypeController extends Controller
         } else {
             $paginate_params = ['per_page' => $data['per_page'], 'page' => $data['page']];
         }
-        $product_types = $this->product_type->get_current_quantity(
-            $filters,
-            $shop_id,
-            $storage_ids,
-            $data['with_expired'],
-            $paginate_params
-        );
+        
 
         if (!empty($data['per_page'])) {
+            $product_types = $this->product_type->get_current_quantity(
+                $filters,
+                $shop_id,
+                $storage_ids,
+                $data['with_expired'],
+                $paginate_params,
+                true
+            );
+
             return response()->json([
                 'success' => true,
                 'pagination' => [
@@ -209,6 +212,14 @@ class ProductTypeController extends Controller
                 ]
             ]);
         }
+
+        $product_types = $this->product_type->get_current_quantity(
+            $filters,
+            $shop_id,
+            $storage_ids,
+            $data['with_expired'],
+            $paginate_params
+        );
         return response()->json(['success' => true, 'data' => DashboardResource::collection($product_types)]);
     }
 

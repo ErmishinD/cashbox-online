@@ -20,6 +20,7 @@ class DashboardResource extends JsonResource
         $result = [
             'id' => $this->id,
             'name' => $this->name,
+            'category_id' => $this->category_id,
             'photo' => $this->media->where('collection_name', 'photo')->isNotEmpty()
                 ? $this->media->where('collection_name', 'photo')->first()->getUrl()
                 : asset('images/default_card_img.png'),
