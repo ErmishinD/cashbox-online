@@ -51,7 +51,11 @@ abstract class QueryFilter
 
     public function sorting()
     {
-        return $this->request->get('sort') ?? [];
+        $sorts = $this->request->get('sort');
+        if (is_string($sorts)) {
+            $sorts = json_decode($sorts);
+        }
+        return $sorts ?? [];
     }
 
     protected function sort_by_created_at($direction)

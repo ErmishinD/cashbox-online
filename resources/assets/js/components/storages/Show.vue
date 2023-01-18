@@ -72,10 +72,10 @@ export default{
 			serverParams: {
 			  columnFilters: {
 			  },
-			  sort: {
-			      field: '',
-			      type: '',
-			  },
+			  sort: [{
+			      field: 'category_id',
+			      type: 'desc',
+			  }],
 			  page: 1,
 			  perPage: 20,
 			  storage_ids: [this.id],

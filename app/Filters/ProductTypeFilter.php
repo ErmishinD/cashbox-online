@@ -60,4 +60,9 @@ class ProductTypeFilter extends QueryFilter
     {
         $this->builder->orderBy('name', $direction);
     }
+
+    public function sort_by_category_id($direction)
+    {
+        $this->builder->orderBy('category_id', $direction);
+    }
 }
