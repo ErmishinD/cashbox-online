@@ -7,9 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Resources\Api\WriteOff\IndexResource;
 use App\Http\Resources\Api\WriteOff\ShowCollection;
+use App\Models\ProductConsumption;
+use App\Models\ProductPurchase;
+use App\Models\SystemLog;
 use App\Models\WriteOff;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @authenticated
@@ -76,5 +80,37 @@ class WriteOffController extends Controller
         }
 
         return new ShowCollection($all_write_offs);
+    }
+
+    public function destroy(WriteOff $write_off)
+    {
+        $this->authorize('WriteOff_delete');
+
+        DB::transaction(function() use ($write_off) {
+            SystemLog::where('loggable_type', WriteOff::class)->where('loggable_id', $write_off->id)->delete();
+
+            $product_consumptions = ProductConsumption::query()
+                ->with('product_purchase')
+                ->where('consumable_type', WriteOff::class)
+                ->where('consumable_id', $write_off->id)
+                ->get();
+
+            foreach ($product_consumptions as $product_consumption) {
+                $product_consumption->product_purchase->current_quantity += $product_consumption->quantity;
+                $product_consumption->product_purchase->current_cost = $product_consumption->product_purchase->cost / $product_consumption->product_purchase->quantity * $product_consumption->product_purchase->current_quantity;
+
+                ProductPurchase::query()
+                    ->where('id', $product_consumption->product_purchase_id)
+                    ->update([
+                        'current_quantity' => $product_consumption->product_purchase->current_quantity,
+                        'current_cost' => $product_consumption->product_purchase->current_cost,
+                    ]);
+            }
+
+            ProductConsumption::whereIn('id', $product_consumptions->pluck('id'))->delete();
+            
+            $write_off->delete();
+        });
+        return response()->noContent();
     }
 }

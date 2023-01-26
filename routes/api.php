@@ -194,6 +194,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('write_offs')->group(function () {
         Route::post('get_paginated', [WriteOffController::class, 'get_paginated']);
         Route::get('/{write_off}', [WriteOffController::class, 'show']);
+        Route::delete('/{write_off}', [WriteOffController::class, 'destroy']);
     });
 
     /*
