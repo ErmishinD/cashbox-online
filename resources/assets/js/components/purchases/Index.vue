@@ -113,6 +113,7 @@ export default {
       current_id: null,
       serverParams: {
         columnFilters: {
+          product_type_name: ''
         },
         sort: {
             field: '',
@@ -125,6 +126,11 @@ export default {
         {
           label: this.$t("Товар"),
           field: "product_type.name",
+          filterOptions: {
+            enabled: true, // enable filter for this column
+            placeholder: this.$t('Фильтрация'), // placeholder for filter input
+            trigger: 'enter', //only trigger on enter not on keyup
+          },
         },
         {
           label: this.$t("Оператор"),
@@ -217,7 +223,10 @@ export default {
       },
 
       onColumnFilter(params) {
-        console.log(params.columnFilters.type)
+        console.log(params.columnFilters)
+        if(params.columnFilters['product_type.name']){
+          params.columnFilters.product_type_name = params.columnFilters['product_type.name']
+        }
           this.updateParams(params);
           this.loadItems();
       },
