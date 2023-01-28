@@ -1,6 +1,23 @@
 <template>
 
   <div>
+    <GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
+      <div class="getting-started-example-styled">
+        <div class="getting-started-example-styled__content">
+          <div class="getting-started-example-styled__title">
+            {{ $t('Внимание') }}!
+          </div>
+
+          <p>{{ $t('Вы уверены, что хотите удалить') }} {{$t('списание')}}?</p>
+        </div>
+
+        <div class="getting-started-example-styled__actions">
+          <button @click="delWriteOff" class="btn btn-danger">
+            {{ $t('Удалить') }}
+          </button>
+        </div>
+      </div>
+    </GDialog>
     <div class="pull-right mb-10">
       <router-link :to="{name: 'write_off_create'}">
         <button v-if="$can('WriteOff_create')" class="btn btn-success" >{{ $t('Добавить списание') }}</button>
@@ -39,6 +56,10 @@
         </span>
 
         <span v-if="props.column.field == 'quantity'">{{props.row.quantity / props.row.product_type.main_measure_type.quantity}} {{props.row.product_type.main_measure_type.name}}</span>
+
+        <span class="table_actions" v-if="props.column.field == 'actions'">
+          <a v-if="$can('WriteOff_delete')" @click="onOpen(props.row)" href="#"><i class="fas fa-trash-alt"></i></a>
+        </span>
         </template>
     </vue-good-table>
   </div>
@@ -60,6 +81,8 @@ export default {
       totalRecords: 0,
       balance_modal_show: false,
       balance:null,
+      modal_show: false,
+      current_id: '',
       serverParams: {
         columnFilters: {
         },
@@ -90,6 +113,12 @@ export default {
         {
           label: this.$t("Дата списания"),
           field: 'created_at'
+        },
+        {
+          label: this.$t('Действия'),
+          field: 'actions',
+          sortable: false,
+          width: '65px',
         },
       ],
       rows: [],
@@ -148,6 +177,33 @@ export default {
               this.emitter.emit("isLoading", false);
 
           })
+      },
+      onOpen(params){
+        this.modal_show = true
+        this.current_id = params.id
+        console.log(params)
+      },
+      delWriteOff(){
+        axios.delete(`/api/write_offs/${this.current_id}`, {
+
+        }).then((response) => {
+          this.$notify({
+              text: this.$t('Успешно!'),
+              type: 'success',
+            });
+          this.render_list_items()
+        }).catch(error => {
+          if(error.response.status == 409){
+            this.$notify({
+              text: this.$t('Ошибка при удалении!'),
+              type: 'error',
+            });
+            
+          }
+        }).finally((result) => {
+          this.modal_show = false
+        })
+
       },
   },
 };
