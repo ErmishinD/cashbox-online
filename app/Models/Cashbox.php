@@ -71,12 +71,12 @@ class Cashbox extends Model implements SystemLoggable
 
     public function operator()
     {
-        return $this->belongsTo(User::class, 'operator_id');
+        return $this->belongsTo(User::class, 'operator_id')->withTrashed();
     }
 
     public function collector()
     {
-        return $this->belongsTo(User::class, 'collector_id');
+        return $this->belongsTo(User::class, 'collector_id')->withTrashed();
     }
 
     public function payments()
