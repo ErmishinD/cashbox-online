@@ -17,6 +17,13 @@ class ProductPurchaseFilter extends QueryFilter
         $this->builder->where('product_type_id', $value);
     }
 
+    public function product_type_name($value)
+    {
+        $this->builder->whereHas('product_type', function($query) use ($value) {
+            $query->where('name', 'like', '%' . $value . '%');
+        });
+    }
+
     public function user_id($value)
     {
         $this->builder->where('user_id', $value);

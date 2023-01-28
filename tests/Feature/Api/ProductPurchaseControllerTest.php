@@ -342,6 +342,38 @@ class ProductPurchaseControllerTest extends TestCase
         $response->assertJsonCount(1, 'pagination.data');
     }
 
+    public function test_can_filter_product_type_name()
+    {
+        $company = Company::factory()->create();
+        $shop = Shop::factory()->create(['company_id' => $company->id]);
+        $counterparty = Counterparty::factory()->create(['company_id' => $shop->company_id]);
+        $storage = Storage::factory()->create(['company_id' => $company->id, 'shop_id' => $shop->id]);
+        $this->admin->update(['company_id' => $company->id]);
+
+        $product_type1 = ProductType::factory()->create(['company_id' => $company->id]);
+        $product_type2 = ProductType::factory()->create(['company_id' => $company->id]);
+
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type1->id,
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id
+        ]);
+        ProductPurchase::factory()->create([
+            'company_id' => $company->id, 'storage_id' => $storage->id, 'product_type_id' => $product_type2->id,
+            'user_id' => $this->admin->id, 'counterparty_id' => $counterparty->id
+        ]);
+
+        $response = $this->actingAs($this->admin)->postJson($this->base_route . 'get_paginated', [
+            'columnFilters' => ['product_type_name' => $product_type2->name]
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(1, 'pagination.data');
+    }
+
     public function test_can_filter_user_id()
     {
         $company = Company::factory()->create();
