@@ -129,7 +129,10 @@
   			this.axios.post('/api/change_shop', {shop_id : this.current_shop}).then((response) => {
           this.emitter.emit("change_shop", this.current_shop);
   				this.modal_show = false
+				this.current_shop_in_select = null
   				this.$shopId = this.current_shop
+				window.localStorage.setItem('shop_id', this.current_shop)
+				console.log(this.$shopId)
   			})
   		},
   		changeLanguage (locale) {

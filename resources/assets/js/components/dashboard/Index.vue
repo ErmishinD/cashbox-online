@@ -185,7 +185,7 @@
     			},
     			all_data_is_loaded: false,
     			unmounted: false,
-    			shop_id: this.$shopId
+    			shop_id: window.localStorage.getItem('shop_id')
     		}
     	},
         created () {
@@ -217,6 +217,8 @@
         	 	document.addEventListener('scroll', this.scrolltoGetMoreData)
 	  		     this.render_list_items(true)
         	 }
+
+			 console.log(this.shop_id)
 
              this.axios.get('/api/categories').then((response) => {
                 this.categories = response.data['data']
