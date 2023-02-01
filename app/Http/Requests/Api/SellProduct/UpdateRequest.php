@@ -19,7 +19,7 @@ class UpdateRequest extends TenantRequest
                 'required',
                 Rule::unique('sell_products')->where(function ($query) {
                     return $query->where('company_id', session('company_id'));
-                })->ignore($this->sell_product)
+                })->ignore($this->sell_product)->withoutTrashed()
             ],
             'price' => ['required', 'numeric', 'min:0'],
             'has_discount' => ['nullable', 'boolean'],
