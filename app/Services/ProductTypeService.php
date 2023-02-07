@@ -53,7 +53,8 @@ class ProductTypeService
             ->when($hide_zero_values, function($query) {
                 $query->having('product_purchases_sum_current_quantity', '>', 0);
             })
-            ->orderByDesc('product_purchases_sum_current_quantity');
+            ->orderByDesc('product_purchases_sum_current_quantity')
+            ->orderBy('id');
 
         if (!empty($paginate_params) && !empty($paginate_params['per_page'] && !empty($paginate_params['page']))) {
             return $product_types_query->paginate($paginate_params['per_page'], ['*'], 'page', $paginate_params['page']);
