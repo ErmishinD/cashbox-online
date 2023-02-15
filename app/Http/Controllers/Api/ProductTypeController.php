@@ -88,7 +88,7 @@ class ProductTypeController extends Controller
 
     public function show(ProductType $product_type): JsonResponse
     {
-        $this->authorize('ProductType_create');
+        $this->authorize('ProductType_show');
 
         $product_type->load([
             'measure_types', 'sell_products', 'media', 'main_measure_type', 'base_measure_type', 'category'
