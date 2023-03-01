@@ -20,7 +20,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"data":[{"id":1,"type":"_volume","name":"\u043c\u043b"},{"id":2,"type":"_weight","name":"\u0433"},{"id":3,"type":"_quantity","name":"\u0448\u0442"}]}'
+        content: '{"success":true,"data":[{"id":1,"type":"_volume","name":"\u043c\u043b"},{"id":2,"type":"_weight","name":"\u0433"},{"id":3,"type":"_quantity","name":"\u0448\u0442"},{"id":4,"type":"_length","name":"\u043c\u043c"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

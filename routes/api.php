@@ -162,8 +162,10 @@ Route::middleware('auth:sanctum')->group(function () {
      * External Sales
      */
     Route::post('external_sales/get_paginated', [ExternalSaleController::class, 'get_paginated']);
+    Route::post('external_sales/get_paginated/history', [ExternalSaleController::class, 'get_history_paginated']);
     Route::post('external_sales/{externalSale}/confirm', [ExternalSaleController::class, 'confirm']);
     Route::delete('external_sales/{externalSale}', [ExternalSaleController::class, 'destroy']);
+    Route::post('external_sales/{externalSale}/restore', [ExternalSaleController::class, 'restore']);
 
     /*
      * Transfer

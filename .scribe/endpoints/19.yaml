@@ -200,7 +200,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"data":[{"id":1,"shop_id":1,"name":"\u0421\u043a\u043b\u0430\u0434 \u0413\u043e\u0433\u043e\u043b\u044f"},{"id":2,"shop_id":2,"name":"\u0421\u043a\u043b\u0430\u0434 \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f"},{"id":3,"shop_id":3,"name":"\u0421\u043a\u043b\u0430\u0434 \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0438\u0439"},{"id":4,"shop_id":4,"name":"\u0421\u043a\u043b\u0430\u0434 \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e"},{"id":5,"shop_id":5,"name":"\u0421\u043a\u043b\u0430\u0434"},{"id":6,"shop_id":6,"name":"\u0421\u043a\u043b\u0430\u0434 \u041a\u0438\u0447\u043a\u0430\u0441"},{"id":7,"shop_id":7,"name":"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0441\u043a\u043b\u0430\u0434"}]}'
+        content: '{"success":true,"data":[{"id":1,"shop_id":1,"name":"\u0421\u043a\u043b\u0430\u0434 \u0413\u043e\u0433\u043e\u043b\u044f"},{"id":2,"shop_id":2,"name":"\u0421\u043a\u043b\u0430\u0434 \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f"},{"id":3,"shop_id":3,"name":"\u0421\u043a\u043b\u0430\u0434 \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0438\u0439"},{"id":4,"shop_id":4,"name":"\u0421\u043a\u043b\u0430\u0434 \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e"},{"id":5,"shop_id":5,"name":"\u0421\u043a\u043b\u0430\u0434"},{"id":6,"shop_id":6,"name":"\u0421\u043a\u043b\u0430\u0434 \u041a\u0438\u0447\u043a\u0430\u0441"},{"id":7,"shop_id":7,"name":"\u041c\u0430\u044f\u043a"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

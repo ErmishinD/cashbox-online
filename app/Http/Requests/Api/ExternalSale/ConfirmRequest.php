@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests\Api\ExternalSale;
 
-use App\Http\Requests\TenantRequest;
-use App\Models\Cashbox;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateRequest extends TenantRequest
+class ConfirmRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +20,12 @@ class CreateRequest extends TenantRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function rules()
     {
         return [
-            'company_id' => ['required'],
-            'shop_id' => ['required'],
-            'amount' => ['required'],
-            'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
-            'description' => ['required'],
+            'cashbox_id' => ['required', Rule::exists('cashboxes', 'id')],
         ];
     }
 }

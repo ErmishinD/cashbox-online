@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\ExternalSale\ConfirmRequest;
 use App\Http\Requests\Api\ExternalSale\CreateRequest;
 use App\Http\Requests\Api\ExternalSale\GetPaginatedRequest;
 use App\Http\Requests\Api\ExternalSale\UpdateRequest;
 use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\TenantRequest;
+use App\Http\Resources\Api\ExternalSale\HistoryResource;
 use App\Http\Resources\Api\ExternalSale\IndexResource;
 use App\Models\ExternalSale;
+use App\Models\SellProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @authenticated
@@ -59,15 +63,27 @@ class ExternalSaleController extends Controller
 
     public function store(CreateRequest $request)
     {
-        ExternalSale::create($request->validated());
+        $data = $request->validated();
+        $sell_product = SellProduct::query()
+            ->select(
+                'id',
+                DB::raw('ABS(price - '.$data['amount'].') as amount_delta'),
+            )
+            ->orderBy('amount_delta')
+            ->first();
+
+        $data['sell_product_id'] = $sell_product->id;
+        ExternalSale::create($data);
         return response()->noContent();
     }
 
-    public function confirm(ExternalSale $externalSale)
+    public function confirm(ExternalSale $externalSale, ConfirmRequest $request)
     {
         $this->authorize('ExternalSale_access');
 
-        $externalSale->update(['confirmed_at' => now()]);
+        $data = $request->validated() + ['confirmed_at' => now()];
+
+        $externalSale->update($data);
         return response()->noContent();
     }
 
@@ -77,5 +93,39 @@ class ExternalSaleController extends Controller
 
         $externalSale->delete();
         return response()->noContent();
+    }
+    
+    public function restore($externalSale)
+    {
+        $this->authorize('ExternalSale_access');
+
+        $external_sale = ExternalSale::onlyTrashed()->find($externalSale)->restore();
+        return response()->noContent();
+    }
+
+    public function get_history_paginated(PaginateRequest $paginateRequest)
+    {
+        $this->authorize('ExternalSale_access');
+
+        $paginate_data = $paginateRequest->validated();
+
+        $external_sales = ExternalSale::query()
+            ->withTrashed()
+            ->with(['shop', 'sell_product.media'])
+            ->where(function($query) {
+                $query->whereNotNull('confirmed_at')->orWhereNotNull('deleted_at');
+            })
+            ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
+
+        return response()->json([
+            'success' => true,
+            'pagination' => [
+                'data' => HistoryResource::collection($external_sales),
+                'current_page' => $external_sales->currentPage(),
+                'last_page' => $external_sales->lastPage(),
+                'per_page' => $external_sales->perPage(),
+                'total' => $external_sales->total(),
+            ]
+        ]);
     }
 }

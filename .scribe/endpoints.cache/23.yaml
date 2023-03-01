@@ -70,3 +70,28 @@ endpoints:
           vary: Origin
         description: null
     responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/write_offs/{write_off_id}'
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      write_off_id:
+        name: write_off_id
+        description: 'The ID of the write off.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []

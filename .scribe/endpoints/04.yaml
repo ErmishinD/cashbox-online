@@ -87,7 +87,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":1,"name":"#main_stretch","purchase_sum_cost":165703.13,"purchase_sum_current_cost":"104986.46","cashbox_consumptions_sum_cost":"33606.68","cashbox_consumptions_sum_income":"61065.91","cashbox_consumptions_sum_profit":"25534.52","write_off_consumptions_sum_cost":"26661.32","transfer_consumptions_sum_cost":"4592.53"}}'
+        content: '{"data":{"id":1,"name":"#main_stretch","purchase_sum_cost":223978.28999999998,"purchase_sum_current_cost":"116201.38","cashbox_consumptions_sum_cost":"67803.43","cashbox_consumptions_sum_income":"162390.91","cashbox_consumptions_sum_profit":"64997.51","write_off_consumptions_sum_cost":"39464.69","transfer_consumptions_sum_cost":"93059.06"}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

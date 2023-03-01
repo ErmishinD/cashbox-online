@@ -72,13 +72,6 @@ endpoints:
         example: consequatur
         type: string
         custom: []
-      sell_product_id:
-        name: sell_product_id
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
       payment_type:
         name: payment_type
         description: 'Must be one of <code>_card</code> or <code>_cash</code>.'
@@ -113,11 +106,18 @@ endpoints:
         name: externalSale_id
         description: 'The ID of the externalSale.'
         required: true
-        example: 17
+        example: 1
         type: integer
         custom: []
     queryParameters: []
-    bodyParameters: []
+    bodyParameters:
+      cashbox_id:
+        name: cashbox_id
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
     responses: []
     responseFields: []
   -
@@ -138,10 +138,67 @@ endpoints:
         name: externalSale_id
         description: 'The ID of the externalSale.'
         required: true
-        example: 17
+        example: 1
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/external_sales/{externalSale}/restore'
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      externalSale:
+        name: externalSale
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/external_sales/get_paginated/history
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      per_page:
+        name: per_page
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        custom: []
+      page:
+        name: page
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        custom: []
     responses: []
     responseFields: []
