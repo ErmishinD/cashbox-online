@@ -143,6 +143,7 @@ import WriteOffCreate from './components/writeoff/Create.vue'
 
 /* import external sales */
 import ExternalSalesIndex from './components/external_sales/Index.vue'
+import ExternalSalesHistory from './components/external_sales/History.vue'
 
 /* import 404 */
 import PageNotFound from './components/404.vue'
@@ -503,6 +504,12 @@ const router = createRouter({
 			path: '/external_sales',
 			name: 'external_sales_index',
 			component: ExternalSalesIndex,
+			props: true,
+		},
+		{
+			path: '/external_sales/history',
+			name: 'external_sales_history',
+			component: ExternalSalesHistory,
 			props: true,
 		},
 		{

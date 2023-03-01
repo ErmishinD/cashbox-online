@@ -1,5 +1,4 @@
 <template>
-
   <div>
   	<GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="500">
   	    <div class="getting-started-example-styled">

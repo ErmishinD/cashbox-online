@@ -120,15 +120,16 @@
 
 	<div class="tac content_title">
 		{{$t('Предпродажи')}}
+		<small><router-link :to="{name: 'external_sales_history'}">{{ $t('История') }}</router-link></small>
 	</div>
 
 	<div v-for="card in cards" class="basket_card">
-		<div  class="basket_card_content">
+		<div  class="basket_card_content" style="padding: 5px 10px;">
 			<div class="basket_card__photo_name">
 				<img :src="card.sell_product.photo" class="basket_card__photo">
-				<div class="basket_card__name">
+				<div class="basket_card__name" style="text-transform: none; font-variation-settings: 'wght' 500; word-break: normal;">
 					<div>{{$t('Комплект')}}:{{card.sell_product.name}}</div>
-					<div>{{$t('Описание')}}:{{card.description}}</div>
+					<div>{{$t('Описание')}}:{{card.description}} ({{ card.payment_type == '_card' ? 'Карта' : 'Наличные' }})</div>
 				</div>
 			</div>
 			<div class="basket_card__price">
@@ -313,8 +314,10 @@
         		}
 
         		this.axios.post('/api/cashbox/mass_create', sale_data).then((response) => {
+
+					let cashbox_id = response.data.data[0].id
         			
-        			this.axios.post(`api/external_sales/${card.id}/confirm`).then((res) => {
+        			this.axios.post(`api/external_sales/${card.id}/confirm`, {cashbox_id: cashbox_id}).then((res) => {
 	        				this.$notify({
 	        				text: this.$t('Успешно!'),
 	        				type: 'success',
