@@ -46,13 +46,11 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"success":true,"data":[{"id":1,"name":"Administrator","username":"admin","email":"admin@admin.com","roles":[{"id":1,"name":"Super Admin","human_name":"Super Administrator"}]},{"id":2,"name":"\u042e\u0440\u0438\u0439 \u0411\u0438\u043b\u043e\u0432","username":"yurii_bilov","email":"yurii_bilov@admin.com","roles":[{"id":2,"name":"director.1","human_name":"\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440"}]},{"id":4,"name":"\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440","username":"test.user","email":"test.user@test.com","roles":[{"id":6,"name":"director.2","human_name":"\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440"}]},{"id":6,"name":"\u0411\u043e\u0440\u0437\u0435\u043d\u043a\u043e\u0432\u0430 \u0415\u0432\u0433\u0435\u043d\u0438\u044f","username":"Borzenkova1","email":"jeniborzenkova123ap@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":9,"name":"\u0411\u0430\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043a\u043e \u0421\u0432\u0435\u0442\u043b\u0430\u043d\u0430","username":"sadmin","email":"admin@example.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":13,"name":"\u0420\u0430\u0442\u043a\u0438\u043d\u0430 \u041f\u043e\u043b\u0438\u043d\u0430 \u0412\u0438\u0442\u0430\u043b\u0438\u0435\u0432\u043d\u0430","username":"polina.admin","email":"ratkina2004@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":15,"name":"\u0413\u0440\u0438\u0431 \u0412\u0438\u043a\u0442\u043e\u0440\u0438\u044f \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u043d\u0430","username":"viktoria_admin","email":"vuktopuj1990@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":19,"name":"Main Body\/Beauty''s director","username":"admin.body","email":"admin.body@test.com","roles":[{"id":10,"name":"director.3","human_name":"\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440"}]},{"id":20,"name":"\u0414\u0436\u0435\u0440\u0438\u0445\u043e\u0432\u0430 \u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0430","username":"KaterinaDz","email":"katerinadz07@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":21,"name":"\u0411\u0438\u043b\u043e\u0432\u0430 \u041d\u0430\u0442\u0430\u043b\u044c\u044f \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440\u043e\u0432\u043d\u0430","username":"Natali_admin","email":"admin999@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":22,"name":"\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430 \u041a\u043e\u0436\u0435\u043c\u044f\u043a\u0438\u043d\u0430","username":"admin123","email":"chrislinderman575@gmail.com","roles":[{"id":2,"name":"director.1","human_name":"\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440"}]},{"id":23,"name":"\u041a\u0440\u0438\u0441\u0442\u0438\u043d\u0430","username":"kikagatina","email":"kikagatina@gmail.com","roles":[{"id":2,"name":"director.1","human_name":"\u0414\u0438\u0440\u0435\u043a\u0442\u043e\u0440"}]},{"id":26,"name":"\u0414\u044f\u0447\u0435\u043d\u043a\u043e \u0422\u0430\u0442\u044c\u044f\u043d\u0430 \u041c\u0438\u0445\u0430\u0439\u043b\u043e\u0432\u043d\u0430","username":"tatiana","email":"diachenchiha@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":30,"name":"\u0412\u0430\u0441\u0438\u043b\u0435\u043d\u043a\u043e \u0412\u0430\u043b\u0435\u0440\u0438\u044f \u0420\u0443\u0441\u043b\u0430\u043d\u043e\u0432\u043d\u0430","username":"Lera_admin","email":"ahhh.lera@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":31,"name":"\u0413\u0430\u0440\u043c\u0430\u0448 \u0412\u0435\u0440\u043e\u043d\u0438\u043a\u0430 \u0410\u043b\u0435\u043a\u0441\u0435\u0435\u0432\u043d\u0430","username":"Nika_admin","email":"veronika.garmash2004@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":32,"name":"\u0417\u0443\u0431\u043a\u043e\u0432\u0430 \u0414\u0456\u0430\u043d\u0430 \u041e\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0456\u0432\u043d\u0430","username":"diana_admin","email":"dianazubkova61@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]},{"id":33,"name":"\u041f\u0443\u0448\u043a\u0430\u0440\u044c \u041e\u043b\u0435\u043d\u0430 \u042e\u0440\u0456\u0457\u0432\u043d\u0430","username":"olena_admin","email":"lpushkar2030@gmail.com","roles":[{"id":3,"name":"salesman.1","human_name":"\u041f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}]}]}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '48'
           vary: Origin
         description: null
     responseFields: []
@@ -142,13 +140,11 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"success":true,"data":{"id":1,"name":"Administrator","username":"admin","email":"admin@admin.com","roles":[{"id":1,"name":"Super Admin","human_name":"Super Administrator"}]}}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '47'
           vary: Origin
         description: null
     responseFields: []

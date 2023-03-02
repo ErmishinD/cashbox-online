@@ -46,13 +46,11 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"success":true,"data":[{"id":1,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0413\u043e\u0433\u043e\u043b\u044f","address":"\u0443\u043b. \u0413\u043e\u0433\u043e\u043b\u044f, 155 \u0430"},{"id":2,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f","address":"\u0443\u043b. \u0427\u0430\u0440\u0438\u0432\u043d\u0430\u044f, 46 \u0430"},{"id":3,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0438\u0439","address":"\u0443\u043b. \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0430\u044f, 14"},{"id":4,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e","address":"\u043f\u0440. \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e, 5\/35"},{"id":5,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d 1","address":"\u0443\u043b. \u041a\u0430\u043a\u0430\u044f-\u0442\u043e, \u0434. 123"},{"id":6,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u041a\u0438\u0447\u043a\u0430\u0441","address":"\u041f\u0430\u0432\u043b\u043e\u043a\u0438\u0447\u043a\u0430\u0441\u043a\u0430\u044f 27"},{"id":7,"name":"\u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e","address":"\u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e 5"}]}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '57'
           vary: Origin
         description: null
     responseFields: []
@@ -128,13 +126,11 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"success":true,"data":{"id":1,"name":"\u041c\u0430\u0433\u0430\u0437\u0438\u043d \u0413\u043e\u0433\u043e\u043b\u044f","address":"\u0443\u043b. \u0413\u043e\u0433\u043e\u043b\u044f, 155 \u0430","storages":[{"id":1,"shop_id":1,"name":"\u0421\u043a\u043b\u0430\u0434 \u0413\u043e\u0433\u043e\u043b\u044f"}]}}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '56'
           vary: Origin
         description: null
     responseFields: []

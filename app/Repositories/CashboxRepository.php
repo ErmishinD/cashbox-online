@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Cashbox;
+use App\Models\ExternalSale;
 use App\Models\ProductConsumption;
 use App\Models\ProductPurchase;
 use App\Models\ProductType;
@@ -90,6 +91,10 @@ class CashboxRepository extends BaseRepository
                 }
 
                 $payments->push($payment);
+            }
+
+            if (array_key_exists('external_sale_id', $data) && $data['external_sale_id']) {
+                ExternalSale::where('id', $data['external_sale_id'])->update(['confirmed_at' => now()]);
             }
         });
 

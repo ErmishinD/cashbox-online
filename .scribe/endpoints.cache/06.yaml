@@ -90,38 +90,6 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - POST
-    uri: 'api/external_sales/{externalSale_id}/confirm'
-    metadata:
-      title: ''
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      externalSale_id:
-        name: externalSale_id
-        description: 'The ID of the externalSale.'
-        required: true
-        example: 1
-        type: integer
-        custom: []
-    queryParameters: []
-    bodyParameters:
-      cashbox_id:
-        name: cashbox_id
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
       - DELETE
     uri: 'api/external_sales/{externalSale_id}'
     metadata:
@@ -138,7 +106,7 @@ endpoints:
         name: externalSale_id
         description: 'The ID of the externalSale.'
         required: true
-        example: 1
+        example: 2
         type: integer
         custom: []
     queryParameters: []
@@ -163,7 +131,7 @@ endpoints:
         name: externalSale
         description: ''
         required: true
-        example: 1
+        example: 2
         type: integer
         custom: []
     queryParameters: []

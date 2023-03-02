@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('external_sales', function (Blueprint $table) {
-            $table->foreignId('cashbox_id')->nullable()->constrained()->nullOnDelete();
+        Schema::table('cashboxes', function (Blueprint $table) {
+            $table->foreignId('external_sale_id')->nullable()->constrained()->nullOnDelete();
         });
     }
 

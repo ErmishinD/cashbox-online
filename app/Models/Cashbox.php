@@ -43,7 +43,7 @@ class Cashbox extends Model implements SystemLoggable
     protected $fillable = [
         'shop_id', 'sell_product_id', 'data', 'transaction_type', 'payment_type', 'amount',
         'description', 'operator_id', 'collected_at', 'collector_id', 'parent_id', 'company_id',
-        'self_cost', 'profit'
+        'self_cost', 'profit', 'external_sale_id'
     ];
 
     protected $dates = ['collected_at'];

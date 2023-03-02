@@ -58,13 +58,11 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"data":{"from_storage":{"id":4,"name":"\u0421\u043a\u043b\u0430\u0434 \u041c\u0430\u044f\u043a\u043e\u0432\u0441\u043a\u043e\u0433\u043e"},"to_storage":{"id":3,"name":"\u0421\u043a\u043b\u0430\u0434 \u0411\u043e\u0440\u043e\u0434\u0438\u043d\u0441\u043a\u0438\u0439"},"transferred_by":{"id":3,"name":"\u041c\u0430\u043a\u0441\u0438\u043c\u0446\u043e\u0432\u0430 \u0410\u043d\u0430\u0441\u0442\u0430\u0441\u0438\u044f"},"created_at":"2022-07-04 15:31","product_types":[{"id":20,"name":"\u041d\u043e\u0441\u043a\u0438 (\u0434\u0435\u0442\u0441\u043a\u0438\u0435)","main_measure_type":{"id":3,"name":"\u0448\u0442","quantity":1},"quantity":2,"amount":20,"product_purchase_id":168}]}}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '26'
           vary: Origin
         description: null
     responseFields: []

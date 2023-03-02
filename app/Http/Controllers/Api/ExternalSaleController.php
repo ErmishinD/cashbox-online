@@ -11,6 +11,7 @@ use App\Http\Requests\Api\PaginateRequest;
 use App\Http\Requests\TenantRequest;
 use App\Http\Resources\Api\ExternalSale\HistoryResource;
 use App\Http\Resources\Api\ExternalSale\IndexResource;
+use App\Models\Cashbox;
 use App\Models\ExternalSale;
 use App\Models\SellProduct;
 use Illuminate\Http\Request;
@@ -77,16 +78,6 @@ class ExternalSaleController extends Controller
         return response()->noContent();
     }
 
-    public function confirm(ExternalSale $externalSale, ConfirmRequest $request)
-    {
-        $this->authorize('ExternalSale_access');
-
-        $data = $request->validated() + ['confirmed_at' => now()];
-
-        $externalSale->update($data);
-        return response()->noContent();
-    }
-
     public function destroy(ExternalSale $externalSale)
     {
         $this->authorize('ExternalSale_access');
@@ -111,7 +102,7 @@ class ExternalSaleController extends Controller
 
         $external_sales = ExternalSale::query()
             ->withTrashed()
-            ->with(['shop', 'sell_product.media'])
+            ->with(['shop', 'cashbox_payments.sell_product'])
             ->where(function($query) {
                 $query->whereNotNull('confirmed_at')->orWhereNotNull('deleted_at');
             })

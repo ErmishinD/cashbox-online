@@ -20,7 +20,6 @@ class ExternalSale extends Model
         'payment_type',
         'description',
         'confirmed_at',
-        'cashbox_id',
     ];
 
     protected $casts = [
@@ -42,8 +41,8 @@ class ExternalSale extends Model
         return $this->belongsTo(SellProduct::class);
     }
 
-    public function cashbox()
+    public function cashbox_payments()
     {
-        return $this->belongsTo(Cashbox::class);
+        return $this->hasMany(Cashbox::class);
     }
 }

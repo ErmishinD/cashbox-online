@@ -22,6 +22,7 @@ class MassCreateRequest extends TenantRequest
             'transaction_type' => ['required', Rule::in(Cashbox::TRANSACTION_TYPES)],
             'payment_type' => ['required', Rule::in(Cashbox::PAYMENT_TYPES)],
             'operator_id' => ['required'],
+            'external_sale_id' => ['nullable'],
             'sell_products' => ['required', 'array'],
         ];
     }

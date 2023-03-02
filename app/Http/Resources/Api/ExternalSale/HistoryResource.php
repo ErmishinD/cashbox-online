@@ -15,15 +15,20 @@ class HistoryResource extends JsonResource
      */
     public function toArray($request)
     {
+        $sell_products = [];
+        if ($this->cashbox_payments->isNotEmpty()) {
+            foreach ($this->cashbox_payments as $payment) {
+                $sell_products[] = [
+                    'id' => $payment->sell_product->id,
+                    'name' => $payment->sell_product->name,
+                ];
+            }
+        }
         return [
             'id' => $this->id,
             'shop' => ShopResource::make($this->shop),
             'amount' => $this->amount,
-            'sell_product' => [
-                'id' => $this->sell_product->id,
-                'photo' => $this->sell_product->media->where('collection_name', 'photo')->isNotEmpty() ? $this->sell_product->media->where('collection_name', 'photo')->first()->getUrl() : asset('images/default_card_img.png'),
-                'name' => $this->sell_product->name,
-            ],
+            'sell_product' => $sell_products,
             'payment_type' => $this->payment_type,
             'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i'),
