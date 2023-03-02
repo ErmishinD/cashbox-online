@@ -3,18 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\ExternalSale\ConfirmRequest;
 use App\Http\Requests\Api\ExternalSale\CreateRequest;
 use App\Http\Requests\Api\ExternalSale\GetPaginatedRequest;
-use App\Http\Requests\Api\ExternalSale\UpdateRequest;
 use App\Http\Requests\Api\PaginateRequest;
-use App\Http\Requests\TenantRequest;
 use App\Http\Resources\Api\ExternalSale\HistoryResource;
 use App\Http\Resources\Api\ExternalSale\IndexResource;
-use App\Models\Cashbox;
 use App\Models\ExternalSale;
 use App\Models\SellProduct;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -48,6 +43,7 @@ class ExternalSaleController extends Controller
             }])
             ->whereNull('confirmed_at')
             ->where('shop_id', $request->shop_id)
+            ->orderByDesc('id')
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 
         return response()->json([
@@ -106,6 +102,7 @@ class ExternalSaleController extends Controller
             ->where(function($query) {
                 $query->whereNotNull('confirmed_at')->orWhereNotNull('deleted_at');
             })
+            ->orderByDesc('id')
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 
         return response()->json([
