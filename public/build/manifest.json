@@ -9,15 +9,15 @@
     "isEntry": true
   },
   "resources/assets/js/main.css": {
-    "file": "assets/main-a6dda8c6.css",
+    "file": "assets/main-ba169595.css",
     "src": "resources/assets/js/main.css"
   },
   "resources/assets/js/main.js": {
-    "file": "assets/main-a142d37b.js",
+    "file": "assets/main-8b5ed620.js",
     "src": "resources/assets/js/main.js",
     "isEntry": true,
     "css": [
-      "assets/main-a6dda8c6.css"
+      "assets/main-ba169595.css"
     ],
     "assets": [
       "assets/sidebar_arrow-2e0b02da.svg"
