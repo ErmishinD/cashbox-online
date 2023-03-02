@@ -28,7 +28,7 @@ class HistoryResource extends JsonResource
             'id' => $this->id,
             'shop' => ShopResource::make($this->shop),
             'amount' => $this->amount,
-            'sell_product' => $sell_products,
+            'sell_products' => $sell_products,
             'payment_type' => $this->payment_type,
             'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i'),
