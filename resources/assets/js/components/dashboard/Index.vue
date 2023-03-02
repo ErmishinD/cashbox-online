@@ -82,7 +82,7 @@
 	</div>
 
 	<div class="dashboard_actions_row">
-		<input @change="search" :placeholder="$t('Поиск товара')" type="text">
+		<input @change="search" :value="external_sale_product.name" :placeholder="$t('Поиск товара')" type="text">
         <select @change="getByCategory" v-model="selected_category">
             <option value="">{{$t('Все категории')}}</option>
             <option v-for="category in categories" :value="category.id">{{category.name}}</option>
@@ -157,6 +157,10 @@
     	components: {
 		    GDialog,
 		  },
+		props: [
+			'product',
+			'external_sale_id_prop',
+		],
     	data(){
     		return{
     			cards: [],
@@ -170,6 +174,8 @@
     			products_for_sale_in_basket: [],
     			product_types_in_storages: [],
     			overlimited_product_types: [],
+				external_sale_product: '',
+				external_sale_id: this.external_sale_id_prop,
     			in_progress_loading_data: false,
     			modal_show: false,
     			serverParams: {
@@ -197,6 +203,10 @@
         	}
         },
         mounted(){
+			if(this.product){
+				this.external_sale_product = JSON.parse(this.product)
+			}
+			
         	if(this.shop_id){
         		 this.axios.post('/api/product_types/get_current_quantity', {shop_id : this.shop_id}).then((response) => {
                    this.product_types_in_storages = response.data['data']
@@ -215,6 +225,7 @@
         	 if(this.shop_id){
                 // console.log(document.addEventListener('change_shop', this.render_list_items(true)))
         	 	document.addEventListener('scroll', this.scrolltoGetMoreData)
+				this.serverParams.columnFilters.name = this.external_sale_product.name
 	  		     this.render_list_items(true)
         	 }
 
@@ -261,7 +272,6 @@
         		this.render_list_items(true)
         	},
         	render_list_items(is_not_paginate){
-        		console.log(this.cards_for_sailing.find)
         		this.in_progress_loading_data = true
         		this.emitter.emit("isLoading", true);
         		if(is_not_paginate){
@@ -298,6 +308,13 @@
 			        		el.product_types.forEach(elem => {
 			        			elem.current_quantity = elem.quantity_in_main_measure_type
 			        		})
+
+							if(this.external_sale_product){
+								if(el.id == this.external_sale_product.id){
+									this.cards_for_sailing.push(el)
+									this.selected_cards.push(el.id)
+								}
+							}
 			        })
 
 				       if(data.pagination.last_page != data.pagination.current_page){
@@ -414,7 +431,8 @@
         			'payment_type' : payment_type,
         			'amount': this.countAllProductsPrice,
         			'operator_id' : 1,
-        			'sell_products' : data_for_sailing
+        			'sell_products' : data_for_sailing,
+					'external_sale_id' : this.external_sale_id ?? ''
         		}
 
         		this.axios.post('/api/cashbox/mass_create', sale_data).then((response) => {
@@ -423,6 +441,7 @@
         				type: 'success',
         			});
         			this.emitter.emit("isLoading", false);
+					this.serverParams.columnFilters.name = ''
         			this.resetData()
         			this.render_list_items(true)
         		})
@@ -437,6 +456,8 @@
         		this.products_for_sale_in_basket = []
         		this.product_types_in_storages = []
         		this.overlimited_product_types = []
+				this.external_sale_id = ''
+				this.external_sale_product = ''
         		this.modal_show = false
         	},
 

@@ -176,7 +176,8 @@ const router = createRouter({
 		{
 			path: '/dashboard',
 			name: 'home',
-			component: DashboardIndex
+			component: DashboardIndex,
+			props: true
 		},
 		{
 			path: '/sale_detail/:id',

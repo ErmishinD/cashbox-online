@@ -23,10 +23,10 @@
 
 	      <div class="getting-started-example-styled__actions">
 
-	      	<button @click="FixSale('_card')" :disabled="overlimited_product_types.length" class="btn btn-warning">
+	      	<button @click="redirectToDashboard('_card')" :disabled="overlimited_product_types.length" class="btn btn-warning">
 	          {{ $t('Оплачено картой') }}
 	        </button>
-	        <button @click="FixSale('_cash')" :disabled="overlimited_product_types.length" class="btn btn-success">
+	        <button @click="redirectToDashboard('_cash')" :disabled="overlimited_product_types.length" class="btn btn-success">
 	          {{ $t('Оплачено') }}
 	        </button>
 	      </div>
@@ -137,7 +137,7 @@
 				<input type="number" min="1" name="price" v-model="card.amount">
 			</div>
 			<div class="basket_card__actions">
-				<button class="btn btn-success" @click="FixSale(card)">{{$t('Подтвердить')}}</button>
+				<button class="btn btn-success" @click="redirectToDashboard(card)">{{$t('Подтвердить')}}</button>
 				<button class="btn btn-danger" @click="openRemoveCardModal(card)"><i class="fas fa-trash"></i></button>
 			</div>
 		</div>
@@ -290,53 +290,55 @@
         		}
         	},
 
-        	FixSale(card) {
-        		this.emitter.emit("isLoading", true);
+        	redirectToDashboard(card) {
+				console.log(card)
+				this.$router.push({ name: 'home', params: {external_sale_id_prop: card.id, product: JSON.stringify(card.sell_product)}})
+        		// this.emitter.emit("isLoading", true);
 
-        		let sell_product = []
+        		// let sell_product = []
  
-    			card.sell_product.sell_product_id = card.sell_product.id
-    			card.sell_product.amount = card.amount
-    			card.sell_product.product_types.forEach(elem => {
-    				elem.quantity = elem.quantity_in_main_measure_type * elem.main_measure_type.quantity
-    			})
+    			// card.sell_product.sell_product_id = card.sell_product.id
+    			// card.sell_product.amount = card.amount
+    			// card.sell_product.product_types.forEach(elem => {
+    			// 	elem.quantity = elem.quantity_in_main_measure_type * elem.main_measure_type.quantity
+    			// })
 
-    			sell_product.push(card.sell_product)
+    			// sell_product.push(card.sell_product)
 
 
-        		let sale_data = {
-        			'shop_id': 1,
-        			'transaction_type' : '_in',
-        			'payment_type' : card.payment_type,
-        			'amount': card.amount,
-        			'operator_id' : 1,
-        			'sell_products' : sell_product
-        		}
+        		// let sale_data = {
+        		// 	'shop_id': 1,
+        		// 	'transaction_type' : '_in',
+        		// 	'payment_type' : card.payment_type,
+        		// 	'amount': card.amount,
+        		// 	'operator_id' : 1,
+        		// 	'sell_products' : sell_product
+        		// }
 
-        		this.axios.post('/api/cashbox/mass_create', sale_data).then((response) => {
+        		// this.axios.post('/api/cashbox/mass_create', sale_data).then((response) => {
 
-					let cashbox_id = response.data.data[0].id
+				// 	let cashbox_id = response.data.data[0].id
         			
-        			this.axios.post(`api/external_sales/${card.id}/confirm`, {cashbox_id: cashbox_id}).then((res) => {
-	        				this.$notify({
-	        				text: this.$t('Успешно!'),
-	        				type: 'success',
-        				});
-	        			this.render_list_items(true)
-        			}).catch(error => {
-				          this.$notify({
-				            text: this.$t('Ошибка при подтверждении!'),
-				            type: 'error',
-				          });
-				          this.emitter.emit("isLoading", false);
-				      })
-        		}).catch(error => {
-			          this.$notify({
-			            text: this.$t('Ошибка при добавлении записи в кассу!'),
-			            type: 'error',
-			          });
-			          this.emitter.emit("isLoading", false);
-			      })
+        		// 	this.axios.post(`api/external_sales/${card.id}/confirm`, {cashbox_id: cashbox_id}).then((res) => {
+	        	// 			this.$notify({
+	        	// 			text: this.$t('Успешно!'),
+	        	// 			type: 'success',
+        		// 		});
+	        	// 		this.render_list_items(true)
+        		// 	}).catch(error => {
+				//           this.$notify({
+				//             text: this.$t('Ошибка при подтверждении!'),
+				//             type: 'error',
+				//           });
+				//           this.emitter.emit("isLoading", false);
+				//       })
+        		// }).catch(error => {
+			    //       this.$notify({
+			    //         text: this.$t('Ошибка при добавлении записи в кассу!'),
+			    //         type: 'error',
+			    //       });
+			    //       this.emitter.emit("isLoading", false);
+			    //   })
         	},
 
         	resetData(){
