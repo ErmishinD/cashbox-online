@@ -40,12 +40,16 @@
 
             <span v-if="props.column.field == 'confirmed_deleted_at'">{{ props.row.confirmed_at ?? props.row.deleted_at }}</span>
 
-            <span v-if="props.column.field == 'sell_product.name'">
-                <router-link class="redirect_from_table" v-if="$can('SellProduct_show') && props.row.sell_product"
-                            :to="{name: 'products_for_sale_show', params: {id: props.row.sell_product.id}}">{{ props.row.sell_product.name }}
+            <span v-if="props.column.field == 'sell_products'">
+              <div class="" v-for="sell_product in props.row.sell_products">
+                <router-link class="redirect_from_table" v-if="$can('SellProduct_show') && sell_product"
+                            :to="{name: 'products_for_sale_show', params: {id: sell_product.id}}">{{ sell_product.name }}
                 </router-link>
                 <span
-                    v-else>{{ props.row.sell_product.name }}</span>
+                    v-else>{{ sell_product.name }}</span>
+                <br>
+              </div>
+                
             </span>
 
             <span class="table_actions" v-if="props.column.field == 'actions'">
@@ -102,8 +106,12 @@
             field: 'confirmed_deleted_at',
           },
           {
-            label: this.$t('Товар'),
-            field: 'sell_product.name',
+            label: this.$t('Описание'),
+            field: 'description',
+          },
+          {
+            label: this.$t('Товары'),
+            field: 'sell_products',
           },
           {
             label: this.$t('Действия'),
