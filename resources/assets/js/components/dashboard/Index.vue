@@ -5,6 +5,7 @@
 	      <div class="getting-started-example-styled__content">
 	        <div class="getting-started-example-styled__title">
 	        	{{ $t('Подтверждение продажи') }}
+				<span v-if="external_sale_id"> ({{ external_sale_amount }})</span>
 	        </div>
 
 	        <div v-for="card in cards_for_sailing" class="basket_card">
@@ -160,6 +161,7 @@
 		props: [
 			'product',
 			'external_sale_id_prop',
+			'external_sale_amount_prop',
 		],
     	data(){
     		return{
@@ -176,6 +178,7 @@
     			overlimited_product_types: [],
 				external_sale_product: '',
 				external_sale_id: this.external_sale_id_prop,
+				external_sale_amount: this.external_sale_amount_prop,
     			in_progress_loading_data: false,
     			modal_show: false,
     			serverParams: {
@@ -268,6 +271,7 @@
         		};
         	},
         	search(e){
+				this.external_sale_product.name = ''
         		this.serverParams.columnFilters.name = e.target.value
         		this.render_list_items(true)
         	},
@@ -310,7 +314,7 @@
 			        		})
 
 							if(this.external_sale_product){
-								if(el.id == this.external_sale_product.id){
+								if(el.id == this.external_sale_product.id && !this.selected_cards.includes(el.id)){
 									this.cards_for_sailing.push(el)
 									this.selected_cards.push(el.id)
 								}

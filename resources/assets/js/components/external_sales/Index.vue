@@ -1,105 +1,5 @@
 <template >
 	<notifications position="bottom right" />
-	<!-- <GDialog style="z-index: 9999;" :persistent="false" v-model="modal_show" max-width="700">
-	    <div class="getting-started-example-styled">
-	      <div class="getting-started-example-styled__content">
-	        <div class="getting-started-example-styled__title">
-	        	{{ $t('Подтверждение продажи') }}
-	        </div>
-
-	        
-	      </div>
-	      <div class="getting-started-example-styled__etc">
-		      <div class="basket_sum">
-		      {{$t('Итого')}}:	{{countAllProductsPrice}}грн
-
-		      </div>
-		      <div class="custom_notification custom_notification_error" v-show="overlimited_product_types.length">
-		      		<span v-if="overlimited_product_types.length == 1">{{$t('На складе недостаточно товара')}}: </span>
-		      		<span v-else>{{$t('На складе недостаточно товаров')}}: </span>
-		      		<span class="overlimited_items" v-for="item in overlimited_product_types">| {{item.name}} - {{Math.abs(item.overlimited_quantity_in_main_measure_type)}}{{item.main_measure_type_name}} | </span>
-		  		</div>
-	  		</div>
-
-	      <div class="getting-started-example-styled__actions">
-
-	      	<button @click="redirectToDashboard('_card')" :disabled="overlimited_product_types.length" class="btn btn-warning">
-	          {{ $t('Оплачено картой') }}
-	        </button>
-	        <button @click="redirectToDashboard('_cash')" :disabled="overlimited_product_types.length" class="btn btn-success">
-	          {{ $t('Оплачено') }}
-	        </button>
-	      </div>
-	    </div>
-	  </GDialog>
-	
-
-	<div class="dashboard_actions_row">
-		<input @change="search" :placeholder="$t('Поиск товара')" type="text">
-        <select @change="getByCategory" v-model="selected_category">
-            <option value="">{{$t('Все категории')}}</option>
-            <option v-for="category in categories" :value="category.id">{{category.name}}</option>
-            <option value="without_category">{{$t('Без категорий')}}</option>
-        </select>
-		<button  :disabled="!(this.cards_for_sailing.length)" @click="openBasket" class="btn btn-success">
-			{{$t('Перейти к товарам')}}
-			<span class="counter_basket_circle"><span class="counter_basket">{{this.cards_for_sailing.length}}</span></span>
-
-		</button>
-	</div>
-
-	<div class="cards">
-		<div v-for="card in cards" class="card">
-			<div class="card_img"  :style="{'background-image': $getBackgroundImage(card.photo)}">
-				<div class="card_img_href" :id="'card_img_href_'+card.id">
-					<i class="fas " :class="selected_cards.includes(card.id) ? 'fa-trash' : 'fa-plus'"  @click="toggleClassForIcon(card)"></i>
-				</div>
-			</div>
-
-			<div class="card_content" :class="selected_cards.includes(card.id) ? 'bc-lightgreen' : ' '">
-				<div class="card_title tac">{{card.name}}</div>
-				<div class="card_items" >
-					<div class="card_item">
-						<span>
-							{{ $t('Цена') }}:
-						</span>
-
-						<span style="word-break: break-all; text-align: end;">
-							{{card.price}}грн
-						</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="card_counter" :class="selected_cards.includes(card.id) ? 'bc-lightgreen' : ' '" v-if="selected_cards.includes(card.id)">
-				<i @click="clickCounter(card, 'minus')" class="fas fa-minus"></i>
-				<input type="text" disabled step="any" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1'); if(this.value == '') this.value = 1; " v-model="card.counter">
-				<i @click="clickCounter(card, 'plus')" class="fas fa-plus"></i>
-			</div>
-
-			<div class="card_dropdown">
-				<div class="card_dropdown_button" @click="toggleClassForDropdown(card.id)">
-
-					<i class="fas fa-chevron-down" :class="selected_dropdown.includes(card.id) ? 'fa-chevron-up' : 'fa-chevron-down'" ></i>
-					<span>{{$t('Состав')}}</span>
-
-					<div v-show="selected_dropdown.includes(card.id)" class="card_dropdown_content">
-						<div class="card_item" v-for="card_ingridient in card.product_types">
-							<span>
-								{{card_ingridient.name}}:
-							</span>
-
-							<span style="word-break: break-all; text-align: end;">
-								{{card_ingridient.quantity_in_main_measure_type}}{{card_ingridient.main_measure_type.name}}
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div> -->
-
 	<GDialog style="z-index: 9999;" :persistent="false" v-model="remove_modal_show" max-width="500">
 	    <div class="getting-started-example-styled">
 	      <div class="getting-started-example-styled__content">
@@ -141,31 +41,6 @@
 				<button class="btn btn-danger" @click="openRemoveCardModal(card)"><i class="fas fa-trash"></i></button>
 			</div>
 		</div>
-		<div class="basket_card_ingridients" v-if="card.sell_product.product_types">
-
-			<div class="card_dropdown_button" @click="toggleClassForDropdownInBasket(card.id)">
-
-				<i class="fas fa-chevron-down" :class="selected_dropdown_in_basket.includes(card.id) ? 'fa-chevron-up' : 'fa-chevron-down'" ></i>
-				<span>{{$t('Состав')}}</span>
-
-
-			</div>
-
-			<div v-show="selected_dropdown_in_basket.includes(card.id)" class="card_dropdown_content">
-				<div class="card_item" v-for="card_ingridient in card.sell_product.product_types">
-					<span>
-						{{card_ingridient.name}}:
-					</span>
-
-					<span style="word-break: break-all; text-align: end;">
-						<input  :name="'ingridient_val_'+card_ingridient.id" type="number" v-model="card_ingridient.quantity_in_main_measure_type">
-						{{card_ingridient.main_measure_type.name}}
-					</span>
-				</div>
-			</div>
-		</div>
-
-
 	</div>
 </template>
 
@@ -292,7 +167,7 @@
 
         	redirectToDashboard(card) {
 				console.log(card)
-				this.$router.push({ name: 'home', params: {external_sale_id_prop: card.id, product: JSON.stringify(card.sell_product)}})
+				this.$router.push({ name: 'home', params: {external_sale_id_prop: card.id, external_sale_amount_prop: card.amount, product: JSON.stringify(card.sell_product)}})
         		// this.emitter.emit("isLoading", true);
 
         		// let sell_product = []
