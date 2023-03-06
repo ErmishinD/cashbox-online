@@ -163,6 +163,11 @@ class CashboxRepository extends BaseRepository
                     $query->withTrashed();
                 }])
             ->collected()
+            ->addSelect([
+                '*',
+                DB::raw('SUM(CASE WHEN transaction_type="' . Cashbox::TRANSACTION_TYPES['in'] . '" THEN amount ELSE (0 - amount) END) AS sum_amount'),
+            ])
+            ->groupBy(['collected_at', 'shop_id', 'operator_id', 'transaction_type'])
             ->orderByDesc('created_at')
             ->get()
             ->each(function ($payment) {
