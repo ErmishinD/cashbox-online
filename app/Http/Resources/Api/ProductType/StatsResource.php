@@ -23,6 +23,8 @@ class StatsResource extends JsonResource
                 'sum_current_quantity' => ($this->product_purchases_sum_current_quantity ?? 0.0) / $this->main_measure_type->quantity . ' ' . $this->main_measure_type->name,
                 'sum_cost' => $this->product_purchases_sum_cost ?? 0.0,
                 'sum_current_cost' => $this->product_purchases_sum_current_cost ?? 0.0,
+                'start_period_sum_quantity' => (($this->start_period_purchases_sum_quantity - $this->start_period_consumptions_sum_quantity) ?? 0) / $this->main_measure_type->quantity . ' ' . $this->main_measure_type->name,
+                'end_period_sum_quantity' => (($this->end_period_purchases_sum_quantity - $this->end_period_consumptions_sum_quantity) ?? 0) / $this->main_measure_type->quantity . ' ' . $this->main_measure_type->name,
             ],
             'sales' => [
                 'count' => $this->product_consumptions_count_sales ?? 0.0,

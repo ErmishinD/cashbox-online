@@ -350,6 +350,40 @@ class ReportController extends Controller
                         );
                 }
             ], 'current_cost')
+            ->withSum(['product_consumptions as start_period_consumptions_sum_quantity' => function($query) use ($data, $product_purchase_ids) {
+                $query
+                    ->where('product_consumptions.created_at', '<=', $data['start_date'])
+                    ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                        $sub_query->whereIn('product_consumptions.product_purchase_id', $product_purchase_ids);
+                    });
+            }], 'quantity')
+            ->withSum(['product_consumptions as end_period_consumptions_sum_quantity' => function($query) use ($data, $product_purchase_ids) {
+                $query
+                    ->where('product_consumptions.created_at', '<=', $data['end_date'])
+                    ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                        $sub_query->whereIn('product_consumptions.product_purchase_id', $product_purchase_ids);
+                    });
+            }], 'quantity')
+            ->withSum([
+                'product_purchases as start_period_purchases_sum_quantity' => function ($query) use ($data, $product_purchase_ids) {
+                    $query
+                        ->where('product_purchases.created_at', '<=', $data['start_date'])
+                        ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                $sub_query->whereIn('id', $product_purchase_ids);
+                            }
+                    );
+                }
+            ], 'quantity')
+            ->withSum([
+                'product_purchases as end_period_purchases_sum_quantity' => function ($query) use ($data, $product_purchase_ids) {
+                    $query
+                        ->where('product_purchases.created_at', '<=', $data['end_date'])
+                        ->when(!empty($data['shop_id']), function ($sub_query) use ($product_purchase_ids) {
+                                $sub_query->whereIn('id', $product_purchase_ids);
+                            }
+                    );
+                }
+            ], 'quantity')
             ->withCount([
                 'product_consumptions as product_consumptions_count_sales' => function ($query) use ($data, $product_purchase_ids) {
                     $query

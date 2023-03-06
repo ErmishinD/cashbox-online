@@ -303,6 +303,14 @@ export default {
           field: 'product_purchases.sum_current_cost',
         },
         {
+          label: this.$t('Остаток на начало периода'),
+          field: 'product_purchases.start_period_sum_quantity',
+        },
+        {
+          label: this.$t('Остаток на конец периода'),
+          field: 'product_purchases.end_period_sum_quantity',
+        },
+        {
           label: this.$t('Кол-во продаж с товаром'),
           field: 'sales.count',
         },
