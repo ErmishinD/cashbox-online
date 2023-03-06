@@ -291,6 +291,10 @@ export default {
                   filterDropdownItems: [],
               },
           },
+          {
+              label: this.$t('Описание'),
+              field: 'description',
+          },
         {
           label: this.$t('Создано'),
           field: 'created_at',

@@ -21,13 +21,18 @@
 	        		</div> -->
 	        		<div class="basket_card__price">
 	        			<label for="price">{{ $t('Цена') }}:</label>
-	        			<input type="number"  min="1" name="price" v-model="card.current_price">
+						
+						<!-- deny editing price (if user has no permission), but allow for sell_product "Сертификат" -->
+	        			<input type="number" :disabled="!$can('Cashbox_edit') && card.id != 147" min="1" name="price" v-model="card.current_price">
 	        		</div>
 	        		<div class="basket_card__actions">
 	        			<button class="btn btn-primary" @click="cloneBasketItem(card)"><i class="fas fa-clone"></i></button>
 	        			<button class="btn btn-danger" @click="removeBasketItem(card)"><i class="fas fa-trash"></i></button>
 	        		</div>
 	        	</div>
+				<div class="basket_card_description" style="margin-top: 10px;">
+					<input style="width: 100%" type="text" v-model="card.description" :placeholder="$t('Описание...')">
+				</div>
 	        	<div class="basket_card_ingridients" v-if="card.product_types">
 
 	        		<div class="card_dropdown_button" @click="toggleClassForDropdownInBasket(card.list_number_data)">

@@ -53,6 +53,9 @@ class CashboxRepository extends BaseRepository
                     $parent_id = $payments->first()->id;
                 }
                 $data['sell_product_id'] = $sell_product['sell_product_id'];
+                if (array_key_exists('description', $sell_product)) {
+                    $data['description'] = $sell_product['description'];
+                }
                 $data['amount'] = $sell_product['amount'];
                 $data['parent_id'] = $parent_id;
 

@@ -139,6 +139,10 @@ export default{
 			    field: 'operator.name',
 			  },
 			  {
+			    label: this.$t('Описание'),
+			    field: 'description',
+			  },
+			  {
 			    label: this.$t('Время'),
 			    field: 'created_at',
 			  },
