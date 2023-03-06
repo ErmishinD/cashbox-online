@@ -118,6 +118,12 @@ class CashboxController extends Controller
                 $product_consumption->product_purchase->save();
             }
 
+            if (!is_null($cashbox->external_sale_id)) {
+                $cashbox->external_sale->update([
+                    'confirmed_at' => null,
+                ]);
+            }
+
             $cashbox->product_consumptions()->delete();
             $cashbox->delete();
         });

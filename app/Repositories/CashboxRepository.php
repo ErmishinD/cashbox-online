@@ -99,7 +99,6 @@ class CashboxRepository extends BaseRepository
             if (array_key_exists('external_sale_id', $data) && $data['external_sale_id']) {
                 ExternalSale::where('id', $data['external_sale_id'])->update([
                     'confirmed_at' => now(),
-                    'amount' => round($payments->sum('amount'), 2),
                 ]);
             }
         });

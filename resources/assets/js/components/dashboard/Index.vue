@@ -88,7 +88,7 @@
 	</div>
 
 	<div class="dashboard_actions_row">
-		<input @change="search" :value="external_sale_product.name" :placeholder="$t('Поиск товара')" type="text">
+		<input @change="search" :value="serverParams.columnFilters.name" :placeholder="$t('Поиск товара')" type="text">
         <select @change="getByCategory" v-model="selected_category">
             <option value="">{{$t('Все категории')}}</option>
             <option v-for="category in categories" :value="category.id">{{category.name}}</option>
