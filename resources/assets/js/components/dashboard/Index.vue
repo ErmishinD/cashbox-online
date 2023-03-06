@@ -271,7 +271,9 @@
         		};
         	},
         	search(e){
-				this.external_sale_product.name = ''
+				if (this.external_sale_product) {
+					this.external_sale_product.name = ''
+				}
         		this.serverParams.columnFilters.name = e.target.value
         		this.render_list_items(true)
         	},
