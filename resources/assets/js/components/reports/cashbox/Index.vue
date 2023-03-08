@@ -251,10 +251,23 @@ export default {
                   filterDropdownItems: [],
               },
           },
+          {
+            label: this.$t('Создано'),
+            field: 'created_at',
+          },
         {
           label: this.$t('Сумма'),
           field: 'amount',
         },
+        {
+              label: this.$t('Тип оплаты'),
+              field: 'payment_type',
+              filterOptions: {
+                  enabled: true,
+                  placeholder: this.$t('Выбрать тип'),
+                  filterDropdownItems: [],
+              },
+          },
         {
           label: this.$t('Оператор'),
           field: 'operator.name',
@@ -264,15 +277,7 @@ export default {
               filterDropdownItems: [],
           },
         },
-          {
-              label: this.$t('Тип оплаты'),
-              field: 'payment_type',
-              filterOptions: {
-                  enabled: true,
-                  placeholder: this.$t('Выбрать тип'),
-                  filterDropdownItems: [],
-              },
-          },
+          
           {
               label: this.$t('Продукт'),
               field: 'sell_product.name',
@@ -295,10 +300,6 @@ export default {
               label: this.$t('Описание'),
               field: 'description',
           },
-        {
-          label: this.$t('Создано'),
-          field: 'created_at',
-        },
         {
           label: this.$t('Действия'),
           field: 'actions',
@@ -475,20 +476,20 @@ export default {
                  item.payment_type = this.$t(item.payment_type)
                  item.transaction_type = this.$t(item.transaction_type)
 
-                 if (!this.columns[0].filterOptions.filterDropdownItems.find(transaction_type => transaction_type == item.transaction_type)) {
+                if (!this.columns[0].filterOptions.filterDropdownItems.find(transaction_type => transaction_type == item.transaction_type)) {
                      this.columns[0].filterOptions.filterDropdownItems.push(item.transaction_type)
+                }
+                if (!this.columns[3].filterOptions.filterDropdownItems.find(payment_type => payment_type == item.payment_type)) {
+                   this.columns[3].filterOptions.filterDropdownItems.push(item.payment_type)
+                }
+                if (!this.columns[4].filterOptions.filterDropdownItems.find(operator => operator == item.operator?.name)) {
+                    this.columns[4].filterOptions.filterDropdownItems.push(item.operator?.name)
+                }
+                 if (!this.columns[5].filterOptions.filterDropdownItems.find(sell_product => sell_product == item.sell_product?.name)) {
+                     this.columns[5].filterOptions.filterDropdownItems.push(item.sell_product?.name)
                  }
-                 if (!this.columns[2].filterOptions.filterDropdownItems.find(operator => operator == item.operator?.name)) {
-                     this.columns[2].filterOptions.filterDropdownItems.push(item.operator?.name)
-                 }
-                 if (!this.columns[3].filterOptions.filterDropdownItems.find(payment_type => payment_type == item.payment_type)) {
-                     this.columns[3].filterOptions.filterDropdownItems.push(item.payment_type)
-                 }
-                 if (!this.columns[4].filterOptions.filterDropdownItems.find(sell_product => sell_product == item.sell_product?.name)) {
-                     this.columns[4].filterOptions.filterDropdownItems.push(item.sell_product?.name)
-                 }
-                 if (!this.columns[5].filterOptions.filterDropdownItems.find(shop => shop == item.shop?.name)) {
-                     this.columns[5].filterOptions.filterDropdownItems.push(item.shop?.name)
+                 if (!this.columns[6].filterOptions.filterDropdownItems.find(shop => shop == item.shop?.name)) {
+                     this.columns[6].filterOptions.filterDropdownItems.push(item.shop?.name)
                  }
              })
 
