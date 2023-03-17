@@ -193,6 +193,7 @@ class ReportController extends Controller
         $data = $request->validated();
 
         $sell_products = SellProduct::query()
+            ->withTrashed()
             ->select(['id', 'name'])
             ->withCount(['cashbox' => function ($query) use ($data) {
                 $query
