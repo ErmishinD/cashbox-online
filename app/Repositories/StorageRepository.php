@@ -155,7 +155,7 @@ class StorageRepository extends BaseRepository
                             'current_quantity' => $current_used_purchase['quantity'],
                             'cost' => $current_used_purchase['cost'],
                             'current_cost' => $current_used_purchase['cost'],
-                            'expiration_date' => $current_used_purchases['expiration_date'],
+                            'expiration_date' => $current_used_purchase['expiration_date'],
                             'user_id' => $data['transferred_by'],
                             'parent_id' => $purchase_parent_id,
                             'counterparty_id' => $current_used_purchase['counterparty_id'],
@@ -169,6 +169,7 @@ class StorageRepository extends BaseRepository
                             'transferred_by' => $data['transferred_by'],
                             'product_purchase_id' => $product_purchase->id,
                             'parent_id' => $transfer_parent_id,
+                            'data' => [$current_used_purchase],
                         ]);
 
                         $product_consumption = ProductConsumption::create([
