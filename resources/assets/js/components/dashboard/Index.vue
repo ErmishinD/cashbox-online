@@ -50,7 +50,7 @@
 	        				</span>
 
 	        				<span style="word-break: break-all; text-align: end;">
-	        					<input :disabled="card.product_types.length == 1"  :name="'ingridient_val_'+card_ingridient.id" type="number" @change="recountProductTypes(card_ingridient.id, card_ingridient.main_measure_type.quantity)" v-model="card_ingridient.quantity_in_main_measure_type">
+	        					<input  :name="'ingridient_val_'+card_ingridient.id" type="number" @change="recountProductTypes(card_ingridient.id, card_ingridient.main_measure_type.quantity)" v-model="card_ingridient.quantity_in_main_measure_type">
 	        					{{card_ingridient.main_measure_type.name}}
 	        				</span>
 	        			</div>
