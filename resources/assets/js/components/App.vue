@@ -101,6 +101,12 @@
                 this.emitter.emit("isLoading", false);
                   this.$router.push({ name: '403' })
               }
+			  else {
+				this.$notify({
+        				text: error.response,
+        				type: 'error',
+        			});
+			  }
               return Promise.reject(error)
           }
       )
@@ -124,7 +130,6 @@
   		changeShop() {
   			if(this.current_shop_in_select){
   				this.current_shop = this.current_shop_in_select
-
   			}
   			this.axios.post('/api/change_shop', {shop_id : this.current_shop}).then((response) => {
           this.emitter.emit("change_shop", this.current_shop);
