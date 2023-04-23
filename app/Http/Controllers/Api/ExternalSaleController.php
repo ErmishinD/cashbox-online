@@ -26,7 +26,7 @@ class ExternalSaleController extends Controller
 
         $external_sales = ExternalSale::query()
             ->with(['shop', 'sell_product' => function ($query) {
-                $query->with([
+                $query->withTrashed()->with([
                     'media',
                     'category' => function ($query) {
                         $query->withTrashed();
