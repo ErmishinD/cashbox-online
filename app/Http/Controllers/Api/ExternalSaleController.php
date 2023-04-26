@@ -70,7 +70,10 @@ class ExternalSaleController extends Controller
             ->first();
 
         $data['sell_product_id'] = $sell_product->id;
-        ExternalSale::create($data);
+        ExternalSale::firstOrCreate(
+            ['description' => $data['description']],
+            $data
+        );
         return response()->noContent();
     }
 
