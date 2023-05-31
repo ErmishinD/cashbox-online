@@ -324,6 +324,18 @@
 								if(el.id == this.external_sale_product.id && !this.selected_cards.includes(el.id)){
 									this.cards_for_sailing.push(el)
 									this.selected_cards.push(el.id)
+									this.external_sale_product.product_types.forEach(el => {
+									if(this.product_types_in_basket.find(item => item.id === el.id)){
+										let item = this.product_types_in_basket.find(item => item.id === el.id)
+										item.quantity += parseFloat(el.quantity.toFixed(10))
+
+										}
+										else{
+											this.product_types_in_basket.push({'id' : el.id, 'quantity': el.quantity, 'equal' : el.main_measure_type.quantity, 'name_measure_type' : el.main_measure_type.name})
+										}
+
+									})
+									this.compareWithStorage()
 								}
 							}
 			        })
