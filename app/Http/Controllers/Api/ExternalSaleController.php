@@ -70,11 +70,11 @@ class ExternalSaleController extends Controller
             ->first();
 
         $data['sell_product_id'] = $sell_product->id;
-        ExternalSale::firstOrCreate(
+        $externalSale = ExternalSale::firstOrCreate(
             ['description' => $data['description']],
             $data
         );
-        return response()->noContent();
+        return response()->json(['data' => ['id' => $externalSale->id]]);
     }
 
     public function destroy(ExternalSale $externalSale)
@@ -118,5 +118,10 @@ class ExternalSaleController extends Controller
                 'total' => $external_sales->total(),
             ]
         ]);
+    }
+
+    function instantDelete(ExternalSale $externalSale) {
+        $externalSale->forceDelete();
+        return response()->noContent();
     }
 }
