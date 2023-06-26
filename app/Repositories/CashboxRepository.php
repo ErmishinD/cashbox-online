@@ -79,7 +79,7 @@ class CashboxRepository extends BaseRepository
                     if (!$purchases_sum_quantity)
                         continue;
                     foreach ($purchases as $purchase) {
-                        $percent = $purchase['quantity'] / $purchases_sum_quantity;
+                        $percent = $purchase['cost'] / $payment->self_cost;
                         ProductConsumption::create([
                             'company_id' => $data['company_id'],
                             'product_purchase_id' => $purchase['id'],
