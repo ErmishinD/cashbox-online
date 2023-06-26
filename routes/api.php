@@ -234,6 +234,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::prefix('external')->middleware(VerifyExternalRequest::class)->group(function () {
+    Route::post('register-from-mains', [UserController::class, 'registerMainsUser']);
     Route::post('sale', [ExternalSaleController::class, 'store']);
     Route::delete('sale/{externalSale}', [ExternalSaleController::class, 'instantDelete']);
 });

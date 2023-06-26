@@ -105,14 +105,30 @@ class UserController extends Controller
     public function authorizeMainsUser(Request $request)
     {
         $data = decrypt($request->data);
-        $user = User::firstOrCreate(
-            ['username' => $data['username'], 'email' => $data['email']],
-            ['company_id' => 1, 'password' => $data['password'], 'name' => $data['name']]
-        );
-        $user->assignRole(3);
+        $user = User::find($data['user_id']);
 
         Auth::login($user);
 
+        session()->put('shop_id', $data['shop_id']);
+
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function registerMainsUser(Request $request) {
+        $data = decrypt($request->data);
+
+        $user = User::firstOrCreate(
+            ['email' => $data['email']],
+            [
+                'name' => $data['name'], 
+                'password' => $data['password'],
+                'company_id' => 1,
+                'username' => $data['username'],
+            ]
+        );
+
+        $user->assignRole(3);
+
+        return response()->json(['data' => $user]);
     }
 }
