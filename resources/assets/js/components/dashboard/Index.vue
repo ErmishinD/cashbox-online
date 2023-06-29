@@ -50,7 +50,7 @@
 	        				</span>
 
 	        				<span style="word-break: break-all; text-align: end;">
-	        					<input  :name="'ingridient_val_'+card_ingridient.id" type="number" @change="recountProductTypes(card_ingridient.id, card_ingridient.main_measure_type.quantity)" v-model="card_ingridient.quantity_in_main_measure_type">
+	        					<input  :name="'ingridient_val_'+card_ingridient.id" type="number" min="0" @change="recountProductTypes(card_ingridient.id, card_ingridient.main_measure_type.quantity)" v-model="card_ingridient.quantity_in_main_measure_type">
 	        					{{card_ingridient.main_measure_type.name}}
 	        				</span>
 	        			</div>
@@ -74,10 +74,10 @@
 
 	      <div class="getting-started-example-styled__actions">
 
-	      	<button @click="FixSale('_card')" :disabled="overlimited_product_types.length" class="btn btn-warning">
+	      	<button @click="FixSale('_card')" :disabled="overlimited_product_types.length || !cards_for_sailing.length" class="btn btn-warning">
 	          {{ $t('Оплачено картой') }}
 	        </button>
-	        <button @click="FixSale('_cash')" :disabled="overlimited_product_types.length" class="btn btn-success">
+	        <button @click="FixSale('_cash')" :disabled="overlimited_product_types.length || !cards_for_sailing.length" class="btn btn-success">
 	          {{ $t('Оплачено') }}
 	        </button>
 	      </div>
@@ -277,7 +277,7 @@
         	},
         	search(e){
 				if (this.external_sale_product) {
-					this.external_sale_product.name = ''
+					this.external_sale_product = ''
 				}
         		this.serverParams.columnFilters.name = e.target.value
         		this.render_list_items(true)
@@ -578,7 +578,7 @@
         					let card = cards.find(el => el.id == card_data.id)
         					card.counter--
 
-        					if(cards[card_data.id - 1].counter == 0){
+							if(cards.find(card => card.id == card_data.id).counter == 0){
 
         						selected_cards.forEach(function callback(elem, elem_index, elem_array){
         							console.log(el.id, elem)

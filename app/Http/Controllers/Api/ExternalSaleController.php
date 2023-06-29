@@ -105,7 +105,7 @@ class ExternalSaleController extends Controller
             ->where(function($query) {
                 $query->whereNotNull('confirmed_at')->orWhereNotNull('deleted_at');
             })
-            ->orderByDesc('id')
+            ->orderByDesc('updated_at')
             ->paginate($paginate_data['per_page'], ['*'], 'page', $paginate_data['page']);
 
         return response()->json([
