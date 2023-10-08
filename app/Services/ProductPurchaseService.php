@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Validation\ValidationException;
 
 class ProductPurchaseService
 {
@@ -10,7 +11,11 @@ class ProductPurchaseService
         $used_purchases = [];
 
         foreach ($data['product_types'] as $product_type) {
-            foreach ($product_purchases->where('product_type_id', $product_type['id']) as $product_purchase) {
+            $product_purchases = $product_purchases->where('product_type_id', $product_type['id']);
+            if ($product_purchases->isEmpty() || $product_purchases->sum('current_quantity') < $product_type['quantity']) {
+                throw ValidationException::withMessages([$product_type['name'] => 'Не достаточно товара "'.$product_type['name'].'"']);
+            }
+            foreach ($product_purchases as $product_purchase) {
                 if ($product_purchase->current_quantity >= $product_type['quantity']) {
                     $cost_difference = ($product_purchase->cost / $product_purchase->quantity) * $product_type['quantity'];
 
