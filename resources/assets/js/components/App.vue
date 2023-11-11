@@ -102,8 +102,9 @@
                   this.$router.push({ name: '403' })
               }
 			  else {
+				this.emitter.emit("isLoading", false);
 				this.$notify({
-        				text: error.response,
+        				text: error.response.data.message,
         				type: 'error',
         			});
 			  }
@@ -406,9 +407,5 @@
     },
 
   }
-</script>
-
-<script>
-
 </script>
 
