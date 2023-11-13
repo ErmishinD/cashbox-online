@@ -13,7 +13,7 @@ class ProductPurchaseService
 
         foreach ($data['product_types'] as $product_type) {
             $product_purchases = $all_product_purchases->where('product_type_id', $product_type['id']);
-            if ($product_purchases->isEmpty() || $product_purchases->sum('current_quantity') < $product_type['quantity']) {
+            if ($product_purchases->sum('current_quantity') < $product_type['quantity']) {
                 throw ValidationException::withMessages([$product_type['name'] => 'Не достаточно товара "'.$product_type['name'].'"']);
             }
             foreach ($product_purchases as $product_purchase) {
