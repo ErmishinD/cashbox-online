@@ -6,12 +6,13 @@ use Illuminate\Validation\ValidationException;
 
 class ProductPurchaseService
 {
-    public static function subtract_product_types($product_purchases, $data)
+    public static function subtract_product_types($all_product_purchases, $data)
     {
         $used_purchases = [];
 
+
         foreach ($data['product_types'] as $product_type) {
-            $product_purchases = $product_purchases->where('product_type_id', $product_type['id']);
+            $product_purchases = $all_product_purchases->where('product_type_id', $product_type['id']);
             if ($product_purchases->isEmpty() || $product_purchases->sum('current_quantity') < $product_type['quantity']) {
                 throw ValidationException::withMessages([$product_type['name'] => 'Не достаточно товара "'.$product_type['name'].'"']);
             }
