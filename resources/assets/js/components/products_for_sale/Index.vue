@@ -82,6 +82,11 @@ export default {
         {
           label: this.$t('Название'),
           field: 'name',
+          filterOptions: {
+            enabled: true, // enable filter for this column
+            placeholder: this.$t('Фильтрация'), // placeholder for filter input
+            trigger: 'enter', //only trigger on enter not on keyup
+          },
         },
         {
           label: this.$t('Цена'),
