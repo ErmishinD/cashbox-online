@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\Report;
 
+use App\Http\Resources\Api\Shop\DefaultResource;
 use App\Http\Resources\Api\User\DefaultResource as UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,7 @@ class CashboxTransactionResource extends JsonResource
                 'id' => $this->sell_product->id,
                 'name' => $this->sell_product->name,
             ],
+            'shop' => DefaultResource::make($this->whenLoaded('shop')),
             'amount' => $this->amount,
             'self_cost' => $this->self_cost,
             'profit' => $this->profit,

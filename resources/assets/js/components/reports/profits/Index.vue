@@ -175,11 +175,11 @@ export default {
         {
           label: this.$t('Название товара'),
           field: 'sell_product.name',
-          // filterOptions: {
-          //   enabled: true, // enable filter for this column
-          //   placeholder: this.$t('Фильтрация'), // placeholder for filter input
-          //   trigger: 'enter', //only trigger on enter not on keyup
-          // },
+          filterOptions: {
+            enabled: true, // enable filter for this column
+            placeholder: this.$t('Фильтрация'), // placeholder for filter input
+            trigger: 'enter', //only trigger on enter not on keyup
+          },
         },
         {
           label: this.$t('Сумма продажи'),
@@ -227,6 +227,10 @@ export default {
           //     placeholder: this.$t('Фильтрация'),
           //     filterDropdownItems: [this.$t('Портящийся'), this.$t('Непортящийся')],
           // },
+        },
+        {
+          label: this.$t('Магазин'),
+          field: 'shop.name',
         },
 
         // {
