@@ -35,6 +35,14 @@ class ProductPurchaseFilter extends QueryFilter
         $this->builder->where('counterparty_id', $value);
     }
 
+    public function transfer_id($value) {
+        if (is_null($value)) {
+            return $this->builder->doesntHave('transfer');
+        }
+        
+        $this->builder->whereHas('transfer', fn($q) => $q->where('id', $value));
+    }
+
 
     public function sort_by_cost($direction)
     {

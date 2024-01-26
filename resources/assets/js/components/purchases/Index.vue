@@ -113,7 +113,8 @@ export default {
       current_id: null,
       serverParams: {
         columnFilters: {
-          product_type_name: ''
+          product_type_name: '',
+          transfer_id: null,
         },
         sort: {
             field: '',
