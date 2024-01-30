@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CounterParty\CreateRequest;
 use App\Http\Requests\Api\CounterParty\UpdateRequest;
+use App\Http\Requests\Api\CounterParty\DateRangeRequest;
 use App\Http\Resources\Api\Counterparty\DefaultResource;
 use App\Http\Resources\Api\Counterparty\ShowResource;
 use App\Models\Cashbox;
 use App\Models\Counterparty;
+use App\Models\ProductPurchase;
 use App\Models\Transfer;
 use App\Models\WriteOff;
 
@@ -35,27 +37,48 @@ class CounterpartyController extends Controller
         return DefaultResource::make($counterparty);
     }
 
-    public function show($id)
+    public function show($id, DateRangeRequest $request)
     {
         $this->authorize('Counterparty_show');
 
+        $data = $request->validated();
+
+        $productPurchaseIds = ProductPurchase::query()
+            ->whereBetween('created_at', [$data['start_date'], $data['end_date']])
+            ->when($request->storage_id, function ($query) use ($request) {
+                $query->where('storage_id', $request->storage_id);
+            })
+            ->when($request->product_type_name, function ($query) use ($request) {
+                $query->whereHas('product_type', fn($q) => $q->where('name', 'like', '%'.$request->product_type_name.'%'));
+            })
+            ->pluck('id');
+
         $counterparty = Counterparty::query()
-            ->withSum('product_purchases', 'cost')
-            ->withSum('product_purchases', 'current_cost')
-            ->withSum(['product_consumptions as cashbox_consumptions_sum_cost' => function ($query) {
-                $query->where('consumable_type', Cashbox::class);
+            ->withSum(['product_purchases' => function($query) use ($productPurchaseIds) {
+                $query->whereIn('product_purchases.id', $productPurchaseIds);
             }], 'cost')
-            ->withSum(['product_consumptions as cashbox_consumptions_sum_income' => function ($query) {
-                $query->where('consumable_type', Cashbox::class);
+            ->withSum(['product_purchases' => function ($query) use ($productPurchaseIds) {
+                $query->whereIn('product_purchases.id', $productPurchaseIds);
+            }], 'current_cost')
+            ->withSum(['product_consumptions as cashbox_consumptions_sum_cost' => function ($query) use ($productPurchaseIds) {
+                $query->where('consumable_type', Cashbox::class)
+                        ->whereIn('product_purchases.id', $productPurchaseIds);
+            }], 'cost')
+            ->withSum(['product_consumptions as cashbox_consumptions_sum_income' => function ($query) use ($productPurchaseIds) {
+                $query->where('consumable_type', Cashbox::class)
+                    ->whereIn('product_purchases.id', $productPurchaseIds);
             }], 'income')
-            ->withSum(['product_consumptions as cashbox_consumptions_sum_profit' => function ($query) {
-                $query->where('consumable_type', Cashbox::class);
+            ->withSum(['product_consumptions as cashbox_consumptions_sum_profit' => function ($query) use ($productPurchaseIds) {
+                $query->where('consumable_type', Cashbox::class)
+                    ->whereIn('product_purchases.id', $productPurchaseIds);
             }], 'profit')
-            ->withSum(['product_consumptions as write_off_consumptions_sum_cost' => function ($query) {
-                $query->where('consumable_type', WriteOff::class);
+            ->withSum(['product_consumptions as write_off_consumptions_sum_cost' => function ($query) use ($productPurchaseIds) {
+                $query->where('consumable_type', WriteOff::class)
+                    ->whereIn('product_purchases.id', $productPurchaseIds);
             }], 'cost')
-            ->withSum(['product_consumptions as transfer_consumptions_sum_cost' => function ($query) {
-                $query->where('consumable_type', Transfer::class);
+            ->withSum(['product_consumptions as transfer_consumptions_sum_cost' => function ($query) use ($productPurchaseIds) {
+                $query->where('consumable_type', Transfer::class)
+                    ->whereIn('product_purchases.id', $productPurchaseIds);
             }], 'cost')
             ->find($id);
 

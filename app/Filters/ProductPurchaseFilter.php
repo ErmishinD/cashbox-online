@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Filters;
+use Carbon\Carbon;
 
 
 class ProductPurchaseFilter extends QueryFilter
@@ -41,6 +42,22 @@ class ProductPurchaseFilter extends QueryFilter
         }
         
         $this->builder->whereHas('transfer', fn($q) => $q->where('id', $value));
+    }
+
+    public function created_at_range($value) {
+        if (!$value) return;
+
+        $i = 0;
+        foreach ($value as $key => $date) {
+            $value[$key] = Carbon::parse($date);
+            if ($i % 2 == 0) {
+                $value[$key] = $value[$key]->startOfDay();
+            } else {
+                $value[$key] = $value[$key]->endOfDay();
+            }
+            $i++;
+        }
+        $this->builder->whereBetween('created_at', $value);
     }
 
 

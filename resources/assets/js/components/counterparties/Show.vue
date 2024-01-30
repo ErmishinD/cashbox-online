@@ -107,6 +107,12 @@
 		<small><router-link v-if="this.$can('Counterparty_edit')" :to="{name: 'counterparties_edit', params: {ids: counterparty.id}}">{{ $t('Редактировать') }}</router-link></small>
 	</div>
 
+	<div style="display: flex; justify-content: center;">
+		<div style="max-width: 320px;">
+			<Datepicker class="datepicker" v-model="date" range multiCalendars :format="format"  @update:modelValue="handleInternalPurchase"></Datepicker>
+		</div>
+	</div>
+
 	<div class="row-btw">
 		<span>{{$t('Сумма закупок')}}: {{counterparty.purchase_sum_cost}}</span>
 		<span>{{$t('Текущий баланс')}}: {{counterparty.purchase_sum_current_cost}}</span>
@@ -150,6 +156,12 @@
       	      	    </router-link>
       	      	  </span>
 
+				  <span v-if="props.column.field == 'storage.name'">
+					<router-link class="redirect_from_table"
+						:to="{name: 'storages_show', params: {id: props.row.storage_id?.id}}">{{props.row.storage_id?.name}}
+      	      	    </router-link>
+				  </span>
+
       		      <span  v-if="props.column.field == 'quantity'">
       	      	    {{props.row.quantity / props.row.product_type.main_measure_type.quantity}}{{props.row.product_type.main_measure_type.name}}
       	      	  </span>
@@ -170,7 +182,30 @@
 				<span>{{ $t('Использование закупки') }}</span>
 			</div>
 			<div v-if="current_purchase" class="short_info_for_details">
+				<div style="display: flex; justify-content: center;">
+					<div style="max-width: 320px;">
+						<Datepicker class="datepicker" v-model="consumptionsDate" range multiCalendars :format="format"  @update:modelValue="handleInternalConsumptions"></Datepicker>
+					</div>
+				</div>
 				<div class="row-btw">
+					<span>
+						{{$t('Товар')}} - 
+						<router-link class="redirect_from_table" :to="{name: 'products_type_show', params: {id: current_purchase.product_type.id}}">
+							{{current_purchase.product_type?.name}}
+						</router-link>
+					</span>
+					<span>
+						{{$t('Количество')}} - {{current_purchase.quantity}}
+					</span>
+					<span>
+						{{$t('Стоимость')}} - {{current_purchase.cost}}
+					</span>
+					<span>
+						{{$t('Осталось')}} - {{current_purchase.current_quantity}}
+					</span>
+					<span>
+						{{$t('Создано')}} - {{current_purchase.created_at}}
+					</span>
 					<span>
 						{{$t('Склад')}} - <router-link class="redirect_from_table"
       	      	                 :to="{name: 'storages_show', params: {id: current_purchase.storage_id?.id}}">{{current_purchase.storage_id?.name}}
@@ -226,6 +261,9 @@
 </template>
 
 <script>
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
 import { GDialog } from 'gitart-vue-dialog'
 import "gitart-vue-dialog/dist/style.css"
 
@@ -235,15 +273,31 @@ export default{
 		'id'
 	],
 	 components: {
-    	GDialog,
+    	GDialog, Datepicker
 	  },
 	data(){
 		return{
+			date:'',
+			consumptionsDate:'',
 			counterparty: [],
 			counterparty_purchases_columns: [
 			  {
 			    label: this.$t('Товар'),
 			    field: 'product_type.name',
+				filterOptions: {
+					enabled: true, // enable filter for this column
+					placeholder: this.$t('Фильтрация'), // placeholder for filter input
+					trigger: 'enter', //only trigger on enter not on keyup
+				},
+			  },
+			  {
+			    label: this.$t('Склад'),
+			    field: 'storage.name',
+				filterOptions: {
+					enabled: true,
+					placeholder: this.$t('Выбрать склад'),
+					filterDropdownItems: [],
+				},
 			  },
 			  {
 			    label: this.$t('Кол-во'),
@@ -293,7 +347,8 @@ export default{
 			totalRecordsConsumptions: 0,
 			serverParamsPurchases: {
 			  columnFilters: {
-			  	counterparty_id: this.id
+			  	counterparty_id: this.id,
+				created_at_range: {}
 			  },
 			  sort: {
 			      field: '',
@@ -319,22 +374,53 @@ export default{
         }
 	},
 	mounted(){
-		this.emitter.emit("isLoading", true);
-		this.axios.get('/api/counterparties/'+this.id).then((response) => {
-	       this.counterparty = response.data['data']
-	       document.title = this.counterparty['name'];
-	       this.getPurchaseData()
-	     })
-
-
+		this.loadCounterPartyData()
+		this.getPurchaseData()
+		this.loadPurchaseFilterOptions()
     },
 	created () {
 
     },
     methods: {
+		loadCounterPartyData(startDate, endDate, storageId, productTypeName) {
+			const start_date = startDate ? startDate : this.purchase_start_date
+        	const end_date = endDate ? endDate : this.purchase_end_date
+			const storage_id = storageId ? storageId : this.purchase_storage_id
+        	const product_type_name = productTypeName ? productTypeName : this.purchase_product_type_name
+
+			this.emitter.emit("isLoading", true);
+			this.axios.get('/api/counterparties/'+this.id, {
+				params: {
+					start_date, 
+					end_date,
+					storage_id,
+					product_type_name,
+				}
+			}).then((response) => {
+				this.counterparty = response.data['data']
+				document.title = this.counterparty['name'];
+				this.emitter.emit("isLoading", false);
+			})
+		},
+		loadPurchaseFilterOptions() {
+			this.axios.get('/api/storages').then((response) => {
+				response.data.data.forEach(storage => {
+					this.counterparty_purchases_columns[1].filterOptions.filterDropdownItems.push({value: storage.id, text: storage.name})
+				})
+			})
+		},
     	updateParamsPurchases(newProps) {
-        console.log(newProps)
-          this.serverParamsPurchases = Object.assign({}, this.serverParamsPurchases, newProps);
+			console.log(newProps)
+			for (const [key, value] of Object.entries(newProps.columnFilters)) {
+				if (key == 'product_type.name') {
+					newProps.columnFilters.product_type_name = value
+					this.purchase_product_type_name = value
+				} else if (key == 'storage.name') {
+					newProps.columnFilters.storage_id = value
+					this.purchase_storage_id = value
+				}
+			}
+			this.serverParamsPurchases = Object.assign({}, this.serverParamsPurchases, newProps);
       },
 
       onPageChangePurchases(params) {
@@ -365,6 +451,7 @@ export default{
         console.log(params.columnFilters.type)
           this.updateParamsPurchases(params);
           this.getPurchaseData();
+		  this.loadCounterPartyData()
       },
 
 
@@ -403,7 +490,12 @@ export default{
           this.getConsumptionData();
       },
 
-      getPurchaseData(){
+      getPurchaseData(startDate, endDate){
+		const start_date = startDate ? startDate : this.purchase_start_date
+        const end_date = endDate ? endDate : this.purchase_end_date
+
+		this.serverParamsPurchases.columnFilters.created_at_range = {start_date, end_date}
+
       	this.emitter.emit("isLoading", true);
       	this.axios.post('/api/product_purchases/get_paginated', this.serverParamsPurchases).then((response) => {
       		this.counterparty_purchases_rows = response.data.pagination.data
@@ -424,7 +516,12 @@ export default{
       	this.modal_show = true
       },
 
-      getConsumptionData(){
+      getConsumptionData(startDate, endDate){
+		const start_date = startDate ? startDate : this.consumptions_start_date
+        const end_date = endDate ? endDate : this.consumptions_end_date
+
+		this.serverParamsConsumptions.columnFilters.created_at_range = {start_date, end_date}
+
       	this.emitter.emit("isLoading", true);
       	this.axios.post('/api/product_consumptions/get_paginated', this.serverParamsConsumptions).then((response) => {
       		this.counterparty_consumptions_rows = response.data.pagination.data
@@ -433,7 +530,87 @@ export default{
       	})
       },
 
+	  format(date){
+		let startDate = date[0]
+		let endDate = date[1]
+		if(startDate && endDate){
+			startDate = this.getFormatDate(startDate)
+			endDate = this.getFormatDate(endDate)
+			console.log(`${startDate} - ${endDate}`)
+			return `${startDate} - ${endDate}`
+		}
+		else{
+
+		}
       },
+	  getFormatDate(date){
+		const day = date.getDate();
+		const month = date.getMonth() + 1;
+		const year = date.getFullYear();
+		return `${day}-${month}-${year}`
+	  },
+	  handleInternalPurchase(date){
+		console.log(date)
+		this.serverParamsPurchases.page = 1
+		if(date){
+			let startDate = date[0]
+			let endDate = date[1]
+			if(startDate && endDate){
+
+			startDate = this.getFormatDate(startDate)
+			this.purchase_start_date = startDate
+			endDate = this.getFormatDate(endDate)
+			this.purchase_end_date = endDate
+
+			this.getPurchaseData(startDate, endDate)
+			this.loadCounterPartyData(startDate, endDate)
+			}
+			else{
+			this.$notify({
+				text: this.$t('Выберите дату начала и дату конца!'),
+				type: 'error',
+				});
+			}
+		}
+		else{
+			this.purchase_start_date = ''
+			this.purchase_end_date = ''
+			this.getPurchaseData()
+			this.loadCounterPartyData()
+		}
+      },
+	  handleInternalConsumptions(date) {
+		console.log(date)
+		this.serverParamsConsumptions.page = 1
+		if(date){
+			let startDate = date[0]
+			let endDate = date[1]
+			if(startDate && endDate){
+
+			startDate = this.getFormatDate(startDate)
+			this.consumptions_start_date = startDate
+			endDate = this.getFormatDate(endDate)
+			this.consumptions_end_date = endDate
+
+			this.getConsumptionData(startDate, endDate)
+			}
+			else{
+			this.$notify({
+				text: this.$t('Выберите дату начала и дату конца!'),
+				type: 'error',
+				});
+			}
+		}
+		else{
+			this.consumptions_start_date = ''
+			this.consumptions_end_date = ''
+			this.getConsumptionData()
+		}
+      },
+
+    },
+
+	  
 
 }
 </script>
