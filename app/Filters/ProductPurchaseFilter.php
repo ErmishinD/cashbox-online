@@ -10,6 +10,7 @@ class ProductPurchaseFilter extends QueryFilter
 
     public function storage_id($value)
     {
+        if (!$value) return;
         $this->builder->where('storage_id', $value);
     }
 
@@ -20,6 +21,7 @@ class ProductPurchaseFilter extends QueryFilter
 
     public function product_type_name($value)
     {
+        if (!$value) return;
         $this->builder->whereHas('product_type', function($query) use ($value) {
             $query->where('name', 'like', '%' . $value . '%');
         });
