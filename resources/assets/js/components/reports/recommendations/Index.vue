@@ -18,6 +18,12 @@
         <option v-for="shop in shops" :value="shop.id">{{shop.name}}</option>
       </select>
     </div>
+
+    <div class="tac content_title" style="display: flex; justify-content: space-between;">
+      <span>{{$t('Сумма продаж')}}: {{ this.total_cashbox_cost }} грн</span>
+      <span>{{$t('Сумма списаний')}}: {{ this.total_write_off_cost }} грн</span>
+    </div>
+
     <vue-good-table style="position: static;"
       
       :columns="columns"
@@ -66,6 +72,9 @@ export default {
   data(){
     return {
       date:'',
+
+      total_cashbox_cost: null,
+      total_write_off_cost: null,
       
       current_shop:'',
       shops: '',
@@ -103,6 +112,7 @@ export default {
   watch:{
     current_shop(){
       this.loadItems()
+      this.loadTotalSums()
     }
   },
   mounted(){
@@ -112,12 +122,23 @@ export default {
       this.shops = response.data.Shop
     })
 
+    this.loadTotalSums()
     this.loadItems()
 
   	document.title = this.$t('Рекомендации');
 
   },
   methods:{
+      loadTotalSums() {
+        this.emitter.emit("isLoading", true);
+          this.axios.get(`/api/reports/purchase_recommendations/total`, {params: {start_date: this.start_date, end_date: this.end_date, shop_id: this.current_shop}}).then((response) => {
+              const data = response.data.data
+              this.total_cashbox_cost = data.cashbox_cost_sum
+              this.total_write_off_cost = data.write_off_cost_sum
+              this.emitter.emit("isLoading", false);
+
+          })
+      },
       // load items is what brings back the rows from server
       loadItems() {
           this.emitter.emit("isLoading", true);
@@ -160,6 +181,7 @@ export default {
           this.end_date = endDate
 
           this.loadItems()
+          this.loadTotalSums()
         }
         else{
           this.$notify({
@@ -172,6 +194,7 @@ export default {
         this.start_date = ''
         this.end_date = ''
         this.loadItems()
+        this.loadTotalSums()
       }
 
       

@@ -271,6 +271,32 @@ class ReportController extends Controller
         return ProductPurchaseRecommendationResource::collection($product_types);
     }
 
+    public function getProductPurchaseRecommendationsTotalSums(DateRangeRequest $request)
+    {
+        $this->authorize('Report_purchaseRecommendations');
+        $data = $request->validated();
+
+        $product_consumptions = ProductConsumption::query()
+            ->select([
+                DB::raw('SUM(CASE WHEN `consumable_type` = "'.str_replace('\\', '\\\\', Cashbox::class).'" THEN product_consumptions.cost ELSE 0 END) as cashbox_cost_sum'),
+                DB::raw('SUM(CASE WHEN `consumable_type` = "'.str_replace('\\', '\\\\', WriteOff::class).'" THEN product_consumptions.cost ELSE 0 END) as write_off_cost_sum'),
+            ])
+            ->when(!empty($data['shop_id']), function ($query) use ($data) {
+                $query
+                    ->join('product_purchases', 'product_purchases.id', '=', 'product_consumptions.product_purchase_id')
+                    ->join('storages', 'storages.id', '=', 'product_purchases.storage_id')
+                    ->join('shops', 'shops.id', '=', 'storages.shop_id')
+                    ->where('shops.id', $data['shop_id']);
+            })
+            ->whereBetween('product_consumptions.created_at', [$data['start_date'], $data['end_date']])
+            ->first();
+
+        return response()->json(['data' => [
+            'cashbox_cost_sum' => $product_consumptions->cashbox_cost_sum ?? 0,
+            'write_off_cost_sum' => $product_consumptions->write_off_cost_sum ?? 0,
+        ]]);
+    }
+
     public function getConsumptionsByCategory($product_type_id, DateRangeRequest $request)
     {
         $data = $request->validated();

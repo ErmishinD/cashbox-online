@@ -217,6 +217,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('warning_threshold', [ReportController::class, 'getWarningThresholdByStorages']);
         Route::get('warning_threshold/{storage_id}', [ReportController::class, 'getWarningThresholdInStorage']);
 
+        Route::get('purchase_recommendations/total', [ReportController::class, 'getProductPurchaseRecommendationsTotalSums']);
         Route::get('purchase_recommendations', [ReportController::class, 'getProductPurchaseRecommendations']);
 
         Route::get('profit', [ReportController::class, 'getProfit']);
