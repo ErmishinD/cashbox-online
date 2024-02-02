@@ -171,9 +171,6 @@ class ReportController extends Controller
             ->when($dateRangeRequest->shop_id, function ($query) use ($dateRangeRequest) {
                 $query->where('shop_id', $dateRangeRequest->shop_id);
             })
-            ->when($dateRangeRequest->columnFilters['sell_product.name'] ?? null, function ($query) use ($dateRangeRequest) {
-                $query->whereHas('sell_product', fn($q) => $q->where('name', 'like', '%'.$dateRangeRequest->columnFilters['sell_product.name'].'%'));
-            })
             ->whereBetween('cashboxes.created_at', [$report_filter_data['start_date'], $report_filter_data['end_date']])
             ->where('transaction_type', Cashbox::TRANSACTION_TYPES['in'])
             ->whereNotNull('sell_product_id')

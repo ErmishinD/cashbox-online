@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\SystemLoggable;
 use App\Http\Traits\BelongsToCompany;
 use App\Http\Traits\Filterable;
@@ -64,5 +65,10 @@ class SellProduct extends Model implements HasMedia, SystemLoggable
     public function getVueParams(string $action): array
     {
         return ['id' => $this->id];
+    }
+
+    public function scopePrepareForSelect(Builder $builder)
+    {
+        return $builder->select('id', 'name')->orderBy('name');
     }
 }

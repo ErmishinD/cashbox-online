@@ -178,7 +178,8 @@ export default {
           filterOptions: {
             enabled: true, // enable filter for this column
             placeholder: this.$t('Фильтрация'), // placeholder for filter input
-            trigger: 'enter', //only trigger on enter not on keyup
+            // trigger: 'enter', //only trigger on enter not on keyup
+            filterDropdownItems: [],
           },
         },
         {
@@ -273,6 +274,7 @@ export default {
       ],
       common_data_rows: [],
       product_types: '',
+      sell_products: [],
       current_product_type: '',
       productConsumptionData: '',
       productConsumptionOptions: '',
@@ -363,10 +365,15 @@ export default {
 
     this.getDataByDate()
 
-    this.axios.post('/api/get_for_select/', {entities: ['Shop', 'ProductType']}).then(response => {
+    this.axios.post('/api/get_for_select/', {entities: ['Shop', 'ProductType', 'SellProduct']}).then(response => {
       this.shops = response.data.Shop
       this.product_types = response.data.ProductType
       this.current_product_type = this.product_types[0].id
+      
+      this.sell_products = response.data.SellProduct
+      this.sell_products.forEach(sellProduct => {
+        this.transaction_columns[0].filterOptions.filterDropdownItems.push({value: sellProduct.id, text: sellProduct.name})
+      })
     })
 
 
@@ -621,6 +628,11 @@ export default {
         }
         else if(params.columnFilters.type == this.$t('Непортящийся')){
           params.columnFilters.type = '_imperishable'
+        }
+        if (params.columnFilters['sell_product.name']) {
+          params.columnFilters.sell_product_id = params.columnFilters['sell_product.name']
+        } else {
+          params.columnFilters.sell_product_id = null
         }
           this.updateParams(params);
           this.getTransactions();

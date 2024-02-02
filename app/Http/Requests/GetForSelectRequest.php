@@ -30,7 +30,7 @@ class GetForSelectRequest extends FormRequest
                 'required',
                 'string',
                 Rule::in([
-                    'Shop', 'Storage', 'Category', 'ProductType', 'Counterparty'
+                    'Shop', 'Storage', 'Category', 'ProductType', 'Counterparty', 'SellProduct'
                 ])
             ],
         ];
