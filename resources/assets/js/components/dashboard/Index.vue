@@ -22,8 +22,8 @@
 	        		<div class="basket_card__price">
 	        			<label for="price">{{ $t('Цена') }}:</label>
 						
-						<!-- deny editing price (if user has no permission), but allow for sell_product "Сертификат" (:disabled="!$can('Cashbox_edit') && card.id != 147") -->
-	        			<input type="number"  min="1" name="price" v-model="card.current_price">
+						<!-- deny editing price (if user has no permission), but allow for sell_product "Сертификат" -->
+	        			<input type="number" :disabled="!$can('Cashbox_edit') && card.id != 147" min="1" name="price" v-model="card.current_price">
 	        		</div>
 	        		<div class="basket_card__actions">
 	        			<button class="btn btn-primary" @click="cloneBasketItem(card)"><i class="fas fa-clone"></i></button>
